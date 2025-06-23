@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정책 토론회 일정 발표 - 자유와 혁신당 창준위</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 z-50 w-full bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center" style="height: 86px;">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-red-600">자유와 혁신당 <span class="text-lg text-gray-600">창준위</span></a>
+                </div>
+                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
+                    <div class="flex items-baseline space-x-8">
+                        <a href="notices.html" class="text-red-600 hover:text-red-700 px-3 py-2 text-lg font-medium">공지사항</a>
+                        <a href="index.html#events" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">외부 행사 및 집회</a>
+                        <a href="faq.html" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">자주묻는 질문</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <a href="index.html#join" class="bg-red-600 text-white px-6 py-3 text-lg font-medium hover:bg-red-700 flex items-center space-x-2">
+                        <span>신당 가입하기</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-900">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <article class="pt-32 pb-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb and Back Button -->
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center space-x-2 text-gray-500">
+                    <a href="index.html" class="hover:text-red-600">홈</a>
+                    <i class="fas fa-chevron-right text-xs"></i>
+                    <a href="notices.html" class="hover:text-red-600">공지사항</a>
+                    <i class="fas fa-chevron-right text-xs"></i>
+                    <span class="text-red-600">정책 토론회 일정 발표</span>
+                </div>
+                <button onclick="history.back()" class="flex items-center px-4 py-2 text-gray-600 hover:text-red-600 border border-gray-300 hover:border-red-600 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    <span>뒤로가기</span>
+                </button>
+            </div>
+
+            <!-- Article Header -->
+            <header class="mb-12 pb-8 border-b border-gray-200">
+                <div class="flex items-center space-x-4 mb-6">
+                    <span class="bg-blue-100 text-blue-600 px-4 py-2 font-medium">일반</span>
+                    <span class="text-gray-500">2025년 1월 10일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-light text-gray-900 mb-6 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    정책 토론회 <span class="font-semibold">일정 발표</span>
+                </h1>
+                <div class="flex items-center text-gray-500 space-x-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-user mr-2"></i>
+                        <span>자유와 혁신당 창준위 정책팀</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-eye mr-2"></i>
+                        <span>조회수 892</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Article Body -->
+            <div class="prose prose-lg max-w-none" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                <div class="text-xl text-gray-700 leading-relaxed mb-8">
+                    국민과 함께하는 정책 토론회 일정을 발표합니다.
+                </div>
+
+                <p class="text-gray-700 leading-relaxed mb-8" style="font-size: 1.1rem;">
+                    자유와 혁신당 창당준비위원회는 다양한 분야의 정책 전문가와 시민이 함께 참여하는 정책 토론회를 개최합니다. 
+                    이번 토론회를 통해 우리 사회가 직면한 주요 현안에 대한 깊이 있는 토론과 실질적인 해결책을 모색하고자 합니다.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-12 mb-6">토론회 개요</h2>
+                <div class="bg-blue-50 p-8 mb-8">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-4">주제: "미래를 위한 정책 혁신"</h3>
+                    <ul class="space-y-3 text-blue-800" style="font-size: 1.05rem;">
+                        <li><strong>일시:</strong> 2025년 2월 20일(목) 오후 2시 ~ 6시</li>
+                        <li><strong>장소:</strong> 서울 중구 프레스센터 국제회의장</li>
+                        <li><strong>참가비:</strong> 무료 (사전 신청 필수)</li>
+                        <li><strong>정원:</strong> 200명</li>
+                    </ul>
+                </div>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-12 mb-6">토론 세션</h2>
+                
+                <div class="space-y-8">
+                    <div class="border-l-4 border-red-600 pl-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">세션 1: 경제 정책 혁신</h3>
+                        <p class="text-gray-700 mb-4" style="font-size: 1.05rem;">
+                            <strong>시간:</strong> 오후 2:00 - 3:00<br>
+                            <strong>주제:</strong> 중소기업 지원과 일자리 창출 방안
+                        </p>
+                        <p class="text-gray-700" style="font-size: 1.05rem;">
+                            <strong>패널:</strong> 김경제 (경제연구원 원장), 박기업 (중소기업중앙회 회장), 이노동 (한국노총 위원장)
+                        </p>
+                    </div>
+
+                    <div class="border-l-4 border-red-600 pl-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">세션 2: 교육 개혁</h3>
+                        <p class="text-gray-700 mb-4" style="font-size: 1.05rem;">
+                            <strong>시간:</strong> 오후 3:15 - 4:15<br>
+                            <strong>주제:</strong> 미래 인재 양성을 위한 교육시스템 혁신
+                        </p>
+                        <p class="text-gray-700" style="font-size: 1.05rem;">
+                            <strong>패널:</strong> 정교육 (교육부 전 차관), 최학부모 (학부모연합 대표), 한학생 (전국학생연합 위원장)
+                        </p>
+                    </div>
+
+                    <div class="border-l-4 border-red-600 pl-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">세션 3: 복지와 사회통합</h3>
+                        <p class="text-gray-700 mb-4" style="font-size: 1.05rem;">
+                            <strong>시간:</strong> 오후 4:30 - 5:30<br>
+                            <strong>주제:</strong> 포용적 복지제도 구축 방안
+                        </p>
+                        <p class="text-gray-700" style="font-size: 1.05rem;">
+                            <strong>패널:</strong> 안복지 (사회복지학회 회장), 심사회 (시민사회단체협의회 대표), 윤통합 (다문화가족지원센터 센터장)
+                        </p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-12 mb-6">참가 신청</h2>
+                <div class="bg-gray-50 p-8 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">신청 방법</h3>
+                    <ul class="space-y-3 text-gray-700" style="font-size: 1.05rem;">
+                        <li><strong>온라인 신청:</strong> www.innovation-party.kr/forum</li>
+                        <li><strong>전화 신청:</strong> 02-1234-5678 (평일 9시-18시)</li>
+                        <li><strong>이메일 신청:</strong> forum@innovation-party.kr</li>
+                        <li><strong>신청 마감:</strong> 2025년 2월 18일(화) 18시</li>
+                    </ul>
+                </div>
+
+                <div class="bg-red-50 border-l-4 border-red-600 p-6 my-8">
+                    <h3 class="text-lg font-semibold text-red-900 mb-3">특별 안내</h3>
+                    <ul class="space-y-2 text-red-800" style="font-size: 1.05rem;">
+                        <li>• 토론회 전 과정이 온라인으로 생중계됩니다.</li>
+                        <li>• 질의응답 시간에 현장 참가자의 질문을 받습니다.</li>
+                        <li>• 토론회 자료집은 현장에서 배포됩니다.</li>
+                        <li>• 주차 공간이 제한적이므로 대중교통 이용을 권장합니다.</li>
+                    </ul>
+                </div>
+
+                <h2 class="text-2xl font-semibold text-gray-900 mt-12 mb-6">문의처</h2>
+                <p class="text-gray-700 leading-relaxed mb-4" style="font-size: 1.1rem;">
+                    토론회 관련 문의사항은 아래로 연락해 주시기 바랍니다.
+                </p>
+                <ul class="list-disc list-inside space-y-2 mb-8 text-gray-700" style="font-size: 1.1rem;">
+                    <li><strong>담당자:</strong> 이토론 정책연구원 (02-1234-5678, 내선 123)</li>
+                    <li><strong>이메일:</strong> forum@innovation-party.kr</li>
+                </ul>
+
+                <div class="text-right mt-12 pt-8 border-t border-gray-200">
+                    <p class="text-gray-600 font-medium">2025년 1월 10일</p>
+                    <p class="text-red-600 font-semibold text-lg">자유와 혁신당 창당준비위원회 정책팀</p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between items-center mt-16 pt-8 border-t border-gray-200">
+                <button onclick="history.back()" class="flex items-center px-6 py-3 bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">
+                    <i class="fas fa-list mr-2"></i>
+                    <span>목록으로</span>
+                </button>
+                <div class="flex space-x-4">
+                    <button onclick="location.href='notice-1.html'" class="flex items-center px-4 py-2 text-red-600 hover:text-red-700">
+                        <i class="fas fa-chevron-left mr-2"></i>
+                        <span>이전글</span>
+                    </button>
+                    <button onclick="location.href='notice-3.html'" class="flex items-center px-4 py-2 text-red-600 hover:text-red-700">
+                        <span>다음글</span>
+                        <i class="fas fa-chevron-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-6">자유와 혁신당 창준위</h3>
+                <p class="text-gray-400 mb-6">새로운 정치, 새로운 미래를 함께 만들어갑니다.</p>
+                <p class="text-gray-400">&copy; 2025 자유와 혁신당 창당준비위원회. 모든 권리 보유.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

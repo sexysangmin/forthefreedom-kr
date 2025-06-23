@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유와 혁신당 창준위 - 더 강한 미래를 함께 건설합니다</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="absolute top-8 inset-x-0 mx-auto max-w-6xl bg-white z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                          <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-red-600">자유와 혁신당 <span class="text-lg text-gray-600">창준위</span></h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#notice" class="text-gray-900 hover:text-red-600 px-3 py-2 text-sm font-medium">공지사항</a>
+                        <a href="#events" class="text-gray-900 hover:text-red-600 px-3 py-2 text-sm font-medium">이벤트</a>
+                        <a href="#faq" class="text-gray-900 hover:text-red-600 px-3 py-2 text-sm font-medium">자주묻는 질문</a>
+                        <a href="#join" class="bg-red-600 text-white px-6 py-3 text-sm font-medium hover:bg-red-700 flex items-center space-x-2">
+                            <span>당원 가입</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-900">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#notice" class="block px-3 py-2 text-gray-900">공지사항</a>
+                <a href="#events" class="block px-3 py-2 text-gray-900">이벤트</a>
+                <a href="#faq" class="block px-3 py-2 text-gray-900">자주묻는 질문</a>
+                <a href="#join" class="block px-3 py-3 bg-red-600 text-white flex items-center justify-between">
+                    <span>당원 가입</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section min-h-screen flex items-center justify-center text-center text-white relative overflow-hidden">
+        <div class="hero-bg absolute inset-0 bg-gradient-to-r from-red-900 via-red-800 to-red-600"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+                더 강한 미래를<br>함께 건설합니다
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 animate-fade-in-delay">
+                의료, 교육, 경제 성장과 같은 핵심 문제를 해결하는<br>명확한 정책을 연구하고 개발합니다.
+            </p>
+            <button class="bg-white text-red-600 px-8 py-4 text-lg font-semibold hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 animate-fade-in-delay-2">
+                캠페인 참여하기
+            </button>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- What We Stand For Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-semibold text-red-600 tracking-wide uppercase mb-4">우리의 신념</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">더 밝은 내일을 건설합니다</h3>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    의료, 교육, 경제 성장과 같은 핵심 문제를 해결하는 명확한 정책을 연구하고 개발합니다.
+                </p>
+                <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                    타운홀 미팅, 지역 모임, 디지털 채널을 통해 지역사회 구성원들과 직접 소통하며 그들의 필요를 이해하고 해결하는 것을 우선시합니다. 모든 어린이가 양질의 교육을 받을 수 있도록 교육에 대한 투자를 우선시합니다.
+                </p>
+            </div>
+
+            <!-- Policy Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="policy-card bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="mb-6">
+                        <span class="text-6xl font-bold text-red-600">01</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4">노동자의 권리와 공정한 임금</h4>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg mb-4"></div>
+                </div>
+
+                <div class="policy-card bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="mb-6">
+                        <span class="text-6xl font-bold text-red-600">02</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4">지역사회 주도 개발</h4>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg mb-4"></div>
+                </div>
+
+                <div class="policy-card bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="mb-6">
+                        <span class="text-6xl font-bold text-red-600">03</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4">이민 개혁과 포용</h4>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg mb-4"></div>
+                </div>
+
+                <div class="policy-card bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="mb-6">
+                        <span class="text-6xl font-bold text-red-600">04</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4">참전용사 및 군인 지원</h4>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg mb-4"></div>
+                </div>
+
+                <div class="policy-card bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="mb-6">
+                        <span class="text-6xl font-bold text-red-600">05</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4">정신 건강 인식</h4>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg mb-4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-sm font-semibold text-red-600 tracking-wide uppercase mb-4">우리는 누구인가</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">기부와 자원봉사 기회를 우선시합니다</h3>
+                    <p class="text-lg text-gray-600 mb-8">
+                        타운홀 미팅, 지역 모임, 디지털 채널을 통해 지역사회 구성원들과 직접 소통하며 그들의 필요를 이해하고 해결하는 것을 우선시합니다.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-red-100 flex items-center justify-center">
+                                <i class="fas fa-leaf text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">환경 보호와 지속가능성</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-red-100 flex items-center justify-center">
+                                <i class="fas fa-balance-scale text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">사회 정의와 평등</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-red-100 flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">공공 안전과 범죄 예방</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <div class="w-full h-48 bg-gray-200 rounded-lg"></div>
+                        <div class="w-full h-32 bg-gray-200 rounded-lg"></div>
+                    </div>
+                    <div class="space-y-4 mt-8">
+                        <div class="w-full h-32 bg-gray-200 rounded-lg"></div>
+                        <div class="w-full h-48 bg-gray-200 rounded-lg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-semibold text-red-600 tracking-wide uppercase mb-4">이벤트와 모임</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">참여하세요: 다가오는 이벤트</h3>
+            </div>
+
+            <div class="swiper events-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                            <div class="w-full h-48 bg-gray-200"></div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">미래당과 함께하는 지역 타운홀</h4>
+                                <p class="text-gray-600 mb-2">2025년 1월 15일 오전 12:00</p>
+                                <p class="text-gray-500">서울 강남구 테헤란로</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                            <div class="w-full h-48 bg-gray-200"></div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">함께 일어서는 시민 정상회의</h4>
+                                <p class="text-gray-600 mb-2">2025년 2월 28일 오전 12:00</p>
+                                <p class="text-gray-500">부산 해운대구 센텀로</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                            <div class="w-full h-48 bg-gray-200"></div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">정의를 위한 연대 컨퍼런스</h4>
+                                <p class="text-gray-600 mb-2">2025년 4월 12일 오전 12:00</p>
+                                <p class="text-gray-500">대구 수성구 동대구로</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                            <div class="w-full h-48 bg-gray-200"></div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">권한부여와 평등 행진</h4>
+                                <p class="text-gray-600 mb-2">2025년 8월 16일 오전 12:00</p>
+                                <p class="text-gray-500">인천 연수구 송도국제로</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                            <div class="w-full h-48 bg-gray-200"></div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">국민의 힘 모임</h4>
+                                <p class="text-gray-600 mb-2">2025년 10월 31일 오전 12:00</p>
+                                <p class="text-gray-500">광주 서구 상무대로</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guiding Principles Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-semibold text-red-600 tracking-wide uppercase mb-4">지도 원칙</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">지역사회에 대한 우리의 약속</h3>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                    의료, 교육, 경제 성장, 환경 지속가능성과 같은 핵심 문제를 해결하는 명확한 정책을 연구하고 개발하기 위한 철저한 조사를 수행합니다.
+                </p>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div class="text-center">
+                    <div class="text-6xl md:text-8xl font-bold text-red-600 mb-4">
+                        <span class="counter" data-target="1000000">0</span>
+                        <span class="text-4xl">+</span>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-gray-900">전 세계 지지자</h4>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-6xl md:text-8xl font-bold text-red-600 mb-4">
+                        <span class="counter" data-target="250">0</span>
+                        <span class="text-4xl">+</span>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-gray-900">진행 중인 캠페인</h4>
+                </div>
+            </div>
+
+            <!-- Policy Items -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">공공 안전과 범죄 예방</h4>
+                    <p class="text-gray-600">모든 어린이가 양질의 교육을 받을 수 있도록 교육에 대한 투자를 우선시합니다.</p>
+                </div>
+                
+                <div class="text-center">
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">소상공인 지원</h4>
+                    <p class="text-gray-600">기후 변화를 해결하고 천연 자원을 보호하는 정책에 대한 약속입니다.</p>
+                </div>
+                
+                <div class="text-center">
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">저렴한 주택 솔루션</h4>
+                    <p class="text-gray-600">모든 사람이 안전한 거주지를 가질 수 있도록 하는 솔루션으로 주택 위기를 해결합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="reviews" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-semibold text-red-600 tracking-wide uppercase mb-4">지지자 이야기</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">지역사회의 증언</h3>
+            </div>
+
+            <div class="swiper testimonials-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="bg-white p-8 shadow-lg text-center max-w-2xl mx-auto">
+                            <p class="text-xl text-gray-700 mb-8">
+                                정신 건강을 진정으로 중요하게 생각하기 때문에 자유와 혁신당을 지지합니다. 자원 확대에 대한 그들의 약속은 생명줄이었습니다.
+                            </p>
+                            <div class="flex items-center justify-center space-x-4">
+                                <div class="w-16 h-16 bg-gray-200 rounded-full"></div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-900">김민수</h4>
+                                    <p class="text-gray-600">정신건강 전문가</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="bg-white p-8 shadow-lg text-center max-w-2xl mx-auto">
+                            <p class="text-xl text-gray-700 mb-8">
+                                자유와 혁신당을 신뢰하는 이유는 그들이 진정으로 우리의 우려사항을 듣고 이를 해결하기 위해 끊임없이 노력하기 때문입니다. 그들은 우리의 미래를 중요하게 생각한다는 것을 증명했습니다.
+                            </p>
+                            <div class="flex items-center justify-center space-x-4">
+                                <div class="w-16 h-16 bg-gray-200 rounded-full"></div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-900">박지영</h4>
+                                    <p class="text-gray-600">대학생</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="bg-white p-8 shadow-lg text-center max-w-2xl mx-auto">
+                            <p class="text-xl text-gray-700 mb-8">
+                                자유와 혁신당은 우리나라에서 가족과 신앙의 중요성을 이해합니다. 가족 가치와 종교의 자유를 보호하는 그들의 입장이 저를 감동시킵니다.
+                            </p>
+                            <div class="flex items-center justify-center space-x-4">
+                                <div class="w-16 h-16 bg-gray-200 rounded-full"></div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-900">이철수</h4>
+                                    <p class="text-gray-600">시장</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Snapshot Progress Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-semibold text-red-600 tracking-wide uppercase mb-4">스냅샷 진행상황</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">최근 이벤트에서의 우리의 여정</h3>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+                <div class="aspect-square bg-gray-200 rounded-lg hover:scale-105 transition-transform duration-300"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-semibold text-red-600 tracking-wide uppercase mb-4">언론 보도</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">최근 뉴스 및 공지사항</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <article class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-48 bg-gray-200"></div>
+                    <div class="p-6">
+                        <span class="text-sm text-red-600 font-semibold">2025년 11월 15일</span>
+                        <span class="text-sm text-gray-500 ml-2">청년 의견</span>
+                        <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">차세대 리더 역량 강화</h4>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-48 bg-gray-200"></div>
+                    <div class="p-6">
+                        <span class="text-sm text-red-600 font-semibold">2022년 5월 23일</span>
+                        <span class="text-sm text-gray-500 ml-2">정치</span>
+                        <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">함께 더 친환경적인 미래 만들기</h4>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-48 bg-gray-200"></div>
+                    <div class="p-6">
+                        <span class="text-sm text-red-600 font-semibold">2023년 2월 23일</span>
+                        <span class="text-sm text-gray-500 ml-2">한국 정치</span>
+                        <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">불평등 해결: 경제를 위한 전략</h4>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="join" class="py-20 bg-red-600 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-red-800 to-red-600"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">더 강한 미래를 함께 건설합니다</h2>
+                    <p class="text-xl mb-8">
+                        체계적으로 정리하고, 쉽게 우선순위를 정하고, 더 빠르게 일을 완료하세요. 우리의 올인원 작업 관리 도구는 팀을 일치시킵니다.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 text-gray-900">
+                    <h3 class="text-2xl font-bold mb-6">자원봉사자로 연결되어 있습니다</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">안녕하세요, 제 이름은</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">다음으로 연락해 주세요</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">의견을 제시하고 싶습니다</label>
+                            <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-red-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300">
+                            캠페인 참여하기
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">자유와 혁신당</h3>
+                    <p class="text-gray-400 mb-6">
+                        체계적으로 정리하고, 쉽게 우선순위를 정하고, 더 빠르게 일을 완료하세요.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">네비게이션</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">우리는 누구인가</a></li>
+                        <li><a href="#" class="hover:text-white">최근 뉴스</a></li>
+                        <li><a href="#" class="hover:text-white">팀</a></li>
+                        <li><a href="#" class="hover:text-white">기타</a></li>
+                        <li><a href="#" class="hover:text-white">이미지 앨범</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">참여</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">자원봉사자로 참여</a></li>
+                        <li><a href="#" class="hover:text-white">다가오는 이벤트</a></li>
+                        <li><a href="#" class="hover:text-white">템플릿</a></li>
+                        <li><a href="#" class="hover:text-white">증언</a></li>
+                        <li><a href="#" class="hover:text-white">조건</a></li>
+                        <li><a href="#" class="hover:text-white">개인정보보호</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">연락처</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>hello@mirae.com</li>
+                        <li>+82-2-480-202-5906</li>
+                    </ul>
+                    
+                    <div class="mt-6">
+                        <h4 class="text-lg font-semibold mb-4">소셜 미디어</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 자유와 혁신당. 모든 권리 보유.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자주묻는 질문 - 자유와 혁신당 창준위</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
+        
+        /* FAQ 답변 글자 크기 증가 */
+        .faq-answer { font-size: 1.25rem !important; line-height: 1.6 !important; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 z-50 w-full bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center" style="height: 86px;">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-red-600">자유와 혁신당 <span class="text-lg text-gray-600">창준위</span></a>
+                </div>
+                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
+                    <div class="flex items-baseline space-x-8">
+                        <a href="notices.html" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">공지사항</a>
+                        <a href="index.html#events" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">외부 행사 및 집회</a>
+                        <a href="faq.html" class="text-red-600 hover:text-red-700 px-3 py-2 text-lg font-medium">자주묻는 질문</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <a href="index.html#join" class="bg-red-600 text-white px-6 py-3 text-lg font-medium hover:bg-red-700 flex items-center space-x-2">
+                        <span>신당 가입하기</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-900">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="notices.html" class="block px-3 py-2 text-gray-900 text-lg">공지사항</a>
+                <a href="index.html#events" class="block px-3 py-2 text-gray-900 text-lg">외부 행사 및 집회</a>
+                <a href="faq.html" class="block px-3 py-2 text-red-600 text-lg font-medium">자주묻는 질문</a>
+                <a href="index.html#join" class="block px-3 py-3 bg-red-600 text-white text-lg flex items-center justify-between">
+                    <span>신당 가입하기</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="pt-32 pb-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">자주묻는 질문</h2>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-light text-gray-900 mb-6 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당 관련 <span class="font-semibold">궁금증</span></h1>
+                <p class="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    자유와 혁신당 창당준비위원회에 대해<br>자주 문의하시는 질문들을 정리했습니다.
+                </p>
+            </div>
+            
+            <!-- Breadcrumb -->
+            <div class="flex items-center space-x-2 text-gray-500 mb-8">
+                <a href="index.html" class="hover:text-red-600">홈</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-red-600">자주묻는 질문</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 창당 관련 FAQ -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-light text-gray-900 mb-8 text-center" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    <span class="font-semibold text-red-600">창당 관련</span> 질문
+                </h2>
+                
+                <div class="space-y-6">
+                    <div class="faq-item bg-white border border-gray-200">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors" onclick="toggleFAQ(this)">
+                            <h4 class="text-lg font-semibold text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당준비위원회는 언제 발족했나요?</h4>
+                            <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                        </div>
+                        <div class="faq-answer p-6 pt-0 text-gray-600 hidden" style="font-size: 1.05rem; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            자유와 혁신당 창당준비위원회는 2025년 1월 10일에 공식 발족했습니다. 
+                            다양한 분야의 전문가들이 참여하여 체계적인 창당 준비를 진행하고 있습니다.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item bg-white border border-gray-200">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors" onclick="toggleFAQ(this)">
+                            <h4 class="text-lg font-semibold text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당은 언제 예정되어 있나요?</h4>
+                            <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                        </div>
+                        <div class="faq-answer p-6 pt-0 text-gray-600 hidden" style="font-size: 1.05rem; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            창당대회는 2025년 상반기 중 개최될 예정입니다. 구체적인 일정은 발기인 모집 완료 후 확정하여 공지하겠습니다.
+                            목표는 2025년 6월 중 창당대회 개최입니다.
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-white border border-gray-200">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors" onclick="toggleFAQ(this)">
+                            <h4 class="text-lg font-semibold text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">자유와 혁신당의 핵심 정책은 무엇인가요?</h4>
+                            <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                        </div>
+                        <div class="faq-answer p-6 pt-0 text-gray-600 hidden" style="font-size: 1.05rem; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            자유와 혁신당은 5대 핵심 정책을 추진합니다:<br><br>
+                            <strong>1. 경제 자유화:</strong> 중소기업 지원 및 규제 완화<br>
+                            <strong>2. 교육 개혁:</strong> 미래 인재 양성 시스템 구축<br>
+                            <strong>3. 국가 안보:</strong> 강력한 국방력과 한미동맹 강화<br>
+                            <strong>4. 법치주의:</strong> 공정하고 투명한 사법 시스템<br>
+                            <strong>5. 복지와 사회 통합:</strong> 포용적 복지제도 구축
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-white border border-gray-200">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors" onclick="toggleFAQ(this)">
+                            <h4 class="text-lg font-semibold text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">발기인이 되려면 어떤 조건이 필요한가요?</h4>
+                            <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                        </div>
+                        <div class="faq-answer p-6 pt-0 text-gray-600 hidden" style="font-size: 1.05rem; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            발기인 자격 조건은 다음과 같습니다:<br><br>
+                            • 만 18세 이상의 대한민국 국민<br>
+                            • 정치관계법에 의한 결격사유가 없는 자<br>
+                            • 자유와 혁신당의 이념과 정책에 동의하는 자<br>
+                            • 창당에 적극적으로 참여할 의지가 있는 자<br><br>
+                            발기인 신청은 온라인 또는 방문을 통해 가능합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 당원 가입 관련 FAQ -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-light text-gray-900 mb-8 text-center" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    <span class="font-semibold text-red-600">당원 가입</span> 관련 질문
+                </h2>
+                
+                <div class="space-y-6">
+                    <div class="faq-item bg-white border border-gray-200">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors" onclick="toggleFAQ(this)">
+                            <h4 class="text-lg font-semibold text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">당원 가입은 언제부터 가능한가요?</h4>
+                            <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                        </div>
+                        <div class="faq-answer p-6 pt-0 text-gray-600 hidden" style="font-size: 1.05rem; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            현재 당원 가입 신청을 받고 있습니다. 창당대회 이후 정식 당원 자격이 부여되며, 
+                            미리 가입 신청을 하신 분들은 창당과 동시에 자동으로 당원이 됩니다.
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-white border border-gray-200">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors" onclick="toggleFAQ(this)">
+                            <h4 class="text-lg font-semibold text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">당비는 얼마인가요?</h4>
+                            <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                        </div>
+                        <div class="faq-answer p-6 pt-0 text-gray-600 hidden" style="font-size: 1.05rem; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            당비는 월 1만원입니다. 학생, 주부, 무직자 등은 월 5천원의 할인된 당비를 적용받을 수 있습니다.
+                            자동이체를 통해 편리하게 납부하실 수 있습니다.
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-white border border-gray-200">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors" onclick="toggleFAQ(this)">
+                            <h4 class="text-lg font-semibold text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">다른 정당 당원도 가입할 수 있나요?</h4>
+                            <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                        </div>
+                        <div class="faq-answer p-6 pt-0 text-gray-600 hidden" style="font-size: 1.05rem; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            정치관계법에 따라 복수 정당 가입은 불가능합니다. 다른 정당의 당원이신 경우, 
+                            기존 정당에서 탈당 후 자유와 혁신당에 가입하실 수 있습니다.
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-white border border-gray-200">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors" onclick="toggleFAQ(this)">
+                            <h4 class="text-lg font-semibold text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">당원의 권리와 의무는 무엇인가요?</h4>
+                            <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                        </div>
+                        <div class="faq-answer p-6 pt-0 text-gray-600 hidden" style="font-size: 1.05rem; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            <strong>당원의 권리:</strong><br>
+                            • 당내 의사결정 과정 참여 (투표권)<br>
+                            • 공직선거 후보자 추천 과정 참여<br>
+                            • 당의 각종 교육 및 행사 참여<br>
+                            • 정책 제안 및 건의<br><br>
+                            <strong>당원의 의무:</strong><br>
+                            • 당비 납부<br>
+                            • 당의 강령과 정책 준수<br>
+                            • 당 발전을 위한 적극적 참여
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-white border border-gray-200">
+                        <div class="faq-question flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors" onclick="toggleFAQ(this)">
+                            <h4 class="text-lg font-semibold text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">온라인으로만 활동해도 되나요?</h4>
+                            <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                        </div>
+                        <div class="faq-answer p-6 pt-0 text-gray-600 hidden" style="font-size: 1.05rem; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            네, 가능합니다. 온라인 플랫폼을 통해 다양한 당 활동에 참여하실 수 있습니다.
+                            다만 중요한 의사결정이나 선거 관련 활동은 오프라인 참여가 필요할 수 있습니다.
+                            자신의 상황에 맞는 방식으로 참여하시면 됩니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="bg-red-50 p-8 text-center">
+                <h3 class="text-2xl font-semibold text-red-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">더 궁금한 점이 있으신가요?</h3>
+                <p class="text-red-800 mb-6" style="font-size: 1.05rem;">언제든지 연락해 주세요. 친절하게 답변드리겠습니다.</p>
+                <div class="grid md:grid-cols-3 gap-6 text-red-800">
+                    <div>
+                        <i class="fas fa-phone text-2xl mb-2"></i>
+                        <p class="font-semibold">전화 문의</p>
+                        <p>02-1234-5678</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-envelope text-2xl mb-2"></i>
+                        <p class="font-semibold">이메일 문의</p>
+                        <p>info@innovation-party.kr</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-clock text-2xl mb-2"></i>
+                        <p class="font-semibold">운영 시간</p>
+                        <p>평일 9:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-6">자유와 혁신당 창준위</h3>
+                <p class="text-gray-400 mb-6">새로운 정치, 새로운 미래를 함께 만들어갑니다.</p>
+                <p class="text-gray-400">&copy; 2025 자유와 혁신당 창당준비위원회. 모든 권리 보유.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.add('hidden');
+                    item.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+                }
+            });
+            
+            // Toggle current FAQ item
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+    </script>
+</body>
+</html> 

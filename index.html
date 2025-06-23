@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유와 혁신당 창준위</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        .from-red-800 { --tw-gradient-from: #700024 !important; }
+        .to-red-600 { --tw-gradient-to: #A50034 !important; }
+        .from-red-900 { --tw-gradient-from: #56001C !important; }
+        .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
+        
+        /* 추가 보강 스타일 */
+        .w-4.h-4.bg-red-600 { background-color: #A50034 !important; }
+        .font-light.text-red-600 { color: #A50034 !important; }
+        .text-lg.font-medium.text-red-600 { color: #A50034 !important; }
+        .text-sm.text-red-600 { color: #A50034 !important; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="absolute top-8 z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 left-0 right-0">
+        <div class="bg-white px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center" style="height: 86px;">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-red-600">자유와 혁신당 <span class="text-lg text-gray-600">창준위</span></h1>
+                </div>
+                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
+                    <div class="flex items-baseline space-x-8">
+                        <a href="notices.html" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">공지사항</a>
+                        <a href="#events" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">외부 행사 및 집회</a>
+                        <a href="faq.html" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">자주묻는 질문</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <button onclick="openMembershipPopup()" class="bg-red-600 text-white px-6 py-3 text-lg font-medium hover:bg-red-700 flex items-center space-x-2 border-none cursor-pointer">
+                        <span>신당 가입하기</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-900">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="notices.html" class="block px-3 py-2 text-gray-900 text-lg">공지사항</a>
+                <a href="#events" class="block px-3 py-2 text-gray-900 text-lg">외부 행사 및 집회</a>
+                <a href="faq.html" class="block px-3 py-2 text-gray-900 text-lg">자주묻는 질문</a>
+                <button onclick="openMembershipPopup()" class="block px-3 py-3 bg-red-600 text-white text-lg flex items-center justify-between w-full border-none cursor-pointer">
+                    <span>신당 가입하기</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+          <section id="home" class="hero-section" style="height: 170vh; width: 100%; position: relative; margin: 0; padding: 0; overflow: hidden; background-image: url('hero_bg.png?v=6'); background-size: cover; background-position: 65% 40%; background-repeat: no-repeat; background-attachment: scroll;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.3), transparent); z-index: 2;"></div>
+        <div style="position: absolute; top: 55vh; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 2rem;">
+            <div style="max-width: 48rem; color: white;">
+                <h1 style="font-size: 4rem; font-weight: 300; margin-bottom: 2rem; text-align: left; line-height: 1.1; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    <span style="font-weight: 700;">자유와 혁신당</span><br>창당을 준비합니다
+                </h1>
+                <p style="font-size: 1.8rem; margin-bottom: 2.5rem; text-align: left; font-weight: 400; line-height: 1.6; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    국민과 함께 더 나은 대한민국을 만들기 위한<br>새로운 정치의 시작을 준비하고 있습니다.
+                </p>
+                <button style="background-color: #A50034; color: white; padding: 1rem 2.5rem; font-size: 1.125rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', 'Noto Sans KR', sans-serif;" onmouseover="this.style.backgroundColor='#8B002C'" onmouseout="this.style.backgroundColor='#A50034'" onclick="openMembershipPopup()">
+                    신당 가입하기
+                </button>
+            </div>
+        </div>
+        <div style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; font-size: 1.5rem; animation: bounce 2s infinite; z-index: 10;">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Policy Section -->
+    <div style="padding: 6rem 0; background-color: #f9fafb; margin: 0; width: 100%; display: block;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20">
+                <div class="flex items-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">우리가 추구하는 가치</h2>
+                </div>
+                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">더 밝은 <span class="font-semibold">내일을 건설합니다</span></h3>
+                <p class="text-xl text-gray-600 leading-relaxed max-w-4xl" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    의료, 교육, 경제 성장과 같은 핵심 문제를 해결하는<br>명확한 정책을 연구하고 개발합니다.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Left Side - Text Content -->
+                <div class="space-y-12">
+                    <div>
+                        <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지역사회와의 직접 소통을 우선시합니다</h4>
+                        <p class="text-gray-600 leading-relaxed" style="font-size: 1.1rem;">
+                            시민회관, 지역 모임, 디지털 채널을 통해 지역사회 구성원들과 직접 소통하여 그들의 필요를 이해하고 해결책을 제시합니다.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">교육 투자를 통해 모든 아이가 혜택을 받도록 합니다</h4>
+                        <p class="text-gray-600 leading-relaxed" style="font-size: 1.1rem;">
+                            창의적 교육 시스템 구축과 디지털 교육 인프라 확충을 통해 미래를 이끌어갈 인재를 양성합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Side - Policy Cards -->
+                <div class="grid gap-6">
+                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
+                                <span class="text-xl font-bold">01</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">근로자 권익과 공정한 임금</h4>
+                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">모든 근로자가 공정한 대우를 받고 안정적인 생활을 영위할 수 있도록 지원합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
+                                <span class="text-xl font-bold">02</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지역사회 발전</h4>
+                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">지역 특성을 살린 맞춤형 발전 전략과 균형 발전을 추진합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
+                                <span class="text-xl font-bold">03</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">국가 안보 강화</h4>
+                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">강력한 국방력 구축과 한미동맹 강화를 통한 평화를 확보합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
+                                <span class="text-xl font-bold">04</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">법치주의 확립</h4>
+                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">공정하고 투명한 사법 시스템 구축과 법 앞의 평등을 실현합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20">
+                <div class="flex items-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">창당 준비 현황</h2>
+                </div>
+                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">함께하는 <span class="font-semibold">국민들</span></h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-20">
+                <div class="text-left">
+                    <div class="text-6xl md:text-8xl font-light text-red-600 mb-6" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        <span class="counter" data-target="1520">0</span><span class="text-4xl">명</span>
+                    </div>
+                    <h4 class="text-2xl font-light text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">당원 가입 신청자</h4>
+                </div>
+                
+                <div class="text-left">
+                    <div class="text-6xl md:text-8xl font-light text-red-600 mb-6" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        <span class="counter" data-target="85">0</span><span class="text-4xl">명</span>
+                    </div>
+                    <h4 class="text-2xl font-light text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당 발기인</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice Section -->
+    <section id="notice" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20">
+                <div class="flex items-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">공지사항</h2>
+                </div>
+                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창준위 <span class="font-semibold">주요 소식</span></h3>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <article class="bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="location.href='notice-1.html'">
+                    <span class="text-sm text-red-600 font-semibold">2025년 1월 15일</span>
+                    <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">창당준비위원회 공식 출범 안내</h4>
+                    <p class="text-gray-600" style="font-size: 1.05rem;">자유와 혁신당 창당을 위한 준비위원회가 공식 발족했습니다.</p>
+                </article>
+                
+                <article class="bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="location.href='notice-3.html'">
+                    <span class="text-sm text-red-600 font-semibold">2025년 1월 8일</span>
+                    <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">창당 발기인 모집 안내</h4>
+                    <p class="text-gray-600" style="font-size: 1.05rem;">새로운 정치를 함께 만들어갈 발기인을 모집합니다.</p>
+                </article>
+                
+                <article class="bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="location.href='notice-2.html'">
+                    <span class="text-sm text-red-600 font-semibold">2025년 1월 10일</span>
+                    <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">정책 토론회 일정 발표</h4>
+                    <p class="text-gray-600" style="font-size: 1.05rem;">국민과 함께하는 정책 토론회 일정을 공개합니다.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-24" style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20 flex justify-between items-end">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-4 h-4 bg-white mr-4"></div>
+                        <h2 class="text-lg font-medium text-white tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">행사 및 집회</h2>
+                    </div>
+                    <h3 class="text-5xl md:text-6xl font-light text-white mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">참여하세요: <span class="font-semibold">다가오는 행사</span></h3>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button class="events-prev-btn flex items-center px-4 py-2 text-white hover:text-gray-200 transition-colors" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        <i class="fas fa-arrow-left mr-2"></i> 이전
+                    </button>
+                    <button class="events-next-btn flex items-center px-4 py-2 text-white hover:text-gray-200 transition-colors" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        다음 <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="swiper events-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-users text-4xl text-blue-600 mb-4"></i>
+                                        <p class="text-blue-800 font-medium">시민 참여 모임</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지역사회 타운홀 미팅</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 2월 15일 • 오후 2:00</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">서울 중구 세종대로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-1.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-handshake text-4xl text-red-600 mb-4"></i>
+                                        <p class="text-red-800 font-medium">정책 협력 회의</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">함께 발전하는 정책 서밋</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 2월 28일 • 오후 12:00</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">부산 해운대구 센텀로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-2.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-balance-scale text-4xl text-green-600 mb-4"></i>
+                                        <p class="text-green-800 font-medium">정의를 위한 연대</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">정의를 위한 연대 컨퍼런스</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 4월 12일 • 오후 12:00</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">대구 수성구 동대구로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-3.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-microphone text-4xl text-purple-600 mb-4"></i>
+                                        <p class="text-purple-800 font-medium">지역 연설회</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">국민과 함께하는 정책 설명회</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 5월 8일 • 오후 3:00</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">인천 남동구 구월로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-4.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-graduation-cap text-4xl text-orange-600 mb-4"></i>
+                                        <p class="text-orange-800 font-medium">청년 정책 포럼</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">청년을 위한 미래 정책 포럼</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 5월 22일 • 오후 1:30</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">광주 서구 상무대로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-5.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-leaf text-4xl text-teal-600 mb-4"></i>
+                                        <p class="text-teal-800 font-medium">환경 정책 세미나</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지속가능한 환경 정책 세미나</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 6월 5일 • 오후 2:30</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">대전 유성구 대학로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-6.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next hidden"></div>
+                <div class="swiper-button-prev hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20">
+                <div class="flex items-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">Q&A</h2>
+                </div>
+                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">자주 묻는 <span class="font-semibold">질문</span></h3>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="faq-item bg-white p-6">
+                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h4 class="text-lg font-semibold text-gray-900">창당준비위원회는 언제 발족했나요?</h4>
+                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
+                        자유와 혁신당 창당준비위원회는 2025년 1월 10일에 공식 발족했습니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white p-6">
+                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h4 class="text-lg font-semibold text-gray-900">창당은 언제 예정되어 있나요?</h4>
+                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
+                        창당대회는 2025년 상반기 중 개최될 예정입니다. 구체적인 일정은 추후 공지하겠습니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white p-6">
+                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h4 class="text-lg font-semibold text-gray-900">당원 가입은 언제부터 가능한가요?</h4>
+                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
+                        현재 당원 가입 신청을 받고 있습니다. 창당대회 이후 정식 당원 자격이 부여됩니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white p-6">
+                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h4 class="text-lg font-semibold text-gray-900">발기인이 되려면 어떤 조건이 필요한가요?</h4>
+                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
+                        만 18세 이상 대한민국 국민으로 정치관계법 결격사유가 없으면 누구나 가능합니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white p-6">
+                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h4 class="text-lg font-semibold text-gray-900">당비는 얼마인가요?</h4>
+                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
+                        당비는 월 1만원이며, 학생·주부·무직자는 월 5천원입니다.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="faq.html" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    더 많은 FAQ 보기
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="join" class="py-24 bg-red-600 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-red-800 to-red-600"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-5xl md:text-6xl font-light mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당에 <span class="font-semibold">도움을 주세요</span></h2>
+                    <p class="text-xl mb-8 font-light leading-relaxed" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        새로운 정치, 새로운 미래를 함께 만들어갈<br>여러분의 참여와 지원을 기다립니다.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-10 text-gray-900">
+                    <h3 class="text-3xl font-light mb-8" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당 지원 신청</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">성명</label>
+                            <input type="text" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        </div>
+                        
+                        <div>
+                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">연락처</label>
+                            <input type="tel" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        </div>
+                        
+                        <div>
+                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">이메일</label>
+                            <input type="email" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        </div>
+                        
+                        <div>
+                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">지원 분야</label>
+                            <textarea rows="4" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" placeholder="어떤 방식으로 창당에 도움을 주실 수 있는지 간단히 작성해 주세요." style="font-family: 'Inter', 'Noto Sans KR', sans-serif;"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-red-600 text-white py-4 px-6 text-lg font-medium hover:bg-red-700 transition-colors duration-300" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            창당 지원 신청하기
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-6">자유와 혁신당 창준위</h3>
+                <p class="text-gray-400 mb-6">새로운 정치, 새로운 미래를 함께 만들어갑니다.</p>
+                <p class="text-gray-400">&copy; 2025 자유와 혁신당 창당준비위원회. 모든 권리 보유.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

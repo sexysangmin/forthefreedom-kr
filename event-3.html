@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정의 연대 집회 - 자유와 혁신당</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 네비게이션 바 -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-red-600"></div>
+                        <span class="text-2xl font-bold text-gray-900">자유와 혁신당</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.history.back()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 font-medium transition-colors">
+                        ← 뒤로가기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white shadow-sm mb-8">
+                <div class="px-8 py-12">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-4 h-4 bg-red-600"></div>
+                        <span class="text-red-600 font-semibold text-lg">외부 행사 및 집회</span>
+                    </div>
+                    <h1 class="text-4xl font-bold text-gray-900 mb-6">정의 연대 집회</h1>
+                    <div class="flex flex-wrap gap-6 text-gray-600 text-lg">
+                        <div class="flex items-center space-x-2">
+                            <span class="font-semibold">📅 일시:</span>
+                            <span>2024년 3월 1일 (금) 오후 2:00</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="font-semibold">📍 장소:</span>
+                            <span>광화문 광장</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="font-semibold">👥 참가비:</span>
+                            <span>무료</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-sm mb-8">
+                <div class="px-8 py-12">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">집회 취지</h2>
+                    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                        <p class="mb-6">
+                            사회 정의 실현과 공정한 사회를 위한 시민들의 목소리를 모으는 대규모 평화 집회입니다. 
+                            자유와 혁신당은 모든 시민이 평등하고 공정한 대우를 받는 사회를 만들기 위해 
+                            시민 여러분과 함께 연대합니다.
+                        </p>
+                        <p class="mb-6">
+                            이번 집회에서는 <strong>사회적 약자 보호</strong>, <strong>공정한 기회 제공</strong>, 
+                            <strong>차별 없는 사회</strong>를 위한 우리의 의지를 평화롭게 표현할 예정입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-6 h-6 bg-red-600"></div>
+                <span class="text-xl font-bold">자유와 혁신당</span>
+            </div>
+            <p class="text-gray-400">함께 만들어가는 대한민국의 미래</p>
+        </div>
+    </footer>
+</body>
+</html> 
