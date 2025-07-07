@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: sexysangmin/forthefreedom
   branch: main
+  base_url: https://netlify-cms.adrianub.vercel.app
+  auth_endpoint: auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
