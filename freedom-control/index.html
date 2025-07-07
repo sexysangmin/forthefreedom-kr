@@ -9,5 +9,15 @@
 <body>
   <!-- Include the script that builds the page and powers Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <script>
+    if (typeof CMS !== 'undefined') {
+      CMS.registerEventListener({
+        name: 'postPublish',
+        handler: ({ entry, author }) => {
+          console.log('Entry published:', entry.get('title'));
+        }
+      });
+    }
+  </script>
 </body>
 </html> 

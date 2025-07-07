@@ -1,0 +1,42 @@
+name: CMS Content Logging & Archive
+
+on:
+  push:
+    paths:
+      - 'content/**'
+      - 'about/**'
+      - 'policy/**'
+      - 'news/**'
+      - 'members/**'
+      - 'resources/**'
+      - 'notices/**'
+      - 'index.html'
+      - 'images/**'
+      - 'style.css'
+      - 'script.js'
+
+jobs:
+  log-and-archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Run logging/archive script
+        run: python .github/scripts/cms_log_and_archive.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add logs/changes.log archive/
+          git commit -m "자동 로그/아카이브 기록" || echo "No changes to commit"
+          git push 

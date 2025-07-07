@@ -1,0 +1,15 @@
+# ... 기존 컬렉션 ...
+- name: "logs"
+  label: "변경 이력"
+  files:
+    - file: "logs/changes.log"
+      label: "전체 변경 이력"
+      name: "changes"
+      fields:
+        - { name: "body", label: "로그", widget: "markdown" }
+- name: "archive"
+  label: "아카이브"
+  folder: "archive"
+  create: false
+  fields:
+    - { name: "body", label: "백업 콘텐츠", widget: "markdown" } 
