@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>조직 구성 - ?�유?�?�신</title>
+    <title>조직 구성 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -34,100 +34,87 @@
         .bg-red-100 { background-color: #FCE7EA !important; }
         .text-red-800 { color: #700024 !important; }
         .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
-        /* ?�동 ?��?지 카드 ?��???*/
-        .activity-card {
+        
+        /* 조직 구조 스타일 */
+        .org-chart {
             position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            background: white;
         }
         
-        .activity-card:hover {
-            transform: translateY(-8px);
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .org-card {
+            position: relative;
+            background: white;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            margin: 0 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .org-card:hover {
+            transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(165, 0, 52, 0.15);
         }
         
-        .activity-image {
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, #FDF2F4, #FCE7EA);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .activity-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                rgba(165, 0, 52, 0.1) 0%, 
-                rgba(165, 0, 52, 0.05) 50%, 
-                rgba(165, 0, 52, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .activity-card:hover .activity-image::before {
-            opacity: 1;
-        }
-        
-        .activity-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(165, 0, 52, 0.1);
-            border: 3px solid #A50034;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .activity-card:hover .activity-icon {
-            transform: scale(1.1);
-            background: rgba(165, 0, 52, 0.2);
-        }
-        
-        .activity-icon i {
-            font-size: 2.2rem;
-            color: #A50034;
-        }
-        
-        .activity-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        .org-card.president {
+            background: linear-gradient(135deg, #A50034, #8B002C);
             color: white;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
         }
         
-        .activity-card:hover .activity-overlay {
-            transform: translateY(0);
+        .org-card.vice-president {
+            background: linear-gradient(135deg, #FDF2F4, #FCE7EA);
+            border: 2px solid #A50034;
         }
         
-        .activity-title {
+        .org-card.department {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .position-title {
             font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 0.5rem;
         }
         
-        .activity-desc {
+        .person-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .department-desc {
             font-size: 0.9rem;
-            opacity: 0.9;
-            margin: 0;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        
+        /* 연결선 스타일 */
+        .org-line {
+            position: absolute;
+            background-color: #A50034;
+            z-index: -1;
+        }
+        
+        .org-line.vertical {
+            width: 2px;
+            height: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -25px;
+        }
+        
+        .org-line.horizontal {
+            height: 2px;
+            top: -25px;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -152,168 +139,137 @@
         <section class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">체계?�인 조직 ?�영</h2>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">체계적인 조직 운영</h2>
                     <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                        ?�율?�이�??�명???�당 ?�영???�한 체계?�인 조직 구성?�로 �???�게 ???��? ?�비?��? ?�공?�니??
+                        효율적이고 투명한 당 운영을 위한 체계적인 조직 구성으로 다양한 분야에서 국민을 위해 준비하여 봉사하고 있습니다.
                     </p>
                 </div>
                 
-                <!-- ?��?지 ?�레?�스?�??-->
+                <!-- 조직 특징 카드들 -->
                 <div class="grid md:grid-cols-3 gap-8 mb-16">
-                    <div class="activity-card">
-                        <div class="activity-image">
-                            <div class="activity-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="activity-overlay">
-                                <h4 class="activity-title">조직 구성 ?�의</h4>
-                                <p class="activity-desc">체계?�인 조직 구성???�한 ?�의</p>
-                            </div>
+                    <div class="bg-white rounded-lg shadow-lg p-8 text-center border-l-4 border-red-600">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users text-red-600 text-2xl"></i>
                         </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">전문성 기반</h3>
+                        <p class="text-gray-600 text-sm">각 분야 전문가들이 구성된 체계적인 조직</p>
                     </div>
                     
-                    <div class="activity-card">
-                        <div class="activity-image">
-                            <div class="activity-icon">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <div class="activity-overlay">
-                                <h4 class="activity-title">?� ?�크??/h4>
-                                <p class="activity-desc">?�?�크 강화�??�한 ?�크??/p>
-                            </div>
+                    <div class="bg-white rounded-lg shadow-lg p-8 text-center border-l-4 border-blue-600">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-handshake text-blue-600 text-2xl"></i>
                         </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">팀워크 중심</h3>
+                        <p class="text-gray-600 text-sm">협력과 소통을 통한 효율적인 업무 수행</p>
                     </div>
                     
-                    <div class="activity-card">
-                        <div class="activity-image">
-                            <div class="activity-icon">
-                                <i class="fas fa-chart-organization"></i>
-                            </div>
-                            <div class="activity-overlay">
-                                <h4 class="activity-title">조직??발표</h4>
-                                <p class="activity-desc">공식 조직??발표 �??�명</p>
-                            </div>
+                    <div class="bg-white rounded-lg shadow-lg p-8 text-center border-l-4 border-green-600">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-chart-line text-green-600 text-2xl"></i>
                         </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">성과 지향</h3>
+                        <p class="text-gray-600 text-sm">명확한 목표와 책임을 통한 성과 창출</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 조직??-->
-        <section class="py-20 bg-white">
+        <!-- 조직도 Section -->
+        <section class="py-20 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">조직??/h2>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">조직도</h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        명확????�� 분담�?책임 체계�??�영?�는 ?�유?�?�신??조직 구조?�니??
+                        자유와혁신의 체계적인 조직 구조입니다.
                     </p>
                 </div>
 
-                <div class="space-y-8">
-                    <!-- 최고?�원??-->
-                    <div class="bg-red-600 text-white p-8 rounded-lg text-center shadow-lg">
-                        <h3 class="text-3xl font-bold mb-4">최고?�원??/h3>
-                        <p class="text-xl text-red-100">?�의 최고 ?�사결정 기구</p>
-                    </div>
-                    
-                    <!-- ?�결??-->
-                    <div class="flex justify-center">
-                        <div class="w-1 h-12 bg-red-600"></div>
-                    </div>
-                    
-                    <!-- 조직??-->
-                    <div class="bg-white p-8 rounded-lg shadow-sm">
-                        <div class="text-center mb-12">
-                            <div class="w-32 h-32 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i class="fas fa-crown text-white text-4xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">???�??/h3>
-                            <p class="text-red-600 font-medium">김?�○</p>
+                <!-- 조직도 구조 -->
+                <div class="org-chart">
+                    <!-- 당 대표 -->
+                    <div class="org-level">
+                        <div class="org-card president">
+                            <div class="position-title">당 대표</div>
+                            <div class="person-name">김자유</div>
+                            <div class="department-desc">전체 당무 총괄</div>
                         </div>
+                    </div>
 
-                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <!-- ?�책?�원??-->
-                            <div class="text-center">
-                                <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-clipboard-list text-white text-2xl"></i>
-                                </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">?�책?�원??/h4>
-                                <p class="text-blue-600 font-medium mb-2">?�책?�원??박○??/p>
-                                <p class="text-gray-600 text-sm">
-                                    ??7?� ?�심?�책 개발<br>
-                                    ???�책 ?�구 �?분석<br>
-                                    ??공약 ?�현 방안 ?�립
-                                </p>
+                    <!-- 부대표 -->
+                    <div class="org-level">
+                        <div class="org-card vice-president">
+                            <div class="org-line vertical"></div>
+                            <div class="position-title">부대표</div>
+                            <div class="person-name">이혁신</div>
+                            <div class="department-desc">당무 보좌 및 대외 업무</div>
+                        </div>
+                    </div>
+
+                    <!-- 각 부서 -->
+                    <div class="org-level">
+                        <div class="org-card department">
+                            <div class="org-line vertical"></div>
+                            <div class="position-title">정책위원회</div>
+                            <div class="person-name">박정책</div>
+                            <div class="department-desc">
+                                정책 개발<br>
+                                공약 수립<br>
+                                정책 연구
                             </div>
-
-                            <!-- 조직?�원??-->
-                            <div class="text-center">
-                                <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-sitemap text-white text-2xl"></i>
-                                </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">조직?�원??/h4>
-                                <p class="text-green-600 font-medium mb-2">조직?�원???�○??/p>
-                                <p class="text-gray-600 text-sm">
-                                    ???�원 관�?�??�비??br>
-                                    ??지??���?구축<br>
-                                    ???�내 ?�사 기획
-                                </p>
+                        </div>
+                        
+                        <div class="org-card department">
+                            <div class="org-line vertical"></div>
+                            <div class="position-title">조직위원회</div>
+                            <div class="person-name">최조직</div>
+                            <div class="department-desc">
+                                당원 관리<br>
+                                조직 확대<br>
+                                교육 훈련
                             </div>
-
-                            <!-- ?�보?�원??-->
-                            <div class="text-center">
-                                <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-bullhorn text-white text-2xl"></i>
-                                </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">?�보?�원??/h4>
-                                <p class="text-purple-600 font-medium mb-2">?�보?�원??최○??/p>
-                                <p class="text-gray-600 text-sm">
-                                    ???�???�보 �??�통<br>
-                                    ??미디??관�?br>
-                                    ??브랜???�략 ?�립
-                                </p>
+                        </div>
+                        
+                        <div class="org-card department">
+                            <div class="org-line vertical"></div>
+                            <div class="position-title">홍보위원회</div>
+                            <div class="person-name">강홍보</div>
+                            <div class="department-desc">
+                                대외 홍보<br>
+                                미디어 관리<br>
+                                SNS 운영
                             </div>
+                        </div>
+                    </div>
 
-                            <!-- �?��?�원??-->
-                            <div class="text-center">
-                                <div class="w-20 h-20 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-graduation-cap text-white text-2xl"></i>
-                                </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">�?��?�원??/h4>
-                                <p class="text-orange-600 font-medium mb-2">�?��?�원???�○??/p>
-                                <p class="text-gray-600 text-sm">
-                                    ??�?�� ?�책 개발<br>
-                                    ??�?�� ?�원 ?�동 지??br>
-                                    ??미래 ?��? ?�통
-                                </p>
+                    <!-- 하위 부서 -->
+                    <div class="org-level">
+                        <div class="org-card department">
+                            <div class="org-line vertical"></div>
+                            <div class="position-title">청년위원회</div>
+                            <div class="person-name">신청년</div>
+                            <div class="department-desc">
+                                청년 정책<br>
+                                청년 당원 활동
                             </div>
-
-                            <!-- ?�성?�원??-->
-                            <div class="text-center">
-                                <div class="w-20 h-20 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-female text-white text-2xl"></i>
-                                </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">?�성?�원??/h4>
-                                <p class="text-pink-600 font-medium mb-2">?�성?�원???�○??/p>
-                                <p class="text-gray-600 text-sm">
-                                    ???�평???�책 ?�구<br>
-                                    ???�성 ?�원 권익 보호<br>
-                                    ???�·�????�립 지??
-                                </p>
+                        </div>
+                        
+                        <div class="org-card department">
+                            <div class="org-line vertical"></div>
+                            <div class="position-title">여성위원회</div>
+                            <div class="person-name">한여성</div>
+                            <div class="department-desc">
+                                여성 정책<br>
+                                여성 권익 보호
                             </div>
-
-                            <!-- ?�무�?-->
-                            <div class="text-center">
-                                <div class="w-20 h-20 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-building text-white text-2xl"></i>
-                                </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">?�무�?/h4>
-                                <p class="text-gray-600 font-medium mb-2">?�무처장 김?�○</p>
-                                <p class="text-gray-600 text-sm">
-                                    ???�무 ?�정 관�?br>
-                                    ???�정 관�?br>
-                                    ???�설 ?�영
-                                </p>
+                        </div>
+                        
+                        <div class="org-card department">
+                            <div class="org-line vertical"></div>
+                            <div class="position-title">사무국</div>
+                            <div class="person-name">윤사무</div>
+                            <div class="department-desc">
+                                일반 사무<br>
+                                행정 업무
                             </div>
                         </div>
                     </div>
@@ -321,284 +277,238 @@
             </div>
         </section>
 
-        <!-- 주요 기구 Section -->
+        <!-- 주요 인물 소개 -->
         <section class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">주요 기구</h2>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">주요 인물 소개</h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        민주?�이�??�명???�사결정???�한 ?�양??기구?�이 ?�영?�고 ?�습?�다.
+                        자유와혁신을 이끌어가는 핵심 인물들을 소개합니다.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 당 대표 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-64 bg-gradient-to-b from-red-100 to-red-200 flex items-center justify-center">
+                            <div class="w-24 h-24 bg-red-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white text-3xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">김자유</h3>
+                            <p class="text-red-600 font-semibold mb-3">당 대표</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                서울대학교 정치학과 졸업<br>
+                                前 국정기획자문위원회 위원<br>
+                                前 시민사회단체 대표<br>
+                                정치학 박사
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 부대표 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-64 bg-gradient-to-b from-blue-100 to-blue-200 flex items-center justify-center">
+                            <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white text-3xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">이혁신</h3>
+                            <p class="text-blue-600 font-semibold mb-3">부대표</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                연세대학교 경제학과 졸업<br>
+                                前 청와대 정책기획관<br>
+                                前 경제연구원 선임연구위원<br>
+                                경제학 박사
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 정책위원장 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-64 bg-gradient-to-b from-green-100 to-green-200 flex items-center justify-center">
+                            <div class="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white text-3xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">박정책</h3>
+                            <p class="text-green-600 font-semibold mb-3">정책위원장</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                고려대학교 행정학과 졸업<br>
+                                前 국회 정책연구위원<br>
+                                前 정부출연 연구기관 연구위원<br>
+                                행정학 박사
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 조직위원장 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-64 bg-gradient-to-b from-purple-100 to-purple-200 flex items-center justify-center">
+                            <div class="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white text-3xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">최조직</h3>
+                            <p class="text-purple-600 font-semibold mb-3">조직위원장</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                성균관대학교 사회학과 졸업<br>
+                                前 NGO 단체 사무총장<br>
+                                前 시민단체 활동가<br>
+                                사회학 석사
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 홍보위원장 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-64 bg-gradient-to-b from-yellow-100 to-yellow-200 flex items-center justify-center">
+                            <div class="w-24 h-24 bg-yellow-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white text-3xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">강홍보</h3>
+                            <p class="text-yellow-600 font-semibold mb-3">홍보위원장</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                한국외국어대학교 신문방송학과 졸업<br>
+                                前 방송국 PD<br>
+                                前 광고회사 크리에이티브 디렉터<br>
+                                언론학 석사
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 사무총장 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-64 bg-gradient-to-b from-gray-100 to-gray-200 flex items-center justify-center">
+                            <div class="w-24 h-24 bg-gray-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white text-3xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">윤사무</h3>
+                            <p class="text-gray-600 font-semibold mb-3">사무총장</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                중앙대학교 경영학과 졸업<br>
+                                前 대기업 인사팀장<br>
+                                前 정부기관 행정사무관<br>
+                                경영학 석사
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 조직 운영 원칙 -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">조직 운영 원칙</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        투명하고 효율적인 조직 운영을 위한 기본 원칙입니다.
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-gavel text-red-600 text-2xl"></i>
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">핵심 가치</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-eye text-red-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">투명성</h4>
+                                    <p class="text-gray-600 text-sm">모든 의사결정 과정을 공개하고 투명하게 운영</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-gray-900">최고?�원??/h3>
-                                <p class="text-gray-600">?�의 최고 ?�사결정 기구</p>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-cogs text-blue-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">효율성</h4>
+                                    <p class="text-gray-600 text-sm">체계적인 업무 분장으로 효율적인 조직 운영</p>
+                                </div>
                             </div>
-                        </div>
-                        <p class="text-gray-700 mb-6 leading-relaxed">
-                            ?�의 최고 ?�사결정 기구로서 중요???�정 ?�안??결정?�고 ?�의 ?�체?�인 방향???�정?�니??
-                        </p>
-                        <div class="space-y-3 mb-6">
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">구성:</span>
-                                <span class="text-gray-600">?��??? 최고?�원 5�?/span>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-balance-scale text-green-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">공정성</h4>
+                                    <p class="text-gray-600 text-sm">모든 구성원에게 공평한 기회와 대우 보장</p>
+                                </div>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">?�기:</span>
-                                <span class="text-gray-600">2??/span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">?�의:</span>
-                                <span class="text-gray-600">�?1???�기 ?�의</span>
-                            </div>
-                        </div>
-                        <!-- ?��?지 ?�레?�스?�??-->
-                        <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-camera text-2xl text-gray-400"></i>
                         </div>
                     </div>
-                    
-                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-users text-blue-600 text-2xl"></i>
+
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">운영 방식</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-users text-purple-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">민주적 의사결정</h4>
+                                    <p class="text-gray-600 text-sm">집단 지성을 활용한 민주적 의사결정 구조</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-gray-900">?�국?�원??/h3>
-                                <p class="text-gray-600">?�국 ?�원 ?�??기구</p>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-comments text-yellow-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">소통과 협력</h4>
+                                    <p class="text-gray-600 text-sm">부서 간 원활한 소통과 협력 체계 구축</p>
+                                </div>
                             </div>
-                        </div>
-                        <p class="text-gray-700 mb-6 leading-relaxed">
-                            ?�국 ?�원???�?�하??최고 ?�결기구로서 ?�의 중요???�항?�을 ?�의?�고 결정?�니??
-                        </p>
-                        <div class="space-y-3 mb-6">
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">구성:</span>
-                                <span class="text-gray-600">?�국?�원 150�?/span>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-chart-line text-indigo-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">지속적 개선</h4>
+                                    <p class="text-gray-600 text-sm">정기적인 평가와 피드백을 통한 지속적 개선</p>
+                                </div>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">?�기:</span>
-                                <span class="text-gray-600">2??/span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">?�의:</span>
-                                <span class="text-gray-600">??2???�기 ?�의</span>
-                            </div>
-                        </div>
-                        <!-- ?��?지 ?�레?�스?�??-->
-                        <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-camera text-2xl text-gray-400"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-lightbulb text-green-600 text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-gray-900">?�책?�원??/h3>
-                                <p class="text-gray-600">?�책 개발 ?�문 기구</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 mb-6 leading-relaxed">
-                            ?�의 ?�책 개발�??�구�??�당?�는 ?�문 기구로서 미래 지?�적???�책??개발?�니??
-                        </p>
-                        <div class="space-y-3 mb-6">
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">구성:</span>
-                                <span class="text-gray-600">?�책?�원?? 분과?�원??7�?/span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">분과:</span>
-                                <span class="text-gray-600">경제, ?�회, ?�교, 교육 ??7�?/span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">?�의:</span>
-                                <span class="text-gray-600">??2???�기 ?�의</span>
-                            </div>
-                        </div>
-                        <!-- ?��?지 ?�레?�스?�??-->
-                        <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-camera text-2xl text-gray-400"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-balance-scale text-purple-600 text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-gray-900">?�리?�원??/h3>
-                                <p class="text-gray-600">?�리 관�?기구</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 mb-6 leading-relaxed">
-                            ?�원???�리?� 기강??관리하??깨끗?�고 ?�명???�당 문화�?조성?�니??
-                        </p>
-                        <div class="space-y-3 mb-6">
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">구성:</span>
-                                <span class="text-gray-600">?�원?? ?�원 6�?/span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">?�기:</span>
-                                <span class="text-gray-600">2??/span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="font-semibold text-gray-700">?�의:</span>
-                                <span class="text-gray-600">?�요???�시 ?�의</span>
-                            </div>
-                        </div>
-                        <!-- ?��?지 ?�레?�스?�??-->
-                        <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-camera text-2xl text-gray-400"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 지??조직 Section -->
-        <section class="py-20 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">지??조직</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        ?�국 각�??�서 ?�동?�는 지??조직?�이 ?�뿌리 민주주의�??�현?�니??
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                        <div class="aspect-square bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                            <i class="fas fa-camera text-3xl text-gray-400"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">?�도�?/h3>
-                        <p class="text-gray-600 text-sm mb-2">?�울, 경기, ?�천</p>
-                        <p class="text-red-600 font-semibold">8�?지구당</p>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                        <div class="aspect-square bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                            <i class="fas fa-camera text-3xl text-gray-400"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">?�남�?/h3>
-                        <p class="text-gray-600 text-sm mb-2">부?? ?��? ?�산, 경남, 경북</p>
-                        <p class="text-red-600 font-semibold">12�?지구당</p>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                        <div class="aspect-square bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                            <i class="fas fa-camera text-3xl text-gray-400"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">?�남�?/h3>
-                        <p class="text-gray-600 text-sm mb-2">광주, ?�남, ?�북</p>
-                        <p class="text-red-600 font-semibold">6�?지구당</p>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                        <div class="aspect-square bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                            <i class="fas fa-camera text-3xl text-gray-400"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">충청·강원�?/h3>
-                        <p class="text-gray-600 text-sm mb-2">?�?? ?�종, 충남, 충북, 강원</p>
-                        <p class="text-red-600 font-semibold">7�?지구당</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 조직 문화 Section -->
+        <!-- 조직 가입 안내 -->
         <section class="py-20 bg-red-600 text-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold mb-6">조직 문화</h2>
-                    <p class="text-2xl text-red-100 max-w-4xl mx-auto leading-relaxed">
-                        "?�통�??�력, ?�명?�과 책임�?<br>
-                        건강?�고 ??��?�인 조직 문화�?만들?�갑?�다.
-                    </p>
-                </div>
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold mb-6">함께하실 분을 모집합니다</h2>
+                <p class="text-xl mb-8 leading-relaxed">
+                    자유와혁신과 함께 대한민국의 미래를 만들어갈<br>
+                    열정적이고 유능한 인재를 기다리고 있습니다.
+                </p>
                 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-handshake text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">?�호 존중</h3>
-                        <p class="text-red-100">?�양???�견??존중?�고 건설?�인 ?�론??추구?�니??</p>
-                    </div>
-                    
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-eye text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">?�명??/h3>
-                        <p class="text-red-100">모든 ?�사결정 과정???�명?�게 공개?�니??</p>
-                    </div>
-                    
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-rocket text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">?�신</h3>
-                        <p class="text-red-100">?�임?�는 ?�습�??�신?�로 발전?�갑?�다.</p>
-                    </div>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../members/join.html" class="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        당원 가입하기
+                    </a>
+                    <a href="mailto:recruit@jayuhyeoksin.kr" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
+                        인재 지원하기
+                    </a>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4">?�유?�?�신</h3>
-                    <p class="text-gray-400">
-                        ???��? ?�?��?�?�� ?�한<br>
-                        ?�로???�치???�작
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">?�락�?/h4>
-                    <p class="text-gray-400">
-                        ?�화: 02-000-0000<br>
-                        ?�메?? info@party.kr<br>
-                        주소: ?�울?�별???�등?�구
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">?�셜미디??/h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-facebook text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-twitter text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-youtube text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 ?�유?�?�신. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
 
     <script src="../nav.js"></script>
 </body>

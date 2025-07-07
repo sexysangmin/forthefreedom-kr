@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>?�사/집회 ?�내 - ?�유?�?�신</title>
+    <title>행사/집회 안내 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -51,8 +51,8 @@
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">?�사/집회 ?�내</h1>
-            <p style="font-size:1.2rem; margin-top:1rem; opacity:0.9;">보수 진영??모든 집회?� ?�사 ?�보�???곳에??/p>
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">행사/집회 안내</h1>
+            <p style="font-size:1.2rem; margin-top:1rem; opacity:0.9;">자유와혁신의 모든 집회와 행사 정보를 한 곳에서</p>
         </div>
     </section>
     
@@ -62,9 +62,9 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center mb-6">
                     <div class="event-badge bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">
-                        <i class="fas fa-calendar-check mr-1"></i>?�번�?
+                        <i class="fas fa-calendar-check mr-1"></i>이번 주
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-900">?��??�는 보수 집회</h2>
+                    <h2 class="text-2xl font-bold text-gray-900">예정된 주요 행사</h2>
                 </div>
                 
                 <div class="swiper upcoming-events-swiper">
@@ -72,13 +72,13 @@
                         <div class="swiper-slide">
                             <div class="bg-white rounded-lg p-6 shadow-lg border-l-4 border-red-600">
                                 <div class="flex justify-between items-start mb-3">
-                                    <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-bold">?�늘 ?�후 2??/span>
+                                    <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-bold">오늘 오후 2시</span>
                                     <span class="text-red-600 font-bold">D-0</span>
                                 </div>
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">YOON AGAIN ?�초모임</h3>
-                                <p class="text-gray-600 text-sm mb-3">?�울 ?�초�??�초?��?| ?�초보수?�합</p>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">자유와혁신 정책 발표회</h3>
+                                <p class="text-gray-600 text-sm mb-3">서울 종로구 광화문광 | 자유와혁신 본부</p>
                                 <button onclick="openEventDetail('urgent-1')" class="text-red-600 hover:text-red-700 font-medium text-sm">
-                                    ?�세??보기 <i class="fas fa-arrow-right ml-1"></i>
+                                    자세히 보기 <i class="fas fa-arrow-right ml-1"></i>
                                 </button>
                             </div>
                         </div>
@@ -86,13 +86,13 @@
                         <div class="swiper-slide">
                             <div class="bg-white rounded-lg p-6 shadow-lg border-l-4 border-orange-500">
                                 <div class="flex justify-between items-start mb-3">
-                                    <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs font-bold">?�일 ?�후 6??/span>
+                                    <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs font-bold">내일 오후 6시</span>
                                     <span class="text-orange-600 font-bold">D-1</span>
                                 </div>
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">?�극�?집회</h3>
-                                <p class="text-gray-600 text-sm mb-3">부???�운?� ?��? | 부?�보?�연??/p>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">시민 토론회</h3>
+                                <p class="text-gray-600 text-sm mb-3">부산 해운대구 센텀 | 부산보수연합</p>
                                 <button onclick="openEventDetail('urgent-2')" class="text-red-600 hover:text-red-700 font-medium text-sm">
-                                    ?�세??보기 <i class="fas fa-arrow-right ml-1"></i>
+                                    자세히 보기 <i class="fas fa-arrow-right ml-1"></i>
                                 </button>
                             </div>
                         </div>
@@ -100,13 +100,13 @@
                         <div class="swiper-slide">
                             <div class="bg-white rounded-lg p-6 shadow-lg border-l-4 border-yellow-500">
                                 <div class="flex justify-between items-start mb-3">
-                                    <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-bold">?�번 �??�요??/span>
+                                    <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-bold">이번 주 토요일</span>
                                     <span class="text-yellow-600 font-bold">D-3</span>
                                 </div>
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">?�유민주주의 ?�호 ?�??/h3>
-                                <p class="text-gray-600 text-sm mb-3">?��??�성�?| ?�구경북보?�단체연??/p>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">자유민주주의 수호 대회</h3>
+                                <p class="text-gray-600 text-sm mb-3">대구 달성공원 | 대구경북보수단체연합</p>
                                 <button onclick="openEventDetail('urgent-3')" class="text-red-600 hover:text-red-700 font-medium text-sm">
-                                    ?�세??보기 <i class="fas fa-arrow-right ml-1"></i>
+                                    자세히 보기 <i class="fas fa-arrow-right ml-1"></i>
                                 </button>
                             </div>
                         </div>
@@ -121,16 +121,16 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
                     <div class="flex flex-wrap gap-2">
-                        <button class="filter-btn active" data-filter="all">?�체</button>
-                        <button class="filter-btn" data-filter="today">?�늘</button>
-                        <button class="filter-btn" data-filter="week">?�번�?/button>
-                        <button class="filter-btn" data-filter="seoul">?�울</button>
-                        <button class="filter-btn" data-filter="busan">부??/button>
-                        <button class="filter-btn" data-filter="daegu">?��?/button>
-                        <button class="filter-btn" data-filter="others">기�?지??/button>
+                        <button class="filter-btn active" data-filter="all">전체</button>
+                        <button class="filter-btn" data-filter="today">오늘</button>
+                        <button class="filter-btn" data-filter="week">이번 주</button>
+                        <button class="filter-btn" data-filter="seoul">서울</button>
+                        <button class="filter-btn" data-filter="busan">부산</button>
+                        <button class="filter-btn" data-filter="daegu">대구</button>
+                        <button class="filter-btn" data-filter="others">기타 지역</button>
                     </div>
                     <div class="flex gap-2">
-                        <input type="text" placeholder="?�체�? ?�목 검??.." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        <input type="text" placeholder="제목이나 주제 검색..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
                         <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
                             <i class="fas fa-search"></i>
                         </button>
@@ -149,37 +149,37 @@
                             <div class="md:w-48 h-32 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <div class="text-center">
                                     <i class="fas fa-bullhorn text-red-600 text-2xl mb-2"></i>
-                                    <p class="text-red-700 font-medium text-sm">?�스???��?지</p>
+                                    <p class="text-red-700 font-medium text-sm">자유와혁신 집회</p>
                                 </div>
                             </div>
                             <div class="flex-1">
                                 <div class="flex items-start justify-between mb-3">
                                     <div>
                                         <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium">집회</span>
-                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">?�울</span>
+                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">서울</span>
                                     </div>
-                                    <span class="text-red-600 font-bold">?�늘</span>
+                                    <span class="text-red-600 font-bold">오늘</span>
                                 </div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">길거�??�진</h3>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">길거리 행진</h3>
                                 <div class="grid md:grid-cols-2 gap-4 mb-4">
                                     <div class="flex items-center text-gray-600">
                                         <i class="fas fa-calendar mr-2 text-red-600"></i>
-                                        <span>2025??1??18??(?? 14:00</span>
+                                        <span>2025년 1월 18일(토) 14:00</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
                                         <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
-                                        <span>?�울 종로�?광화문광??/span>
+                                        <span>서울 종로구 광화문광장</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
                                         <i class="fas fa-users mr-2 text-red-600"></i>
-                                        <span>?�유?�호�???�동본�?</span>
+                                        <span>자유수호시민행동본부</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
                                         <i class="fas fa-phone mr-2 text-red-600"></i>
                                         <span>02-123-4567</span>
                                     </div>
                                 </div>
-                                <p class="text-gray-600 line-clamp-2">?�유민주주의 가�??�호�??�한 ?�화로운 길거�??�진?�니?? 많�? 참여 바랍?�다.</p>
+                                <p class="text-gray-600 line-clamp-2">자유민주주의 가치 수호를 위한 평화로운 길거리 행진입니다. 많은 참여 바랍니다.</p>
                             </div>
                         </div>
                     </div>
@@ -190,37 +190,37 @@
                             <div class="md:w-48 h-32 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <div class="text-center">
                                     <i class="fas fa-microphone text-blue-600 text-2xl mb-2"></i>
-                                    <p class="text-blue-700 font-medium text-sm">?�스???��?지</p>
+                                    <p class="text-blue-700 font-medium text-sm">시민 토론회</p>
                                 </div>
                             </div>
                             <div class="flex-1">
                                 <div class="flex items-start justify-between mb-3">
                                     <div>
-                                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">?�론??/span>
-                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">부??/span>
+                                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">토론회</span>
+                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">부산</span>
                                     </div>
-                                    <span class="text-blue-600 font-bold">D-2</span>
+                                    <span class="text-blue-600 font-bold">이번 주</span>
                                 </div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">�?? ?�보?� 경제 ?�책 ?�론??/h3>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">부산 경제 발전 토론회</h3>
                                 <div class="grid md:grid-cols-2 gap-4 mb-4">
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-calendar mr-2 text-red-600"></i>
-                                        <span>2025??1??20??(?? 19:00</span>
+                                        <i class="fas fa-calendar mr-2 text-blue-600"></i>
+                                        <span>2025년 1월 20일(월) 19:00</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
-                                        <span>부???�운?��?BEXCO</span>
+                                        <i class="fas fa-map-marker-alt mr-2 text-blue-600"></i>
+                                        <span>부산 해운대구 센텀시티</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-users mr-2 text-red-600"></i>
-                                        <span>부?�보?�연??/span>
+                                        <i class="fas fa-users mr-2 text-blue-600"></i>
+                                        <span>부산경제발전연구회</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-phone mr-2 text-red-600"></i>
-                                        <span>051-987-6543</span>
+                                        <i class="fas fa-phone mr-2 text-blue-600"></i>
+                                        <span>051-789-0123</span>
                                     </div>
                                 </div>
-                                <p class="text-gray-600 line-clamp-2">�?? ?�보 ?�책�?경제 발전 방안???�???�문가 ?�론?�입?�다. ?��? ?�러분의 참여�??�영?�니??</p>
+                                <p class="text-gray-600 line-clamp-2">부산의 미래 경제 발전 방향과 전략을 논의하는 공개 토론회입니다.</p>
                             </div>
                         </div>
                     </div>
@@ -231,78 +231,78 @@
                             <div class="md:w-48 h-32 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <div class="text-center">
                                     <i class="fas fa-flag text-green-600 text-2xl mb-2"></i>
-                                    <p class="text-green-700 font-medium text-sm">?�스???��?지</p>
+                                    <p class="text-green-700 font-medium text-sm">자유 수호 대회</p>
                                 </div>
                             </div>
                             <div class="flex-1">
                                 <div class="flex items-start justify-between mb-3">
                                     <div>
-                                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium">?�진</span>
-                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">?��?/span>
+                                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium">대회</span>
+                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">대구</span>
                                     </div>
-                                    <span class="text-green-600 font-bold">D-5</span>
+                                    <span class="text-green-600 font-bold">이번 주</span>
                                 </div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">?�유민주주의 ?�호 ?�진</h3>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">자유민주주의 수호 대회</h3>
                                 <div class="grid md:grid-cols-2 gap-4 mb-4">
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-calendar mr-2 text-red-600"></i>
-                                        <span>2025??1??23??(�? 16:00</span>
+                                        <i class="fas fa-calendar mr-2 text-green-600"></i>
+                                        <span>2025년 1월 21일(화) 15:00</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
-                                        <span>?��?중구 ?�성�?/span>
+                                        <i class="fas fa-map-marker-alt mr-2 text-green-600"></i>
+                                        <span>대구 달성공원 야외무대</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-users mr-2 text-red-600"></i>
-                                        <span>?�구경북보?�단체연??/span>
+                                        <i class="fas fa-users mr-2 text-green-600"></i>
+                                        <span>대구경북보수단체연합</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-phone mr-2 text-red-600"></i>
+                                        <i class="fas fa-phone mr-2 text-green-600"></i>
                                         <span>053-456-7890</span>
                                     </div>
                                 </div>
-                                <p class="text-gray-600 line-clamp-2">?�유민주주의 가�??�호�??�한 ?�화???�진?�니?? ?��??��? ?�러분의 많�? 참여 부?�드립니??</p>
+                                <p class="text-gray-600 line-clamp-2">자유민주주의 가치와 헌법 정신을 지키기 위한 시민 대회입니다.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- More event cards would continue here -->
+                    <!-- Event Card 4 -->
                     <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="others" onclick="openEventDetail('event-4')">
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="md:w-48 h-32 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <div class="text-center">
                                     <i class="fas fa-handshake text-purple-600 text-2xl mb-2"></i>
-                                    <p class="text-purple-700 font-medium text-sm">?�스???��?지</p>
+                                    <p class="text-purple-700 font-medium text-sm">연대 집회</p>
                                 </div>
                             </div>
                             <div class="flex-1">
                                 <div class="flex items-start justify-between mb-3">
                                     <div>
-                                        <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">간담??/span>
+                                        <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">연대</span>
                                         <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">광주</span>
                                     </div>
-                                    <span class="text-purple-600 font-bold">D-7</span>
+                                    <span class="text-purple-600 font-bold">다음 주</span>
                                 </div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">지??발전???�한 ?��? 간담??/h3>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">보수 진영 연대 집회</h3>
                                 <div class="grid md:grid-cols-2 gap-4 mb-4">
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-calendar mr-2 text-red-600"></i>
-                                        <span>2025??1??25??(?? 10:00</span>
+                                        <i class="fas fa-calendar mr-2 text-purple-600"></i>
+                                        <span>2025년 1월 25일(토) 16:00</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
-                                        <span>광주 ?�구 ?��??��?</span>
+                                        <i class="fas fa-map-marker-alt mr-2 text-purple-600"></i>
+                                        <span>광주 동구 금남로 광장</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-users mr-2 text-red-600"></i>
-                                        <span>광주?��??�합</span>
+                                        <i class="fas fa-users mr-2 text-purple-600"></i>
+                                        <span>호남보수연합</span>
                                     </div>
                                     <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-phone mr-2 text-red-600"></i>
-                                        <span>062-345-6789</span>
+                                        <i class="fas fa-phone mr-2 text-purple-600"></i>
+                                        <span>062-234-5678</span>
                                     </div>
                                 </div>
-                                <p class="text-gray-600 line-clamp-2">광주 지??발전�??��? 복�? ?�상???�한 ?�책 간담?�입?�다. ?��? ?�러분의 ?�견???�겠?�니??</p>
+                                <p class="text-gray-600 line-clamp-2">전국 보수 진영의 연대와 결속을 다지는 대규모 집회입니다.</p>
                             </div>
                         </div>
                     </div>
@@ -311,40 +311,51 @@
                 <!-- Load More Button -->
                 <div class="text-center mt-12">
                     <button class="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors">
-                        ??많�? ?�사 보기 <i class="fas fa-chevron-down ml-2"></i>
+                        더 많은 행사 보기
                     </button>
                 </div>
             </div>
         </section>
         
-        <!-- Submit Event Section -->
+        <!-- Event Statistics -->
         <section class="py-16 bg-gray-50">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h3 class="text-3xl font-bold text-gray-900 mb-6">?�사 ?�보 ?�록</h3>
-                <p class="text-xl text-gray-600 mb-8">
-                    보수 진영??집회???�사 ?�보�?공유?�주?�요.<br>
-                    ??많�? ?��??�이 참여?????�도�??��?주세??
-                </p>
-                <button onclick="openSubmitForm()" class="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors text-lg font-medium">
-                    ?�사 ?�보 ?�록?�기 <i class="fas fa-plus ml-2"></i>
-                </button>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">행사 통계</h2>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-3xl font-bold text-red-600 mb-2">47</div>
+                        <div class="text-gray-600">총 행사 수</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-3xl font-bold text-red-600 mb-2">23</div>
+                        <div class="text-gray-600">집회/시위</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-3xl font-bold text-red-600 mb-2">16</div>
+                        <div class="text-gray-600">토론회/세미나</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-3xl font-bold text-red-600 mb-2">8</div>
+                        <div class="text-gray-600">연대 행사</div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
     
     <!-- Event Detail Modal -->
-    <div id="event-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div class="p-6 border-b">
-                <div class="flex justify-between items-start">
-                    <h2 id="modal-title" class="text-2xl font-bold text-gray-900"></h2>
+    <div id="eventModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900">행사 상세정보</h3>
                     <button onclick="closeEventDetail()" class="text-gray-500 hover:text-gray-700">
                         <i class="fas fa-times text-xl"></i>
                     </button>
                 </div>
-            </div>
-            <div class="p-6" id="modal-content">
-                <!-- Dynamic content will be loaded here -->
+                <div id="eventDetailContent">
+                    <!-- 상세 내용이 여기에 표시됩니다 -->
+                </div>
             </div>
         </div>
     </div>
@@ -354,30 +365,30 @@
     <script>
         loadNavigation();
         
-        // Initialize Swiper
-        const upcomingSwiper = new Swiper('.upcoming-events-swiper', {
-            slidesPerView: 1,
-            spaceBetween: 20,
+        // Swiper 초기화
+        const swiper = new Swiper('.upcoming-events-swiper', {
             loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false
-            },
             pagination: {
                 el: '.swiper-pagination',
-                clickable: true
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
             },
             breakpoints: {
                 640: {
-                    slidesPerView: 2
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
                 },
                 1024: {
-                    slidesPerView: 3
-                }
-            }
+                    slidesPerView: 3,
+                },
+            },
         });
         
-        // Filter functionality
+        // 필터 기능
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -396,143 +407,22 @@
             });
         });
         
-        // Event detail modal
+        // 이벤트 상세 모달
         function openEventDetail(eventId) {
-            const modal = document.getElementById('event-modal');
-            const title = document.getElementById('modal-title');
-            const content = document.getElementById('modal-content');
+            document.getElementById('eventModal').classList.remove('hidden');
+            document.getElementById('eventModal').classList.add('flex');
             
-                         // Sample event details - in real implementation, this would fetch from database
-             const eventDetails = {
-                 'event-1': {
-                     title: '길거�??�진',
-                     content: `
-                         <div class="space-y-6">
-                             <div class="bg-red-100 rounded-lg p-4">
-                                 <h3 class="font-bold text-red-900 mb-2">?�사 ?�보</h3>
-                                 <p><strong>?�시:</strong> 2025??1??18??(?? 14:00 ~ 17:00</p>
-                                 <p><strong>?�소:</strong> ?�울 종로�?광화문광??/p>
-                                 <p><strong>주최:</strong> ?�유?�호�???�동본�?</p>
-                                 <p><strong>?�락�?</strong> 02-123-4567</p>
-                             </div>
-                             <div>
-                                 <h3 class="font-bold text-gray-900 mb-3">?�사 ?�용</h3>
-                                 <p class="text-gray-600 leading-relaxed">
-                                     ?�유민주주의 가�??�호�??�한 ?�화로운 길거�??�진?�니?? 
-                                     ?�?��?�?�� ?�유민주주의 ?�신??지?�고 보수 가치�? ?�리???�깊?� ?�사?�니??
-                                 </p>
-                             </div>
-                             <div>
-                                 <h3 class="font-bold text-gray-900 mb-3">참�? ?�내</h3>
-                                 <ul class="list-disc list-inside text-gray-600 space-y-1">
-                                     <li>?�전 ?�청 불필?? ?�유 참석</li>
-                                     <li>?�극�?지�?권장</li>
-                                     <li>?�화???�진 진행</li>
-                                     <li>?�진 ???�리 ?�동 참여</li>
-                                 </ul>
-                             </div>
-                             <div class="bg-gray-50 rounded-lg p-4">
-                                 <p class="text-sm text-gray-600">
-                                     <i class="fas fa-info-circle text-blue-500 mr-2"></i>
-                                     ?�진 참여 ??질서 ?��? �??�전 ?�칙??준?�해주세??
-                                 </p>
-                             </div>
-                         </div>
-                     `
-                 },
-                 'urgent-1': {
-                     title: 'YOON AGAIN ?�초모임',
-                     content: `
-                         <div class="space-y-6">
-                             <div class="bg-red-100 rounded-lg p-4">
-                                 <h3 class="font-bold text-red-900 mb-2">모임 ?�보</h3>
-                                 <p><strong>?�시:</strong> 2025??1??18??(?? 14:00 ~ 16:00</p>
-                                 <p><strong>?�소:</strong> ?�울 ?�초�??�초?��?/p>
-                                 <p><strong>주최:</strong> ?�초보수?�합</p>
-                                 <p><strong>?�락�?</strong> 02-345-6789</p>
-                             </div>
-                             <div>
-                                 <h3 class="font-bold text-gray-900 mb-3">모임 ?�용</h3>
-                                 <p class="text-gray-600 leading-relaxed">
-                                     ?�석???�?�령 지지 모임?�니?? 보수 가치�? ?�유민주주의 ?�호�??�한 ?��??�의 ?�발??모임?�니??
-                                 </p>
-                             </div>
-                         </div>
-                     `
-                 },
-                 'urgent-2': {
-                     title: '?�극�?집회',
-                     content: `
-                         <div class="space-y-6">
-                             <div class="bg-red-100 rounded-lg p-4">
-                                 <h3 class="font-bold text-red-900 mb-2">집회 ?�보</h3>
-                                 <p><strong>?�시:</strong> 2025??1??19??(?? 18:00 ~ 20:00</p>
-                                 <p><strong>?�소:</strong> 부???�운?� ?��?</p>
-                                 <p><strong>주최:</strong> 부?�보?�연??/p>
-                                 <p><strong>?�락�?</strong> 051-234-5678</p>
-                             </div>
-                             <div>
-                                 <h3 class="font-bold text-gray-900 mb-3">집회 ?�용</h3>
-                                 <p class="text-gray-600 leading-relaxed">
-                                     ?�극기�? ???�국 ?��??�의 모임?�니?? ?�라?�랑 ?�신???�새기고 보수 가치�? ?�천?�는 ?�간?�니??
-                                 </p>
-                             </div>
-                         </div>
-                     `
-                 },
-                 'urgent-3': {
-                     title: '?�유민주주의 ?�호 ?�??,
-                     content: `
-                         <div class="space-y-6">
-                             <div class="bg-red-100 rounded-lg p-4">
-                                 <h3 class="font-bold text-red-900 mb-2">?�???�보</h3>
-                                 <p><strong>?�시:</strong> 2025??1??21??(?? 16:00 ~ 18:00</p>
-                                 <p><strong>?�소:</strong> ?��?중구 ?�성�?/p>
-                                 <p><strong>주최:</strong> ?�구경북보?�단체연??/p>
-                                 <p><strong>?�락�?</strong> 053-123-4567</p>
-                             </div>
-                         </div>
-                     `
-                 }
-             };
-            
-            const event = eventDetails[eventId];
-            if (event) {
-                title.textContent = event.title;
-                content.innerHTML = event.content;
-                modal.classList.remove('hidden');
-            }
+            // 여기에 실제 이벤트 데이터를 로드하는 코드를 추가할 수 있습니다
+            document.getElementById('eventDetailContent').innerHTML = `
+                <p class="text-gray-600 mb-4">이벤트 ID: ${eventId}</p>
+                <p class="text-gray-600">상세 정보를 불러오는 중...</p>
+            `;
         }
         
         function closeEventDetail() {
-            document.getElementById('event-modal').classList.add('hidden');
+            document.getElementById('eventModal').classList.add('hidden');
+            document.getElementById('eventModal').classList.remove('flex');
         }
-        
-        function openSubmitForm() {
-            alert('?�사 ?�록 ?�으�??�동?�니?? (?�제 구현?�서??별도 ?�이지??모달�??�결)');
-        }
-        
-        // Style for filter buttons
-        const style = document.createElement('style');
-        style.textContent = `
-            .filter-btn {
-                background: white;
-                border: 2px solid #e5e7eb;
-                color: #6b7280;
-                padding: 8px 16px;
-                border-radius: 20px;
-                font-weight: 500;
-                transition: all 0.3s ease;
-                cursor: pointer;
-            }
-            .filter-btn:hover,
-            .filter-btn.active {
-                background: #A50034;
-                border-color: #A50034;
-                color: white;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html> 
