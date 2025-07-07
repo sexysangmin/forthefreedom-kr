@@ -1,20 +1,17 @@
 backend:
-  name: github
-  repo: sexysangmin/forthefreedom
+  name: git-gateway
   branch: main
-  base_url: https://netlify-cms.adrianub.vercel.app
-  auth_endpoint: auth
 
-media_folder: "images" # Media files will be stored in the repo under images
-public_folder: "/images" # The src attribute for uploaded media will begin with /images
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
-  - name: "notices" # Used in routes, e.g., /admin/collections/notices
-    label: "공지사항" # Used in the UI
-    folder: "content/notices" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
+  - name: "notices"
+    label: "공지사항"
+    folder: "content/notices"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
       - {label: "제목", name: "title", widget: "string"}
       - {label: "발행일", name: "date", widget: "datetime"}
       - {label: "작성자", name: "author", widget: "string", default: "자유와혁신"}
@@ -26,12 +23,12 @@ collections:
           {label: "파일", name: "file", widget: "file"}
         ], required: false}
 
-  - name: "news" # Used in routes, e.g., /admin/collections/news
-    label: "소식/활동" # Used in the UI
-    folder: "content/news" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
+  - name: "news"
+    label: "소식/활동"
+    folder: "content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
       - {label: "제목", name: "title", widget: "string"}
       - {label: "발행일", name: "date", widget: "datetime"}
       - {label: "작성자", name: "author", widget: "string", default: "자유와혁신"}
@@ -41,12 +38,12 @@ collections:
       - {label: "내용", name: "body", widget: "markdown"}
       - {label: "태그", name: "tags", widget: "list", required: false}
 
-  - name: "events" # Used in routes, e.g., /admin/collections/events
-    label: "행사/집회" # Used in the UI
-    folder: "content/events" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
+  - name: "events"
+    label: "행사/집회"
+    folder: "content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
       - {label: "행사명", name: "title", widget: "string"}
       - {label: "일시", name: "event_date", widget: "datetime"}
       - {label: "장소", name: "location", widget: "string"}
@@ -60,12 +57,12 @@ collections:
       - {label: "참가비", name: "fee", widget: "string", required: false}
       - {label: "사전신청", name: "registration_required", widget: "boolean", default: false}
 
-  - name: "policies" # Used in routes, e.g., /admin/collections/policies
-    label: "정책" # Used in the UI
-    folder: "content/policies" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}" # Filename template
-    fields: # The fields for each document, usually in front matter
+  - name: "policies"
+    label: "정책"
+    folder: "content/policies"
+    create: true
+    slug: "{{slug}}"
+    fields:
       - {label: "정책명", name: "title", widget: "string"}
       - {label: "발행일", name: "date", widget: "datetime"}
       - {label: "분야", name: "category", widget: "select", options: ["경제/일자리", "교육/복지", "안보/외교", "환경/에너지", "법치/개혁", "지역발전", "청년정책"]}
@@ -81,12 +78,12 @@ collections:
           {label: "파일", name: "file", widget: "file", required: false}
         ], required: false}
 
-  - name: "members" # Used in routes, e.g., /admin/collections/members
-    label: "주요 인물" # Used in the UI
-    folder: "content/members" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}" # Filename template
-    fields: # The fields for each document, usually in front matter
+  - name: "members"
+    label: "주요 인물"
+    folder: "content/members"
+    create: true
+    slug: "{{slug}}"
+    fields:
       - {label: "이름", name: "name", widget: "string"}
       - {label: "직책", name: "position", widget: "string"}
       - {label: "순서", name: "order", widget: "number", default: 1}
