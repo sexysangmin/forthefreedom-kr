@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
-  branch: main # Branch to update (optional; defaults to master)
+  name: github
+  repo: sexysangmin/forthefreedom
+  branch: main
+  base_url: https://netlify-cms.adrianub.vercel.app
+  auth_endpoint: auth
 
 media_folder: "images" # Media files will be stored in the repo under images
 public_folder: "/images" # The src attribute for uploaded media will begin with /images
