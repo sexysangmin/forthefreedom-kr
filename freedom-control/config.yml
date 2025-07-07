@@ -18,10 +18,6 @@ collections:
       - {label: "중요도", name: "priority", widget: "select", options: ["일반", "중요", "긴급"]}
       - {label: "카테고리", name: "category", widget: "select", options: ["공지", "보도자료", "성명서", "안내"]}
       - {label: "내용", name: "body", widget: "markdown"}
-      - {label: "첨부파일", name: "attachments", widget: "list", fields: [
-          {label: "파일명", name: "filename", widget: "string"},
-          {label: "파일", name: "file", widget: "file"}
-        ], required: false}
 
   - name: "news"
     label: "소식/활동"
@@ -72,11 +68,6 @@ collections:
       - {label: "목표", name: "objectives", widget: "list", field: {label: "목표", name: "objective", widget: "string"}}
       - {label: "세부내용", name: "body", widget: "markdown"}
       - {label: "기대효과", name: "expected_results", widget: "markdown"}
-      - {label: "관련 자료", name: "resources", widget: "list", fields: [
-          {label: "자료명", name: "title", widget: "string"},
-          {label: "링크", name: "url", widget: "string", required: false},
-          {label: "파일", name: "file", widget: "file", required: false}
-        ], required: false}
 
   - name: "members"
     label: "주요 인물"
@@ -93,7 +84,6 @@ collections:
       - {label: "약력", name: "bio", widget: "markdown"}
       - {label: "주요 경력", name: "experience", widget: "list", field: {label: "경력", name: "career", widget: "string"}}
       - {label: "학력", name: "education", widget: "list", field: {label: "학력", name: "degree", widget: "string"}}
-      - {label: "주요 정책", name: "key_policies", widget: "list", field: {label: "정책", name: "policy", widget: "string"}, required: false}
 
   - name: "settings"
     label: "사이트 설정"
@@ -106,12 +96,4 @@ collections:
           - {label: "슬로건", name: "slogan", widget: "string"}
           - {label: "대표 연락처", name: "main_phone", widget: "string"}
           - {label: "대표 이메일", name: "main_email", widget: "string"}
-          - {label: "주소", name: "address", widget: "string"}
-          - {label: "소셜미디어", name: "social_media", widget: "object", fields: [
-              {label: "페이스북", name: "facebook", widget: "string", required: false},
-              {label: "트위터", name: "twitter", widget: "string", required: false},
-              {label: "인스타그램", name: "instagram", widget: "string", required: false},
-              {label: "유튜브", name: "youtube", widget: "string", required: false}
-            ]}
-          - {label: "당원 가입 링크", name: "membership_url", widget: "string"}
-          - {label: "후원 링크", name: "donation_url", widget: "string", required: false} 
+          - {label: "주소", name: "address", widget: "string"} 
