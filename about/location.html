@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ï∞æÏïÑ?§Ïãú??Í∏?- ?êÏú†?Ä?ÅÏã†</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">Ï∞æÏïÑ?§Ïãú??Í∏?/h1>
+        </div>
+    </section>
+
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- Introduction Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">?∏Ï†ú?†Ï? Ï∞æÏïÑ?§ÏÑ∏??/h2>
+                    <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                        ?êÏú†?Ä?ÅÏã†?Ä ?¥Î¶∞ ?ïÎãπ?ÖÎãà?? ?πÏõêÍ≥?Íµ?? ?¨Îü¨Î∂ÑÏùò ?åÏ§ë???òÍ≤¨???∏Ï†ú?†Ï? ?òÏòÅ?©Îãà??
+                    </p>
+                </div>
+                
+                <!-- ?¨Î¨¥???¥Î?ÏßÄ -->
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="text-center">
+                        <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-camera text-4xl text-gray-400"></i>
+                        </div>
+                        <p class="text-sm text-gray-500">?¨Î¨¥???ÑÍ≤Ω</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-camera text-4xl text-gray-400"></i>
+                        </div>
+                        <p class="text-sm text-gray-500">?ëÏàò ?∞Ïä§??/p>
+                    </div>
+                    <div class="text-center">
+                        <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-camera text-4xl text-gray-400"></i>
+                        </div>
+                        <p class="text-sm text-gray-500">?åÏùò??/p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ?∞ÎùΩÏ≤??ïÎ≥¥ Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">?∞ÎùΩÏ≤??ïÎ≥¥</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ?ÑÌôî, ?¥Î©î?? Î∞©Î¨∏ ???§Ïñë??Î∞©Î≤ï?ºÎ°ú ?∞ÎùΩ?òÏã§ ???àÏäµ?àÎã§.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- ?¨Î¨¥???ïÎ≥¥ -->
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-building text-red-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">?¨Î¨¥???ïÎ≥¥</h3>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-red-600 text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900 mb-1">Ï£ºÏÜå</p>
+                                    <p class="text-gray-700">?úÏö∏?πÎ≥Ñ??Ï§ëÍµ¨ ?úÌèâÎ°?1Í∞Ä 31</p>
+                                    <p class="text-gray-700">?ïÎèôÎπåÎî© 7Ï∏?/p>
+                                    <p class="text-sm text-gray-500 mt-1">(?∞Ìé∏Î≤àÌò∏: 04520)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-phone text-red-600 text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900 mb-1">?Ä?úÏ†Ñ??/p>
+                                    <p class="text-gray-700 text-lg">02-1234-5678</p>
+                                    <p class="text-sm text-gray-500">?âÏùº 09:00 - 18:00</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-fax text-red-600 text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900 mb-1">?©Ïä§</p>
+                                    <p class="text-gray-700 text-lg">02-1234-5679</p>
+                                    <p class="text-sm text-gray-500">24?úÍ∞Ñ ?ëÏàò</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-red-600 text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900 mb-1">?¥Î©î??/p>
+                                    <p class="text-gray-700 text-lg">info@jayuhyeoksin.kr</p>
+                                    <p class="text-sm text-gray-500">24?úÍ∞Ñ ?ëÏàò</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ?¥ÏòÅ ?úÍ∞Ñ -->
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-clock text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">?¥ÏòÅ ?úÍ∞Ñ</h3>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-calendar-day text-blue-600"></i>
+                                    <span class="font-semibold text-gray-900">??~ Í∏?/span>
+                                </div>
+                                <span class="text-gray-700 font-medium">09:00 - 18:00</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-calendar-week text-blue-600"></i>
+                                    <span class="font-semibold text-gray-900">?†Ïöî??/span>
+                                </div>
+                                <span class="text-gray-700 font-medium">09:00 - 13:00</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-calendar-times text-red-600"></i>
+                                    <span class="font-semibold text-gray-900">?ºÏöî??Í≥µÌú¥??/span>
+                                </div>
+                                <span class="text-red-600 font-medium">?¥Î¨¥</span>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-info-circle text-blue-600 text-lg mt-1"></i>
+                                    <div>
+                                        <p class="font-semibold text-blue-900 mb-2">Î∞©Î¨∏ ?àÎÇ¥</p>
+                                        <p class="text-blue-800 text-sm leading-relaxed">
+                                            Î∞©Î¨∏ ??ÎØ∏Î¶¨ ?∞ÎùΩ Ï£ºÏãúÎ©????êÌôú???ÅÎã¥??Í∞Ä?•Ìï©?àÎã§. 
+                                            Ï§ëÏöî???ÅÎã¥??Í≤ΩÏö∞ ?¨Ï†Ñ ?àÏïΩ??Í∂åÏû•?©Îãà??
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ÏßÄ??Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">?§Ïãú??Í∏?/h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ?ÄÏ§ëÍµê?µÏùÑ ?¥Ïö©?òÏãúÎ©??∏Î¶¨?òÍ≤å ?§Ïã§ ???àÏäµ?àÎã§.
+                    </p>
+                </div>
+                
+                <!-- ÏßÄ???åÎ†à?¥Ïä§?Ä??-->
+                <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center mb-12">
+                    <div class="text-center">
+                        <i class="fas fa-map text-6xl text-gray-400 mb-4"></i>
+                        <p class="text-gray-600 text-lg font-semibold">ÏßÄ?ÑÍ? ?¨Í∏∞???úÏãú?©Îãà??/p>
+                        <p class="text-gray-500 text-sm mt-2">
+                            ?§Ï†ú Íµ¨ÌòÑ ??Ïπ¥Ïπ¥?§Îßµ ?êÎäî Íµ¨Í?Îß?APIÎ•??¨Ïö©?òÏó¨<br>
+                            ?ïÌôï???ÑÏπò?Ä Í∏∏Ï∞æÍ∏?Í∏∞Îä•???úÍ≥µ?©Îãà??
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- ÍµêÌÜµ???àÎÇ¥ -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- ÏßÄ?òÏ≤† -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 border-l-4 border-green-600">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-subway text-green-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">ÏßÄ?òÏ≤† ?¥Ïö©</h3>
+                                <p class="text-gray-600">Í∞Ä???∏Î¶¨??ÍµêÌÜµ?òÎã®</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4 p-3 bg-blue-50 rounded-lg">
+                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm font-bold">1</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">?úÏ≤≠??/p>
+                                    <p class="text-gray-600 text-sm">4Î≤?Ï∂úÍµ¨ ???ÑÎ≥¥ 5Î∂?/p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4 p-3 bg-green-50 rounded-lg">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm font-bold">2</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">?ÑÏ?Î°úÏûÖÍµ¨Ïó≠</p>
+                                    <p class="text-gray-600 text-sm">8Î≤?Ï∂úÍµ¨ ???ÑÎ≥¥ 7Î∂?/p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4 p-3 bg-orange-50 rounded-lg">
+                                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm font-bold">3</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">?àÍµ≠??/p>
+                                    <p class="text-gray-600 text-sm">3Î≤?Ï∂úÍµ¨ ???ÑÎ≥¥ 10Î∂?/p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Î≤ÑÏä§ -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 border-l-4 border-yellow-600">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-bus text-yellow-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">Î≤ÑÏä§ ?¥Ïö©</h3>
+                                <p class="text-gray-600">?§Ïñë???∏ÏÑ† ?¥Ïö© Í∞Ä??/p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-red-900 mb-2">Í∞ÑÏÑ†Î≤ÑÏä§</h4>
+                                <p class="text-red-800 text-sm leading-relaxed">
+                                    100, 101, 150, 160, 171, 172, 260, 270, 271, 370, 601, 602, 603, 604, 605, 606
+                                </p>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-900 mb-2">ÏßÄ?†Î≤Ñ??/h4>
+                                <p class="text-blue-800 text-sm leading-relaxed">
+                                    1711, 7025, 7212, 7016, 7019, 7020
+                                </p>
+                            </div>
+                            
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-green-900 mb-2">ÎßàÏùÑÎ≤ÑÏä§</h4>
+                                <p class="text-green-800 text-sm leading-relaxed">
+                                    Ï§ëÍµ¨01, Ï§ëÍµ¨02, Ï§ëÍµ¨03
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ï£ºÏ∞® ?àÎÇ¥ Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Ï£ºÏ∞® ?àÎÇ¥</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ?êÍ????¥Ïö© ??Ï£ºÏ∞® ?àÎÇ¥ Î∞??ÄÏ§ëÍµê???¥Ïö©??Í∂åÏû•?©Îãà??
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Í±¥Î¨º Ï£ºÏ∞®??-->
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-car text-purple-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Í±¥Î¨º Ï£ºÏ∞®??/h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="font-semibold text-gray-700">Ï£ºÏ∞® Í≥µÍ∞Ñ</span>
+                                <span class="text-gray-600">ÏßÄ??1Ï∏?(30?Ä)</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="font-semibold text-gray-700">Ï£ºÏ∞® ?îÍ∏à</span>
+                                <span class="text-gray-600">?úÍ∞Ñ??2,000??/span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="font-semibold text-gray-700">ÏµúÎ? ?îÍ∏à</span>
+                                <span class="text-gray-600">??20,000??/span>
+                            </div>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="font-semibold text-gray-700">?†Ïù∏</span>
+                                <span class="text-green-600">Î∞©Î¨∏??2?úÍ∞Ñ Î¨¥Î£å</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ï£ºÎ? Ï£ºÏ∞®??-->
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-map-signs text-indigo-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Ï£ºÎ? Ï£ºÏ∞®??/h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <h4 class="font-semibold text-gray-900 mb-2">?úÏ≤≠ Í≥µÏòÅÏ£ºÏ∞®??/h4>
+                                <p class="text-sm text-gray-600">?ÑÎ≥¥ 3Î∂????úÍ∞Ñ??1,500??/p>
+                            </div>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <h4 class="font-semibold text-gray-900 mb-2">?ïÎèô Í≥µÏòÅÏ£ºÏ∞®??/h4>
+                                <p class="text-sm text-gray-600">?ÑÎ≥¥ 5Î∂????úÍ∞Ñ??1,800??/p>
+                            </div>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <h4 class="font-semibold text-gray-900 mb-2">?ÑÎ†à?§ÏÑº??Ï£ºÏ∞®??/h4>
+                                <p class="text-sm text-gray-600">?ÑÎ≥¥ 7Î∂????úÍ∞Ñ??2,200??/p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-yellow-50 rounded-lg">
+                            <p class="text-yellow-800 text-sm">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>
+                                Ï£ºÏ∞® Í≥µÍ∞Ñ???úÌïú?ÅÏù¥ÎØÄÎ°?Í∞ÄÍ∏âÏ†Å ?ÄÏ§ëÍµê???¥Ïö©??Í∂åÏû•?©Îãà??
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Î∞©Î¨∏ ?àÏïΩ Section -->
+        <section class="py-20 bg-red-600 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6">Î∞©Î¨∏ ?àÏïΩ</h2>
+                    <p class="text-2xl text-red-100 max-w-4xl mx-auto leading-relaxed">
+                        "?åÏ§ë???úÍ∞Ñ???ÑÌï¥"<br>
+                        ?¨Ï†Ñ ?àÏïΩ???µÌï¥ ???òÏ? ?ÅÎã¥ ?úÎπÑ?§Î? ?úÍ≥µ?¥ÎìúÎ¶ΩÎãà??
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-calendar-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">?¨Ï†Ñ ?àÏïΩ</h3>
+                        <p class="text-red-100">Î∞©Î¨∏ ??ÎØ∏Î¶¨ ?àÏïΩ?òÏãúÎ©??ÄÍ∏??úÍ∞Ñ??Ï§ÑÏùº ???àÏäµ?àÎã§.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-comments text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">1:1 ?ÅÎã¥</h3>
+                        <p class="text-red-100">Í∞úÏù∏Î≥?ÎßûÏ∂§ ?ÅÎã¥???µÌï¥ Í∂ÅÍ∏à???êÏùÑ ?¥Í≤∞?¥ÎìúÎ¶ΩÎãà??</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">?®Ï≤¥ Î∞©Î¨∏</h3>
+                        <p class="text-red-100">?®Ï≤¥ Î∞©Î¨∏??Í≤ΩÏö∞ ?¨Ï†Ñ ?ëÏùòÎ•??µÌï¥ ÎßûÏ∂§ ?ÑÎ°úÍ∑∏Îû®???úÍ≥µ?©Îãà??</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="tel:02-1234-5678" class="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold mr-4 hover:bg-red-50 transition-colors duration-200">
+                        ?ÑÌôî ?àÏïΩ
+                    </a>
+                    <a href="mailto:info@jayuhyeoksin.kr" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors duration-200">
+                        ?¥Î©î??Î¨∏Ïùò
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">?êÏú†?Ä?ÅÏã†</h3>
+                    <p class="text-gray-400">
+                        ???òÏ? ?Ä?úÎ?Íµ?ùÑ ?ÑÌïú<br>
+                        ?àÎ°ú???ïÏπò???úÏûë
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">?∞ÎùΩÏ≤?/h4>
+                    <p class="text-gray-400">
+                        ?ÑÌôî: 02-000-0000<br>
+                        ?¥Î©î?? info@party.kr<br>
+                        Ï£ºÏÜå: ?úÏö∏?πÎ≥Ñ???ÅÎì±?¨Íµ¨
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">?åÏÖúÎØ∏Îîî??/h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ?êÏú†?Ä?ÅÏã†. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../nav.js"></script>
+</body>
+</html> 

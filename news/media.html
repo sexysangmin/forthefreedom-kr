@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?�론보도 - ?�유?�?�신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">?�론보도</h1>
+        </div>
+    </section>
+    
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- Media Coverage Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">?�론 보도</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ?�유?�?�신???�??주요 ?�론 보도�??�인?�세??
+                    </p>
+                </div>
+                
+                <!-- Featured News -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8">주요 보도</h3>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-8">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">KBS</span>
+                            <span class="text-gray-600 text-sm">2024.01.15</span>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-4">
+                            "?�유?�?�신 출범...?�로???�치 ?�력 ?�장"
+                        </h4>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            ?�유?�?�신??공식 출범?�며 기존 ?�치권에 ?�로??바람???�으?�고 ?�다???��?�?받고 ?�습?�다. 
+                            ?�히 ?�신?�인 ?�책�??��? 리더??���?주목받고 ?�습?�다.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <span class="text-gray-500 text-sm">
+                                    <i class="fas fa-tv mr-2"></i>
+                                    KBS ?�스 9
+                                </span>
+                                <span class="text-gray-500 text-sm">
+                                    <i class="fas fa-clock mr-2"></i>
+                                    ?�??9??방송
+                                </span>
+                            </div>
+                            <a href="#" class="text-red-600 hover:text-red-700 font-medium">
+                                ?�문 보기 ??
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Media Coverage -->
+                <div class="space-y-8">
+                    <div class="bg-white border border-gray-200 rounded-lg p-8">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">조선?�보</span>
+                            <span class="text-gray-500 text-sm">2024.01.12</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">
+                            ?�유?�?�신 "7?� ?�심 ?�책?�로 �?? ?�신 ?�끌 �?
+                        </h4>
+                        <p class="text-gray-600 mb-6">
+                            ?�유?�?�신??발표??7?� ?�심 ?�책??경제계�? ?��??�회??주목??받고 ?�다.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm">
+                                <i class="fas fa-newspaper mr-2"></i>
+                                조선?�보 ?�치�?
+                            </span>
+                            <a href="#" class="text-red-600 hover:text-red-700 font-medium">?�문 보기 ??/a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-8">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">중앙?�보</span>
+                            <span class="text-gray-500 text-sm">2024.01.10</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">
+                            "�?���?지지 ?�산...?�로???�치 바람 ?�고"
+                        </h4>
+                        <p class="text-gray-600 mb-6">
+                            ?�유?�?�신???�??�?��층의 지지가 ?�산?�고 ?�어 ?�치권의 관?�이 집중?�고 ?�다.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm">
+                                <i class="fas fa-newspaper mr-2"></i>
+                                중앙?�보 ?�치�?
+                            </span>
+                            <a href="#" class="text-red-600 hover:text-red-700 font-medium">?�문 보기 ??/a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-8">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">MBC</span>
+                            <span class="text-gray-500 text-sm">2024.01.08</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">
+                            ?�유?�?�신 ?�??"�??�??�께?�는 ?�치 ?�현"
+                        </h4>
+                        <p class="text-gray-600 mb-6">
+                            ?�유?�?�신 ?�?��? MBC ?�터뷰에??밝힌 ?�후 ?�치 방향�?비전???�제가 ?�고 ?�다.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm">
+                                <i class="fas fa-tv mr-2"></i>
+                                MBC ?�스?�스??
+                            </span>
+                            <a href="#" class="text-red-600 hover:text-red-700 font-medium">?�문 보기 ??/a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Media Statistics -->
+                <div class="bg-gray-50 rounded-lg p-8 mt-16">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">?�론 보도 ?�황</h3>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-red-600 mb-2">47</div>
+                            <div class="text-gray-600">�?보도 건수</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-red-600 mb-2">15</div>
+                            <div class="text-gray-600">TV 방송</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-red-600 mb-2">32</div>
+                            <div class="text-gray-600">?�문 보도</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="../nav.js"></script>
+    <script>
+        loadNavigation();
+    </script>
+</body>
+</html> 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자유와 혁신당 창준위</title>
+    <title>?�유?�?�신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -38,11 +38,13 @@
         .from-red-900 { --tw-gradient-from: #56001C !important; }
         .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
         
-        /* 추가 보강 스타일 */
+        /* 추�? 보강 ?��???*/
         .w-4.h-4.bg-red-600 { background-color: #A50034 !important; }
         .font-light.text-red-600 { color: #A50034 !important; }
         .text-lg.font-medium.text-red-600 { color: #A50034 !important; }
         .text-sm.text-red-600 { color: #A50034 !important; }
+        
+
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
@@ -52,60 +54,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="absolute top-8 z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 left-0 right-0">
-        <div class="bg-white px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center" style="height: 86px;">
-                <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold text-red-600">자유와 혁신당 <span class="text-lg text-gray-600">창준위</span></h1>
-                </div>
-                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
-                    <div class="flex items-baseline space-x-8">
-                        <a href="notices.html" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">공지사항</a>
-                        <a href="#events" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">외부 행사 및 집회</a>
-                        <a href="faq.html" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">자주묻는 질문</a>
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <button onclick="openMembershipPopup()" class="bg-red-600 text-white px-6 py-3 text-lg font-medium hover:bg-red-700 flex items-center space-x-2 border-none cursor-pointer">
-                        <span>신당 가입하기</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-900">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-white">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="notices.html" class="block px-3 py-2 text-gray-900 text-lg">공지사항</a>
-                <a href="#events" class="block px-3 py-2 text-gray-900 text-lg">외부 행사 및 집회</a>
-                <a href="faq.html" class="block px-3 py-2 text-gray-900 text-lg">자주묻는 질문</a>
-                <button onclick="openMembershipPopup()" class="block px-3 py-3 bg-red-600 text-white text-lg flex items-center justify-between w-full border-none cursor-pointer">
-                    <span>신당 가입하기</span>
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation Component -->
+    <div id="navigation-container"></div>
 
     <!-- Hero Section -->
-          <section id="home" class="hero-section" style="height: 170vh; width: 100%; position: relative; margin: 0; padding: 0; overflow: hidden; background-image: url('hero_bg.png?v=6'); background-size: cover; background-position: 65% 40%; background-repeat: no-repeat; background-attachment: scroll;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.3), transparent); z-index: 2;"></div>
-        <div style="position: absolute; top: 55vh; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 2rem;">
-            <div style="max-width: 48rem; color: white;">
-                <h1 style="font-size: 4rem; font-weight: 300; margin-bottom: 2rem; text-align: left; line-height: 1.1; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                    <span style="font-weight: 700;">자유와 혁신당</span><br>창당을 준비합니다
+    <section id="home" class="hero-section" style="height: 100vh; min-height: 600px; width: 100%; position: relative; margin: 0; padding: 0; overflow: hidden; background-image: url('images/hero_bg.png?v=6'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: scroll;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4), transparent); z-index: 2;"></div>
+        <div style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 10; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem;">
+            <div style="max-width: 48rem; color: white; text-align: left; margin-left: 0; padding-left: 24px;">
+                <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; margin-bottom: 1.5rem; line-height: 1.1; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    <span style="font-weight: 700;">?�유</span><span style="font-weight: 200;">?�</span><span style="font-weight: 700;">?�신</span><br>?�로???�?��?�?�� ?�께
                 </h1>
-                <p style="font-size: 1.8rem; margin-bottom: 2.5rem; text-align: left; font-weight: 400; line-height: 1.6; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                    국민과 함께 더 나은 대한민국을 만들기 위한<br>새로운 정치의 시작을 준비하고 있습니다.
+                <p style="font-size: clamp(1.1rem, 3vw, 1.5rem); margin-bottom: 2rem; font-weight: 400; line-height: 1.6; font-family: 'Inter', 'Noto Sans KR', sans-serif; max-width: 90%;">
+                    �??�??�께 ???��? ?�?��?�?�� 만들?��????�유?�?�신???�참?�세??
                 </p>
-                <button style="background-color: #A50034; color: white; padding: 1rem 2.5rem; font-size: 1.125rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', 'Noto Sans KR', sans-serif;" onmouseover="this.style.backgroundColor='#8B002C'" onmouseout="this.style.backgroundColor='#A50034'" onclick="openMembershipPopup()">
-                    신당 가입하기
-                </button>
+                <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" style="background-color: #A50034; color: white; padding: 0.875rem 2rem; font-size: clamp(1rem, 2.5vw, 1.125rem); font-weight: 500; border: none; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', 'Noto Sans KR', sans-serif; margin-top: 1rem; text-decoration: none; display: inline-block;" onmouseover="this.style.backgroundColor='#8B002C'" onmouseout="this.style.backgroundColor='#A50034'">
+                    ?�원 가?�하�?                </a>
             </div>
         </div>
         <div style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; font-size: 1.5rem; animation: bounce 2s infinite; z-index: 10;">
@@ -113,450 +77,426 @@
         </div>
     </section>
 
-    <!-- Policy Section -->
-    <div style="padding: 6rem 0; background-color: #f9fafb; margin: 0; width: 100%; display: block;">
+    <!-- Representative Message Section -->
+    <section class="py-12 sm:py-16 lg:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-20">
-                <div class="flex items-center mb-6">
-                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
-                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">우리가 추구하는 가치</h2>
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-1 h-12 bg-red-600"></div>
+                            <span class="text-red-600 font-medium text-lg">???�???�사�?/span>
+                        </div>
+                        <h3 class="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+                            ?�로???�치???�작,<br>
+                            <span class="text-red-600">?�유?�?�신</span>�??�께
+                        </h3>
+                        <div class="space-y-4 text-lg text-gray-600 leading-relaxed">
+                            <p>
+                                "�?? ?�러�? ?�녕?�세?? ?�유?�?�신 ???�?�입?�다."
+                            </p>
+                            <p>
+                                ?�리???�유?� ?�신?�라??가치�? 바탕?�로 ?�?��?�?�� 미래�??�어가고자 ?�니?? 
+                                기존 ?�치???�??벗어??진정?�로 �?????�한 ?�치�??�현?�겠?�니??
+                            </p>
+                            <p>
+                                경제 ?�장�??�회 ?�합, 그리�?지?��??�한 발전???�해 모든 �?????�복???�라�?만들?��?겠습?�다.
+                            </p>
+                        </div>
+                        <div class="pt-4">
+                            <p class="text-gray-900 font-semibold text-lg">?�유?�?�신 ???�??/p>
+                            <p class="text-gray-600 mt-1">김?�○</p>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">더 밝은 <span class="font-semibold">내일을 건설합니다</span></h3>
-                <p class="text-xl text-gray-600 leading-relaxed max-w-4xl" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                    의료, 교육, 경제 성장과 같은 핵심 문제를 해결하는<br>명확한 정책을 연구하고 개발합니다.
+                <div class="order-1 lg:order-2">
+                    <div class="relative">
+                        <div class="w-full h-96 lg:h-[500px] bg-gradient-to-br from-red-50 to-red-100 rounded-2xl flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-red-600/10 to-transparent"></div>
+                            <div class="text-center z-10">
+                                <div class="w-24 h-24 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <i class="fas fa-user-tie text-white text-3xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-red-900 mb-2">???�??/h4>
+                                <p class="text-red-700 font-medium">김?�○</p>
+                                <p class="text-sm text-red-600 mt-2">???�제 ?�진?�로 교체 ?�정</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Policies Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase">?�심 ?�책</h2>
+                </div>
+                <h3 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    7?� ?�심 ?�책?�로<br>
+                    <span class="text-red-600">미래�??�계?�니??/span>
+                </h3>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    �?????�을 개선?�고 �?? 발전???�끌?�갈 ?�심 ?�책?�을 ?�개?�니??
                 </p>
             </div>
-
-            <div class="grid lg:grid-cols-2 gap-16">
-                <!-- Left Side - Text Content -->
-                <div class="space-y-12">
-                    <div>
-                        <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지역사회와의 직접 소통을 우선시합니다</h4>
-                        <p class="text-gray-600 leading-relaxed" style="font-size: 1.1rem;">
-                            시민회관, 지역 모임, 디지털 채널을 통해 지역사회 구성원들과 직접 소통하여 그들의 필요를 이해하고 해결책을 제시합니다.
-                        </p>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">교육 투자를 통해 모든 아이가 혜택을 받도록 합니다</h4>
-                        <p class="text-gray-600 leading-relaxed" style="font-size: 1.1rem;">
-                            창의적 교육 시스템 구축과 디지털 교육 인프라 확충을 통해 미래를 이끌어갈 인재를 양성합니다.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Right Side - Policy Cards -->
-                <div class="grid gap-6">
-                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
-                                <span class="text-xl font-bold">01</span>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">근로자 권익과 공정한 임금</h4>
-                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">모든 근로자가 공정한 대우를 받고 안정적인 생활을 영위할 수 있도록 지원합니다.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
-                                <span class="text-xl font-bold">02</span>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지역사회 발전</h4>
-                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">지역 특성을 살린 맞춤형 발전 전략과 균형 발전을 추진합니다.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
-                                <span class="text-xl font-bold">03</span>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">국가 안보 강화</h4>
-                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">강력한 국방력 구축과 한미동맹 강화를 통한 평화를 확보합니다.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
-                                <span class="text-xl font-bold">04</span>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">법치주의 확립</h4>
-                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">공정하고 투명한 사법 시스템 구축과 법 앞의 평등을 실현합니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Stats Section -->
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-20">
-                <div class="flex items-center mb-6">
-                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
-                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">창당 준비 현황</h2>
-                </div>
-                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">함께하는 <span class="font-semibold">국민들</span></h3>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-20">
-                <div class="text-left">
-                    <div class="text-6xl md:text-8xl font-light text-red-600 mb-6" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                        <span class="counter" data-target="1520">0</span><span class="text-4xl">명</span>
-                    </div>
-                    <h4 class="text-2xl font-light text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">당원 가입 신청자</h4>
-                </div>
-                
-                <div class="text-left">
-                    <div class="text-6xl md:text-8xl font-light text-red-600 mb-6" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                        <span class="counter" data-target="85">0</span><span class="text-4xl">명</span>
-                    </div>
-                    <h4 class="text-2xl font-light text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당 발기인</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Notice Section -->
-    <section id="notice" class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-20">
-                <div class="flex items-center mb-6">
-                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
-                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">공지사항</h2>
-                </div>
-                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창준위 <span class="font-semibold">주요 소식</span></h3>
-            </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <article class="bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="location.href='notice-1.html'">
-                    <span class="text-sm text-red-600 font-semibold">2025년 1월 15일</span>
-                    <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">창당준비위원회 공식 출범 안내</h4>
-                    <p class="text-gray-600" style="font-size: 1.05rem;">자유와 혁신당 창당을 위한 준비위원회가 공식 발족했습니다.</p>
-                </article>
-                
-                <article class="bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="location.href='notice-3.html'">
-                    <span class="text-sm text-red-600 font-semibold">2025년 1월 8일</span>
-                    <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">창당 발기인 모집 안내</h4>
-                    <p class="text-gray-600" style="font-size: 1.05rem;">새로운 정치를 함께 만들어갈 발기인을 모집합니다.</p>
-                </article>
-                
-                <article class="bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="location.href='notice-2.html'">
-                    <span class="text-sm text-red-600 font-semibold">2025년 1월 10일</span>
-                    <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">정책 토론회 일정 발표</h4>
-                    <p class="text-gray-600" style="font-size: 1.05rem;">국민과 함께하는 정책 토론회 일정을 공개합니다.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events" class="py-24" style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-20 flex justify-between items-end">
-                <div>
-                    <div class="flex items-center mb-6">
-                        <div class="w-4 h-4 bg-white mr-4"></div>
-                        <h2 class="text-lg font-medium text-white tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">행사 및 집회</h2>
-                    </div>
-                    <h3 class="text-5xl md:text-6xl font-light text-white mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">참여하세요: <span class="font-semibold">다가오는 행사</span></h3>
-                </div>
-                
-                <div class="flex space-x-4">
-                    <button class="events-prev-btn flex items-center px-4 py-2 text-white hover:text-gray-200 transition-colors" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                        <i class="fas fa-arrow-left mr-2"></i> 이전
-                    </button>
-                    <button class="events-next-btn flex items-center px-4 py-2 text-white hover:text-gray-200 transition-colors" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                        다음 <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="swiper events-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
-                            <div class="relative">
-                                <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                                    <div class="text-center p-8">
-                                        <i class="fas fa-users text-4xl text-blue-600 mb-4"></i>
-                                        <p class="text-blue-800 font-medium">시민 참여 모임</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-8">
-                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지역사회 타운홀 미팅</h4>
-                                <div class="space-y-2 mb-6">
-                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 2월 15일 • 오후 2:00</p>
-                                    <p class="text-gray-600" style="font-size: 1.05rem;">서울 중구 세종대로</p>
-                                </div>
-                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-1.html'">
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- ?�책 카드??-->
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
                         </div>
+                        <h4 class="text-lg font-bold text-gray-900">경제 ?�장</h4>
                     </div>
-                    
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
-                            <div class="relative">
-                                <div class="w-full h-64 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
-                                    <div class="text-center p-8">
-                                        <i class="fas fa-handshake text-4xl text-red-600 mb-4"></i>
-                                        <p class="text-red-800 font-medium">정책 협력 회의</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-8">
-                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">함께 발전하는 정책 서밋</h4>
-                                <div class="space-y-2 mb-6">
-                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 2월 28일 • 오후 12:00</p>
-                                    <p class="text-gray-600" style="font-size: 1.05rem;">부산 해운대구 센텀로</p>
-                                </div>
-                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-2.html'">
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
-                            <div class="relative">
-                                <div class="w-full h-64 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
-                                    <div class="text-center p-8">
-                                        <i class="fas fa-balance-scale text-4xl text-green-600 mb-4"></i>
-                                        <p class="text-green-800 font-medium">정의를 위한 연대</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-8">
-                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">정의를 위한 연대 컨퍼런스</h4>
-                                <div class="space-y-2 mb-6">
-                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 4월 12일 • 오후 12:00</p>
-                                    <p class="text-gray-600" style="font-size: 1.05rem;">대구 수성구 동대구로</p>
-                                </div>
-                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-3.html'">
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
-                            <div class="relative">
-                                <div class="w-full h-64 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
-                                    <div class="text-center p-8">
-                                        <i class="fas fa-microphone text-4xl text-purple-600 mb-4"></i>
-                                        <p class="text-purple-800 font-medium">지역 연설회</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-8">
-                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">국민과 함께하는 정책 설명회</h4>
-                                <div class="space-y-2 mb-6">
-                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 5월 8일 • 오후 3:00</p>
-                                    <p class="text-gray-600" style="font-size: 1.05rem;">인천 남동구 구월로</p>
-                                </div>
-                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-4.html'">
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
-                            <div class="relative">
-                                <div class="w-full h-64 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
-                                    <div class="text-center p-8">
-                                        <i class="fas fa-graduation-cap text-4xl text-orange-600 mb-4"></i>
-                                        <p class="text-orange-800 font-medium">청년 정책 포럼</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-8">
-                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">청년을 위한 미래 정책 포럼</h4>
-                                <div class="space-y-2 mb-6">
-                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 5월 22일 • 오후 1:30</p>
-                                    <p class="text-gray-600" style="font-size: 1.05rem;">광주 서구 상무대로</p>
-                                </div>
-                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-5.html'">
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
-                            <div class="relative">
-                                <div class="w-full h-64 bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center">
-                                    <div class="text-center p-8">
-                                        <i class="fas fa-leaf text-4xl text-teal-600 mb-4"></i>
-                                        <p class="text-teal-800 font-medium">환경 정책 세미나</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-8">
-                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지속가능한 환경 정책 세미나</h4>
-                                <div class="space-y-2 mb-6">
-                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 6월 5일 • 오후 2:30</p>
-                                    <p class="text-gray-600" style="font-size: 1.05rem;">대전 유성구 대학로</p>
-                                </div>
-                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-6.html'">
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-button-next hidden"></div>
-                <div class="swiper-button-prev hidden"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-20">
-                <div class="flex items-center mb-6">
-                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
-                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">Q&A</h2>
-                </div>
-                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">자주 묻는 <span class="font-semibold">질문</span></h3>
-            </div>
-            
-            <div class="max-w-4xl mx-auto space-y-6">
-                <div class="faq-item bg-white p-6">
-                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
-                        <h4 class="text-lg font-semibold text-gray-900">창당준비위원회는 언제 발족했나요?</h4>
-                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
-                        자유와 혁신당 창당준비위원회는 2025년 1월 10일에 공식 발족했습니다.
-                    </div>
+                    <p class="text-gray-600">?�신 경제?� ?�자�?창출???�한 지?��??�한 ?�장 ?�현</p>
                 </div>
                 
-                <div class="faq-item bg-white p-6">
-                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
-                        <h4 class="text-lg font-semibold text-gray-900">창당은 언제 예정되어 있나요?</h4>
-                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900">교육 ?�신</h4>
                     </div>
-                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
-                        창당대회는 2025년 상반기 중 개최될 예정입니다. 구체적인 일정은 추후 공지하겠습니다.
-                    </div>
+                    <p class="text-gray-600">미래 ?�재 ?�성???�한 창의??교육 ?�스??구축</p>
                 </div>
                 
-                <div class="faq-item bg-white p-6">
-                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
-                        <h4 class="text-lg font-semibold text-gray-900">당원 가입은 언제부터 가능한가요?</h4>
-                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-heart text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900">복�? ?��?</h4>
                     </div>
-                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
-                        현재 당원 가입 신청을 받고 있습니다. 창당대회 이후 정식 당원 자격이 부여됩니다.
-                    </div>
+                    <p class="text-gray-600">�?? ?�구???�심?????�는 촘촘???�회?�전�?구축</p>
                 </div>
                 
-                <div class="faq-item bg-white p-6">
-                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
-                        <h4 class="text-lg font-semibold text-gray-900">발기인이 되려면 어떤 조건이 필요한가요?</h4>
-                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900">?�보 강화</h4>
                     </div>
-                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
-                        만 18세 이상 대한민국 국민으로 정치관계법 결격사유가 없으면 누구나 가능합니다.
-                    </div>
+                    <p class="text-gray-600">강력??�?��?�과 ?��??�맹???�한 ?�화 ?�보</p>
                 </div>
                 
-                <div class="faq-item bg-white p-6">
-                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
-                        <h4 class="text-lg font-semibold text-gray-900">당비는 얼마인가요?</h4>
-                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-leaf text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900">?�경 보호</h4>
                     </div>
-                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
-                        당비는 월 1만원이며, 학생·주부·무직자는 월 5천원입니다.
+                    <p class="text-gray-600">깨끗???�경�?지?��??�한 발전??조화 추구</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-balance-scale text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900">?�법 개혁</h4>
                     </div>
+                    <p class="text-gray-600">공정?�고 ?�명???�법 ?�스?�으�?법치주의 ?�립</p>
                 </div>
             </div>
             
             <div class="text-center mt-12">
-                <a href="faq.html" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                    더 많은 FAQ 보기
-                    <i class="fas fa-arrow-right ml-2"></i>
+                <a href="policy.html" class="inline-flex items-center px-8 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
+                    ?�체 ?�책 보기 <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="join" class="py-24 bg-red-600 text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-red-800 to-red-600"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-5xl md:text-6xl font-light mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당에 <span class="font-semibold">도움을 주세요</span></h2>
-                    <p class="text-xl mb-8 font-light leading-relaxed" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                        새로운 정치, 새로운 미래를 함께 만들어갈<br>여러분의 참여와 지원을 기다립니다.
-                    </p>
+    <!-- Members Count Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-1">
+                    <!-- ?�원 ?�동 ?�진 ?�리 -->
+                    <div class="relative">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-red-100 h-48 rounded-lg flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-users text-red-600 text-3xl mb-2"></i>
+                                    <p class="text-red-700 font-medium">?�원 모임</p>
+                                    <p class="text-xs text-red-600">???�제 ?�진?�로 교체</p>
+                                </div>
+                            </div>
+                            <div class="bg-red-100 h-48 rounded-lg flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-handshake text-red-600 text-3xl mb-2"></i>
+                                    <p class="text-red-700 font-medium">?��? ?�통</p>
+                                    <p class="text-xs text-red-600">???�제 ?�진?�로 교체</p>
+                                </div>
+                            </div>
+                            <div class="bg-red-100 h-48 rounded-lg flex items-center justify-center col-span-2">
+                                <div class="text-center">
+                                    <i class="fas fa-flag text-red-600 text-3xl mb-2"></i>
+                                    <p class="text-red-700 font-medium">???�동 ?�장</p>
+                                    <p class="text-xs text-red-600">???�제 ?�진?�로 교체</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="bg-white p-10 text-gray-900">
-                    <h3 class="text-3xl font-light mb-8" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당 지원 신청</h3>
-                    <form class="space-y-6">
-                        <div>
-                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">성명</label>
-                            <input type="text" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                <div class="order-2">
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-1 h-12 bg-red-600"></div>
+                            <span class="text-red-600 font-medium text-lg">?�께?�는 �????/span>
+                        </div>
+                        <h3 class="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+                            <span class="text-red-600">1,247�?/span>???�원??br>
+                            ?�께?�고 ?�습?�다
+                        </h3>
+                        <div class="space-y-4 text-lg text-gray-600 leading-relaxed">
+                            <p>
+                                ?�국 각�??�서 ?�유?�?�신??가치에 ?�참???�원?�이 ?�로???�치�?만들?��?�??�습?�다.
+                            </p>
+                            <p>
+                                ?�원 ?�러분의 목소리�? ?�책???�고, ?�러분의 참여가 변?�의 ?�력???�니??
+                            </p>
                         </div>
                         
-                        <div>
-                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">연락처</label>
-                            <input type="tel" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        <!-- ?�원 ?�계 -->
+                        <div class="grid grid-cols-2 gap-6 pt-6">
+                            <div class="text-center p-4 bg-red-50 rounded-lg">
+                                <div class="text-2xl font-bold text-red-600 mb-1">847</div>
+                                <div class="text-gray-600">?�반 ?�원</div>
+                            </div>
+                            <div class="text-center p-4 bg-red-50 rounded-lg">
+                                <div class="text-2xl font-bold text-red-600 mb-1">400</div>
+                                <div class="text-gray-600">?�책 참여??/div>
+                            </div>
                         </div>
                         
-                        <div>
-                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">이메일</label>
-                            <input type="email" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        <div class="pt-4">
+                            <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
+                                ?�원 가?�하�?<i class="fas fa-arrow-right ml-2"></i>
+                            </a>
                         </div>
-                        
-                        <div>
-                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">지원 분야</label>
-                            <textarea rows="4" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" placeholder="어떤 방식으로 창당에 도움을 주실 수 있는지 간단히 작성해 주세요." style="font-family: 'Inter', 'Noto Sans KR', sans-serif;"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-red-600 text-white py-4 px-6 text-lg font-medium hover:bg-red-700 transition-colors duration-300" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                            창당 지원 신청하기
-                        </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
+    <!-- News Section -->
+    <section class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h3 class="text-2xl font-bold mb-6">자유와 혁신당 창준위</h3>
-                <p class="text-gray-400 mb-6">새로운 정치, 새로운 미래를 함께 만들어갑니다.</p>
-                <p class="text-gray-400">&copy; 2025 자유와 혁신당 창당준비위원회. 모든 권리 보유.</p>
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase">최신 ?�식</h2>
+                </div>
+                <h3 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    ?�유?�?�신??br>
+                    <span class="text-red-600">주요 ?�식</span>
+                </h3>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="bg-red-100 h-48 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-bullhorn text-red-600 text-3xl mb-2"></i>
+                            <p class="text-red-700 font-medium">공�??�항 ?��?지</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium">중요</span>
+                        <h4 class="text-lg font-bold text-gray-900 mt-3 mb-2">??출범 �??�원 모집 ?�내</h4>
+                        <p class="text-gray-600 text-sm mb-4">?�유?�?�신??공식 출범?�며 ?�로???�치???�작???�렸?�니??..</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-xs">2025.01.15</span>
+                            <a href="notices.html" class="text-red-600 hover:text-red-700 text-sm font-medium">?�세??보기 ??/a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="bg-blue-100 h-48 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-microphone text-blue-600 text-3xl mb-2"></i>
+                            <p class="text-blue-700 font-medium">?�책 발표 ?��?지</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">?�책</span>
+                        <h4 class="text-lg font-bold text-gray-900 mt-3 mb-2">7?� ?�심 ?�책 발표</h4>
+                        <p class="text-gray-600 text-sm mb-4">�?????�을 개선??구체?�인 ?�책 방안??발표?�습?�다...</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-xs">2025.01.10</span>
+                            <a href="news/press.html" class="text-red-600 hover:text-red-700 text-sm font-medium">?�세??보기 ??/a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="bg-green-100 h-48 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-users text-green-600 text-3xl mb-2"></i>
+                            <p class="text-green-700 font-medium">?��? 간담???��?지</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium">?�동</span>
+                        <h4 class="text-lg font-bold text-gray-900 mt-3 mb-2">?�국 ?�회 ?��? 간담??/h4>
+                        <p class="text-gray-600 text-sm mb-4">?��??�과 직접 ?�통?�며 ?�책 ?�이?�어�??�렴?�습?�다...</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-xs">2025.01.05</span>
+                            <a href="news/activities.html" class="text-red-600 hover:text-red-700 text-sm font-medium">?�세??보기 ??/a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="news.html" class="inline-flex items-center px-8 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
+                    ?�체 ?�식 보기 <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Participation Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase">참여?�기</h2>
+                </div>
+                <h3 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    ?�양??방법?�로<br>
+                    <span class="text-red-600">?�께 참여?�세??/span>
+                </h3>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    ?�유?�?�신??가�??�현???�참?????�는 ?�러 방법???�공?�니??
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center p-6 border border-gray-200 rounded-lg hover:border-red-600 hover:shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-plus text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">?�원 가??/h4>
+                    <p class="text-gray-600 text-sm mb-4">?�유?�?�신???�식 ?�원???�어 ?�치 참여??기회�??�으?�요.</p>
+                    <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" class="text-red-600 hover:text-red-700 font-medium">가?�하�???/a>
+                </div>
+                
+                <div class="text-center p-6 border border-gray-200 rounded-lg hover:border-red-600 hover:shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hand-holding-heart text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">?�원?�기</h4>
+                    <p class="text-gray-600 text-sm mb-4">?�유?�?�신???�동???�원?�여 ?�로???�치�?지?�해주세??</p>
+                    <a href="support.html" class="text-red-600 hover:text-red-700 font-medium">?�원?�기 ??/a>
+                </div>
+                
+                <div class="text-center p-6 border border-gray-200 rounded-lg hover:border-red-600 hover:shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hands-helping text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">?�원봉사</h4>
+                    <p class="text-gray-600 text-sm mb-4">?�양???�원봉사 ?�동?�로 직접 참여?�고 경험?�보?�요.</p>
+                    <a href="support.html#volunteer" class="text-red-600 hover:text-red-700 font-medium">참여?�기 ??/a>
+                </div>
+                
+                <div class="text-center p-6 border border-gray-200 rounded-lg hover:border-red-600 hover:shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">?�책 ?�안</h4>
+                    <p class="text-gray-600 text-sm mb-4">?��???목소리로 ?�책???�안?�고 발전?�켜?��??�요.</p>
+                    <a href="support.html#policy" class="text-red-600 hover:text-red-700 font-medium">?�안?�기 ??/a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event/Rally Button (Fixed) -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <a href="news/events.html" style="background-color: #A50034; color: white; padding: 12px 16px; border-radius: 50px; box-shadow: 0 4px 12px rgba(165, 0, 52, 0.3); text-decoration: none; display: flex; align-items: center; transition: all 0.3s ease; font-weight: 500;" onmouseover="this.style.backgroundColor='#8B002C'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#A50034'; this.style.transform='translateY(0)'">
+            <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>
+            ?�사·집회
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 sm:py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- ???�보 -->
+                <div>
+                    <h3 class="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6">?�유?�?�신</h3>
+                    <p class="text-gray-400 mb-4 text-sm sm:text-base leading-relaxed">?�로???�치, ?�로??미래�??�께 만들?�갑?�다.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- ?�락�?-->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">?�락�?/h4>
+                    <div class="space-y-2 text-gray-400 text-sm sm:text-base">
+                        <p><i class="fas fa-map-marker-alt mr-2 text-red-500"></i>?�울?�별??종로�??�종?��?175 (?�종�?</p>
+                        <p><i class="fas fa-phone mr-2 text-red-500"></i>02-1234-5678</p>
+                        <p><i class="fas fa-envelope mr-2 text-red-500"></i>info@libertyinnovation.kr</p>
+                        <p><i class="fas fa-globe mr-2 text-red-500"></i>www.libertyinnovation.kr</p>
+                    </div>
+                </div>
+                
+                <!-- 빠른 링크 -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">빠른 링크</h4>
+                    <div class="space-y-2 text-gray-400 text-sm sm:text-base">
+                        <a href="about.html" class="block hover:text-white transition-colors">???�개</a>
+                        <a href="policy.html" class="block hover:text-white transition-colors">?�책</a>
+                        <a href="news.html" class="block hover:text-white transition-colors">?�식/?�동</a>
+                        <a href="members.html" class="block hover:text-white transition-colors">?�원 가??/a>
+                        <a href="support.html" class="block hover:text-white transition-colors">참여/?�원</a>
+                        <a href="resources.html" class="block hover:text-white transition-colors">?�료??/a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-xs sm:text-sm mb-4 md:mb-0">&copy; 2025 ?�유?�?�신. 모든 권리 보유.</p>
+                    <div class="flex space-x-6 text-xs sm:text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">개인?�보처리방침</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">?�용?��?</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">?�보공개</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
     <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
+    <script src="nav.js"></script>
 </body>
 </html> 

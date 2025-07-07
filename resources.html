@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?êÎ£å??/title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">?êÎ£å??/h1>
+        </div>
+    </section>
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- Resource Categories Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">?êÎ£å Ïπ¥ÌÖåÍ≥†Î¶¨</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ?êÏú†?Ä?ÅÏã†???§Ïñë???êÎ£åÎ•?Ïπ¥ÌÖåÍ≥†Î¶¨Î≥ÑÎ°ú ?ïÏù∏?òÏÑ∏??
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="bg-red-50 p-8 rounded-lg text-center hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-file-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">?ïÎãπ Í¥Ä???êÎ£å</h3>
+                        <p class="text-gray-600 mb-4">
+                            ?ïÎãπ ?åÍ∞ú, Í∞ïÎ†π, Ï°∞ÏßÅ Íµ¨ÏÑ± ???ïÎãπ Í¥Ä??Í≥µÏãù Î¨∏ÏÑú
+                        </p>
+                        <a href="resources/founding.html" class="text-red-600 hover:text-red-700 font-medium">?êÏÑ∏??Î≥¥Í∏∞ ??/a>
+                    </div>
+                    
+                    <div class="bg-red-50 p-8 rounded-lg text-center hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">?ïÏ±Ö ?êÎ£å</h3>
+                        <p class="text-gray-600 mb-4">
+                            7?Ä ?µÏã¨ ?ïÏ±ÖÍ≥?Î∂ÑÏïºÎ≥??∏Î? ?ïÏ±Ö ?êÎ£å
+                        </p>
+                        <a href="resources/policy.html" class="text-red-600 hover:text-red-700 font-medium">?êÏÑ∏??Î≥¥Í∏∞ ??/a>
+                    </div>
+                    
+                    <div class="bg-red-50 p-8 rounded-lg text-center hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-images text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">?çÎ≥¥ ?êÎ£å</h3>
+                        <p class="text-gray-600 mb-4">
+                            ?¨Ïä§?? Î°úÍ≥†, ?çÎ≥¥Î¨???Í∞ÅÏ¢Ö ?çÎ≥¥ ?êÎ£å
+                        </p>
+                        <a href="resources/media.html" class="text-red-600 hover:text-red-700 font-medium">?êÏÑ∏??Î≥¥Í∏∞ ??/a>
+                    </div>
+                    
+                    <div class="bg-red-50 p-8 rounded-lg text-center hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-download text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">?§Ïö¥Î°úÎìú</h3>
+                        <p class="text-gray-600 mb-4">
+                            Í∞ÅÏ¢Ö ?ëÏãù, Î¨∏ÏÑú, Î≤ïÎ†π ???§Ïö¥Î°úÎìú ?êÎ£å
+                        </p>
+                        <a href="resources/downloads.html" class="text-red-600 hover:text-red-700 font-medium">?êÏÑ∏??Î≥¥Í∏∞ ??/a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Recent Resources Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">ÏµúÏã† ?êÎ£å</h2>
+                    <p class="text-xl text-gray-600">
+                        ÏµúÍ∑º ?ÖÎç∞?¥Ìä∏???êÎ£å?§ÏùÑ ?ïÏù∏?òÏÑ∏??
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start">
+                            <div class="bg-red-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-file-pdf text-red-600 text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                                            <h4 class="text-lg font-semibold text-gray-900 mb-2">?ïÎãπ ?åÍ∞ú??/h4>
+                            <p class="text-gray-600 text-sm mb-3">?êÏú†?Ä?ÅÏã†??Î∞∞Í≤ΩÍ≥?Î™©Ï†Å???¥Ï? Í≥µÏãù Î¨∏ÏÑú</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-500 text-xs">2025.01.15</span>
+                                    <a href="resources/founding/founding-statement.html" target="_blank" class="text-red-600 hover:text-red-700 text-sm font-medium">Î≥¥Í∏∞</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-file-word text-blue-600 text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">7?Ä ?µÏã¨ ?ïÏ±Ö</h4>
+                                <p class="text-gray-600 text-sm mb-3">?êÏú†?Ä?ÅÏã†??Ï£ºÏöî ?ïÏ±Ö Î∞©Ìñ•Í≥??§Ìñâ Í≥ÑÌöç</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-500 text-xs">2025.01.12</span>
+                                    <a href="resources/policy/core-policies.html" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm font-medium">Î≥¥Í∏∞</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-file-image text-green-600 text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Í≥µÏãù Î°úÍ≥† ?®ÌÇ§ÏßÄ</h4>
+                                <p class="text-gray-600 text-sm mb-3">?§Ïñë???ïÌÉú??Î°úÍ≥†?Ä ?¨Ïö© Í∞Ä?¥Îìú?ºÏù∏</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-500 text-xs">2024.01.10</span>
+                                    <a href="#" class="text-green-600 hover:text-green-700 text-sm font-medium">?§Ïö¥Î°úÎìú</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="nav.js"></script>
+    <script>
+      loadNavigation();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?�책</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">?�책</h1>
+        </div>
+    </section>
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- Core Policy Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="w-1 h-12 bg-red-600 mr-4"></div>
+                        <span class="text-red-600 font-medium text-lg">CORE POLICIES</span>
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">7?� ?�심 ?�책</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        ?�유?�?�신??추구?�는 미래 비전???�현?�기 ?�한 ?�심 ?�책?�입?�다.
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-2xl border-l-4 border-red-600 hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">경제 ?�장�??�자�?창출</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            ?�신 기업 ?�성�?창업 지?�을 ?�해 ?�질???�자리�? 만들?�갑?�다.
+                        </p>
+                        <div class="space-y-2 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-600 mr-2"></i>
+                                <span>?��??�업 ?�태�?구축</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-600 mr-2"></i>
+                                <span>4�??�업?�명 ?�??/span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-600 mr-2"></i>
+                                <span>중소기업 지???��?</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-2xl border-l-4 border-red-700 hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-red-700 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">교육 ?�신�??�재 ?�성</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            미래 ?�재 ?�성???�한 교육 ?�스???�신??추진?�니??
+                        </p>
+                        <div class="space-y-2 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-700 mr-2"></i>
+                                <span>개별 맞춤??교육</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-700 mr-2"></i>
+                                <span>?��???교육 ?�프??구축</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-700 mr-2"></i>
+                                <span>?�생교육 체계 강화</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-2xl border-l-4 border-red-800 hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-red-800 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">?�회 ?�전�?강화</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            모든 �?????�심?�고 ?????�는 ?�회 ?�전망을 구축?�니??
+                        </p>
+                        <div class="space-y-2 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-800 mr-2"></i>
+                                <span>�?? 기초보장 ?��?</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-800 mr-2"></i>
+                                <span>?�료 ?�근??개선</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-800 mr-2"></i>
+                                <span>?�인 복�? 강화</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl border-l-4 border-gray-600 hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-leaf text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">?�경�??�너지 ?�책</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            지?��??�한 ?�경�?�?�� ?�너지 ?�환??추진?�니??
+                        </p>
+                        <div class="space-y-2 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-gray-600 mr-2"></i>
+                                <span>?�생?�너지 ?��?</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-gray-600 mr-2"></i>
+                                <span>?�소중립 ?�성</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-gray-600 mr-2"></i>
+                                <span>친환�?기술 개발</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl border-l-4 border-gray-700 hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-home text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">주거 ?�정�??�시 발전</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            모든 �?????�정?�인 주거 ?�경?�서 ?�활?????�도�?지?�합?�다.
+                        </p>
+                        <div class="space-y-2 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-gray-700 mr-2"></i>
+                                <span>공공주택 ?��?</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-gray-700 mr-2"></i>
+                                <span>?�마?�시??구축</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-gray-700 mr-2"></i>
+                                <span>?�시 ?�생 ?�로?�트</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl border-l-4 border-gray-800 hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-globe text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">글로벌 경쟁??강화</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            �?��?�회?�서 ?�?��?�?�� ?�상???�이�?경쟁?�을 강화?�니??
+                        </p>
+                        <div class="space-y-2 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-gray-800 mr-2"></i>
+                                <span>K-콘텐�??�성</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-gray-800 mr-2"></i>
+                                <span>�?�� ?�력 ?��?</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-gray-800 mr-2"></i>
+                                <span>?�출 경쟁???�고</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-2xl border-l-4 border-red-900 hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-red-900 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">?�회 ?�합�?공정</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            모든 �????공정??기회�??�릴 ???�는 ?�회�?만들?�갑?�다.
+                        </p>
+                        <div class="space-y-2 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-900 mr-2"></i>
+                                <span>?�회???�자 보호</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-900 mr-2"></i>
+                                <span>갈등 ?�결 ?�스??/span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-red-900 mr-2"></i>
+                                <span>?�양??존중 문화</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Policy Details Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">분야�??�책 ?�세</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                        �?분야�??��? ?�책�??�행 계획???�세???�아보세??
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-red-600">
+                        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-star text-red-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">7?� ?�심 ?�책</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            ?�의 ?�심 가치�? 비전???��? 7?� ?�책???��? ?�용�??�행 방안???�인?�세??
+                        </p>
+                        <a href="resources/policy/core-policies.html" class="inline-flex items-center text-red-600 hover:text-red-700 font-medium transition-colors">
+                            ?�세??보기
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-red-700">
+                        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-chart-line text-red-700 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">경제·?�자�?/h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            경제 ?�장�??�질???�자�?창출???�한 구체?�인 ?�책�?로드맵을 ?�시?�니??
+                        </p>
+                        <a href="policy/economy.html" class="inline-flex items-center text-red-700 hover:text-red-800 font-medium transition-colors">
+                            ?�세??보기
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-red-800">
+                        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-graduation-cap text-red-800 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">교육·복�?</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            교육 ?�신�?복�? ?��?�??�해 모든 �?????�의 질을 ?�상?�키겠습?�다.
+                        </p>
+                        <a href="policy/education.html" class="inline-flex items-center text-red-800 hover:text-red-900 font-medium transition-colors">
+                            ?�세??보기
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-gray-600">
+                        <div class="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-shield-alt text-gray-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">?�보·?�교</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            �?? ?�보 강화?� ?�교 ??�� ?�고�??�해 ?�화?� 번영??추구?�니??
+                        </p>
+                        <a href="policy/security.html" class="inline-flex items-center text-gray-600 hover:text-gray-700 font-medium transition-colors">
+                            ?�세??보기
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-gray-700">
+                        <div class="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-balance-scale text-gray-700 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">법치·개혁</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            공정?�고 ?�명???�회�??�한 법치주의 ?�립�??�도 개혁??추진?�니??
+                        </p>
+                        <a href="policy/reform.html" class="inline-flex items-center text-gray-700 hover:text-gray-800 font-medium transition-colors">
+                            ?�세??보기
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-gray-800">
+                        <div class="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-handshake text-gray-800 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">?�회?�합</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            갈등???�결?�고 ?�생�??�력???�회 분위기�? 조성???��?겠습?�다.
+                        </p>
+                        <a href="policy/integration.html" class="inline-flex items-center text-gray-800 hover:text-gray-900 font-medium transition-colors">
+                            ?�세??보기
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="nav.js"></script>
+    <script>
+      loadNavigation();
+    </script>
+</body>
+</html> 

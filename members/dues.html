@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?πÎπÑ ?àÎÇ¥ - ?êÏú†?Ä?ÅÏã†</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">?πÎπÑ ?àÎÇ¥</h1>
+        </div>
+    </section>
+    
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- Dues Information Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">?πÎπÑ ?àÎÇ¥</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ?êÏú†?Ä?ÅÏã†???πÎπÑ Ï≤¥Í≥Ñ?Ä ?©Î? Î∞©Î≤ï???àÎÇ¥?úÎ¶Ω?àÎã§.
+                    </p>
+                </div>
+                
+                <!-- Dues Structure -->
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-8 text-center">
+                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">?ºÎ∞ò ?πÏõê</h3>
+                        <div class="text-3xl font-bold text-red-600 mb-2">??5,000??/div>
+                        <p class="text-gray-600">Í∏∞Î≥∏ ?πÏõê ?úÎèô Ï∞∏Ïó¨</p>
+                    </div>
+                    
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-8 text-center">
+                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-star text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">?ÑÏõê ?πÏõê</h3>
+                        <div class="text-3xl font-bold text-red-600 mb-2">??1ÎßåÏõê</div>
+                        <p class="text-gray-600">Ï∂îÍ? ???úÎèô ÏßÄ??/p>
+                    </div>
+                    
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-8 text-center">
+                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-crown text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">?πÎ≥Ñ ?πÏõê</h3>
+                        <div class="text-3xl font-bold text-red-600 mb-2">??2ÎßåÏõê</div>
+                        <p class="text-gray-600">?πÎ≥Ñ ?úÎèô Î∞??âÏÇ¨ Ï∞∏Ïó¨</p>
+                    </div>
+                </div>
+                
+                <!-- Payment Methods -->
+                <div class="bg-gray-50 rounded-lg p-8 mb-16">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">?©Î? Î∞©Î≤ï</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-4">?êÎèô ?¥Ï≤¥ (Í∂åÏû•)</h4>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-red-600 mr-3"></i>
+                                    Îß§Ïõî ?êÎèô ?©Î?Î°??∏Î¶¨??
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-red-600 mr-3"></i>
+                                    Íµ??, ?†Ìïú, ?∞Î¶¨, ?òÎÇò?Ä??ÏßÄ??
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-red-600 mr-3"></i>
+                                    ?®Îùº???†Ï≤≠ Í∞Ä??
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-4">?òÎèô ?©Î?</h4>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-center">
+                                    <i class="fas fa-university text-red-600 mr-3"></i>
+                                    Í≥ÑÏ¢å ?¥Ï≤¥: ?†Ìïú?Ä??100-123-456789
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-credit-card text-red-600 mr-3"></i>
+                                    ?®Îùº??Ïπ¥Îìú Í≤∞Ï†ú
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-building text-red-600 mr-3"></i>
+                                    ?πÏÇ¨Î¨¥ÏÜå ÏßÅÏ†ë ?©Î?
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dues Usage -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">?πÎπÑ ?¨Ïö©Ï≤?/h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-home text-red-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">?πÏÇ¨Î¨¥ÏÜå ?¥ÏòÅ</h4>
+                            <p class="text-gray-600 text-sm">?ÑÎ?Î£? Í≥µÍ≥ºÍ∏? ?¨Î¨¥?©Ìíà ??/p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-bullhorn text-red-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">?çÎ≥¥ ?úÎèô</h4>
+                            <p class="text-gray-600 text-sm">?çÎ≥¥Î¨??úÏûë, Í¥ëÍ≥†, Ï∫†Ìéò????/p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-users text-red-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">?πÏõê ?úÎèô</h4>
+                            <p class="text-gray-600 text-sm">ÍµêÏú°, ?âÏÇ¨, Í∞ÑÎã¥????/p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-chart-line text-red-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 mb-2">?ïÏ±Ö ?∞Íµ¨</h4>
+                            <p class="text-gray-600 text-sm">?ïÏ±Ö Í∞úÎ∞ú, ?∞Íµ¨ ÏßÄ????/p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Special Notes -->
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-8 mb-16">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">
+                        <i class="fas fa-info-circle text-yellow-600 mr-2"></i>
+                        ?πÎπÑ ?©Î? ?àÎÇ¥
+                    </h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>???πÎπÑ??Îß§Ïõî 10?ºÍπåÏßÄ ?©Î???Ï£ºÏãúÍ∏?Î∞îÎûç?àÎã§.</li>
+                        <li>??3Í∞úÏõî ?¥ÏÉÅ ÎØ∏ÎÇ© ???πÏõê ?êÍ≤©???ïÏ??????àÏäµ?àÎã§.</li>
+                        <li>??Í≤ΩÏ†ú???¥Î†§?Ä???àÏúº??Î∂ÑÏ? ?πÏÇ¨Î¨¥ÏÜåÎ°??ÅÎã¥ Î¨∏Ïùò??Ï£ºÏÑ∏??</li>
+                        <li>???πÎπÑ ?©Î? ?¥Ïó≠?Ä ?®Îùº?∏Ïóê???ïÏù∏?òÏã§ ???àÏäµ?àÎã§.</li>
+                    </ul>
+                </div>
+                
+                <!-- CTA Section -->
+                <div class="bg-red-600 text-white rounded-lg p-8 text-center">
+                    <h3 class="text-2xl font-bold mb-4">?πÎπÑ ?©Î? ?†Ï≤≠</h3>
+                    <p class="text-red-100 mb-8">
+                        ?êÎèô ?¥Ï≤¥Î•??†Ï≤≠?òÏãúÎ©?Îß§Ïõî ?êÎèô?ºÎ°ú ?©Î??©Îãà??
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            ?êÎèô ?¥Ï≤¥ ?†Ï≤≠
+                        </button>
+                        <button class="bg-red-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-800 transition-colors">
+                            ?πÎπÑ ?©Î? ?¥Ïó≠ ?ïÏù∏
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="../nav.js"></script>
+    <script>
+        loadNavigation();
+    </script>
+</body>
+</html> 

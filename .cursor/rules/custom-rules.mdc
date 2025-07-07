@@ -1,8 +1,2 @@
----
-description: 
-globs: 
-alwaysApply: false
----
 Always ask a detailed question back when given a ambiguous or tough task. Asking does not hurt. 
-
-Python should be called with py not python in the cmd
+python works with "py"

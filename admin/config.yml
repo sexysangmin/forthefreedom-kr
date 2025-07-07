@@ -1,0 +1,117 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+media_folder: "images" # Media files will be stored in the repo under images
+public_folder: "/images" # The src attribute for uploaded media will begin with /images
+
+collections:
+  - name: "notices" # Used in routes, e.g., /admin/collections/notices
+    label: "공지사항" # Used in the UI
+    folder: "content/notices" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "제목", name: "title", widget: "string"}
+      - {label: "발행일", name: "date", widget: "datetime"}
+      - {label: "작성자", name: "author", widget: "string", default: "자유와혁신"}
+      - {label: "중요도", name: "priority", widget: "select", options: ["일반", "중요", "긴급"]}
+      - {label: "카테고리", name: "category", widget: "select", options: ["공지", "보도자료", "성명서", "안내"]}
+      - {label: "내용", name: "body", widget: "markdown"}
+      - {label: "첨부파일", name: "attachments", widget: "list", fields: [
+          {label: "파일명", name: "filename", widget: "string"},
+          {label: "파일", name: "file", widget: "file"}
+        ], required: false}
+
+  - name: "news" # Used in routes, e.g., /admin/collections/news
+    label: "소식/활동" # Used in the UI
+    folder: "content/news" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "제목", name: "title", widget: "string"}
+      - {label: "발행일", name: "date", widget: "datetime"}
+      - {label: "작성자", name: "author", widget: "string", default: "자유와혁신"}
+      - {label: "카테고리", name: "category", widget: "select", options: ["당 활동", "정책 발표", "간담회", "기자회견", "성명서"]}
+      - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
+      - {label: "요약", name: "excerpt", widget: "text"}
+      - {label: "내용", name: "body", widget: "markdown"}
+      - {label: "태그", name: "tags", widget: "list", required: false}
+
+  - name: "events" # Used in routes, e.g., /admin/collections/events
+    label: "행사/집회" # Used in the UI
+    folder: "content/events" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "행사명", name: "title", widget: "string"}
+      - {label: "일시", name: "event_date", widget: "datetime"}
+      - {label: "장소", name: "location", widget: "string"}
+      - {label: "주최", name: "organizer", widget: "string"}
+      - {label: "연락처", name: "contact", widget: "string"}
+      - {label: "유형", name: "event_type", widget: "select", options: ["집회", "토론회", "간담회", "행진", "세미나", "기타"]}
+      - {label: "지역", name: "region", widget: "select", options: ["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"]}
+      - {label: "포스터", name: "poster", widget: "image", required: false}
+      - {label: "설명", name: "description", widget: "text"}
+      - {label: "상세내용", name: "body", widget: "markdown"}
+      - {label: "참가비", name: "fee", widget: "string", required: false}
+      - {label: "사전신청", name: "registration_required", widget: "boolean", default: false}
+
+  - name: "policies" # Used in routes, e.g., /admin/collections/policies
+    label: "정책" # Used in the UI
+    folder: "content/policies" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template
+    fields: # The fields for each document, usually in front matter
+      - {label: "정책명", name: "title", widget: "string"}
+      - {label: "발행일", name: "date", widget: "datetime"}
+      - {label: "분야", name: "category", widget: "select", options: ["경제/일자리", "교육/복지", "안보/외교", "환경/에너지", "법치/개혁", "지역발전", "청년정책"]}
+      - {label: "우선순위", name: "priority", widget: "select", options: ["핵심", "중요", "일반"]}
+      - {label: "요약", name: "summary", widget: "text"}
+      - {label: "배경", name: "background", widget: "markdown"}
+      - {label: "목표", name: "objectives", widget: "list", field: {label: "목표", name: "objective", widget: "string"}}
+      - {label: "세부내용", name: "body", widget: "markdown"}
+      - {label: "기대효과", name: "expected_results", widget: "markdown"}
+      - {label: "관련 자료", name: "resources", widget: "list", fields: [
+          {label: "자료명", name: "title", widget: "string"},
+          {label: "링크", name: "url", widget: "string", required: false},
+          {label: "파일", name: "file", widget: "file", required: false}
+        ], required: false}
+
+  - name: "members" # Used in routes, e.g., /admin/collections/members
+    label: "주요 인물" # Used in the UI
+    folder: "content/members" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template
+    fields: # The fields for each document, usually in front matter
+      - {label: "이름", name: "name", widget: "string"}
+      - {label: "직책", name: "position", widget: "string"}
+      - {label: "순서", name: "order", widget: "number", default: 1}
+      - {label: "프로필 사진", name: "photo", widget: "image", required: false}
+      - {label: "연락처", name: "contact", widget: "string", required: false}
+      - {label: "이메일", name: "email", widget: "string", required: false}
+      - {label: "약력", name: "bio", widget: "markdown"}
+      - {label: "주요 경력", name: "experience", widget: "list", field: {label: "경력", name: "career", widget: "string"}}
+      - {label: "학력", name: "education", widget: "list", field: {label: "학력", name: "degree", widget: "string"}}
+      - {label: "주요 정책", name: "key_policies", widget: "list", field: {label: "정책", name: "policy", widget: "string"}, required: false}
+
+  - name: "settings"
+    label: "사이트 설정"
+    files:
+      - label: "기본 정보"
+        name: "site_info"
+        file: "content/settings/site.yml"
+        fields:
+          - {label: "당명", name: "party_name", widget: "string", default: "자유와혁신"}
+          - {label: "슬로건", name: "slogan", widget: "string"}
+          - {label: "대표 연락처", name: "main_phone", widget: "string"}
+          - {label: "대표 이메일", name: "main_email", widget: "string"}
+          - {label: "주소", name: "address", widget: "string"}
+          - {label: "소셜미디어", name: "social_media", widget: "object", fields: [
+              {label: "페이스북", name: "facebook", widget: "string", required: false},
+              {label: "트위터", name: "twitter", widget: "string", required: false},
+              {label: "인스타그램", name: "instagram", widget: "string", required: false},
+              {label: "유튜브", name: "youtube", widget: "string", required: false}
+            ]}
+          - {label: "당원 가입 링크", name: "membership_url", widget: "string"}
+          - {label: "후원 링크", name: "donation_url", widget: "string", required: false} 

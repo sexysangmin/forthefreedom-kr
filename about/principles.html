@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강령·?�심가�?- ?�유?�?�신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">강령·?�심가�?/h1>
+        </div>
+    </section>
+
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- Introduction Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">?�리가 추구?�는 가�?/h2>
+                    <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                        ?�유?�?�신?� ?�?��?�?�� 미래�?책임지???�당?�로?? 명확??강령�??�심가치�? 바탕?�로 
+                        �??�??�께 ???��? ?�회�?만들?�갑?�다.
+                    </p>
+                </div>
+                
+                <!-- ?�심가�?그리??-->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                    <div class="bg-white p-8 rounded-lg shadow-sm border-l-4 border-red-600">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-heart text-red-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">?�유</h3>
+                            <p class="text-gray-600">개인???�유?� 권리�?최�???보장?�는 ?�회</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-sm border-l-4 border-blue-600">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-lightbulb text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">?�신</h3>
+                            <p class="text-gray-600">?�임?�는 변?��? ?�전???�한 발전</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-sm border-l-4 border-green-600">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-balance-scale text-green-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">공정</h3>
+                            <p class="text-gray-600">모든 �???�게 공평??기회�??�공</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 강령 ?�세 ?�용 -->
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                    <div class="space-y-8">
+                        <div class="bg-white p-8 rounded-lg shadow-sm">
+                            <h3 class="text-2xl font-bold text-red-600 mb-4">
+                                <i class="fas fa-flag mr-3"></i>
+                                ?�유민주주의 ?�호
+                            </h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                ?�법??가치�? 바탕?�로 ???�유민주주의 체제�??�호?�고 발전?�켜 ?�갑?�다. 
+                                개인??기본권과 ?�유�?보장?�며, 민주???�차?� 법치주의�?존중?�니??
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-lg shadow-sm">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-4">
+                                <i class="fas fa-rocket mr-3"></i>
+                                ?�신�??�장
+                            </h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                과학기술�??��????�신???�해 �?? 경쟁?�을 ?�이�?지?��??�한 경제?�장??추구?�니?? 
+                                창의???�재 ?�성�??�신 ?�태�?조성???�장?�겠?�니??
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-lg shadow-sm">
+                            <h3 class="text-2xl font-bold text-green-600 mb-4">
+                                <i class="fas fa-balance-scale mr-3"></i>
+                                ?�회?�의?� 공정
+                            </h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                공정??기회?� ?�의로운 ?�회�?만들??모든 �????차별받�? ?�고 ?�력??발휘?????�도�?
+                                지?�합?�다. ?�회???�자�?보호?�고 ?�생�??�력??문화�?조성?�니??
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-2xl">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-crown text-white text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-red-900 mb-4">??강령</h3>
+                            <p class="text-red-800 mb-6 leading-relaxed">
+                                ?�유?�?�신?� �?????�을 받들???�?��?�?�� 번영�?발전???�끌?��???
+                                책임�??�는 ?�당?�니??
+                            </p>
+                            <div class="space-y-3 text-left">
+                                <div class="flex items-center text-red-700">
+                                    <i class="fas fa-check-circle mr-3"></i>
+                                    <span>�?? 중심???�치</span>
+                                </div>
+                                <div class="flex items-center text-red-700">
+                                    <i class="fas fa-check-circle mr-3"></i>
+                                    <span>경제 ?�장�??�회 ?�합</span>
+                                </div>
+                                <div class="flex items-center text-red-700">
+                                    <i class="fas fa-check-circle mr-3"></i>
+                                    <span>지?��??�한 발전</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ?�심가�?Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">4?� ?�심가�?/h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ?�유?�?�신??모든 ?�책�??�동??기�??�로 ?�는 ?�심가치입?�다.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-red-600">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-dove text-red-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">?�유</h3>
+                            <p class="text-gray-600 mb-6">개인???�유?� 권리�?최�???보장?�는 ?�회</p>
+                            <!-- ?��?지 ?�레?�스?�??-->
+                            <div class="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-camera text-2xl text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-red-600">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-rocket text-red-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">?�신</h3>
+                            <p class="text-gray-600 mb-6">과감??변?�로 미래�?준비하???�치</p>
+                            <!-- ?��?지 ?�레?�스?�??-->
+                            <div class="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-camera text-2xl text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-red-600">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-heart text-red-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">공정</h3>
+                            <p class="text-gray-600 mb-6">모든 �????공정??기회�?갖는 ?�회</p>
+                            <!-- ?��?지 ?�레?�스?�??-->
+                            <div class="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-camera text-2xl text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-red-600">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-seedling text-red-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">미래</h3>
+                            <p class="text-gray-600 mb-6">지?��??�한 발전??추구?�는 비전</p>
+                            <!-- ?��?지 ?�레?�스?�??-->
+                            <div class="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-camera text-2xl text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2030 비전 Section -->
+        <section class="py-20 bg-red-600 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold mb-8">2030 비전</h2>
+                    <p class="text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
+                        "?�유�?�� ?�신?�이�?공정???�?��?�?
+                    </p>
+                    <p class="text-lg mb-12 max-w-2xl mx-auto leading-relaxed opacity-90">
+                        모든 �????꿈을 ?�현?????�는 ?�라�?만들?��?겠습?�다.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-users text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">�?? 중심</h3>
+                            <p class="text-red-100">�????목소리�? 경청?�는 ?�치</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-chart-line text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">경제 ?�장</h3>
+                            <p class="text-red-100">?�신???�한 지?��??�한 발전</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-handshake text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">?�회 ?�합</h3>
+                            <p class="text-red-100">?�생�??�력??공동�?/p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">?�께 만들?��???미래</h2>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                    ?�유?�?�신??가치�? ?�현?�는 ???�께?�주?�요.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../members.html" class="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors font-medium">
+                        ?�원 가?�하�?
+                    </a>
+                    <a href="../support.html" class="bg-white text-red-600 px-8 py-3 rounded-lg border-2 border-red-600 hover:bg-red-50 transition-colors font-medium">
+                        ?�원?�기
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">?�유?�?�신</h3>
+                    <p class="text-gray-400">
+                        ???��? ?�?��?�?�� ?�한<br>
+                        ?�로???�치???�작
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">?�락�?/h4>
+                    <p class="text-gray-400">
+                        ?�화: 02-000-0000<br>
+                        ?�메?? info@party.kr<br>
+                        주소: ?�울?�별???�등?�구
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">?�셜미디??/h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ?�유?�?�신. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../nav.js"></script>
+</body>
+</html> 

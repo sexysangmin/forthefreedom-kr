@@ -53,8 +53,8 @@
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 25% 25%, rgba(220, 38, 38, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(185, 28, 28, 0.3) 0%, transparent 50%);
+        radial-gradient(circle at 25% 25%, rgba(165, 0, 52, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(139, 0, 44, 0.3) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -70,7 +70,7 @@
 /* Swiper Customization */
 .swiper-button-next,
 .swiper-button-prev {
-    color: #dc2626 !important;
+    color: #A50034 !important;
     background: white !important;
     width: 50px !important;
     height: 50px !important;
@@ -83,7 +83,7 @@
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-    background: #dc2626 !important;
+    background: #A50034 !important;
     color: white !important;
     transform: scale(1.1) !important;
 }
@@ -149,16 +149,24 @@ section.py-24 {
     margin: 0 !important;
 }
 
+/* Main page hero section */
 .hero-section {
-    height: 100vh !important;
-    min-height: 100vh !important;
-    max-height: 100vh !important;
-    display: flex !important;
-    align-items: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    position: relative !important;
-    overflow: hidden !important;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Menu pages hero section - smaller height */
+.hero-section[style*="height:60vh"] {
+    height: 60vh !important;
+    min-height: 60vh !important;
+    max-height: 60vh !important;
 }
 
 /* Custom Scrollbar */
@@ -192,7 +200,7 @@ section.py-24 {
 input:focus,
 textarea:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+    box-shadow: 0 0 0 3px rgba(165, 0, 52, 0.1);
 }
 
 /* Button Hover Effects */
@@ -256,15 +264,124 @@ nav a::after {
     color: #dc2626;
 }
 
-/* Responsive Design Enhancements */
+/* Enhanced Mobile Styles */
 @media (max-width: 640px) {
-    .hero-section h1 {
-        font-size: 2.5rem;
-        line-height: 1.1;
+    /* Hero Section - Main page */
+    .hero-section {
+        height: 100vh;
+        min-height: 600px;
     }
     
+    /* Hero Section - Menu pages */
+    .hero-section[style*="height:60vh"] {
+        height: 60vh !important;
+        min-height: 60vh !important;
+    }
+    
+    .hero-section h1 {
+        font-size: clamp(2rem, 8vw, 2.5rem) !important;
+        line-height: 1.2 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .hero-section p {
+        font-size: clamp(1rem, 4vw, 1.2rem) !important;
+        margin-bottom: 1.5rem !important;
+        padding: 0 1rem !important;
+    }
+    
+    /* Policy Cards */
     .policy-card {
-        padding: 1.5rem;
+        margin-bottom: 1rem;
+        padding: 1rem !important;
+    }
+    
+    /* Navigation */
+    nav h1 {
+        font-size: 1.125rem !important;
+    }
+    
+    nav h1 span {
+        font-size: 0.875rem !important;
+    }
+    
+    /* Swiper Events */
+    .events-swiper {
+        padding: 0 !important;
+    }
+    
+    /* Stats Section */
+    .counter {
+        font-size: clamp(2.5rem, 12vw, 4rem) !important;
+    }
+    
+    /* FAQ Questions */
+    .faq-question h4 {
+        line-height: 1.4 !important;
+        word-wrap: break-word !important;
+    }
+    
+    /* Form Elements */
+    input, textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+    
+    /* Section Spacing */
+    section {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+}
+
+/* Tablet Styles */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .hero-section h1 {
+        font-size: clamp(3rem, 6vw, 4rem) !important;
+    }
+    
+    .hero-section p {
+        font-size: clamp(1.125rem, 3vw, 1.5rem) !important;
+    }
+    
+    .events-swiper {
+        padding: 0 30px !important;
+    }
+}
+
+/* Ultra-wide screen styles */
+@media (min-width: 1920px) {
+    .hero-section {
+        height: 90vh;
+    }
+    
+    /* Menu pages on ultra-wide */
+    .hero-section[style*="height:60vh"] {
+        height: 60vh !important;
+    }
+    
+    .max-w-7xl {
+        max-width: 1400px !important;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Touch device improvements */
+@media (pointer: coarse) {
+    button, a {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+    
+    .faq-question {
+        padding: 1rem !important;
     }
 }
 
@@ -301,15 +418,273 @@ textarea,
 }
 
 /* Red Theme Overrides */
-.text-blue-600 { color: #dc2626 !important; }
-.text-blue-500 { color: #ef4444 !important; }
-.bg-blue-600 { background-color: #dc2626 !important; }
-.bg-blue-700 { background-color: #b91c1c !important; }
-.bg-blue-100 { background-color: #fee2e2 !important; }
-.border-blue-500 { border-color: #ef4444 !important; }
-.ring-blue-500 { --tw-ring-color: #ef4444 !important; }
+.text-blue-600 { color: #A50034 !important; }
+.text-blue-500 { color: #C7003F !important; }
+.bg-blue-600 { background-color: #A50034 !important; }
+.bg-blue-700 { background-color: #8B002C !important; }
+.bg-blue-100 { background-color: #FCE7ED !important; }
+.border-blue-500 { border-color: #C7003F !important; }
+.ring-blue-500 { --tw-ring-color: #C7003F !important; }
+
+/* Clean Navigation Styles */
+.text-red-600 { color: #A50034 !important; }
+.text-red-700 { color: #8B002C !important; }
+.bg-red-600 { background-color: #A50034 !important; }
+.bg-red-700 { background-color: #8B002C !important; }
+.hover\:text-red-600:hover { color: #A50034 !important; }
+.hover\:bg-red-700:hover { background-color: #8B002C !important; }
+
+/* Dropdown Shadow Enhancement */
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Floating Navigation Backdrop */
+.bg-white\/90 {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.backdrop-blur-sm {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
 
 /* Dark mode support (if needed) */
 @media (prefers-color-scheme: dark) {
     /* Add dark mode styles if needed */
+}
+
+/* 자료실 스타일 */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.resource-category {
+    background: white;
+    padding: 25px;
+    border-radius: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e5e5e5;
+}
+
+.resource-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.resource-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #A50034, #c41e3a);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.resource-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.resource-category h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.resource-category p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.resource-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 0;
+    border-left: 4px solid #A50034;
+    transition: background-color 0.3s ease;
+}
+
+.resource-item:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+.resource-title {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+.resource-date {
+    color: #666;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-left: 15px;
+}
+
+.search-section {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-section h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.search-section p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.search-input-container {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 50px 15px 20px;
+    border: 2px solid #ddd;
+    border-radius: 0;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #A50034;
+}
+
+.search-button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #A50034;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background: #8b0029;
+}
+
+.search-filters {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 0;
+    font-size: 0.9rem;
+    background: white;
+    transition: border-color 0.3s ease;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #A50034;
+}
+
+.notice-box {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 0;
+    border-left: 5px solid #A50034;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.notice-box h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.notice-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.notice-box li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.notice-box li:before {
+    content: "•";
+    color: #A50034;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* 자료실 모바일 반응형 */
+@media (max-width: 768px) {
+    .resources-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .search-filters {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-select {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .notice-box {
+        padding: 20px;
+    }
 } 

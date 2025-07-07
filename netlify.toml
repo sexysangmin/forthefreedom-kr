@@ -1,0 +1,15 @@
+[build]
+  publish = "."
+  command = "echo 'No build command needed for static site'"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# Enable Git Gateway for Netlify CMS
+[context.production]
+  environment = { ACCESS_TOKEN = "", BRANCH = "main" } 

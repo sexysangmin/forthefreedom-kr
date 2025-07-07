@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ï∞∏Ïó¨/?ÑÏõê</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">Ï∞∏Ïó¨/?ÑÏõê</h1>
+        </div>
+    </section>
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- Support Ways Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Ï∞∏Ïó¨?òÎäî Î∞©Î≤ï</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ?§Ïñë??Î∞©Î≤ï?ºÎ°ú ?êÏú†?Ä?ÅÏã†Í≥??®Íªò?òÏÑ∏??
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="bg-red-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-heart text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">?ÑÏõê?òÍ∏∞</h3>
+                        <p class="text-gray-600 mb-4">
+                            Ï∞ΩÎãπÍ≥??ïÏπò ?úÎèô???ÑÌïú ?ÑÏõê?ºÎ°ú ?®Íªò?¥Ï£º?∏Ïöî.
+                        </p>
+                        <ul class="text-gray-700 text-sm space-y-2 mb-6">
+                            <li>???ºÏãú?ÑÏõê</li>
+                            <li>???ïÍ∏∞?ÑÏõê</li>
+                            <li>??Î¨ºÌíà?ÑÏõê</li>
+                        </ul>
+                        <button class="bg-red-600 text-white px-6 py-3 font-medium hover:bg-red-700 transition-colors border-none cursor-pointer" onclick="openDonationForm()">
+                            ?ÑÏõê?òÍ∏∞
+                        </button>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-hands-helping text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">?êÏõêÎ¥âÏÇ¨</h3>
+                        <p class="text-gray-600 mb-4">
+                            ?úÍ∞ÑÍ≥??¨Îä•?ºÎ°ú ?êÏú†?Ä?ÅÏã†???ÑÏ?Ï£ºÏÑ∏??
+                        </p>
+                        <ul class="text-gray-700 text-sm space-y-2 mb-6">
+                            <li>???âÏÇ¨ ?ÑÏ?</li>
+                            <li>???çÎ≥¥ ?úÎèô</li>
+                            <li>???¨Î¨¥ ÏßÄ??/li>
+                        </ul>
+                        <button class="bg-blue-600 text-white px-6 py-3 font-medium hover:bg-blue-700 transition-colors border-none cursor-pointer" onclick="openVolunteerForm()">
+                            ?†Ï≤≠?òÍ∏∞
+                        </button>
+                    </div>
+                    
+                    <div class="bg-green-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-flag text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">?ïÎãπ ÏßÄ??/h3>
+                        <p class="text-gray-600 mb-4">
+                            ?ïÎãπ ?Ä?åÏ? Í∞ÅÏ¢Ö ?âÏÇ¨??Ï∞∏Ïó¨?¥Ï£º?∏Ïöî.
+                        </p>
+                        <ul class="text-gray-700 text-sm space-y-2 mb-6">
+                            <li>???ïÎãπ ?Ä??Ï∞∏ÏÑù</li>
+                            <li>???πÏõê Î™®Ïßë</li>
+                            <li>??SNS ?çÎ≥¥</li>
+                        </ul>
+                        <button class="bg-green-600 text-white px-6 py-3 font-medium hover:bg-green-700 transition-colors border-none cursor-pointer" onclick="openSupportForm()">
+                            Ï∞∏Ïó¨?òÍ∏∞
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Donation Info Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">?ÑÏõê ?àÎÇ¥</h2>
+                    <p class="text-xl text-gray-600">
+                        ?¨Î™Ö?òÍ≥† Í≥µÏ†ï???ÑÏõê ?úÏä§?úÏùÑ ?¥ÏòÅ?©Îãà??
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">?ÑÏõê Î∞©Î≤ï</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-credit-card text-red-600 mr-3"></i>
+                                <span>?®Îùº??Ïπ¥Îìú Í≤∞Ï†ú</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-university text-red-600 mr-3"></i>
+                                <span>Í≥ÑÏ¢å ?¥Ï≤¥</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-mobile-alt text-red-600 mr-3"></i>
+                                <span>Î™®Î∞î??Í∞ÑÌé∏ Í≤∞Ï†ú</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-money-check text-red-600 mr-3"></i>
+                                <span>?êÎèô?¥Ï≤¥</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">?ÑÏõê ?úÌÉù</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-certificate text-blue-600 mr-3"></i>
+                                <span>?ÑÏõêÏ¶ùÏÑú Î∞úÍ∏â</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-blue-600 mr-3"></i>
+                                <span>?ïÍ∏∞ ?åÏãùÏßÄ Î∞úÏÜ°</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-ticket-alt text-blue-600 mr-3"></i>
+                                <span>?âÏÇ¨ Ï¥àÏ≤≠</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-gift text-blue-600 mr-3"></i>
+                                <span>Í∏∞ÎÖê??Ï¶ùÏ†ï</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="py-16 bg-red-600 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-6">?®Íªò ÎßåÎìú???àÎ°ú???ïÏπò</h2>
+                    <p class="text-xl leading-relaxed mb-8 max-w-3xl mx-auto">
+                        ?¨Îü¨Î∂ÑÏùò Ï∞∏Ïó¨?Ä ?ÑÏõê???àÎ°ú???ïÏπò???úÏûë?ÖÎãà??
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-white text-red-600 px-8 py-3 text-lg font-semibold hover:bg-gray-100 transition-colors border-none cursor-pointer" onclick="openDonationForm()">
+                            ÏßÄÍ∏??ÑÏõê?òÍ∏∞
+                        </button>
+                        <button onclick="openMembershipPopup()" class="border-2 border-white text-white px-8 py-3 text-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
+                            ?πÏõê Í∞Ä?ÖÌïòÍ∏?
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="nav.js"></script>
+    <script>
+      loadNavigation();
+      
+      // ?∏Î? ???∞Í≤∞ ?®Ïàò??
+      function openDonationForm() {
+        // ?ÑÏõê ??URL (Google Forms ?êÎäî ?∏Î? ?ÑÏõê ?åÎû´??
+        window.open('https://docs.google.com/forms/d/e/1FAIpQLSfDonation_Form_ID/viewform', '_blank');
+      }
+      
+      function openVolunteerForm() {
+        // ?êÏõêÎ¥âÏÇ¨ ?†Ï≤≠ ??URL
+        window.open('https://docs.google.com/forms/d/e/1FAIpQLSfVolunteer_Form_ID/viewform', '_blank');
+      }
+      
+      function openSupportForm() {
+        // Ï∞ΩÎãπ ÏßÄ????URL
+        window.open('https://docs.google.com/forms/d/e/1FAIpQLSfSupport_Form_ID/viewform', '_blank');
+      }
+      
+      function openMembershipPopup() {
+        // ?πÏõê Í∞Ä????URL
+        window.open('https://docs.google.com/forms/d/e/1FAIpQLSfMembership_Form_ID/viewform', '_blank');
+      }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?çÎ≥¥ ?êÎ£å - ?êÏú†?Ä?ÅÏã†</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Î°úÍ≥† ?îÏä§?åÎ†à???§Ì???*/
+        .logo-showcase {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border: 2px solid #e9ecef;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-showcase::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(165, 0, 52, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .logo-showcase:hover::before {
+            opacity: 1;
+        }
+        
+        .logo-showcase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(165, 0, 52, 0.1);
+        }
+        
+        .logo-display {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #A50034;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-symbol {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #A50034, #8B002C);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(165, 0, 52, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-showcase:hover .logo-symbol {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* ?¨Ïä§??Í∞§Îü¨Î¶??§Ì???*/
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .poster-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .poster-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(165, 0, 52, 0.15);
+        }
+        
+        .poster-image {
+            height: 220px;
+            background: linear-gradient(135deg, #FDF2F4, #FCE7EA);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .poster-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(165, 0, 52, 0.1) 0%, 
+                rgba(165, 0, 52, 0.05) 50%, 
+                rgba(165, 0, 52, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .poster-card:hover .poster-image::before {
+            opacity: 1;
+        }
+        
+        .poster-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(165, 0, 52, 0.1);
+            border: 3px solid #A50034;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .poster-card:hover .poster-icon {
+            transform: scale(1.1);
+            background: rgba(165, 0, 52, 0.2);
+        }
+        
+        .poster-icon i {
+            font-size: 2.5rem;
+            color: #A50034;
+        }
+        
+        .poster-content {
+            padding: 25px;
+        }
+        
+        .poster-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+        
+        .poster-description {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .poster-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .poster-specs {
+            color: #9ca3af;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #A50034, #8B002C);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(165, 0, 52, 0.3);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(165, 0, 52, 0.4);
+        }
+        
+        /* Í∞Ä?¥Îìú?ºÏù∏ Î∞ïÏä§ ?§Ì???*/
+        .guidelines-box {
+            background: linear-gradient(135deg, #fff7ed, #fef3c7);
+            border: 2px solid #f59e0b;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guidelines-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+            opacity: 0.7;
+        }
+        
+        .guidelines-title {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 20px;
+        }
+        
+        .guidelines-title i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .guidelines-list {
+            position: relative;
+            z-index: 1;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .guidelines-list li {
+            color: #78350f;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .guidelines-list li::before {
+            content: '??;
+            position: absolute;
+            left: 0;
+            color: #f59e0b;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Ï∂îÍ? ?êÎ£å ?πÏÖò */
+        .additional-resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .resource-item {
+            background: white;
+            border: 2px solid #f3f4f6;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resource-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(165, 0, 52, 0.02), rgba(165, 0, 52, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .resource-item:hover::before {
+            opacity: 1;
+        }
+        
+        .resource-item:hover {
+            border-color: #A50034;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(165, 0, 52, 0.1);
+        }
+        
+        .resource-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .resource-info h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 5px;
+        }
+        
+        .resource-info p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .resource-type {
+            background: #A50034;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .resource-download {
+            color: #A50034;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-download:hover {
+            transform: scale(1.2);
+            color: #8B002C;
+        }
+    </style>
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">?çÎ≥¥ ?êÎ£å</h1>
+        </div>
+    </section>
+    
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- Promotional Materials Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">?çÎ≥¥ ?êÎ£å</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ?êÏú†?Ä?ÅÏã†??Î°úÍ≥†, ?¨Ïä§?? ?çÎ≥¥Î¨???Í∞ÅÏ¢Ö ?çÎ≥¥ ?êÎ£åÎ•??§Ïö¥Î°úÎìú?òÏÑ∏??
+                    </p>
+                </div>
+                
+                <!-- Logo & Brand Identity -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Î°úÍ≥† & Î∏åÎûú???ÑÏù¥?¥Ìã∞??/h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="logo-showcase">
+                            <div class="logo-display">?êÏú†?Ä?ÅÏã†</div>
+                            <p class="text-gray-600 mb-6">Í∏∞Î≥∏ Î°úÍ≥† (Í∞ÄÎ°úÌòï)</p>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Í∏∞Î≥∏ Î°úÍ≥† ?®ÌÇ§ÏßÄ</h4>
+                                    <p class="text-gray-600 text-sm">PNG, SVG, AI ?åÏùº ?¨Ìï®</p>
+                                </div>
+                                <button class="download-btn">
+                                    ?§Ïö¥Î°úÎìú
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="logo-showcase">
+                            <div class="logo-symbol">?êÌòÅ</div>
+                            <p class="text-gray-600 mb-6">?¨Î≥º ÎßàÌÅ¨</p>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">?¨Î≥º ÎßàÌÅ¨</h4>
+                                    <p class="text-gray-600 text-sm">?§Ïñë???¨Í∏∞???¨Î≥º ÎßàÌÅ¨</p>
+                                </div>
+                                <button class="download-btn">
+                                    ?§Ïö¥Î°úÎìú
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Posters & Banners -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8">?¨Ïä§??& Î∞∞ÎÑà</h3>
+                    <div class="poster-grid">
+                        <div class="poster-card">
+                            <div class="poster-image">
+                                <div class="poster-icon">
+                                    <i class="fas fa-flag"></i>
+                                </div>
+                            </div>
+                            <div class="poster-content">
+                                <h4 class="poster-title">??Ï∂úÎ≤î ?¨Ïä§??/h4>
+                                <p class="poster-description">?êÏú†?Ä?ÅÏã† Í≥µÏãù Ï∂úÎ≤î Í∏∞ÎÖê ?¨Ïä§??/p>
+                                <div class="poster-meta">
+                                    <span class="poster-specs">A3, 300DPI</span>
+                                    <button class="download-btn">
+                                        <i class="fas fa-download mr-2"></i>
+                                        ?§Ïö¥Î°úÎìú
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="poster-card">
+                            <div class="poster-image">
+                                <div class="poster-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                            </div>
+                            <div class="poster-content">
+                                <h4 class="poster-title">?ïÏ±Ö ?çÎ≥¥ ?¨Ïä§??/h4>
+                                <p class="poster-description">7?Ä ?µÏã¨ ?ïÏ±Ö ?çÎ≥¥???¨Ïä§??/p>
+                                <div class="poster-meta">
+                                    <span class="poster-specs">A3, 300DPI</span>
+                                    <button class="download-btn">
+                                        <i class="fas fa-download mr-2"></i>
+                                        ?§Ïö¥Î°úÎìú
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="poster-card">
+                            <div class="poster-image">
+                                <div class="poster-icon">
+                                    <i class="fas fa-desktop"></i>
+                                </div>
+                            </div>
+                            <div class="poster-content">
+                                <h4 class="poster-title">??Î∞∞ÎÑà ?∏Ìä∏</h4>
+                                <p class="poster-description">?®Îùº???çÎ≥¥??Î∞∞ÎÑà Î™®Ïùå</p>
+                                <div class="poster-meta">
+                                    <span class="poster-specs">?§Ïñë???¨Ïù¥Ï¶?/span>
+                                    <button class="download-btn">
+                                        <i class="fas fa-download mr-2"></i>
+                                        ?§Ïö¥Î°úÎìú
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="poster-card">
+                            <div class="poster-image">
+                                <div class="poster-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="poster-content">
+                                <h4 class="poster-title">?πÏõê Î™®Ïßë ?¨Ïä§??/h4>
+                                <p class="poster-description">?πÏõê Í∞Ä???çÎ≥¥???¨Ïä§??/p>
+                                <div class="poster-meta">
+                                    <span class="poster-specs">A2, 300DPI</span>
+                                    <button class="download-btn">
+                                        <i class="fas fa-download mr-2"></i>
+                                        ?§Ïö¥Î°úÎìú
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="poster-card">
+                            <div class="poster-image">
+                                <div class="poster-icon">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="poster-content">
+                                <h4 class="poster-title">?¥Î≤§???¨Ïä§??/h4>
+                                <p class="poster-description">Í∞ÅÏ¢Ö ?âÏÇ¨ Î∞??¥Î≤§???¨Ïä§??/p>
+                                <div class="poster-meta">
+                                    <span class="poster-specs">A3, 300DPI</span>
+                                    <button class="download-btn">
+                                        <i class="fas fa-download mr-2"></i>
+                                        ?§Ïö¥Î°úÎìú
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="poster-card">
+                            <div class="poster-image">
+                                <div class="poster-icon">
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
+                            </div>
+                            <div class="poster-content">
+                                <h4 class="poster-title">SNS ?úÌîåÎ¶?/h4>
+                                <p class="poster-description">?åÏÖúÎØ∏Îîî??Í≤åÏãúÎ¨??úÌîåÎ¶?/p>
+                                <div class="poster-meta">
+                                    <span class="poster-specs">1080x1080</span>
+                                    <button class="download-btn">
+                                        <i class="fas fa-download mr-2"></i>
+                                        ?§Ïö¥Î°úÎìú
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Usage Guidelines -->
+                <div class="guidelines-box">
+                    <h3 class="guidelines-title">
+                        <i class="fas fa-info-circle"></i>
+                        ?¨Ïö© Í∞Ä?¥Îìú?ºÏù∏
+                    </h3>
+                    <ul class="guidelines-list">
+                        <li>Î°úÍ≥†?Ä Î∏åÎûú??Ïª¨Îü¨??Í∞Ä?¥Îìú?ºÏù∏??Ï§Ä?òÌïò???¨Ïö©??Ï£ºÏÑ∏??</li>
+                        <li>?ÅÏóÖ???©ÎèÑÎ°??¨Ïö© ???πÏÇ¨Î¨¥ÏÜå???¨Ï†Ñ ?∞ÎùΩ Î∞îÎûç?àÎã§.</li>
+                        <li>Î°úÍ≥† Î≥Ä?ïÏù¥???âÏÉÅ Î≥ÄÍ≤ΩÏ? Í∏àÏ??©Îãà??</li>
+                        <li>ÏµúÏÜå ?¨Î∞±Í≥?ÏµúÏÜå ?¨Í∏∞ Í∑úÏ†ï??Ï§Ä?òÌï¥ Ï£ºÏÑ∏??</li>
+                    </ul>
+                </div>
+                
+                <!-- Additional Resources -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Ï∂îÍ? ?êÎ£å</h3>
+                    <div class="additional-resources">
+                        <div class="resource-item">
+                            <div class="resource-header">
+                                <div class="resource-info">
+                                    <h4>Î∏åÎûú??Í∞Ä?¥Îìú?ºÏù∏</h4>
+                                    <p>Î°úÍ≥† ?¨Ïö©Î≤ïÍ≥º Î∏åÎûú??Ïª¨Îü¨ Í∞Ä?¥Îìú</p>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="resource-type">PDF</span>
+                                    <div class="resource-download">
+                                        <i class="fas fa-download"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-item">
+                            <div class="resource-header">
+                                <div class="resource-info">
+                                    <h4>SNS ?ÑÎ°ú???¥Î?ÏßÄ</h4>
+                                    <p>?òÏù¥?§Î∂Å, ?∏ÏúÑ?? ?∏Ïä§?ÄÍ∑∏Îû®??/p>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="resource-type">ZIP</span>
+                                    <div class="resource-download">
+                                        <i class="fas fa-download"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="../nav.js"></script>
+    <script>
+        loadNavigation();
+    </script>
+</body>
+</html> 

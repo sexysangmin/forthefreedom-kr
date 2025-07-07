@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ï°∞ÏßÅ Íµ¨ÏÑ± - ?êÏú†?Ä?ÅÏã†</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
+        /* ?úÎèô ?¥Î?ÏßÄ Ïπ¥Îìú ?§Ì???*/
+        .activity-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(165, 0, 52, 0.15);
+        }
+        
+        .activity-image {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #FDF2F4, #FCE7EA);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .activity-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(165, 0, 52, 0.1) 0%, 
+                rgba(165, 0, 52, 0.05) 50%, 
+                rgba(165, 0, 52, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .activity-card:hover .activity-image::before {
+            opacity: 1;
+        }
+        
+        .activity-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(165, 0, 52, 0.1);
+            border: 3px solid #A50034;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .activity-card:hover .activity-icon {
+            transform: scale(1.1);
+            background: rgba(165, 0, 52, 0.2);
+        }
+        
+        .activity-icon i {
+            font-size: 2.2rem;
+            color: #A50034;
+        }
+        
+        .activity-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .activity-card:hover .activity-overlay {
+            transform: translateY(0);
+        }
+        
+        .activity-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .activity-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">Ï°∞ÏßÅ Íµ¨ÏÑ±</h1>
+        </div>
+    </section>
+
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- Introduction Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Ï≤¥Í≥Ñ?ÅÏù∏ Ï°∞ÏßÅ ?¥ÏòÅ</h2>
+                    <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                        ?®Ïú®?ÅÏù¥Í≥??¨Î™Ö???ïÎãπ ?¥ÏòÅ???ÑÌïú Ï≤¥Í≥Ñ?ÅÏù∏ Ï°∞ÏßÅ Íµ¨ÏÑ±?ºÎ°ú Íµ???êÍ≤å ???òÏ? ?úÎπÑ?§Î? ?úÍ≥µ?©Îãà??
+                    </p>
+                </div>
+                
+                <!-- ?¥Î?ÏßÄ ?åÎ†à?¥Ïä§?Ä??-->
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <div class="activity-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="activity-overlay">
+                                <h4 class="activity-title">Ï°∞ÏßÅ Íµ¨ÏÑ± ?åÏùò</h4>
+                                <p class="activity-desc">Ï≤¥Í≥Ñ?ÅÏù∏ Ï°∞ÏßÅ Íµ¨ÏÑ±???ÑÌïú ?åÏùò</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <div class="activity-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="activity-overlay">
+                                <h4 class="activity-title">?Ä ?åÌÅ¨??/h4>
+                                <p class="activity-desc">?Ä?åÌÅ¨ Í∞ïÌôîÎ•??ÑÌïú ?åÌÅ¨??/p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <div class="activity-icon">
+                                <i class="fas fa-chart-organization"></i>
+                            </div>
+                            <div class="activity-overlay">
+                                <h4 class="activity-title">Ï°∞ÏßÅ??Î∞úÌëú</h4>
+                                <p class="activity-desc">Í≥µÏãù Ï°∞ÏßÅ??Î∞úÌëú Î∞??§Î™Ö</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ï°∞ÏßÅ??-->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Ï°∞ÏßÅ??/h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Î™ÖÌôï????ï† Î∂ÑÎã¥Í≥?Ï±ÖÏûÑ Ï≤¥Í≥ÑÎ°??¥ÏòÅ?òÎäî ?êÏú†?Ä?ÅÏã†??Ï°∞ÏßÅ Íµ¨Ï°∞?ÖÎãà??
+                    </p>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- ÏµúÍ≥†?ÑÏõê??-->
+                    <div class="bg-red-600 text-white p-8 rounded-lg text-center shadow-lg">
+                        <h3 class="text-3xl font-bold mb-4">ÏµúÍ≥†?ÑÏõê??/h3>
+                        <p class="text-xl text-red-100">?πÏùò ÏµúÍ≥† ?òÏÇ¨Í≤∞Ï†ï Í∏∞Íµ¨</p>
+                    </div>
+                    
+                    <!-- ?∞Í≤∞??-->
+                    <div class="flex justify-center">
+                        <div class="w-1 h-12 bg-red-600"></div>
+                    </div>
+                    
+                    <!-- Ï°∞ÏßÅ??-->
+                    <div class="bg-white p-8 rounded-lg shadow-sm">
+                        <div class="text-center mb-12">
+                            <div class="w-32 h-32 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-crown text-white text-4xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">???Ä??/h3>
+                            <p class="text-red-600 font-medium">ÍπÄ?ã‚óã</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- ?ïÏ±Ö?ÑÏõê??-->
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-clipboard-list text-white text-2xl"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">?ïÏ±Ö?ÑÏõê??/h4>
+                                <p class="text-blue-600 font-medium mb-2">?ïÏ±Ö?ÑÏõê??Î∞ï‚óã??/p>
+                                <p class="text-gray-600 text-sm">
+                                    ??7?Ä ?µÏã¨?ïÏ±Ö Í∞úÎ∞ú<br>
+                                    ???ïÏ±Ö ?∞Íµ¨ Î∞?Î∂ÑÏÑù<br>
+                                    ??Í≥µÏïΩ ?§ÌòÑ Î∞©Ïïà ?òÎ¶Ω
+                                </p>
+                            </div>
+
+                            <!-- Ï°∞ÏßÅ?ÑÏõê??-->
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-sitemap text-white text-2xl"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Ï°∞ÏßÅ?ÑÏõê??/h4>
+                                <p class="text-green-600 font-medium mb-2">Ï°∞ÏßÅ?ÑÏõê???¥‚óã??/p>
+                                <p class="text-gray-600 text-sm">
+                                    ???πÏõê Í¥ÄÎ¶?Î∞??úÎπÑ??br>
+                                    ??ÏßÄ??°∞Ïß?Íµ¨Ï∂ï<br>
+                                    ???πÎÇ¥ ?âÏÇ¨ Í∏∞Ìöç
+                                </p>
+                            </div>
+
+                            <!-- ?çÎ≥¥?ÑÏõê??-->
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-bullhorn text-white text-2xl"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">?çÎ≥¥?ÑÏõê??/h4>
+                                <p class="text-purple-600 font-medium mb-2">?çÎ≥¥?ÑÏõê??Ïµú‚óã??/p>
+                                <p class="text-gray-600 text-sm">
+                                    ???Ä???çÎ≥¥ Î∞??åÌÜµ<br>
+                                    ??ÎØ∏Îîî??Í¥ÄÎ¶?br>
+                                    ??Î∏åÎûú???ÑÎûµ ?òÎ¶Ω
+                                </p>
+                            </div>
+
+                            <!-- Ï≤?ÖÑ?ÑÏõê??-->
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Ï≤?ÖÑ?ÑÏõê??/h4>
+                                <p class="text-orange-600 font-medium mb-2">Ï≤?ÖÑ?ÑÏõê???ï‚óã??/p>
+                                <p class="text-gray-600 text-sm">
+                                    ??Ï≤?ÖÑ ?ïÏ±Ö Í∞úÎ∞ú<br>
+                                    ??Ï≤?ÖÑ ?πÏõê ?úÎèô ÏßÄ??br>
+                                    ??ÎØ∏Îûò ?∏Î? ?åÌÜµ
+                                </p>
+                            </div>
+
+                            <!-- ?¨ÏÑ±?ÑÏõê??-->
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-female text-white text-2xl"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">?¨ÏÑ±?ÑÏõê??/h4>
+                                <p class="text-pink-600 font-medium mb-2">?¨ÏÑ±?ÑÏõê???ú‚óã??/p>
+                                <p class="text-gray-600 text-sm">
+                                    ???±Ìèâ???ïÏ±Ö ?∞Íµ¨<br>
+                                    ???¨ÏÑ± ?πÏõê Í∂åÏùµ Î≥¥Ìò∏<br>
+                                    ???º¬∑Í????ëÎ¶Ω ÏßÄ??
+                                </p>
+                            </div>
+
+                            <!-- ?¨Î¨¥Ï≤?-->
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-building text-white text-2xl"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">?¨Î¨¥Ï≤?/h4>
+                                <p class="text-gray-600 font-medium mb-2">?¨Î¨¥Ï≤òÏû• ÍπÄ?ã‚óã</p>
+                                <p class="text-gray-600 text-sm">
+                                    ???πÎ¨¥ ?âÏ†ï Í¥ÄÎ¶?br>
+                                    ???¨Ï†ï Í¥ÄÎ¶?br>
+                                    ???úÏÑ§ ?¥ÏòÅ
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ï£ºÏöî Í∏∞Íµ¨ Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Ï£ºÏöî Í∏∞Íµ¨</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ÎØºÏ£º?ÅÏù¥Í≥??¨Î™Ö???òÏÇ¨Í≤∞Ï†ï???ÑÌïú ?§Ïñë??Í∏∞Íµ¨?§Ïù¥ ?¥ÏòÅ?òÍ≥† ?àÏäµ?àÎã§.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-gavel text-red-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">ÏµúÍ≥†?ÑÏõê??/h3>
+                                <p class="text-gray-600">?πÏùò ÏµúÍ≥† ?òÏÇ¨Í≤∞Ï†ï Í∏∞Íµ¨</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            ?πÏùò ÏµúÍ≥† ?òÏÇ¨Í≤∞Ï†ï Í∏∞Íµ¨Î°úÏÑú Ï§ëÏöî???πÏ†ï ?ÑÏïà??Í≤∞Ï†ï?òÍ≥† ?πÏùò ?ÑÏ≤¥?ÅÏù∏ Î∞©Ìñ•???§Ï†ï?©Îãà??
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">Íµ¨ÏÑ±:</span>
+                                <span class="text-gray-600">?πÎ??? ÏµúÍ≥†?ÑÏõê 5Î™?/span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">?ÑÍ∏∞:</span>
+                                <span class="text-gray-600">2??/span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">?åÏùò:</span>
+                                <span class="text-gray-600">Ï£?1???ïÍ∏∞ ?åÏùò</span>
+                            </div>
+                        </div>
+                        <!-- ?¥Î?ÏßÄ ?åÎ†à?¥Ïä§?Ä??-->
+                        <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-camera text-2xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-users text-blue-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">?ÑÍµ≠?ÑÏõê??/h3>
+                                <p class="text-gray-600">?ÑÍµ≠ ?πÏõê ?Ä??Í∏∞Íµ¨</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            ?ÑÍµ≠ ?πÏõê???Ä?úÌïò??ÏµúÍ≥† ?òÍ≤∞Í∏∞Íµ¨Î°úÏÑú ?πÏùò Ï§ëÏöî???¨Ìï≠?§ÏùÑ ?¨Ïùò?òÍ≥† Í≤∞Ï†ï?©Îãà??
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">Íµ¨ÏÑ±:</span>
+                                <span class="text-gray-600">?ÑÍµ≠?ÑÏõê 150Î™?/span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">?ÑÍ∏∞:</span>
+                                <span class="text-gray-600">2??/span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">?åÏùò:</span>
+                                <span class="text-gray-600">??2???ïÍ∏∞ ?åÏùò</span>
+                            </div>
+                        </div>
+                        <!-- ?¥Î?ÏßÄ ?åÎ†à?¥Ïä§?Ä??-->
+                        <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-camera text-2xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-lightbulb text-green-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">?ïÏ±Ö?ÑÏõê??/h3>
+                                <p class="text-gray-600">?ïÏ±Ö Í∞úÎ∞ú ?ÑÎ¨∏ Í∏∞Íµ¨</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            ?πÏùò ?ïÏ±Ö Í∞úÎ∞úÍ≥??∞Íµ¨Î•??¥Îãπ?òÎäî ?ÑÎ¨∏ Í∏∞Íµ¨Î°úÏÑú ÎØ∏Îûò ÏßÄ?•Ï†Å???ïÏ±Ö??Í∞úÎ∞ú?©Îãà??
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">Íµ¨ÏÑ±:</span>
+                                <span class="text-gray-600">?ïÏ±Ö?ÑÏõê?? Î∂ÑÍ≥º?ÑÏõê??7Î™?/span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">Î∂ÑÍ≥º:</span>
+                                <span class="text-gray-600">Í≤ΩÏ†ú, ?¨Ìöå, ?∏Íµê, ÍµêÏú° ??7Í∞?/span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">?åÏùò:</span>
+                                <span class="text-gray-600">??2???ïÍ∏∞ ?åÏùò</span>
+                            </div>
+                        </div>
+                        <!-- ?¥Î?ÏßÄ ?åÎ†à?¥Ïä§?Ä??-->
+                        <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-camera text-2xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-balance-scale text-purple-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">?§Î¶¨?ÑÏõê??/h3>
+                                <p class="text-gray-600">?§Î¶¨ Í¥ÄÎ¶?Í∏∞Íµ¨</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            ?πÏõê???§Î¶¨?Ä Í∏∞Í∞ï??Í¥ÄÎ¶¨Ìïò??Íπ®ÎÅó?òÍ≥† ?¨Î™Ö???ïÎãπ Î¨∏ÌôîÎ•?Ï°∞ÏÑ±?©Îãà??
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">Íµ¨ÏÑ±:</span>
+                                <span class="text-gray-600">?ÑÏõê?? ?ÑÏõê 6Î™?/span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">?ÑÍ∏∞:</span>
+                                <span class="text-gray-600">2??/span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold text-gray-700">?åÏùò:</span>
+                                <span class="text-gray-600">?ÑÏöî???òÏãú ?åÏùò</span>
+                            </div>
+                        </div>
+                        <!-- ?¥Î?ÏßÄ ?åÎ†à?¥Ïä§?Ä??-->
+                        <div class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-camera text-2xl text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ÏßÄ??Ï°∞ÏßÅ Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">ÏßÄ??Ï°∞ÏßÅ</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        ?ÑÍµ≠ Í∞ÅÏ??êÏÑú ?úÎèô?òÎäî ÏßÄ??Ï°∞ÏßÅ?§Ïù¥ ?ÄÎøåÎ¶¨ ÎØºÏ£ºÏ£ºÏùòÎ•??§ÌòÑ?©Îãà??
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                        <div class="aspect-square bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-camera text-3xl text-gray-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">?òÎèÑÍ∂?/h3>
+                        <p class="text-gray-600 text-sm mb-2">?úÏö∏, Í≤ΩÍ∏∞, ?∏Ï≤ú</p>
+                        <p class="text-red-600 font-semibold">8Í∞?ÏßÄÍµ¨Îãπ</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                        <div class="aspect-square bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-camera text-3xl text-gray-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">?ÅÎÇ®Í∂?/h3>
+                        <p class="text-gray-600 text-sm mb-2">Î∂Ä?? ?ÄÍµ? ?∏ÏÇ∞, Í≤ΩÎÇ®, Í≤ΩÎ∂Å</p>
+                        <p class="text-red-600 font-semibold">12Í∞?ÏßÄÍµ¨Îãπ</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                        <div class="aspect-square bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-camera text-3xl text-gray-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">?∏ÎÇ®Í∂?/h3>
+                        <p class="text-gray-600 text-sm mb-2">Í¥ëÏ£º, ?ÑÎÇ®, ?ÑÎ∂Å</p>
+                        <p class="text-red-600 font-semibold">6Í∞?ÏßÄÍµ¨Îãπ</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                        <div class="aspect-square bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                            <i class="fas fa-camera text-3xl text-gray-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Ï∂©Ï≤≠¬∑Í∞ïÏõêÍ∂?/h3>
+                        <p class="text-gray-600 text-sm mb-2">?Ä?? ?∏Ï¢Ö, Ï∂©ÎÇ®, Ï∂©Î∂Å, Í∞ïÏõê</p>
+                        <p class="text-red-600 font-semibold">7Í∞?ÏßÄÍµ¨Îãπ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ï°∞ÏßÅ Î¨∏Ìôî Section -->
+        <section class="py-20 bg-red-600 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6">Ï°∞ÏßÅ Î¨∏Ìôî</h2>
+                    <p class="text-2xl text-red-100 max-w-4xl mx-auto leading-relaxed">
+                        "?åÌÜµÍ≥??ëÎ†•, ?¨Î™Ö?±Í≥º Ï±ÖÏûÑÍ∞?<br>
+                        Í±¥Í∞ï?òÍ≥† ??èô?ÅÏù∏ Ï°∞ÏßÅ Î¨∏ÌôîÎ•?ÎßåÎì§?¥Í∞ë?àÎã§.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-handshake text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">?ÅÌò∏ Ï°¥Ï§ë</h3>
+                        <p class="text-red-100">?§Ïñë???òÍ≤¨??Ï°¥Ï§ë?òÍ≥† Í±¥ÏÑ§?ÅÏù∏ ?†Î°†??Ï∂îÍµ¨?©Îãà??</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-eye text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">?¨Î™Ö??/h3>
+                        <p class="text-red-100">Î™®Îì† ?òÏÇ¨Í≤∞Ï†ï Í≥ºÏ†ï???¨Î™Ö?òÍ≤å Í≥µÍ∞ú?©Îãà??</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-rocket text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">?ÅÏã†</h3>
+                        <p class="text-red-100">?äÏûÑ?ÜÎäî ?ôÏäµÍ≥??ÅÏã†?ºÎ°ú Î∞úÏ†Ñ?¥Í∞ë?àÎã§.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">?êÏú†?Ä?ÅÏã†</h3>
+                    <p class="text-gray-400">
+                        ???òÏ? ?Ä?úÎ?Íµ?ùÑ ?ÑÌïú<br>
+                        ?àÎ°ú???ïÏπò???úÏûë
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">?∞ÎùΩÏ≤?/h4>
+                    <p class="text-gray-400">
+                        ?ÑÌôî: 02-000-0000<br>
+                        ?¥Î©î?? info@party.kr<br>
+                        Ï£ºÏÜå: ?úÏö∏?πÎ≥Ñ???ÅÎì±?¨Íµ¨
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">?åÏÖúÎØ∏Îîî??/h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ?êÏú†?Ä?ÅÏã†. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../nav.js"></script>
+</body>
+</html> 

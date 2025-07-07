@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?âÏÇ¨/ÏßëÌöå ?àÎÇ¥ - ?êÏú†?Ä?ÅÏã†</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .event-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        .event-badge {
+            animation: pulse 2s infinite;
+        }
+        .swiper-pagination-bullet {
+            background: #A50034;
+        }
+        .swiper-pagination-bullet-active {
+            background: #8B002C;
+        }
+    </style>
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">?âÏÇ¨/ÏßëÌöå ?àÎÇ¥</h1>
+            <p style="font-size:1.2rem; margin-top:1rem; opacity:0.9;">Î≥¥Ïàò ÏßÑÏòÅ??Î™®Îì† ÏßëÌöå?Ä ?âÏÇ¨ ?ïÎ≥¥Î•???Í≥≥Ïóê??/p>
+        </div>
+    </section>
+    
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- Urgent Events Slider -->
+        <section class="py-8 bg-red-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center mb-6">
+                    <div class="event-badge bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">
+                        <i class="fas fa-calendar-check mr-1"></i>?¥Î≤àÏ£?
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">?§Í??§Îäî Î≥¥Ïàò ÏßëÌöå</h2>
+                </div>
+                
+                <div class="swiper upcoming-events-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-6 shadow-lg border-l-4 border-red-600">
+                                <div class="flex justify-between items-start mb-3">
+                                    <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-bold">?§Îäò ?§ÌõÑ 2??/span>
+                                    <span class="text-red-600 font-bold">D-0</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">YOON AGAIN ?úÏ¥àÎ™®ÏûÑ</h3>
+                                <p class="text-gray-600 text-sm mb-3">?úÏö∏ ?úÏ¥àÍµ??úÏ¥à?ÄÎ°?| ?úÏ¥àÎ≥¥Ïàò?∞Ìï©</p>
+                                <button onclick="openEventDetail('urgent-1')" class="text-red-600 hover:text-red-700 font-medium text-sm">
+                                    ?êÏÑ∏??Î≥¥Í∏∞ <i class="fas fa-arrow-right ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-6 shadow-lg border-l-4 border-orange-500">
+                                <div class="flex justify-between items-start mb-3">
+                                    <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs font-bold">?¥Ïùº ?§ÌõÑ 6??/span>
+                                    <span class="text-orange-600 font-bold">D-1</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">?úÍ∑πÍ∏?ÏßëÌöå</h3>
+                                <p class="text-gray-600 text-sm mb-3">Î∂Ä???¥Ïö¥?Ä ?¥Î? | Î∂Ä?∞Î≥¥?òÏó∞??/p>
+                                <button onclick="openEventDetail('urgent-2')" class="text-red-600 hover:text-red-700 font-medium text-sm">
+                                    ?êÏÑ∏??Î≥¥Í∏∞ <i class="fas fa-arrow-right ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-lg p-6 shadow-lg border-l-4 border-yellow-500">
+                                <div class="flex justify-between items-start mb-3">
+                                    <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-bold">?¥Î≤à Ï£??†Ïöî??/span>
+                                    <span class="text-yellow-600 font-bold">D-3</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">?êÏú†ÎØºÏ£ºÏ£ºÏùò ?òÌò∏ ?Ä??/h3>
+                                <p class="text-gray-600 text-sm mb-3">?ÄÍµ??ôÏÑ±Î°?| ?ÄÍµ¨Í≤ΩÎ∂ÅÎ≥¥?òÎã®Ï≤¥Ïó∞??/p>
+                                <button onclick="openEventDetail('urgent-3')" class="text-red-600 hover:text-red-700 font-medium text-sm">
+                                    ?êÏÑ∏??Î≥¥Í∏∞ <i class="fas fa-arrow-right ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination mt-6"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Filter and Search -->
+        <section class="py-6 bg-gray-50 border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <div class="flex flex-wrap gap-2">
+                        <button class="filter-btn active" data-filter="all">?ÑÏ≤¥</button>
+                        <button class="filter-btn" data-filter="today">?§Îäò</button>
+                        <button class="filter-btn" data-filter="week">?¥Î≤àÏ£?/button>
+                        <button class="filter-btn" data-filter="seoul">?úÏö∏</button>
+                        <button class="filter-btn" data-filter="busan">Î∂Ä??/button>
+                        <button class="filter-btn" data-filter="daegu">?ÄÍµ?/button>
+                        <button class="filter-btn" data-filter="others">Í∏∞Ì?ÏßÄ??/button>
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="text" placeholder="?®Ï≤¥Î™? ?úÎ™© Í≤Ä??.." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Events List -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid gap-6" id="events-list">
+                    <!-- Event Card 1 -->
+                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="today seoul" onclick="openEventDetail('event-1')">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="md:w-48 h-32 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <div class="text-center">
+                                    <i class="fas fa-bullhorn text-red-600 text-2xl mb-2"></i>
+                                    <p class="text-red-700 font-medium text-sm">?¨Ïä§???¥Î?ÏßÄ</p>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium">ÏßëÌöå</span>
+                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">?úÏö∏</span>
+                                    </div>
+                                    <span class="text-red-600 font-bold">?§Îäò</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Í∏∏Í±∞Î¶??âÏßÑ</h3>
+                                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-calendar mr-2 text-red-600"></i>
+                                        <span>2025??1??18??(?? 14:00</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
+                                        <span>?úÏö∏ Ï¢ÖÎ°úÍµ?Í¥ëÌôîÎ¨∏Í¥ë??/span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-users mr-2 text-red-600"></i>
+                                        <span>?êÏú†?òÌò∏Íµ???¥ÎèôÎ≥∏Î?</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-phone mr-2 text-red-600"></i>
+                                        <span>02-123-4567</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 line-clamp-2">?êÏú†ÎØºÏ£ºÏ£ºÏùò Í∞ÄÏπ??òÌò∏Î•??ÑÌïú ?âÌôîÎ°úÏö¥ Í∏∏Í±∞Î¶??âÏßÑ?ÖÎãà?? ÎßéÏ? Ï∞∏Ïó¨ Î∞îÎûç?àÎã§.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Event Card 2 -->
+                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="week busan" onclick="openEventDetail('event-2')">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="md:w-48 h-32 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <div class="text-center">
+                                    <i class="fas fa-microphone text-blue-600 text-2xl mb-2"></i>
+                                    <p class="text-blue-700 font-medium text-sm">?¨Ïä§???¥Î?ÏßÄ</p>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">?†Î°†??/span>
+                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">Î∂Ä??/span>
+                                    </div>
+                                    <span class="text-blue-600 font-bold">D-2</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Íµ?? ?àÎ≥¥?Ä Í≤ΩÏ†ú ?ïÏ±Ö ?†Î°†??/h3>
+                                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-calendar mr-2 text-red-600"></i>
+                                        <span>2025??1??20??(?? 19:00</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
+                                        <span>Î∂Ä???¥Ïö¥?ÄÍµ?BEXCO</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-users mr-2 text-red-600"></i>
+                                        <span>Î∂Ä?∞Î≥¥?òÏó∞??/span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-phone mr-2 text-red-600"></i>
+                                        <span>051-987-6543</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 line-clamp-2">Íµ?? ?àÎ≥¥ ?ïÏ±ÖÍ≥?Í≤ΩÏ†ú Î∞úÏ†Ñ Î∞©Ïïà???Ä???ÑÎ¨∏Í∞Ä ?†Î°†?åÏûÖ?àÎã§. ?úÎ? ?¨Îü¨Î∂ÑÏùò Ï∞∏Ïó¨Î•??òÏòÅ?©Îãà??</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Event Card 3 -->
+                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="week daegu" onclick="openEventDetail('event-3')">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="md:w-48 h-32 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <div class="text-center">
+                                    <i class="fas fa-flag text-green-600 text-2xl mb-2"></i>
+                                    <p class="text-green-700 font-medium text-sm">?¨Ïä§???¥Î?ÏßÄ</p>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium">?âÏßÑ</span>
+                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">?ÄÍµ?/span>
+                                    </div>
+                                    <span class="text-green-600 font-bold">D-5</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">?êÏú†ÎØºÏ£ºÏ£ºÏùò ?òÌò∏ ?âÏßÑ</h3>
+                                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-calendar mr-2 text-red-600"></i>
+                                        <span>2025??1??23??(Î™? 16:00</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
+                                        <span>?ÄÍµ?Ï§ëÍµ¨ ?ôÏÑ±Î°?/span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-users mr-2 text-red-600"></i>
+                                        <span>?ÄÍµ¨Í≤ΩÎ∂ÅÎ≥¥?òÎã®Ï≤¥Ïó∞??/span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-phone mr-2 text-red-600"></i>
+                                        <span>053-456-7890</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 line-clamp-2">?êÏú†ÎØºÏ£ºÏ£ºÏùò Í∞ÄÏπ??òÌò∏Î•??ÑÌïú ?âÌôî???âÏßÑ?ÖÎãà?? ?ÄÍµ??úÎ? ?¨Îü¨Î∂ÑÏùò ÎßéÏ? Ï∞∏Ïó¨ Î∂Ä?ÅÎìúÎ¶ΩÎãà??</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- More event cards would continue here -->
+                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="others" onclick="openEventDetail('event-4')">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="md:w-48 h-32 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <div class="text-center">
+                                    <i class="fas fa-handshake text-purple-600 text-2xl mb-2"></i>
+                                    <p class="text-purple-700 font-medium text-sm">?¨Ïä§???¥Î?ÏßÄ</p>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div>
+                                        <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">Í∞ÑÎã¥??/span>
+                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">Í¥ëÏ£º</span>
+                                    </div>
+                                    <span class="text-purple-600 font-bold">D-7</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">ÏßÄ??Î∞úÏ†Ñ???ÑÌïú ?úÎ? Í∞ÑÎã¥??/h3>
+                                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-calendar mr-2 text-red-600"></i>
+                                        <span>2025??1??25??(?? 10:00</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
+                                        <span>Í¥ëÏ£º ?úÍµ¨ ?úÎ??åÍ?</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-users mr-2 text-red-600"></i>
+                                        <span>Í¥ëÏ£º?úÎ??∞Ìï©</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-600">
+                                        <i class="fas fa-phone mr-2 text-red-600"></i>
+                                        <span>062-345-6789</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 line-clamp-2">Í¥ëÏ£º ÏßÄ??Î∞úÏ†ÑÍ≥??úÎ? Î≥µÏ? ?•ÏÉÅ???ÑÌïú ?ïÏ±Ö Í∞ÑÎã¥?åÏûÖ?àÎã§. ?úÎ? ?¨Îü¨Î∂ÑÏùò ?òÍ≤¨???£Í≤†?µÎãà??</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="text-center mt-12">
+                    <button class="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors">
+                        ??ÎßéÏ? ?âÏÇ¨ Î≥¥Í∏∞ <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Submit Event Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h3 class="text-3xl font-bold text-gray-900 mb-6">?âÏÇ¨ ?ïÎ≥¥ ?±Î°ù</h3>
+                <p class="text-xl text-gray-600 mb-8">
+                    Î≥¥Ïàò ÏßÑÏòÅ??ÏßëÌöå???âÏÇ¨ ?ïÎ≥¥Î•?Í≥µÏú†?¥Ï£º?∏Ïöî.<br>
+                    ??ÎßéÏ? ?úÎ??§Ïù¥ Ï∞∏Ïó¨?????àÎèÑÎ°??ÑÏ?Ï£ºÏÑ∏??
+                </p>
+                <button onclick="openSubmitForm()" class="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors text-lg font-medium">
+                    ?âÏÇ¨ ?ïÎ≥¥ ?±Î°ù?òÍ∏∞ <i class="fas fa-plus ml-2"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Event Detail Modal -->
+    <div id="event-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b">
+                <div class="flex justify-between items-start">
+                    <h2 id="modal-title" class="text-2xl font-bold text-gray-900"></h2>
+                    <button onclick="closeEventDetail()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6" id="modal-content">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
+    <script src="../nav.js"></script>
+    <script>
+        loadNavigation();
+        
+        // Initialize Swiper
+        const upcomingSwiper = new Swiper('.upcoming-events-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                }
+            }
+        });
+        
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                const events = document.querySelectorAll('.event-card');
+                
+                events.forEach(event => {
+                    if (filter === 'all' || event.dataset.category.includes(filter)) {
+                        event.style.display = 'block';
+                    } else {
+                        event.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Event detail modal
+        function openEventDetail(eventId) {
+            const modal = document.getElementById('event-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+                         // Sample event details - in real implementation, this would fetch from database
+             const eventDetails = {
+                 'event-1': {
+                     title: 'Í∏∏Í±∞Î¶??âÏßÑ',
+                     content: `
+                         <div class="space-y-6">
+                             <div class="bg-red-100 rounded-lg p-4">
+                                 <h3 class="font-bold text-red-900 mb-2">?âÏÇ¨ ?ïÎ≥¥</h3>
+                                 <p><strong>?ºÏãú:</strong> 2025??1??18??(?? 14:00 ~ 17:00</p>
+                                 <p><strong>?•ÏÜå:</strong> ?úÏö∏ Ï¢ÖÎ°úÍµ?Í¥ëÌôîÎ¨∏Í¥ë??/p>
+                                 <p><strong>Ï£ºÏµú:</strong> ?êÏú†?òÌò∏Íµ???¥ÎèôÎ≥∏Î?</p>
+                                 <p><strong>?∞ÎùΩÏ≤?</strong> 02-123-4567</p>
+                             </div>
+                             <div>
+                                 <h3 class="font-bold text-gray-900 mb-3">?âÏÇ¨ ?¥Ïö©</h3>
+                                 <p class="text-gray-600 leading-relaxed">
+                                     ?êÏú†ÎØºÏ£ºÏ£ºÏùò Í∞ÄÏπ??òÌò∏Î•??ÑÌïú ?âÌôîÎ°úÏö¥ Í∏∏Í±∞Î¶??âÏßÑ?ÖÎãà?? 
+                                     ?Ä?úÎ?Íµ?ùò ?êÏú†ÎØºÏ£ºÏ£ºÏùò ?ïÏã†??ÏßÄ?§Í≥† Î≥¥Ïàò Í∞ÄÏπòÎ? ?åÎ¶¨???ªÍπä?Ä ?âÏÇ¨?ÖÎãà??
+                                 </p>
+                             </div>
+                             <div>
+                                 <h3 class="font-bold text-gray-900 mb-3">Ï∞∏Í? ?àÎÇ¥</h3>
+                                 <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                     <li>?¨Ï†Ñ ?†Ï≤≠ Î∂àÌïÑ?? ?êÏú† Ï∞∏ÏÑù</li>
+                                     <li>?úÍ∑πÍ∏?ÏßÄÏ∞?Í∂åÏû•</li>
+                                     <li>?âÌôî???âÏßÑ ÏßÑÌñâ</li>
+                                     <li>?âÏßÑ ???ïÎ¶¨ ?úÎèô Ï∞∏Ïó¨</li>
+                                 </ul>
+                             </div>
+                             <div class="bg-gray-50 rounded-lg p-4">
+                                 <p class="text-sm text-gray-600">
+                                     <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                                     ?âÏßÑ Ï∞∏Ïó¨ ??ÏßàÏÑú ?†Ï? Î∞??àÏ†Ñ ?òÏπô??Ï§Ä?òÌï¥Ï£ºÏÑ∏??
+                                 </p>
+                             </div>
+                         </div>
+                     `
+                 },
+                 'urgent-1': {
+                     title: 'YOON AGAIN ?úÏ¥àÎ™®ÏûÑ',
+                     content: `
+                         <div class="space-y-6">
+                             <div class="bg-red-100 rounded-lg p-4">
+                                 <h3 class="font-bold text-red-900 mb-2">Î™®ÏûÑ ?ïÎ≥¥</h3>
+                                 <p><strong>?ºÏãú:</strong> 2025??1??18??(?? 14:00 ~ 16:00</p>
+                                 <p><strong>?•ÏÜå:</strong> ?úÏö∏ ?úÏ¥àÍµ??úÏ¥à?ÄÎ°?/p>
+                                 <p><strong>Ï£ºÏµú:</strong> ?úÏ¥àÎ≥¥Ïàò?∞Ìï©</p>
+                                 <p><strong>?∞ÎùΩÏ≤?</strong> 02-345-6789</p>
+                             </div>
+                             <div>
+                                 <h3 class="font-bold text-gray-900 mb-3">Î™®ÏûÑ ?¥Ïö©</h3>
+                                 <p class="text-gray-600 leading-relaxed">
+                                     ?§ÏÑù???Ä?µÎ†π ÏßÄÏßÄ Î™®ÏûÑ?ÖÎãà?? Î≥¥Ïàò Í∞ÄÏπòÏ? ?êÏú†ÎØºÏ£ºÏ£ºÏùò ?òÌò∏Î•??ÑÌïú ?úÎ??§Ïùò ?êÎ∞ú??Î™®ÏûÑ?ÖÎãà??
+                                 </p>
+                             </div>
+                         </div>
+                     `
+                 },
+                 'urgent-2': {
+                     title: '?úÍ∑πÍ∏?ÏßëÌöå',
+                     content: `
+                         <div class="space-y-6">
+                             <div class="bg-red-100 rounded-lg p-4">
+                                 <h3 class="font-bold text-red-900 mb-2">ÏßëÌöå ?ïÎ≥¥</h3>
+                                 <p><strong>?ºÏãú:</strong> 2025??1??19??(?? 18:00 ~ 20:00</p>
+                                 <p><strong>?•ÏÜå:</strong> Î∂Ä???¥Ïö¥?Ä ?¥Î?</p>
+                                 <p><strong>Ï£ºÏµú:</strong> Î∂Ä?∞Î≥¥?òÏó∞??/p>
+                                 <p><strong>?∞ÎùΩÏ≤?</strong> 051-234-5678</p>
+                             </div>
+                             <div>
+                                 <h3 class="font-bold text-gray-900 mb-3">ÏßëÌöå ?¥Ïö©</h3>
+                                 <p class="text-gray-600 leading-relaxed">
+                                     ?úÍ∑πÍ∏∞Î? ???†Íµ≠ ?úÎ??§Ïùò Î™®ÏûÑ?ÖÎãà?? ?òÎùº?¨Îûë ?ïÏã†???òÏÉàÍ∏∞Í≥† Î≥¥Ïàò Í∞ÄÏπòÎ? ?§Ï≤ú?òÎäî ?úÍ∞Ñ?ÖÎãà??
+                                 </p>
+                             </div>
+                         </div>
+                     `
+                 },
+                 'urgent-3': {
+                     title: '?êÏú†ÎØºÏ£ºÏ£ºÏùò ?òÌò∏ ?Ä??,
+                     content: `
+                         <div class="space-y-6">
+                             <div class="bg-red-100 rounded-lg p-4">
+                                 <h3 class="font-bold text-red-900 mb-2">?Ä???ïÎ≥¥</h3>
+                                 <p><strong>?ºÏãú:</strong> 2025??1??21??(?? 16:00 ~ 18:00</p>
+                                 <p><strong>?•ÏÜå:</strong> ?ÄÍµ?Ï§ëÍµ¨ ?ôÏÑ±Î°?/p>
+                                 <p><strong>Ï£ºÏµú:</strong> ?ÄÍµ¨Í≤ΩÎ∂ÅÎ≥¥?òÎã®Ï≤¥Ïó∞??/p>
+                                 <p><strong>?∞ÎùΩÏ≤?</strong> 053-123-4567</p>
+                             </div>
+                         </div>
+                     `
+                 }
+             };
+            
+            const event = eventDetails[eventId];
+            if (event) {
+                title.textContent = event.title;
+                content.innerHTML = event.content;
+                modal.classList.remove('hidden');
+            }
+        }
+        
+        function closeEventDetail() {
+            document.getElementById('event-modal').classList.add('hidden');
+        }
+        
+        function openSubmitForm() {
+            alert('?âÏÇ¨ ?±Î°ù ?ºÏúºÎ°??¥Îèô?©Îãà?? (?§Ï†ú Íµ¨ÌòÑ?êÏÑú??Î≥ÑÎèÑ ?òÏù¥ÏßÄ??Î™®Îã¨Î°??∞Í≤∞)');
+        }
+        
+        // Style for filter buttons
+        const style = document.createElement('style');
+        style.textContent = `
+            .filter-btn {
+                background: white;
+                border: 2px solid #e5e7eb;
+                color: #6b7280;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+            .filter-btn:hover,
+            .filter-btn.active {
+                background: #A50034;
+                border-color: #A50034;
+                color: white;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html> 
