@@ -6,8 +6,8 @@
   NODE_VERSION = "18"
 
 [[redirects]]
-  from = "/admin/*"
-  to = "/admin/index.html"
+  from = "/freedom-control/*"
+  to = "/freedom-control/index.html"
   status = 200
 
 # Enable Git Gateway for Netlify CMS
