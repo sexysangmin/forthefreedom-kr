@@ -112,4 +112,90 @@ collections:
     folder: "archive"
     create: false
     fields:
-      - { name: "body", label: "백업 콘텐츠", widget: "markdown" } 
+      - { name: "body", label: "백업 콘텐츠", widget: "markdown" }
+
+  - name: "home"
+    label: "메인 페이지"
+    files:
+      - file: "content/home/hero.yml"
+        label: "메인 히어로"
+        name: "hero"
+        fields:
+          - { name: "title", label: "메인 제목", widget: "string" }
+          - { name: "subtitle", label: "부제목", widget: "string" }
+          - { name: "description", label: "설명", widget: "text" }
+          - { name: "background_image", label: "배경 이미지", widget: "image" }
+          - { name: "cta_text", label: "버튼 텍스트", widget: "string" }
+          - { name: "cta_link", label: "버튼 링크", widget: "string" }
+      - file: "content/home/representative.yml"
+        label: "대표 인사말"
+        name: "representative"
+        fields:
+          - { name: "section_title", label: "섹션 제목", widget: "string" }
+          - { name: "title", label: "제목", widget: "string" }
+          - { name: "name", label: "대표명", widget: "string" }
+          - { name: "position", label: "직책", widget: "string" }
+          - { name: "photo", label: "대표 사진", widget: "image", required: false }
+          - { name: "messages", label: "인사말", widget: "list", field: { name: "message", label: "메시지", widget: "text" } }
+      - file: "content/home/core-policies.yml"
+        label: "핵심 정책"
+        name: "core_policies"
+        fields:
+          - { name: "section_title", label: "섹션 제목", widget: "string" }
+          - { name: "title", label: "제목", widget: "string" }
+          - { name: "description", label: "설명", widget: "text" }
+          - name: "policies"
+            label: "정책 목록"
+            widget: "list"
+            fields:
+              - { name: "title", label: "정책명", widget: "string" }
+                             - { name: "icon", label: "아이콘 클래스", widget: "string" }
+               - { name: "description", label: "설명", widget: "text" }
+
+  - name: "about"
+    label: "당 소개"
+    files:
+      - file: "content/about/founding.md"
+        label: "창당 취지문"
+        name: "founding"
+        fields:
+          - { name: "title", label: "제목", widget: "string" }
+          - { name: "description", label: "설명", widget: "text" }
+          - { name: "date", label: "날짜", widget: "datetime" }
+          - { name: "author", label: "작성자", widget: "string", required: false }
+          - { name: "body", label: "내용", widget: "markdown" }
+      - file: "content/about/organization.md"
+        label: "조직 구성"
+        name: "organization"
+        fields:
+          - { name: "title", label: "제목", widget: "string" }
+          - { name: "description", label: "설명", widget: "text" }
+          - { name: "date", label: "날짜", widget: "datetime" }
+          - { name: "body", label: "내용", widget: "markdown" }
+      - file: "content/about/principles.md"
+        label: "강령 및 핵심 가치"
+        name: "principles"
+        fields:
+          - { name: "title", label: "제목", widget: "string" }
+          - { name: "description", label: "설명", widget: "text" }
+          - { name: "date", label: "날짜", widget: "datetime" }
+          - { name: "body", label: "내용", widget: "markdown" }
+      - file: "content/about/schedule.md"
+        label: "창당 일정"
+        name: "schedule"
+        fields:
+          - { name: "title", label: "제목", widget: "string" }
+          - { name: "description", label: "설명", widget: "text" }
+          - { name: "date", label: "날짜", widget: "datetime" }
+          - { name: "body", label: "내용", widget: "markdown" }
+      - file: "content/about/location.md"
+        label: "오시는 길"
+        name: "location"
+        fields:
+          - { name: "title", label: "제목", widget: "string" }
+          - { name: "description", label: "설명", widget: "text" }
+          - { name: "date", label: "날짜", widget: "datetime" }
+          - { name: "address", label: "주소", widget: "string" }
+          - { name: "phone", label: "전화번호", widget: "string" }
+          - { name: "email", label: "이메일", widget: "string" }
+          - { name: "body", label: "내용", widget: "markdown" } 
