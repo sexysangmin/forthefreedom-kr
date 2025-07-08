@@ -1,16 +1,8 @@
 [build]
   publish = "."
-  command = "echo 'Using static HTML files'"
-
-[build.environment]
-  NODE_VERSION = "18"
-  RUBY_VERSION = "3.1.0"
+  command = "echo 'Static HTML deployment - no build needed'"
 
 [[redirects]]
   from = "/freedom-control/*"
   to = "/freedom-control/index.html"
-  status = 200
-
-# Netlify CMS를 위한 환경 설정
-[context.production]
-  environment = { ACCESS_TOKEN = "", BRANCH = "main", JEKYLL_ENV = "production" } 
+  status = 200 
