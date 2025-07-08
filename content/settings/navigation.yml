@@ -1,0 +1,78 @@
+main_menu:
+  - title: "홈"
+    url: "index.html"
+    order: 1
+    submenu: []
+    
+  - title: "당에 대해"
+    url: "about.html"
+    order: 2
+    submenu:
+      - title: "창당 취지문"
+        url: "about/founding.html"
+      - title: "강령 및 핵심 가치"
+        url: "about/principles.html"
+      - title: "조직 구성"
+        url: "about/organization.html"
+      - title: "주요 인물"
+        url: "about/people.html"
+      - title: "창당 일정"
+        url: "about/schedule.html"
+      - title: "오시는 길"
+        url: "about/location.html"
+        
+  - title: "정책"
+    url: "policy.html"
+    order: 3
+    submenu:
+      - title: "경제정책"
+        url: "policy/economy.html"
+      - title: "교육정책"
+        url: "policy/education.html"
+      - title: "안보정책"
+        url: "policy/security.html"
+        
+  - title: "소식"
+    url: "news.html"
+    order: 4
+    submenu:
+      - title: "정당 활동"
+        url: "news/activities.html"
+      - title: "보도자료"
+        url: "news/press.html"
+      - title: "포토갤러리"
+        url: "news/gallery.html"
+      - title: "언론보도"
+        url: "news/media.html"
+      - title: "행사안내"
+        url: "news/events.html"
+        
+  - title: "참여"
+    url: "members.html"
+    order: 5
+    submenu:
+      - title: "당원가입"
+        url: "members/join.html"
+      - title: "당비안내"
+        url: "members/dues.html"
+        
+  - title: "자료실"
+    url: "resources.html"
+    order: 6
+    submenu:
+      - title: "다운로드"
+        url: "resources/downloads.html"
+      - title: "홍보자료"
+        url: "resources/media.html"
+      - title: "정책자료"
+        url: "resources/policy.html"
+        
+  - title: "후원"
+    url: "support.html"
+    order: 7
+    submenu: []
+    
+  - title: "기타"
+    url: "faq.html"
+    order: 8
+    submenu: [] 

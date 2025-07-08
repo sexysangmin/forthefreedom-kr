@@ -1,0 +1,105 @@
+page_title: "자유와혁신에 대해"
+page_description: "새로운 정치를 위한 혁신적 정당"
+hero_image: "/images/hero_bg.png"
+
+subpages:
+  - name: "founding"
+    url: "about/founding.html"
+    title: "창당 취지문"
+    description: "자유와혁신 창당의 배경과 목적"
+    featured_image: "/images/hero_bg.png"
+    content: |
+      # 창당 취지문
+      
+      대한민국은 새로운 변화를 필요로 합니다. 기존 정치의 틀에서 벗어나 진정한 자유와 혁신을 추구하는 정당이 필요한 시점입니다.
+      
+      ## 우리의 비전
+      - 국민 개개인의 자유 보장
+      - 창조적 혁신을 통한 미래 건설
+      - 모든 세대가 함께하는 상생 정치
+      
+      자유와혁신은 이러한 가치를 실현하기 위해 창당되었습니다.
+      
+  - name: "principles"
+    url: "about/principles.html"
+    title: "강령 및 핵심 가치"
+    description: "자유와혁신의 핵심 가치와 정치 철학"
+    featured_image: "/images/hero_bg.png"
+    content: |
+      # 강령 및 핵심 가치
+      
+      ## 자유 (Freedom)
+      개인의 자유와 권리를 최우선으로 보장하며, 창의적 사고와 다양성을 존중합니다.
+      
+      ## 혁신 (Innovation)
+      기존 관습에 얽매이지 않고 새로운 방식으로 문제를 해결합니다.
+      
+      ## 통합 (Integration)
+      세대, 계층, 지역을 아우르는 통합 정치를 추구합니다.
+      
+      ## 미래 (Future)
+      현재에 안주하지 않고 미래를 준비하는 정책을 추진합니다.
+      
+  - name: "organization"
+    url: "about/organization.html"
+    title: "조직 구성"
+    description: "자유와혁신의 조직 체계"
+    featured_image: "/images/hero_bg.png"
+    content: |
+      # 조직 구성
+      
+      ## 당 대표
+      - 조상민 (당 대표)
+      
+      ## 조직 구조
+      - 중앙당
+      - 시도당
+      - 구시군당
+      - 읍면동당
+      
+      투명하고 민주적인 조직 운영을 통해 당원 모두가 참여할 수 있는 정당을 만들어갑니다.
+      
+  - name: "people"
+    url: "about/people.html"
+    title: "주요 인물"
+    description: "자유와혁신의 핵심 인물들"
+    featured_image: "/images/hero_bg.png"
+    content: |
+      # 주요 인물
+      
+      ## 조상민 (당 대표)
+      - 새로운 정치를 추구하는 혁신가
+      - 국민과 함께하는 정치 실현
+      
+      더 많은 인물 정보는 추후 업데이트됩니다.
+      
+  - name: "schedule"
+    url: "about/schedule.html"
+    title: "창당 일정"
+    description: "자유와혁신 창당 및 주요 일정"
+    featured_image: "/images/hero_bg.png"
+    content: |
+      # 창당 일정
+      
+      ## 주요 마일스톤
+      - 2025년 1월: 창당 추진위원회 구성
+      - 2025년 2월: 창당대회 개최 예정
+      - 2025년 3월: 본격적인 정치 활동 시작
+      
+      구체적인 일정은 추후 공지됩니다.
+      
+  - name: "location"
+    url: "about/location.html"
+    title: "오시는 길"
+    description: "자유와혁신 사무실 위치 및 연락처"
+    featured_image: "/images/hero_bg.png"
+    content: |
+      # 오시는 길
+      
+      ## 연락처
+      - 📧 이메일: contact@freedom-innovation.kr
+      - 📞 전화: 02-1234-5678
+      - 🏢 주소: 서울시 중구 (상세 주소 추후 공지)
+      
+      ## 대중교통
+      자세한 교통편 안내는 추후 업데이트됩니다. 

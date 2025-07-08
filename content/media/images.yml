@@ -1,0 +1,21 @@
+image_collections:
+  - title: "정당 활동 사진"
+    description: "자유와혁신의 다양한 정치 활동 모습"
+    category: "정당 활동"
+    date: "2025-01-18T00:00:00.000Z"
+    images:
+      - image: "/images/hero_image.jpg"
+        caption: "조상민 대표 공식 사진"
+        alt_text: "자유와혁신 조상민 대표"
+      - image: "/images/hero_bg.png"
+        caption: "자유와혁신 대표 이미지"
+        alt_text: "자유와혁신 브랜드 이미지"
+        
+  - title: "홍보 자료"
+    description: "로고, 브랜드 이미지 등 홍보 관련 자료"
+    category: "홍보"
+    date: "2025-01-18T00:00:00.000Z"
+    images:
+      - image: "/images/hero_image.png"
+        caption: "메인 홍보 이미지"
+        alt_text: "자유와혁신 홍보 이미지" 

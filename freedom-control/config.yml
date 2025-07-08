@@ -2,327 +2,345 @@ backend:
   name: git-gateway
   branch: main
 
+# 통합 미디어 관리
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
+# 로컬 미디어 라이브러리 활성화
+media_library:
+  name: uploadcare
+  config:
+    publicKey: "demopublickey"
+    multiple: true
+    tabs: 'file camera url facebook gdrive gphotos dropbox instagram'
+    effects: 'crop,rotate,enhance,grayscale'
+
 collections:
-  - name: "notices"
-    label: "공지사항"
-    folder: "content/notices"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "제목", name: "title", widget: "string"}
-      - {label: "발행일", name: "date", widget: "datetime"}
-      - {label: "작성자", name: "author", widget: "string", default: "자유와혁신"}
-      - {label: "중요도", name: "priority", widget: "select", options: ["일반", "중요", "긴급"]}
-      - {label: "카테고리", name: "category", widget: "select", options: ["공지", "보도자료", "성명서", "안내"]}
-      - {label: "내용", name: "body", widget: "markdown"}
-
-  - name: "news"
-    label: "소식/활동"
-    folder: "content/news"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "제목", name: "title", widget: "string"}
-      - {label: "발행일", name: "date", widget: "datetime"}
-      - {label: "작성자", name: "author", widget: "string", default: "자유와혁신"}
-      - {label: "카테고리", name: "category", widget: "select", options: ["당 활동", "정책 발표", "간담회", "기자회견", "성명서"]}
-      - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-      - {label: "요약", name: "excerpt", widget: "text"}
-      - {label: "내용", name: "body", widget: "markdown"}
-      - {label: "태그", name: "tags", widget: "list", required: false}
-
-  - name: "events"
-    label: "행사/집회"
-    folder: "content/events"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "행사명", name: "title", widget: "string"}
-      - {label: "일시", name: "event_date", widget: "datetime"}
-      - {label: "장소", name: "location", widget: "string"}
-      - {label: "주최", name: "organizer", widget: "string"}
-      - {label: "연락처", name: "contact", widget: "string"}
-      - {label: "유형", name: "event_type", widget: "select", options: ["집회", "토론회", "간담회", "행진", "세미나", "기타"]}
-      - {label: "지역", name: "region", widget: "select", options: ["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"]}
-      - {label: "포스터", name: "poster", widget: "image", required: false}
-      - {label: "설명", name: "description", widget: "text"}
-      - {label: "상세내용", name: "body", widget: "markdown"}
-      - {label: "참가비", name: "fee", widget: "string", required: false}
-      - {label: "사전신청", name: "registration_required", widget: "boolean", default: false}
-
-  - name: "policies"
-    label: "정책"
-    folder: "content/policies"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "정책명", name: "title", widget: "string"}
-      - {label: "설명", name: "description", widget: "text"}
-      - {label: "분야", name: "category", widget: "select", options: ["경제/일자리", "교육/복지", "안보/외교", "환경/에너지", "법치/개혁", "지역발전", "청년정책"]}
-      - {label: "우선순위", name: "priority", widget: "select", options: ["핵심", "중요", "일반"]}
-      - {label: "발행일", name: "date", widget: "datetime"}
-      - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-      - {label: "요약", name: "summary", widget: "text"}
-      - {label: "내용", name: "body", widget: "markdown"}
-
-  - name: "members"
-    label: "주요 인물"
-    folder: "content/members"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "이름", name: "name", widget: "string"}
-      - {label: "직책", name: "position", widget: "string"}
-      - {label: "순서", name: "order", widget: "number", default: 1}
-      - {label: "프로필 사진", name: "photo", widget: "image", required: false}
-      - {label: "연락처", name: "contact", widget: "string", required: false}
-      - {label: "이메일", name: "email", widget: "string", required: false}
-      - {label: "약력", name: "bio", widget: "markdown"}
-      - {label: "주요 경력", name: "experience", widget: "list", field: {label: "경력", name: "career", widget: "string"}}
-      - {label: "학력", name: "education", widget: "list", field: {label: "학력", name: "degree", widget: "string"}}
-
-  - name: "news_sections"
-    label: "소식 섹션"
+  # ===== 📱 웹사이트 페이지 관리 =====
+  - name: "website_pages"
+    label: "📱 웹사이트 페이지"
     files:
-      - file: "content/news-sections/activities.md"
-        label: "정당 활동"
-        name: "activities"
+      # 홈페이지
+      - file: "_data/homepage.yml"
+        label: "🏠 메인 페이지"
+        name: "homepage"
         fields:
-          - {label: "제목", name: "title", widget: "string"}
-          - {label: "설명", name: "description", widget: "text"}
-          - {label: "카테고리", name: "category", widget: "string"}
-          - {label: "페이지 유형", name: "page_type", widget: "string", default: "news_section"}
-          - {label: "날짜", name: "date", widget: "datetime"}
-          - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-          - {label: "내용", name: "body", widget: "markdown"}
-      - file: "content/news-sections/press.md"
-        label: "보도자료"
-        name: "press"
-        fields:
-          - {label: "제목", name: "title", widget: "string"}
-          - {label: "설명", name: "description", widget: "text"}
-          - {label: "카테고리", name: "category", widget: "string"}
-          - {label: "페이지 유형", name: "page_type", widget: "string", default: "news_section"}
-          - {label: "날짜", name: "date", widget: "datetime"}
-          - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-          - {label: "내용", name: "body", widget: "markdown"}
-      - file: "content/news-sections/gallery.md"
-        label: "포토 & 영상 갤러리"
-        name: "gallery"
-        fields:
-          - {label: "제목", name: "title", widget: "string"}
-          - {label: "설명", name: "description", widget: "text"}
-          - {label: "카테고리", name: "category", widget: "string"}
-          - {label: "페이지 유형", name: "page_type", widget: "string", default: "news_section"}
-          - {label: "날짜", name: "date", widget: "datetime"}
-          - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-          - {label: "내용", name: "body", widget: "markdown"}
-      - file: "content/news-sections/media.md"
-        label: "언론보도"
-        name: "media"
-        fields:
-          - {label: "제목", name: "title", widget: "string"}
-          - {label: "설명", name: "description", widget: "text"}
-          - {label: "카테고리", name: "category", widget: "string"}
-          - {label: "페이지 유형", name: "page_type", widget: "string", default: "news_section"}
-          - {label: "날짜", name: "date", widget: "datetime"}
-          - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-          - {label: "내용", name: "body", widget: "markdown"}
+          - label: "히어로 섹션"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { name: "title", label: "메인 제목", widget: "string" }
+              - { name: "subtitle", label: "부제목", widget: "string" }
+              - { name: "description", label: "설명", widget: "text" }
+              - { name: "background_image", label: "배경 이미지", widget: "image" }
+              - { name: "cta_text", label: "버튼 텍스트", widget: "string" }
+              - { name: "cta_link", label: "버튼 링크", widget: "string" }
+          - label: "대표 인사말"
+            name: "representative"
+            widget: "object"
+            fields:
+              - { name: "section_title", label: "섹션 제목", widget: "string" }
+              - { name: "title", label: "제목", widget: "string" }
+              - { name: "name", label: "대표명", widget: "string" }
+              - { name: "position", label: "직책", widget: "string" }
+              - { name: "photo", label: "대표 사진", widget: "image", required: false }
+              - { name: "messages", label: "인사말", widget: "list", field: { name: "message", label: "메시지", widget: "text" } }
+          - label: "핵심 정책"
+            name: "core_policies"
+            widget: "object"
+            fields:
+              - { name: "section_title", label: "섹션 제목", widget: "string" }
+              - name: "policies"
+                label: "정책 목록"
+                widget: "list"
+                fields:
+                  - { name: "title", label: "정책명", widget: "string" }
+                  - { name: "icon", label: "아이콘", widget: "string" }
+                  - { name: "description", label: "설명", widget: "text" }
 
-  - name: "members_pages"
-    label: "참여 섹션"
-    files:
-      - file: "content/members/join.md"
-        label: "당원가입"
-        name: "join"
+      # 당에 대해
+      - file: "content/about-page.yml"
+        label: "🏛️ 당에 대해 (About)"
+        name: "about_page"
         fields:
-          - {label: "제목", name: "title", widget: "string"}
-          - {label: "설명", name: "description", widget: "text"}
-          - {label: "카테고리", name: "category", widget: "string"}
-          - {label: "페이지 유형", name: "page_type", widget: "string", default: "membership"}
-          - {label: "날짜", name: "date", widget: "datetime"}
-          - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-          - {label: "폼 액션", name: "form_action", widget: "string", required: false}
-          - {label: "내용", name: "body", widget: "markdown"}
-      - file: "content/members/dues.md"
-        label: "당비 안내"
-        name: "dues"
-        fields:
-          - {label: "제목", name: "title", widget: "string"}
-          - {label: "설명", name: "description", widget: "text"}
-          - {label: "카테고리", name: "category", widget: "string"}
-          - {label: "페이지 유형", name: "page_type", widget: "string", default: "membership"}
-          - {label: "날짜", name: "date", widget: "datetime"}
-          - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-          - {label: "내용", name: "body", widget: "markdown"}
-
-  - name: "resources"
-    label: "자료실 섹션"
-    files:
-      - file: "content/resources/downloads.md"
-        label: "다운로드 자료"
-        name: "downloads"
-        fields:
-          - {label: "제목", name: "title", widget: "string"}
-          - {label: "설명", name: "description", widget: "text"}
-          - {label: "카테고리", name: "category", widget: "string"}
-          - {label: "페이지 유형", name: "page_type", widget: "string", default: "resources"}
-          - {label: "날짜", name: "date", widget: "datetime"}
-          - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-          - {label: "내용", name: "body", widget: "markdown"}
-      - file: "content/resources/media-materials.md"
-        label: "홍보자료"
-        name: "media_materials"
-        fields:
-          - {label: "제목", name: "title", widget: "string"}
-          - {label: "설명", name: "description", widget: "text"}
-          - {label: "카테고리", name: "category", widget: "string"}
-          - {label: "페이지 유형", name: "page_type", widget: "string", default: "resources"}
-          - {label: "날짜", name: "date", widget: "datetime"}
-          - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-          - {label: "내용", name: "body", widget: "markdown"}
-
-  - name: "other_pages"
-    label: "기타 페이지"
-    files:
-      - file: "content/other-pages/faq.md"
-        label: "자주 묻는 질문 (FAQ)"
-        name: "faq"
-        fields:
-          - {label: "제목", name: "title", widget: "string"}
-          - {label: "설명", name: "description", widget: "text"}
-          - {label: "카테고리", name: "category", widget: "string"}
-          - {label: "페이지 유형", name: "page_type", widget: "string", default: "other"}
-          - {label: "날짜", name: "date", widget: "datetime"}
-          - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-          - {label: "내용", name: "body", widget: "markdown"}
-      - file: "content/other-pages/support.md"
-        label: "지원·후원"
-        name: "support"
-        fields:
-          - {label: "제목", name: "title", widget: "string"}
-          - {label: "설명", name: "description", widget: "text"}
-          - {label: "카테고리", name: "category", widget: "string"}
-          - {label: "페이지 유형", name: "page_type", widget: "string", default: "other"}
-          - {label: "날짜", name: "date", widget: "datetime"}
-          - {label: "대표 이미지", name: "featured_image", widget: "image", required: false}
-          - {label: "폼 액션", name: "form_action", widget: "string", required: false}
-          - {label: "내용", name: "body", widget: "markdown"}
-
-  - name: "settings"
-    label: "사이트 설정"
-    files:
-      - label: "기본 정보"
-        name: "site_info"
-        file: "content/settings/site.yml"
-        fields:
-          - {label: "당명", name: "party_name", widget: "string", default: "자유와혁신"}
-          - {label: "슬로건", name: "slogan", widget: "string"}
-          - {label: "대표 연락처", name: "main_phone", widget: "string"}
-          - {label: "대표 이메일", name: "main_email", widget: "string"}
-          - {label: "주소", name: "address", widget: "string"}
-
-  - name: "logs"
-    label: "변경 이력"
-    files:
-      - file: "logs/changes.log"
-        label: "전체 변경 이력"
-        name: "changes"
-        fields:
-          - { name: "body", label: "로그", widget: "markdown" }
-
-  - name: "archive"
-    label: "아카이브"
-    folder: "archive"
-    create: false
-    fields:
-      - { name: "body", label: "백업 콘텐츠", widget: "markdown" }
-
-  - name: "home"
-    label: "메인 페이지"
-    files:
-      - file: "_data/hero.yml"
-        label: "메인 히어로"
-        name: "hero"
-        fields:
-          - { name: "title", label: "메인 제목", widget: "string" }
-          - { name: "subtitle", label: "부제목", widget: "string" }
-          - { name: "description", label: "설명", widget: "text" }
-          - { name: "background_image", label: "배경 이미지", widget: "image" }
-          - { name: "cta_text", label: "버튼 텍스트", widget: "string" }
-          - { name: "cta_link", label: "버튼 링크", widget: "string" }
-      - file: "_data/representative.yml"
-        label: "대표 인사말"
-        name: "representative"
-        fields:
-          - { name: "section_title", label: "섹션 제목", widget: "string" }
-          - { name: "title", label: "제목", widget: "string" }
-          - { name: "name", label: "대표명", widget: "string" }
-          - { name: "position", label: "직책", widget: "string" }
-          - { name: "photo", label: "대표 사진", widget: "image", required: false }
-          - { name: "messages", label: "인사말", widget: "list", field: { name: "message", label: "메시지", widget: "text" } }
-      - file: "_data/core-policies.yml"
-        label: "핵심 정책"
-        name: "core_policies"
-        fields:
-          - { name: "section_title", label: "섹션 제목", widget: "string" }
-          - { name: "title", label: "제목", widget: "string" }
-          - { name: "description", label: "설명", widget: "text" }
-          - name: "policies"
-            label: "정책 목록"
+          - { name: "page_title", label: "페이지 제목", widget: "string" }
+          - { name: "page_description", label: "페이지 설명", widget: "text" }
+          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
+          - label: "서브 페이지"
+            name: "subpages"
             widget: "list"
             fields:
-              - { name: "title", label: "정책명", widget: "string" }
-              - { name: "icon", label: "아이콘 클래스", widget: "string" }
+              - { name: "name", label: "페이지명", widget: "string" }
+              - { name: "url", label: "URL", widget: "string" }
+              - { name: "title", label: "제목", widget: "string" }
               - { name: "description", label: "설명", widget: "text" }
+              - { name: "content", label: "내용", widget: "markdown" }
+              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
 
-  - name: "about"
-    label: "당 소개"
+      # 정책 페이지
+      - file: "content/policy-page.yml"
+        label: "📋 정책 (Policy)"
+        name: "policy_page"
+        fields:
+          - { name: "page_title", label: "페이지 제목", widget: "string" }
+          - { name: "page_description", label: "페이지 설명", widget: "text" }
+          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
+          - label: "정책 분야"
+            name: "policy_areas"
+            widget: "list"
+            fields:
+              - { name: "area", label: "분야명", widget: "string" }
+              - { name: "url", label: "URL", widget: "string" }
+              - { name: "title", label: "제목", widget: "string" }
+              - { name: "description", label: "설명", widget: "text" }
+              - { name: "content", label: "내용", widget: "markdown" }
+              - { name: "priority", label: "우선순위", widget: "select", options: ["핵심", "중요", "일반"] }
+              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
+
+      # 소식 페이지
+      - file: "content/news-page.yml"
+        label: "📰 소식 (News)"
+        name: "news_page"
+        fields:
+          - { name: "page_title", label: "페이지 제목", widget: "string" }
+          - { name: "page_description", label: "페이지 설명", widget: "text" }
+          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
+          - label: "소식 섹션"
+            name: "news_sections"
+            widget: "list"
+            fields:
+              - { name: "section", label: "섹션명", widget: "string" }
+              - { name: "url", label: "URL", widget: "string" }
+              - { name: "title", label: "제목", widget: "string" }
+              - { name: "description", label: "설명", widget: "text" }
+              - { name: "content", label: "내용", widget: "markdown" }
+              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
+
+      # 참여 페이지
+      - file: "content/members-page.yml"
+        label: "🤝 참여 (Members)"
+        name: "members_page"
+        fields:
+          - { name: "page_title", label: "페이지 제목", widget: "string" }
+          - { name: "page_description", label: "페이지 설명", widget: "text" }
+          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
+          - label: "참여 방법"
+            name: "participation_methods"
+            widget: "list"
+            fields:
+              - { name: "method", label: "참여 방법", widget: "string" }
+              - { name: "url", label: "URL", widget: "string" }
+              - { name: "title", label: "제목", widget: "string" }
+              - { name: "description", label: "설명", widget: "text" }
+              - { name: "content", label: "내용", widget: "markdown" }
+              - { name: "form_action", label: "폼 액션", widget: "string", required: false }
+              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
+
+      # 자료실 페이지
+      - file: "content/resources-page.yml"
+        label: "📚 자료실 (Resources)"
+        name: "resources_page"
+        fields:
+          - { name: "page_title", label: "페이지 제목", widget: "string" }
+          - { name: "page_description", label: "페이지 설명", widget: "text" }
+          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
+          - label: "자료 카테고리"
+            name: "resource_categories"
+            widget: "list"
+            fields:
+              - { name: "category", label: "카테고리명", widget: "string" }
+              - { name: "url", label: "URL", widget: "string" }
+              - { name: "title", label: "제목", widget: "string" }
+              - { name: "description", label: "설명", widget: "text" }
+              - { name: "content", label: "내용", widget: "markdown" }
+              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
+
+      # 후원 페이지
+      - file: "content/support-page.yml"
+        label: "💝 후원 (Support)"
+        name: "support_page"
+        fields:
+          - { name: "page_title", label: "페이지 제목", widget: "string" }
+          - { name: "page_description", label: "페이지 설명", widget: "text" }
+          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
+          - { name: "content", label: "내용", widget: "markdown" }
+          - { name: "donation_link", label: "후원 링크", widget: "string", required: false }
+          - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
+
+      # FAQ 페이지
+      - file: "content/faq-page.yml"
+        label: "❓ FAQ"
+        name: "faq_page"
+        fields:
+          - { name: "page_title", label: "페이지 제목", widget: "string" }
+          - { name: "page_description", label: "페이지 설명", widget: "text" }
+          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
+          - label: "FAQ 목록"
+            name: "faqs"
+            widget: "list"
+            fields:
+              - { name: "question", label: "질문", widget: "string" }
+              - { name: "answer", label: "답변", widget: "markdown" }
+              - { name: "category", label: "카테고리", widget: "select", options: ["일반", "가입", "정책", "활동", "기타"] }
+
+  # ===== 🎬 미디어 센터 =====
+  - name: "media_center"
+    label: "🎬 미디어 센터"
     files:
-      - file: "content/about/founding.md"
-        label: "창당 취지문"
-        name: "founding"
+      - file: "content/media/images.yml"
+        label: "🖼️ 이미지 라이브러리"
+        name: "images"
         fields:
-          - { name: "title", label: "제목", widget: "string" }
-          - { name: "description", label: "설명", widget: "text" }
-          - { name: "date", label: "날짜", widget: "datetime" }
-          - { name: "author", label: "작성자", widget: "string", required: false }
-          - { name: "body", label: "내용", widget: "markdown" }
-      - file: "content/about/organization.md"
-        label: "조직 구성"
-        name: "organization"
+          - label: "이미지 컬렉션"
+            name: "image_collections"
+            widget: "list"
+            fields:
+              - { name: "title", label: "컬렉션명", widget: "string" }
+              - { name: "description", label: "설명", widget: "text" }
+              - { name: "category", label: "카테고리", widget: "select", options: ["정당 활동", "행사", "정책", "홍보", "기타"] }
+              - { name: "date", label: "날짜", widget: "datetime" }
+              - label: "이미지들"
+                name: "images"
+                widget: "list"
+                fields:
+                  - { name: "image", label: "이미지", widget: "image" }
+                  - { name: "caption", label: "캡션", widget: "string", required: false }
+                  - { name: "alt_text", label: "대체 텍스트", widget: "string" }
+
+      - file: "content/media/videos.yml"
+        label: "🎥 비디오 라이브러리"
+        name: "videos"
         fields:
-          - { name: "title", label: "제목", widget: "string" }
-          - { name: "description", label: "설명", widget: "text" }
-          - { name: "date", label: "날짜", widget: "datetime" }
-          - { name: "body", label: "내용", widget: "markdown" }
-      - file: "content/about/principles.md"
-        label: "강령 및 핵심 가치"
-        name: "principles"
+          - label: "비디오 컬렉션"
+            name: "video_collections"
+            widget: "list"
+            fields:
+              - { name: "title", label: "제목", widget: "string" }
+              - { name: "description", label: "설명", widget: "text" }
+              - { name: "category", label: "카테고리", widget: "select", options: ["정당 활동", "행사", "정책 설명", "홍보", "기타"] }
+              - { name: "date", label: "날짜", widget: "datetime" }
+              - { name: "video_url", label: "동영상 URL", widget: "string" }
+              - { name: "thumbnail", label: "썸네일", widget: "image", required: false }
+              - { name: "duration", label: "재생 시간", widget: "string", required: false }
+
+      - file: "content/media/documents.yml"
+        label: "📄 문서 라이브러리"
+        name: "documents"
         fields:
-          - { name: "title", label: "제목", widget: "string" }
-          - { name: "description", label: "설명", widget: "text" }
-          - { name: "date", label: "날짜", widget: "datetime" }
-          - { name: "body", label: "내용", widget: "markdown" }
-      - file: "content/about/schedule.md"
-        label: "창당 일정"
-        name: "schedule"
+          - label: "문서 컬렉션"
+            name: "document_collections"
+            widget: "list"
+            fields:
+              - { name: "title", label: "제목", widget: "string" }
+              - { name: "description", label: "설명", widget: "text" }
+              - { name: "category", label: "카테고리", widget: "select", options: ["정책 문서", "보도자료", "양식", "매뉴얼", "기타"] }
+              - { name: "date", label: "날짜", widget: "datetime" }
+              - { name: "file", label: "파일", widget: "file" }
+              - { name: "file_type", label: "파일 형식", widget: "string" }
+              - { name: "file_size", label: "파일 크기", widget: "string", required: false }
+
+  # ===== 📝 콘텐츠 라이브러리 =====
+  - name: "content_library"
+    label: "📝 콘텐츠 라이브러리"
+    files:
+      - file: "content/library/notices.yml"
+        label: "📢 공지사항"
+        name: "notices"
         fields:
-          - { name: "title", label: "제목", widget: "string" }
-          - { name: "description", label: "설명", widget: "text" }
-          - { name: "date", label: "날짜", widget: "datetime" }
-          - { name: "body", label: "내용", widget: "markdown" }
-      - file: "content/about/location.md"
-        label: "오시는 길"
-        name: "location"
+          - label: "공지사항 목록"
+            name: "notice_list"
+            widget: "list"
+            fields:
+              - { name: "title", label: "제목", widget: "string" }
+              - { name: "date", label: "발행일", widget: "datetime" }
+              - { name: "author", label: "작성자", widget: "string", default: "자유와혁신" }
+              - { name: "priority", label: "중요도", widget: "select", options: ["일반", "중요", "긴급"] }
+              - { name: "category", label: "카테고리", widget: "select", options: ["공지", "보도자료", "성명서", "안내"] }
+              - { name: "content", label: "내용", widget: "markdown" }
+              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
+
+      - file: "content/library/events.yml"
+        label: "🎉 행사/집회"
+        name: "events"
         fields:
-          - { name: "title", label: "제목", widget: "string" }
-          - { name: "description", label: "설명", widget: "text" }
-          - { name: "date", label: "날짜", widget: "datetime" }
+          - label: "행사 목록"
+            name: "event_list"
+            widget: "list"
+            fields:
+              - { name: "title", label: "행사명", widget: "string" }
+              - { name: "event_date", label: "일시", widget: "datetime" }
+              - { name: "location", label: "장소", widget: "string" }
+              - { name: "organizer", label: "주최", widget: "string" }
+              - { name: "contact", label: "연락처", widget: "string" }
+              - { name: "event_type", label: "유형", widget: "select", options: ["집회", "토론회", "간담회", "행진", "세미나", "기타"] }
+              - { name: "region", label: "지역", widget: "select", options: ["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"] }
+              - { name: "description", label: "설명", widget: "text" }
+              - { name: "content", label: "상세내용", widget: "markdown" }
+              - { name: "poster", label: "포스터", widget: "image", required: false }
+              - { name: "fee", label: "참가비", widget: "string", required: false }
+              - { name: "registration_required", label: "사전신청", widget: "boolean", default: false }
+
+      - file: "content/library/members.yml"
+        label: "👥 주요 인물"
+        name: "key_members"
+        fields:
+          - label: "인물 목록"
+            name: "member_list"
+            widget: "list"
+            fields:
+              - { name: "name", label: "이름", widget: "string" }
+              - { name: "position", label: "직책", widget: "string" }
+              - { name: "order", label: "순서", widget: "number", default: 1 }
+              - { name: "photo", label: "프로필 사진", widget: "image", required: false }
+              - { name: "contact", label: "연락처", widget: "string", required: false }
+              - { name: "email", label: "이메일", widget: "string", required: false }
+              - { name: "bio", label: "약력", widget: "markdown" }
+              - { name: "experience", label: "주요 경력", widget: "list", field: { name: "career", label: "경력", widget: "string" } }
+              - { name: "education", label: "학력", widget: "list", field: { name: "degree", label: "학력", widget: "string" } }
+
+  # ===== ⚙️ 사이트 설정 =====
+  - name: "site_settings"
+    label: "⚙️ 사이트 설정"
+    files:
+      - file: "content/settings/site-info.yml"
+        label: "🏢 기본 정보"
+        name: "site_info"
+        fields:
+          - { name: "party_name", label: "당명", widget: "string", default: "자유와혁신" }
+          - { name: "slogan", label: "슬로건", widget: "string" }
+          - { name: "main_phone", label: "대표 연락처", widget: "string" }
+          - { name: "main_email", label: "대표 이메일", widget: "string" }
           - { name: "address", label: "주소", widget: "string" }
-          - { name: "phone", label: "전화번호", widget: "string" }
-          - { name: "email", label: "이메일", widget: "string" }
-          - { name: "body", label: "내용", widget: "markdown" } 
+          - { name: "social_media", label: "소셜 미디어", widget: "object", fields: [
+              { name: "facebook", label: "Facebook", widget: "string", required: false },
+              { name: "twitter", label: "Twitter", widget: "string", required: false },
+              { name: "instagram", label: "Instagram", widget: "string", required: false },
+              { name: "youtube", label: "YouTube", widget: "string", required: false }
+            ]}
+          - { name: "seo_description", label: "SEO 설명", widget: "text" }
+          - { name: "site_keywords", label: "사이트 키워드", widget: "string" }
+
+      - file: "content/settings/navigation.yml"
+        label: "🧭 네비게이션"
+        name: "navigation"
+        fields:
+          - label: "주 메뉴"
+            name: "main_menu"
+            widget: "list"
+            fields:
+              - { name: "title", label: "메뉴명", widget: "string" }
+              - { name: "url", label: "URL", widget: "string" }
+              - { name: "order", label: "순서", widget: "number" }
+              - label: "서브 메뉴"
+                name: "submenu"
+                widget: "list"
+                required: false
+                fields:
+                  - { name: "title", label: "서브메뉴명", widget: "string" }
+                  - { name: "url", label: "URL", widget: "string" }
+
+      - file: "logs/changes.log"
+        label: "📝 변경 이력"
+        name: "changes"
+        fields:
+          - { name: "body", label: "로그", widget: "markdown" } 
