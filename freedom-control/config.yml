@@ -32,31 +32,52 @@ collections:
               - { name: "title", label: "메인 제목", widget: "string" }
               - { name: "subtitle", label: "부제목", widget: "string" }
               - { name: "description", label: "설명", widget: "text" }
-              - { name: "background_image", label: "배경 이미지", widget: "image" }
+              - { name: "background_image", label: "배경 이미지", widget: "string", default: "hero_bg.png?v=6" }
               - { name: "cta_text", label: "버튼 텍스트", widget: "string" }
               - { name: "cta_link", label: "버튼 링크", widget: "string" }
           - label: "대표 인사말"
             name: "representative"
             widget: "object"
             fields:
-              - { name: "section_title", label: "섹션 제목", widget: "string" }
-              - { name: "title", label: "제목", widget: "string" }
+              - { name: "title", label: "섹션 제목", widget: "string" }
+              - { name: "subtitle", label: "부제목", widget: "string" }
               - { name: "name", label: "대표명", widget: "string" }
               - { name: "position", label: "직책", widget: "string" }
-              - { name: "photo", label: "대표 사진", widget: "image", required: false }
+              - { name: "photo", label: "대표 사진", widget: "string", default: "/images/hero_image.jpg" }
               - { name: "messages", label: "인사말", widget: "list", field: { name: "message", label: "메시지", widget: "text" } }
           - label: "핵심 정책"
-            name: "core_policies"
+            name: "policies"
             widget: "object"
             fields:
-              - { name: "section_title", label: "섹션 제목", widget: "string" }
-              - name: "policies"
+              - { name: "title", label: "섹션 제목", widget: "string" }
+              - { name: "subtitle", label: "부제목", widget: "text" }
+              - name: "list"
                 label: "정책 목록"
                 widget: "list"
                 fields:
                   - { name: "title", label: "정책명", widget: "string" }
-                  - { name: "icon", label: "아이콘", widget: "string" }
+                  - { name: "icon", label: "아이콘 (FontAwesome)", widget: "string" }
                   - { name: "description", label: "설명", widget: "text" }
+          - label: "당원 활동 섹션"
+            name: "members_section"
+            widget: "object"
+            fields:
+              - { name: "title", label: "섹션 제목", widget: "string" }
+              - { name: "subtitle", label: "부제목", widget: "string" }
+              - { name: "description", label: "설명", widget: "text" }
+          - label: "사이트 설정"
+            name: "site"
+            widget: "object"
+            fields:
+              - { name: "title", label: "사이트 제목", widget: "string" }
+              - { name: "description", label: "사이트 설명", widget: "text" }
+              - { name: "url", label: "사이트 URL", widget: "string" }
+          - label: "SEO 설정"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { name: "keywords", label: "키워드", widget: "string" }
+              - { name: "og_image", label: "OG 이미지", widget: "string" }
 
       # 당에 대해
       - file: "content/about-page.yml"

@@ -1,36 +1,57 @@
 hero:
-  title: "자유와 혁신당"
-  subtitle: "창당을 준비합니다"
-  description: "국민과 함께 더 나은 대한민국을 만들기 위한 새로운 정치의 시작을 준비하고 있습니다."
-  cta_text: "신당 가입하기"
-  cta_link: "#"
+  title: "자유와혁신"
+  subtitle: "새로운 정치를 함께"
+  description: "국민과 함께 더 나은 대한민국을 만들어갈 자유와혁신에 참여하세요"
+  cta_text: "당원 가입하기"
+  cta_link: "https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3"
   background_image: "hero_bg.png?v=6"
 
 representative:
-  title: "창준위 대표 인사말"
-  name: "조상민"
-  position: "자유와혁신당 창준위 대표"
+  title: "대표 인사말"
+  subtitle: "새로운 정치의 시작, 자유와혁신과 함께"
+  name: "김○○"
+  position: "자유와혁신 당 대표"
   photo: "/images/hero_image.jpg"
   messages:
-    - "안녕하십니까. 자유와혁신당 창준위 대표 조상민입니다."
-    - "우리는 진정한 자유와 혁신이 만나는 새로운 정치를 시작하려 합니다. 기존 정치의 틀을 벗어나 국민 개개인의 자유를 보장하고, 창조적 혁신을 통해 미래를 만들어가는 정당이 되겠습니다."
-    - "국민의 목소리가 정책이 되고, 청년의 꿈이 현실이 되며, 모든 세대가 함께 번영하는 대한민국 2.0을 건설하겠습니다."
+    - "안녕하세요. 자유와혁신 당 대표입니다."
+    - "우리는 자유와 혁신이라는 가치를 바탕으로 대한민국 미래를 열어가고자 합니다. 기존 정치의 틀을 벗어나 진정으로 국민을 위한 정치를 구현하겠습니다."
+    - "경제 성장과 사회 통합, 그리고 지속가능한 발전을 위해 모든 국민이 행복한 나라를 만들어가겠습니다."
 
 policies:
-  - title: "근로자 권익과 공정한 임금"
-    description: "모든 근로자가 공정한 대우를 받고 안정적인 생활을 영위할 수 있도록 지원합니다."
-    icon: "01"
-  - title: "지역사회 발전"
-    description: "지역 특성을 살린 맞춤형 발전 전략과 균형 발전을 추진합니다."
-    icon: "02"
-  - title: "국가 안보 강화"
-    description: "강력한 국방력 구축과 한미동맹 강화를 통한 평화를 확보합니다."
-    icon: "03"
-  - title: "법치주의 확립"
-    description: "공정하고 투명한 사법 시스템 구축과 법 앞의 평등을 실현합니다."
-    icon: "04"
+  title: "7대 핵심 정책으로 미래를 설계합니다"
+  subtitle: "국민생활을 개선하고 국가 발전을 이끌어갈 핵심 정책들을 소개합니다"
+  list:
+    - title: "경제 성장"
+      description: "혁신 경제와 일자리창출을 위한 지속가능한 성장 구현"
+      icon: "chart-line"
+    - title: "교육 혁신"
+      description: "미래 인재 양성을 위한 창의적 교육 시스템 구축"
+      icon: "graduation-cap"
+    - title: "복지 확대"
+      description: "모든 국민을 중심으로 하는 촘촘한 사회안전망 구축"
+      icon: "heart"
+    - title: "안보 강화"
+      description: "강력한 국방력과 국제동맹을 위한 평화 안보"
+      icon: "shield-alt"
+    - title: "환경 보호"
+      description: "깨끗한 환경과 지속가능한 발전의 조화 추구"
+      icon: "leaf"
+    - title: "사법 개혁"
+      description: "공정하고 투명한 사법 시스템으로 법치주의 확립"
+      icon: "balance-scale"
 
+members_section:
+  title: "함께 만들어가는 변화"
+  subtitle: "당원들과 함께하는 활동"
+  description: "자유와혁신과 함께 새로운 정치를 만들어가고 있는 당원들의 활동을 소개합니다"
+
+# 사이트 기본 설정
 site:
-  title: "자유와 혁신당 창준위"
-  description: "국민과 함께 더 나은 대한민국을 만들기 위한 새로운 정치"
-  brand_color: "#A50034" 
+  title: "자유와혁신"
+  description: "새로운 정치를 함께 만들어가는 자유와혁신당"
+  url: "https://자유와혁신.com"
+  
+# SEO 설정  
+seo:
+  keywords: "자유와혁신, 정당, 정치, 당원가입, 대한민국"
+  og_image: "/images/hero_image.jpg" 
