@@ -1,6 +1,136 @@
----
-layout: home
----
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유와혁신 - 대한민국 2.0</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>자유와혁신</h1>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="about.html" class="nav-link">당에 대해</a>
+                <a href="policy.html" class="nav-link">정책</a>
+                <a href="news.html" class="nav-link">소식</a>
+                <a href="members.html" class="nav-link">참여</a>
+                <a href="resources.html" class="nav-link">자료실</a>
+                <a href="support.html" class="nav-link">후원</a>
+                <a href="faq.html" class="nav-link">기타</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-<!-- Jekyll이 _layouts/home.html 레이아웃을 사용하여 렌더링합니다 -->
-<!-- 모든 콘텐츠는 CMS에서 관리되며 동적으로 로드됩니다 --> 
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">자유와혁신</h1>
+            <p class="hero-subtitle">화이팅</p>
+            <p class="hero-description">대한민국 2.0, 바로 여기 자유와혁신에서</p>
+            <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" class="cta-button">당원 가입하기</a>
+        </div>
+        <div class="hero-image">
+            <img src="/images/hero_bg.png" alt="자유와혁신 비주얼" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+    </section>
+
+    <!-- 대표 인사말 섹션 -->
+    <section class="representative-message">
+        <div class="container">
+            <h2>대표 인사말</h2>
+            <div class="message-content">
+                <div class="message-text">
+                    <h3>국민이 주인인 대한민국을 만들어갑니다</h3>
+                    <p>
+                        안녕하십니까. 자유와혁신 대표 조상민입니다.<br><br>
+                        
+                        우리는 진정한 자유와 혁신이 만나는 새로운 정치를 시작하려 합니다. 
+                        기존 정치의 틀을 벗어나 국민 개개인의 자유를 보장하고, 
+                        창조적 혁신을 통해 미래를 만들어가는 정당이 되겠습니다.<br><br>
+                        
+                        국민의 목소리가 정책이 되고, 청년의 꿈이 현실이 되며, 
+                        모든 세대가 함께 번영하는 대한민국 2.0을 건설하겠습니다.
+                    </p>
+                    <div class="signature">
+                        <strong>자유와혁신 대표 조상민</strong>
+                    </div>
+                </div>
+                <div class="message-image">
+                    <img src="/images/hero_image.jpg" alt="조상민 대표" style="width: 100%; border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 핵심 정책 섹션 -->
+    <section class="core-policies">
+        <div class="container">
+            <h2>핵심 정책</h2>
+            <div class="policies-grid">
+                <div class="policy-card">
+                    <div class="policy-icon">🏛️</div>
+                    <h3>정치 혁신</h3>
+                    <p>국민 참여형 디지털 민주주의 구현</p>
+                </div>
+                <div class="policy-card">
+                    <div class="policy-icon">💼</div>
+                    <h3>경제 자유</h3>
+                    <p>창업 생태계 활성화와 규제 혁신</p>
+                </div>
+                <div class="policy-card">
+                    <div class="policy-icon">👨‍👩‍👧‍👦</div>
+                    <h3>사회 통합</h3>
+                    <p>세대 갈등 해소와 상생 정책</p>
+                </div>
+                <div class="policy-card">
+                    <div class="policy-icon">🌍</div>
+                    <h3>미래 준비</h3>
+                    <p>AI 시대 대비 교육과 복지 혁신</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>자유와혁신</h3>
+                    <p>대한민국 2.0을 만들어가는 정당</p>
+                </div>
+                <div class="footer-section">
+                    <h4>바로가기</h4>
+                    <a href="members/join.html">당원 가입</a>
+                    <a href="support.html">후원하기</a>
+                    <a href="notices.html">공지사항</a>
+                </div>
+                <div class="footer-section">
+                    <h4>연락처</h4>
+                    <p>📧 contact@freedom-innovation.kr</p>
+                    <p>📞 02-1234-5678</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 자유와혁신. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="nav.js"></script>
+</body>
+</html> 
