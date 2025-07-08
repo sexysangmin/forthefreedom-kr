@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자유와혁신 - 대한민국 2.0</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- 다양한 CSS 경로 시도 -->
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="./style.css">
@@ -11,307 +13,660 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <!-- 임시 인라인 CSS -->
+    <!-- 원본 style.css 인라인 -->
     <style>
+        /* Custom Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDelay {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDelay2 {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .animate-fade-in-delay {
+            animation: fadeInDelay 1s ease-out 0.3s both;
+        }
+
+        .animate-fade-in-delay-2 {
+            animation: fadeInDelay2 1s ease-out 0.6s both;
+        }
+
+        /* Hero Background */
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(165, 0, 52, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(139, 0, 44, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Policy Cards Hover Effect */
+        .policy-card {
+            transition: all 0.3s ease;
+        }
+
+        .policy-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Swiper Customization */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #A50034 !important;
+            background: white !important;
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            margin-top: -25px !important;
+            transition: all 0.3s ease !important;
+            z-index: 10 !important;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: #A50034 !important;
+            color: white !important;
+            transform: scale(1.1) !important;
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 18px !important;
+            font-weight: bold !important;
+        }
+
+        .swiper-button-disabled {
+            opacity: 0.3 !important;
+            cursor: not-allowed !important;
+        }
+
+        .events-swiper {
+            padding: 0 60px !important;
+        }
+
+        .events-swiper .swiper-slide {
+            height: auto !important;
+        }
+
+        /* Counter Animation */
+        .counter {
+            display: inline-block;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: auto;
+        }
+
+        /* Fix section spacing issues */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Noto Sans KR', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: 1;
+            overflow-x: hidden;
+        }
+
+        html {
             margin: 0 !important;
             padding: 0 !important;
             overflow-x: hidden;
         }
-        
-        /* 네비게이션 */
-        #navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
+
+        section {
+            margin: 0 !important;
+            padding: 0;
+            display: block;
+        }
+
+        section.py-24 {
+            padding-top: 6rem !important;
+            padding-bottom: 6rem !important;
+            margin: 0 !important;
+        }
+
+        /* Main page hero section */
+        .hero-section {
+            height: 100vh;
+            min-height: 100vh;
+            max-height: 100vh;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Menu pages hero section - smaller height */
+        .hero-section[style*="height:60vh"] {
+            height: 60vh !important;
+            min-height: 60vh !important;
+            max-height: 60vh !important;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #64748b;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: all 0.3s ease;
+        }
+
+        /* Image Gallery Hover Effect */
+        .aspect-square:hover {
+            cursor: pointer;
+        }
+
+        /* Form Focus States */
+        input:focus,
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(165, 0, 52, 0.1);
+        }
+
+        /* Button Hover Effects */
+        button {
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation Link Hover Effect */
+        nav a {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
             left: 0;
             right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-        
-        .nav-logo h1 {
-            color: #A50034;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .nav-menu a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-menu a:hover {
-            color: #A50034;
-        }
-        
-        /* 히어로 섹션 */
-        .hero {
-            background: linear-gradient(135deg, #A50034 0%, #8B002C 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            color: white;
-            position: relative;
-            margin-top: 70px;
-        }
-        
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            opacity: 0.9;
-        }
-        
-        .hero-description {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-        
-        .cta-button {
-            background: white;
-            color: #A50034;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* 대표 인사말 섹션 */
-        .representative-message {
-            padding: 6rem 0;
-            background: #f8f9fa;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .representative-message h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-        
-        .message-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .message-text h3 {
-            font-size: 1.8rem;
-            color: #A50034;
-            margin-bottom: 1.5rem;
-        }
-        
-        .message-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-        
-        .signature {
-            text-align: right;
-        }
-        
-        .signature strong {
-            color: #A50034;
-            font-size: 1.2rem;
-        }
-        
-        /* 핵심 정책 섹션 */
-        .core-policies {
-            padding: 6rem 0;
-            background: white;
-        }
-        
-        .core-policies h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-        
-        .policies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .policy-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            height: 2px;
+            background: #dc2626;
+            transform: scaleX(1);
             transition: transform 0.3s ease;
         }
-        
-        .policy-card:hover {
-            transform: translateY(-10px);
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #dc2626;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
-        
-        .policy-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+
+        /* Loading Animation for Images */
+        .bg-gray-200 {
+            background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
         }
-        
-        .policy-card h3 {
-            font-size: 1.3rem;
-            color: #A50034;
-            margin-bottom: 1rem;
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
         }
-        
-        .policy-card p {
-            color: #666;
-            line-height: 1.6;
+
+        /* Testimonial Cards */
+        .testimonials-swiper .swiper-slide {
+            height: auto;
         }
-        
-        /* 푸터 */
-        footer {
-            background: #333;
-            color: white;
-            padding: 3rem 0 1rem;
+
+        /* Stats Animation Ready */
+        .counter[data-animated] {
+            color: #dc2626;
         }
-        
-        .footer-content {
+
+        /* Enhanced Mobile Styles */
+        @media (max-width: 640px) {
+            /* Hero Section - Main page */
+            .hero-section {
+                height: 100vh;
+                min-height: 600px;
+            }
+            
+            /* Hero Section - Menu pages */
+            .hero-section[style*="height:60vh"] {
+                height: 60vh !important;
+                min-height: 60vh !important;
+            }
+            
+            .hero-section h1 {
+                font-size: clamp(2rem, 8vw, 2.5rem) !important;
+                line-height: 1.2 !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .hero-section p {
+                font-size: clamp(1rem, 4vw, 1.2rem) !important;
+                margin-bottom: 1.5rem !important;
+                padding: 0 1rem !important;
+            }
+            
+            /* Policy Cards */
+            .policy-card {
+                margin-bottom: 1rem;
+                padding: 1rem !important;
+            }
+            
+            /* Navigation */
+            nav h1 {
+                font-size: 1.2rem !important;
+            }
+            
+            nav h1 span {
+                font-size: 0.9rem !important;
+            }
+            
+            /* Events Swiper */
+            .events-swiper {
+                padding: 0 20px !important;
+            }
+            
+            /* Counter */
+            .counter {
+                font-size: 1.5rem !important;
+            }
+            
+            /* FAQ */
+            .faq-question h4 {
+                font-size: 1rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            /* Form Elements */
+            input, textarea {
+                font-size: 16px !important;
+            }
+            
+            /* Section spacing fix for mobile */
+            section {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .hero-section h1 {
+                font-size: clamp(2.5rem, 6vw, 3rem) !important;
+            }
+            
+            .hero-section p {
+                font-size: clamp(1.1rem, 3vw, 1.3rem) !important;
+            }
+            
+            .events-swiper {
+                padding: 0 40px !important;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            .hero-section {
+                min-height: 80vh !important;
+            }
+            
+            .hero-section[style*="height:60vh"] {
+                height: 50vh !important;
+                min-height: 50vh !important;
+            }
+            
+            .max-w-7xl {
+                max-width: 90rem !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        @media (pointer: coarse) {
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .faq-question {
+                padding: 1.5rem !important;
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .policy-card,
+        .resource-category,
+        .testimonial-card,
+        .faq-question,
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+
+        .rounded,
+        .rounded-lg,
+        .rounded-xl,
+        .rounded-2xl {
+            border-radius: 1rem;
+        }
+
+        /* Color Overrides */
+        .text-blue-600 { color: #A50034 !important; }
+        .text-blue-500 { color: #C7003F !important; }
+        .bg-blue-600 { background-color: #A50034 !important; }
+        .bg-blue-700 { background-color: #8B002C !important; }
+        .bg-blue-100 { background-color: #FCE7ED !important; }
+        .border-blue-500 { border-color: #C7003F !important; }
+        .ring-blue-500 { --tw-ring-color: #C7003F !important; }
+
+        /* Red variants */
+        .text-red-600 { color: #A50034 !important; }
+        .text-red-700 { color: #8B002C !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .bg-red-700 { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+
+        /* Additional utility classes */
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .bg-white\/90 {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .backdrop-blur-sm {
+            backdrop-filter: blur(4px);
+        }
+
+        /* Dark mode adjustments */
+        @media (prefers-color-scheme: dark) {
+            /* Add dark mode styles if needed */
+        }
+
+        /* Additional custom styles for resource pages */
+        .resources-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .resource-category {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #A50034, #C7003F);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .resource-icon i {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .resource-category h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-category p {
+            color: #6B7280;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .resource-list {
+            margin-top: 1rem;
+            space-y: 0.75rem;
+        }
+
+        .resource-item {
+            background: #F9FAFB;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            border-left: 4px solid #A50034;
+            transition: all 0.2s ease;
+        }
+
+        .resource-item:hover {
+            background: #F3F4F6;
+            transform: translateX(2px);
+        }
+
+        .resource-title {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .resource-date {
+            font-size: 0.75rem;
+            color: #9CA3AF;
+        }
+
+        .search-section {
+            background: #F8FAFC;
+            padding: 2rem;
+            border-radius: 1rem;
             margin-bottom: 2rem;
         }
-        
-        .footer-section h3,
-        .footer-section h4 {
-            color: #A50034;
+
+        .search-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-section p {
+            color: #6B7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
             margin-bottom: 1rem;
         }
-        
-        .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
+
+        .search-input-container {
+            flex: 1;
+            position: relative;
         }
-        
-        .footer-section a:hover {
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            border-color: #A50034;
+            ring: 2px solid rgba(165, 0, 52, 0.2);
+        }
+
+        .search-button {
+            background: linear-gradient(135deg, #A50034, #C7003F);
             color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
         }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #555;
-            color: #999;
+
+        .search-button:hover {
+            background: linear-gradient(135deg, #8B002C, #A50034);
+            transform: translateY(-1px);
         }
-        
-        /* 모바일 반응형 */
+
+        .search-filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            border-color: #A50034;
+        }
+
+        .notice-box {
+            background: linear-gradient(135deg, #FEF2F2, #FECACA);
+            border: 1px solid #F87171;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .notice-box h3 {
+            color: #DC2626;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .notice-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notice-box li {
+            color: #7F1D1D;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .notice-box li:before {
+            content: "•";
+            color: #DC2626;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .message-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .policies-grid {
+            .resources-grid {
                 grid-template-columns: 1fr;
             }
             
-            .nav-container {
-                padding: 0 1rem;
+            .search-filters {
+                flex-direction: column;
             }
             
-            .container {
-                padding: 0 1rem;
+            .filter-select {
+                width: 100%;
+            }
+            
+            .notice-box {
+                margin: 1rem;
             }
         }
     </style>
