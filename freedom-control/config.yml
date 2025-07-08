@@ -244,7 +244,7 @@ collections:
   - name: "home"
     label: "메인 페이지"
     files:
-      - file: "content/home/hero.yml"
+      - file: "_data/hero.yml"
         label: "메인 히어로"
         name: "hero"
         fields:
@@ -254,7 +254,7 @@ collections:
           - { name: "background_image", label: "배경 이미지", widget: "image" }
           - { name: "cta_text", label: "버튼 텍스트", widget: "string" }
           - { name: "cta_link", label: "버튼 링크", widget: "string" }
-      - file: "content/home/representative.yml"
+      - file: "_data/representative.yml"
         label: "대표 인사말"
         name: "representative"
         fields:
@@ -264,7 +264,7 @@ collections:
           - { name: "position", label: "직책", widget: "string" }
           - { name: "photo", label: "대표 사진", widget: "image", required: false }
           - { name: "messages", label: "인사말", widget: "list", field: { name: "message", label: "메시지", widget: "text" } }
-      - file: "content/home/core-policies.yml"
+      - file: "_data/core-policies.yml"
         label: "핵심 정책"
         name: "core_policies"
         fields:
