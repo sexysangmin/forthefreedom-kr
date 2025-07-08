@@ -3,713 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자유와혁신 - 대한민국 2.0</title>
-    <!-- Tailwind CSS -->
+    <title>자유와 혁신당 창준위</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 다양한 CSS 경로 시도 -->
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        .from-red-800 { --tw-gradient-from: #700024 !important; }
+        .to-red-600 { --tw-gradient-to: #A50034 !important; }
+        .from-red-900 { --tw-gradient-from: #56001C !important; }
+        .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
+        
+        /* 추가 보강 스타일 */
+        .w-4.h-4.bg-red-600 { background-color: #A50034 !important; }
+        .font-light.text-red-600 { color: #A50034 !important; }
+        .text-lg.font-medium.text-red-600 { color: #A50034 !important; }
+        .text-sm.text-red-600 { color: #A50034 !important; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <!-- 원본 style.css 인라인 -->
-    <style>
-        /* Custom Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDelay {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDelay2 {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-
-        .animate-fade-in-delay {
-            animation: fadeInDelay 1s ease-out 0.3s both;
-        }
-
-        .animate-fade-in-delay-2 {
-            animation: fadeInDelay2 1s ease-out 0.6s both;
-        }
-
-        /* Hero Background */
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 25% 25%, rgba(165, 0, 52, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(139, 0, 44, 0.3) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        /* Policy Cards Hover Effect */
-        .policy-card {
-            transition: all 0.3s ease;
-        }
-
-        .policy-card:hover {
-            transform: translateY(-10px);
-        }
-
-        /* Swiper Customization */
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: #A50034 !important;
-            background: white !important;
-            width: 50px !important;
-            height: 50px !important;
-            border-radius: 50% !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-            margin-top: -25px !important;
-            transition: all 0.3s ease !important;
-            z-index: 10 !important;
-        }
-
-        .swiper-button-next:hover,
-        .swiper-button-prev:hover {
-            background: #A50034 !important;
-            color: white !important;
-            transform: scale(1.1) !important;
-        }
-
-        .swiper-button-next:after,
-        .swiper-button-prev:after {
-            font-size: 18px !important;
-            font-weight: bold !important;
-        }
-
-        .swiper-button-disabled {
-            opacity: 0.3 !important;
-            cursor: not-allowed !important;
-        }
-
-        .events-swiper {
-            padding: 0 60px !important;
-        }
-
-        .events-swiper .swiper-slide {
-            height: auto !important;
-        }
-
-        /* Counter Animation */
-        .counter {
-            display: inline-block;
-        }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: auto;
-        }
-
-        /* Fix section spacing issues */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0 !important;
-            padding: 0 !important;
-            line-height: 1;
-            overflow-x: hidden;
-        }
-
-        html {
-            margin: 0 !important;
-            padding: 0 !important;
-            overflow-x: hidden;
-        }
-
-        section {
-            margin: 0 !important;
-            padding: 0;
-            display: block;
-        }
-
-        section.py-24 {
-            padding-top: 6rem !important;
-            padding-bottom: 6rem !important;
-            margin: 0 !important;
-        }
-
-        /* Main page hero section */
-        .hero-section {
-            height: 100vh;
-            min-height: 100vh;
-            max-height: 100vh;
-            display: flex;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Menu pages hero section - smaller height */
-        .hero-section[style*="height:60vh"] {
-            height: 60vh !important;
-            min-height: 60vh !important;
-            max-height: 60vh !important;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #64748b;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-
-        /* Mobile Menu Animation */
-        #mobile-menu {
-            transition: all 0.3s ease;
-        }
-
-        /* Image Gallery Hover Effect */
-        .aspect-square:hover {
-            cursor: pointer;
-        }
-
-        /* Form Focus States */
-        input:focus,
-        textarea:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(165, 0, 52, 0.1);
-        }
-
-        /* Button Hover Effects */
-        button {
-            transition: all 0.3s ease;
-        }
-
-        /* Navigation Link Hover Effect */
-        nav a {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #dc2626;
-            transform: scaleX(1);
-            transition: transform 0.3s ease;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #dc2626;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        /* Loading Animation for Images */
-        .bg-gray-200 {
-            background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -200% 0;
-            }
-        }
-
-        /* Testimonial Cards */
-        .testimonials-swiper .swiper-slide {
-            height: auto;
-        }
-
-        /* Stats Animation Ready */
-        .counter[data-animated] {
-            color: #dc2626;
-        }
-
-        /* Enhanced Mobile Styles */
-        @media (max-width: 640px) {
-            /* Hero Section - Main page */
-            .hero-section {
-                height: 100vh;
-                min-height: 600px;
-            }
-            
-            /* Hero Section - Menu pages */
-            .hero-section[style*="height:60vh"] {
-                height: 60vh !important;
-                min-height: 60vh !important;
-            }
-            
-            .hero-section h1 {
-                font-size: clamp(2rem, 8vw, 2.5rem) !important;
-                line-height: 1.2 !important;
-                margin-bottom: 1rem !important;
-            }
-            
-            .hero-section p {
-                font-size: clamp(1rem, 4vw, 1.2rem) !important;
-                margin-bottom: 1.5rem !important;
-                padding: 0 1rem !important;
-            }
-            
-            /* Policy Cards */
-            .policy-card {
-                margin-bottom: 1rem;
-                padding: 1rem !important;
-            }
-            
-            /* Navigation */
-            nav h1 {
-                font-size: 1.2rem !important;
-            }
-            
-            nav h1 span {
-                font-size: 0.9rem !important;
-            }
-            
-            /* Events Swiper */
-            .events-swiper {
-                padding: 0 20px !important;
-            }
-            
-            /* Counter */
-            .counter {
-                font-size: 1.5rem !important;
-            }
-            
-            /* FAQ */
-            .faq-question h4 {
-                font-size: 1rem !important;
-                line-height: 1.4 !important;
-            }
-            
-            /* Form Elements */
-            input, textarea {
-                font-size: 16px !important;
-            }
-            
-            /* Section spacing fix for mobile */
-            section {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
-        }
-
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .hero-section h1 {
-                font-size: clamp(2.5rem, 6vw, 3rem) !important;
-            }
-            
-            .hero-section p {
-                font-size: clamp(1.1rem, 3vw, 1.3rem) !important;
-            }
-            
-            .events-swiper {
-                padding: 0 40px !important;
-            }
-        }
-
-        @media (min-width: 1920px) {
-            .hero-section {
-                min-height: 80vh !important;
-            }
-            
-            .hero-section[style*="height:60vh"] {
-                height: 50vh !important;
-                min-height: 50vh !important;
-            }
-            
-            .max-w-7xl {
-                max-width: 90rem !important;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        @media (pointer: coarse) {
-            button, a {
-                min-height: 44px;
-                min-width: 44px;
-            }
-            
-            .faq-question {
-                padding: 1.5rem !important;
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .policy-card,
-        .resource-category,
-        .testimonial-card,
-        .faq-question,
-        .contact-card {
-            transition: all 0.3s ease;
-        }
-
-        .rounded,
-        .rounded-lg,
-        .rounded-xl,
-        .rounded-2xl {
-            border-radius: 1rem;
-        }
-
-        /* Color Overrides */
-        .text-blue-600 { color: #A50034 !important; }
-        .text-blue-500 { color: #C7003F !important; }
-        .bg-blue-600 { background-color: #A50034 !important; }
-        .bg-blue-700 { background-color: #8B002C !important; }
-        .bg-blue-100 { background-color: #FCE7ED !important; }
-        .border-blue-500 { border-color: #C7003F !important; }
-        .ring-blue-500 { --tw-ring-color: #C7003F !important; }
-
-        /* Red variants */
-        .text-red-600 { color: #A50034 !important; }
-        .text-red-700 { color: #8B002C !important; }
-        .bg-red-600 { background-color: #A50034 !important; }
-        .bg-red-700 { background-color: #8B002C !important; }
-        .hover\:text-red-600:hover { color: #A50034 !important; }
-        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
-
-        /* Additional utility classes */
-        .shadow-lg {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .bg-white\/90 {
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-
-        .backdrop-blur-sm {
-            backdrop-filter: blur(4px);
-        }
-
-        /* Dark mode adjustments */
-        @media (prefers-color-scheme: dark) {
-            /* Add dark mode styles if needed */
-        }
-
-        /* Additional custom styles for resource pages */
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .resource-category {
-            background: white;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .resource-category:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .resource-icon {
-            width: 3rem;
-            height: 3rem;
-            background: linear-gradient(135deg, #A50034, #C7003F);
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .resource-icon i {
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .resource-category h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 0.5rem;
-        }
-
-        .resource-category p {
-            color: #6B7280;
-            font-size: 0.875rem;
-            line-height: 1.5;
-        }
-
-        .resource-list {
-            margin-top: 1rem;
-            space-y: 0.75rem;
-        }
-
-        .resource-item {
-            background: #F9FAFB;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            border-left: 4px solid #A50034;
-            transition: all 0.2s ease;
-        }
-
-        .resource-item:hover {
-            background: #F3F4F6;
-            transform: translateX(2px);
-        }
-
-        .resource-title {
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 0.25rem;
-        }
-
-        .resource-date {
-            font-size: 0.75rem;
-            color: #9CA3AF;
-        }
-
-        .search-section {
-            background: #F8FAFC;
-            padding: 2rem;
-            border-radius: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .search-section h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 0.5rem;
-        }
-
-        .search-section p {
-            color: #6B7280;
-            margin-bottom: 1.5rem;
-        }
-
-        .search-form {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .search-input-container {
-            flex: 1;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid #D1D5DB;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .search-input:focus {
-            border-color: #A50034;
-            ring: 2px solid rgba(165, 0, 52, 0.2);
-        }
-
-        .search-button {
-            background: linear-gradient(135deg, #A50034, #C7003F);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .search-button:hover {
-            background: linear-gradient(135deg, #8B002C, #A50034);
-            transform: translateY(-1px);
-        }
-
-        .search-filters {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-select {
-            padding: 0.5rem 1rem;
-            border: 1px solid #D1D5DB;
-            border-radius: 0.5rem;
-            background: white;
-            cursor: pointer;
-        }
-
-        .filter-select:focus {
-            border-color: #A50034;
-        }
-
-        .notice-box {
-            background: linear-gradient(135deg, #FEF2F2, #FECACA);
-            border: 1px solid #F87171;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .notice-box h3 {
-            color: #DC2626;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .notice-box ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .notice-box li {
-            color: #7F1D1D;
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .notice-box li:before {
-            content: "•";
-            color: #DC2626;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        @media (max-width: 768px) {
-            .resources-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .search-filters {
-                flex-direction: column;
-            }
-            
-            .filter-select {
-                width: 100%;
-            }
-            
-            .notice-box {
-                margin: 1rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- 네비게이션 -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h1>자유와혁신</h1>
+    <!-- Navigation -->
+    <nav class="absolute top-8 z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 left-0 right-0">
+        <div class="bg-white px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center" style="height: 86px;">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-red-600">자유와 혁신당 <span class="text-lg text-gray-600">창준위</span></h1>
+                </div>
+                <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
+                    <div class="flex items-baseline space-x-8">
+                        <a href="notices.html" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">공지사항</a>
+                        <a href="#events" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">외부 행사 및 집회</a>
+                        <a href="faq.html" class="text-gray-900 hover:text-red-600 px-3 py-2 text-lg font-medium">자주묻는 질문</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <button onclick="openMembershipPopup()" class="bg-red-600 text-white px-6 py-3 text-lg font-medium hover:bg-red-700 flex items-center space-x-2 border-none cursor-pointer">
+                        <span>신당 가입하기</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-900">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
             </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="index.html" class="nav-link">홈</a>
-                <a href="about.html" class="nav-link">당에 대해</a>
-                <a href="policy.html" class="nav-link">정책</a>
-                <a href="news.html" class="nav-link">소식</a>
-                <a href="members.html" class="nav-link">참여</a>
-                <a href="resources.html" class="nav-link">자료실</a>
-                <a href="support.html" class="nav-link">후원</a>
-                <a href="faq.html" class="nav-link">기타</a>
-            </div>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="notices.html" class="block px-3 py-2 text-gray-900 text-lg">공지사항</a>
+                <a href="#events" class="block px-3 py-2 text-gray-900 text-lg">외부 행사 및 집회</a>
+                <a href="faq.html" class="block px-3 py-2 text-gray-900 text-lg">자주묻는 질문</a>
+                <button onclick="openMembershipPopup()" class="block px-3 py-3 bg-red-600 text-white text-lg flex items-center justify-between w-full border-none cursor-pointer">
+                    <span>신당 가입하기</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section" style="height: 100vh; min-height: 600px; width: 100%; position: relative; margin: 0px; padding: 0px; overflow: hidden; background-image: url(&quot;images/hero_bg.png?v=6&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; background-attachment: scroll; transform: translateY(0px);">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4), transparent); z-index: 2;"></div>
-        <div style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 10; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem;">
-            <div style="max-width: 48rem; color: white; text-align: left; margin-left: 0; padding-left: 24px;">
-                <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; margin-bottom: 1.5rem; line-height: 1.1; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
-                    <span style="font-weight: 700;">자유</span><span style="font-weight: 200;">와</span><span style="font-weight: 700;">혁신</span><br>새로운 정치를 함께
+          <section id="home" class="hero-section" style="height: 170vh; width: 100%; position: relative; margin: 0; padding: 0; overflow: hidden; background-image: url('hero_bg.png?v=6'); background-size: cover; background-position: 65% 40%; background-repeat: no-repeat; background-attachment: scroll;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.3), transparent); z-index: 2;"></div>
+        <div style="position: absolute; top: 55vh; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 2rem;">
+            <div style="max-width: 48rem; color: white;">
+                <h1 style="font-size: 4rem; font-weight: 300; margin-bottom: 2rem; text-align: left; line-height: 1.1; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    <span style="font-weight: 700;">자유와 혁신당</span><br>창당을 준비합니다
                 </h1>
-                <p style="font-size: clamp(1.1rem, 3vw, 1.5rem); margin-bottom: 2rem; font-weight: 400; line-height: 1.6; font-family: 'Inter', 'Noto Sans KR', sans-serif; max-width: 90%;">
-                    국민과 함께 더 나은 대한민국을 만들어갈 자유와혁신에 참여하세요
+                <p style="font-size: 1.8rem; margin-bottom: 2.5rem; text-align: left; font-weight: 400; line-height: 1.6; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    국민과 함께 더 나은 대한민국을 만들기 위한<br>새로운 정치의 시작을 준비하고 있습니다.
                 </p>
-                <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" style="background-color: #A50034; color: white; padding: 0.875rem 2rem; font-size: clamp(1rem, 2.5vw, 1.125rem); font-weight: 500; border: none; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', 'Noto Sans KR', sans-serif; margin-top: 1rem; text-decoration: none; display: inline-block;" onmouseover="this.style.backgroundColor='#8B002C'" onmouseout="this.style.backgroundColor='#A50034'">
-                    당원 가입하기
-                </a>
+                <button style="background-color: #A50034; color: white; padding: 1rem 2.5rem; font-size: 1.125rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', 'Noto Sans KR', sans-serif;" onmouseover="this.style.backgroundColor='#8B002C'" onmouseout="this.style.backgroundColor='#A50034'" onclick="openMembershipPopup()">
+                    신당 가입하기
+                </button>
             </div>
         </div>
         <div style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; font-size: 1.5rem; animation: bounce 2s infinite; z-index: 10;">
@@ -717,90 +113,450 @@
         </div>
     </section>
 
-    <!-- 대표 인사말 섹션 -->
-    <section class="representative-message">
-        <div class="container">
-            <h2>대표 인사말</h2>
-            <div class="message-content">
-                <div class="message-text">
-                    <h3>국민이 주인인 대한민국을 만들어갑니다</h3>
-                    <p>
-                        안녕하십니까. 자유와혁신 대표 조상민입니다.<br><br>
-                        
-                        우리는 진정한 자유와 혁신이 만나는 새로운 정치를 시작하려 합니다. 
-                        기존 정치의 틀을 벗어나 국민 개개인의 자유를 보장하고, 
-                        창조적 혁신을 통해 미래를 만들어가는 정당이 되겠습니다.<br><br>
-                        
-                        국민의 목소리가 정책이 되고, 청년의 꿈이 현실이 되며, 
-                        모든 세대가 함께 번영하는 대한민국 2.0을 건설하겠습니다.
-                    </p>
-                    <div class="signature">
-                        <strong>자유와혁신 대표 조상민</strong>
+    <!-- Policy Section -->
+    <div style="padding: 6rem 0; background-color: #f9fafb; margin: 0; width: 100%; display: block;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20">
+                <div class="flex items-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">우리가 추구하는 가치</h2>
+                </div>
+                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">더 밝은 <span class="font-semibold">내일을 건설합니다</span></h3>
+                <p class="text-xl text-gray-600 leading-relaxed max-w-4xl" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    의료, 교육, 경제 성장과 같은 핵심 문제를 해결하는<br>명확한 정책을 연구하고 개발합니다.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Left Side - Text Content -->
+                <div class="space-y-12">
+                    <div>
+                        <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지역사회와의 직접 소통을 우선시합니다</h4>
+                        <p class="text-gray-600 leading-relaxed" style="font-size: 1.1rem;">
+                            시민회관, 지역 모임, 디지털 채널을 통해 지역사회 구성원들과 직접 소통하여 그들의 필요를 이해하고 해결책을 제시합니다.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">교육 투자를 통해 모든 아이가 혜택을 받도록 합니다</h4>
+                        <p class="text-gray-600 leading-relaxed" style="font-size: 1.1rem;">
+                            창의적 교육 시스템 구축과 디지털 교육 인프라 확충을 통해 미래를 이끌어갈 인재를 양성합니다.
+                        </p>
                     </div>
                 </div>
-                <div class="message-image">
-                    <img src="/images/hero_image.jpg" alt="조상민 대표" style="width: 100%; border-radius: 10px;">
+
+                <!-- Right Side - Policy Cards -->
+                <div class="grid gap-6">
+                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
+                                <span class="text-xl font-bold">01</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">근로자 권익과 공정한 임금</h4>
+                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">모든 근로자가 공정한 대우를 받고 안정적인 생활을 영위할 수 있도록 지원합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
+                                <span class="text-xl font-bold">02</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지역사회 발전</h4>
+                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">지역 특성을 살린 맞춤형 발전 전략과 균형 발전을 추진합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
+                                <span class="text-xl font-bold">03</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">국가 안보 강화</h4>
+                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">강력한 국방력 구축과 한미동맹 강화를 통한 평화를 확보합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 text-white rounded-lg p-3 flex-shrink-0 min-w-[60px] text-center">
+                                <span class="text-xl font-bold">04</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">법치주의 확립</h4>
+                                <p class="text-gray-600 leading-relaxed" style="font-size: 1.05rem;">공정하고 투명한 사법 시스템 구축과 법 앞의 평등을 실현합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20">
+                <div class="flex items-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">창당 준비 현황</h2>
+                </div>
+                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">함께하는 <span class="font-semibold">국민들</span></h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-20">
+                <div class="text-left">
+                    <div class="text-6xl md:text-8xl font-light text-red-600 mb-6" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        <span class="counter" data-target="1520">0</span><span class="text-4xl">명</span>
+                    </div>
+                    <h4 class="text-2xl font-light text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">당원 가입 신청자</h4>
+                </div>
+                
+                <div class="text-left">
+                    <div class="text-6xl md:text-8xl font-light text-red-600 mb-6" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        <span class="counter" data-target="85">0</span><span class="text-4xl">명</span>
+                    </div>
+                    <h4 class="text-2xl font-light text-gray-900" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당 발기인</h4>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 핵심 정책 섹션 -->
-    <section class="core-policies">
-        <div class="container">
-            <h2>핵심 정책</h2>
-            <div class="policies-grid">
-                <div class="policy-card">
-                    <div class="policy-icon">🏛️</div>
-                    <h3>국민이 주인인 대한민국을 만들어갑니다</h3>
-                    <p>국민 참여형 디지털 민주주의 구현</p>
+    <!-- Notice Section -->
+    <section id="notice" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20">
+                <div class="flex items-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">공지사항</h2>
                 </div>
-                <div class="policy-card">
-                    <div class="policy-icon">💼</div>
-                    <h3>국민이 주인인 대한민국을 만들어갑니다</h3>
-                    <p>창업 생태계 활성화와 규제 혁신</p>
+                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창준위 <span class="font-semibold">주요 소식</span></h3>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <article class="bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="location.href='notice-1.html'">
+                    <span class="text-sm text-red-600 font-semibold">2025년 1월 15일</span>
+                    <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">창당준비위원회 공식 출범 안내</h4>
+                    <p class="text-gray-600" style="font-size: 1.05rem;">자유와 혁신당 창당을 위한 준비위원회가 공식 발족했습니다.</p>
+                </article>
+                
+                <article class="bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="location.href='notice-3.html'">
+                    <span class="text-sm text-red-600 font-semibold">2025년 1월 8일</span>
+                    <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">창당 발기인 모집 안내</h4>
+                    <p class="text-gray-600" style="font-size: 1.05rem;">새로운 정치를 함께 만들어갈 발기인을 모집합니다.</p>
+                </article>
+                
+                <article class="bg-white p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="location.href='notice-2.html'">
+                    <span class="text-sm text-red-600 font-semibold">2025년 1월 10일</span>
+                    <h4 class="text-xl font-bold text-gray-900 mt-2 mb-3">정책 토론회 일정 발표</h4>
+                    <p class="text-gray-600" style="font-size: 1.05rem;">국민과 함께하는 정책 토론회 일정을 공개합니다.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-24" style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20 flex justify-between items-end">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-4 h-4 bg-white mr-4"></div>
+                        <h2 class="text-lg font-medium text-white tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">행사 및 집회</h2>
+                    </div>
+                    <h3 class="text-5xl md:text-6xl font-light text-white mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">참여하세요: <span class="font-semibold">다가오는 행사</span></h3>
                 </div>
-                <div class="policy-card">
-                    <div class="policy-icon">👨‍👩‍👧‍👦</div>
-                    <h3>국민이 주인인 대한민국을 만들어갑니다</h3>
-                    <p>세대 갈등 해소와 상생 정책</p>
+                
+                <div class="flex space-x-4">
+                    <button class="events-prev-btn flex items-center px-4 py-2 text-white hover:text-gray-200 transition-colors" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        <i class="fas fa-arrow-left mr-2"></i> 이전
+                    </button>
+                    <button class="events-next-btn flex items-center px-4 py-2 text-white hover:text-gray-200 transition-colors" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        다음 <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
                 </div>
-                <div class="policy-card">
-                    <div class="policy-icon">🌍</div>
-                    <h3>국민이 주인인 대한민국을 만들어갑니다</h3>
-                    <p>AI 시대 대비 교육과 복지 혁신</p>
+            </div>
+
+            <div class="swiper events-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-users text-4xl text-blue-600 mb-4"></i>
+                                        <p class="text-blue-800 font-medium">시민 참여 모임</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지역사회 타운홀 미팅</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 2월 15일 • 오후 2:00</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">서울 중구 세종대로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-1.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-handshake text-4xl text-red-600 mb-4"></i>
+                                        <p class="text-red-800 font-medium">정책 협력 회의</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">함께 발전하는 정책 서밋</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 2월 28일 • 오후 12:00</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">부산 해운대구 센텀로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-2.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-balance-scale text-4xl text-green-600 mb-4"></i>
+                                        <p class="text-green-800 font-medium">정의를 위한 연대</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">정의를 위한 연대 컨퍼런스</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 4월 12일 • 오후 12:00</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">대구 수성구 동대구로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-3.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-microphone text-4xl text-purple-600 mb-4"></i>
+                                        <p class="text-purple-800 font-medium">지역 연설회</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">국민과 함께하는 정책 설명회</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 5월 8일 • 오후 3:00</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">인천 남동구 구월로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-4.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-graduation-cap text-4xl text-orange-600 mb-4"></i>
+                                        <p class="text-orange-800 font-medium">청년 정책 포럼</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">청년을 위한 미래 정책 포럼</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 5월 22일 • 오후 1:30</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">광주 서구 상무대로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-5.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                            <div class="relative">
+                                <div class="w-full h-64 bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-leaf text-4xl text-teal-600 mb-4"></i>
+                                        <p class="text-teal-800 font-medium">환경 정책 세미나</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">지속가능한 환경 정책 세미나</h4>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-red-600 font-medium" style="font-size: 1.05rem;">2025년 6월 5일 • 오후 2:30</p>
+                                    <p class="text-gray-600" style="font-size: 1.05rem;">대전 유성구 대학로</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors" onclick="location.href='event-6.html'">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next hidden"></div>
+                <div class="swiper-button-prev hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20">
+                <div class="flex items-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">Q&A</h2>
+                </div>
+                <h3 class="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">자주 묻는 <span class="font-semibold">질문</span></h3>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="faq-item bg-white p-6">
+                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h4 class="text-lg font-semibold text-gray-900">창당준비위원회는 언제 발족했나요?</h4>
+                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
+                        자유와 혁신당 창당준비위원회는 2025년 1월 10일에 공식 발족했습니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white p-6">
+                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h4 class="text-lg font-semibold text-gray-900">창당은 언제 예정되어 있나요?</h4>
+                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
+                        창당대회는 2025년 상반기 중 개최될 예정입니다. 구체적인 일정은 추후 공지하겠습니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white p-6">
+                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h4 class="text-lg font-semibold text-gray-900">당원 가입은 언제부터 가능한가요?</h4>
+                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
+                        현재 당원 가입 신청을 받고 있습니다. 창당대회 이후 정식 당원 자격이 부여됩니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white p-6">
+                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h4 class="text-lg font-semibold text-gray-900">발기인이 되려면 어떤 조건이 필요한가요?</h4>
+                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
+                        만 18세 이상 대한민국 국민으로 정치관계법 결격사유가 없으면 누구나 가능합니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white p-6">
+                    <div class="faq-question flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h4 class="text-lg font-semibold text-gray-900">당비는 얼마인가요?</h4>
+                        <i class="fas fa-chevron-down text-red-600 transform transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600 hidden" style="font-size: 1.2rem; line-height: 1.6;">
+                        당비는 월 1만원이며, 학생·주부·무직자는 월 5천원입니다.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="faq.html" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                    더 많은 FAQ 보기
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="join" class="py-24 bg-red-600 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-red-800 to-red-600"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-5xl md:text-6xl font-light mb-8 leading-tight" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당에 <span class="font-semibold">도움을 주세요</span></h2>
+                    <p class="text-xl mb-8 font-light leading-relaxed" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        새로운 정치, 새로운 미래를 함께 만들어갈<br>여러분의 참여와 지원을 기다립니다.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-10 text-gray-900">
+                    <h3 class="text-3xl font-light mb-8" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">창당 지원 신청</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">성명</label>
+                            <input type="text" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        </div>
+                        
+                        <div>
+                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">연락처</label>
+                            <input type="tel" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        </div>
+                        
+                        <div>
+                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">이메일</label>
+                            <input type="email" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                        </div>
+                        
+                        <div>
+                            <label class="block font-medium text-gray-700 mb-3" style="font-family: 'Inter', 'Noto Sans KR', sans-serif; font-size: 1.05rem;">지원 분야</label>
+                            <textarea rows="4" class="w-full px-4 py-4 border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-transparent text-lg" placeholder="어떤 방식으로 창당에 도움을 주실 수 있는지 간단히 작성해 주세요." style="font-family: 'Inter', 'Noto Sans KR', sans-serif;"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-red-600 text-white py-4 px-6 text-lg font-medium hover:bg-red-700 transition-colors duration-300" style="font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                            창당 지원 신청하기
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 푸터 -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>국민이 주인인 대한민국을 만들어갑니다</h3>
-                    <p>대한민국 2.0을 만들어가는 정당</p>
-                </div>
-                <div class="footer-section">
-                    <h4>바로가기</h4>
-                    <a href="members/join.html">당원 가입</a>
-                    <a href="support.html">후원하기</a>
-                    <a href="notices.html">공지사항</a>
-                </div>
-                <div class="footer-section">
-                    <h4>연락처</h4>
-                    <p>📧 contact@freedom-innovation.kr</p>
-                    <p>📞 02-1234-5678</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 자유와혁신. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-6">자유와 혁신당 창준위</h3>
+                <p class="text-gray-400 mb-6">새로운 정치, 새로운 미래를 함께 만들어갑니다.</p>
+                <p class="text-gray-400">&copy; 2025 자유와 혁신당 창당준비위원회. 모든 권리 보유.</p>
             </div>
         </div>
     </footer>
 
-    <script src="/script.js"></script>
-    <script src="/nav.js"></script>
+    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html> 

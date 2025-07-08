@@ -47,6 +47,9 @@ jobs:
             MSG2=$(yq e '.representative.messages[1]' content/homepage.yml)
             MSG3=$(yq e '.representative.messages[2]' content/homepage.yml)
             
+            # 사이트 정보
+            SITE_TITLE=$(yq e '.site.title' content/homepage.yml)
+            
             echo "✅ Data extracted from YAML"
             echo "Hero Title: $HERO_TITLE"
             echo "Hero Subtitle: $HERO_SUBTITLE"
@@ -54,20 +57,22 @@ jobs:
             # index.html 백업
             cp index.html index.html.backup
             
-            # 복잡한 히어로 섹션 구조에 맞는 업데이트
-            # 히어로 제목 업데이트 (복잡한 span 구조 유지하면서 부제목만 변경)
-            sed -i "s|<span style=\"font-weight: 700;\">자유</span><span style=\"font-weight: 200;\">와</span><span style=\"font-weight: 700;\">혁신</span><br>.*|<span style=\"font-weight: 700;\">자유</span><span style=\"font-weight: 200;\">와</span><span style=\"font-weight: 700;\">혁신</span><br>$HERO_SUBTITLE|g" index.html
+            # 원본 구조에 맞는 업데이트
+            # 1. 사이트 제목 (title 태그와 네비게이션)
+            sed -i "s|<title>.*</title>|<title>$SITE_TITLE</title>|g" index.html
+            sed -i "s|<h1 class=\"text-2xl font-bold text-red-600\">.*<span|<h1 class=\"text-2xl font-bold text-red-600\">$HERO_TITLE <span|g" index.html
             
-            # 히어로 설명 업데이트 (인라인 스타일 포함된 p 태그)
-            sed -i 's|<p style="font-size: clamp(1\.1rem, 3vw, 1\.5rem); margin-bottom: 2rem; font-weight: 400; line-height: 1\.6; font-family: '"'"'Inter'"'"', '"'"'Noto Sans KR'"'"', sans-serif; max-width: 90%;">.*</p>|<p style="font-size: clamp(1.1rem, 3vw, 1.5rem); margin-bottom: 2rem; font-weight: 400; line-height: 1.6; font-family: '"'"'Inter'"'"', '"'"'Noto Sans KR'"'"', sans-serif; max-width: 90%;">'$HERO_DESCRIPTION'</p>|g' index.html
+            # 2. 히어로 섹션 제목 (복잡한 인라인 스타일 포함)
+            sed -i "s|<span style=\"font-weight: 700;\">.*</span><br>.*|<span style=\"font-weight: 700;\">$HERO_TITLE</span><br>$HERO_SUBTITLE|g" index.html
             
-            # CTA 버튼 업데이트 (인라인 스타일 포함)
-            sed -i 's|<a href="[^"]*" target="_blank" style="[^"]*"[^>]*>[^<]*</a>|<a href="'$HERO_CTA_LINK'" target="_blank" style="background-color: #A50034; color: white; padding: 0.875rem 2rem; font-size: clamp(1rem, 2.5vw, 1.125rem); font-weight: 500; border: none; cursor: pointer; transition: all 0.3s ease; font-family: '"'"'Inter'"'"', '"'"'Noto Sans KR'"'"', sans-serif; margin-top: 1rem; text-decoration: none; display: inline-block;" onmouseover="this.style.backgroundColor='"'"'#8B002C'"'"'" onmouseout="this.style.backgroundColor='"'"'#A50034'"'"'">'$HERO_CTA_TEXT'</a>|g' index.html
+            # 3. 히어로 섹션 설명
+            sed -i "s|국민과 함께 더 나은 대한민국을 만들기 위한<br>새로운 정치의 시작을 준비하고 있습니다\.|$HERO_DESCRIPTION|g" index.html
             
-            # 대표 인사말 섹션 업데이트 (기존 방식 유지)
-            sed -i "s|새로운 정치의 시작,<br>|$REP_TITLE<br>|g" index.html
-            sed -i "s|자유와혁신 당 대표</p>|$REP_POSITION</p>|g" index.html
-            sed -i "s|김○○</p>|$REP_NAME</p>|g" index.html
+            # 4. CTA 버튼 텍스트
+            sed -i "s|신당 가입하기|$HERO_CTA_TEXT|g" index.html
+            
+            # 5. 배경 이미지 URL
+            sed -i "s|background-image: url('hero_bg\.png?v=6')|background-image: url('$HERO_BG_IMAGE')|g" index.html
             
             echo "✅ index.html updated with new data"
             
