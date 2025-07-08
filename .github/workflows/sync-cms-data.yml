@@ -1,0 +1,48 @@
+name: Sync CMS Data to Jekyll
+
+on:
+  push:
+    paths:
+      - 'content/home/**'
+      - 'content/settings/**'
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync CMS data to _data folder
+        run: |
+          # 홈페이지 데이터 동기화
+          if [ -f "content/home/hero.yml" ]; then
+            cp content/home/hero.yml _data/hero.yml
+            echo "✅ Hero data synced"
+          fi
+          
+          if [ -f "content/home/representative.yml" ]; then
+            cp content/home/representative.yml _data/representative.yml
+            echo "✅ Representative data synced"
+          fi
+          
+          if [ -f "content/home/core-policies.yml" ]; then
+            cp content/home/core-policies.yml _data/core-policies.yml
+            echo "✅ Core policies data synced"
+          fi
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _data/
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🔄 자동 동기화: CMS 데이터를 Jekyll _data 폴더로 업데이트"
+            git push
+            echo "✅ Changes pushed to repository"
+          fi 
