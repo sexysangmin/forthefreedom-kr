@@ -1,0 +1,107 @@
+<!-- Footer -->
+<footer class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Party Info -->
+            <div class="md:col-span-2">
+                <h3 class="text-2xl font-bold text-red-600 mb-4">{{ site.title | default: '자유와혁신' }}</h3>
+                <p class="text-gray-300 mb-4 leading-relaxed">
+                    {{ site.description | default: '국민과 함께 더 나은 대한민국을 만들어가는 자유와혁신' }}
+                </p>
+                <div class="space-y-2 text-sm text-gray-400">
+                    {% if site.contact_info %}
+                        {% if site.contact_info.address %}
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>{{ site.contact_info.address }}</p>
+                        {% endif %}
+                        {% if site.contact_info.phone %}
+                        <p><i class="fas fa-phone mr-2"></i>{{ site.contact_info.phone }}</p>
+                        {% endif %}
+                        {% if site.email %}
+                        <p><i class="fas fa-envelope mr-2"></i>{{ site.email }}</p>
+                        {% endif %}
+                    {% else %}
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>서울특별시 영등포구 국회대로 000</p>
+                        <p><i class="fas fa-phone mr-2"></i>02-0000-0000</p>
+                        <p><i class="fas fa-envelope mr-2"></i>{{ site.email | default: 'info@forthefreedom.kr' }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">바로가기</h4>
+                <ul class="space-y-2">
+                    <li><a href="{{ '/about.html' | relative_url }}" class="text-gray-300 hover:text-red-400 transition-colors">당 소개</a></li>
+                    <li><a href="{{ '/policy.html' | relative_url }}" class="text-gray-300 hover:text-red-400 transition-colors">정책</a></li>
+                    <li><a href="{{ '/news.html' | relative_url }}" class="text-gray-300 hover:text-red-400 transition-colors">소식</a></li>
+                    <li><a href="{{ '/notices.html' | relative_url }}" class="text-gray-300 hover:text-red-400 transition-colors">공지사항</a></li>
+                    <li><a href="{{ '/members/join.html' | relative_url }}" class="text-gray-300 hover:text-red-400 transition-colors">당원가입</a></li>
+                    <li><a href="{{ '/support.html' | relative_url }}" class="text-gray-300 hover:text-red-400 transition-colors">지원·후원</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media & Contact -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">소통채널</h4>
+                <div class="flex space-x-4 mb-6">
+                    {% if site.social_links %}
+                        {% if site.social_links.facebook %}
+                        <a href="https://facebook.com/{{ site.social_links.facebook }}" class="text-gray-300 hover:text-red-400 transition-colors" target="_blank">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        {% endif %}
+                        {% if site.social_links.twitter %}
+                        <a href="https://twitter.com/{{ site.social_links.twitter }}" class="text-gray-300 hover:text-red-400 transition-colors" target="_blank">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        {% endif %}
+                        {% if site.social_links.instagram %}
+                        <a href="https://instagram.com/{{ site.social_links.instagram }}" class="text-gray-300 hover:text-red-400 transition-colors" target="_blank">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        {% endif %}
+                        {% if site.social_links.youtube %}
+                        <a href="https://youtube.com/{{ site.social_links.youtube }}" class="text-gray-300 hover:text-red-400 transition-colors" target="_blank">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        {% endif %}
+                    {% else %}
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition-colors" target="_blank">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition-colors" target="_blank">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition-colors" target="_blank">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-red-400 transition-colors" target="_blank">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    {% endif %}
+                </div>
+                
+                <!-- CMS Admin Link (for authorized users) -->
+                <div class="mt-4">
+                    <a href="{{ '/freedom-control/' | relative_url }}" class="inline-block bg-red-600 hover:bg-red-700 text-white text-xs px-3 py-1 rounded transition-colors">
+                        <i class="fas fa-cog mr-1"></i>관리자
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    &copy; {{ 'now' | date: "%Y" }} {{ site.title | default: '자유와혁신' }}. 모든 권리 보유.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="{{ '/privacy.html' | relative_url }}" class="text-gray-400 hover:text-red-400 text-sm transition-colors">개인정보처리방침</a>
+                    <a href="{{ '/terms.html' | relative_url }}" class="text-gray-400 hover:text-red-400 text-sm transition-colors">이용약관</a>
+                    <a href="{{ '/sitemap.xml' | relative_url }}" class="text-gray-400 hover:text-red-400 text-sm transition-colors">사이트맵</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer> 

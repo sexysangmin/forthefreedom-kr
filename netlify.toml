@@ -1,9 +1,14 @@
 [build]
-  publish = "."
-  command = "echo 'No build command needed for static site'"
+  publish = "_site"
+  command = "jekyll build"
 
 [build.environment]
   NODE_VERSION = "18"
+  RUBY_VERSION = "3.1.0"
+
+# Jekyll 플러그인을 위한 환경 설정
+[context.production.environment]
+  JEKYLL_ENV = "production"
 
 [[redirects]]
   from = "/freedom-control/*"
@@ -12,4 +17,4 @@
 
 # Enable Git Gateway for Netlify CMS
 [context.production]
-  environment = { ACCESS_TOKEN = "", BRANCH = "main" } 
+  environment = { ACCESS_TOKEN = "", BRANCH = "main", JEKYLL_ENV = "production" } 

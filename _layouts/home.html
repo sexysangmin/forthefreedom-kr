@@ -1,0 +1,116 @@
+---
+layout: default
+---
+
+{% assign hero_data = site.data.hero | default: site.content.home.hero %}
+{% assign representative_data = site.data.representative | default: site.content.home.representative %}
+{% assign policies_data = site.data.core-policies | default: site.content.home.core-policies %}
+
+<!-- Hero Section -->
+<section id="home" class="hero-section" style="height: 100vh; min-height: 600px; width: 100%; position: relative; margin: 0; padding: 0; overflow: hidden; background-image: url('{{ hero_data.background_image | default: '/images/hero_bg.png' }}?v=6'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: scroll;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4), transparent); z-index: 2;"></div>
+    <div style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 10; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem;">
+        <div style="max-width: 48rem; color: white; text-align: left; margin-left: 0; padding-left: 24px;">
+            <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; margin-bottom: 1.5rem; line-height: 1.1; font-family: 'Inter', 'Noto Sans KR', sans-serif;">
+                {{ hero_data.title | default: '<span style="font-weight: 700;">자유</span><span style="font-weight: 200;">와</span><span style="font-weight: 700;">혁신</span><br>새로운 정치를 함께' }}
+            </h1>
+            <p style="font-size: clamp(1.1rem, 3vw, 1.5rem); margin-bottom: 2rem; font-weight: 400; line-height: 1.6; font-family: 'Inter', 'Noto Sans KR', sans-serif; max-width: 90%;">
+                {{ hero_data.subtitle | default: '국민과 함께 더 나은 대한민국을 만들어갈 자유와혁신에 참여하세요' }}
+            </p>
+            <a href="{{ hero_data.cta_link | default: 'https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3' }}" target="_blank" style="background-color: #A50034; color: white; padding: 0.875rem 2rem; font-size: clamp(1rem, 2.5vw, 1.125rem); font-weight: 500; border: none; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', 'Noto Sans KR', sans-serif; margin-top: 1rem; text-decoration: none; display: inline-block;" onmouseover="this.style.backgroundColor='#8B002C'" onmouseout="this.style.backgroundColor='#A50034'">
+                {{ hero_data.cta_text | default: '당원 가입하기' }}
+            </a>
+        </div>
+    </div>
+    <div style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: white; font-size: 1.5rem; animation: bounce 2s infinite; z-index: 10;">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- Representative Message Section -->
+<section class="py-12 sm:py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-1 h-12 bg-red-600"></div>
+                        <span class="text-red-600 font-medium text-lg">{{ representative_data.section_title | default: '대표 인사말' }}</span>
+                    </div>
+                    <h3 class="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+                        {{ representative_data.title | default: '새로운 정치의 시작,<br><span class="text-red-600">자유와혁신</span>과 함께' }}
+                    </h3>
+                    <div class="space-y-4 text-lg text-gray-600 leading-relaxed">
+                        {% if representative_data.messages %}
+                            {% for message in representative_data.messages %}
+                                <p>{{ message.message }}</p>
+                            {% endfor %}
+                        {% else %}
+                            <p>"안녕하세요. 자유와혁신 당 대표입니다."</p>
+                            <p>우리는 자유와 혁신이라는 가치를 바탕으로 대한민국 미래를 열어가고자 합니다. 기존 정치의 틀을 벗어나 진정으로 국민을 위한 정치를 구현하겠습니다.</p>
+                            <p>경제 성장과 사회 통합, 그리고 지속가능한 발전을 위해 모든 국민이 행복한 나라를 만들어가겠습니다.</p>
+                        {% endif %}
+                    </div>
+                    <div class="pt-4">
+                        <p class="text-gray-900 font-semibold text-lg">{{ representative_data.position | default: '자유와혁신 당 대표' }}</p>
+                        <p class="text-gray-600 mt-1">{{ representative_data.name | default: '김○○' }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2">
+                <div class="relative">
+                    <div class="w-full h-96 lg:h-[500px] bg-gradient-to-br from-red-50 to-red-100 rounded-2xl flex items-center justify-center relative overflow-hidden">
+                        {% if representative_data.photo %}
+                            <img src="{{ representative_data.photo }}" alt="{{ representative_data.name }}" class="w-full h-full object-cover rounded-2xl">
+                        {% else %}
+                            <div class="absolute inset-0 bg-gradient-to-tr from-red-600/10 to-transparent"></div>
+                            <div class="text-center z-10">
+                                <div class="w-24 h-24 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <i class="fas fa-user-tie text-white text-3xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-red-900 mb-2">당 대표</h4>
+                                <p class="text-red-700 font-medium">{{ representative_data.name | default: '김○○' }}</p>
+                                <p class="text-sm text-red-600 mt-2">실제 프로필로 교체 예정</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Policies Section -->
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <div class="flex items-center justify-center mb-6">
+                <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase">{{ policies_data.section_title | default: '핵심 정책' }}</h2>
+            </div>
+            <h3 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                {{ policies_data.title | default: '7대 핵심 정책으로<br><span class="text-red-600">미래를 설계합니다</span>' }}
+            </h3>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                {{ policies_data.description | default: '국민생활을 개선하고 국가 발전을 이끌어갈 핵심 정책들을 소개합니다' }}
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% assign core_policies = policies_data.policies | default: site.data.core_policies %}
+            {% for policy in core_policies %}
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-600">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4">
+                        <i class="{{ policy.icon | default: 'fas fa-star' }} text-white text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900">{{ policy.title }}</h4>
+                </div>
+                <p class="text-gray-600">{{ policy.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{{ content }} 
