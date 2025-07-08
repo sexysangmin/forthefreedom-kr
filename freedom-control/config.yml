@@ -21,7 +21,7 @@ collections:
     label: "📱 웹사이트 페이지"
     files:
       # 홈페이지
-      - file: "_data/homepage.yml"
+      - file: "content/homepage.yml"
         label: "🏠 메인 페이지"
         name: "homepage"
         fields:

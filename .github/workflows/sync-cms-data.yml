@@ -1,9 +1,9 @@
-name: Sync CMS Data to Jekyll
+name: Sync CMS Data to HTML
 
 on:
   push:
     paths:
-      - '_data/**'
+      - 'content/homepage.yml'
       - 'content/**'
 
 permissions:
@@ -19,45 +19,75 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Sync CMS data to _data folder
+      - name: Install yq for YAML parsing
         run: |
-          echo "🔄 Starting CMS data synchronization..."
-          
-          # 새로운 CMS 구조에서는 _data 폴더에 직접 저장되므로
-          # 별도 동기화가 필요하지 않지만, 미래를 위해 준비
-          
-          # 홈페이지 통합 데이터 확인
-          if [ -f "_data/homepage.yml" ]; then
-            echo "✅ Homepage data found"
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+
+      - name: Sync homepage data to index.html
+        run: |
+          if [ -f "content/homepage.yml" ]; then
+            echo "🔄 Syncing homepage data to index.html..."
+            
+            # YAML에서 데이터 추출
+            HERO_TITLE=$(yq e '.hero.title' content/homepage.yml)
+            HERO_SUBTITLE=$(yq e '.hero.subtitle' content/homepage.yml)
+            HERO_DESCRIPTION=$(yq e '.hero.description' content/homepage.yml)
+            HERO_CTA_TEXT=$(yq e '.hero.cta_text' content/homepage.yml)
+            HERO_CTA_LINK=$(yq e '.hero.cta_link' content/homepage.yml)
+            HERO_BG_IMAGE=$(yq e '.hero.background_image' content/homepage.yml)
+            
+            REP_TITLE=$(yq e '.representative.title' content/homepage.yml)
+            REP_NAME=$(yq e '.representative.name' content/homepage.yml)
+            REP_POSITION=$(yq e '.representative.position' content/homepage.yml)
+            REP_PHOTO=$(yq e '.representative.photo' content/homepage.yml)
+            
+            # 인사말 메시지들 추출 (첫 3개)
+            MSG1=$(yq e '.representative.messages[0]' content/homepage.yml)
+            MSG2=$(yq e '.representative.messages[1]' content/homepage.yml)
+            MSG3=$(yq e '.representative.messages[2]' content/homepage.yml)
+            
+            echo "✅ Data extracted from YAML"
+            echo "Hero Title: $HERO_TITLE"
+            echo "Hero Subtitle: $HERO_SUBTITLE"
+            
+            # index.html 백업
+            cp index.html index.html.backup
+            
+            # index.html 업데이트
+            sed -i "s|<h1 class=\"hero-title\">.*</h1>|<h1 class=\"hero-title\">$HERO_TITLE</h1>|g" index.html
+            sed -i "s|<p class=\"hero-subtitle\">.*</p>|<p class=\"hero-subtitle\">$HERO_SUBTITLE</p>|g" index.html
+            sed -i "s|<p class=\"hero-description\">.*</p>|<p class=\"hero-description\">$HERO_DESCRIPTION</p>|g" index.html
+            sed -i "s|<a href=\"[^\"]*\" class=\"cta-button\">.*</a>|<a href=\"$HERO_CTA_LINK\" class=\"cta-button\">$HERO_CTA_TEXT</a>|g" index.html
+            
+            # 대표 인사말 섹션 업데이트
+            sed -i "s|<h3>.*</h3>|<h3>$REP_TITLE</h3>|g" index.html
+            sed -i "s|<strong>.*</strong>|<strong>$REP_POSITION $REP_NAME</strong>|g" index.html
+            
+            echo "✅ index.html updated with new data"
+            
+            # 변경사항 확인
+            if ! diff -q index.html index.html.backup > /dev/null; then
+              echo "✅ Changes detected in index.html"
+            else
+              echo "ℹ️ No changes needed in index.html"
+            fi
+            
+            rm index.html.backup
+          else
+            echo "❌ content/homepage.yml not found"
           fi
-          
-          # About 페이지 데이터 확인
-          if [ -f "content/about-page.yml" ]; then
-            echo "✅ About page data found"
-          fi
-          
-          # 미디어 센터 데이터 확인
-          if [ -f "content/media/images.yml" ]; then
-            echo "✅ Media images data found"
-          fi
-          
-          # 사이트 설정 확인
-          if [ -f "content/settings/site-info.yml" ]; then
-            echo "✅ Site settings found"
-          fi
-          
-          echo "🎉 CMS data sync check completed"
 
       - name: Commit and push if changed
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
+          git add index.html
           
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "🔄 자동 동기화: CMS 데이터 업데이트"
+            git commit -m "🔄 자동 동기화: CMS 홈페이지 데이터 → index.html 반영"
             git push
             echo "✅ Changes pushed to repository"
           fi 
