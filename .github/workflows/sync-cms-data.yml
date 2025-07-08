@@ -3,8 +3,12 @@ name: Sync CMS Data to Jekyll
 on:
   push:
     paths:
-      - 'content/home/**'
-      - 'content/settings/**'
+      - '_data/**'
+      - 'content/**'
+
+permissions:
+  contents: write
+  actions: read
 
 jobs:
   sync-data:
@@ -17,32 +21,43 @@ jobs:
 
       - name: Sync CMS data to _data folder
         run: |
-          # 홈페이지 데이터 동기화
-          if [ -f "content/home/hero.yml" ]; then
-            cp content/home/hero.yml _data/hero.yml
-            echo "✅ Hero data synced"
+          echo "🔄 Starting CMS data synchronization..."
+          
+          # 새로운 CMS 구조에서는 _data 폴더에 직접 저장되므로
+          # 별도 동기화가 필요하지 않지만, 미래를 위해 준비
+          
+          # 홈페이지 통합 데이터 확인
+          if [ -f "_data/homepage.yml" ]; then
+            echo "✅ Homepage data found"
           fi
           
-          if [ -f "content/home/representative.yml" ]; then
-            cp content/home/representative.yml _data/representative.yml
-            echo "✅ Representative data synced"
+          # About 페이지 데이터 확인
+          if [ -f "content/about-page.yml" ]; then
+            echo "✅ About page data found"
           fi
           
-          if [ -f "content/home/core-policies.yml" ]; then
-            cp content/home/core-policies.yml _data/core-policies.yml
-            echo "✅ Core policies data synced"
+          # 미디어 센터 데이터 확인
+          if [ -f "content/media/images.yml" ]; then
+            echo "✅ Media images data found"
           fi
+          
+          # 사이트 설정 확인
+          if [ -f "content/settings/site-info.yml" ]; then
+            echo "✅ Site settings found"
+          fi
+          
+          echo "🎉 CMS data sync check completed"
 
       - name: Commit and push if changed
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add _data/
+          git add .
           
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "🔄 자동 동기화: CMS 데이터를 Jekyll _data 폴더로 업데이트"
+            git commit -m "🔄 자동 동기화: CMS 데이터 업데이트"
             git push
             echo "✅ Changes pushed to repository"
           fi 
