@@ -1,5 +1,5 @@
 # CMS 관리자 페이지
-/admin/* /admin/index.html 200
+/freedom-control/* /freedom-control/index.html 200
 
 # 정적 HTML 페이지 처리
 /about /about.html 200

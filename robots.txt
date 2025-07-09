@@ -10,7 +10,7 @@ Allow: /support
 Allow: /resources
 
 # 관리자 페이지 제외
-Disallow: /admin/
+Disallow: /freedom-control/
 
 # 사이트맵 위치
 Sitemap: https://libertyinnovation.kr/sitemap.xml
