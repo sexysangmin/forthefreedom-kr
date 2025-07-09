@@ -21,12 +21,17 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
-# SPA 라우팅 지원
+# 정적 파일 직접 접근 허용
+[[redirects]]
+  from = "/*.html"
+  to = "/:splat.html"
+  status = 200
+
+# SPA 라우팅 지원 (모든 사용자)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  conditions = {Role = ["admin"]}
 
 # 보안 헤더
 [[headers]]
