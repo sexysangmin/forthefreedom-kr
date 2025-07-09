@@ -31,7 +31,7 @@ class BulkTemplateGenerator:
         
         # 제외할 파일/디렉토리
         self.exclude_patterns = [
-            "admin/*",
+            "freedom-control/*",
             "node_modules/*", 
             ".git/*",
             "*.min.html",

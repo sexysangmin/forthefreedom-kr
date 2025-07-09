@@ -278,8 +278,8 @@ party-website/
 
 ## 📞 유지보수 가이드
 
-### 🔄 CMS 콘텐츠 업데이트
-1. `/admin/` 또는 Netlify CMS 접속
+### �� CMS 콘텐츠 업데이트
+1. `/freedom-control/` 또는 Netlify CMS 접속
 2. 해당 섹션 편집
 3. 자동 동기화 확인
 

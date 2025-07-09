@@ -50,7 +50,7 @@ party-website/
 │       └── registry.yml           # 템플릿 매핑
 │
 ├── 🔧 CMS 관리자
-│   └── admin/
+│   └── freedom-control/
 │       ├── index.html             # Netlify CMS 인터페이스
 │       └── config.yml             # CMS 설정
 │
@@ -105,8 +105,9 @@ npm run cms
 
 ### 4️⃣ **CMS 관리자 접속**
 
-- **로컬**: http://localhost:3000/admin
-- **배포된 사이트**: https://your-site.netlify.app/admin
+**CMS 관리자 URL:**
+- **로컬**: http://localhost:3000/freedom-control
+- **배포된 사이트**: https://your-site.netlify.app/freedom-control
 
 ---
 
@@ -393,7 +394,7 @@ furnished to do so, subject to the following conditions:
 
 **자유와혁신과 함께 대한민국의 미래를 만들어가세요!**
 
-[🌐 웹사이트 방문](https://자유와혁신.netlify.app) • [📝 CMS 관리자](https://자유와혁신.netlify.app/admin) • [📊 GitHub](https://github.com/your-username/party-website)
+[🌐 웹사이트 방문](https://자유와혁신.netlify.app) • [📝 CMS 관리자](https://자유와혁신.netlify.app/freedom-control) • [📊 GitHub](https://github.com/your-username/party-website)
 
 ---
 

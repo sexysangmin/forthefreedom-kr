@@ -33,9 +33,17 @@ class CMSSetup:
         """
         self.project_root = Path(project_root)
         self.required_directories = [
+            "content",
+            "content/about",
+            "content/members", 
+            "content/news",
+            "content/policy",
+            "content/resources", 
+            "content/resources/founding",
+            "content/resources/policy",
             "templates",
             "templates/about",
-            "templates/members", 
+            "templates/members",
             "templates/news",
             "templates/policy",
             "templates/resources",
@@ -43,7 +51,7 @@ class CMSSetup:
             "templates/resources/policy",
             ".github",
             ".github/workflows",
-            "admin",
+            "freedom-control",
             "scripts"
         ]
         
@@ -307,8 +315,8 @@ class CMSSetup:
   PYTHON_VERSION = "3.9"
 
 [[redirects]]
-  from = "/admin/*"
-  to = "/admin/index.html"
+  from = "/freedom-control/*"
+  to = "/freedom-control/index.html"
   status = 200
 
 [[headers]]
@@ -319,7 +327,7 @@ class CMSSetup:
     X-Content-Type-Options = "nosniff"
 
 [[headers]]
-  for = "/admin/*"
+  for = "/freedom-control/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
 
@@ -399,7 +407,7 @@ class CMSSetup:
         print(f"\n🌐 다음 단계:")
         print(f"  1. GitHub에 변경사항 커밋 및 푸시")
         print(f"  2. Netlify에서 사이트 배포")
-        print(f"  3. /admin 페이지에서 CMS 관리자 접속")
+        print(f"  3. /freedom-control 페이지에서 CMS 관리자 접속")
         print(f"  4. Git Gateway 설정 (Netlify Identity)")
         
         if success_count == total_steps:

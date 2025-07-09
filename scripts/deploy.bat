@@ -105,7 +105,7 @@ echo 3️⃣ 사용자 초대
 echo    → Identity → Invite users → 관리자 이메일 입력
 echo.
 echo 4️⃣ CMS 관리자 접속
-echo    → https://[your-site-url]/admin
+echo    → https://[your-site-url]/freedom-control
 echo.
 
 REM 추가 도구 안내
@@ -128,7 +128,7 @@ set /p OPEN_SITE="사이트를 브라우저에서 여시겠습니까? (y/N): "
 if /i "%OPEN_SITE%"=="y" (
     echo 🌐 사이트 열기...
     start https://자유와혁신.netlify.app
-    start https://자유와혁신.netlify.app/admin
+    start https://자유와혁신.netlify.app/freedom-control
 )
 
 echo.
