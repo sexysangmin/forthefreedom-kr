@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>자유와혁신 CMS 관리자</title>
+  
+  <!-- Netlify CMS -->
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  
+  <!-- 한국어 지원 -->
+  <script src="https://unpkg.com/netlify-cms-locales@^1.0.0/dist/ko/index.js"></script>
+  
+  <!-- 사용자 정의 스타일 -->
+  <style>
+    /* 한국어 폰트 설정 */
+    body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    /* CMS 헤더 커스터마이징 */
+    .css-1x1v9z7 {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    /* 사이드바 스타일 */
+    .css-1jp314h {
+      background-color: #f8f9fa;
+    }
+    
+    /* 편집기 개선 */
+    .css-1hwfws3 {
+      max-width: none;
+    }
+    
+    /* 미리보기 스타일 */
+    .cms-preview-pane {
+      background: white;
+      padding: 20px;
+    }
+    
+    /* 로딩 애니메이션 */
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Netlify CMS 컨테이너 -->
+  <div id="nc-root"></div>
+  
+  <script>
+    // 한국어 설정
+    CMS.registerLocale('ko', ko);
+    
+    // 사용자 정의 위젯 등록
+    CMS.registerWidget('custom-date', 'date', {
+      pattern: /^\d{4}-\d{2}-\d{2}$/,
+      defaultValue: () => new Date().toISOString().split('T')[0]
+    });
+    
+    // 커스텀 미리보기 템플릿
+    var PostPreview = createClass({
+      render: function() {
+        var entry = this.props.entry;
+        var metadata = entry.getIn(['data', 'metadata']);
+        var content = entry.getIn(['data', 'content']);
+        
+        return h('div', {className: 'cms-preview-pane'},
+          h('h1', {}, metadata && metadata.get('title')),
+          h('div', {
+            dangerouslySetInnerHTML: {
+              __html: content && content.get('body') || '내용 없음'
+            }
+          })
+        );
+      }
+    });
+    
+    // 미리보기 등록
+    CMS.registerPreviewTemplate('notices_posts', PostPreview);
+    CMS.registerPreviewTemplate('events', PostPreview);
+    
+    // 사용자 정의 편집기 컴포넌트
+    var CustomEditor = createClass({
+      getInitialState: function() {
+        return {
+          value: this.props.value || ''
+        };
+      },
+      
+      handleChange: function(e) {
+        this.setState({ value: e.target.value });
+        this.props.onChange(e.target.value);
+      },
+      
+      render: function() {
+        return h('div', {},
+          h('label', {}, this.props.field.get('label')),
+          h('textarea', {
+            value: this.state.value,
+            onChange: this.handleChange,
+            rows: 10,
+            style: {
+              width: '100%',
+              padding: '10px',
+              border: '1px solid #ddd',
+              borderRadius: '4px',
+              fontFamily: 'monospace'
+            }
+          })
+        );
+      }
+    });
+    
+    // 커스텀 필드 등록
+    CMS.registerWidget('yaml-editor', CustomEditor);
+    
+    // CMS 초기화
+    CMS.init({
+      config: {
+        load_config_file: true,
+        locale: 'ko'
+      }
+    });
+    
+    // 저장 시 알림
+    CMS.registerEventListener({
+      name: 'preSave',
+      handler: ({entry}) => {
+        console.log('저장 중...', entry.get('slug'));
+        // 여기서 추가 검증이나 변환 작업 수행 가능
+        return entry;
+      }
+    });
+    
+    // 성공 알림
+    CMS.registerEventListener({
+      name: 'postSave',
+      handler: ({entry}) => {
+        console.log('저장 완료!', entry.get('slug'));
+        // 성공 알림 표시
+        if (window.Notification && Notification.permission === "granted") {
+          new Notification('자유와혁신 CMS', {
+            body: `"${entry.get('slug')}" 저장이 완료되었습니다.`,
+            icon: '/images/hero_image.png'
+          });
+        }
+      }
+    });
+    
+    // 에러 핸들링
+    CMS.registerEventListener({
+      name: 'error',
+      handler: (error) => {
+        console.error('CMS 오류:', error);
+        alert('오류가 발생했습니다: ' + error.message);
+      }
+    });
+    
+    // 페이지 로드 완료 시
+    document.addEventListener('DOMContentLoaded', function() {
+      // 알림 권한 요청
+      if (window.Notification && Notification.permission !== "granted") {
+        Notification.requestPermission();
+      }
+      
+      // 로딩 인디케이터 제거
+      setTimeout(() => {
+        const loading = document.querySelector('.loading-spinner');
+        if (loading) loading.remove();
+      }, 3000);
+    });
+    
+    // 자동 저장 기능
+    let autoSaveTimeout;
+    CMS.registerEventListener({
+      name: 'change',
+      handler: ({entry}) => {
+        clearTimeout(autoSaveTimeout);
+        autoSaveTimeout = setTimeout(() => {
+          console.log('자동 저장 체크...', entry.get('slug'));
+          // 필요시 자동 저장 로직 구현
+        }, 30000); // 30초 후
+      }
+    });
+  </script>
+  
+  <!-- 로딩 인디케이터 -->
+  <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+    <div class="loading-spinner"></div>
+    <p style="margin-top: 10px; color: #667eea; font-weight: bold;">자유와혁신 CMS 로딩 중...</p>
+  </div>
+</body>
+</html> 

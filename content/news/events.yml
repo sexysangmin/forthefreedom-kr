@@ -1,0 +1,180 @@
+# 자유와혁신 행사/집회 안내 페이지 완전 CMS 데이터
+# news/events.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "행사/집회 안내 - 자유와혁신"
+  description: "자유와혁신의 모든 집회와 행사 정보를 한 곳에서 확인하세요. 실시간 업데이트되는 일정과 상세 정보를 제공합니다."
+  keywords: "자유와혁신, 행사안내, 집회안내, 정책발표회, 시민토론회, 정치집회"
+
+# 히어로 섹션
+hero:
+  title: "행사/집회 안내"
+  subtitle: "자유와혁신의 모든 집회와 행사 정보를 한 곳에서"
+  background_image: "../images/hero_image.png"
+
+# 긴급 행사 슬라이더
+urgent_events:
+  section_title: "예정된 주요 행사"
+  badge_text: "이번 주"
+  badge_icon: "fas fa-calendar-check"
+  background: "bg-red-50"
+  
+  events:
+    - title: "자유와혁신 정책 발표회"
+      time: "오늘 오후 2시"
+      dday: "D-0"
+      location: "서울 종로구 광화문광 | 자유와혁신 본부"
+      time_color: "text-red-600"
+      time_bg: "bg-red-100"
+      border_color: "border-red-600"
+      action: "openEventDetail('urgent-1')"
+    
+    - title: "시민 토론회"
+      time: "내일 오후 6시"
+      dday: "D-1"
+      location: "부산 해운대구 센텀 | 부산보수연합"
+      time_color: "text-orange-600"
+      time_bg: "bg-orange-100"
+      border_color: "border-orange-500"
+      action: "openEventDetail('urgent-2')"
+    
+    - title: "자유민주주의 수호 대회"
+      time: "이번 주 토요일"
+      dday: "D-3"
+      location: "대구 달성공원 | 대구경북보수단체연합"
+      time_color: "text-yellow-700"
+      time_bg: "bg-yellow-100"
+      border_color: "border-yellow-500"
+      action: "openEventDetail('urgent-3')"
+
+# 필터 및 검색
+filter_section:
+  background: "bg-gray-50"
+  
+  filters:
+    - text: "전체"
+      value: "all"
+      active: true
+    - text: "오늘"
+      value: "today"
+    - text: "이번 주"
+      value: "week"
+    - text: "서울"
+      value: "seoul"
+    - text: "부산"
+      value: "busan"
+    - text: "대구"
+      value: "daegu"
+    - text: "기타 지역"
+      value: "others"
+  
+  search:
+    placeholder: "제목이나 주제 검색..."
+    button_icon: "fas fa-search"
+
+# 행사 목록
+events_list:
+  - category: "집회"
+    category_color: "text-red-600"
+    category_bg: "bg-red-100"
+    region: "서울"
+    region_color: "text-gray-600"
+    region_bg: "bg-gray-100"
+    title: "길거리 행진"
+    date: "2025년 1월 18일(토) 14:00"
+    location: "서울 종로구 광화문광장"
+    organizer: "자유수호시민행동본부"
+    phone: "02-123-4567"
+    description: "자유민주주의 가치 수호를 위한 평화로운 길거리 행진입니다. 많은 참여 바랍니다."
+    status: "오늘"
+    status_color: "text-red-600"
+    icon: "fas fa-bullhorn"
+    icon_color: "text-red-600"
+    icon_bg: "bg-red-100"
+    data_category: "today seoul"
+    action: "openEventDetail('event-1')"
+    
+  - category: "토론회"
+    category_color: "text-blue-600"
+    category_bg: "bg-blue-100"
+    region: "부산"
+    region_color: "text-gray-600"
+    region_bg: "bg-gray-100"
+    title: "부산 경제 발전 토론회"
+    date: "2025년 1월 20일(월) 19:00"
+    location: "부산 해운대구 센텀시티"
+    organizer: "부산경제발전연구회"
+    phone: "051-789-0123"
+    description: "부산의 미래 경제 발전 방향과 전략을 논의하는 공개 토론회입니다."
+    status: "이번 주"
+    status_color: "text-blue-600"
+    icon: "fas fa-microphone"
+    icon_color: "text-blue-600"
+    icon_bg: "bg-blue-100"
+    data_category: "week busan"
+    action: "openEventDetail('event-2')"
+    
+  - category: "대회"
+    category_color: "text-green-600"
+    category_bg: "bg-green-100"
+    region: "대구"
+    region_color: "text-gray-600"
+    region_bg: "bg-gray-100"
+    title: "자유민주주의 수호 대회"
+    date: "2025년 1월 21일(화) 15:00"
+    location: "대구 달성공원"
+    organizer: "대구경북보수단체연합"
+    phone: "053-456-7890"
+    description: "자유민주주의 가치 수호를 위한 대규모 집회입니다."
+    status: "이번 주"
+    status_color: "text-green-600"
+    icon: "fas fa-flag"
+    icon_color: "text-green-600"
+    icon_bg: "bg-green-100"
+    data_category: "week daegu"
+    action: "openEventDetail('event-3')"
+
+# 자바스크립트 기능
+javascript_functions:
+  swiper:
+    library: "Swiper"
+    config: "upcoming-events-swiper"
+    pagination: true
+    
+  event_detail:
+    function_name: "openEventDetail"
+    description: "행사 상세 정보 팝업"
+    
+  filter:
+    function_name: "filterEvents"
+    description: "행사 필터링"
+
+# 스타일 설정
+styles:
+  primary_color: "#A50034"
+  
+  event_card:
+    hover_effect: "hover:shadow-lg transition-all"
+    cursor: "cursor-pointer"
+    transform: "hover:-translate-y-1"
+    
+  swiper:
+    pagination_color: "#A50034"
+    pagination_active: "#8B002C"
+    
+  filter_btn:
+    default: "bg-white border-gray-300 text-gray-600"
+    active: "bg-red-600 border-red-600 text-white"
+    hover: "hover:bg-red-50"
+
+# CSS 애니메이션
+animations:
+  event_badge:
+    type: "pulse"
+    duration: "2s"
+    iteration: "infinite"
+    
+  card_hover:
+    transform: "translateY(-5px)"
+    shadow: "0 20px 30px rgba(0,0,0,0.1)" 

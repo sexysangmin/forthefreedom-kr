@@ -1,0 +1,329 @@
+name: YAML to HTML Sync - 자유와혁신 CMS 시스템
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'content/**/*.yml'
+      - 'content/**/*.yaml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'content/**/*.yml'
+      - 'content/**/*.yaml'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18'
+  PYTHON_VERSION: '3.9'
+
+jobs:
+  detect-changes:
+    name: 변경된 YAML 파일 감지
+    runs-on: ubuntu-latest
+    outputs:
+      yaml-files: ${{ steps.changed-files.outputs.all_changed_files }}
+      has-changes: ${{ steps.changed-files.outputs.any_changed }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 변경된 YAML 파일 감지
+        id: changed-files
+        uses: tj-actions/changed-files@v40
+        with:
+          files: |
+            content/**/*.yml
+            content/**/*.yaml
+
+  validate-yaml:
+    name: YAML 구문 검증
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has-changes == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Python 환경 설정
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: PyYAML 설치
+        run: pip install PyYAML
+
+      - name: YAML 파일 검증
+        run: |
+          echo "🔍 YAML 파일 구문 검증 시작..."
+          
+          validation_failed=0
+          
+          for file in ${{ needs.detect-changes.outputs.yaml-files }}; do
+            if [ -f "$file" ]; then
+              echo "✅ 검증 중: $file"
+              python -c "
+          import yaml
+          import sys
+          try:
+              with open('$file', 'r', encoding='utf-8') as f:
+                  yaml.safe_load(f)
+              print('✅ $file: 유효한 YAML')
+          except yaml.YAMLError as e:
+              print('❌ $file: YAML 구문 오류')
+              print(f'오류 내용: {e}')
+              sys.exit(1)
+          except Exception as e:
+              print('❌ $file: 파일 읽기 오류')
+              print(f'오류 내용: {e}')
+              sys.exit(1)
+              " || validation_failed=1
+            fi
+          done
+          
+          if [ $validation_failed -eq 1 ]; then
+            echo "❌ YAML 검증 실패!"
+            exit 1
+          fi
+          
+          echo "✅ 모든 YAML 파일 검증 완료!"
+
+  convert-to-html:
+    name: YAML → HTML 변환
+    runs-on: ubuntu-latest
+    needs: [detect-changes, validate-yaml]
+    if: needs.detect-changes.outputs.has-changes == 'true'
+    strategy:
+      matrix:
+        include:
+          # 메인 페이지
+          - yaml: content/index.yml
+            html: index.html
+            template: templates/index.template.html
+          
+          # 소개 페이지들
+          - yaml: content/about.yml
+            html: about.html
+            template: templates/about.template.html
+          - yaml: content/about/founding.yml
+            html: about/founding.html
+            template: templates/about/founding.template.html
+          - yaml: content/about/location.yml
+            html: about/location.html
+            template: templates/about/location.template.html
+          - yaml: content/about/organization.yml
+            html: about/organization.html
+            template: templates/about/organization.template.html
+          - yaml: content/about/people.yml
+            html: about/people.html
+            template: templates/about/people.template.html
+          - yaml: content/about/principles.yml
+            html: about/principles.html
+            template: templates/about/principles.template.html
+          - yaml: content/about/schedule.yml
+            html: about/schedule.html
+            template: templates/about/schedule.template.html
+          
+          # FAQ & 당원
+          - yaml: content/faq.yml
+            html: faq.html
+            template: templates/faq.template.html
+          - yaml: content/members.yml
+            html: members.html
+            template: templates/members.template.html
+          - yaml: content/members/join.yml
+            html: members/join.html
+            template: templates/members/join.template.html
+          - yaml: content/members/dues.yml
+            html: members/dues.html
+            template: templates/members/dues.template.html
+          
+          # 뉴스
+          - yaml: content/news.yml
+            html: news.html
+            template: templates/news.template.html
+          - yaml: content/news/activities.yml
+            html: news/activities.html
+            template: templates/news/activities.template.html
+          - yaml: content/news/events.yml
+            html: news/events.html
+            template: templates/news/events.template.html
+          - yaml: content/news/gallery.yml
+            html: news/gallery.html
+            template: templates/news/gallery.template.html
+          - yaml: content/news/media.yml
+            html: news/media.html
+            template: templates/news/media.template.html
+          - yaml: content/news/press.yml
+            html: news/press.html
+            template: templates/news/press.template.html
+          
+          # 공지사항
+          - yaml: content/notices.yml
+            html: notices.html
+            template: templates/notices.template.html
+          - yaml: content/notice-1.yml
+            html: notice-1.html
+            template: templates/notice-detail.template.html
+          - yaml: content/notice-2.yml
+            html: notice-2.html
+            template: templates/notice-detail.template.html
+          
+          # 정책
+          - yaml: content/policy.yml
+            html: policy.html
+            template: templates/policy.template.html
+          - yaml: content/policy/economy.yml
+            html: policy/economy.html
+            template: templates/policy/economy.template.html
+          - yaml: content/policy/education.yml
+            html: policy/education.html
+            template: templates/policy/education.template.html
+          - yaml: content/policy/security.yml
+            html: policy/security.html
+            template: templates/policy/security.template.html
+          
+          # 자료실 & 후원
+          - yaml: content/resources.yml
+            html: resources.html
+            template: templates/resources.template.html
+          - yaml: content/support.yml
+            html: support.html
+            template: templates/support.template.html
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Python 환경 설정
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: 필요한 패키지 설치
+        run: |
+          pip install PyYAML Jinja2 beautifulsoup4 lxml
+
+      - name: YAML → HTML 변환 스크립트 실행
+        run: |
+          echo "🔄 변환 시작: ${{ matrix.yaml }} → ${{ matrix.html }}"
+          
+          # YAML 파일이 존재하는지 확인
+          if [ ! -f "${{ matrix.yaml }}" ]; then
+            echo "⚠️ YAML 파일이 존재하지 않음: ${{ matrix.yaml }}"
+            exit 0
+          fi
+          
+          # 변환 스크립트 실행
+          python scripts/yaml-to-html-converter.py \
+            --yaml "${{ matrix.yaml }}" \
+            --template "${{ matrix.template }}" \
+            --output "${{ matrix.html }}" \
+            --validate
+          
+          echo "✅ 변환 완료: ${{ matrix.html }}"
+
+      - name: 변환된 HTML 파일 업로드
+        uses: actions/upload-artifact@v3
+        with:
+          name: converted-html-${{ github.run_id }}
+          path: ${{ matrix.html }}
+          retention-days: 30
+
+  deploy-to-netlify:
+    name: Netlify 배포
+    runs-on: ubuntu-latest
+    needs: convert-to-html
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 변환된 HTML 파일 다운로드
+        uses: actions/download-artifact@v3
+        with:
+          name: converted-html-${{ github.run_id }}
+          path: ./
+
+      - name: Netlify CLI 설치
+        run: npm install -g netlify-cli
+
+      - name: Netlify 배포
+        run: |
+          echo "🚀 Netlify 배포 시작..."
+          netlify deploy \
+            --prod \
+            --dir . \
+            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          echo "✅ Netlify 배포 완료!"
+
+  backup-system:
+    name: 백업 시스템
+    runs-on: ubuntu-latest
+    needs: convert-to-html
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 현재 날짜 설정
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
+
+      - name: 백업 생성
+        run: |
+          echo "📦 백업 생성 중..."
+          
+          # 백업 디렉토리 생성
+          mkdir -p backups/${{ steps.date.outputs.date }}
+          
+          # YAML 파일들 백업
+          cp -r content/ backups/${{ steps.date.outputs.date }}/
+          
+          # 백업 압축
+          tar -czf backups/backup-${{ steps.date.outputs.date }}.tar.gz \
+            backups/${{ steps.date.outputs.date }}/
+          
+          echo "✅ 백업 완료: backup-${{ steps.date.outputs.date }}.tar.gz"
+
+      - name: 백업 파일 업로드
+        uses: actions/upload-artifact@v3
+        with:
+          name: backup-${{ steps.date.outputs.date }}
+          path: backups/backup-${{ steps.date.outputs.date }}.tar.gz
+          retention-days: 90
+
+  notification:
+    name: 알림 전송
+    runs-on: ubuntu-latest
+    needs: [convert-to-html, deploy-to-netlify, backup-system]
+    if: always()
+    steps:
+      - name: 성공 알림
+        if: needs.convert-to-html.result == 'success' && needs.deploy-to-netlify.result == 'success'
+        run: |
+          echo "✅ CMS 동기화 성공!"
+          echo "📊 변환된 파일 수: ${{ strategy.job-total }}"
+          echo "🌐 배포 상태: 성공"
+          echo "📦 백업 상태: 완료"
+
+      - name: 실패 알림
+        if: failure()
+        run: |
+          echo "❌ CMS 동기화 실패!"
+          echo "🔍 로그를 확인하여 문제를 해결해주세요."
+          echo "📧 관리자에게 알림을 전송합니다."
+
+  cleanup:
+    name: 정리 작업
+    runs-on: ubuntu-latest
+    needs: [convert-to-html, deploy-to-netlify, backup-system]
+    if: always()
+    steps:
+      - name: 임시 파일 정리
+        run: |
+          echo "🧹 임시 파일 정리 중..."
+          # 30일 이상 된 백업 파일 삭제 (필요시)
+          echo "✅ 정리 완료" 

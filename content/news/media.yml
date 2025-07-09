@@ -1,0 +1,178 @@
+# 자유와혁신 언론보도 페이지 완전 CMS 데이터
+# news/media.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "언론보도 - 자유와혁신"
+  description: "자유와혁신에 대한 주요 언론 보도를 확인하세요. TV방송, 신문 등 다양한 매체의 보도 내용을 한 곳에서 볼 수 있습니다."
+  keywords: "자유와혁신, 언론보도, 뉴스, KBS, MBC, 조선일보, 중앙일보, 정치뉴스"
+
+# 히어로 섹션
+hero:
+  title: "언론보도"
+  background_image: "../images/hero_image.png"
+
+# 언론 보도 메인 섹션
+main_section:
+  title: "언론 보도"
+  description: "자유와혁신에 대한 주요 언론 보도를 확인하세요."
+
+# 주요 보도 (Featured News)
+featured_news:
+  title: "주요 보도"
+  
+  article:
+    media: "KBS"
+    media_color: "text-white"
+    media_bg: "bg-red-600"
+    date: "2024.01.15"
+    headline: "\"자유와혁신 출범...새로운 정치 세력 등장\""
+    content: "자유와혁신이 공식 출범하며 기존 정치권에 새로운 바람을 불어넣고 있다는 평가를 받고 있습니다. 특히 혁신적인 정책과 젊은 리더십이 주목받고 있습니다."
+    program: "KBS 뉴스 9"
+    broadcast_time: "저녁 9시 방송"
+    link: "#"
+    background: "bg-red-50"
+    border: "border-red-200"
+
+# 최근 언론 보도
+recent_coverage:
+  - media: "조선일보"
+    media_color: "text-blue-700"
+    media_bg: "bg-blue-100"
+    date: "2024.01.12"
+    headline: "자유와혁신 \"7대 핵심 정책으로 국정 혁신 이끌 것\""
+    content: "자유와혁신이 발표한 7대 핵심 정책이 경제계와 학계의 주목을 받고 있다."
+    source: "조선일보 정치부"
+    source_icon: "fas fa-newspaper"
+    link: "#"
+    
+  - media: "중앙일보"
+    media_color: "text-green-700"
+    media_bg: "bg-green-100"
+    date: "2024.01.10"
+    headline: "\"청년층 지지 확산...새로운 정치 바람 예고\""
+    content: "자유와혁신에 대한 청년층의 지지가 확산되고 있어 정치권의 관심이 집중되고 있다."
+    source: "중앙일보 정치부"
+    source_icon: "fas fa-newspaper"
+    link: "#"
+    
+  - media: "MBC"
+    media_color: "text-purple-700"
+    media_bg: "bg-purple-100"
+    date: "2024.01.08"
+    headline: "자유와혁신 대표 \"국민과 함께하는 정치 구현\""
+    content: "자유와혁신 대표가 MBC 인터뷰에서 밝힌 향후 정치 방향과 비전이 화제가 되고 있다."
+    source: "MBC 뉴스데스크"
+    source_icon: "fas fa-tv"
+    link: "#"
+
+# 언론 보도 통계
+media_statistics:
+  title: "언론 보도 현황"
+  background: "bg-gray-50"
+  
+  stats:
+    - number: "47"
+      label: "총 보도 건수"
+      color: "text-red-600"
+    
+    - number: "15"
+      label: "TV 방송"
+      color: "text-red-600"
+    
+    - number: "32"
+      label: "신문 보도"
+      color: "text-red-600"
+
+# 자바스크립트 기능
+javascript_functions:
+  load_navigation:
+    function_name: "loadNavigation"
+    description: "동적 네비게이션 로드"
+
+# 스타일 설정
+styles:
+  primary_color: "#A50034"
+  primary_hover: "#8B002C"
+  
+  colors:
+    red:
+      primary: "#A50034"
+      bg_50: "#FDF2F4"
+      bg_100: "#FCE7EA"
+      bg_200: "#F9C2CC"
+      bg_600: "#A50034"
+      text_600: "#A50034"
+      text_700: "#8B002C"
+    blue:
+      bg_100: "#DBEAFE"
+      text_700: "#1D4ED8"
+    green:
+      bg_100: "#DCFCE7"
+      text_700: "#166534"
+    purple:
+      bg_100: "#E9D5FF"
+      text_700: "#7C3AED"
+    gray:
+      bg_50: "#F9FAFB"
+      bg_200: "#E5E7EB"
+      text_500: "#6B7280"
+      text_600: "#4B5563"
+      text_900: "#111827"
+    white: "#FFFFFF"
+  
+  # 컴포넌트별 스타일
+  featured_article:
+    padding: "p-8"
+    border_radius: "rounded-lg"
+    
+  media_badge:
+    padding: "px-3 py-1"
+    border_radius: "rounded-full"
+    font_size: "text-sm"
+    font_weight: "font-medium"
+    
+  article_card:
+    background: "bg-white"
+    border: "border-gray-200"
+    radius: "rounded-lg"
+    padding: "p-8"
+    hover: "hover:shadow-lg transition-shadow"
+    
+  stats_section:
+    padding: "p-8"
+    border_radius: "rounded-lg"
+    margin_top: "mt-16"
+  
+  section_padding: "py-16"
+  container_max_width: "max-w-7xl"
+
+# 반응형 설정
+responsive:
+  stats_grid: "grid md:grid-cols-3 gap-8"
+  mobile_breakpoint: "md"
+
+# 접근성 설정
+accessibility:
+  media_aria_label: "언론 보도 목록"
+  stats_aria_label: "언론 보도 통계"
+  article_aria_label: "언론 보도 기사"
+
+# 언론사별 색상 테마
+media_themes:
+  KBS:
+    color: "red"
+    bg: "bg-red-600"
+    text: "text-white"
+  조선일보:
+    color: "blue"
+    bg: "bg-blue-100"
+    text: "text-blue-700"
+  중앙일보:
+    color: "green"
+    bg: "bg-green-100"
+    text: "text-green-700"
+  MBC:
+    color: "purple"
+    bg: "bg-purple-100"
+    text: "text-purple-700" 

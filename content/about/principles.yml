@@ -1,0 +1,223 @@
+# 자유와혁신 강령·핵심가치 페이지 완전 CMS 데이터
+# about/principles.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "강령·핵심가치 - 자유와혁신"
+  description: "자유와혁신의 강령과 4대 핵심가치, 정치철학을 소개합니다"
+  keywords: "자유와혁신, 강령, 핵심가치, 정치철학, 자유민주주의"
+  og_title: "강령·핵심가치 - 자유와혁신"
+  og_description: "자유, 혁신, 공정, 통합의 4대 핵심가치를 바탕으로 한 우리 당의 강령을 소개합니다"
+  og_image: "/images/principles-og.png"
+
+# 히어로 섹션
+hero:
+  title: "강령·핵심가치"
+  background_image: "../images/hero_image.png"
+  overlay_gradient: "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2))"
+  style:
+    height: "60vh"
+    text_shadow: "2px 2px 4px rgba(0,0,0,0.5)"
+    font_size: "3.5rem"
+
+# 소개 섹션
+introduction:
+  title: "우리가 추구하는 가치"
+  description: "자유와혁신은 대한민국의 미래를 책임지는 정당으로서, 명확한 강령과 핵심가치를 바탕으로 국민과 함께 더 나은 사회를 만들어갑니다."
+  
+  value_highlights:
+    - icon: "fas fa-heart"
+      title: "자유"
+      description: "개인의 자유와 권리를 최대한 보장하는 사회"
+      color: "red"
+      border_color: "border-red-600"
+      bg_color: "bg-red-100"
+    
+    - icon: "fas fa-lightbulb"
+      title: "혁신"
+      description: "끊임없는 변화와 지속적인 발전"
+      color: "blue"
+      border_color: "border-blue-600"
+      bg_color: "bg-blue-100"
+    
+    - icon: "fas fa-balance-scale"
+      title: "공정"
+      description: "모든 국민에게 공평한 기회를 제공"
+      color: "green"
+      border_color: "border-green-600"
+      bg_color: "bg-green-100"
+
+# 강령 상세 내용 섹션
+platform_details:
+  main_principles:
+    - title: "자유민주주의 수호"
+      icon: "fas fa-flag"
+      color: "red-600"
+      description: "헌법적 가치를 바탕으로 한 자유민주주의 체제를 수호하고 발전시켜 나갑니다. 개인의 기본권과 자유를 보장하며, 민주적 절차와 법치주의를 존중합니다."
+    
+    - title: "혁신과 성장"
+      icon: "fas fa-rocket"
+      color: "blue-600"
+      description: "과학기술의 발전과 혁신을 통해 국가 경쟁력을 높이고 지속가능한 경제성장을 추구합니다. 창의적 인재 양성과 혁신 생태계 조성을 지향하겠습니다."
+    
+    - title: "사회정의와 공정"
+      icon: "fas fa-balance-scale"
+      color: "green-600"
+      description: "공정한 기회와 정의로운 사회를 만들어 모든 국민이 차별받지 않고 능력을 발휘할 수 있도록 지원합니다. 사회적 약자를 보호하고 상생의 문화를 조성합니다."
+  
+  party_platform_highlight:
+    title: "당 강령"
+    icon: "fas fa-crown"
+    description: "자유와혁신은 국민의 뜻을 받들어 대한민국의 번영과 발전을 이끌어나갈 책임감 있는 정당입니다."
+    background: "bg-gradient-to-br from-red-50 to-red-100"
+    key_points:
+      - text: "국민 중심의 정치"
+        icon: "fas fa-check-circle"
+      - text: "경제 성장과 사회 통합"
+        icon: "fas fa-check-circle"
+      - text: "지속가능한 발전"
+        icon: "fas fa-check-circle"
+
+# 4대 핵심가치 섹션
+core_values:
+  title: "4대 핵심가치"
+  description: "자유와혁신의 모든 정책과 활동의 기준이 되는 핵심가치입니다."
+  
+  values:
+    - title: "자유"
+      icon: "fas fa-dove"
+      description: "개인의 자유와 권리를 최대한 보장하는 사회"
+      color: "red-600"
+      border_color: "border-red-600"
+      bg_color: "bg-red-100"
+      image: "/images/values/freedom.jpg"
+      placeholder: true
+    
+    - title: "혁신"
+      icon: "fas fa-rocket"
+      description: "과감한 변화로 미래를 준비하는 정치"
+      color: "red-600"
+      border_color: "border-red-600"
+      bg_color: "bg-red-100"
+      image: "/images/values/innovation.jpg"
+      placeholder: true
+    
+    - title: "공정"
+      icon: "fas fa-heart"
+      description: "모든 국민이 공정한 기회를 갖는 사회"
+      color: "red-600"
+      border_color: "border-red-600"
+      bg_color: "bg-red-100"
+      image: "/images/values/fairness.jpg"
+      placeholder: true
+    
+    - title: "통합"
+      icon: "fas fa-users"
+      description: "화합과 소통으로 하나 되는 대한민국"
+      color: "red-600"
+      border_color: "border-red-600"
+      bg_color: "bg-red-100"
+      image: "/images/values/unity.jpg"
+      placeholder: true
+
+# 강령 전문 섹션
+platform_charter:
+  title: "자유와혁신 강령"
+  description: "우리 당의 창당 정신과 정치 철학을 담은 강령입니다."
+  
+  preamble:
+    title: "전문"
+    content: "우리는 자유민주주의와 시장경제의 가치를 신봉하며, 국민의 자유와 권리를 보장하고 국가의 번영을 추구하는 정당으로서 다음과 같은 강령을 제정한다."
+  
+  articles:
+    - number: "제1조"
+      title: "기본 이념"
+      content: "자유와혁신은 자유민주주의와 시장경제 원리를 바탕으로 하여 국민의 자유와 권리를 보장하고 국가의 발전을 추구한다."
+    
+    - number: "제2조"
+      title: "목적"
+      content: "본 당은 헌법 정신에 따라 자유민주적 기본질서를 수호하고 국민의 삶의 질 향상과 국가 발전에 기여함을 목적으로 한다."
+    
+    - number: "제3조"
+      title: "가치"
+      content: "자유, 혁신, 공정, 통합의 4대 핵심가치를 바탕으로 모든 정책과 활동을 수행한다."
+    
+    - number: "제4조"
+      title: "실천 의지"
+      content: "국민과 함께 새로운 대한민국을 건설하기 위해 끊임없이 노력하고 실천할 것을 다짐한다."
+
+# 푸터 섹션
+footer:
+  party_info:
+    name: "자유와혁신"
+    tagline: "새로운 대한민국을 함께 만들어갑니다."
+  
+  main_menu:
+    title: "주요 메뉴"
+    links:
+      - text: "홈"
+        url: "../index.html"
+      - text: "당 소개"
+        url: "../about.html"
+      - text: "정책"
+        url: "../policy.html"
+      - text: "소식"
+        url: "../news.html"
+  
+  participation:
+    title: "참여"
+    links:
+      - text: "당원가입"
+        url: "../members.html"
+      - text: "후원하기"
+        url: "../support.html"
+      - text: "공지사항"
+        url: "../notices.html"
+  
+  contact:
+    title: "연락처"
+    address:
+      - "서울특별시 중구 세종대로 1가 31"
+      - "정동빌딩 7층"
+    phone: "02-1234-5678"
+    email: "info@jayuhyeoksin.kr"
+  
+  copyright: "&copy; 2025 자유와혁신. All rights reserved."
+  background_color: "bg-gray-800"
+  text_color: "text-white"
+
+# 스타일 설정
+styles:
+  primary_color: "#A50034"
+  primary_hover: "#8B002C"
+  primary_light: "#FDF2F4"
+  primary_medium: "#FCE7EA"
+  
+  colors:
+    red: "#A50034"
+    red_600: "#A50034"
+    red_700: "#8B002C"
+    red_800: "#700024"
+    red_900: "#56001C"
+    red_50: "#FDF2F4"
+    red_100: "#FCE7EA"
+    blue_600: "#2563EB"
+    blue_100: "#DBEAFE"
+    green_600: "#059669"
+    green_100: "#DCFCE7"
+    gray_400: "#9CA3AF"
+    gray_600: "#4B5563"
+    gray_700: "#374151"
+    gray_800: "#1F2937"
+    gray_900: "#111827"
+  
+  text_dark: "#1F2937"
+  text_gray: "#6B7280"
+  text_light: "#9CA3AF"
+  
+  section_padding: "py-20"
+  container_max_width: "max-w-7xl"
+  card_shadow: "shadow-lg"
+  card_shadow_sm: "shadow-sm"
+  card_radius: "rounded-lg"
+  card_radius_xl: "rounded-2xl" 

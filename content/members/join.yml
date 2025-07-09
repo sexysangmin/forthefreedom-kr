@@ -1,0 +1,219 @@
+# 자유와혁신 당원 가입안내 페이지 완전 CMS 데이터
+# members/join.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "당원 가입안내 - 자유와혁신"
+  description: "자유와혁신 당원 가입 요건, 절차, 혜택을 상세히 안내합니다. 온라인으로 간편하게 가입하세요."
+  keywords: "자유와혁신, 당원가입, 가입안내, 가입절차, 가입요건, 정치참여"
+  og_title: "당원 가입안내 - 자유와혁신"
+  og_description: "새로운 정치 변화에 참여하세요. 당원 가입 절차와 요건을 확인하고 지금 가입하세요."
+  og_image: "/images/join-og.png"
+
+# 히어로 섹션
+hero:
+  title: "당원 가입안내"
+  background_image: "../images/hero_image.png"
+  overlay_gradient: "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2))"
+  style:
+    height: "60vh"
+    text_shadow: "2px 2px 4px rgba(0,0,0,0.5)"
+    font_size: "3.5rem"
+
+# 가입안내 섹션
+membership_info:
+  title: "당원 가입안내"
+  description: "자유와혁신의 당원이 되어 새로운 정치 변화에 참여하세요."
+  
+  # 당원 혜택
+  benefits:
+    - icon: "fas fa-vote-yea"
+      title: "정치 참여"
+      description: "정책 결정 과정에 직접 참여하고 의견을 개진할 수 있습니다."
+      background: "bg-red-50"
+      icon_bg: "bg-red-600"
+      icon_color: "text-white"
+    
+    - icon: "fas fa-users"
+      title: "네트워킹"
+      description: "같은 가치를 지향하는 동료들과 소통하고 협력할 수 있습니다."
+      background: "bg-red-50"
+      icon_bg: "bg-red-600"
+      icon_color: "text-white"
+    
+    - icon: "fas fa-graduation-cap"
+      title: "교육 기회"
+      description: "정치 교육 프로그램과 각종 세미나에 참여할 수 있습니다."
+      background: "bg-red-50"
+      icon_bg: "bg-red-600"
+      icon_color: "text-white"
+
+# 가입요건 섹션
+membership_requirements:
+  title: "가입요건"
+  background: "bg-gray-50"
+  
+  basic_requirements:
+    title: "기본 요건"
+    items:
+      - text: "대한민국 국민"
+        icon: "fas fa-check"
+        icon_color: "text-red-600"
+      - text: "만 18세 이상"
+        icon: "fas fa-check"
+        icon_color: "text-red-600"
+      - text: "당의 강령과 정책에 동의"
+        icon: "fas fa-check"
+        icon_color: "text-red-600"
+      - text: "타 정당 비가입자"
+        icon: "fas fa-check"
+        icon_color: "text-red-600"
+  
+  required_documents:
+    title: "제출 서류"
+    items:
+      - text: "당원 가입 신청서"
+        icon: "fas fa-file-alt"
+        icon_color: "text-red-600"
+      - text: "신분증 사본"
+        icon: "fas fa-file-alt"
+        icon_color: "text-red-600"
+      - text: "주민등록등본"
+        icon: "fas fa-file-alt"
+        icon_color: "text-red-600"
+      - text: "개인정보 동의서"
+        icon: "fas fa-file-alt"
+        icon_color: "text-red-600"
+
+# 가입절차 섹션
+application_process:
+  title: "가입절차"
+  
+  steps:
+    - step: 1
+      title: "온라인 신청"
+      description: "홈페이지에서 가입 신청서를 작성하고 제출합니다."
+      icon_bg: "bg-red-600"
+      icon_color: "text-white"
+    
+    - step: 2
+      title: "서류 제출"
+      description: "필요 서류를 준비하여 당사무소로 제출합니다."
+      icon_bg: "bg-red-600"
+      icon_color: "text-white"
+    
+    - step: 3
+      title: "심사"
+      description: "당원 가입요건을 심사합니다. (보통 1-2주 소요)"
+      icon_bg: "bg-red-600"
+      icon_color: "text-white"
+    
+    - step: 4
+      title: "가입완료"
+      description: "심사 통과 후 당원증을 발급받고 당원 활동을 시작합니다."
+      icon_bg: "bg-red-600"
+      icon_color: "text-white"
+
+# CTA 섹션
+final_cta:
+  title: "지금 당원이 되어보세요!"
+  description: "자유와혁신과 함께 새로운 정치 미래를 만들어가요."
+  background: "bg-red-600"
+  text_color: "text-white"
+  description_color: "text-red-100"
+  
+  buttons:
+    - text: "온라인 가입 신청"
+      style: "bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100"
+      action: "online_application"
+    
+    - text: "가입안내 문의"
+      style: "bg-red-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-800"
+      action: "inquiry"
+
+# 자바스크립트 기능 설정
+javascript_functions:
+  load_navigation:
+    function_name: "loadNavigation"
+    description: "동적 네비게이션 로드"
+    
+  online_application:
+    function_name: "온라인 가입 신청"
+    description: "가입 신청 폼으로 이동"
+    
+  inquiry:
+    function_name: "가입안내 문의"
+    description: "문의 페이지로 이동"
+
+# 스타일 설정
+styles:
+  primary_color: "#A50034"
+  primary_hover: "#8B002C"
+  primary_light: "#FDF2F4"
+  primary_medium: "#FCE7EA"
+  
+  colors:
+    red:
+      primary: "#A50034"
+      hover: "#8B002C"
+      bg_50: "#FDF2F4"
+      bg_600: "#A50034"
+      bg_700: "#8B002C"
+      bg_800: "#700024"
+      text_100: "#FCE7EA"
+    gray:
+      bg_50: "#F9FAFB"
+      bg_100: "#F3F4F6"
+      text_600: "#4B5563"
+      text_700: "#374151"
+      text_900: "#111827"
+    white: "#FFFFFF"
+  
+  # 컴포넌트별 스타일
+  benefit_cards:
+    icon_size: "w-16 h-16"
+    icon_text_size: "text-2xl"
+    title_size: "text-xl"
+    border_radius: "rounded-lg"
+    padding: "p-8"
+    
+  requirement_section:
+    border_radius: "rounded-lg"
+    padding: "p-8"
+    margin_bottom: "mb-16"
+    
+  process_steps:
+    icon_size: "w-16 h-16"
+    step_text_size: "text-xl"
+    title_size: "font-semibold"
+    description_size: "text-sm"
+    
+  cta_section:
+    border_radius: "rounded-lg"
+    padding: "p-8"
+    button_gap: "gap-4"
+  
+  section_padding: "py-16"
+  container_max_width: "max-w-7xl"
+  
+# 반응형 설정
+responsive:
+  benefits_grid: "grid md:grid-cols-3 gap-8"
+  requirements_grid: "grid md:grid-cols-2 gap-8"
+  process_grid: "grid md:grid-cols-4 gap-6"
+  button_layout: "flex flex-col sm:flex-row gap-4"
+  mobile_breakpoint: "md"
+  
+# 접근성 설정
+accessibility:
+  benefits_aria_label: "당원 혜택 목록"
+  requirements_aria_label: "가입요건 정보"
+  process_aria_label: "가입절차 단계"
+  cta_aria_label: "당원 가입 신청"
+  
+# 추가 설정
+additional_info:
+  processing_time: "1-2주"
+  minimum_age: 18
+  nationality_requirement: "대한민국 국민"
+  exclusion_rule: "타 정당 비가입자" 

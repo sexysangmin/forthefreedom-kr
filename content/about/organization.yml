@@ -1,0 +1,321 @@
+# 자유와혁신 조직 구성 페이지 완전 CMS 데이터
+# about/organization.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "조직 구성 - 자유와혁신"
+  description: "자유와혁신의 체계적인 조직 구성과 주요 인물, 운영 원칙을 소개합니다"
+  keywords: "자유와혁신, 조직 구성, 조직도, 주요 인물, 운영 원칙"
+  og_title: "조직 구성 - 자유와혁신"
+  og_description: "효율적이고 투명한 당 운영을 위한 체계적인 조직 구성을 소개합니다"
+  og_image: "/images/organization-og.png"
+
+# 히어로 섹션
+hero:
+  title: "조직 구성"
+  background_image: "../images/hero_image.png"
+  overlay_gradient: "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2))"
+  style:
+    height: "60vh"
+    text_shadow: "2px 2px 4px rgba(0,0,0,0.5)"
+    font_size: "3.5rem"
+
+# 소개 섹션
+introduction:
+  title: "체계적인 조직 운영"
+  description: "효율적이고 투명한 당 운영을 위한 체계적인 조직 구성으로 다양한 분야에서 국민을 위해 준비하여 봉사하고 있습니다."
+  
+  features:
+    - icon: "fas fa-users"
+      title: "전문성 기반"
+      description: "각 분야 전문가들이 구성된 체계적인 조직"
+      color: "red"
+      border_color: "border-red-600"
+    
+    - icon: "fas fa-handshake"
+      title: "팀워크 중심"
+      description: "협력과 소통을 통한 효율적인 업무 수행"
+      color: "blue"
+      border_color: "border-blue-600"
+    
+    - icon: "fas fa-chart-line"
+      title: "성과 지향"
+      description: "명확한 목표와 책임을 통한 성과 창출"
+      color: "green"
+      border_color: "border-green-600"
+
+# 조직도 섹션
+organization_chart:
+  title: "조직도"
+  description: "자유와혁신의 체계적인 조직 구조입니다."
+  
+  structure:
+    # 최고위직
+    top_leadership:
+      - position: "당 대표"
+        name: "김자유"
+        description: "전체 당무 총괄"
+        style: "president"
+        background: "linear-gradient(135deg, #A50034, #8B002C)"
+        color: "white"
+    
+    # 부대표급
+    vice_leadership:
+      - position: "부대표"
+        name: "이혁신"
+        description: "당무 보좌 및 대외 업무"
+        style: "vice-president"
+        background: "linear-gradient(135deg, #FDF2F4, #FCE7EA)"
+        border: "2px solid #A50034"
+    
+    # 주요 위원회
+    main_committees:
+      - position: "정책위원회"
+        name: "박정책"
+        description:
+          - "정책 개발"
+          - "공약 수립"
+          - "정책 연구"
+        style: "department"
+      
+      - position: "조직위원회"
+        name: "최조직"
+        description:
+          - "당원 관리"
+          - "조직 확대"
+          - "교육 훈련"
+        style: "department"
+      
+      - position: "홍보위원회"
+        name: "강홍보"
+        description:
+          - "대외 홍보"
+          - "미디어 관리"
+          - "SNS 운영"
+        style: "department"
+    
+    # 하위 조직
+    sub_organizations:
+      - position: "청년위원회"
+        name: "신청년"
+        description:
+          - "청년 정책"
+          - "청년 당원 활동"
+        style: "department"
+      
+      - position: "여성위원회"
+        name: "한여성"
+        description:
+          - "여성 정책"
+          - "여성 권익 보호"
+        style: "department"
+      
+      - position: "사무국"
+        name: "윤사무"
+        description:
+          - "일반 사무"
+          - "행정 업무"
+        style: "department"
+
+# 주요 인물 소개 섹션
+key_personnel:
+  title: "주요 인물 소개"
+  description: "자유와혁신을 이끌어가는 핵심 인물들을 소개합니다."
+  
+  people:
+    - name: "김자유"
+      position: "당 대표"
+      color: "red"
+      background_gradient: "from-red-100 to-red-200"
+      icon_bg: "bg-red-600"
+      text_color: "text-red-600"
+      education:
+        - "서울대학교 정치학과 졸업"
+        - "정치학 박사"
+      career:
+        - "前 국정기획자문위원회 위원"
+        - "前 시민사회단체 대표"
+      image: "/images/people/kim-jayu.jpg"
+      placeholder: true
+    
+    - name: "이혁신"
+      position: "부대표"
+      color: "blue"
+      background_gradient: "from-blue-100 to-blue-200"
+      icon_bg: "bg-blue-600"
+      text_color: "text-blue-600"
+      education:
+        - "연세대학교 경제학과 졸업"
+        - "경제학 박사"
+      career:
+        - "前 청와대 정책기획관"
+        - "前 경제연구원 선임연구위원"
+      image: "/images/people/lee-hyeoksin.jpg"
+      placeholder: true
+    
+    - name: "박정책"
+      position: "정책위원장"
+      color: "green"
+      background_gradient: "from-green-100 to-green-200"
+      icon_bg: "bg-green-600"
+      text_color: "text-green-600"
+      education:
+        - "고려대학교 행정학과 졸업"
+        - "행정학 박사"
+      career:
+        - "前 국회 정책연구위원"
+        - "前 정부출연 연구기관 연구위원"
+      image: "/images/people/park-jeongchaek.jpg"
+      placeholder: true
+    
+    - name: "최조직"
+      position: "조직위원장"
+      color: "purple"
+      background_gradient: "from-purple-100 to-purple-200"
+      icon_bg: "bg-purple-600"
+      text_color: "text-purple-600"
+      education:
+        - "성균관대학교 사회학과 졸업"
+        - "사회학 석사"
+      career:
+        - "前 NGO 단체 사무총장"
+        - "前 시민단체 활동가"
+      image: "/images/people/choi-jojik.jpg"
+      placeholder: true
+    
+    - name: "강홍보"
+      position: "홍보위원장"
+      color: "yellow"
+      background_gradient: "from-yellow-100 to-yellow-200"
+      icon_bg: "bg-yellow-600"
+      text_color: "text-yellow-600"
+      education:
+        - "한국외국어대학교 신문방송학과 졸업"
+        - "언론학 석사"
+      career:
+        - "前 방송국 PD"
+        - "前 광고회사 크리에이티브 디렉터"
+      image: "/images/people/kang-hongbo.jpg"
+      placeholder: true
+    
+    - name: "윤사무"
+      position: "사무총장"
+      color: "gray"
+      background_gradient: "from-gray-100 to-gray-200"
+      icon_bg: "bg-gray-600"
+      text_color: "text-gray-600"
+      education:
+        - "중앙대학교 경영학과 졸업"
+        - "경영학 석사"
+      career:
+        - "前 대기업 인사팀장"
+        - "前 정부기관 행정사무관"
+      image: "/images/people/yoon-samu.jpg"
+      placeholder: true
+
+# 조직 운영 원칙 섹션
+operating_principles:
+  title: "조직 운영 원칙"
+  description: "투명하고 효율적인 조직 운영을 위한 기본 원칙입니다."
+  
+  core_values:
+    title: "핵심 가치"
+    principles:
+      - icon: "fas fa-eye"
+        title: "투명성"
+        description: "모든 의사결정 과정을 공개하고 투명하게 운영"
+        color: "red"
+      
+      - icon: "fas fa-cogs"
+        title: "효율성"
+        description: "체계적인 업무 분장으로 효율적인 조직 운영"
+        color: "blue"
+      
+      - icon: "fas fa-balance-scale"
+        title: "공정성"
+        description: "모든 구성원에게 공평한 기회와 대우 보장"
+        color: "green"
+  
+  operating_methods:
+    title: "운영 방식"
+    methods:
+      - icon: "fas fa-users"
+        title: "민주적 의사결정"
+        description: "집단 지성을 활용한 민주적 의사결정 구조"
+        color: "purple"
+      
+      - icon: "fas fa-comments"
+        title: "소통과 협력"
+        description: "부서 간 원활한 소통과 협력 체계 구축"
+        color: "yellow"
+      
+      - icon: "fas fa-chart-line"
+        title: "지속적 개선"
+        description: "정기적인 평가와 피드백을 통한 지속적 개선"
+        color: "indigo"
+
+# CTA 섹션 (조직 가입 안내)
+recruitment_cta:
+  title: "함께하실 분을 모집합니다"
+  description:
+    line1: "자유와혁신과 함께 대한민국의 미래를 만들어갈"
+    line2: "열정적이고 유능한 인재를 기다리고 있습니다."
+  background_color: "red-600"
+  
+  buttons:
+    - text: "당원 가입하기"
+      link: "../members/join.html"
+      style: "solid"
+      bg_color: "white"
+      text_color: "red-600"
+      hover_bg: "gray-100"
+    
+    - text: "인재 지원하기"
+      link: "mailto:recruit@jayuhyeoksin.kr"
+      style: "outline"
+      border_color: "white"
+      text_color: "white"
+      hover_bg: "white"
+      hover_text: "red-600"
+
+# 스타일 설정
+styles:
+  primary_color: "#A50034"
+  primary_hover: "#8B002C"
+  primary_light: "#FDF2F4"
+  primary_medium: "#FCE7EA"
+  
+  colors:
+    red: "#A50034"
+    blue: "#3B82F6"
+    green: "#10B981"
+    purple: "#8B5CF6"
+    yellow: "#F59E0B"
+    indigo: "#6366F1"
+    gray: "#6B7280"
+  
+  color_light_variants:
+    red: "#FDF2F4"
+    blue: "#EBF5FF"
+    green: "#D1FAE5"
+    purple: "#F3E8FF"
+    yellow: "#FEF3C7"
+    indigo: "#E0E7FF"
+    gray: "#F9FAFB"
+  
+  text_dark: "#1F2937"
+  text_gray: "#6B7280"
+  text_light: "#9CA3AF"
+  
+  section_padding: "py-20"
+  container_max_width: "max-w-7xl"
+  card_shadow: "shadow-lg"
+  card_radius: "rounded-lg"
+  
+  # 조직도 전용 스타일
+  org_chart:
+    card_shadow: "0 4px 20px rgba(0, 0, 0, 0.08)"
+    card_hover_shadow: "0 15px 40px rgba(165, 0, 52, 0.15)"
+    card_hover_transform: "translateY(-5px)"
+    line_color: "#A50034"
+    line_width: "2px" 

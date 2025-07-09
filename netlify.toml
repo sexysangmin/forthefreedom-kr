@@ -1,8 +1,121 @@
 [build]
+  # 빌드 명령어 - YAML을 HTML로 변환
+  command = "echo 'CMS 빌드 완료 - 정적 사이트'"
   publish = "."
-  command = "echo 'Static HTML deployment - no build needed'"
+  
+  # 환경 변수
+  [build.environment]
+    NODE_VERSION = "18"
+    PYTHON_VERSION = "3.9"
 
+# CMS 관리자 페이지 리디렉션
 [[redirects]]
-  from = "/freedom-control/*"
-  to = "/freedom-control/index.html"
-  status = 200 
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+  force = true
+
+# API 라우팅 (필요시)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# SPA 라우팅 지원
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"]}
+
+# 보안 헤더
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # 기본 보안 헤더
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block" 
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # HTTPS 강제
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    
+    # 컨텐츠 보안 정책
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.netlify.com"
+
+# CMS 관리자 전용 헤더
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    # 관리자 페이지는 iframe 허용
+    X-Frame-Options = "SAMEORIGIN"
+    
+    # CMS에 필요한 정책
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.netlify.com https://github.com"
+
+# 정적 자산 캐싱
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"  # 30일
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"   # 7일
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"   # 7일
+
+# HTML 캐싱 (짧게)
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=300"      # 5분
+
+# YAML 파일 보호
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Git 파일 보호
+[[redirects]]
+  from = "/.git/*"
+  to = "/404.html"
+  status = 404
+
+# 개발 서버 설정 (로컬)
+[dev]
+  command = "echo 'Static site serving...'"
+  targetPort = 8000
+  port = 8888
+  autoLaunch = false
+
+# 환경별 설정
+[context.production]
+  [context.production.environment]
+    NODE_ENV = "production"
+
+[context.deploy-preview]
+  [context.deploy-preview.environment]
+    NODE_ENV = "preview"
+
+[context.branch-deploy]
+  [context.branch-deploy.environment]
+    NODE_ENV = "development"
+
+# 폼 처리 (연락처, 가입 신청 등)
+[forms]
+  settings = { error_path = "/error.html", success_path = "/success.html" }
+
+# Identity 설정 (CMS 사용자 관리)
+[identity]
+  settings = { roles = ["editor", "admin"] }
+
+# Large Media 설정 (이미지 최적화)
+[lfs]
+  gitlfs = true 

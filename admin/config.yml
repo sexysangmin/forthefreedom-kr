@@ -1,15 +1,738 @@
-# ... 기존 컬렉션 ...
-- name: "logs"
-  label: "변경 이력"
-  files:
-    - file: "logs/changes.log"
-      label: "전체 변경 이력"
-      name: "changes"
-      fields:
-        - { name: "body", label: "로그", widget: "markdown" }
-- name: "archive"
-  label: "아카이브"
-  folder: "archive"
-  create: false
-  fields:
-    - { name: "body", label: "백업 콘텐츠", widget: "markdown" } 
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: '새 콘텐츠 추가: {{collection}} "{{slug}}"'
+    update: '콘텐츠 수정: {{collection}} "{{slug}}"'
+    delete: '콘텐츠 삭제: {{collection}} "{{slug}}"'
+    uploadMedia: '미디어 업로드: {{path}}'
+    deleteMedia: '미디어 삭제: {{path}}'
+
+# 로컬 개발 모드 (필요시 활성화)
+# local_backend: true
+
+media_folder: "images"
+public_folder: "/images"
+site_url: https://자유와혁신.netlify.app
+display_url: https://자유와혁신.netlify.app
+logo_url: /images/hero_image.png
+
+# 한국어 설정
+locale: 'ko'
+
+# 에디터 설정
+editor:
+  preview: true
+
+# 미디어 라이브러리 설정
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: your_cloud_name
+    api_key: your_api_key
+
+collections:
+  # ===== 메인 페이지 =====
+  - name: "main"
+    label: "🏠 메인 페이지"
+    files:
+      - label: "홈페이지"
+        name: "index"
+        file: "content/index.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string", default: "자유와혁신 - 대한민국의 미래를 여는 정당"},
+              {label: "설명", name: "description", widget: "text", default: "자유와혁신은 대한민국의 미래를 열어가는 진정한 변화의 정당입니다."},
+              {label: "키워드", name: "keywords", widget: "string", default: "자유와혁신, 정당, 정치, 대한민국, 미래"},
+              {label: "작성자", name: "author", widget: "string", default: "자유와혁신"},
+              {label: "수정일", name: "last_modified", widget: "datetime", default: ""}
+            ]}
+          - {label: "히어로 섹션", name: "hero", widget: "object", fields: [
+              {label: "메인 제목", name: "title", widget: "string"},
+              {label: "부제목", name: "subtitle", widget: "text"},
+              {label: "배경 이미지", name: "background_image", widget: "image", required: false},
+              {label: "CTA 버튼", name: "cta", widget: "object", fields: [
+                {label: "텍스트", name: "text", widget: "string"},
+                {label: "링크", name: "link", widget: "string"}
+              ]}
+            ]}
+          - {label: "소개 섹션", name: "introduction", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "내용", name: "content", widget: "markdown"},
+              {label: "특징 목록", name: "features", widget: "list", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "설명", name: "description", widget: "text"},
+                {label: "아이콘", name: "icon", widget: "string", required: false}
+              ]}
+            ]}
+          - {label: "최신 소식", name: "latest_news", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "뉴스 목록", name: "items", widget: "list", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "요약", name: "summary", widget: "text"},
+                {label: "날짜", name: "date", widget: "date"},
+                {label: "링크", name: "link", widget: "string"},
+                {label: "카테고리", name: "category", widget: "select", options: ["공지", "보도자료", "이벤트", "기타"]}
+              ]}
+            ]}
+
+  # ===== 소개 페이지들 =====
+  - name: "about"
+    label: "📖 소개"
+    files:
+      - label: "소개 메인"
+        name: "about"
+        file: "content/about.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"},
+              {label: "키워드", name: "keywords", widget: "string"},
+              {label: "수정일", name: "last_modified", widget: "datetime"}
+            ]}
+          - {label: "메인 콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "소개글", name: "introduction", widget: "markdown"},
+              {label: "섹션 목록", name: "sections", widget: "list", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "설명", name: "description", widget: "text"},
+                {label: "링크", name: "link", widget: "string"},
+                {label: "아이콘", name: "icon", widget: "string", required: false}
+              ]}
+            ]}
+
+      - label: "창당준비위원회"
+        name: "founding"
+        file: "content/about/founding.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"},
+              {label: "수정일", name: "last_modified", widget: "datetime"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "창당 배경", name: "background", widget: "markdown"},
+              {label: "조직 구성", name: "organization", widget: "object", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "위원장", name: "chairman", widget: "object", fields: [
+                  {label: "이름", name: "name", widget: "string"},
+                  {label: "소개", name: "bio", widget: "text"},
+                  {label: "사진", name: "photo", widget: "image", required: false}
+                ]},
+                {label: "위원 목록", name: "members", widget: "list", fields: [
+                  {label: "이름", name: "name", widget: "string"},
+                  {label: "직책", name: "position", widget: "string"},
+                  {label: "소개", name: "bio", widget: "text", required: false}
+                ]}
+              ]},
+              {label: "활동 계획", name: "activities", widget: "markdown"}
+            ]}
+
+      - label: "지역조직"
+        name: "location"
+        file: "content/about/location.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "소개", name: "introduction", widget: "markdown"},
+              {label: "지역 조직", name: "regions", widget: "list", fields: [
+                {label: "지역명", name: "name", widget: "string"},
+                {label: "주소", name: "address", widget: "string"},
+                {label: "연락처", name: "contact", widget: "object", fields: [
+                  {label: "전화", name: "phone", widget: "string", required: false},
+                  {label: "이메일", name: "email", widget: "string", required: false}
+                ]},
+                {label: "담당자", name: "manager", widget: "string", required: false}
+              ]}
+            ]}
+
+      - label: "조직구성"
+        name: "organization"
+        file: "content/about/organization.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "조직도", name: "structure", widget: "object", fields: [
+                {label: "최고위원회", name: "supreme_council", widget: "list", fields: [
+                  {label: "직책", name: "position", widget: "string"},
+                  {label: "이름", name: "name", widget: "string"},
+                  {label: "소개", name: "bio", widget: "text", required: false}
+                ]},
+                {label: "상임위원회", name: "committees", widget: "list", fields: [
+                  {label: "위원회명", name: "name", widget: "string"},
+                  {label: "위원장", name: "chair", widget: "string"},
+                  {label: "주요 업무", name: "duties", widget: "text"}
+                ]}
+              ]}
+            ]}
+
+      - label: "인물소개"
+        name: "people"
+        file: "content/about/people.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "인물 목록", name: "people", widget: "list", fields: [
+                {label: "이름", name: "name", widget: "string"},
+                {label: "직책", name: "position", widget: "string"},
+                {label: "사진", name: "photo", widget: "image", required: false},
+                {label: "경력", name: "career", widget: "list", fields: [
+                  {label: "경력 사항", name: "item", widget: "string"}
+                ]},
+                {label: "소개", name: "bio", widget: "markdown"}
+              ]}
+            ]}
+
+      - label: "기본원칙"
+        name: "principles"
+        file: "content/about/principles.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "서문", name: "preamble", widget: "markdown"},
+              {label: "기본 원칙", name: "principles", widget: "list", fields: [
+                {label: "원칙명", name: "title", widget: "string"},
+                {label: "설명", name: "description", widget: "markdown"},
+                {label: "세부 항목", name: "items", widget: "list", fields: [
+                  {label: "항목", name: "item", widget: "string"}
+                ], required: false}
+              ]}
+            ]}
+
+      - label: "활동일정"
+        name: "schedule"
+        file: "content/about/schedule.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "일정 목록", name: "schedules", widget: "list", fields: [
+                {label: "날짜", name: "date", widget: "date"},
+                {label: "시간", name: "time", widget: "string", required: false},
+                {label: "제목", name: "title", widget: "string"},
+                {label: "장소", name: "location", widget: "string", required: false},
+                {label: "설명", name: "description", widget: "text", required: false},
+                {label: "상태", name: "status", widget: "select", options: ["예정", "진행중", "완료", "취소"], default: "예정"}
+              ]}
+            ]}
+
+  # ===== FAQ =====
+  - name: "faq"
+    label: "❓ FAQ"
+    files:
+      - label: "자주 묻는 질문"
+        name: "faq"
+        file: "content/faq.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "FAQ 목록", name: "faqs", widget: "list", fields: [
+                {label: "카테고리", name: "category", widget: "select", options: ["일반", "당원", "정책", "활동", "기타"]},
+                {label: "질문", name: "question", widget: "string"},
+                {label: "답변", name: "answer", widget: "markdown"},
+                {label: "중요도", name: "priority", widget: "select", options: ["높음", "보통", "낮음"], default: "보통"}
+              ]}
+            ]}
+
+  # ===== 당원 =====
+  - name: "members"
+    label: "👥 당원"
+    files:
+      - label: "당원 메인"
+        name: "members"
+        file: "content/members.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "소개", name: "introduction", widget: "markdown"},
+              {label: "당원 혜택", name: "benefits", widget: "list", fields: [
+                {label: "혜택명", name: "title", widget: "string"},
+                {label: "설명", name: "description", widget: "text"},
+                {label: "아이콘", name: "icon", widget: "string", required: false}
+              ]},
+              {label: "통계", name: "statistics", widget: "object", fields: [
+                {label: "총 당원 수", name: "total_members", widget: "number", required: false},
+                {label: "지역별 분포", name: "regional_distribution", widget: "list", fields: [
+                  {label: "지역", name: "region", widget: "string"},
+                  {label: "인원", name: "count", widget: "number"}
+                ], required: false}
+              ]}
+            ]}
+
+      - label: "입당안내"
+        name: "join"
+        file: "content/members/join.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "입당 절차", name: "procedures", widget: "list", fields: [
+                {label: "단계", name: "step", widget: "number"},
+                {label: "제목", name: "title", widget: "string"},
+                {label: "설명", name: "description", widget: "text"},
+                {label: "필요 서류", name: "documents", widget: "list", fields: [
+                  {label: "서류명", name: "document", widget: "string"}
+                ], required: false}
+              ]},
+              {label: "자격 요건", name: "requirements", widget: "markdown"},
+              {label: "연락처", name: "contact", widget: "object", fields: [
+                {label: "전화", name: "phone", widget: "string"},
+                {label: "이메일", name: "email", widget: "string"},
+                {label: "주소", name: "address", widget: "string"}
+              ]}
+            ]}
+
+      - label: "당비안내"
+        name: "dues"
+        file: "content/members/dues.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "당비 안내", name: "dues_info", widget: "object", fields: [
+                {label: "기본 당비", name: "basic_dues", widget: "object", fields: [
+                  {label: "월 금액", name: "monthly_amount", widget: "number"},
+                  {label: "연 금액", name: "annual_amount", widget: "number"},
+                  {label: "설명", name: "description", widget: "text"}
+                ]},
+                {label: "특별 당비", name: "special_dues", widget: "list", fields: [
+                  {label: "분류", name: "category", widget: "string"},
+                  {label: "금액", name: "amount", widget: "number"},
+                  {label: "설명", name: "description", widget: "text"}
+                ], required: false}
+              ]},
+              {label: "납부 방법", name: "payment_methods", widget: "list", fields: [
+                {label: "방법", name: "method", widget: "string"},
+                {label: "설명", name: "description", widget: "text"},
+                {label: "계좌 정보", name: "account_info", widget: "string", required: false}
+              ]}
+            ]}
+
+  # ===== 뉴스 =====
+  - name: "news"
+    label: "📰 뉴스"
+    files:
+      - label: "뉴스 메인"
+        name: "news"
+        file: "content/news.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "뉴스 카테고리", name: "categories", widget: "list", fields: [
+                {label: "카테고리명", name: "name", widget: "string"},
+                {label: "설명", name: "description", widget: "text"},
+                {label: "링크", name: "link", widget: "string"},
+                {label: "아이콘", name: "icon", widget: "string", required: false}
+              ]},
+              {label: "최신 뉴스", name: "latest_news", widget: "list", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "요약", name: "summary", widget: "text"},
+                {label: "날짜", name: "date", widget: "date"},
+                {label: "카테고리", name: "category", widget: "string"},
+                {label: "링크", name: "link", widget: "string"},
+                {label: "이미지", name: "image", widget: "image", required: false}
+              ]}
+            ]}
+
+      - label: "당 활동"
+        name: "activities"
+        file: "content/news/activities.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "활동 소개", name: "introduction", widget: "markdown"},
+              {label: "활동 통계", name: "statistics", widget: "object", fields: [
+                {label: "총 활동 수", name: "total_activities", widget: "number"},
+                {label: "참여 인원", name: "total_participants", widget: "number"},
+                {label: "활동 지역", name: "regions_covered", widget: "number"}
+              ]},
+              {label: "주요 활동", name: "major_activities", widget: "list", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "날짜", name: "date", widget: "date"},
+                {label: "장소", name: "location", widget: "string"},
+                {label: "참여 인원", name: "participants", widget: "number", required: false},
+                {label: "설명", name: "description", widget: "markdown"},
+                {label: "이미지", name: "images", widget: "list", fields: [
+                  {label: "이미지", name: "image", widget: "image"}
+                ], required: false}
+              ]}
+            ]}
+
+      - label: "행사/집회"
+        name: "events"
+        file: "content/news/events.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "예정 행사", name: "upcoming_events", widget: "list", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "날짜", name: "date", widget: "datetime"},
+                {label: "장소", name: "location", widget: "string"},
+                {label: "설명", name: "description", widget: "markdown"},
+                {label: "등록 링크", name: "registration_link", widget: "string", required: false},
+                {label: "포스터", name: "poster", widget: "image", required: false}
+              ]},
+              {label: "지난 행사", name: "past_events", widget: "list", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "날짜", name: "date", widget: "date"},
+                {label: "장소", name: "location", widget: "string"},
+                {label: "참여 인원", name: "attendance", widget: "number", required: false},
+                {label: "요약", name: "summary", widget: "text"},
+                {label: "사진", name: "photos", widget: "list", fields: [
+                  {label: "사진", name: "photo", widget: "image"}
+                ], required: false}
+              ]}
+            ]}
+
+      - label: "갤러리"
+        name: "gallery"
+        file: "content/news/gallery.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "갤러리 앨범", name: "albums", widget: "list", fields: [
+                {label: "앨범명", name: "title", widget: "string"},
+                {label: "날짜", name: "date", widget: "date"},
+                {label: "설명", name: "description", widget: "text", required: false},
+                {label: "커버 이미지", name: "cover_image", widget: "image"},
+                {label: "사진 목록", name: "photos", widget: "list", fields: [
+                  {label: "사진", name: "image", widget: "image"},
+                  {label: "설명", name: "caption", widget: "string", required: false}
+                ]}
+              ]},
+              {label: "동영상", name: "videos", widget: "list", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "YouTube URL", name: "youtube_url", widget: "string"},
+                {label: "썸네일", name: "thumbnail", widget: "image", required: false},
+                {label: "설명", name: "description", widget: "text", required: false}
+              ], required: false}
+            ]}
+
+      - label: "언론보도"
+        name: "media"
+        file: "content/news/media.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "언론 보도", name: "media_coverage", widget: "list", fields: [
+                {label: "언론사", name: "media_outlet", widget: "string"},
+                {label: "제목", name: "title", widget: "string"},
+                {label: "날짜", name: "date", widget: "date"},
+                {label: "기자", name: "reporter", widget: "string", required: false},
+                {label: "요약", name: "summary", widget: "text"},
+                {label: "원문 링크", name: "link", widget: "string"},
+                {label: "카테고리", name: "category", widget: "select", options: ["정치", "경제", "사회", "기타"]}
+              ]}
+            ]}
+
+      - label: "보도자료"
+        name: "press"
+        file: "content/news/press.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "보도자료", name: "press_releases", widget: "list", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "발표일", name: "date", widget: "date"},
+                {label: "발표자", name: "spokesperson", widget: "string", required: false},
+                {label: "내용", name: "content", widget: "markdown"},
+                {label: "첨부파일", name: "attachments", widget: "list", fields: [
+                  {label: "파일명", name: "filename", widget: "string"},
+                  {label: "파일 URL", name: "url", widget: "string"}
+                ], required: false}
+              ]}
+            ]}
+
+  # ===== 공지사항 =====
+  - name: "notices"
+    label: "📢 공지사항"
+    files:
+      - label: "공지사항 목록"
+        name: "notices"
+        file: "content/notices.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "공지사항", name: "notices", widget: "list", fields: [
+                {label: "제목", name: "title", widget: "string"},
+                {label: "날짜", name: "date", widget: "date"},
+                {label: "중요도", name: "priority", widget: "select", options: ["긴급", "중요", "일반"], default: "일반"},
+                {label: "요약", name: "summary", widget: "text"},
+                {label: "링크", name: "link", widget: "string"},
+                {label: "첨부파일", name: "attachments", widget: "list", fields: [
+                  {label: "파일명", name: "filename", widget: "string"},
+                  {label: "URL", name: "url", widget: "string"}
+                ], required: false}
+              ]}
+            ]}
+
+      - label: "공지사항 1"
+        name: "notice-1"
+        file: "content/notice-1.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"},
+              {label: "발표일", name: "date", widget: "date"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "본문", name: "body", widget: "markdown"},
+              {label: "첨부파일", name: "attachments", widget: "list", fields: [
+                {label: "파일명", name: "filename", widget: "string"},
+                {label: "URL", name: "url", widget: "string"}
+              ], required: false}
+            ]}
+
+      - label: "공지사항 2"
+        name: "notice-2"
+        file: "content/notice-2.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"},
+              {label: "발표일", name: "date", widget: "date"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "본문", name: "body", widget: "markdown"},
+              {label: "첨부파일", name: "attachments", widget: "list", fields: [
+                {label: "파일명", name: "filename", widget: "string"},
+                {label: "URL", name: "url", widget: "string"}
+              ], required: false}
+            ]}
+
+  # ===== 정책 =====
+  - name: "policy"
+    label: "📋 정책"
+    files:
+      - label: "정책 메인"
+        name: "policy"
+        file: "content/policy.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "정책 비전", name: "vision", widget: "markdown"},
+              {label: "정책 분야", name: "policy_areas", widget: "list", fields: [
+                {label: "분야명", name: "name", widget: "string"},
+                {label: "설명", name: "description", widget: "text"},
+                {label: "링크", name: "link", widget: "string"},
+                {label: "아이콘", name: "icon", widget: "string", required: false}
+              ]}
+            ]}
+
+      - label: "경제정책"
+        name: "economy"
+        file: "content/policy/economy.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "정책 개요", name: "overview", widget: "markdown"},
+              {label: "주요 정책", name: "main_policies", widget: "list", fields: [
+                {label: "정책명", name: "title", widget: "string"},
+                {label: "설명", name: "description", widget: "markdown"},
+                {label: "목표", name: "goals", widget: "list", fields: [
+                  {label: "목표", name: "goal", widget: "string"}
+                ]},
+                {label: "세부 계획", name: "details", widget: "markdown", required: false}
+              ]}
+            ]}
+
+      - label: "교육정책"
+        name: "education"
+        file: "content/policy/education.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "정책 개요", name: "overview", widget: "markdown"},
+              {label: "주요 정책", name: "main_policies", widget: "list", fields: [
+                {label: "정책명", name: "title", widget: "string"},
+                {label: "설명", name: "description", widget: "markdown"},
+                {label: "대상", name: "target", widget: "string", required: false},
+                {label: "예상 효과", name: "expected_outcomes", widget: "list", fields: [
+                  {label: "효과", name: "outcome", widget: "string"}
+                ], required: false}
+              ]}
+            ]}
+
+      - label: "안보정책"
+        name: "security"
+        file: "content/policy/security.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "안보 관점", name: "security_perspective", widget: "markdown"},
+              {label: "주요 정책", name: "main_policies", widget: "list", fields: [
+                {label: "정책명", name: "title", widget: "string"},
+                {label: "설명", name: "description", widget: "markdown"},
+                {label: "중요도", name: "priority", widget: "select", options: ["최고", "높음", "중간", "낮음"], default: "중간"}
+              ]}
+            ]}
+
+  # ===== 자료실 & 후원 =====
+  - name: "resources"
+    label: "📚 자료실"
+    files:
+      - label: "자료실"
+        name: "resources"
+        file: "content/resources.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "자료 카테고리", name: "categories", widget: "list", fields: [
+                {label: "카테고리명", name: "name", widget: "string"},
+                {label: "설명", name: "description", widget: "text"},
+                {label: "링크", name: "link", widget: "string"},
+                {label: "아이콘", name: "icon", widget: "string", required: false}
+              ]}
+            ]}
+
+  - name: "support"
+    label: "💝 후원"
+    files:
+      - label: "후원안내"
+        name: "support"
+        file: "content/support.yml"
+        fields:
+          - {label: "메타데이터", name: "metadata", widget: "object", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "설명", name: "description", widget: "text"}
+            ]}
+          - {label: "콘텐츠", name: "content", widget: "object", fields: [
+              {label: "메인 제목", name: "main_title", widget: "string"},
+              {label: "후원 안내", name: "introduction", widget: "markdown"},
+              {label: "후원 방법", name: "donation_methods", widget: "list", fields: [
+                {label: "방법", name: "method", widget: "string"},
+                {label: "설명", name: "description", widget: "text"},
+                {label: "계좌 정보", name: "account_info", widget: "string", required: false},
+                {label: "최소 금액", name: "minimum_amount", widget: "number", required: false}
+              ]},
+              {label: "후원 혜택", name: "benefits", widget: "list", fields: [
+                {label: "금액대", name: "amount_range", widget: "string"},
+                {label: "혜택", name: "benefit", widget: "text"}
+              ], required: false}
+            ]}
+
+  # ===== 동적 콘텐츠 =====
+  - name: "events"
+    label: "📅 이벤트"
+    label_singular: "이벤트"
+    folder: "content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "제목", name: "title", widget: "string"}
+      - {label: "날짜", name: "date", widget: "datetime"}
+      - {label: "장소", name: "location", widget: "string", required: false}
+      - {label: "설명", name: "description", widget: "text"}
+      - {label: "상세 내용", name: "body", widget: "markdown"}
+      - {label: "포스터", name: "poster", widget: "image", required: false}
+      - {label: "등록 링크", name: "registration_link", widget: "string", required: false}
+      - {label: "상태", name: "status", widget: "select", options: ["예정", "진행중", "완료", "취소"], default: "예정"}
+
+  - name: "notices_posts"
+    label: "📢 공지사항 포스트"
+    label_singular: "공지사항"
+    folder: "content/notices"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "제목", name: "title", widget: "string"}
+      - {label: "발표일", name: "date", widget: "date"}
+      - {label: "중요도", name: "priority", widget: "select", options: ["긴급", "중요", "일반"], default: "일반"}
+      - {label: "요약", name: "summary", widget: "text"}
+      - {label: "내용", name: "body", widget: "markdown"}
+      - {label: "첨부파일", name: "attachments", widget: "list", fields: [
+          {label: "파일명", name: "filename", widget: "string"},
+          {label: "파일", name: "file", widget: "file"}
+        ], required: false}
+
+# 편집기 미리보기 설정
+editor_preview: true
+show_preview_links: true
+
+# 사이트 설정
+site_url: https://자유와혁신.netlify.app
+display_url: https://자유와혁신.netlify.app 

@@ -1,0 +1,245 @@
+# 자유와혁신 찾아오시는 길 페이지 완전 CMS 데이터
+# about/location.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "찾아오시는 길 - 자유와혁신"
+  description: "자유와혁신 당사 위치, 연락처, 교통편 안내 및 주변 시설 정보"
+  keywords: "자유와혁신, 찾아오시는 길, 당사 위치, 연락처, 교통편"
+  og_title: "찾아오시는 길 - 자유와혁신"
+  og_description: "자유와혁신 당사로 오시는 길과 연락처 정보를 안내합니다"
+  og_image: "/images/location-og.png"
+
+# 히어로 섹션
+hero:
+  title: "찾아오시는 길"
+  background_image: "../images/hero_image.png"
+  overlay_gradient: "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2))"
+  style:
+    height: "60vh"
+    text_shadow: "2px 2px 4px rgba(0,0,0,0.5)"
+    font_size: "3.5rem"
+
+# 소개 섹션
+introduction:
+  title: "당사로 찾아오세요"
+  description: "자유와혁신은 서울 중심가에 위치하여 당원과 국민 여러분의 방문을 환영합니다."
+  
+  office_images:
+    - title: "사무실 전경"
+      image: "/images/office/exterior.jpg"
+      placeholder: true
+      icon: "fas fa-camera"
+    
+    - title: "접수 데스크"
+      image: "/images/office/reception.jpg"
+      placeholder: true
+      icon: "fas fa-camera"
+    
+    - title: "회의실"
+      image: "/images/office/meeting-room.jpg"
+      placeholder: true
+      icon: "fas fa-camera"
+
+# 연락처 정보 섹션
+contact_info:
+  title: "연락처 정보"
+  description: "전화, 이메일 및 방문 등 다양한 방법으로 연락주실 수 있습니다."
+  
+  office_info:
+    title: "사무실 정보"
+    icon: "fas fa-building"
+    color: "red"
+    
+    details:
+      - icon: "fas fa-map-marker-alt"
+        label: "주소"
+        value: 
+          - "서울특별시 중구 세종대로 1가 31"
+          - "정동빌딩 7층"
+        postal_code: "(우편번호: 04520)"
+      
+      - icon: "fas fa-phone"
+        label: "대표전화"
+        value: "02-1234-5678"
+        note: "평일 09:00 - 18:00"
+      
+      - icon: "fas fa-fax"
+        label: "팩스"
+        value: "02-1234-5679"
+        note: "24시간 접수"
+      
+      - icon: "fas fa-envelope"
+        label: "이메일"
+        value: "info@jayuhyeoksin.kr"
+        note: "24시간 접수"
+  
+  business_hours:
+    title: "운영 시간"
+    icon: "fas fa-clock"
+    color: "blue"
+    
+    schedule:
+      - icon: "fas fa-calendar-day"
+        day: "월~금"
+        hours: "09:00 - 18:00"
+        color: "blue"
+      
+      - icon: "fas fa-calendar-week"
+        day: "토요일"
+        hours: "09:00 - 13:00"
+        color: "blue"
+      
+      - icon: "fas fa-calendar-times"
+        day: "일요일 및 공휴일"
+        hours: "휴무"
+        color: "red"
+    
+    visit_notice:
+      title: "방문 안내"
+      icon: "fas fa-info-circle"
+      message: "방문 전 미리 연락 주시면 더 원활한 상담이 가능합니다. 중요한 상담의 경우 사전 예약을 권장드립니다."
+
+# 위치 안내 섹션
+location_guide:
+  title: "위치 안내"
+  description: "다양한 교통수단으로 편리하게 방문하실 수 있습니다."
+  
+  map:
+    placeholder: true
+    icon: "fas fa-map-marked-alt"
+    title: "지도 영역"
+    description: "실제 서비스에서는 카카오맵 또는 구글맵이 표시됩니다"
+    embed_code: "" # 실제 지도 임베드 코드가 들어갈 곳
+  
+  transportation:
+    - type: "지하철"
+      icon: "fas fa-subway"
+      color: "blue"
+      routes:
+        - line: "1호선"
+          station: "시청역 4번 출구"
+        - line: "2호선"
+          station: "을지로입구역 8번 출구"
+      walking_time: "도보 5분 거리"
+    
+    - type: "버스"
+      icon: "fas fa-bus"
+      color: "green"
+      routes:
+        - type: "간선"
+          numbers: "150, 160, 270"
+        - type: "지선"
+          numbers: "7011, 7016, 7018"
+      stop: "시청앞 정류장 하차"
+    
+    - type: "자가용"
+      icon: "fas fa-car"
+      color: "purple"
+      directions:
+        - "세종대로 이용"
+        - "정동길 진입"
+      note: "주차장 협소"
+    
+    - type: "택시"
+      icon: "fas fa-taxi"
+      color: "yellow"
+      destinations:
+        - "시청 앞 정동빌딩"
+        - "덕수궁 입구"
+      note: "목적지 안내"
+
+# 주변 시설 섹션
+nearby_facilities:
+  title: "주변 시설"
+  description: "서울 중심가에 위치하여 다양한 편의시설과 문화시설이 인근에 있습니다."
+  
+  categories:
+    - title: "관공서"
+      icon: "fas fa-landmark"
+      color: "red"
+      facilities:
+        - name: "서울시청"
+          distance: "도보 3분"
+        - name: "중구청"
+          distance: "도보 10분"
+        - name: "서울지방경찰청"
+          distance: "도보 15분"
+    
+    - title: "문화시설"
+      icon: "fas fa-theater-masks"
+      color: "blue"
+      facilities:
+        - name: "덕수궁"
+          distance: "도보 5분"
+        - name: "정동극장"
+          distance: "도보 7분"
+        - name: "서울시립미술관"
+          distance: "도보 10분"
+    
+    - title: "편의시설"
+      icon: "fas fa-shopping-bag"
+      color: "green"
+      facilities:
+        - name: "롯데호텔"
+          distance: "도보 5분"
+        - name: "명동 쇼핑가"
+          distance: "도보 15분"
+        - name: "다양한 음식점 및 카페"
+          distance: ""
+
+# CTA 섹션 (연락하기)
+contact_cta:
+  title: "언제든 연락해 주세요"
+  description: 
+    line1: "자유와혁신은 국민 여러분의 소중한 의견을 기다리고 있습니다."
+    line2: "방문, 전화, 이메일 등 편리한 방법으로 연락해 주세요."
+  background_color: "red-600"
+  
+  buttons:
+    - text: "전화하기"
+      icon: "fas fa-phone"
+      link: "tel:02-1234-5678"
+      style: "solid"
+      color: "white"
+      bg_color: "white"
+      text_color: "red-600"
+      hover_bg: "gray-100"
+    
+    - text: "이메일 보내기"
+      icon: "fas fa-envelope"
+      link: "mailto:info@jayuhyeoksin.kr"
+      style: "outline"
+      color: "white"
+      border_color: "white"
+      hover_bg: "white"
+      hover_text: "red-600"
+
+# 스타일 설정
+styles:
+  primary_color: "#A50034"
+  primary_hover: "#8B002C"
+  primary_light: "#FDF2F4"
+  primary_medium: "#FCE7EA"
+  
+  blue_color: "#3B82F6"
+  blue_light: "#EBF5FF"
+  blue_medium: "#DBEAFE"
+  
+  green_color: "#10B981"
+  green_light: "#D1FAE5"
+  
+  purple_color: "#8B5CF6"
+  purple_light: "#F3E8FF"
+  
+  yellow_color: "#F59E0B"
+  yellow_light: "#FEF3C7"
+  
+  text_dark: "#1F2937"
+  text_gray: "#6B7280"
+  text_light: "#9CA3AF"
+  
+  section_padding: "py-20"
+  container_max_width: "max-w-7xl"
+  card_shadow: "shadow-sm"
+  card_radius: "rounded-lg" 

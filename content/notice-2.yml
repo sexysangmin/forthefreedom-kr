@@ -1,0 +1,220 @@
+# 자유와혁신 정책 토론회 일정 발표 페이지 완전 CMS 데이터
+# notice-2.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "정책 토론회 일정 발표 - 자유와 혁신의 창당위"
+  description: "자유와혁신 창당준비위원회에서 개최하는 정책 토론회 일정을 발표합니다. 시민과 함께하는 정책 토론의 장에 참여하세요."
+  keywords: "자유와혁신, 정책토론회, 일정발표, 시민참여, 정책개발"
+
+# 네비게이션
+navigation:
+  logo: "자유와 혁신"
+  logo_subtitle: "창당위"
+  
+  menu_items:
+    - text: "공지사항"
+      url: "notices.html"
+      active: true
+    - text: "주요 행사 및 집회"
+      url: "index.html#events"
+    - text: "자주묻는 질문"
+      url: "faq.html"
+  
+  cta_button:
+    text: "입당 가입하기"
+    url: "index.html#join"
+    icon: "fas fa-arrow-right"
+
+# 브레드크럼
+breadcrumb:
+  - text: "홈"
+    url: "index.html"
+  - text: "공지사항"
+    url: "notices.html"
+  - text: "정책 토론회 일정 발표"
+    current: true
+
+# 기사 헤더
+article_header:
+  category: "행사"
+  category_color: "text-blue-600"
+  category_bg: "bg-blue-100"
+  date: "2025년 1월 10일"
+  title: "정책 토론회 일정 발표"
+  author: "자유와 혁신의 창당위 정책팀"
+  views: "892"
+
+# 기사 본문
+article_content:
+  intro: "시민과 함께하는 정책 토론회 일정을 발표합니다."
+  
+  opening_statement: "자유와 혁신의 창당준비위원회는 다양한 분야의 정책 전문가와 시민이 함께 참여하는 정책 토론회를 개최합니다. 이번 토론회를 통해 우리 사회가 직면한 주요 현안에 대해 깊이 있는 토론과 양질의 해결책을 모색하고자 합니다."
+  
+  sections:
+    - title: "토론회 개요"
+      type: "overview"
+      background: "bg-blue-50"
+      title_color: "text-blue-900"
+      content_color: "text-blue-800"
+      main_title: "주제: \"미래를 위한 정책 혁신\""
+      details:
+        - label: "일시"
+          value: "2025년 2월 20일(목) 오후 2시 ~ 6시"
+        - label: "장소"
+          value: "서울 중구 프레스센터 국제회의장"
+        - label: "참가비"
+          value: "무료 (사전 신청 필수)"
+        - label: "정원"
+          value: "200명"
+    
+    - title: "토론 세션"
+      type: "sessions"
+      sessions:
+        - session_number: 1
+          title: "경제 정책 혁신"
+          time: "오후 2:00 - 3:00"
+          topic: "중소기업 지원과 일자리 창출 방안"
+          panelists: "김경제 (경제연구원 원장), 박기업 (중소기업중앙회 회장), 이노동 (한국노총 위원장)"
+          border_color: "border-red-600"
+          
+        - session_number: 2
+          title: "교육 개혁"
+          time: "오후 3:15 - 4:15"
+          topic: "미래 인재 양성을 위한 교육시스템 혁신"
+          panelists: "최교육 (교육부 전 차관), 최학부모 (학부모연합회 회장), 한학생 (한국학생연합 위원장)"
+          border_color: "border-red-600"
+          
+        - session_number: 3
+          title: "복지 및 사회통합"
+          time: "오후 4:30 - 5:30"
+          topic: "지속 가능한 복지제도 구축 방안"
+          panelists: "박복지 (사회복지협회 회장), 이사회 (시민사회단체협의회 회장), 다통합 (다문화가족센터 센터장)"
+          border_color: "border-red-600"
+    
+    - title: "참가 신청"
+      type: "registration"
+      background: "bg-gray-50"
+      subtitle: "신청 방법"
+      methods:
+        - type: "온라인 신청"
+          details: "www.innovation-party.kr/forum"
+        - type: "전화 신청"
+          details: "02-1234-5678 (평일 9시~18시)"
+        - type: "이메일 신청"
+          details: "forum@innovation-party.kr"
+        - type: "신청 마감"
+          details: "2025년 2월 18일(화) 18시"
+    
+    - title: "특별 안내"
+      type: "special_notice"
+      background: "bg-red-50"
+      border: "border-l-4 border-red-600"
+      text_color: "text-red-800"
+      title_color: "text-red-900"
+      items:
+        - "본 토론회 전 과정은 온라인으로 생중계됩니다."
+        - "질의응답 시간에는 현장 참가자의 질문을 받습니다."
+        - "토론회 자료집은 현장에서 배포됩니다."
+        - "주차 공간이 한정되므로 대중교통 이용을 권장합니다."
+    
+    - title: "문의처"
+      content: "토론회 관련 문의사항은 아래로 연락을 주시기 바랍니다."
+      type: "contact_list"
+      items:
+        - label: "담당자"
+          value: "정토론 정책연구팀 (02-1234-5678, 내선 123)"
+        - label: "이메일"
+          value: "forum@innovation-party.kr"
+
+# 기사 서명
+article_signature:
+  date: "2025년 1월 10일"
+  organization: "자유와 혁신의 창당준비위원회 정책팀"
+  organization_color: "text-red-600"
+
+# 네비게이션 버튼
+navigation_buttons:
+  back_to_list:
+    text: "목록으로"
+    icon: "fas fa-list"
+    style: "bg-gray-100 text-gray-700 hover:bg-gray-200"
+  
+  prev_article:
+    text: "이전글"
+    icon: "fas fa-chevron-left"
+    url: "notice-1.html"
+    style: "text-red-600 hover:text-red-700"
+  
+  next_article:
+    text: "다음글"
+    icon: "fas fa-chevron-right"
+    url: "notice-3.html"
+    style: "text-red-600 hover:text-red-700"
+
+# 푸터
+footer:
+  title: "자유와 혁신의 창당위"
+  subtitle: "새로운 정치, 새로운 미래를 함께 만들어갑시다."
+  copyright: "© 2025 자유와 혁신의 창당준비위원회. 모든 권리 보유."
+
+# 토론회 상세 정보
+forum_details:
+  main_theme: "미래를 위한 정책 혁신"
+  total_duration: "4시간"
+  live_streaming: true
+  q_and_a: true
+  materials_provided: true
+  parking_limited: true
+  public_transport_recommended: true
+  
+  registration:
+    required: true
+    deadline: "2025-02-18 18:00"
+    capacity: 200
+    fee: "무료"
+    
+  contact_info:
+    department: "정토론 정책연구팀"
+    phone: "02-1234-5678"
+    extension: "123"
+    email: "forum@innovation-party.kr"
+
+# 스타일 설정
+styles:
+  primary_color: "#A50034"
+  primary_hover: "#8B002C"
+  secondary_color: "#2563EB"
+  
+  fonts:
+    primary: "'Inter', 'Noto Sans KR', sans-serif"
+    
+  layout:
+    article_max_width: "max-w-4xl"
+    padding_top: "pt-32"
+    padding_bottom: "pb-16"
+    
+  typography:
+    title_size: "text-4xl md:text-5xl"
+    title_weight: "font-light"
+    title_spacing: "leading-tight"
+    content_size: "1.1rem"
+    intro_size: "text-xl"
+    
+  components:
+    category_badge:
+      padding: "px-4 py-2"
+      font_weight: "font-medium"
+    
+    overview_section:
+      background: "bg-blue-50"
+      padding: "p-8"
+      
+    session_item:
+      border_left: "border-l-4"
+      padding_left: "pl-6"
+      
+    special_notice:
+      background: "bg-red-50"
+      border: "border-l-4 border-red-600"
+      padding: "p-6" 

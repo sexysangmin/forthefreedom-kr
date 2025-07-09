@@ -1,0 +1,291 @@
+# 자유와혁신 주요 인물 페이지 완전 CMS 데이터
+# about/people.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "주요 인물 - 자유와혁신"
+  description: "자유와혁신을 이끌어가는 핵심 인물들과 고문단을 소개합니다"
+  keywords: "자유와혁신, 주요 인물, 당 대표, 고문단, 리더십"
+  og_title: "주요 인물 - 자유와혁신"
+  og_description: "변화를 이끄는 리더들과 각 분야 전문가들의 프로필을 소개합니다"
+  og_image: "/images/people-og.png"
+
+# 히어로 섹션
+hero:
+  title: "주요 인물"
+  background_image: "../images/hero_image.png"
+  overlay_gradient: "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2))"
+  style:
+    height: "60vh"
+    text_shadow: "2px 2px 4px rgba(0,0,0,0.5)"
+    font_size: "3.5rem"
+
+# 소개 섹션
+introduction:
+  title: "변화를 이끄는 리더들"
+  description: "자유와혁신을 이끌어가는 핵심 인물들의 다양한 경험과 전문성이 새로운 정치의 변화를 만들어냅니다."
+  
+  leadership_gallery:
+    - title: "리더십 회의"
+      image: "/images/leadership/meeting.jpg"
+      placeholder: true
+      description: "주요 의사결정과 정책 방향을 논의하는 리더십 회의"
+    
+    - title: "당원과의 만남"
+      image: "/images/leadership/members.jpg"
+      placeholder: true
+      description: "당원들과의 소통과 의견 수렴을 위한 만남"
+    
+    - title: "정책 토론"
+      image: "/images/leadership/policy.jpg"
+      placeholder: true
+      description: "전문가들과 함께하는 정책 개발 토론"
+
+# 당 대표 섹션 (특별 강조)
+party_leader:
+  title: "당 대표"
+  description: "자유와혁신의 비전을 제시하고 새로운 정치의 길을 열어가는 리더입니다."
+  
+  profile:
+    name: "김자유"
+    position: "당 대표"
+    icon: "fas fa-user-tie"
+    image: "/images/people/kim-jayu-large.jpg"
+    placeholder: true
+    
+    education:
+      - "서울대학교 정치학과 졸업 (정치학 박사)"
+    
+    career:
+      - "前 국정기획자문위원회 위원"
+      - "前 시민사회단체 대표"
+      - "前 정치개혁시민연대 상임대표"
+      - "前 대통령자문 지속가능발전위원회 위원"
+    
+    philosophy:
+      quote: "정치는 국민을 위한 봉사이며, 자유로운 사고와 혁신적인 아이디어로 대한민국의 미래를 열어가는 것이 우리의 사명입니다."
+      style: "border-l-4 border-red-600 pl-4 text-gray-700 italic"
+
+# 핵심 인물들 섹션
+key_personnel:
+  title: "핵심 인물들"
+  description: "각 분야의 전문성을 갖춘 핵심 인물들이 당의 정책과 방향을 이끌어갑니다."
+  
+  people:
+    - name: "이혁신"
+      position: "부대표"
+      icon: "fas fa-handshake"
+      color: "blue"
+      text_color: "text-blue-600"
+      education:
+        - "연세대학교 경제학과 (경제학 박사)"
+      career:
+        - "前 청와대 정책기획관"
+        - "前 경제연구원 선임연구위원"
+      description: "당무 보좌 및 대외 업무를 담당하며, 경제 분야 전문성을 바탕으로 실현 가능한 정책을 제시합니다."
+      image: "/images/people/lee-hyeoksin.jpg"
+      placeholder: true
+    
+    - name: "박정책"
+      position: "정책위원장"
+      icon: "fas fa-clipboard-list"
+      color: "green"
+      text_color: "text-green-600"
+      education:
+        - "고려대학교 행정학과 (행정학 박사)"
+      career:
+        - "前 국회 정책연구위원"
+        - "前 정부출연 연구기관 연구위원"
+      description: "7대 핵심 정책 개발과 연구를 통해 실현 가능한 정책을 제시하고 당의 정책 방향을 설계합니다."
+      image: "/images/people/park-jeongchaek.jpg"
+      placeholder: true
+    
+    - name: "최조직"
+      position: "조직위원장"
+      icon: "fas fa-sitemap"
+      color: "purple"
+      text_color: "text-purple-600"
+      education:
+        - "성균관대학교 사회학과 (사회학 석사)"
+      career:
+        - "前 NGO 단체 사무총장"
+        - "前 시민단체 활동가"
+      description: "체계적인 조직 관리와 당원 서비스를 담당하며, 풀뿌리 민주주의 실현을 위해 노력합니다."
+      image: "/images/people/choi-jojik.jpg"
+      placeholder: true
+    
+    - name: "강홍보"
+      position: "홍보위원장"
+      icon: "fas fa-bullhorn"
+      color: "yellow"
+      text_color: "text-yellow-600"
+      education:
+        - "한국외대 신문방송학과 (언론학 석사)"
+      career:
+        - "前 방송국 PD"
+        - "前 광고회사 크리에이티브 디렉터"
+      description: "효과적인 소통과 홍보 전략을 통해 당의 비전을 전파하고 국민과의 소통 창구 역할을 합니다."
+      image: "/images/people/kang-hongbo.jpg"
+      placeholder: true
+    
+    - name: "신청년"
+      position: "청년위원장"
+      icon: "fas fa-graduation-cap"
+      color: "orange"
+      text_color: "text-orange-600"
+      education:
+        - "카이스트 컴퓨터공학과 (공학 석사)"
+      career:
+        - "前 IT 스타트업 대표"
+        - "前 청년 활동가"
+      description: "청년층의 목소리를 대변하고 미래 지향적 정책을 제안하며, 청년 당원 활동을 지원합니다."
+      image: "/images/people/shin-cheongnyon.jpg"
+      placeholder: true
+    
+    - name: "한여성"
+      position: "여성위원장"
+      icon: "fas fa-female"
+      color: "pink"
+      text_color: "text-pink-600"
+      education:
+        - "이화여대 법학과 (법학 박사)"
+      career:
+        - "前 여성단체 대표"
+        - "前 변호사"
+      description: "성평등 사회 실현과 여성 권익 향상을 위해 활동하며, 일·가정 양립 정책을 지원합니다."
+      image: "/images/people/han-yeoseong.jpg"
+      placeholder: true
+
+# 고문단 섹션
+advisory_council:
+  title: "고문단"
+  description: "다양한 분야의 전문가들이 고문으로 참여하여 당의 정책과 방향에 조언합니다."
+  
+  advisors:
+    - name: "박혁신"
+      position: "정책고문 (경제 분야)"
+      color: "blue"
+      border_color: "border-blue-600"
+      text_color: "text-blue-600"
+      description: "25년간 경제연구원에서 활동하며 풀뿌리 경제정책 실현의 경험을 가진 경제 전문가입니다. 실용적이고 현실적인 경제정책 수립에 조언을 제공합니다."
+      credentials:
+        - "서울대학교 경제학과 명예교수"
+        - "前 한국개발연구원(KDI) 원장"
+        - "前 경제부총리 정책자문위원"
+      image: "/images/advisors/park-hyeoksin.jpg"
+      placeholder: true
+    
+    - name: "김교육"
+      position: "정책고문 (교육 분야)"
+      color: "green"
+      border_color: "border-green-600"
+      text_color: "text-green-600"
+      description: "30년간 교육 현장에서 활동하며 교육개혁의 필요성을 절감한 교육 전문가입니다. 미래 교육과 인재 양성에 대한 비전을 제시합니다."
+      credentials:
+        - "연세대학교 교육학과 명예교수"
+        - "前 교육부 차관"
+        - "前 한국교육개발원 원장"
+      image: "/images/advisors/kim-gyoyuk.jpg"
+      placeholder: true
+    
+    - name: "이환경"
+      position: "정책고문 (환경 분야)"
+      color: "purple"
+      border_color: "border-purple-600"
+      text_color: "text-purple-600"
+      description: "환경보호와 지속가능한 발전을 위해 노력해온 환경 전문가입니다. 기후변화 대응과 친환경 정책에 대한 전문적 조언을 제공합니다."
+      credentials:
+        - "고려대학교 환경학과 교수"
+        - "前 환경부 장관"
+        - "前 유엔환경계획(UNEP) 자문위원"
+      image: "/images/advisors/lee-hwangyeong.jpg"
+      placeholder: true
+    
+    - name: "최외교"
+      position: "정책고문 (외교 분야)"
+      color: "red"
+      border_color: "border-red-600"
+      text_color: "text-red-600"
+      description: "35년간 외교 현장에서 활동한 외교 전문가입니다. 글로벌 시대에 맞는 외교정책과 국제관계 전략에 조언합니다."
+      credentials:
+        - "前 주미 대사"
+        - "前 외교부 차관"
+        - "前 국가안보실 외교안보수석"
+      image: "/images/advisors/choi-oegyo.jpg"
+      placeholder: true
+
+# 인재 영입 안내 CTA 섹션
+recruitment_cta:
+  title: "함께할 인재를 찾습니다"
+  description:
+    line1: "자유와혁신과 함께 대한민국의 미래를 만들어갈"
+    line2: "유능하고 열정적인 인재를 기다리고 있습니다."
+  background_color: "red-600"
+  
+  ideal_qualities:
+    - icon: "fas fa-lightbulb"
+      title: "창의적 사고"
+      description: "새로운 아이디어와 혁신적 사고를 가진 분"
+      color: "red-500"
+    
+    - icon: "fas fa-heart"
+      title: "봉사 정신"
+      description: "국민을 위한 봉사 정신을 가진 분"
+      color: "red-500"
+    
+    - icon: "fas fa-users"
+      title: "협력 의지"
+      description: "팀워크와 협력을 중시하는 분"
+      color: "red-500"
+  
+  buttons:
+    - text: "당원 가입하기"
+      link: "../members/join.html"
+      style: "solid"
+      bg_color: "white"
+      text_color: "red-600"
+      hover_bg: "gray-100"
+    
+    - text: "인재 지원하기"
+      link: "mailto:recruit@jayuhyeoksin.kr"
+      style: "outline"
+      border_color: "white"
+      text_color: "white"
+      hover_bg: "white"
+      hover_text: "red-600"
+
+# 스타일 설정
+styles:
+  primary_color: "#A50034"
+  primary_hover: "#8B002C"
+  primary_light: "#FDF2F4"
+  primary_medium: "#FCE7EA"
+  
+  colors:
+    red: "#A50034"
+    blue: "#3B82F6"
+    green: "#10B981"
+    purple: "#8B5CF6"
+    yellow: "#F59E0B"
+    orange: "#F97316"
+    pink: "#EC4899"
+    indigo: "#6366F1"
+    gray: "#6B7280"
+  
+  text_dark: "#1F2937"
+  text_gray: "#6B7280"
+  text_light: "#9CA3AF"
+  
+  section_padding: "py-20"
+  container_max_width: "max-w-7xl"
+  card_shadow: "shadow-lg"
+  card_radius: "rounded-lg"
+  
+  # 인물 카드 전용 스타일
+  person_card:
+    hover_transform: "translateY(-8px)"
+    hover_shadow: "0 15px 40px rgba(165, 0, 52, 0.15)"
+    transition: "all 0.3s ease"
+    aspect_ratio: "3/4"
+    icon_size: "100px"
+    icon_border: "4px solid #A50034" 
