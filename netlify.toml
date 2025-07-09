@@ -44,8 +44,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     
-    # CMS를 위한 관대한 CSP (freedom-control 전용)
-    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; style-src 'self' 'unsafe-inline' https: data:; img-src 'self' 'unsafe-inline' data: blob: https:; font-src 'self' 'unsafe-inline' data: blob: https:; connect-src 'self' https: wss: blob:; media-src 'self' data: blob: https:; object-src 'self' data: blob:; child-src 'self' blob: https:; frame-src 'self' blob: https:; worker-src 'self' blob: https:; form-action 'self' https:; base-uri 'self';"
+    # CSP는 HTML 메타태그에서 처리 (Content-Security-Policy 제거)
 
 # 일반 페이지 보안 헤더 (freedom-control 제외한 모든 페이지)
 [[headers]]
