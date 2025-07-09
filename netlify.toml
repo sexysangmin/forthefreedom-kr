@@ -33,7 +33,21 @@
   to = "/index.html"
   status = 200
 
-# 보안 헤더
+# CMS 관리자 전용 헤더 (가장 먼저 적용 - 높은 우선순위)
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    # 관리자 페이지는 iframe 허용
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block" 
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    
+    # CMS를 위한 관대한 CSP (admin 전용)
+    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; style-src 'self' 'unsafe-inline' https: data:; img-src 'self' 'unsafe-inline' data: blob: https:; font-src 'self' 'unsafe-inline' data: blob: https:; connect-src 'self' https: wss: blob:; media-src 'self' data: blob: https:; object-src 'self' data: blob:; child-src 'self' blob: https:; frame-src 'self' blob: https:; worker-src 'self' blob: https:; form-action 'self' https:; base-uri 'self';"
+
+# 일반 페이지 보안 헤더 (admin 제외한 모든 페이지)
 [[headers]]
   for = "/*"
   [headers.values]
@@ -46,18 +60,8 @@
     # HTTPS 강제
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     
-    # 컨텐츠 보안 정책
+    # 일반 페이지용 엄격한 CSP (unsafe-eval 없음)
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.netlify.com"
-
-# CMS 관리자 전용 헤더 (완전히 관대한 설정)
-[[headers]]
-  for = "/admin/*"
-  [headers.values]
-    # 관리자 페이지는 iframe 허용
-    X-Frame-Options = "SAMEORIGIN"
-    
-    # CMS를 위한 완전히 개방적인 CSP (개발/테스트용)
-    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; style-src 'self' 'unsafe-inline' https: data:; img-src 'self' 'unsafe-inline' data: blob: https:; font-src 'self' 'unsafe-inline' data: blob: https:; connect-src 'self' https: wss: blob:; media-src 'self' data: blob: https:; object-src 'self' data: blob:; child-src 'self' blob: https:; frame-src 'self' blob: https:; worker-src 'self' blob: https:; form-action 'self' https:; base-uri 'self';"
 
 # 정적 자산 캐싱
 [[headers]]
