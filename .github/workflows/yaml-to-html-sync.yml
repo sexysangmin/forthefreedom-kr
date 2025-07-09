@@ -225,12 +225,20 @@ jobs:
           
           echo "✅ 변환 완료: ${{ matrix.html }}"
 
-      - name: 변환된 HTML 파일 업로드
-        uses: actions/upload-artifact@v3
+      - name: 변환된 HTML 업로드
+        uses: actions/upload-artifact@v4
         with:
-          name: converted-html-${{ github.run_id }}
+          name: converted-html-${{ matrix.html }}
           path: ${{ matrix.html }}
           retention-days: 30
+          
+      - name: 변환 로그 업로드
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conversion-logs-${{ matrix.html }}
+          path: logs/
+          retention-days: 7
 
   deploy-to-netlify:
     name: Netlify 배포
@@ -242,7 +250,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 변환된 HTML 파일 다운로드
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: converted-html-${{ github.run_id }}
           path: ./
@@ -289,7 +297,7 @@ jobs:
           echo "✅ 백업 완료: backup-${{ steps.date.outputs.date }}.tar.gz"
 
       - name: 백업 파일 업로드
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: backup-${{ steps.date.outputs.date }}
           path: backups/backup-${{ steps.date.outputs.date }}.tar.gz
