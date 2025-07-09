@@ -13,8 +13,10 @@ backend:
 
 media_folder: "images"
 public_folder: "/images"
-site_url: https://자유와혁신.netlify.app
-display_url: https://자유와혁신.netlify.app
+
+# 사이트 URL 수정 (영어 도메인 사용)
+site_url: https://forthefreedom.netlify.app
+display_url: https://forthefreedom.netlify.app
 logo_url: /images/hero_image.png
 
 # 한국어 설정
@@ -24,12 +26,17 @@ locale: 'ko'
 editor:
   preview: true
 
-# 미디어 라이브러리 설정
-media_library:
-  name: cloudinary
-  config:
-    cloud_name: your_cloud_name
-    api_key: your_api_key
+# 미디어 라이브러리 설정 (Cloudinary 제거하고 기본 설정 사용)
+# media_library:
+#   name: cloudinary
+#   config:
+#     cloud_name: your_cloud_name
+#     api_key: your_api_key
+
+# 슬러그 설정
+slug:
+  encoding: "ascii"
+  clean_accents: true
 
 collections:
   # ===== 메인 페이지 =====
@@ -731,8 +738,4 @@ collections:
 
 # 편집기 미리보기 설정
 editor_preview: true
-show_preview_links: true
-
-# 사이트 설정
-site_url: https://자유와혁신.netlify.app
-display_url: https://자유와혁신.netlify.app 
+show_preview_links: true 

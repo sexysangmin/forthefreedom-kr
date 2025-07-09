@@ -1,1 +1,22 @@
- 
+# CMS 관리자 페이지
+/admin/* /admin/index.html 200
+
+# 정적 HTML 페이지 처리
+/about /about.html 200
+/policy /policy.html 200 
+/news /news.html 200
+/members /members.html 200
+/support /support.html 200
+/resources /resources.html 200
+/faq /faq.html 200
+/notices /notices.html 200
+
+# 서브 페이지들
+/about/* /about/:splat.html 200
+/policy/* /policy/:splat.html 200
+/news/* /news/:splat.html 200
+/members/* /members/:splat.html 200
+/resources/* /resources/:splat.html 200
+
+# SPA 폴백 (가장 마지막에 배치)
+/* /index.html 200 

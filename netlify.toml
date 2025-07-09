@@ -56,8 +56,8 @@
     # 관리자 페이지는 iframe 허용
     X-Frame-Options = "SAMEORIGIN"
     
-    # CMS에 필요한 정책
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.netlify.com https://github.com"
+    # CMS에 필요한 완전한 정책
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://identity.netlify.com https://cdn.jsdelivr.net blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://api.netlify.com https://github.com https://api.github.com https://netlify-photo-gallery.netlify.app; worker-src 'self' blob:; child-src 'self' blob:; frame-src 'self' https://identity.netlify.com"
 
 # 정적 자산 캐싱
 [[headers]]
