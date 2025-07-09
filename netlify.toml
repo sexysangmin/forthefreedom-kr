@@ -33,20 +33,7 @@
   to = "/index.html"
   status = 200
 
-# CMS 관리자 전용 헤더 (가장 먼저 적용 - 높은 우선순위)
-[[headers]]
-  for = "/freedom-control/*"
-  [headers.values]
-    # 관리자 페이지는 iframe 허용
-    X-Frame-Options = "SAMEORIGIN"
-    X-XSS-Protection = "1; mode=block" 
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    
-    # CSP는 HTML 메타태그에서 처리 (Content-Security-Policy 제거)
-
-# 일반 페이지 보안 헤더 (freedom-control 제외한 모든 페이지)
+# 일반 페이지 보안 헤더 (freedom-control 제외한 모든 페이지) - 먼저 선언
 [[headers]]
   for = "/*"
   [headers.values]
@@ -61,6 +48,20 @@
     
     # 일반 페이지용 엄격한 CSP (unsafe-eval 없음)
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.netlify.com"
+
+# CMS 관리자 전용 헤더 (더 구체적이므로 나중에 선언하여 우선 적용)
+[[headers]]
+  for = "/freedom-control/*"
+  [headers.values]
+    # 관리자 페이지는 iframe 허용
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block" 
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    
+    # CMS를 위한 관대한 CSP (unsafe-eval과 blob 포함)
+    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; style-src 'self' 'unsafe-inline' https: data:; img-src 'self' data: blob: https:; connect-src 'self' https: wss: blob:; font-src 'self' data: https:;"
 
 # 정적 자산 캐싱
 [[headers]]
