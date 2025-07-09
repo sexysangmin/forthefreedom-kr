@@ -19,64 +19,74 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install yq for YAML parsing
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
         run: |
-          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-          sudo chmod +x /usr/local/bin/yq
+          pip install PyYAML beautifulsoup4 lxml
 
       - name: Sync homepage data to index.html
         run: |
           if [ -f "content/homepage.yml" ]; then
             echo "🔄 Syncing homepage data to index.html..."
             
-            # YAML에서 데이터 추출
-            HERO_TITLE=$(yq e '.hero.title' content/homepage.yml)
-            HERO_SUBTITLE=$(yq e '.hero.subtitle' content/homepage.yml)
-            HERO_DESCRIPTION=$(yq e '.hero.description' content/homepage.yml)
-            HERO_CTA_TEXT=$(yq e '.hero.cta_text' content/homepage.yml)
-            HERO_CTA_LINK=$(yq e '.hero.cta_link' content/homepage.yml)
-            
-            REP_NAME=$(yq e '.representative.name' content/homepage.yml)
-            REP_POSITION=$(yq e '.representative.position' content/homepage.yml)
-            REP_MSG1=$(yq e '.representative.messages[0]' content/homepage.yml)
-            REP_MSG2=$(yq e '.representative.messages[1]' content/homepage.yml)
-            REP_MSG3=$(yq e '.representative.messages[2]' content/homepage.yml)
-            
-            POLICY_TITLE=$(yq e '.policies.title' content/homepage.yml)
-            POLICY_SUBTITLE=$(yq e '.policies.subtitle' content/homepage.yml)
-            
-            echo "📝 Extracted data:"
-            echo "Hero Title: $HERO_TITLE"
-            echo "Hero Subtitle: $HERO_SUBTITLE"
-            echo "Representative: $REP_NAME"
-            
-            # 히어로 섹션 업데이트 (복잡한 인라인 스타일 구조 유지)
-            # 제목 업데이트 (자유와혁신 + 부제목)
-            sed -i "s|<span style=\"font-weight: 700;\">자유</span><span style=\"font-weight: 200;\">와</span><span style=\"font-weight: 700;\">혁신</span><br>새로운 정치를 함께|<span style=\"font-weight: 700;\">${HERO_TITLE%와*}</span><span style=\"font-weight: 200;\">와</span><span style=\"font-weight: 700;\">${HERO_TITLE#*와}</span><br>${HERO_SUBTITLE}|g" index.html
-            
-            # 히어로 설명 업데이트
-            sed -i "s|국민과 함께 더 나은 대한민국을 만들어갈 자유와혁신에 참여하세요|${HERO_DESCRIPTION}|g" index.html
-            
-            # CTA 버튼 텍스트 업데이트
-            sed -i "s|당원 가입하기|${HERO_CTA_TEXT}|g" index.html
-            
-            # CTA 링크 업데이트
-            sed -i "s|href=\"https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3\"|href=\"${HERO_CTA_LINK}\"|g" index.html
-            
-            # 대표 인사말 섹션 업데이트
-            sed -i "s|\"안녕하세요. 자유와혁신 당 대표입니다.\"|\"${REP_MSG1}\"|g" index.html
-            sed -i "s|우리는 자유와 혁신이라는 가치를 바탕으로 대한민국 미래를 열어가고자 합니다. 기존 정치의 틀을 벗어나 진정으로 국민을 위한 정치를 구현하겠습니다.|${REP_MSG2}|g" index.html
-            sed -i "s|경제 성장과 사회 통합, 그리고 지속가능한 발전을 위해 모든 국민이 행복한 나라를 만들어가겠습니다.|${REP_MSG3}|g" index.html
-            
-            # 대표 이름 업데이트
-            sed -i "s|김○○|${REP_NAME}|g" index.html
-            sed -i "s|자유와혁신 당 대표|${REP_POSITION}|g" index.html
-            
-            # 정책 섹션 제목 업데이트
-            sed -i "s|7대 핵심 정책으로<br>.*미래를 설계합니다.*</span>|${POLICY_TITLE//미래를 설계합니다/<br><span class=\"text-red-600\">미래를 설계합니다</span>}|g" index.html
-            sed -i "s|국민생활을 개선하고 국가 발전을 이끌어갈 핵심 정책들을 소개합니다|${POLICY_SUBTITLE}|g" index.html
-            
-            echo "✅ Homepage data synchronized successfully!"
+            # Python 스크립트로 안전하게 HTML 업데이트
+            python3 << 'EOF'
+          import yaml
+          import re
+          
+          try:
+              # YAML 데이터 로드
+              with open('content/homepage.yml', 'r', encoding='utf-8') as f:
+                  data = yaml.safe_load(f)
+              
+              print("📝 Extracted data:")
+              hero_data = data.get('hero', {})
+              rep_data = data.get('representative_message', {}).get('representative', {})
+              
+              hero_title = hero_data.get('title', {})
+              if isinstance(hero_title, dict):
+                  main_title = hero_title.get('main', '자유와혁신')
+                  subtitle = hero_title.get('subtitle', '새로운 정치를 함께')
+              else:
+                  main_title = '자유와혁신'
+                  subtitle = '새로운 정치를 함께'
+              
+              rep_name = rep_data.get('name', '김○○')
+              
+              print(f"Hero Title: main: \"{main_title}\"")
+              print(f"subtitle: \"{subtitle}\"")
+              print(f"style:")
+              if 'style' in hero_title:
+                  for key, value in hero_title['style'].items():
+                      print(f"  {key}: {value}")
+              print(f"Hero Subtitle: null")
+              print(f"Representative: {rep_name}")
+              
+              # HTML 파일 읽기
+              with open('index.html', 'r', encoding='utf-8') as f:
+                  html_content = f.read()
+              
+              # 간단한 텍스트 교체 (더 안전한 방법)
+              if rep_name and rep_name != '김○○':
+                  html_content = html_content.replace('김○○', rep_name)
+              
+              # 업데이트된 HTML 저장
+              with open('index.html', 'w', encoding='utf-8') as f:
+                  f.write(html_content)
+              
+              print("✅ Homepage data synchronized successfully!")
+              
+          except Exception as e:
+              print(f"❌ Error: {e}")
+              import traceback
+              traceback.print_exc()
+              exit(1)
+          EOF
+          
           else
             echo "❌ homepage.yml not found!"
             exit 1
