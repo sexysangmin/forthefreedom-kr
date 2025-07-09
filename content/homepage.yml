@@ -1,264 +1,61 @@
-# 자유와혁신 홈페이지 완전 CMS 데이터 - GitHub Actions 테스트
-# 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
-
-# 페이지 메타데이터
-meta:
-  title: "자유와혁신"
-  description: "새로운 정치를 함께 만들어가는 자유와혁신"
-  keywords: "자유와혁신, 정당, 정치, 대한민국, 개혁"
-  og_title: "자유와혁신 - 새로운 정치를 함께"
-  og_description: "국민과 함께 더 나은 대한민국을 만들어갈 자유와혁신에 참여하세요"
-  og_image: "/images/og-image.png"
-
-# 히어로 섹션
+# 홈페이지 콘텐츠
 hero:
+  title: "자유와혁신 모두함께 화이팅!!"
+  subtitle: "국민과 함께 더 나은 대한민국을 만들어갈 자유와혁신에 참여하세요"
   background_image: "images/hero_bg.png?v=6"
-  overlay_gradient: "linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4), transparent)"
-  
-  title:
-    main: "자유와혁신"
-    subtitle: "새로운 정치를 함께"
-    style:
-      font_size: "clamp(2.5rem, 5vw, 4rem)"
-      font_weight_main: 700
-      font_weight_sub: 200
-  
-  description: "국민과 함께 더 나은 대한민국을 만들어갈 자유와혁신에 참여하세요"
-  
-  cta_button:
-    text: "당원 가입하기"
-    link: "https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3"
-    style:
-      background_color: "#A50034"
-      hover_color: "#8B002C"
-      padding: "0.875rem 2rem"
+  cta_text: "당원 가입하기"
+  cta_link: "https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3"
 
-# 대표 인사말 섹션
-representative_message:
-  section_label: "대표 인사말"
-  title: 
-    main: "새로운 정치의 시작,"
-    highlight: "자유와혁신"
-    suffix: "과 함께"
-  
-  messages:
-    - "안녕하세요. 자유와혁신 당 대표입니다."
-    - "우리는 자유와 혁신이라는 가치를 바탕으로 대한민국 미래를 열어가고자 합니다. 기존 정치의 틀을 벗어나 진정으로 국민을 위한 정치를 구현하겠습니다."
-    - "경제 성장과 사회 통합, 그리고 지속가능한 발전을 위해 모든 국민이 행복한 나라를 만들어가겠습니다."
-  
-  representative:
-    name: "황교안"
-    title: "자유와혁신 당 대표"
-    image: "/images/representative.jpg"
-    placeholder_text: "실제 프로필로 교체 예정"
+representative:
+  name: "황교안"
+  title: "자유와혁신 당 대표"
+  image: "/images/representative.jpg"
+  placeholder_text: "실제 프로필로 교체 예정"
+  greeting_title: "새로운 정치의 시작, 자유와혁신과 함께"
+  greeting_message: |
+    "안녕하세요. 자유와혁신 당 대표입니다."
+    
+    우리는 자유와 혁신이라는 가치를 바탕으로 대한민국 미래를 열어가고자 합니다. 
+    기존 정치의 틀을 벗어나 진정으로 국민을 위한 정치를 구현하겠습니다.
+    
+    경제 성장과 사회 통합, 그리고 지속가능한 발전을 위해 모든 국민이 행복한 나라를 만들어가겠습니다...
 
-# 핵심 정책 섹션
 core_policies:
-  section_label: "핵심 정책"
-  title:
-    main: "7대 핵심 정책으로"
-    highlight: "미래를 설계합니다"
+  section_title: "핵심 정책"
+  main_title: "7대 핵심 정책으로 미래를 설계합니다"
   description: "국민생활을 개선하고 국가 발전을 이끌어갈 핵심 정책들을 소개합니다"
-  
   policies:
-    - icon: "fas fa-chart-line"
-      title: "경제 성장"
+    - title: "경제 성장"
+      icon: "fas fa-chart-line"
       description: "혁신 경제와 일자리창출을 위한 지속가능한 성장 구현"
-    - icon: "fas fa-graduation-cap"
-      title: "교육 혁신"
+    - title: "교육 혁신"
+      icon: "fas fa-graduation-cap"
       description: "미래 인재 양성을 위한 창의적 교육 시스템 구축"
-    - icon: "fas fa-heart"
-      title: "복지 확대"
+    - title: "복지 확대"
+      icon: "fas fa-heart"
       description: "모든 국민을 중심으로 하는 촘촘한 사회안전망 구축"
-    - icon: "fas fa-shield-alt"
-      title: "안보 강화"
+    - title: "안보 강화"
+      icon: "fas fa-shield-alt"
       description: "강력한 국방력과 국제동맹을 위한 평화 안보"
-    - icon: "fas fa-leaf"
-      title: "환경 보호"
+    - title: "환경 보호"
+      icon: "fas fa-leaf"
       description: "깨끗한 환경과 지속가능한 발전의 조화 추구"
-    - icon: "fas fa-balance-scale"
-      title: "사법 개혁"
+    - title: "사법 개혁"
+      icon: "fas fa-balance-scale"
       description: "공정하고 투명한 사법 시스템으로 법치주의 확립"
-  
-  cta_button:
-    text: "전체 정책 보기"
-    link: "/policy"
 
-# 당원 현황 섹션
-members_count:
-  section_label: "함께하는 우리"
-  total_members: 1247
-  title:
-    main: "명의 당원이"
-    suffix: "함께하고 있습니다"
-  
-  description:
-    - "전국 각지에서 자유와혁신의 가치에 공감한 당원들이 새로운 정치를 만들어가고 있습니다."
-    - "당원 여러분의 목소리가 정책이 되고, 여러분의 참여가 변화의 원력이 됩니다."
-  
-  statistics:
-    - label: "일반 당원"
-      count: 847
-    - label: "정책 참여자"
-      count: 400
-  
-  activity_images:
-    - icon: "fas fa-users"
-      title: "당원 모임"
-      image: "/images/members-meeting.jpg"
-      placeholder: "실제 사진으로 교체"
-    - icon: "fas fa-handshake"
-      title: "시민 소통"
-      image: "/images/citizen-communication.jpg"
-      placeholder: "실제 사진으로 교체"
-    - icon: "fas fa-flag"
-      title: "당 활동 현장"
-      image: "/images/party-activities.jpg"
-      placeholder: "실제 사진으로 교체"
-  
-  cta_button:
-    text: "당원 가입하기"
-    link: "https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3"
-
-# 최신 소식 섹션
-latest_news:
-  section_label: "최신 소식"
-  title:
-    main: "자유와혁신의"
-    highlight: "주요 소식"
-  
-  news_items:
-    - category: 
-        text: "중요"
-        color: "red"
-      title: "당 출범 및 당원 모집 안내"
-      description: "자유와혁신이 공식 출범하며 새로운 정치의 시작을 알렸습니다.."
-      date: "2025.01.15"
-      link: "/notices"
-      image: "/images/news/party-launch.jpg"
-      icon: "fas fa-bullhorn"
-      placeholder: "공고사항 이미지"
+members:
+  section_title: "함께하는 우리"
+  count: 1247
+  main_title: "1,247명의 당원이 함께하고 있습니다"
+  description: |
+    전국 각지에서 자유와혁신의 가치에 공감한 당원들이 새로운 정치를 만들어가고 있습니다.
     
-    - category:
-        text: "정책"
-        color: "blue"
-      title: "7대 핵심 정책 발표"
-      description: "국민생활을 개선할 구체적인 정책 방안을 발표했습니다..."
-      date: "2025.01.10"
-      link: "/news/press"
-      image: "/images/news/policy-announcement.jpg"
-      icon: "fas fa-microphone"
-      placeholder: "정책 발표 이미지"
-    
-    - category:
-        text: "활동"
-        color: "green"
-      title: "전국 순회 시민 간담회"
-      description: "시민과 직접 소통하며 정책 아이디어를 수렴했습니다..."
-      date: "2025.01.05"
-      link: "/news/activities"
-      image: "/images/news/citizen-meeting.jpg"
-      icon: "fas fa-users"
-      placeholder: "시민 간담회 이미지"
-  
-  cta_button:
-    text: "전체 소식 보기"
-    link: "/news"
+    당원 여러분의 목소리가 정책이 되고, 여러분의 참여가 변화의 원력이 됩니다.
 
-# 참여하기 섹션
-participation:
-  section_label: "참여하기"
-  title:
-    main: "다양한 방법으로"
-    highlight: "함께 참여하세요"
-  description: "자유와혁신의 가치 구현에 공감하시는 여러 방법을 제공합니다"
-  
-  methods:
-    - icon: "fas fa-user-plus"
-      title: "당원 가입"
-      description: "자유와혁신의 공식 당원이 되어 정치 참여의 기회를 얻으세요."
-      link: "https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3"
-      link_text: "가입하기"
-      external: true
-    
-    - icon: "fas fa-hand-holding-heart"
-      title: "후원하기"
-      description: "자유와혁신의 활동을 후원하여 새로운 정치를 지원해주세요"
-      link: "/support"
-      link_text: "후원하기"
-    
-    - icon: "fas fa-hands-helping"
-      title: "자원봉사"
-      description: "다양한 자원봉사 활동으로 직접 참여하고 경험해보세요."
-      link: "/support#volunteer"
-      link_text: "참여하기"
-    
-    - icon: "fas fa-lightbulb"
-      title: "정책 제안"
-      description: "시민의 목소리로 정책을 제안하고 발전시켜나가요."
-      link: "/support#policy"
-      link_text: "제안하기"
-
-# 고정 이벤트 버튼
-fixed_event_button:
-  text: "행사·집회"
-  icon: "fas fa-calendar-alt"
-  link: "/news/events"
-  style:
-    background_color: "#A50034"
-    hover_color: "#8B002C"
-    position: "fixed"
-    bottom: "20px"
-    right: "20px"
-
-# 푸터
-footer:
-  party_info:
-    name: "자유와혁신"
-    description: "새로운 정치, 새로운 미래를 함께 만들어갑니다."
-  
-  contact:
-    address: "서울특별시 종로구 세종대로 175 (세종로)"
-    phone: "02-1234-5678"
-    email: "info@libertyinnovation.kr"
-    website: "www.libertyinnovation.kr"
-  
-  social_media:
-    facebook: "#"
-    twitter: "#"
-    instagram: "#"
-    youtube: "#"
-  
-  quick_links:
-    - text: "당 소개"
-      url: "/about"
-    - text: "정책"
-      url: "/policy"
-    - text: "소식/활동"
-      url: "/news"
-    - text: "당원 가입"
-      url: "/members"
-    - text: "참여/후원"
-      url: "/support"
-    - text: "자료실"
-      url: "/resources"
-  
-  legal_links:
-    - text: "개인정보처리방침"
-      url: "#"
-    - text: "이용약관"
-      url: "#"
-    - text: "정보공개"
-      url: "#"
-  
-  copyright: "© 2025 자유와혁신. 모든 권리 보유."
-
-# 테마 설정
-theme:
-  primary_color: "#A50034"
-  primary_hover: "#8B002C"
-  primary_light: "#FDF2F4"
-  primary_lighter: "#FCE7EA"
-  text_dark: "#1F2937"
-  text_gray: "#6B7280"
-  text_light: "#9CA3AF"
+site_settings:
+  title: "자유와혁신 | 새로운 정치, 새로운 미래를 함께 만들어갑니다"
+  description: "자유와혁신은 국민과 함께 더 나은 대한민국을 만들어가는 정치 정당입니다. 7대 핵심 정책으로 경제성장, 교육혁신, 복지확대를 추진합니다."
+  keywords: "자유와혁신, 정치정당, 대한민국, 정책, 당원가입, 경제성장, 교육혁신, 복지확대"
+  canonical_url: "https://libertyinnovation.kr"
+  og_image: "https://libertyinnovation.kr/images/hero_bg.png"
