@@ -99,7 +99,7 @@ jobs:
       matrix:
         include:
           # 메인 페이지
-          - yaml: content/index.yml
+          - yaml: content/homepage.yml
             html: index.html
             template: templates/index.template.html
           
@@ -107,24 +107,6 @@ jobs:
           - yaml: content/about.yml
             html: about.html
             template: templates/about.template.html
-          - yaml: content/about/founding.yml
-            html: about/founding.html
-            template: templates/about/founding.template.html
-          - yaml: content/about/location.yml
-            html: about/location.html
-            template: templates/about/location.template.html
-          - yaml: content/about/organization.yml
-            html: about/organization.html
-            template: templates/about/organization.template.html
-          - yaml: content/about/people.yml
-            html: about/people.html
-            template: templates/about/people.template.html
-          - yaml: content/about/principles.yml
-            html: about/principles.html
-            template: templates/about/principles.template.html
-          - yaml: content/about/schedule.yml
-            html: about/schedule.html
-            template: templates/about/schedule.template.html
           
           # FAQ & 당원
           - yaml: content/faq.yml
@@ -133,32 +115,11 @@ jobs:
           - yaml: content/members.yml
             html: members.html
             template: templates/members.template.html
-          - yaml: content/members/join.yml
-            html: members/join.html
-            template: templates/members/join.template.html
-          - yaml: content/members/dues.yml
-            html: members/dues.html
-            template: templates/members/dues.template.html
           
           # 뉴스
           - yaml: content/news.yml
             html: news.html
             template: templates/news.template.html
-          - yaml: content/news/activities.yml
-            html: news/activities.html
-            template: templates/news/activities.template.html
-          - yaml: content/news/events.yml
-            html: news/events.html
-            template: templates/news/events.template.html
-          - yaml: content/news/gallery.yml
-            html: news/gallery.html
-            template: templates/news/gallery.template.html
-          - yaml: content/news/media.yml
-            html: news/media.html
-            template: templates/news/media.template.html
-          - yaml: content/news/press.yml
-            html: news/press.html
-            template: templates/news/press.template.html
           
           # 공지사항
           - yaml: content/notices.yml
@@ -175,15 +136,6 @@ jobs:
           - yaml: content/policy.yml
             html: policy.html
             template: templates/policy.template.html
-          - yaml: content/policy/economy.yml
-            html: policy/economy.html
-            template: templates/policy/economy.template.html
-          - yaml: content/policy/education.yml
-            html: policy/education.html
-            template: templates/policy/education.template.html
-          - yaml: content/policy/security.yml
-            html: policy/security.html
-            template: templates/policy/security.template.html
           
           # 자료실 & 후원
           - yaml: content/resources.yml

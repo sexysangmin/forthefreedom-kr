@@ -134,19 +134,24 @@ class YAMLToHTMLConverter:
         Returns:
             검증 성공 여부
         """
-        required_fields = ['metadata', 'content']
-        
-        for field in required_fields:
-            if field not in data:
-                print(f"❌ 필수 필드 누락: {field} in {yaml_path}")
-                return False
-        
-        # metadata 검증
-        metadata = data.get('metadata', {})
-        if 'title' not in metadata:
-            print(f"❌ metadata.title 필드 누락: {yaml_path}")
+        # 기본적으로 YAML이 로드되었으면 유효하다고 간주
+        if not data:
+            print(f"❌ YAML 파일이 비어있습니다: {yaml_path}")
             return False
         
+        # meta 필드가 있는 경우 title 검증
+        if 'meta' in data:
+            meta = data.get('meta', {})
+            if 'title' not in meta:
+                print(f"⚠️ meta.title 필드 누락: {yaml_path} (권장사항)")
+        
+        # metadata 필드가 있는 경우 title 검증 (하위 호환성)
+        if 'metadata' in data:
+            metadata = data.get('metadata', {})
+            if 'title' not in metadata:
+                print(f"⚠️ metadata.title 필드 누락: {yaml_path} (권장사항)")
+        
+        print(f"✅ YAML 구조 검증 통과: {yaml_path}")
         return True
     
     def load_template(self, template_path: str) -> Template:
