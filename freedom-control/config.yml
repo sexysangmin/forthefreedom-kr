@@ -29,339 +29,222 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - { name: "title", label: "메인 제목", widget: "string" }
-              - { name: "subtitle", label: "부제목", widget: "string" }
-              - { name: "description", label: "설명", widget: "text" }
-              - { name: "background_image", label: "배경 이미지", widget: "string", default: "hero_bg.png?v=6" }
-              - { name: "cta_text", label: "버튼 텍스트", widget: "string" }
-              - { name: "cta_link", label: "버튼 링크", widget: "string" }
+              - { name: "title", label: "메인 제목", widget: "string", default: "자유와혁신 모두함께 화이팅!!" }
+              - { name: "subtitle", label: "부제목", widget: "string", default: "국민과 함께 더 나은 대한민국을 만들어갈 자유와혁신에 참여하세요" }
+              - { name: "background_image", label: "배경 이미지", widget: "string", default: "images/hero_bg.png?v=6" }
+              - { name: "cta_text", label: "버튼 텍스트", widget: "string", default: "당원 가입하기" }
+              - { name: "cta_link", label: "버튼 링크", widget: "string", default: "https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" }
+          
           - label: "대표 인사말"
             name: "representative"
             widget: "object"
             fields:
-              - { name: "title", label: "섹션 제목", widget: "string" }
-              - { name: "subtitle", label: "부제목", widget: "string" }
-              - { name: "name", label: "대표명", widget: "string" }
-              - { name: "position", label: "직책", widget: "string" }
-              - { name: "photo", label: "대표 사진", widget: "string", default: "/images/hero_image.jpg" }
-              - { name: "messages", label: "인사말", widget: "list", field: { name: "message", label: "메시지", widget: "text" } }
+              - { name: "name", label: "대표명", widget: "string", default: "황교안" }
+              - { name: "title", label: "직책", widget: "string", default: "자유와혁신 당 대표" }
+              - { name: "image", label: "대표 사진", widget: "string", default: "/images/representative.jpg" }
+              - { name: "placeholder_text", label: "플레이스홀더 텍스트", widget: "string", default: "실제 프로필로 교체 예정" }
+              - { name: "greeting_title", label: "인사말 제목", widget: "string", default: "새로운 정치의 시작, 자유와혁신과 함께" }
+              - { name: "greeting_message", label: "인사말 내용", widget: "text", default: "안녕하세요. 자유와혁신 당 대표입니다.\n\n우리는 자유와 혁신이라는 가치를 바탕으로 대한민국 미래를 열어가고자 합니다. 기존 정치의 틀을 벗어나 진정으로 국민을 위한 정치를 구현하겠습니다.\n\n경제 성장과 사회 통합, 그리고 지속가능한 발전을 위해 모든 국민이 행복한 나라를 만들어가겠습니다." }
+          
           - label: "핵심 정책"
-            name: "policies"
+            name: "core_policies"
             widget: "object"
             fields:
-              - { name: "title", label: "섹션 제목", widget: "string" }
-              - { name: "subtitle", label: "부제목", widget: "text" }
-              - name: "list"
+              - { name: "section_title", label: "섹션 제목", widget: "string", default: "핵심 정책" }
+              - { name: "main_title", label: "메인 제목", widget: "string", default: "7대 핵심 정책으로 미래를 설계합니다" }
+              - { name: "description", label: "설명", widget: "text", default: "국민생활을 개선하고 국가 발전을 이끌어갈 핵심 정책들을 소개합니다" }
+              - name: "policies"
                 label: "정책 목록"
                 widget: "list"
                 fields:
                   - { name: "title", label: "정책명", widget: "string" }
                   - { name: "icon", label: "아이콘 (FontAwesome)", widget: "string" }
                   - { name: "description", label: "설명", widget: "text" }
-          - label: "당원 활동 섹션"
-            name: "members_section"
+          
+          - label: "당원 섹션"
+            name: "members"
             widget: "object"
             fields:
-              - { name: "title", label: "섹션 제목", widget: "string" }
-              - { name: "subtitle", label: "부제목", widget: "string" }
-              - { name: "description", label: "설명", widget: "text" }
+              - { name: "section_title", label: "섹션 제목", widget: "string", default: "함께하는 우리" }
+              - { name: "count", label: "당원 수", widget: "number", default: 1247 }
+              - { name: "main_title", label: "메인 제목", widget: "string", default: "1,247명의 당원이 함께하고 있습니다" }
+              - { name: "description", label: "설명", widget: "text", default: "전국 각지에서 자유와혁신의 가치에 공감한 당원들이 새로운 정치를 만들어가고 있습니다.\n\n당원 여러분의 목소리가 정책이 되고, 여러분의 참여가 변화의 원력이 됩니다." }
+          
           - label: "사이트 설정"
-            name: "site"
+            name: "site_settings"
             widget: "object"
             fields:
-              - { name: "title", label: "사이트 제목", widget: "string" }
-              - { name: "description", label: "사이트 설명", widget: "text" }
-              - { name: "url", label: "사이트 URL", widget: "string" }
-          - label: "SEO 설정"
-            name: "seo"
+              - { name: "title", label: "사이트 제목", widget: "string", default: "자유와혁신 | 새로운 정치, 새로운 미래를 함께 만들어갑니다" }
+              - { name: "description", label: "사이트 설명", widget: "text", default: "자유와혁신은 국민과 함께 더 나은 대한민국을 만들어가는 정치 정당입니다. 7대 핵심 정책으로 경제성장, 교육혁신, 복지확대를 추진합니다." }
+              - { name: "keywords", label: "키워드", widget: "string", default: "자유와혁신, 정치정당, 대한민국, 정책, 당원가입, 경제성장, 교육혁신, 복지확대" }
+              - { name: "canonical_url", label: "사이트 URL", widget: "string", default: "https://libertyinnovation.kr" }
+              - { name: "og_image", label: "OG 이미지", widget: "string", default: "https://libertyinnovation.kr/images/hero_bg.png" }
+
+      # 당 소개 페이지
+      - file: "content/about.yml"
+        label: "🏛️ 당 소개"
+        name: "about"
+        fields:
+          - label: "페이지 메타데이터"
+            name: "meta"
             widget: "object"
             fields:
-              - { name: "keywords", label: "키워드", widget: "string" }
-              - { name: "og_image", label: "OG 이미지", widget: "string" }
-
-      # 당에 대해
-      - file: "content/about-page.yml"
-        label: "🏛️ 당에 대해 (About)"
-        name: "about_page"
-        fields:
-          - { name: "page_title", label: "페이지 제목", widget: "string" }
-          - { name: "page_description", label: "페이지 설명", widget: "text" }
-          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
-          - label: "서브 페이지"
-            name: "subpages"
-            widget: "list"
+              - { name: "title", label: "페이지 제목", widget: "string", default: "당 소개" }
+              - { name: "description", label: "페이지 설명", widget: "text", default: "자유와혁신의 비전, 가치, 조직, 인물, 연혁을 소개합니다" }
+              - { name: "keywords", label: "키워드", widget: "string", default: "자유와혁신, 당 소개, 정당, 조직도, 가치" }
+          
+          - label: "히어로 섹션"
+            name: "hero"
+            widget: "object"
             fields:
-              - { name: "name", label: "페이지명", widget: "string" }
-              - { name: "url", label: "URL", widget: "string" }
-              - { name: "title", label: "제목", widget: "string" }
-              - { name: "description", label: "설명", widget: "text" }
-              - { name: "content", label: "내용", widget: "markdown" }
-              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
-
-      # 정책 페이지
-      - file: "content/policy-page.yml"
-        label: "📋 정책 (Policy)"
-        name: "policy_page"
-        fields:
-          - { name: "page_title", label: "페이지 제목", widget: "string" }
-          - { name: "page_description", label: "페이지 설명", widget: "text" }
-          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
-          - label: "정책 분야"
-            name: "policy_areas"
-            widget: "list"
+              - { name: "title", label: "제목", widget: "string", default: "당 소개" }
+              - { name: "background_image", label: "배경 이미지", widget: "string", default: "images/hero_image.png" }
+          
+          - label: "비전 섹션"
+            name: "vision"
+            widget: "object"
             fields:
-              - { name: "area", label: "분야명", widget: "string" }
-              - { name: "url", label: "URL", widget: "string" }
-              - { name: "title", label: "제목", widget: "string" }
-              - { name: "description", label: "설명", widget: "text" }
-              - { name: "content", label: "내용", widget: "markdown" }
-              - { name: "priority", label: "우선순위", widget: "select", options: ["핵심", "중요", "일반"] }
-              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
+              - { name: "title", label: "제목", widget: "string", default: "새로운 정치의 시작" }
+              - { name: "description", label: "설명", widget: "text", default: "자유와혁신은 국민과 함께 더 나은 대한민국을 만들어가는 진정한 변화의 정당입니다" }
+
+      # 당원 페이지  
+      - file: "content/members.yml"
+        label: "🤝 당원"
+        name: "members"
+        fields:
+          - label: "페이지 메타데이터"
+            name: "meta"
+            widget: "object"
+            fields:
+              - { name: "title", label: "페이지 제목", widget: "string", default: "당원 - 자유와혁신" }
+              - { name: "description", label: "페이지 설명", widget: "text", default: "자유와혁신 당원 혜택과 가입절차를 안내합니다. 정치 참여, 교육 프로그램, 네트워킹 혜택을 제공합니다." }
+          
+          - label: "히어로 섹션"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { name: "title", label: "제목", widget: "string", default: "당원" }
+              - { name: "background_image", label: "배경 이미지", widget: "string", default: "images/hero_image.png" }
 
       # 소식 페이지
-      - file: "content/news-page.yml"
-        label: "📰 소식 (News)"
-        name: "news_page"
+      - file: "content/news.yml"
+        label: "📰 소식/활동"
+        name: "news"
         fields:
-          - { name: "page_title", label: "페이지 제목", widget: "string" }
-          - { name: "page_description", label: "페이지 설명", widget: "text" }
-          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
-          - label: "소식 섹션"
-            name: "news_sections"
-            widget: "list"
+          - label: "페이지 메타데이터"
+            name: "meta"
+            widget: "object"
             fields:
-              - { name: "section", label: "섹션명", widget: "string" }
-              - { name: "url", label: "URL", widget: "string" }
-              - { name: "title", label: "제목", widget: "string" }
-              - { name: "description", label: "설명", widget: "text" }
-              - { name: "content", label: "내용", widget: "markdown" }
-              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
-
-      # 참여 페이지
-      - file: "content/members-page.yml"
-        label: "🤝 참여 (Members)"
-        name: "members_page"
-        fields:
-          - { name: "page_title", label: "페이지 제목", widget: "string" }
-          - { name: "page_description", label: "페이지 설명", widget: "text" }
-          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
-          - label: "참여 방법"
-            name: "participation_methods"
-            widget: "list"
+              - { name: "title", label: "페이지 제목", widget: "string", default: "소식/활동 - 자유와혁신" }
+              - { name: "description", label: "페이지 설명", widget: "text", default: "자유와혁신의 최신 소식, 활동, 보도자료, 행사 안내를 확인하세요." }
+          
+          - label: "히어로 섹션"
+            name: "hero"
+            widget: "object"
             fields:
-              - { name: "method", label: "참여 방법", widget: "string" }
-              - { name: "url", label: "URL", widget: "string" }
-              - { name: "title", label: "제목", widget: "string" }
-              - { name: "description", label: "설명", widget: "text" }
-              - { name: "content", label: "내용", widget: "markdown" }
-              - { name: "form_action", label: "폼 액션", widget: "string", required: false }
-              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
+              - { name: "title", label: "제목", widget: "string", default: "소식/활동" }
+              - { name: "background_image", label: "배경 이미지", widget: "string", default: "images/hero_image.png" }
 
-      # 자료실 페이지
-      - file: "content/resources-page.yml"
-        label: "📚 자료실 (Resources)"
-        name: "resources_page"
+      # 정책 페이지
+      - file: "content/policy.yml"
+        label: "📋 정책"
+        name: "policy"
         fields:
-          - { name: "page_title", label: "페이지 제목", widget: "string" }
-          - { name: "page_description", label: "페이지 설명", widget: "text" }
-          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
-          - label: "자료 카테고리"
-            name: "resource_categories"
-            widget: "list"
+          - label: "페이지 메타데이터"
+            name: "meta"
+            widget: "object"
             fields:
-              - { name: "category", label: "카테고리명", widget: "string" }
-              - { name: "url", label: "URL", widget: "string" }
-              - { name: "title", label: "제목", widget: "string" }
-              - { name: "description", label: "설명", widget: "text" }
-              - { name: "content", label: "내용", widget: "markdown" }
-              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
-
-      # 후원 페이지
-      - file: "content/support-page.yml"
-        label: "💝 후원 (Support)"
-        name: "support_page"
-        fields:
-          - { name: "page_title", label: "페이지 제목", widget: "string" }
-          - { name: "page_description", label: "페이지 설명", widget: "text" }
-          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
-          - { name: "content", label: "내용", widget: "markdown" }
-          - { name: "donation_link", label: "후원 링크", widget: "string", required: false }
-          - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
-
-      # FAQ 페이지
-      - file: "content/faq-page.yml"
-        label: "❓ FAQ"
-        name: "faq_page"
-        fields:
-          - { name: "page_title", label: "페이지 제목", widget: "string" }
-          - { name: "page_description", label: "페이지 설명", widget: "text" }
-          - { name: "hero_image", label: "히어로 이미지", widget: "image", required: false }
-          - label: "FAQ 목록"
-            name: "faqs"
-            widget: "list"
+              - { name: "title", label: "페이지 제목", widget: "string", default: "정책 - 자유와혁신" }
+              - { name: "description", label: "페이지 설명", widget: "text", default: "자유와혁신의 7대 핵심 정책을 확인하세요. 경제성장, 교육혁신, 사회안전망 강화 등 미래 비전을 구현하기 위한 정책들을 소개합니다." }
+          
+          - label: "히어로 섹션"
+            name: "hero"
+            widget: "object"
             fields:
-              - { name: "question", label: "질문", widget: "string" }
-              - { name: "answer", label: "답변", widget: "markdown" }
-              - { name: "category", label: "카테고리", widget: "select", options: ["일반", "가입", "정책", "활동", "기타"] }
+              - { name: "title", label: "제목", widget: "string", default: "정책" }
+              - { name: "background_image", label: "배경 이미지", widget: "string", default: "images/hero_image.png" }
 
-  # ===== 🎬 미디어 센터 =====
-  - name: "media_center"
-    label: "🎬 미디어 센터"
-    files:
-      - file: "content/media/images.yml"
-        label: "🖼️ 이미지 라이브러리"
-        name: "images"
-        fields:
-          - label: "이미지 컬렉션"
-            name: "image_collections"
-            widget: "list"
-            fields:
-              - { name: "title", label: "컬렉션명", widget: "string" }
-              - { name: "description", label: "설명", widget: "text" }
-              - { name: "category", label: "카테고리", widget: "select", options: ["정당 활동", "행사", "정책", "홍보", "기타"] }
-              - { name: "date", label: "날짜", widget: "datetime" }
-              - label: "이미지들"
-                name: "images"
-                widget: "list"
-                fields:
-                  - { name: "image", label: "이미지", widget: "image" }
-                  - { name: "caption", label: "캡션", widget: "string", required: false }
-                  - { name: "alt_text", label: "대체 텍스트", widget: "string" }
-
-      - file: "content/media/videos.yml"
-        label: "🎥 비디오 라이브러리"
-        name: "videos"
-        fields:
-          - label: "비디오 컬렉션"
-            name: "video_collections"
-            widget: "list"
-            fields:
-              - { name: "title", label: "제목", widget: "string" }
-              - { name: "description", label: "설명", widget: "text" }
-              - { name: "category", label: "카테고리", widget: "select", options: ["정당 활동", "행사", "정책 설명", "홍보", "기타"] }
-              - { name: "date", label: "날짜", widget: "datetime" }
-              - { name: "video_url", label: "동영상 URL", widget: "string" }
-              - { name: "thumbnail", label: "썸네일", widget: "image", required: false }
-              - { name: "duration", label: "재생 시간", widget: "string", required: false }
-
-      - file: "content/media/documents.yml"
-        label: "📄 문서 라이브러리"
-        name: "documents"
-        fields:
-          - label: "문서 컬렉션"
-            name: "document_collections"
-            widget: "list"
-            fields:
-              - { name: "title", label: "제목", widget: "string" }
-              - { name: "description", label: "설명", widget: "text" }
-              - { name: "category", label: "카테고리", widget: "select", options: ["정책 문서", "보도자료", "양식", "매뉴얼", "기타"] }
-              - { name: "date", label: "날짜", widget: "datetime" }
-              - { name: "file", label: "파일", widget: "file" }
-              - { name: "file_type", label: "파일 형식", widget: "string" }
-              - { name: "file_size", label: "파일 크기", widget: "string", required: false }
-
-  # ===== 📝 콘텐츠 라이브러리 =====
-  - name: "content_library"
-    label: "📝 콘텐츠 라이브러리"
-    files:
-      - file: "content/library/notices.yml"
+      # 공지사항 페이지
+      - file: "content/notices.yml"
         label: "📢 공지사항"
         name: "notices"
         fields:
-          - label: "공지사항 목록"
-            name: "notice_list"
-            widget: "list"
+          - label: "페이지 메타데이터"
+            name: "meta"
+            widget: "object"
             fields:
-              - { name: "title", label: "제목", widget: "string" }
-              - { name: "date", label: "발행일", widget: "datetime" }
-              - { name: "author", label: "작성자", widget: "string", default: "자유와혁신" }
-              - { name: "priority", label: "중요도", widget: "select", options: ["일반", "중요", "긴급"] }
-              - { name: "category", label: "카테고리", widget: "select", options: ["공지", "보도자료", "성명서", "안내"] }
-              - { name: "content", label: "내용", widget: "markdown" }
-              - { name: "featured_image", label: "대표 이미지", widget: "image", required: false }
+              - { name: "title", label: "페이지 제목", widget: "string", default: "공지사항 - 자유와혁신" }
+              - { name: "description", label: "페이지 설명", widget: "text", default: "자유와혁신의 최신 소식과 중요한 공지사항을 확인하세요." }
+          
+          - label: "히어로 섹션"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { name: "title", label: "제목", widget: "string", default: "공지사항" }
+              - { name: "background_image", label: "배경 이미지", widget: "string", default: "images/hero_image.png" }
 
-      - file: "content/library/events.yml"
-        label: "🎉 행사/집회"
-        name: "events"
+      # FAQ 페이지
+      - file: "content/faq.yml"
+        label: "❓ FAQ"
+        name: "faq"
         fields:
-          - label: "행사 목록"
-            name: "event_list"
-            widget: "list"
+          - label: "페이지 메타데이터"
+            name: "meta"
+            widget: "object"
             fields:
-              - { name: "title", label: "행사명", widget: "string" }
-              - { name: "event_date", label: "일시", widget: "datetime" }
-              - { name: "location", label: "장소", widget: "string" }
-              - { name: "organizer", label: "주최", widget: "string" }
-              - { name: "contact", label: "연락처", widget: "string" }
-              - { name: "event_type", label: "유형", widget: "select", options: ["집회", "토론회", "간담회", "행진", "세미나", "기타"] }
-              - { name: "region", label: "지역", widget: "select", options: ["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"] }
-              - { name: "description", label: "설명", widget: "text" }
-              - { name: "content", label: "상세내용", widget: "markdown" }
-              - { name: "poster", label: "포스터", widget: "image", required: false }
-              - { name: "fee", label: "참가비", widget: "string", required: false }
-              - { name: "registration_required", label: "사전신청", widget: "boolean", default: false }
+              - { name: "title", label: "페이지 제목", widget: "string", default: "자주묻는 질문 - 자유와 혁신의 창당위" }
+              - { name: "description", label: "페이지 설명", widget: "text", default: "자유와혁신 창당준비위원회에 대한 자주 묻는 질문들을 정리했습니다" }
 
-      - file: "content/library/members.yml"
-        label: "👥 주요 인물"
-        name: "key_members"
+      # 자료실 페이지
+      - file: "content/resources.yml"
+        label: "📚 자료실"
+        name: "resources"
         fields:
-          - label: "인물 목록"
-            name: "member_list"
-            widget: "list"
+          - label: "페이지 메타데이터"
+            name: "meta"
+            widget: "object"
             fields:
-              - { name: "name", label: "이름", widget: "string" }
-              - { name: "position", label: "직책", widget: "string" }
-              - { name: "order", label: "순서", widget: "number", default: 1 }
-              - { name: "photo", label: "프로필 사진", widget: "image", required: false }
-              - { name: "contact", label: "연락처", widget: "string", required: false }
-              - { name: "email", label: "이메일", widget: "string", required: false }
-              - { name: "bio", label: "약력", widget: "markdown" }
-              - { name: "experience", label: "주요 경력", widget: "list", field: { name: "career", label: "경력", widget: "string" } }
-              - { name: "education", label: "학력", widget: "list", field: { name: "degree", label: "학력", widget: "string" } }
+              - { name: "title", label: "페이지 제목", widget: "string", default: "자료실 - 자유와혁신" }
+              - { name: "description", label: "페이지 설명", widget: "text", default: "자유와혁신의 다양한 자료를 확인하세요. 창당 관련 자료, 정책 자료, 홍보 자료, 다운로드 자료를 카테고리별로 제공합니다." }
+          
+          - label: "히어로 섹션"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { name: "title", label: "제목", widget: "string", default: "자료실" }
+              - { name: "background_image", label: "배경 이미지", widget: "string", default: "images/hero_image.png" }
+
+      # 참여/후원 페이지
+      - file: "content/support.yml"
+        label: "💝 참여/후원"
+        name: "support"
+        fields:
+          - label: "페이지 메타데이터"
+            name: "meta"
+            widget: "object"
+            fields:
+              - { name: "title", label: "페이지 제목", widget: "string", default: "참여/후원 - 자유와혁신" }
+              - { name: "description", label: "페이지 설명", widget: "text", default: "자유와혁신과 함께하는 다양한 방법을 확인하세요. 후원, 자원봉사, 창당 지지 등으로 새로운 정치를 만들어가세요." }
+          
+          - label: "히어로 섹션"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { name: "title", label: "제목", widget: "string", default: "참여/후원" }
+              - { name: "background_image", label: "배경 이미지", widget: "string", default: "images/hero_image.png" }
 
   # ===== ⚙️ 사이트 설정 =====
   - name: "site_settings"
     label: "⚙️ 사이트 설정"
     files:
-      - file: "content/settings/site-info.yml"
+      - file: "content/settings/site.yml"
         label: "🏢 기본 정보"
         name: "site_info"
         fields:
           - { name: "party_name", label: "당명", widget: "string", default: "자유와혁신" }
-          - { name: "slogan", label: "슬로건", widget: "string" }
-          - { name: "main_phone", label: "대표 연락처", widget: "string" }
-          - { name: "main_email", label: "대표 이메일", widget: "string" }
-          - { name: "address", label: "주소", widget: "string" }
-          - { name: "social_media", label: "소셜 미디어", widget: "object", fields: [
-              { name: "facebook", label: "Facebook", widget: "string", required: false },
-              { name: "twitter", label: "Twitter", widget: "string", required: false },
-              { name: "instagram", label: "Instagram", widget: "string", required: false },
-              { name: "youtube", label: "YouTube", widget: "string", required: false }
-            ]}
-          - { name: "seo_description", label: "SEO 설명", widget: "text" }
-          - { name: "site_keywords", label: "사이트 키워드", widget: "string" }
-
-      - file: "content/settings/navigation.yml"
-        label: "🧭 네비게이션"
-        name: "navigation"
-        fields:
-          - label: "주 메뉴"
-            name: "main_menu"
-            widget: "list"
-            fields:
-              - { name: "title", label: "메뉴명", widget: "string" }
-              - { name: "url", label: "URL", widget: "string" }
-              - { name: "order", label: "순서", widget: "number" }
-              - label: "서브 메뉴"
-                name: "submenu"
-                widget: "list"
-                required: false
-                fields:
-                  - { name: "title", label: "서브메뉴명", widget: "string" }
-                  - { name: "url", label: "URL", widget: "string" }
-
-      - file: "logs/changes.log"
-        label: "📝 변경 이력"
-        name: "changes"
-        fields:
-          - { name: "body", label: "로그", widget: "markdown" } 
+          - { name: "slogan", label: "슬로건", widget: "string", default: "새로운 정치, 새로운 미래" }
+          - { name: "main_phone", label: "대표 연락처", widget: "string", default: "02-1234-5678" }
+          - { name: "main_email", label: "대표 이메일", widget: "string", default: "info@libertyinnovation.kr" }
+          - { name: "address", label: "주소", widget: "string", default: "서울특별시 종로구 세종대로 175 (세종로)" }
+          - { name: "seo_description", label: "SEO 설명", widget: "text", default: "자유와혁신은 국민과 함께 더 나은 대한민국을 만들어가는 정치 정당입니다." }
+          - { name: "site_keywords", label: "사이트 키워드", widget: "string", default: "자유와혁신, 정치정당, 대한민국, 정책, 당원가입" } 
