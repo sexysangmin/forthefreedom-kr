@@ -1,42 +1,36 @@
-name: CMS Content Logging & Archive
+name: CMS Content Logging & Archive (DISABLED)
 
 on:
-  push:
-    paths:
-      - 'content/**'
-      - 'about/**'
-      - 'policy/**'
-      - 'news/**'
-      - 'members/**'
-      - 'resources/**'
-      - 'notices/**'
-      - 'index.html'
-      - 'images/**'
-      - 'style.css'
-      - 'script.js'
+  # 임시로 모든 트리거 비활성화
+  workflow_dispatch:
+    inputs:
+      force_run:
+        description: '강제 실행'
+        required: false
+        default: 'false'
+
+# 기존 트리거들을 주석 처리
+#  push:
+#    paths:
+#      - 'content/**'
+#      - 'about/**'
+#      - 'policy/**'
+#      - 'news/**'
+#      - 'members/**'
+#      - 'resources/**'
+#      - 'notices/**'
+#      - 'index.html'
+#      - 'images/**'
+#      - 'style.css'
+#      - 'script.js'
 
 jobs:
-  log-and-archive:
+  # 임시로 스킵
+  skip-logging:
+    name: CMS 로깅 스킵
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install PyYAML
-        run: pip install pyyaml
-
-      - name: Run logging/archive script
-        run: python .github/scripts/cms_log_and_archive.py
-
-      - name: Commit and push changes
+      - name: 알림
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add logs/changes.log archive/
-          git commit -m "자동 로그/아카이브 기록" || echo "No changes to commit"
-          git push 
+          echo "⚠️ CMS 로깅이 임시로 비활성화되었습니다"
+          echo "📝 JavaScript 기반 시스템으로 전환되었습니다" 
