@@ -1,6 +1,6 @@
 [build]
   # 빌드 명령어 - YAML을 HTML로 변환
-  command = "echo 'CMS 빌드 완료 - 정적 사이트'"
+  command = "echo 'Building...'"
   publish = "."
   
   # 환경 변수
@@ -90,6 +90,15 @@
   for = "/content/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# YAML 파일 접근 허용
+[[headers]]
+  for = "/content/*.yml"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET"
+    Access-Control-Allow-Headers = "*"
 
 # Git 파일 보호
 [[redirects]]

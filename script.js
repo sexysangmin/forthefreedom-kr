@@ -1,3 +1,271 @@
+// CMS 데이터 로드 및 동기화 시스템
+class CMSDataLoader {
+    constructor() {
+        this.cache = new Map();
+        this.init();
+    }
+
+    async init() {
+        // 페이지별 YAML 파일 매핑
+        this.pageDataMap = {
+            '/': 'content/homepage.yml',
+            '/index.html': 'content/homepage.yml',
+            '/about.html': 'content/about.yml',
+            '/members.html': 'content/members.yml',
+            '/news.html': 'content/news.yml',
+            '/policy.html': 'content/policy.yml',
+            '/notices.html': 'content/notices.yml',
+            '/faq.html': 'content/faq.yml',
+            '/resources.html': 'content/resources.yml',
+            '/support.html': 'content/support.yml',
+            '/notice-1.html': 'content/notice-1.yml',
+            '/notice-2.html': 'content/notice-2.yml'
+        };
+
+        await this.loadCurrentPageData();
+    }
+
+    async loadCurrentPageData() {
+        const currentPath = window.location.pathname;
+        const yamlFile = this.pageDataMap[currentPath];
+        
+        if (yamlFile) {
+            try {
+                const data = await this.loadYAMLData(yamlFile);
+                this.applyDataToPage(data);
+            } catch (error) {
+                console.warn(`CMS 데이터 로드 실패: ${yamlFile}`, error);
+            }
+        }
+    }
+
+    async loadYAMLData(filePath) {
+        if (this.cache.has(filePath)) {
+            return this.cache.get(filePath);
+        }
+
+        try {
+            const response = await fetch(`/${filePath}`);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            
+            const yamlText = await response.text();
+            const data = this.parseYAML(yamlText);
+            
+            this.cache.set(filePath, data);
+            return data;
+        } catch (error) {
+            console.warn(`YAML 로드 실패: ${filePath}`, error);
+            return null;
+        }
+    }
+
+    parseYAML(yamlText) {
+        // 간단한 YAML 파서 (주요 필드만 처리)
+        const data = {};
+        const lines = yamlText.split('\n');
+        let currentSection = null;
+        let currentKey = null;
+        
+        for (let line of lines) {
+            line = line.trim();
+            if (!line || line.startsWith('#')) continue;
+            
+            if (line.endsWith(':') && !line.includes(' ')) {
+                currentSection = line.slice(0, -1);
+                data[currentSection] = {};
+                continue;
+            }
+            
+            if (line.includes(': ')) {
+                const [key, ...valueParts] = line.split(': ');
+                const value = valueParts.join(': ').replace(/^["'](.*)["']$/, '$1');
+                
+                if (currentSection) {
+                    data[currentSection][key.trim()] = value;
+                } else {
+                    data[key.trim()] = value;
+                }
+            }
+        }
+        
+        return data;
+    }
+
+    applyDataToPage(data) {
+        if (!data) return;
+
+        // 메타 정보 적용
+        if (data.meta || data.metadata) {
+            const meta = data.meta || data.metadata;
+            if (meta.title) {
+                document.title = meta.title;
+                const titleElements = document.querySelectorAll('h1, .page-title, .hero-title');
+                titleElements.forEach(el => {
+                    if (el.textContent.includes('당 소개') || el.textContent.includes('정책') || 
+                        el.textContent.includes('소식') || el.textContent.includes('당원') ||
+                        el.textContent.includes('자료실') || el.textContent.includes('후원') ||
+                        el.textContent.includes('FAQ') || el.textContent.includes('공지사항')) {
+                        el.textContent = meta.title.replace(' - 자유와혁신', '');
+                    }
+                });
+            }
+            
+            if (meta.description) {
+                let metaDesc = document.querySelector('meta[name="description"]');
+                if (!metaDesc) {
+                    metaDesc = document.createElement('meta');
+                    metaDesc.name = 'description';
+                    document.head.appendChild(metaDesc);
+                }
+                metaDesc.content = meta.description;
+            }
+        }
+
+        // 히어로 섹션 적용
+        if (data.hero) {
+            this.applyHeroData(data.hero);
+        }
+
+        // 대표 인사말 적용 (홈페이지)
+        if (data.representative) {
+            this.applyRepresentativeData(data.representative);
+        }
+
+        // 핵심 정책 적용 (홈페이지)
+        if (data.core_policies) {
+            this.applyCoreoliciesData(data.core_policies);
+        }
+
+        // 당원 정보 적용 (홈페이지)
+        if (data.members) {
+            this.applyMembersData(data.members);
+        }
+    }
+
+    applyHeroData(heroData) {
+        if (heroData.title) {
+            const heroTitle = document.querySelector('.hero h1, .hero-title, .page-title');
+            if (heroTitle) heroTitle.textContent = heroData.title;
+        }
+
+        if (heroData.subtitle) {
+            const heroSubtitle = document.querySelector('.hero .subtitle, .hero-subtitle');
+            if (heroSubtitle) heroSubtitle.textContent = heroData.subtitle;
+        }
+
+        if (heroData.background_image) {
+            const heroSection = document.querySelector('.hero, .hero-section');
+            if (heroSection) {
+                heroSection.style.backgroundImage = `url('${heroData.background_image}')`;
+            }
+        }
+
+        if (heroData.cta_text) {
+            const ctaButtons = document.querySelectorAll('.cta-button, .btn-cta');
+            ctaButtons.forEach(btn => {
+                if (btn.textContent.includes('가입') || btn.textContent.includes('참여')) {
+                    btn.textContent = heroData.cta_text;
+                }
+            });
+        }
+
+        if (heroData.cta_link) {
+            const ctaButtons = document.querySelectorAll('.cta-button, .btn-cta');
+            ctaButtons.forEach(btn => {
+                if (btn.textContent.includes('가입') || btn.textContent.includes('참여')) {
+                    btn.href = heroData.cta_link;
+                    btn.onclick = () => window.open(heroData.cta_link, '_blank');
+                }
+            });
+        }
+    }
+
+    applyRepresentativeData(repData) {
+        if (repData.name) {
+            const nameElements = document.querySelectorAll('.representative-name, .leader-name');
+            nameElements.forEach(el => el.textContent = repData.name);
+        }
+
+        if (repData.title) {
+            const titleElements = document.querySelectorAll('.representative-title, .leader-title');
+            titleElements.forEach(el => el.textContent = repData.title);
+        }
+
+        if (repData.greeting_title) {
+            const greetingTitle = document.querySelector('.greeting-title, .message-title');
+            if (greetingTitle) greetingTitle.textContent = repData.greeting_title;
+        }
+
+        if (repData.greeting_message) {
+            const greetingMsg = document.querySelector('.greeting-message, .message-content');
+            if (greetingMsg) {
+                greetingMsg.innerHTML = repData.greeting_message.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+            }
+        }
+    }
+
+    applyCoreoliciesData(policiesData) {
+        if (policiesData.section_title) {
+            const sectionTitle = document.querySelector('.policies-section .section-title');
+            if (sectionTitle) sectionTitle.textContent = policiesData.section_title;
+        }
+
+        if (policiesData.main_title) {
+            const mainTitle = document.querySelector('.policies-section h2, .policies-main-title');
+            if (mainTitle) mainTitle.textContent = policiesData.main_title;
+        }
+
+        if (policiesData.description) {
+            const description = document.querySelector('.policies-section .description, .policies-description');
+            if (description) description.textContent = policiesData.description;
+        }
+    }
+
+    applyMembersData(membersData) {
+        if (membersData.count) {
+            const countElements = document.querySelectorAll('.member-count, .members-count');
+            countElements.forEach(el => el.textContent = membersData.count.toLocaleString());
+        }
+
+        if (membersData.main_title) {
+            const mainTitle = document.querySelector('.members-section h2, .members-main-title');
+            if (mainTitle) {
+                mainTitle.textContent = membersData.main_title.replace('1,247', membersData.count?.toLocaleString() || '1,247');
+            }
+        }
+
+        if (membersData.description) {
+            const description = document.querySelector('.members-section .description, .members-description');
+            if (description) {
+                description.innerHTML = membersData.description.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+            }
+        }
+    }
+
+    // 데이터 새로고침 (CMS 변경 감지 시)
+    async refreshData() {
+        this.cache.clear();
+        await this.loadCurrentPageData();
+    }
+}
+
+// CMS 데이터 로더 초기화
+let cmsDataLoader;
+
+// DOM 로드 완료 시 CMS 데이터 로더 시작
+document.addEventListener('DOMContentLoaded', () => {
+    cmsDataLoader = new CMSDataLoader();
+    
+    // 5분마다 데이터 새로고침 (CMS 변경 감지용)
+    setInterval(() => {
+        if (cmsDataLoader) {
+            cmsDataLoader.refreshData();
+        }
+    }, 5 * 60 * 1000);
+});
+
 // 당원 가입 팝업 창 열기 함수
 function openMembershipPopup() {
     const url = 'https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3';
