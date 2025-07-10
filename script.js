@@ -62,30 +62,55 @@ class CMSDataLoader {
     }
 
     parseYAML(yamlText) {
-        // 간단한 YAML 파서 (주요 필드만 처리)
+        // 개선된 YAML 파서 - 따옴표 없는 값도 처리
         const data = {};
         const lines = yamlText.split('\n');
         let currentSection = null;
-        let currentKey = null;
+        let currentIndent = 0;
         
         for (let line of lines) {
+            const originalLine = line;
             line = line.trim();
+            
+            // 빈 줄이나 주석 스킵
             if (!line || line.startsWith('#')) continue;
             
+            // 들여쓰기 계산
+            const indent = originalLine.length - originalLine.trimStart().length;
+            
+            // 섹션 헤더 (key:)
             if (line.endsWith(':') && !line.includes(' ')) {
-                currentSection = line.slice(0, -1);
-                data[currentSection] = {};
+                const sectionName = line.slice(0, -1);
+                if (indent === 0) {
+                    currentSection = sectionName;
+                    data[currentSection] = {};
+                    currentIndent = 0;
+                }
                 continue;
             }
             
+            // 키-값 쌍 처리
             if (line.includes(': ')) {
-                const [key, ...valueParts] = line.split(': ');
-                const value = valueParts.join(': ').replace(/^["'](.*)["']$/, '$1');
+                const colonIndex = line.indexOf(': ');
+                const key = line.substring(0, colonIndex).trim();
+                let value = line.substring(colonIndex + 2).trim();
                 
-                if (currentSection) {
-                    data[currentSection][key.trim()] = value;
+                // 값 처리 - 따옴표 제거, 타입 변환
+                if (value.startsWith('"') && value.endsWith('"')) {
+                    value = value.slice(1, -1);
+                } else if (value.startsWith("'") && value.endsWith("'")) {
+                    value = value.slice(1, -1);
+                } else if (value === 'true' || value === 'false') {
+                    value = value === 'true';
+                } else if (!isNaN(value) && value !== '') {
+                    value = Number(value);
+                }
+                
+                // 현재 섹션에 할당
+                if (currentSection && indent > 0) {
+                    data[currentSection][key] = value;
                 } else {
-                    data[key.trim()] = value;
+                    data[key] = value;
                 }
             }
         }
