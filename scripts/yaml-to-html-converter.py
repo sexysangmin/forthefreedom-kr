@@ -44,7 +44,6 @@ class YAMLToHTMLConverter:
     def register_custom_filters(self):
         """Jinja2 사용자 정의 필터 등록"""
         
-        @self.env.filter('format_date')
         def format_date(date_str: str, format_str: str = '%Y년 %m월 %d일') -> str:
             """날짜 포맷팅"""
             try:
@@ -55,14 +54,12 @@ class YAMLToHTMLConverter:
             except:
                 return str(date_str)
         
-        @self.env.filter('truncate_words')
         def truncate_words(text: str, length: int = 100) -> str:
             """텍스트 단어 수 제한"""
             if len(text) <= length:
                 return text
             return text[:length] + '...'
         
-        @self.env.filter('markdown_to_html')
         def markdown_to_html(text: str) -> str:
             """간단한 마크다운 → HTML 변환"""
             if not text:
@@ -80,7 +77,6 @@ class YAMLToHTMLConverter:
             
             return text
         
-        @self.env.filter('safe_html')
         def safe_html(text: str) -> str:
             """HTML 안전 처리"""
             if not text:
@@ -90,10 +86,16 @@ class YAMLToHTMLConverter:
             soup = BeautifulSoup(text, 'html.parser')
             return str(soup)
         
-        @self.env.filter('json_encode')
         def json_encode(obj: Any) -> str:
             """JSON 인코딩"""
             return json.dumps(obj, ensure_ascii=False, indent=2)
+        
+        # 필터 등록
+        self.env.filters['format_date'] = format_date
+        self.env.filters['truncate_words'] = truncate_words
+        self.env.filters['markdown_to_html'] = markdown_to_html
+        self.env.filters['safe_html'] = safe_html
+        self.env.filters['json_encode'] = json_encode
     
     def load_yaml(self, yaml_path: str) -> Dict[str, Any]:
         """
