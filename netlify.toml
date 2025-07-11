@@ -1,87 +1,65 @@
 [build]
-  # 빌드 명령어 - YAML을 HTML로 변환
   command = "echo 'Building...'"
   publish = "."
   
-  # 환경 변수
-  [build.environment]
-    NODE_VERSION = "18"
-    PYTHON_VERSION = "3.9"
+[build.environment]
+  NODE_VERSION = "18"
+  PYTHON_VERSION = "3.9"
 
 # 정적 파일 우선 처리 (CSS, JS, 이미지 등)
 [[redirects]]
   from = "/style.css"
   to = "/style.css"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/script.js"
   to = "/script.js"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/nav.js"
   to = "/nav.js"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/js/*"
   to = "/js/:splat"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/images/*"
   to = "/images/:splat"
   status = 200
+  force = true
 
-[[redirects]]
-  from = "/uploads/*"
-  to = "/uploads/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/*.css"
-  to = "/:splat.css"
-  status = 200
-
-[[redirects]]
-  from = "/*.js"
-  to = "/:splat.js"
-  status = 200
-
-[[redirects]]
-  from = "/*.png"
-  to = "/:splat.png"
-  status = 200
-
-[[redirects]]
-  from = "/*.jpg"
-  to = "/:splat.jpg"
-  status = 200
-
-[[redirects]]
-  from = "/*.svg"
-  to = "/:splat.svg"
-  status = 200
-
-[[redirects]]
-  from = "/*.ico"
-  to = "/:splat.ico"
-  status = 200
-
-# CMS 관리자 페이지 리디렉션
+# CMS 관리자 페이지
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
 
-# API 라우팅 (필요시)
+# 서브 페이지들
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  from = "/about/*"
+  to = "/about/:splat.html"
   status = 200
 
-# HTML 페이지 처리
+[[redirects]]
+  from = "/news/*"
+  to = "/news/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/resources/*"
+  to = "/resources/:splat.html"
+  status = 200
+
+# 메인 페이지들
 [[redirects]]
   from = "/about"
   to = "/about.html"
@@ -107,144 +85,30 @@
   to = "/resources.html"
   status = 200
 
-[[redirects]]
-  from = "/support"
-  to = "/support.html"
-  status = 200
-
-[[redirects]]
-  from = "/faq"
-  to = "/faq.html"
-  status = 200
-
-[[redirects]]
-  from = "/notices"
-  to = "/notices.html"
-  status = 200
-
-# 서브 페이지들
-[[redirects]]
-  from = "/about/*"
-  to = "/about/:splat.html"
-  status = 200
-
-[[redirects]]
-  from = "/news/*"
-  to = "/news/:splat.html"
-  status = 200
-
-[[redirects]]
-  from = "/resources/*"
-  to = "/resources/:splat.html"
-  status = 200
-
-# HTML 페이지만 index.html로 폴백 (정적 파일 제외)
+# 404 처리
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404
 
-# 일반 페이지 보안 헤더 (freedom-control 제외한 모든 페이지) - 먼저 선언
+# 보안 헤더
 [[headers]]
   for = "/*"
   [headers.values]
-    # 기본 보안 헤더
     X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block" 
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    
-    # HTTPS 강제
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    
-    # 일반 페이지용 엄격한 CSP (unsafe-eval 없음)
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.netlify.com"
-
-# CMS 관리자 전용 헤더 (더 구체적이므로 나중에 선언하여 우선 적용)
-[[headers]]
-  for = "/freedom-control/*"
-  [headers.values]
-    # 관리자 페이지는 iframe 허용
-    X-Frame-Options = "SAMEORIGIN"
-    X-XSS-Protection = "1; mode=block" 
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    
-    # CMS를 위한 관대한 CSP (unsafe-eval과 blob 포함)
-    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; style-src 'self' 'unsafe-inline' https: data:; img-src 'self' data: blob: https:; connect-src 'self' https: wss: blob:; font-src 'self' data: https:;"
+    Strict-Transport-Security = "max-age=31536000"
 
 # 정적 자산 캐싱
 [[headers]]
-  for = "/images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000"  # 30일
-
-[[headers]]
   for = "*.css"
   [headers.values]
-    Cache-Control = "public, max-age=604800"   # 7일
+    Cache-Control = "public, max-age=604800"
+    Content-Type = "text/css"
 
 [[headers]]
   for = "*.js"
   [headers.values]
-    Cache-Control = "public, max-age=604800"   # 7일
-
-# HTML 캐싱 (짧게)
-[[headers]]
-  for = "*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=300"      # 5분
-
-# YAML 파일 보호
-[[headers]]
-  for = "/content/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-
-# YAML 파일 접근 허용
-[[headers]]
-  for = "/content/*.yml"
-  [headers.values]
-    Content-Type = "text/plain; charset=utf-8"
-    Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Methods = "GET"
-    Access-Control-Allow-Headers = "*"
-
-# Git 파일 보호
-[[redirects]]
-  from = "/.git/*"
-  to = "/404.html"
-  status = 404
-
-# 개발 서버 설정 (로컬)
-[dev]
-  command = "echo 'Static site serving...'"
-  targetPort = 8000
-  port = 8888
-  autoLaunch = false
-
-# 환경별 설정
-[context.production]
-  [context.production.environment]
-    NODE_ENV = "production"
-
-[context.deploy-preview]
-  [context.deploy-preview.environment]
-    NODE_ENV = "preview"
-
-[context.branch-deploy]
-  [context.branch-deploy.environment]
-    NODE_ENV = "development"
-
-# 폼 처리 (연락처, 가입 신청 등)
-[forms]
-  settings = { error_path = "/error.html", success_path = "/success.html" }
-
-# Identity 설정 (CMS 사용자 관리)
-[identity]
-  settings = { roles = ["editor", "admin"] }
-
-# Large Media 설정 (이미지 최적화)
-[lfs]
-  gitlfs = true 
+    Cache-Control = "public, max-age=604800"
+    Content-Type = "application/javascript" 
