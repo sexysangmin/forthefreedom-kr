@@ -1,11 +1,17 @@
 backend:
   name: git-gateway
   branch: main
+  site_domain: forthefreedomkr.netlify.app
 
 media_folder: uploads
 public_folder: /uploads
 
 locale: ko
+
+# 사이트 설정
+site_url: https://forthefreedomkr.netlify.app
+display_url: https://forthefreedomkr.netlify.app
+logo_url: https://forthefreedomkr.netlify.app/images/logo.png
 
 collections:
   # 정당소식
@@ -162,10 +168,6 @@ collections:
 # 편집기 설정
 editor:
   preview: false
-
-# 표시 설정
-display_url: https://forthefreedomkr.netlify.app
-logo_url: https://forthefreedomkr.netlify.app/images/logo.png
 
 # 미디어 설정
 media_library:
