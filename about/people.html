@@ -22,88 +22,7 @@
             }
         }
     </script>
-    <style>
-        .text-red-600 { color: #A50034 !important; }
-        .bg-red-600 { background-color: #A50034 !important; }
-        .border-red-600 { border-color: #A50034 !important; }
-        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
-        .hover\:text-red-600:hover { color: #A50034 !important; }
-        .hover\:text-red-700:hover { color: #8B002C !important; }
-        .hover\:border-red-600:hover { border-color: #A50034 !important; }
-        .bg-red-50 { background-color: #FDF2F4 !important; }
-        .bg-red-100 { background-color: #FCE7EA !important; }
-        .text-red-800 { color: #700024 !important; }
-        .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
-        
-        /* 인물 카드 스타일 */
-        .person-card {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .person-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(165, 0, 52, 0.15);
-        }
-        
-        .person-image {
-            aspect-ratio: 3/4;
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .person-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                rgba(165, 0, 52, 0.1) 0%, 
-                rgba(165, 0, 52, 0.05) 50%, 
-                rgba(165, 0, 52, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .person-card:hover .person-image::before {
-            opacity: 1;
-        }
-        
-        .person-icon {
-            width: 100px;
-            height: 100px;
-            background: rgba(165, 0, 52, 0.1);
-            border: 4px solid #A50034;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .person-card:hover .person-icon {
-            transform: scale(1.1);
-            background: rgba(165, 0, 52, 0.2);
-        }
-        
-        .person-icon i {
-            font-size: 2.5rem;
-            color: #A50034;
-        }
-    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -113,387 +32,263 @@
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">주요 인물</h1>
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">자유와혁신 사람들</h1>
+            <p class="text-xl mt-4 text-white opacity-90">변화를 이끄는 리더들</p>
         </div>
     </section>
 
     <main style="position:relative; z-index:1; background:#fff;">
-        <!-- Introduction Section -->
-        <section class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">변화를 이끄는 리더들</h2>
-                    <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                        자유와혁신을 이끌어가는 핵심 인물들의 다양한 경험과 전문성이 새로운 정치의 변화를 만들어냅니다.
-                    </p>
-                </div>
-                
-                <!-- 리더십 이미지 -->
-                <div class="grid md:grid-cols-3 gap-8 mb-16">
-                    <div class="text-center">
-                        <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                            <i class="fas fa-camera text-4xl text-gray-400"></i>
-                        </div>
-                        <p class="text-sm text-gray-500">리더십 회의</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                            <i class="fas fa-camera text-4xl text-gray-400"></i>
-                        </div>
-                        <p class="text-sm text-gray-500">당원과의 만남</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                            <i class="fas fa-camera text-4xl text-gray-400"></i>
-                        </div>
-                        <p class="text-sm text-gray-500">정책 토론</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- 당 대표 Section -->
-        <section class="py-20 bg-gray-50">
+
+        <!-- 당 대표 Section - Hero Style -->
+        <section class="py-20 bg-gradient-to-br from-red-50 to-red-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl font-bold text-gray-900 mb-6">당 대표</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신의 비전을 제시하고 새로운 정치의 길을 열어가는 리더입니다.
-                    </p>
+                    <div class="w-20 h-1 bg-red-600 mx-auto"></div>
                 </div>
 
-                <!-- 당 대표 프로필 -->
-                <div class="max-w-4xl mx-auto">
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="md:flex">
-                            <div class="md:w-1/3">
-                                <div class="person-image h-80 md:h-full">
-                                    <div class="person-icon">
-                                        <i class="fas fa-user-tie"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="md:w-2/3 p-8">
-                                <h3 class="text-3xl font-bold text-gray-900 mb-4">김자유</h3>
-                                <p class="text-xl text-red-600 font-semibold mb-6">당 대표</p>
-                                
-                                <div class="space-y-4 mb-6">
-                                    <h4 class="text-lg font-semibold text-gray-900">주요 경력</h4>
-                                    <ul class="space-y-2 text-gray-700">
-                                        <li>• 서울대학교 정치학과 졸업 (정치학 박사)</li>
-                                        <li>• 前 국정기획자문위원회 위원</li>
-                                        <li>• 前 시민사회단체 대표</li>
-                                        <li>• 前 정치개혁시민연대 상임대표</li>
-                                        <li>• 前 대통령자문 지속가능발전위원회 위원</li>
-                                    </ul>
-                                </div>
-
-                                <div class="space-y-4">
-                                    <h4 class="text-lg font-semibold text-gray-900">핵심 철학</h4>
-                                    <blockquote class="border-l-4 border-red-600 pl-4 text-gray-700 italic">
-                                        "정치는 국민을 위한 봉사이며, 자유로운 사고와 혁신적인 아이디어로 
-                                        대한민국의 미래를 열어가는 것이 우리의 사명입니다."
-                                    </blockquote>
-                                </div>
-                            </div>
+                <!-- 창당 준비 중 안내 -->
+                <div class="bg-gradient-to-br from-red-100 to-red-200 p-16 rounded-2xl text-center">
+                    <div class="w-24 h-24 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                        <i class="fas fa-crown text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-red-900 mb-6">당 대표 선출 준비 중</h3>
+                    <p class="text-red-800 text-xl leading-relaxed mb-8">
+                        자유와혁신의 당 대표는<br>
+                        <strong>창당대회에서 정식 선출 이후</strong> 공개됩니다.
+                    </p>
+                    <div class="bg-white p-8 rounded-lg shadow-lg max-w-xl mx-auto">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">당 대표 자격 요건</h4>
+                        <div class="text-sm text-gray-700 space-y-2">
+                            <p>• 자유민주주의 가치 신봉</p>
+                            <p>• 정치 또는 관련 분야 경험</p>
+                            <p>• 당원 추천 및 선거 당선</p>
+                            <p>• 국가 발전에 대한 비전</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 주요 인물 Section */
+        <!-- 핵심 리더십 Section -->
         <section class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">핵심 인물들</h2>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">핵심 리더십</h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        각 분야의 전문성을 갖춘 핵심 인물들이 당의 정책과 방향을 이끌어갑니다.
+                        창당대회에서 정식 선출 이후 공개됩니다.
                     </p>
+                    <div class="w-20 h-1 bg-red-600 mx-auto mt-4"></div>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 부대표 -->
-                    <div class="person-card bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="person-image">
-                            <div class="person-icon">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">이혁신</h3>
-                            <p class="text-blue-600 font-semibold mb-4">부대표</p>
-                            <div class="space-y-2 text-sm text-gray-600">
-                                <p>• 연세대학교 경제학과 (경제학 박사)</p>
-                                <p>• 前 청와대 정책기획관</p>
-                                <p>• 前 경제연구원 선임연구위원</p>
-                            </div>
-                            <p class="text-gray-700 text-sm mt-4 leading-relaxed">
-                                당무 보좌 및 대외 업무를 담당하며, 경제 분야 전문성을 바탕으로 
-                                실현 가능한 정책을 제시합니다.
-                            </p>
-                        </div>
+                <!-- 창당 준비 중 안내 -->
+                <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-16 rounded-2xl text-center">
+                    <div class="w-24 h-24 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                        <i class="fas fa-users text-white text-3xl"></i>
                     </div>
-
-                    <!-- 정책위원장 -->
-                    <div class="person-card bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="person-image">
-                            <div class="person-icon">
-                                <i class="fas fa-clipboard-list"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">핵심 리더십 구성 중</h3>
+                    <p class="text-gray-700 text-xl leading-relaxed mb-8">
+                        각 분야의 전문성을 갖춘 리더들은<br>
+                        <strong>창당대회에서 정식 선출 이후</strong> 소개됩니다.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-star text-blue-600 mr-3"></i>
+                                <h4 class="font-bold text-gray-900">부대표</h4>
                             </div>
+                            <p class="text-sm text-gray-600">당무 보좌 및 대외 업무</p>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">박정책</h3>
-                            <p class="text-green-600 font-semibold mb-4">정책위원장</p>
-                            <div class="space-y-2 text-sm text-gray-600">
-                                <p>• 고려대학교 행정학과 (행정학 박사)</p>
-                                <p>• 前 국회 정책연구위원</p>
-                                <p>• 前 정부출연 연구기관 연구위원</p>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-green-500">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-clipboard-list text-green-600 mr-3"></i>
+                                <h4 class="font-bold text-gray-900">정책위원장</h4>
                             </div>
-                            <p class="text-gray-700 text-sm mt-4 leading-relaxed">
-                                7대 핵심 정책 개발과 연구를 통해 실현 가능한 정책을 제시하고 
-                                당의 정책 방향을 설계합니다.
-                            </p>
+                            <p class="text-sm text-gray-600">정책 개발 및 연구</p>
                         </div>
-                    </div>
-
-                    <!-- 조직위원장 -->
-                    <div class="person-card bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="person-image">
-                            <div class="person-icon">
-                                <i class="fas fa-sitemap"></i>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-purple-500">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-sitemap text-purple-600 mr-3"></i>
+                                <h4 class="font-bold text-gray-900">조직위원장</h4>
                             </div>
+                            <p class="text-sm text-gray-600">조직 관리 및 당원 서비스</p>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">최조직</h3>
-                            <p class="text-purple-600 font-semibold mb-4">조직위원장</p>
-                            <div class="space-y-2 text-sm text-gray-600">
-                                <p>• 성균관대학교 사회학과 (사회학 석사)</p>
-                                <p>• 前 NGO 단체 사무총장</p>
-                                <p>• 前 시민단체 활동가</p>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-orange-500">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-bullhorn text-orange-600 mr-3"></i>
+                                <h4 class="font-bold text-gray-900">홍보위원장</h4>
                             </div>
-                            <p class="text-gray-700 text-sm mt-4 leading-relaxed">
-                                체계적인 조직 관리와 당원 서비스를 담당하며, 
-                                풀뿌리 민주주의 실현을 위해 노력합니다.
-                            </p>
+                            <p class="text-sm text-gray-600">홍보 전략 및 소통</p>
                         </div>
-                    </div>
-
-                    <!-- 홍보위원장 -->
-                    <div class="person-card bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="person-image">
-                            <div class="person-icon">
-                                <i class="fas fa-bullhorn"></i>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-teal-500">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-graduation-cap text-teal-600 mr-3"></i>
+                                <h4 class="font-bold text-gray-900">청년위원장</h4>
                             </div>
+                            <p class="text-sm text-gray-600">청년 정책 및 활동</p>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">강홍보</h3>
-                            <p class="text-yellow-600 font-semibold mb-4">홍보위원장</p>
-                            <div class="space-y-2 text-sm text-gray-600">
-                                <p>• 한국외대 신문방송학과 (언론학 석사)</p>
-                                <p>• 前 방송국 PD</p>
-                                <p>• 前 광고회사 크리에이티브 디렉터</p>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-pink-500">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-venus text-pink-600 mr-3"></i>
+                                <h4 class="font-bold text-gray-900">여성위원장</h4>
                             </div>
-                            <p class="text-gray-700 text-sm mt-4 leading-relaxed">
-                                효과적인 소통과 홍보 전략을 통해 당의 비전을 전파하고 
-                                국민과의 소통 창구 역할을 합니다.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 청년위원장 -->
-                    <div class="person-card bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="person-image">
-                            <div class="person-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">신청년</h3>
-                            <p class="text-orange-600 font-semibold mb-4">청년위원장</p>
-                            <div class="space-y-2 text-sm text-gray-600">
-                                <p>• 카이스트 컴퓨터공학과 (공학 석사)</p>
-                                <p>• 前 IT 스타트업 대표</p>
-                                <p>• 前 청년 활동가</p>
-                            </div>
-                            <p class="text-gray-700 text-sm mt-4 leading-relaxed">
-                                청년층의 목소리를 대변하고 미래 지향적 정책을 제안하며, 
-                                청년 당원 활동을 지원합니다.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 여성위원장 -->
-                    <div class="person-card bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="person-image">
-                            <div class="person-icon">
-                                <i class="fas fa-female"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">한여성</h3>
-                            <p class="text-pink-600 font-semibold mb-4">여성위원장</p>
-                            <div class="space-y-2 text-sm text-gray-600">
-                                <p>• 이화여대 법학과 (법학 박사)</p>
-                                <p>• 前 여성단체 대표</p>
-                                <p>• 前 변호사</p>
-                            </div>
-                            <p class="text-gray-700 text-sm mt-4 leading-relaxed">
-                                성평등 사회 실현과 여성 권익 향상을 위해 활동하며, 
-                                일·가정 양립 정책을 지원합니다.
-                            </p>
+                            <p class="text-sm text-gray-600">여성 정책 및 권익</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 고문단 Section -->
+        <!-- 전문가 자문단 Section -->
         <section class="py-20 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">고문단</h2>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">전문가 자문단</h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        다양한 분야의 전문가들이 고문으로 참여하여 당의 정책과 방향에 조언합니다.
+                        창당 이후 각 분야 전문가들이 참여할 예정입니다.
                     </p>
+                    <div class="w-20 h-1 bg-red-600 mx-auto mt-4"></div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white rounded-lg shadow-lg p-8 border-l-4 border-blue-600">
-                        <div class="flex items-start space-x-6">
-                            <div class="flex-shrink-0">
-                                <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-user text-2xl text-gray-400"></i>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-2">박혁신</h3>
-                                <p class="text-lg text-blue-600 font-semibold mb-4">정책고문 (경제 분야)</p>
-                                <p class="text-gray-700 mb-4 leading-relaxed">
-                                    25년간 경제연구원에서 활동하며 풀뿌리 경제정책 실현의 경험을 가진 경제 전문가입니다. 
-                                    실용적이고 현실적인 경제정책 수립에 조언을 제공합니다.
-                                </p>
-                                <div class="text-sm text-gray-600">
-                                    <p>• 서울대학교 경제학과 명예교수</p>
-                                    <p>• 前 한국개발연구원(KDI) 원장</p>
-                                    <p>• 前 경제부총리 정책자문위원</p>
-                                </div>
-                            </div>
-                        </div>
+                <!-- 자문단 구성 계획 -->
+                <div class="bg-white p-12 rounded-2xl shadow-lg text-center">
+                    <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                        <i class="fas fa-user-graduate text-blue-600 text-3xl"></i>
                     </div>
-
-                    <div class="bg-white rounded-lg shadow-lg p-8 border-l-4 border-green-600">
-                        <div class="flex items-start space-x-6">
-                            <div class="flex-shrink-0">
-                                <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-user text-2xl text-gray-400"></i>
-                                </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">전문가 자문단 구성 예정</h3>
+                    <p class="text-gray-700 text-xl leading-relaxed mb-8">
+                        각 분야 최고 전문가들이 당의 정책 개발과<br>
+                        방향 설정에 조언할 예정입니다.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-chart-line text-blue-600 text-xl"></i>
                             </div>
-                            <div class="flex-1">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-2">김교육</h3>
-                                <p class="text-lg text-green-600 font-semibold mb-4">정책고문 (교육 분야)</p>
-                                <p class="text-gray-700 mb-4 leading-relaxed">
-                                    30년간 교육 현장에서 활동하며 교육개혁의 필요성을 절감한 교육 전문가입니다. 
-                                    미래 교육과 인재 양성에 대한 비전을 제시합니다.
-                                </p>
-                                <div class="text-sm text-gray-600">
-                                    <p>• 연세대학교 교육학과 명예교수</p>
-                                    <p>• 前 교육부 차관</p>
-                                    <p>• 前 한국교육개발원 원장</p>
-                                </div>
-                            </div>
+                            <h4 class="font-bold text-gray-900 mb-2">경제정책</h4>
+                            <p class="text-sm text-gray-600">경제 전문가</p>
                         </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-lg p-8 border-l-4 border-purple-600">
-                        <div class="flex items-start space-x-6">
-                            <div class="flex-shrink-0">
-                                <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-user text-2xl text-gray-400"></i>
-                                </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-graduation-cap text-green-600 text-xl"></i>
                             </div>
-                            <div class="flex-1">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-2">이환경</h3>
-                                <p class="text-lg text-purple-600 font-semibold mb-4">정책고문 (환경 분야)</p>
-                                <p class="text-gray-700 mb-4 leading-relaxed">
-                                    환경보호와 지속가능한 발전을 위해 노력해온 환경 전문가입니다. 
-                                    기후변화 대응과 친환경 정책에 대한 전문적 조언을 제공합니다.
-                                </p>
-                                <div class="text-sm text-gray-600">
-                                    <p>• 고려대학교 환경학과 교수</p>
-                                    <p>• 前 환경부 장관</p>
-                                    <p>• 前 유엔환경계획(UNEP) 자문위원</p>
-                                </div>
-                            </div>
+                            <h4 class="font-bold text-gray-900 mb-2">교육정책</h4>
+                            <p class="text-sm text-gray-600">교육 전문가</p>
                         </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-lg p-8 border-l-4 border-red-600">
-                        <div class="flex items-start space-x-6">
-                            <div class="flex-shrink-0">
-                                <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-user text-2xl text-gray-400"></i>
-                                </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-shield-alt text-purple-600 text-xl"></i>
                             </div>
-                            <div class="flex-1">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-2">최외교</h3>
-                                <p class="text-lg text-red-600 font-semibold mb-4">정책고문 (외교 분야)</p>
-                                <p class="text-gray-700 mb-4 leading-relaxed">
-                                    35년간 외교 현장에서 활동한 외교 전문가입니다. 
-                                    글로벌 시대에 맞는 외교정책과 국제관계 전략에 조언합니다.
-                                </p>
-                                <div class="text-sm text-gray-600">
-                                    <p>• 前 주미 대사</p>
-                                    <p>• 前 외교부 차관</p>
-                                    <p>• 前 국가안보실 외교안보수석</p>
-                                </div>
+                            <h4 class="font-bold text-gray-900 mb-2">안보정책</h4>
+                            <p class="text-sm text-gray-600">안보 전문가</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-globe text-red-600 text-xl"></i>
                             </div>
+                            <h4 class="font-bold text-gray-900 mb-2">외교정책</h4>
+                            <p class="text-sm text-gray-600">외교 전문가</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 인재 영입 안내 -->
-        <section class="py-20 bg-red-600 text-white">
+        <!-- 조직 문화 Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">우리의 조직 문화</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        자유와혁신의 리더십이 추구하는 핵심 가치와 조직 문화입니다.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-red-600 transition-colors duration-300">
+                            <i class="fas fa-lightbulb text-red-600 text-2xl group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">혁신적 사고</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            기존의 틀을 벗어나 창의적이고 혁신적인 해결책을 추구합니다.
+                        </p>
+                    </div>
+
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-600 transition-colors duration-300">
+                            <i class="fas fa-hands-helping text-blue-600 text-2xl group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">협력과 소통</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            열린 소통과 상호 존중을 바탕으로 한 협력적 관계를 중시합니다.
+                        </p>
+                    </div>
+
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-600 transition-colors duration-300">
+                            <i class="fas fa-target text-green-600 text-2xl group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">성과 지향</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            명확한 목표 설정과 책임감 있는 실행으로 가시적 성과를 창출합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="py-20 bg-gradient-to-r from-red-600 to-red-700 text-white">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-4xl font-bold mb-6">함께할 인재를 찾습니다</h2>
-                <p class="text-xl mb-8 leading-relaxed">
+                <p class="text-xl mb-8 leading-relaxed opacity-90">
                     자유와혁신과 함께 대한민국의 미래를 만들어갈<br>
                     유능하고 열정적인 인재를 기다리고 있습니다.
                 </p>
                 
-                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
                     <div class="text-center">
-                        <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-lightbulb text-white text-2xl"></i>
+                        <div class="w-16 h-16 bg-red-500 bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                            <i class="fas fa-brain text-white text-2xl"></i>
                         </div>
                         <h3 class="text-lg font-semibold mb-2">창의적 사고</h3>
-                        <p class="text-red-100 text-sm">새로운 아이디어와 혁신적 사고를 가진 분</p>
+                        <p class="text-red-100 text-sm">새로운 아이디어와 혁신적 사고</p>
                     </div>
                     
                     <div class="text-center">
-                        <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-16 h-16 bg-red-500 bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
                             <i class="fas fa-heart text-white text-2xl"></i>
                         </div>
                         <h3 class="text-lg font-semibold mb-2">봉사 정신</h3>
-                        <p class="text-red-100 text-sm">국민을 위한 봉사 정신을 가진 분</p>
+                        <p class="text-red-100 text-sm">국민을 위한 헌신과 봉사</p>
                     </div>
                     
                     <div class="text-center">
-                        <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-users text-white text-2xl"></i>
+                        <div class="w-16 h-16 bg-red-500 bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                            <i class="fas fa-handshake text-white text-2xl"></i>
                         </div>
                         <h3 class="text-lg font-semibold mb-2">협력 의지</h3>
-                        <p class="text-red-100 text-sm">팀워크와 협력을 중시하는 분</p>
+                        <p class="text-red-100 text-sm">팀워크와 상호 협력</p>
                     </div>
                 </div>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="../members/join.html" class="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    <a href="../members/join.html" class="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
                         당원 가입하기
                     </a>
-                    <a href="mailto:recruit@jayuhyeoksin.kr" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
+                    <a href="#" onclick="alert('현재는 인재 지원 기간이 아닙니다.')" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
                         인재 지원하기
                     </a>
                 </div>
@@ -502,5 +297,8 @@
     </main>
 
     <script src="../nav.js"></script>
+    <script>
+        loadNavigation();
+    </script>
 </body>
 </html> 

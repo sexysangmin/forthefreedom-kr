@@ -1,0 +1,88 @@
+# 자유와혁신 경제·일자리 정책 페이지 CMS 데이터
+
+meta:
+  title: "경제·일자리 정책 - 자유와혁신"
+  description: "자유와혁신의 경제 성장과 일자리 창출 정책을 확인하세요."
+  keywords: "자유와혁신, 경제정책, 일자리, 고용, 경제성장"
+
+hero:
+  title: "경제·일자리 정책"
+  subtitle: "지속가능한 성장과 양질의 일자리 창출"
+  background_image: "../images/hero_image.png"
+
+policy_overview:
+  title: "정책 개요"
+  vision: "혁신과 공정이 조화된 지속가능한 경제 성장"
+  objectives:
+    - "GDP 대비 R&D 투자 5% 달성"
+    - "청년 고용률 70% 달성"
+    - "최저임금의 실질적 보장"
+    - "중소기업 경쟁력 강화"
+
+key_policies:
+  title: "핵심 정책"
+  policies:
+    - title: "혁신 성장 동력 확충"
+      description: "4차 산업혁명 대응 및 신산업 육성"
+      details:
+        - "AI, 바이오, 그린에너지 집중 투자"
+        - "스타트업 생태계 조성"
+        - "디지털 인프라 확충"
+      budget: "연간 10조원"
+      
+    - title: "청년 일자리 창출"
+      description: "양질의 청년 일자리 100만개 창출"
+      details:
+        - "공공부문 청년 채용 확대"
+        - "민간기업 청년 고용 인센티브"
+        - "직업교육 혁신"
+      target: "5년간 100만개"
+      
+    - title: "중소기업 지원 강화"
+      description: "중소기업의 경쟁력 제고 및 성장 지원"
+      details:
+        - "금융 접근성 개선"
+        - "기술 개발 지원"
+        - "판로 개척 지원"
+      support_scale: "연간 5조원"
+
+implementation_plan:
+  title: "추진 계획"
+  phases:
+    - phase: "1단계 (1-2년)"
+      focus: "기반 구축"
+      actions:
+        - "관련 법령 정비"
+        - "추진체계 구축"
+        - "예산 확보"
+        
+    - phase: "2단계 (3-4년)"
+      focus: "본격 시행"
+      actions:
+        - "주요 정책 시행"
+        - "성과 점검"
+        - "정책 보완"
+        
+    - phase: "3단계 (5년)"
+      focus: "성과 창출"
+      actions:
+        - "목표 달성"
+        - "제도 정착"
+        - "지속 발전"
+
+expected_effects:
+  title: "기대 효과"
+  economic:
+    - "경제성장률 3% 이상 달성"
+    - "혁신 부문 GDP 비중 확대"
+    - "국가 경쟁력 순위 상승"
+  
+  employment:
+    - "청년 고용률 70% 달성"
+    - "양질의 일자리 확대"
+    - "고용 안정성 제고"
+
+contact:
+  title: "정책 문의"
+  phone: "02-1234-5671"
+  email: "policy@자유와혁신.kr" 

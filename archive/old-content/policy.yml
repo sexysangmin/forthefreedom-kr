@@ -1,0 +1,160 @@
+# 자유와혁신 정책 메인 페이지 CMS 데이터
+# policy.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "정책 - 자유와혁신"
+  description: "자유와혁신의 7대 핵심 정책을 확인하세요. 경제성장, 교육혁신, 사회안전망 강화 등 미래 비전을 구현하기 위한 정책들을 소개합니다."
+  keywords: "자유와혁신, 정책, 7대핵심정책, 경제성장, 교육혁신, 사회안전망, 환경정책"
+
+# 히어로 섹션
+hero:
+  title: "정책"
+  subtitle: "자유와혁신이 제시하는 대한민국의 미래 비전"
+  background_image: "images/hero_image.png"
+
+# 7대 핵심 정책 섹션
+core_policies:
+  section_title: "7대 핵심 정책"
+  section_label: "CORE POLICIES"
+  section_color: "text-red-600"
+  description: "자유와혁신이 추구하는 미래 비전을 구현하기 위한 핵심 정책들입니다."
+  
+  policies:
+    - title: "경제 성장과 일자리창출"
+      icon: "fas fa-chart-line"
+      icon_bg: "bg-red-600"
+      border_color: "border-red-600"
+      background: "bg-gradient-to-br from-red-50 to-red-100"
+      description: "혁신 기업 육성과 창업 지원을 통해 양질의 일자리를 만들어갑니다."
+      features:
+        - text: "스타트업 생태계 구축"
+          check_color: "text-red-600"
+        - text: "4차산업혁명 대응"
+          check_color: "text-red-600"
+        - text: "중소기업 지원확대"
+          check_color: "text-red-600"
+    
+    - title: "교육 혁신과 인재 양성"
+      icon: "fas fa-graduation-cap"
+      icon_bg: "bg-red-700"
+      border_color: "border-red-700"
+      background: "bg-gradient-to-br from-red-50 to-red-100"
+      description: "미래 인재 양성을 위한 교육 시스템 혁신을 추진합니다."
+      features:
+        - text: "개별 맞춤형 교육"
+          check_color: "text-red-700"
+        - text: "온라인 교육 플랫폼 구축"
+          check_color: "text-red-700"
+        - text: "평생교육 체계 강화"
+          check_color: "text-red-700"
+    
+    - title: "사회 안전망 강화"
+      icon: "fas fa-shield-alt"
+      icon_bg: "bg-red-800"
+      border_color: "border-red-800"
+      background: "bg-gradient-to-br from-red-50 to-red-100"
+      description: "모든 국민을 중심으로 하는 촘촘한 사회안전망을 구축합니다."
+      features:
+        - text: "국민 기초보장 확대"
+          check_color: "text-red-800"
+        - text: "의료 접근성 개선"
+          check_color: "text-red-800"
+        - text: "노인 복지 강화"
+          check_color: "text-red-800"
+    
+    - title: "환경과 에너지 정책"
+      icon: "fas fa-leaf"
+      icon_bg: "bg-gray-600"
+      border_color: "border-gray-600"
+      background: "bg-gradient-to-br from-gray-50 to-gray-100"
+      description: "지속가능한 환경과 그린 에너지 전환을 추진합니다."
+      features:
+        - text: "재생에너지 확대"
+          check_color: "text-gray-600"
+        - text: "탄소중립 달성"
+          check_color: "text-gray-600"
+        - text: "친환경 기술 개발"
+          check_color: "text-gray-600"
+    
+    - title: "주거 안정과 도시 발전"
+      icon: "fas fa-home"
+      icon_bg: "bg-gray-700"
+      border_color: "border-gray-700"
+      background: "bg-gradient-to-br from-gray-50 to-gray-100"
+      description: "모든 국민이 안정적인 주거 환경에서 생활할 수 있도록 지원합니다."
+      features:
+        - text: "공공주택 확대"
+          check_color: "text-gray-700"
+        - text: "스마트시티 구축"
+          check_color: "text-gray-700"
+        - text: "도시 재생 프로젝트"
+          check_color: "text-gray-700"
+    
+    - title: "글로벌 경쟁력 강화"
+      icon: "fas fa-globe"
+      icon_bg: "bg-gray-800"
+      border_color: "border-gray-800"
+      background: "bg-gradient-to-br from-gray-50 to-gray-100"
+      description: "국제사회에서 우리나라의 위상과 브랜드 경쟁력을 강화합니다."
+      features:
+        - text: "K-콘텐츠 육성"
+          check_color: "text-gray-800"
+        - text: "국제 협력 확대"
+          check_color: "text-gray-800"
+        - text: "수출 경쟁력 제고"
+          check_color: "text-gray-800"
+    
+    - title: "사회 통합과 공정"
+      icon: "fas fa-users"
+      icon_bg: "bg-red-900"
+      border_color: "border-red-900"
+      background: "bg-gradient-to-br from-red-50 to-red-100"
+      description: "모든 국민이 공정한 기회를 누릴 수 있는 사회를 만들어갑니다."
+      features:
+        - text: "사회적 약자 보호"
+          check_color: "text-red-900"
+        - text: "갈등 해결 시스템"
+          check_color: "text-red-900"
+        - text: "다양성 존중 문화"
+          check_color: "text-red-900"
+
+# 자바스크립트 기능
+javascript_functions:
+  load_navigation:
+    function_name: "loadNavigation"
+    description: "동적 네비게이션 로드"
+
+# 스타일 설정
+styles:
+  primary_color: "#A50034"
+  
+  colors:
+    red:
+      600: "#A50034"
+      700: "#8B002C"
+      800: "#700024"
+      900: "#56001C"
+      50: "#FDF2F4"
+      100: "#FCE7EA"
+    gray:
+      600: "#4B5563"
+      700: "#374151"
+      800: "#1F2937"
+      50: "#F9FAFB"
+      100: "#F3F4F6"
+      900: "#111827"
+    white: "#FFFFFF"
+  
+  grid_layouts:
+    core_policies: "grid lg:grid-cols-2 xl:grid-cols-3 gap-8"
+  
+  card_styles:
+    padding: "p-8"
+    border_radius: "rounded-2xl"
+    hover_effect: "hover:shadow-lg transition-shadow"
+    border_left: "border-l-4"
+    
+  icon_styles:
+    size: "w-12 h-12"
+    border_radius: "rounded-lg" 

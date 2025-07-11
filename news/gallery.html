@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사진/영상 - 자유와혁신</title>
+    <title>포토&영상 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -25,59 +25,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../style.css">
     <style>
-        /* 갤러리 스타일 */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #FDF2F4, #FCE7EA);
             aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #FDF2F4, #FCE7EA);
+            transition: all 0.3s ease;
         }
         
         .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 30px rgba(165, 0, 52, 0.2);
-        }
-        
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(165, 0, 52, 0.1), rgba(165, 0, 52, 0.05));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover::before {
-            opacity: 1;
-        }
-        
-        .gallery-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            color: white;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-content {
-            transform: translateY(0);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(165, 0, 52, 0.15);
         }
         
         .gallery-icon {
@@ -93,12 +52,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-icon {
-            background: rgba(165, 0, 52, 0.2);
-            transform: translate(-50%, -50%) scale(1.1);
         }
         
         .gallery-icon i {
@@ -106,27 +59,24 @@
             color: #A50034;
         }
         
-        /* 비디오 갤러리 스타일 */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
-            margin-top: 30px;
-        }
-        
         .video-item {
             position: relative;
-            background: #000;
             border-radius: 12px;
             overflow: hidden;
             aspect-ratio: 16/9;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            background: #000;
             transition: all 0.3s ease;
         }
         
         .video-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(165, 0, 52, 0.2);
+            box-shadow: 0 8px 25px rgba(165, 0, 52, 0.15);
+        }
+        
+        .youtube-embed {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
         .video-placeholder {
@@ -140,6 +90,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            cursor: pointer;
         }
         
         .video-play-btn {
@@ -151,7 +102,6 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
         
@@ -175,25 +125,6 @@
             color: white;
             padding: 20px;
         }
-        
-        /* 필터 버튼 스타일 */
-        .filter-btn {
-            background: white;
-            border: 2px solid #e5e7eb;
-            color: #6b7280;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: #A50034;
-            border-color: #A50034;
-            color: white;
-        }
     </style>
 </head>
 <body>
@@ -202,112 +133,81 @@
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">사진/영상</h1>
-            <p style="font-size:1.2rem; margin-top:1rem; opacity:0.9;">자유와혁신의 활동을 사진과 영상으로 만나보세요</p>
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">우리들의 기록</h1>
+            <p style="font-size:1.25rem; margin-top:1rem; text-shadow:1px 1px 2px rgba(0,0,0,0.5);">생생한 현장의 기록</p>
         </div>
     </section>
     
     <main style="position:relative; z-index:1; background:#fff;">
-        <!-- Gallery Navigation -->
-        <section class="py-8 bg-gray-50 border-b">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
-                    <div class="flex flex-wrap gap-3">
-                        <button class="filter-btn active" data-filter="all">전체</button>
-                        <button class="filter-btn" data-filter="photos">사진</button>
-                        <button class="filter-btn" data-filter="videos">영상</button>
-                        <button class="filter-btn" data-filter="events">행사</button>
-                        <button class="filter-btn" data-filter="meetings">간담회</button>
-                        <button class="filter-btn" data-filter="speeches">연설</button>
-                    </div>
-                    <div class="flex gap-2">
-                        <input type="text" placeholder="검색..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
         <!-- Photo Gallery Section -->
-        <section class="py-16 bg-white" id="photo-section">
+        <section class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">사진 갤러리</h2>
-                    <p class="text-xl text-gray-600">자유와혁신의 주요 활동 순간들</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">포토 갤러리</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        자유와혁신의 다양한 활동 현장을 사진으로 만나보세요.
+                    </p>
                 </div>
                 
-                <div class="gallery-grid" id="photo-gallery">
-                    <!-- Photo Item 1 -->
-                    <div class="gallery-item" data-category="photos events" onclick="openGallery('photo', 1)">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Photo Gallery Items -->
+                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 1)">
                         <div class="gallery-icon">
                             <i class="fas fa-camera"></i>
                         </div>
-                        <div class="gallery-content">
-                            <h3 class="text-lg font-bold mb-2">당 출범식</h3>
-                            <p class="text-sm opacity-90">2024.01.15 | 서울 세종문화회관</p>
-                            <p class="text-sm mt-2">자유와혁신의 공식 출범을 알리는 역사적인 순간</p>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white text-lg font-bold">청년 정책 토론회</h3>
+                            <p class="text-white/90 text-sm">2024.01.20 | 서울 당사</p>
                         </div>
                     </div>
                     
-                    <!-- Photo Item 2 -->
-                    <div class="gallery-item" data-category="photos meetings" onclick="openGallery('photo', 2)">
+                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 2)">
                         <div class="gallery-icon">
                             <i class="fas fa-camera"></i>
                         </div>
-                        <div class="gallery-content">
-                            <h3 class="text-lg font-bold mb-2">시민 간담회</h3>
-                            <p class="text-sm opacity-90">2024.01.12 | 서울 강남구</p>
-                            <p class="text-sm mt-2">시민들과 함께하는 정책 토론의 시간</p>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white text-lg font-bold">시민 간담회</h3>
+                            <p class="text-white/90 text-sm">2024.01.18 | 여의도 문화회관</p>
                         </div>
                     </div>
                     
-                    <!-- Photo Item 3 -->
-                    <div class="gallery-item" data-category="photos speeches" onclick="openGallery('photo', 3)">
+                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 3)">
                         <div class="gallery-icon">
                             <i class="fas fa-camera"></i>
                         </div>
-                        <div class="gallery-content">
-                            <h3 class="text-lg font-bold mb-2">정책 발표회</h3>
-                            <p class="text-sm opacity-90">2024.01.10 | 국회 정론관</p>
-                            <p class="text-sm mt-2">7대 핵심 정책 발표 현장</p>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white text-lg font-bold">신입 당원 교육</h3>
+                            <p class="text-white/90 text-sm">2024.01.15 | 당사 교육장</p>
                         </div>
                     </div>
                     
-                    <!-- Photo Item 4 -->
-                    <div class="gallery-item" data-category="photos events" onclick="openGallery('photo', 4)">
+                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 4)">
                         <div class="gallery-icon">
                             <i class="fas fa-camera"></i>
                         </div>
-                        <div class="gallery-content">
-                            <h3 class="text-lg font-bold mb-2">지역 순방</h3>
-                            <p class="text-sm opacity-90">2024.01.08 | 부산 해운대</p>
-                            <p class="text-sm mt-2">부산 시민들과의 만남</p>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white text-lg font-bold">지역 방문</h3>
+                            <p class="text-white/90 text-sm">2024.01.12 | 부산 해운대구</p>
                         </div>
                     </div>
                     
-                    <!-- Photo Item 5 -->
-                    <div class="gallery-item" data-category="photos meetings" onclick="openGallery('photo', 5)">
+                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 5)">
                         <div class="gallery-icon">
                             <i class="fas fa-camera"></i>
                         </div>
-                        <div class="gallery-content">
-                            <h3 class="text-lg font-bold mb-2">당원 대회</h3>
-                            <p class="text-sm opacity-90">2024.01.05 | 서울 잠실</p>
-                            <p class="text-sm mt-2">전국 당원들이 참석한 대규모 대회</p>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white text-lg font-bold">봉사 활동</h3>
+                            <p class="text-white/90 text-sm">2024.01.10 | 서울 종로구</p>
                         </div>
                     </div>
                     
-                    <!-- Photo Item 6 -->
-                    <div class="gallery-item" data-category="photos speeches" onclick="openGallery('photo', 6)">
+                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 6)">
                         <div class="gallery-icon">
                             <i class="fas fa-camera"></i>
                         </div>
-                        <div class="gallery-content">
-                            <h3 class="text-lg font-bold mb-2">언론 인터뷰</h3>
-                            <p class="text-sm opacity-90">2024.01.03 | KBS 스튜디오</p>
-                            <p class="text-sm mt-2">당 대표의 신년 인터뷰</p>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <h3 class="text-white text-lg font-bold">당원 워크숍</h3>
+                            <p class="text-white/90 text-sm">2024.01.08 | 강남구 컨벤션센터</p>
                         </div>
                     </div>
                 </div>
@@ -315,104 +215,78 @@
         </section>
         
         <!-- Video Gallery Section -->
-        <section class="py-16 bg-gray-50" id="video-section">
+        <section class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">영상 갤러리</h2>
-                    <p class="text-xl text-gray-600">생생한 현장 영상을 확인하세요</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">영상 갤러리</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        당 활동의 생생한 현장을 영상으로 확인하세요.
+                    </p>
                 </div>
                 
-                <div class="video-grid" id="video-gallery">
-                    <!-- Video Item 1 -->
-                    <div class="video-item" data-category="videos events" onclick="openGallery('video', 1)">
-                        <div class="video-placeholder">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Video Gallery Items with YouTube Embed -->
+                    <div class="video-item">
+                        <div class="video-placeholder" onclick="playYouTubeVideo('dQw4w9WgXcQ', this)">
                             <div class="video-play-btn">
                                 <i class="fas fa-play"></i>
                             </div>
                             <p class="text-white text-sm">HD 영상 재생</p>
                         </div>
                         <div class="video-info">
-                            <h3 class="text-lg font-bold mb-1">당 출범식 하이라이트</h3>
-                            <p class="text-sm opacity-90">2024.01.15 | 5분 32초</p>
-                            <p class="text-sm mt-2">자유와혁신 출범의 감동적인 순간들</p>
+                            <h3 class="text-lg font-bold mb-1">자유와혁신 창당 1주년 기념 영상</h3>
+                            <p class="text-sm opacity-90">2024.01.18 | 3분 45초</p>
+                            <p class="text-sm mt-2">창당 1주년을 맞아 제작한 기념 영상</p>
                         </div>
                     </div>
                     
-                    <!-- Video Item 2 -->
-                    <div class="video-item" data-category="videos speeches" onclick="openGallery('video', 2)">
-                        <div class="video-placeholder">
+                    <div class="video-item">
+                        <div class="video-placeholder" onclick="playYouTubeVideo('jNQXAC9IVRw', this)">
                             <div class="video-play-btn">
                                 <i class="fas fa-play"></i>
                             </div>
                             <p class="text-white text-sm">HD 영상 재생</p>
                         </div>
                         <div class="video-info">
-                            <h3 class="text-lg font-bold mb-1">당 대표 기조연설</h3>
-                            <p class="text-sm opacity-90">2024.01.15 | 12분 45초</p>
-                            <p class="text-sm mt-2">자유와혁신의 비전과 목표</p>
+                            <h3 class="text-lg font-bold mb-1">청년 정책 토론회 하이라이트</h3>
+                            <p class="text-sm opacity-90">2024.01.15 | 8분 22초</p>
+                            <p class="text-sm mt-2">청년 일자리 정책의 핵심 발언들</p>
                         </div>
                     </div>
                     
-                    <!-- Video Item 3 -->
-                    <div class="video-item" data-category="videos meetings" onclick="openGallery('video', 3)">
-                        <div class="video-placeholder">
+                    <div class="video-item">
+                        <div class="video-placeholder" onclick="playYouTubeVideo('9bZkp7q19f0', this)">
                             <div class="video-play-btn">
                                 <i class="fas fa-play"></i>
                             </div>
                             <p class="text-white text-sm">HD 영상 재생</p>
                         </div>
                         <div class="video-info">
-                            <h3 class="text-lg font-bold mb-1">정책 토론회</h3>
-                            <p class="text-sm opacity-90">2024.01.12 | 8분 23초</p>
-                            <p class="text-sm mt-2">교육 정책에 대한 열띤 토론</p>
+                            <h3 class="text-lg font-bold mb-1">당 대표 신년 인사말</h3>
+                            <p class="text-sm opacity-90">2024.01.01 | 4분 12초</p>
+                            <p class="text-sm mt-2">2024년 신년을 맞이한 당 대표의 인사말</p>
                         </div>
                     </div>
                     
-                    <!-- Video Item 4 -->
-                    <div class="video-item" data-category="videos events" onclick="openGallery('video', 4)">
-                        <div class="video-placeholder">
+                    <div class="video-item">
+                        <div class="video-placeholder" onclick="playYouTubeVideo('ScMzIvxBSi4', this)">
                             <div class="video-play-btn">
                                 <i class="fas fa-play"></i>
                             </div>
                             <p class="text-white text-sm">HD 영상 재생</p>
                         </div>
                         <div class="video-info">
-                            <h3 class="text-lg font-bold mb-1">지역 방문 현장</h3>
-                            <p class="text-sm opacity-90">2024.01.08 | 6분 18초</p>
-                            <p class="text-sm mt-2">부산 시민들과의 만남 현장</p>
+                            <h3 class="text-lg font-bold mb-1">7대 핵심 정책 발표회</h3>
+                            <p class="text-sm opacity-90">2024.01.10 | 15분 30초</p>
+                            <p class="text-sm mt-2">당의 핵심 정책 발표 전체 영상</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Gallery Statistics -->
-        <section class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">갤러리 통계</h2>
-                <div class="grid md:grid-cols-4 gap-8">
-                    <div class="bg-red-50 p-6 rounded-lg text-center">
-                        <div class="text-3xl font-bold text-red-600 mb-2">156</div>
-                        <div class="text-gray-600">총 사진 수</div>
-                    </div>
-                    <div class="bg-red-50 p-6 rounded-lg text-center">
-                        <div class="text-3xl font-bold text-red-600 mb-2">24</div>
-                        <div class="text-gray-600">영상 컨텐츠</div>
-                    </div>
-                    <div class="bg-red-50 p-6 rounded-lg text-center">
-                        <div class="text-3xl font-bold text-red-600 mb-2">18</div>
-                        <div class="text-gray-600">행사 기록</div>
-                    </div>
-                    <div class="bg-red-50 p-6 rounded-lg text-center">
-                        <div class="text-3xl font-bold text-red-600 mb-2">12</div>
-                        <div class="text-gray-600">연설 영상</div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
     
-    <!-- Gallery Modal -->
+    <!-- Photo Gallery Modal -->
     <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
         <div class="relative max-w-4xl w-full mx-4">
             <button onclick="closeGallery()" class="absolute top-4 right-4 text-white text-2xl hover:text-red-400 z-10">
@@ -428,11 +302,23 @@
                     <i class="fas fa-chevron-left"></i>
                 </button>
                 <div class="text-white text-center">
-                    <span id="currentItem">1</span> / <span id="totalItems">10</span>
+                    <span id="currentItem">1</span> / <span id="totalItems">6</span>
                 </div>
                 <button onclick="nextGalleryItem()" class="text-white text-2xl hover:text-red-400">
                     <i class="fas fa-chevron-right"></i>
                 </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- YouTube Video Modal -->
+    <div id="youtubeModal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
+        <div class="relative w-full max-w-4xl mx-4">
+            <button onclick="closeYouTube()" class="absolute -top-12 right-0 text-white text-2xl hover:text-red-400 z-10">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="aspect-video w-full">
+                <iframe id="youtubeFrame" class="w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -442,73 +328,89 @@
         loadNavigation();
         
         let currentGalleryIndex = 0;
-        let currentGalleryType = 'photo';
         
-        // 필터 기능
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                const filter = this.dataset.filter;
-                const items = document.querySelectorAll('.gallery-item, .video-item');
-                
-                items.forEach(item => {
-                    if (filter === 'all') {
-                        item.style.display = 'block';
-                    } else if (filter === 'photos') {
-                        item.style.display = item.classList.contains('gallery-item') ? 'block' : 'none';
-                    } else if (filter === 'videos') {
-                        item.style.display = item.classList.contains('video-item') ? 'block' : 'none';
-                    } else {
-                        item.style.display = item.dataset.category.includes(filter) ? 'block' : 'none';
-                    }
-                });
-            });
-        });
+        const photoData = {
+            1: {
+                title: "청년 정책 토론회",
+                date: "2024.01.20",
+                location: "서울 당사 3층 회의실",
+                description: "청년층의 일자리 문제 해결을 위한 정책 토론회가 열렸습니다. 다양한 전문가들이 참석하여 실질적인 해결 방안을 논의했습니다."
+            },
+            2: {
+                title: "시민 간담회",
+                date: "2024.01.18",
+                location: "여의도 문화회관",
+                description: "지역 주민들과의 소통을 위한 간담회가 진행되었습니다. 주민들의 다양한 의견을 수렴하는 시간이었습니다."
+            },
+            3: {
+                title: "신입 당원 교육",
+                date: "2024.01.15",
+                location: "당사 2층 교육장",
+                description: "새로 가입한 당원들을 위한 교육 프로그램이 실시되었습니다. 당의 이념과 정책에 대한 이해를 높였습니다."
+            },
+            4: {
+                title: "지역 방문",
+                date: "2024.01.12",
+                location: "부산 해운대구",
+                description: "부산 지역 당원들과 주민들을 만나 지역 현안에 대해 논의했습니다."
+            },
+            5: {
+                title: "봉사 활동",
+                date: "2024.01.10",
+                location: "서울 종로구",
+                description: "지역사회를 위한 봉사 활동에 당원들이 적극 참여했습니다."
+            },
+            6: {
+                title: "당원 워크숍",
+                date: "2024.01.08",
+                location: "강남구 컨벤션센터",
+                description: "당원들의 역량 강화를 위한 워크숍이 개최되었습니다."
+            }
+        };
         
-        // 갤러리 열기
-        function openGallery(type, index) {
-            currentGalleryType = type;
-            currentGalleryIndex = index - 1;
+        // YouTube 영상 재생
+        function playYouTubeVideo(videoId, element) {
+            const modal = document.getElementById('youtubeModal');
+            const iframe = document.getElementById('youtubeFrame');
             
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        
+        // YouTube 모달 닫기
+        function closeYouTube() {
+            const modal = document.getElementById('youtubeModal');
+            const iframe = document.getElementById('youtubeFrame');
+            
+            iframe.src = '';
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        
+        // 사진 갤러리 열기
+        function openGallery(type, index) {
+            currentGalleryIndex = index;
             const modal = document.getElementById('galleryModal');
             const content = document.getElementById('galleryContent');
+            const data = photoData[index];
             
-            if (type === 'photo') {
-                content.innerHTML = `
-                    <div class="aspect-video bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center">
-                        <div class="text-center">
-                            <i class="fas fa-image text-red-600 text-6xl mb-4"></i>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">사진 ${index}</h3>
-                            <p class="text-gray-600">고해상도 사진을 불러오는 중...</p>
-                        </div>
+            content.innerHTML = `
+                <div class="aspect-video bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-image text-red-600 text-6xl mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">${data.title}</h3>
+                        <p class="text-gray-600">고해상도 사진을 불러오는 중...</p>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">사진 제목</h3>
-                        <p class="text-gray-600 mb-4">2024.01.15 | 서울 세종문화회관</p>
-                        <p class="text-gray-700">사진에 대한 자세한 설명이 여기에 표시됩니다.</p>
-                    </div>
-                `;
-            } else {
-                content.innerHTML = `
-                    <div class="aspect-video bg-black flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mb-4 mx-auto cursor-pointer hover:bg-red-700">
-                                <i class="fas fa-play text-white text-2xl ml-1"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">영상 ${index}</h3>
-                            <p class="text-gray-300">클릭하여 재생</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">영상 제목</h3>
-                        <p class="text-gray-600 mb-4">2024.01.15 | 5분 32초</p>
-                        <p class="text-gray-700">영상에 대한 자세한 설명이 여기에 표시됩니다.</p>
-                    </div>
-                `;
-            }
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">${data.title}</h3>
+                    <p class="text-gray-600 mb-4">${data.date} | ${data.location}</p>
+                    <p class="text-gray-700">${data.description}</p>
+                </div>
+            `;
             
+            document.getElementById('currentItem').textContent = index;
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
@@ -519,19 +421,16 @@
             document.getElementById('galleryModal').classList.remove('flex');
         }
         
-        // 이전/다음 아이템
+        // 이전/다음 사진
         function prevGalleryItem() {
-            if (currentGalleryIndex > 0) {
-                currentGalleryIndex--;
-                openGallery(currentGalleryType, currentGalleryIndex + 1);
+            if (currentGalleryIndex > 1) {
+                openGallery('photo', currentGalleryIndex - 1);
             }
         }
         
         function nextGalleryItem() {
-            const maxIndex = currentGalleryType === 'photo' ? 6 : 4;
-            if (currentGalleryIndex < maxIndex - 1) {
-                currentGalleryIndex++;
-                openGallery(currentGalleryType, currentGalleryIndex + 1);
+            if (currentGalleryIndex < 6) {
+                openGallery('photo', currentGalleryIndex + 1);
             }
         }
         
@@ -544,6 +443,10 @@
                     prevGalleryItem();
                 } else if (e.key === 'ArrowRight') {
                     nextGalleryItem();
+                }
+            } else if (document.getElementById('youtubeModal').classList.contains('flex')) {
+                if (e.key === 'Escape') {
+                    closeYouTube();
                 }
             }
         });

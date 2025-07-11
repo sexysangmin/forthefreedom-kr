@@ -1,0 +1,337 @@
+# 자유와혁신 당원 가입 안내 페이지 CMS 데이터
+# members/join.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "당원 가입 - 자유와혁신"
+  description: "자유와혁신 당원으로 가입하여 새로운 정치에 참여하세요. 간편한 온라인 가입과 다양한 혜택을 제공합니다."
+  keywords: "자유와혁신, 당원 가입, 정당 가입, 정치 참여, 온라인 가입"
+
+# 히어로 섹션
+hero:
+  title: "당원 가입"
+  subtitle: "새로운 정치의 주역이 되어주세요"
+  background_image: "../images/hero_image.png"
+  cta_text: "지금 가입하기"
+  cta_url: "#join-form"
+
+# 가입 안내
+join_introduction:
+  title: "자유와혁신과 함께하세요"
+  description: "자유와혁신의 당원이 되어 대한민국의 새로운 미래를 만들어가세요"
+  
+  benefits:
+    - title: "정책 개발 참여"
+      description: "당의 정책 수립 과정에 직접 참여할 수 있습니다"
+      icon: "fas fa-lightbulb"
+    
+    - title: "교육 프로그램"
+      description: "다양한 정치 교육과 리더십 프로그램을 제공받습니다"
+      icon: "fas fa-graduation-cap"
+    
+    - title: "네트워킹 기회"
+      description: "같은 가치를 추구하는 사람들과의 네트워킹 기회를 얻습니다"
+      icon: "fas fa-users"
+    
+    - title: "정치 활동 지원"
+      description: "선거 참여와 정치 활동을 위한 체계적인 지원을 받습니다"
+      icon: "fas fa-handshake"
+
+# 가입 자격
+eligibility:
+  title: "가입 자격"
+  description: "다음 조건을 충족하시는 분은 누구나 가입 가능합니다"
+  
+  requirements:
+    - condition: "대한민국 국적자"
+      description: "대한민국 국적을 보유한 자"
+      required: true
+    
+    - condition: "만 18세 이상"
+      description: "선거권을 가진 만 18세 이상의 성인"
+      required: true
+    
+    - condition: "당의 이념 동의"
+      description: "자유와혁신의 이념과 강령에 동의하는 자"
+      required: true
+    
+    - condition: "타 정당 비가입"
+      description: "다른 정당에 가입되어 있지 않은 자"
+      required: true
+  
+  disqualifications:
+    - "공직선거법상 선거권이 정지된 자"
+    - "정당법에 의해 당원 자격이 제한된 자"
+    - "국가보안법 위반으로 유죄판결을 받은 자"
+
+# 가입 유형
+membership_types:
+  title: "가입 유형"
+  description: "다양한 가입 유형 중 본인에게 맞는 형태를 선택하세요"
+  
+  types:
+    - name: "정당원"
+      description: "당의 모든 활동에 참여할 수 있는 정식 당원"
+      rights:
+        - "당내 선거 참여권"
+        - "정책 의결 참여권"
+        - "후보자 추천권"
+        - "당 공직 피선거권"
+      obligations:
+        - "월 당비 납부"
+        - "당 활동 참여"
+        - "강령 및 규약 준수"
+      dues: "월 10,000원"
+      
+    - name: "협력당원"
+      description: "당의 활동을 지지하고 협력하는 당원"
+      rights:
+        - "정책 토론 참여권"
+        - "교육 프로그램 참여권"
+        - "당 행사 참석권"
+      obligations:
+        - "당 활동 협력"
+        - "기본 원칙 준수"
+      dues: "월 5,000원"
+      
+    - name: "청년당원"
+      description: "만 18~39세 청년을 위한 특별 당원"
+      rights:
+        - "정당원과 동일한 권리"
+        - "청년 특별 프로그램 참여"
+        - "청년위원회 활동"
+      obligations:
+        - "청년 활동 참여"
+        - "당 활동 참여"
+      dues: "월 5,000원 (50% 할인)"
+
+# 가입 절차
+join_process:
+  title: "가입 절차"
+  description: "간단한 4단계로 당원 가입을 완료하세요"
+  
+  steps:
+    - step: 1
+      title: "온라인 신청"
+      description: "가입 신청서를 온라인으로 작성 및 제출"
+      icon: "fas fa-edit"
+      details:
+        - "개인정보 입력"
+        - "가입 유형 선택"
+        - "이념 동의 확인"
+        - "필수 서류 업로드"
+      
+    - step: 2
+      title: "서류 심사"
+      description: "제출된 서류를 바탕으로 가입 자격 심사"
+      icon: "fas fa-search"
+      details:
+        - "신원 확인"
+        - "가입 자격 검토"
+        - "중복 가입 확인"
+      duration: "영업일 기준 3-5일"
+      
+    - step: 3
+      title: "당비 납부"
+      description: "선택한 가입 유형에 따른 당비 납부"
+      icon: "fas fa-credit-card"
+      details:
+        - "온라인 결제"
+        - "계좌 이체"
+        - "자동이체 설정"
+      
+    - step: 4
+      title: "가입 완료"
+      description: "당원증 발급 및 가입 완료 안내"
+      icon: "fas fa-check-circle"
+      details:
+        - "당원증 발급"
+        - "환영 이메일 발송"
+        - "당원 활동 안내"
+
+# 필요 서류
+required_documents:
+  title: "필요 서류"
+  description: "가입 신청시 제출해야 할 서류들입니다"
+  
+  documents:
+    - name: "신분증 사본"
+      description: "주민등록증, 운전면허증, 여권 중 1부"
+      format: "이미지 파일 (JPG, PNG)"
+      required: true
+      
+    - name: "주민등록등본"
+      description: "최근 3개월 이내 발급분"
+      format: "PDF 또는 이미지 파일"
+      required: true
+      
+    - name: "타 정당 비가입 확인서"
+      description: "다른 정당에 가입되어 있지 않음을 확인하는 서류"
+      format: "당사 제공 양식 작성"
+      required: true
+      
+    - name: "추천서"
+      description: "기존 당원 2인의 추천서 (선택사항)"
+      format: "당사 제공 양식 작성"
+      required: false
+
+# 당비 안내
+dues_information:
+  title: "당비 안내"
+  description: "투명하고 합리적인 당비 체계를 운영합니다"
+  
+  payment_methods:
+    - method: "자동이체"
+      description: "매월 자동으로 계좌에서 인출"
+      benefits:
+        - "편리한 자동 납부"
+        - "납부 누락 방지"
+        - "5% 할인 혜택"
+      
+    - method: "온라인 결제"
+      description: "카드 또는 계좌이체로 온라인 결제"
+      benefits:
+        - "즉시 결제 가능"
+        - "다양한 결제 수단"
+        - "영수증 자동 발행"
+      
+    - method: "계좌 이체"
+      description: "당 계좌로 직접 이체"
+      benefits:
+        - "수수료 최소화"
+        - "대량 결제 가능"
+      account: "국민은행 123-456-789012 자유와혁신"
+  
+  special_rates:
+    - category: "학생 할인"
+      discount: "50%"
+      condition: "재학증명서 제출시"
+      
+    - category: "경제적 어려움"
+      discount: "면제 또는 감액"
+      condition: "개별 심사 후 결정"
+      
+    - category: "장기 납부"
+      discount: "10%"
+      condition: "연납시 할인"
+
+# 온라인 가입 폼
+join_form:
+  title: "온라인 가입 신청"
+  description: "아래 정보를 입력하여 가입 신청을 해주세요"
+  
+  personal_info:
+    title: "개인정보"
+    fields:
+      - name: "성명"
+        type: "text"
+        required: true
+        placeholder: "실명을 입력해주세요"
+        
+      - name: "주민등록번호"
+        type: "text"
+        required: true
+        placeholder: "000000-0000000"
+        
+      - name: "연락처"
+        type: "tel"
+        required: true
+        placeholder: "010-0000-0000"
+        
+      - name: "이메일"
+        type: "email"
+        required: true
+        placeholder: "email@example.com"
+        
+      - name: "주소"
+        type: "address"
+        required: true
+        placeholder: "주소검색 버튼 이용"
+  
+  membership_info:
+    title: "가입정보"
+    fields:
+      - name: "가입유형"
+        type: "select"
+        required: true
+        options:
+          - "정당원"
+          - "협력당원"
+          - "청년당원"
+          
+      - name: "추천인"
+        type: "text"
+        required: false
+        placeholder: "추천인이 있을 경우 입력"
+        
+      - name: "가입동기"
+        type: "textarea"
+        required: true
+        placeholder: "가입 동기를 간략히 작성해주세요"
+  
+  agreements:
+    title: "약관 동의"
+    items:
+      - text: "개인정보 수집 및 이용에 동의합니다"
+        required: true
+        link: "/privacy-policy"
+        
+      - text: "당 강령 및 규약에 동의합니다"
+        required: true
+        link: "../about/principles.html"
+        
+      - text: "정당법상 의무사항을 준수하겠습니다"
+        required: true
+        
+      - text: "이벤트 및 소식 수신에 동의합니다"
+        required: false
+
+# 문의 안내
+inquiry_info:
+  title: "가입 문의"
+  description: "가입 과정에서 궁금한 점이 있으시면 언제든 연락주세요"
+  
+  contacts:
+    - method: "전화 문의"
+      value: "02-1234-5672"
+      hours: "평일 09:00 - 18:00"
+      description: "당원관리팀"
+      
+    - method: "이메일 문의"
+      value: "join@자유와혁신.kr"
+      description: "24시간 접수 가능"
+      
+    - method: "방문 상담"
+      value: "서울시 영등포구 여의도동 14-11"
+      hours: "평일 09:00 - 18:00 (점심시간 제외)"
+      description: "사전 예약 권장"
+
+# 자주 묻는 질문
+faq:
+  title: "자주 묻는 질문"
+  description: "가입 관련 자주 묻는 질문들을 모았습니다"
+  
+  questions:
+    - question: "당원 가입 후 탈퇴가 가능한가요?"
+      answer: "네, 언제든지 탈퇴 가능합니다. 탈퇴 신청서를 제출하시면 됩니다."
+      
+    - question: "당비를 못 낸 경우 어떻게 되나요?"
+      answer: "3개월 연체시 당원 자격이 정지되며, 6개월 연체시 제명 처리됩니다."
+      
+    - question: "다른 정당에서 옮겨올 수 있나요?"
+      answer: "네, 기존 정당에서 탈퇴한 후 가입 가능합니다. 탈퇴 확인서를 제출해주세요."
+      
+    - question: "해외 거주자도 가입 가능한가요?"
+      answer: "대한민국 국적자라면 해외 거주 중이어도 가입 가능합니다."
+
+# CTA 섹션
+call_to_action:
+  title: "지금 바로 시작하세요!"
+  description: "자유와혁신의 당원이 되어 새로운 정치의 주역이 되어주세요"
+  buttons:
+    - text: "온라인 가입하기"
+      url: "#join-form"
+      style: "primary"
+    - text: "가입 문의하기"
+      url: "tel:02-1234-5672"
+      style: "outline" 

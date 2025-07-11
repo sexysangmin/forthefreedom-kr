@@ -1,0 +1,103 @@
+# 자유와혁신 포토&영상 갤러리 페이지 CMS 데이터
+
+meta:
+  title: "포토&영상 - 자유와혁신"
+  description: "자유와혁신의 다양한 활동 사진과 영상을 만나보세요. 당 활동 현장의 생생한 모습을 확인할 수 있습니다."
+  keywords: "자유와혁신, 포토, 영상, 갤러리, 당 활동, 사진"
+
+hero:
+  title: "포토 & 영상"
+  subtitle: "생생한 현장의 기록"
+  background_image: "../images/hero_image.png"
+
+# 포토 갤러리
+photo_gallery:
+  title: "포토 갤러리"
+  description: "자유와혁신의 다양한 활동 현장을 사진으로 만나보세요."
+  
+  photos:
+    - title: "청년 정책 토론회"
+      date: "2024.01.20"
+      location: "서울 당사"
+      description: "청년층의 일자리 문제 해결을 위한 정책 토론회가 열렸습니다. 다양한 전문가들이 참석하여 실질적인 해결 방안을 논의했습니다."
+      image: "/images/gallery/youth-forum.jpg"
+      placeholder: true
+    
+    - title: "시민 간담회"
+      date: "2024.01.18"
+      location: "여의도 문화회관"
+      description: "지역 주민들과의 소통을 위한 간담회가 진행되었습니다. 주민들의 다양한 의견을 수렴하는 시간이었습니다."
+      image: "/images/gallery/citizen-meeting.jpg"
+      placeholder: true
+    
+    - title: "신입 당원 교육"
+      date: "2024.01.15"
+      location: "당사 교육장"
+      description: "새로 가입한 당원들을 위한 교육 프로그램이 실시되었습니다. 당의 이념과 정책에 대한 이해를 높였습니다."
+      image: "/images/gallery/new-member-education.jpg"
+      placeholder: true
+    
+    - title: "지역 방문"
+      date: "2024.01.12"
+      location: "부산 해운대구"
+      description: "부산 지역 당원들과 주민들을 만나 지역 현안에 대해 논의했습니다."
+      image: "/images/gallery/regional-visit.jpg"
+      placeholder: true
+    
+    - title: "봉사 활동"
+      date: "2024.01.10"
+      location: "서울 종로구"
+      description: "지역사회를 위한 봉사 활동에 당원들이 적극 참여했습니다."
+      image: "/images/gallery/volunteer-work.jpg"
+      placeholder: true
+    
+    - title: "당원 워크숍"
+      date: "2024.01.08"
+      location: "강남구 컨벤션센터"
+      description: "당원들의 역량 강화를 위한 워크숍이 개최되었습니다."
+      image: "/images/gallery/member-workshop.jpg"
+      placeholder: true
+
+# 영상 갤러리
+video_gallery:
+  title: "영상 갤러리"
+  description: "당 활동의 생생한 현장을 영상으로 확인하세요."
+  
+  videos:
+    - title: "자유와혁신 창당 1주년 기념 영상"
+      date: "2024.01.18"
+      duration: "3분 45초"
+      description: "창당 1주년을 맞아 제작한 기념 영상"
+      youtube_id: "dQw4w9WgXcQ"
+      thumbnail: "/images/gallery/videos/anniversary-thumb.jpg"
+      placeholder: true
+    
+    - title: "청년 정책 토론회 하이라이트"
+      date: "2024.01.15"
+      duration: "8분 22초"
+      description: "청년 일자리 정책의 핵심 발언들"
+      youtube_id: "jNQXAC9IVRw"
+      thumbnail: "/images/gallery/videos/youth-highlights.jpg"
+      placeholder: true
+    
+    - title: "당 대표 신년 인사말"
+      date: "2024.01.01"
+      duration: "4분 12초"
+      description: "2024년 신년을 맞이한 당 대표의 인사말"
+      youtube_id: "9bZkp7q19f0"
+      thumbnail: "/images/gallery/videos/new-year-message.jpg"
+      placeholder: true
+    
+    - title: "7대 핵심 정책 발표회"
+      date: "2024.01.10"
+      duration: "15분 30초"
+      description: "당의 핵심 정책 발표 전체 영상"
+      youtube_id: "ScMzIvxBSi4"
+      thumbnail: "/images/gallery/videos/policy-announcement.jpg"
+      placeholder: true
+
+contact:
+  title: "갤러리 문의"
+  phone: "02-1234-5678"
+  email: "media@자유와혁신.kr"
+  hours: "평일 09:00-18:00" 

@@ -1,0 +1,64 @@
+# 자유와혁신 언론보도 페이지 CMS 데이터
+
+meta:
+  title: "언론보도 - 자유와혁신"
+  description: "자유와혁신 관련 언론 보도 및 미디어 자료를 확인하세요."
+  keywords: "자유와혁신, 언론보도, 미디어, 뉴스, 언론"
+
+hero:
+  title: "언론보도"
+  subtitle: "자유와혁신에 대한 주요 언론 보도를 확인하세요."
+  background_image: "../images/hero_image.png"
+
+section:
+  title: "언론 보도"
+  description: "자유와혁신에 대한 주요 언론 보도를 확인하세요."
+
+# 주요 보도
+featured_news:
+  title: "주요 보도"
+  article:
+    title: "자유와혁신 출범...새로운 정치 세력 등장"
+    date: "2024.01.15"
+    media: "KBS"
+    media_style: "bg-red-600 text-white"
+    program: "KBS 뉴스 9"
+    time: "저녁 9시 방송"
+    summary: "자유와혁신이 공식 출범하며 기존 정치권에 새로운 바람을 불어넣고 있다는 평가를 받고 있습니다. 특히 혁신적인 정책과 젊은 리더십이 주목받고 있습니다."
+    link: "https://news.kbs.co.kr"
+    icon: "fas fa-tv"
+
+# 최근 언론 보도
+recent_coverage:
+  - title: "자유와혁신 \"7대 핵심 정책으로 국정 혁신 이끌 것\""
+    date: "2024.01.12"
+    media: "조선일보"
+    media_style: "bg-blue-100 text-blue-700"
+    department: "조선일보 정치부"
+    summary: "자유와혁신이 발표한 7대 핵심 정책이 경제계와 학계의 주목을 받고 있다."
+    link: "https://www.chosun.com"
+    icon: "fas fa-newspaper"
+  
+  - title: "\"청년층 지지 확산...새로운 정치 바람 예고\""
+    date: "2024.01.10"
+    media: "중앙일보"
+    media_style: "bg-green-100 text-green-700"
+    department: "중앙일보 정치부"
+    summary: "자유와혁신에 대한 청년층의 지지가 확산되고 있어 정치권의 관심이 집중되고 있다."
+    link: "https://www.joongang.co.kr"
+    icon: "fas fa-newspaper"
+  
+  - title: "자유와혁신 대표 \"국민과 함께하는 정치 구현\""
+    date: "2024.01.08"
+    media: "MBC"
+    media_style: "bg-purple-100 text-purple-700"
+    program: "MBC 뉴스데스크"
+    summary: "자유와혁신 대표가 MBC 인터뷰에서 밝힌 향후 정치 방향과 비전이 화제가 되고 있다."
+    link: "https://imnews.imbc.com"
+    icon: "fas fa-tv"
+
+contact:
+  title: "언론 문의"
+  phone: "02-1234-5673"
+  email: "press@자유와혁신.kr"
+  hours: "평일 09:00-18:00" 

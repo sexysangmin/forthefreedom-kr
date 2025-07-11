@@ -1,0 +1,152 @@
+# 자유와혁신 강령·핵심가치 페이지 CMS 데이터
+# about/principles.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "강령·핵심가치 - 자유와혁신"
+  description: "자유와혁신의 강령과 핵심가치를 소개합니다. 자유, 혁신, 공정, 통합의 가치로 새로운 정치를 실현합니다."
+  keywords: "자유와혁신, 강령, 핵심가치, 정치철학, 자유, 혁신, 공정, 통합"
+  og_title: "강령·핵심가치 - 자유와혁신"
+  og_description: "자유와혁신이 추구하는 강령과 핵심가치를 확인하세요"
+  og_image: "/images/principles-og.png"
+
+# 히어로 섹션
+hero:
+  title: "강령·핵심가치"
+  background_image: "../images/hero_image.png"
+  overlay_gradient: "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2))"
+
+# 소개 섹션
+introduction:
+  title: "우리의 정치 철학"
+  description: "자유와혁신이 추구하는 핵심 가치와 정치 철학을 소개합니다."
+
+# 핵심 가치 섹션
+core_values:
+  title: "4대 핵심 가치"
+  description: "자유와혁신을 이끌어가는 근본 가치들입니다"
+  
+  values:
+    - title: "자유"
+      icon: "fas fa-dove"
+      color: "blue"
+      description: "개인의 자유와 권리를 최우선으로 보장합니다"
+      details:
+        - "표현의 자유 보장"
+        - "경제 활동의 자유 확대" 
+        - "선택의 자유 존중"
+        - "창의적 사고와 다양성 인정"
+    
+    - title: "혁신"
+      icon: "fas fa-lightbulb"
+      color: "orange"
+      description: "기존 관습에 얽매이지 않고 새로운 방식으로 문제를 해결합니다"
+      details:
+        - "기술 혁신을 통한 사회 발전"
+        - "제도 개선과 행정 혁신"
+        - "창의적 정책 개발"
+        - "미래 지향적 사고"
+    
+    - title: "공정"
+      icon: "fas fa-balance-scale"
+      color: "green"
+      description: "모든 국민에게 공평한 기회를 제공합니다"
+      details:
+        - "투명한 정치 과정"
+        - "공정한 경쟁 환경 조성"
+        - "특권 폐지와 기회 균등"
+        - "법 앞의 평등 실현"
+    
+    - title: "통합"
+      icon: "fas fa-handshake"
+      color: "purple"
+      description: "갈등을 넘어 국민 통합을 이루어갑니다"
+      details:
+        - "세대 간 소통과 화합"
+        - "지역 간 균형 발전"
+        - "계층 간 상생 협력"
+        - "사회적 합의 도출"
+
+# 강령 섹션
+party_platform:
+  title: "당 강령"
+  description: "자유와혁신의 정치적 신념과 목표를 명시한 강령입니다"
+  
+  sections:
+    - title: "정치 개혁"
+      icon: "fas fa-vote-yea"
+      principles:
+        - "국민 참여형 민주주의 구현"
+        - "정치 과정의 투명성 확보"
+        - "부패 척결과 청렴 정치"
+        - "정치권의 특권 폐지"
+    
+    - title: "경제 정책"
+      icon: "fas fa-chart-line"
+      principles:
+        - "자유시장경제 원칙 준수"
+        - "공정한 경쟁 환경 조성"
+        - "혁신 창업 생태계 구축"
+        - "일자리 창출과 경제 성장"
+    
+    - title: "사회 정책"
+      icon: "fas fa-users"
+      principles:
+        - "포용적 복지 시스템 구축"
+        - "교육 기회 균등 보장"
+        - "의료 접근성 개선"
+        - "주거 안정성 확보"
+    
+    - title: "외교·안보"
+      icon: "fas fa-globe"
+      principles:
+        - "평화와 안전 보장"
+        - "국제 협력 강화"
+        - "국가 이익 우선 외교"
+        - "균형잡힌 국제 관계"
+
+# 실천 방안 섹션
+implementation:
+  title: "실천 방안"
+  description: "핵심 가치를 현실 정치에서 구현하기 위한 구체적 방안입니다"
+  
+  methods:
+    - category: "제도 개선"
+      items:
+        - "정치 자금 투명성 강화"
+        - "공직자 윤리 기준 강화"
+        - "시민 참여 제도 확대"
+        - "정보 공개 범위 확대"
+    
+    - category: "정책 혁신"
+      items:
+        - "데이터 기반 정책 결정"
+        - "전문가 자문 시스템 구축"
+        - "정책 효과 평가 체계 마련"
+        - "국민 의견 수렴 강화"
+    
+    - category: "소통 강화"
+      items:
+        - "정기적 국민 대화"
+        - "온라인 플랫폼 활용"
+        - "지역별 간담회 개최"
+        - "청년층 의견 반영"
+
+# CTA 섹션
+call_to_action:
+  title: "함께 만들어가는 새로운 정치"
+  description: "자유와혁신의 가치에 공감하신다면 함께해 주세요"
+  buttons:
+    - text: "당원 가입하기"
+      url: "../members/join.html"
+      style: "primary"
+    - text: "정책 보기"
+      url: "../policy.html" 
+      style: "outline"
+
+# 스타일 설정
+styles:
+  primary_color: "#A50034"
+  section_padding: "py-16"
+  card_shadow: "shadow-lg"
+  icon_size: "text-4xl" 

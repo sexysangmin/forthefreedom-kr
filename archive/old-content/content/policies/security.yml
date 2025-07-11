@@ -1,0 +1,98 @@
+# 자유와혁신 안보·외교 정책 페이지 CMS 데이터
+
+meta:
+  title: "안보·외교 정책 - 자유와혁신"
+  description: "자유와혁신의 국가 안보와 외교 정책을 확인하세요."
+  keywords: "자유와혁신, 안보정책, 외교정책, 국방, 평화"
+
+hero:
+  title: "안보·외교 정책"
+  subtitle: "평화를 통한 번영, 협력을 통한 안보"
+  background_image: "../images/hero_image.png"
+
+security_policy:
+  title: "국가 안보 정책"
+  vision: "평화와 안정을 바탕으로 한 지속가능한 안보"
+  
+  principles:
+    - title: "자주 국방"
+      description: "독립적이고 자주적인 국방 능력 확보"
+      
+    - title: "협력 안보"
+      description: "동맹국과의 협력을 통한 집단 안보 체제"
+      
+    - title: "예방 외교"
+      description: "갈등 예방과 평화적 해결을 우선하는 외교"
+      
+  key_initiatives:
+    - title: "첨단 국방력 구축"
+      description: "4차 산업혁명 기술 기반의 스마트 국방"
+      details:
+        - "AI 기반 지휘통제 시스템"
+        - "무인 전투체계 개발"
+        - "사이버 보안 역량 강화"
+        
+    - title: "북한 비핵화"
+      description: "대화와 제재를 통한 평화적 비핵화"
+      details:
+        - "단계적 비핵화 로드맵"
+        - "경제적 인센티브 제공"
+        - "국제사회와의 공조 강화"
+
+diplomacy_policy:
+  title: "외교 정책"
+  vision: "세계 평화와 번영에 기여하는 중견국 외교"
+  
+  priorities:
+    - title: "한미동맹 강화"
+      description: "가치를 공유하는 포괄적 전략동맹"
+      
+    - title: "신남방·신북방 정책"
+      description: "아시아·태평양과 유라시아 협력 확대"
+      
+    - title: "다자외교 활성화"
+      description: "UN, G20 등 국제기구에서의 역할 확대"
+      
+  regional_strategy:
+    - region: "동북아"
+      approach: "평화와 협력의 동북아 질서 구축"
+      priorities:
+        - "한중일 협력 강화"
+        - "북핵 문제 해결"
+        - "역사 문제 해결"
+        
+    - region: "인도·태평양"
+      approach: "자유롭고 열린 인도·태평양 구현"
+      priorities:
+        - "쿼드 협력 참여"
+        - "ASEAN과의 협력 확대"
+        - "해양 안보 협력"
+
+implementation:
+  title: "추진 체계"
+  organizations:
+    - name: "국가안보실"
+      role: "안보정책 총괄 조정"
+      
+    - name: "외교부"
+      role: "외교정책 수립·집행"
+      
+    - name: "국방부"
+      role: "국방정책 수립·집행"
+      
+    - name: "통일부"
+      role: "대북정책 수립·집행"
+
+budget:
+  title: "국방비 계획"
+  current: "GDP 대비 2.8%"
+  target: "GDP 대비 3.0%"
+  focus_areas:
+    - "첨단 무기체계 도입"
+    - "장병 복지 개선"
+    - "방위산업 육성"
+
+contact:
+  title: "정책 문의"
+  phone: "02-1234-5671"
+  email: "policy@자유와혁신.kr" 

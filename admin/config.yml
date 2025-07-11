@@ -1,0 +1,128 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: uploads
+public_folder: /uploads
+
+locale: ko
+
+collections:
+  # 정당소식
+  - name: notices
+    label: "공지사항"
+    folder: "_posts/notices"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "발행일", name: "date", widget: "datetime" }
+      - { label: "중요도", name: "priority", widget: "select", options: ["중요", "일반"], default: "일반" }
+      - { label: "작성자", name: "author", widget: "string", default: "관리자" }
+      - { label: "내용", name: "body", widget: "markdown" }
+      - { label: "첨부파일", name: "attachments", widget: "list", field: { label: "파일", name: "file", widget: "file" }, required: false }
+
+  - name: press-releases
+    label: "보도자료"
+    folder: "_posts/press-releases"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "발행일", name: "date", widget: "datetime" }
+      - { label: "분야", name: "category", widget: "select", options: ["경제정책", "사회정책", "교육정책", "안보정책", "과학기술", "환경보호", "외교통상", "기타"], default: "기타" }
+      - { label: "작성자", name: "author", widget: "string", default: "정책기획실" }
+      - { label: "요약", name: "excerpt", widget: "text" }
+      - { label: "내용", name: "body", widget: "markdown" }
+      - { label: "첨부파일", name: "attachments", widget: "list", field: { label: "파일", name: "file", widget: "file" }, required: false }
+      - { label: "주요 내용", name: "highlights", widget: "list", field: { label: "항목", name: "item", widget: "string" }, required: false }
+
+  - name: activities
+    label: "활동소식"
+    folder: "_posts/activities"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "활동일", name: "date", widget: "datetime" }
+      - { label: "활동 유형", name: "activity_type", widget: "select", options: ["현장방문", "간담회", "정책토론", "시민참여", "당원활동", "기타"], default: "기타" }
+      - { label: "장소", name: "location", widget: "string" }
+      - { label: "참여자 수", name: "participants", widget: "number", required: false }
+      - { label: "소요 시간", name: "duration", widget: "string", required: false }
+      - { label: "활동 설명", name: "description", widget: "text" }
+      - { label: "내용", name: "body", widget: "markdown" }
+      - { label: "사진", name: "photos", widget: "list", field: { label: "이미지", name: "image", widget: "image" }, required: false }
+      - { label: "주요 논의사항", name: "discussion_points", widget: "list", field: { label: "항목", name: "item", widget: "string" }, required: false }
+
+  # 자료실
+  - name: policy-materials
+    label: "정책자료"
+    folder: "_posts/policy-materials"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "발행일", name: "date", widget: "datetime" }
+      - { label: "정책 분야", name: "policy_area", widget: "select", options: ["경제성장", "교육혁신", "국가안보", "사회복지", "과학기술", "환경보호", "외교통상"], default: "경제성장" }
+      - { label: "문서 유형", name: "document_type", widget: "select", options: ["백서", "정책안", "연구보고서", "제안서", "기타"], default: "정책안" }
+      - { label: "요약", name: "excerpt", widget: "text" }
+      - { label: "내용", name: "body", widget: "markdown" }
+      - { label: "PDF 파일", name: "pdf_file", widget: "file", required: false }
+      - { label: "파일 크기", name: "file_size", widget: "string", required: false }
+      - { label: "페이지 수", name: "page_count", widget: "number", required: false }
+
+  - name: party-constitution
+    label: "당헌당규"
+    folder: "_posts/party-constitution"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "제정/개정일", name: "date", widget: "datetime" }
+      - { label: "문서 유형", name: "document_type", widget: "select", options: ["강령", "당헌", "당규"], default: "당규" }
+      - { label: "규정 분야", name: "regulation_area", widget: "select", options: ["운영규정", "선거규정", "재정규정", "윤리규정", "조직규정", "교육규정", "기타"], required: false }
+      - { label: "요약", name: "excerpt", widget: "text" }
+      - { label: "내용", name: "body", widget: "markdown" }
+      - { label: "PDF 파일", name: "pdf_file", widget: "file" }
+      - { label: "구성 체계", name: "structure", widget: "list", field: { label: "항목", name: "item", widget: "string" }, required: false }
+
+  - name: election-materials
+    label: "선거자료"
+    folder: "_posts/election-materials"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "발행일", name: "date", widget: "datetime" }
+      - { label: "선거 종류", name: "election_type", widget: "select", options: ["대통령선거", "국회의원선거", "지방선거", "당대표선거", "기타"], default: "기타" }
+      - { label: "자료 유형", name: "material_type", widget: "select", options: ["공약집", "정책백서", "홍보물", "토론자료", "분석자료", "법정자료"], default: "공약집" }
+      - { label: "요약", name: "excerpt", widget: "text" }
+      - { label: "내용", name: "body", widget: "markdown" }
+      - { label: "첨부파일", name: "attachments", widget: "list", field: { label: "파일", name: "file", widget: "file" }, required: false }
+      - { label: "주요 공약", name: "key_promises", widget: "list", field: { label: "공약", name: "promise", widget: "string" }, required: false }
+
+  # 설정 페이지들
+  - name: pages
+    label: "페이지 관리"
+    files:
+      - label: "사이트 설정"
+        name: "site-settings"
+        file: "_data/site.yml"
+        fields:
+          - { label: "사이트 제목", name: "title", widget: "string", default: "자유와혁신" }
+          - { label: "사이트 설명", name: "description", widget: "text" }
+          - { label: "연락처", name: "contact", widget: "object", fields: [
+              { label: "전화번호", name: "phone", widget: "string" },
+              { label: "이메일", name: "email", widget: "string" },
+              { label: "주소", name: "address", widget: "text" }
+            ]}
+          - { label: "소셜 미디어", name: "social", widget: "object", fields: [
+              { label: "페이스북", name: "facebook", widget: "string", required: false },
+              { label: "트위터", name: "twitter", widget: "string", required: false },
+              { label: "유튜브", name: "youtube", widget: "string", required: false },
+              { label: "인스타그램", name: "instagram", widget: "string", required: false }
+            ]}
+
+# 편집기 설정
+editor:
+  preview: false 

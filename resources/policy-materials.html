@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정책자료 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-file-alt text-4xl mr-4"></i>
+                    <h1 class="text-4xl font-bold">정책자료</h1>
+                </div>
+                <p class="text-xl opacity-90">7대 핵심 정책과 분야별 세부 정책 자료를 확인하세요</p>
+                <nav class="mt-6 text-blue-100">
+                    <a href="../index.html" class="hover:text-white">홈</a>
+                    <span class="mx-2">/</span>
+                    <a href="../resources.html" class="hover:text-white">자료실</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-white">정책자료</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <main class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 정책 개요 -->
+            <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">자유와혁신 7대 핵심정책</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        국민과 함께 만들어가는 미래, 혁신으로 여는 새로운 대한민국을 위한 핵심 정책을 소개합니다.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">7개</div>
+                        <div class="text-gray-600">핵심 정책</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2">24개</div>
+                        <div class="text-gray-600">세부 정책</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-600 mb-2">156개</div>
+                        <div class="text-gray-600">실행 과제</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-orange-600 mb-2">2025</div>
+                        <div class="text-gray-600">목표 연도</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7대 핵심정책 -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">7대 핵심정책 분야</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 경제정책 -->
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-blue-500">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">경제성장</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">지속가능한 경제성장과 일자리 창출을 위한 정책</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">세부 정책</span>
+                                    <span class="font-medium">4개</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">다운로드</span>
+                                    <span class="font-medium">284회</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>정책자료 다운로드
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 교육정책 -->
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-green-500">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-graduation-cap text-green-600 text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">교육혁신</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">미래형 교육시스템 구축과 인재양성 방안</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">세부 정책</span>
+                                    <span class="font-medium">3개</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">다운로드</span>
+                                    <span class="font-medium">192회</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>정책자료 다운로드
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 안보정책 -->
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-red-500">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-shield-alt text-red-600 text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">국가안보</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">안전한 대한민국을 위한 종합 안보 정책</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">세부 정책</span>
+                                    <span class="font-medium">3개</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">다운로드</span>
+                                    <span class="font-medium">167회</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>정책자료 다운로드
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 사회정책 -->
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-purple-500">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-users text-purple-600 text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">사회복지</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">포용적 사회를 위한 복지 및 사회정책</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">세부 정책</span>
+                                    <span class="font-medium">4개</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">다운로드</span>
+                                    <span class="font-medium">143회</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>정책자료 다운로드
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 과학기술 -->
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-indigo-500">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-rocket text-indigo-600 text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">과학기술</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">4차 산업혁명 대응 과학기술 혁신 정책</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">세부 정책</span>
+                                    <span class="font-medium">3개</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">다운로드</span>
+                                    <span class="font-medium">128회</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>정책자료 다운로드
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 환경정책 -->
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-teal-500">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-leaf text-teal-600 text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">환경보호</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">지속가능한 환경과 기후변화 대응 정책</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">세부 정책</span>
+                                    <span class="font-medium">3개</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">다운로드</span>
+                                    <span class="font-medium">112회</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>정책자료 다운로드
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 외교정책 -->
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-yellow-500">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-globe text-yellow-600 text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-900">외교통상</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">글로벌 시대 외교 및 통상 정책 방향</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">세부 정책</span>
+                                    <span class="font-medium">4개</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">다운로드</span>
+                                    <span class="font-medium">98회</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-yellow-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>정책자료 다운로드
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 종합 정책 자료 -->
+            <div class="bg-white rounded-lg shadow-sm p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">종합 정책 자료</h3>
+                <div class="space-y-4">
+                    <!-- 핵심 백서 -->
+                    <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                        <i class="fas fa-star mr-2"></i>핵심자료
+                                    </span>
+                                    <span class="text-gray-500 text-sm">2025.01.15</span>
+                                </div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3">
+                                    자유와혁신 7대 핵심정책 백서 (통합본)
+                                </h4>
+                                <p class="text-gray-600 mb-4">
+                                    경제, 교육, 안보, 사회, 과학기술, 환경, 외교 등 7개 분야 핵심 정책을 종합한 완전판 정책 백서입니다. 
+                                    정책의 배경, 목표, 추진 전략, 기대 효과를 상세히 담고 있습니다.
+                                </p>
+                                <div class="flex items-center gap-6 text-sm text-gray-500">
+                                    <span><i class="fas fa-file-pdf mr-1"></i>PDF 형식</span>
+                                    <span><i class="fas fa-download mr-1"></i>324회 다운로드</span>
+                                    <span><i class="fas fa-weight mr-1"></i>2.4MB</span>
+                                    <span><i class="fas fa-file-text mr-1"></i>48페이지</span>
+                                </div>
+                            </div>
+                            <div class="ml-6">
+                                <button class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                    <i class="fas fa-download mr-2"></i>다운로드
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 개별 정책 -->
+                    <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                        경제정책
+                                    </span>
+                                    <span class="text-gray-500 text-sm">2025.01.12</span>
+                                </div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3">
+                                    중소기업 지원 확대 방안
+                                </h4>
+                                <p class="text-gray-600 mb-4">
+                                    중소기업의 경쟁력 강화를 위한 종합 지원 방안으로, 금융 지원, 기술 개발, 인력 양성, 
+                                    해외 진출 등 다각적인 지원 정책을 제시합니다.
+                                </p>
+                                <div class="flex items-center gap-6 text-sm text-gray-500">
+                                    <span><i class="fas fa-file-pdf mr-1"></i>PDF 형식</span>
+                                    <span><i class="fas fa-download mr-1"></i>156회 다운로드</span>
+                                    <span><i class="fas fa-weight mr-1"></i>1.2MB</span>
+                                    <span><i class="fas fa-file-text mr-1"></i>18페이지</span>
+                                </div>
+                            </div>
+                            <div class="ml-6">
+                                <button class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                                    <i class="fas fa-download mr-2"></i>다운로드
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                                        교육정책
+                                    </span>
+                                    <span class="text-gray-500 text-sm">2025.01.10</span>
+                                </div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-3">
+                                    개별맞춤형 교육시스템 구축방안
+                                </h4>
+                                <p class="text-gray-600 mb-4">
+                                    학생 개개인의 특성과 능력에 맞는 맞춤형 교육을 제공하기 위한 교육시스템 혁신 방안을 
+                                    상세히 제시합니다.
+                                </p>
+                                <div class="flex items-center gap-6 text-sm text-gray-500">
+                                    <span><i class="fas fa-file-pdf mr-1"></i>PDF 형식</span>
+                                    <span><i class="fas fa-download mr-1"></i>143회 다운로드</span>
+                                    <span><i class="fas fa-weight mr-1"></i>980KB</span>
+                                    <span><i class="fas fa-file-text mr-1"></i>15페이지</span>
+                                </div>
+                            </div>
+                            <div class="ml-6">
+                                <button class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                                    <i class="fas fa-download mr-2"></i>다운로드
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="../js/nav.js"></script>
+    <script>
+        loadNavigation();
+    </script>
+</body>
+</html> 

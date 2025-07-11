@@ -2,12 +2,17 @@
 class CMSDataLoader {
     constructor() {
         this.cache = new Map();
+        this.logManager = null;
         this.init();
     }
 
     async init() {
+        // 로그 관리자 초기화
+        this.initLogManager();
+        
         // 페이지별 YAML 파일 매핑
         this.pageDataMap = {
+            // 메인 페이지들
             '/': 'content/homepage.yml',
             '/index.html': 'content/homepage.yml',
             '/about.html': 'content/about.yml',
@@ -19,10 +24,58 @@ class CMSDataLoader {
             '/resources.html': 'content/resources.yml',
             '/support.html': 'content/support.yml',
             '/notice-1.html': 'content/notice-1.yml',
-            '/notice-2.html': 'content/notice-2.yml'
+            '/notice-2.html': 'content/notice-2.yml',
+            
+            // About 서브페이지들
+            '/about/principles.html': 'content/about/principles.yml',
+            '/about/people.html': 'content/about/people.yml',
+            '/about/organization.html': 'content/about/organization.yml',
+            '/about/location.html': 'content/about/location.yml',
+            '/about/founding.html': 'content/about/founding.yml',
+            '/about/schedule.html': 'content/about/schedule.yml',
+            
+            // Members 서브페이지들
+            '/members/join.html': 'content/members/join.yml',
+            '/members/dues.html': 'content/members/dues.yml',
+            
+            // News 서브페이지들
+            '/news/gallery.html': 'content/news/gallery.yml',
+            '/news/events.html': 'content/news/events.yml',
+            '/news/media.html': 'content/news/media.yml',
+            '/news/press.html': 'content/news/press.yml',
+            
+            // Policy 서브페이지들
+            '/policy/economy.html': 'content/policies/economy.yml',
+            '/policy/education.html': 'content/policies/education.yml',
+            '/policy/security.html': 'content/policies/security.yml',
+            
+            // Resources 서브페이지들
+            '/resources/downloads.html': 'content/resources/downloads.yml',
+            '/resources/media.html': 'content/resources/media.yml',
+            '/resources/policy.html': 'content/resources/policy.yml'
         };
 
         await this.loadCurrentPageData();
+    }
+    
+    initLogManager() {
+        try {
+            // 로그 관리자가 로드되어 있다면 연결
+            if (window.cmsLogManager) {
+                this.logManager = window.cmsLogManager;
+                console.log('✅ CMS 로그 관리자 연결됨');
+            }
+        } catch (error) {
+            console.warn('⚠️ 로그 관리자 초기화 실패:', error);
+        }
+    }
+    
+    logDataLoad(yamlFile, success = true) {
+        if (this.logManager) {
+            const action = success ? 'LOAD_SUCCESS' : 'LOAD_FAILED';
+            this.logManager.logAction(action, yamlFile, 
+                success ? 'YAML 데이터 로드 성공' : 'YAML 데이터 로드 실패');
+        }
     }
 
     async loadCurrentPageData() {
@@ -33,8 +86,10 @@ class CMSDataLoader {
             try {
                 const data = await this.loadYAMLData(yamlFile);
                 this.applyDataToPage(data);
+                this.logDataLoad(yamlFile, true);
             } catch (error) {
                 console.warn(`CMS 데이터 로드 실패: ${yamlFile}`, error);
+                this.logDataLoad(yamlFile, false);
             }
         }
     }
@@ -160,7 +215,7 @@ class CMSDataLoader {
 
         // 핵심 정책 적용 (홈페이지)
         if (data.core_policies) {
-            this.applyCoreoliciesData(data.core_policies);
+            this.applyCorePoliciesData(data.core_policies);
         }
 
         // 당원 정보 적용 (홈페이지)
@@ -231,7 +286,7 @@ class CMSDataLoader {
         }
     }
 
-    applyCoreoliciesData(policiesData) {
+    applyCorePoliciesData(policiesData) {
         if (policiesData.section_title) {
             const sectionTitle = document.querySelector('.policies-section .section-title');
             if (sectionTitle) sectionTitle.textContent = policiesData.section_title;
@@ -303,6 +358,180 @@ function openMembershipPopup() {
     const finalFeatures = windowFeatures + `,left=${left},top=${top}`;
     
     window.open(url, 'membershipPopup', finalFeatures);
+}
+
+// 후원 폼 열기 함수
+function openDonationForm() {
+    alert('후원 기능은 준비 중입니다. 문의: 02-1234-5678');
+}
+
+// 자원봉사 신청 폼 열기 함수
+function openVolunteerForm() {
+    alert('자원봉사 신청 기능은 준비 중입니다. 문의: 02-1234-5678');
+}
+
+// 지원 폼 열기 함수
+function openSupportForm() {
+    alert('지원 신청 기능은 준비 중입니다. 문의: 02-1234-5678');
+}
+
+// 이벤트 상세 정보 모달 (events.html용)
+let currentEventData = {};
+
+function openEventDetail(eventId) {
+    // 이벤트 데이터 매핑
+    const eventDetails = {
+        'urgent-1': {
+            title: '긴급 기자회견: 경제정책 발표',
+            date: '2025-01-25 (토) 14:00',
+            location: '국회 정론관',
+            description: '현재 경제 상황에 대한 자유와혁신의 입장과 대안을 발표합니다.',
+            contact: '02-1234-5671'
+        },
+        'urgent-2': {
+            title: '시민과의 대화: 청년정책 간담회',
+            date: '2025-01-28 (화) 19:00',
+            location: '강남구민회관',
+            description: '청년들의 목소리를 직접 듣고 정책에 반영하는 소통의 시간입니다.',
+            contact: '02-1234-5672'
+        },
+        'urgent-3': {
+            title: '당원 교육: 정치참여 아카데미',
+            date: '2025-01-30 (목) 18:30',
+            location: '당사 교육장',
+            description: '효과적인 정치 참여 방법과 시민 의식에 대한 교육 프로그램입니다.',
+            contact: '02-1234-5673'
+        },
+        'event-1': {
+            title: '서울 시민과의 만남',
+            date: '2025-02-01 (토) 15:00',
+            location: '서울 광화문광장',
+            description: '서울 시민들과 함께하는 정책 토론 및 의견 수렴',
+            contact: '02-1234-5671'
+        },
+        'event-2': {
+            title: '부산 지역 순회 간담회',
+            date: '2025-02-05 (수) 19:00',
+            location: '부산 시민회관',
+            description: '부산 지역 현안과 발전 방안에 대한 토론',
+            contact: '051-1234-5671'
+        },
+        'event-3': {
+            title: '대구 청년정책 포럼',
+            date: '2025-02-08 (토) 14:00',
+            location: '대구 EXCO',
+            description: '대구 지역 청년들을 위한 정책 개발 포럼',
+            contact: '053-1234-5671'
+        },
+        'event-4': {
+            title: '전국 당원 대회',
+            date: '2025-02-15 (토) 10:00',
+            location: '서울 올림픽공원',
+            description: '전국 당원들이 모이는 대규모 집회',
+            contact: '02-1234-5678'
+        }
+    };
+
+    const event = eventDetails[eventId];
+    if (!event) return;
+
+    currentEventData = event;
+
+    // 모달 내용 업데이트
+    const modal = document.getElementById('eventDetailModal');
+    if (modal) {
+        modal.querySelector('#eventDetailTitle').textContent = event.title;
+        modal.querySelector('#eventDetailDate').textContent = event.date;
+        modal.querySelector('#eventDetailLocation').textContent = event.location;
+        modal.querySelector('#eventDetailDescription').textContent = event.description;
+        modal.querySelector('#eventDetailContact').textContent = event.contact;
+        
+        // 모달 표시
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+}
+
+function closeEventDetail() {
+    const modal = document.getElementById('eventDetailModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+// 갤러리 기능 (gallery.html용)
+let currentGalleryType = 'photo';
+let currentGalleryIndex = 0;
+let galleryData = {
+    photo: [
+        { src: '../images/hero_image.png', title: '당원 모임', description: '정기 당원 모임에서 활발한 토론이 이루어지고 있습니다.' },
+        { src: '../images/hero_image.png', title: '시민 대화', description: '시민들과의 열린 대화 시간을 가졌습니다.' },
+        { src: '../images/hero_image.png', title: '정책 발표', description: '주요 정책 발표 현장입니다.' },
+        { src: '../images/hero_image.png', title: '청년 간담회', description: '청년들과의 간담회 모습입니다.' },
+        { src: '../images/hero_image.png', title: '지역 순회', description: '지역 순회 활동 중입니다.' },
+        { src: '../images/hero_image.png', title: '토론회', description: '정책 토론회에서 열띤 토론이 진행되었습니다.' }
+    ],
+    video: [
+        { src: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: '당 소개 영상', description: '자유와혁신을 소개하는 영상입니다.' },
+        { src: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: '정책 설명', description: '주요 정책에 대한 설명 영상입니다.' },
+        { src: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: '토론회 하이라이트', description: '정책 토론회의 주요 내용을 정리했습니다.' },
+        { src: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: '시민과의 대화', description: '시민들과의 대화 현장입니다.' }
+    ]
+};
+
+function openGallery(type, index) {
+    currentGalleryType = type;
+    currentGalleryIndex = index - 1; // 1-based to 0-based
+    
+    updateGalleryContent();
+    
+    const modal = document.getElementById('galleryModal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+}
+
+function closeGallery() {
+    const modal = document.getElementById('galleryModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+function prevGalleryItem() {
+    const data = galleryData[currentGalleryType];
+    currentGalleryIndex = (currentGalleryIndex - 1 + data.length) % data.length;
+    updateGalleryContent();
+}
+
+function nextGalleryItem() {
+    const data = galleryData[currentGalleryType];
+    currentGalleryIndex = (currentGalleryIndex + 1) % data.length;
+    updateGalleryContent();
+}
+
+function updateGalleryContent() {
+    const modal = document.getElementById('galleryModal');
+    if (!modal) return;
+    
+    const data = galleryData[currentGalleryType];
+    const item = data[currentGalleryIndex];
+    
+    const content = modal.querySelector('#galleryContent');
+    const title = modal.querySelector('#galleryTitle');
+    const description = modal.querySelector('#galleryDescription');
+    
+    if (currentGalleryType === 'photo') {
+        content.innerHTML = `<img src="${item.src}" alt="${item.title}" class="max-w-full max-h-full object-contain">`;
+    } else {
+        content.innerHTML = `<iframe src="${item.src}" frameborder="0" allowfullscreen class="w-full h-96"></iframe>`;
+    }
+    
+    if (title) title.textContent = item.title;
+    if (description) description.textContent = item.description;
 }
 
 // FAQ 토글 함수

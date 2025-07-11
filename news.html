@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>소식/활동</title>
+    <title>정당소식 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,206 +23,150 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="navigation-container"></div>
+    
+    <!-- Hero Section -->
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">소식/활동</h1>
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">정당소식</h1>
+            <p style="font-size:1.25rem; margin-top:1rem; opacity:0.9;">자유와혁신의 최신 소식을 확인하세요</p>
         </div>
     </section>
+
     <main style="position:relative; z-index:1; background:#fff;">
-        <!-- Recent News Section -->
+        <!-- 카테고리 개요 Section -->
         <section class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">최신 소식</h2>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">소식 카테고리</h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신의 최신 소식과 활동을 확인하세요
+                        자유와혁신의 다양한 소식을 카테고리별로 확인하세요
                     </p>
                 </div>
                 
                 <div class="grid lg:grid-cols-3 gap-8">
                     <!-- 공지사항 -->
-                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-red-100 h-48 flex items-center justify-center">
-                            <i class="fas fa-bullhorn text-red-600 text-4xl"></i>
+                    <div class="bg-red-50 border border-red-100 rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-bullhorn text-white text-2xl"></i>
                         </div>
-                        <div class="p-6">
-                            <span class="text-sm text-red-600 font-medium">공지사항</span>
-                            <h3 class="text-lg font-semibold text-gray-900 mt-2 mb-3">당 출범 공고</h3>
-                            <p class="text-gray-600 text-sm mb-4">
-                                자유와혁신이 공식 출범하며 새로운 정치의 시작을 알렸습니다
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-gray-500 text-xs">2025.01.15</span>
-                                <a href="notices.html" class="text-red-600 hover:text-red-700 text-sm font-medium">자세히 보기 →</a>
-                            </div>
-                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">공지사항</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            당의 주요 공지사항과 중요한 알림을 확인하세요
+                        </p>
+                        <a href="news/notices.html" class="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
+                            <span>바로가기</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                     
                     <!-- 보도자료 -->
-                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-blue-100 h-48 flex items-center justify-center">
-                            <i class="fas fa-microphone text-blue-600 text-4xl"></i>
+                    <div class="bg-blue-50 border border-blue-100 rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-newspaper text-white text-2xl"></i>
                         </div>
-                        <div class="p-6">
-                            <span class="text-sm text-blue-600 font-medium">보도자료</span>
-                            <h3 class="text-lg font-semibold text-gray-900 mt-2 mb-3">경제 정책 발표</h3>
-                            <p class="text-gray-600 text-sm mb-4">
-                                새로운 경제 정책 방향과 일자리 창출 계획을 발표했습니다.
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-gray-500 text-xs">2025.01.10</span>
-                                <a href="news/press.html" class="text-red-600 hover:text-red-700 text-sm font-medium">자세히 보기 →</a>
-                            </div>
-                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">보도자료</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            언론을 통해 발표한 정책과 입장을 확인하세요
+                        </p>
+                        <a href="news/press-releases.html" class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                            <span>바로가기</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                     
-                    <!-- 당활동 -->
-                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-green-100 h-48 flex items-center justify-center">
-                            <i class="fas fa-users text-green-600 text-4xl"></i>
+                    <!-- 활동소식 -->
+                    <div class="bg-green-50 border border-green-100 rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-users text-white text-2xl"></i>
                         </div>
-                        <div class="p-6">
-                            <span class="text-sm text-green-600 font-medium">당활동</span>
-                            <h3 class="text-lg font-semibold text-gray-900 mt-2 mb-3">시민 간담회 개최</h3>
-                            <p class="text-gray-600 text-sm mb-4">
-                                시민과 함께하는 정책 토론회를 개최했습니다.
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-gray-500 text-xs">2025.01.05</span>
-                                <a href="news/activities.html" class="text-red-600 hover:text-red-700 text-sm font-medium">자세히 보기 →</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 추가 섹션들 -->
-                <div class="grid lg:grid-cols-3 gap-8 mt-8">
-                    <!-- 행사안내 -->
-                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-purple-100 h-48 flex items-center justify-center">
-                            <i class="fas fa-calendar-alt text-purple-600 text-4xl"></i>
-                        </div>
-                        <div class="p-6">
-                            <span class="text-sm text-purple-600 font-medium">행사안내</span>
-                            <h3 class="text-lg font-semibold text-gray-900 mt-2 mb-3">정책 토론회</h3>
-                            <p class="text-gray-600 text-sm mb-4">
-                                시민과 함께하는 정책 토론회를 개최합니다
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-gray-500 text-xs">2025.01.20</span>
-                                <a href="news/events.html" class="text-red-600 hover:text-red-700 text-sm font-medium">자세히 보기 →</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 언론보도 -->
-                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-orange-100 h-48 flex items-center justify-center">
-                            <i class="fas fa-newspaper text-orange-600 text-4xl"></i>
-                        </div>
-                        <div class="p-6">
-                            <span class="text-sm text-orange-600 font-medium">언론보도</span>
-                            <h3 class="text-lg font-semibold text-gray-900 mt-2 mb-3">언론 인터뷰</h3>
-                            <p class="text-gray-600 text-sm mb-4">
-                                주요 언론사의 인터뷰 및 보도 내용을 확인하세요
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-gray-500 text-xs">2025.01.08</span>
-                                <a href="news/media.html" class="text-red-600 hover:text-red-700 text-sm font-medium">자세히 보기 →</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 사진영상 -->
-                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-pink-100 h-48 flex items-center justify-center">
-                            <i class="fas fa-camera text-pink-600 text-4xl"></i>
-                        </div>
-                        <div class="p-6">
-                            <span class="text-sm text-pink-600 font-medium">사진 & 영상</span>
-                            <h3 class="text-lg font-semibold text-gray-900 mt-2 mb-3">활동 갤러리</h3>
-                            <p class="text-gray-600 text-sm mb-4">
-                                다양한 활동 사진과 영상을 확인하세요
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-gray-500 text-xs">2025.01.03</span>
-                                <a href="news/gallery.html" class="text-red-600 hover:text-red-700 text-sm font-medium">자세히 보기 →</a>
-                            </div>
-                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">활동소식</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            현장 활동과 당원들의 다양한 활동을 확인하세요
+                        </p>
+                        <a href="news/activities.html" class="inline-flex items-center justify-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors">
+                            <span>바로가기</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Activities Section -->
+        <!-- 최신 소식 Section -->
         <section class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">주요 활동</h2>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">최신 소식</h2>
                     <p class="text-xl text-gray-600">
-                        자유와혁신의 주요 활동들을 확인하세요
+                        가장 최근 업데이트된 소식들을 확인하세요
                     </p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">정책 연구</h3>
-                        <p class="text-gray-600 mb-4">
-                            전문가들과 함께 현 시대가 요구하는 정책 연구를 진행하고 있습니다.
-                        </p>
-                        <ul class="text-gray-700 space-y-2">
-                            <li>• 경제 정책 연구팀 운영</li>
-                            <li>• 사회 정책 연구팀 운영</li>
-                            <li>• 교육 혁신 연구팀 운영</li>
-                        </ul>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 최신 공지사항 -->
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="bg-gradient-to-r from-red-500 to-red-600 h-2"></div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between mb-3">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                                    <i class="fas fa-bullhorn mr-2"></i>공지사항
+                                </span>
+                                <span class="text-gray-500 text-sm">2025.01.20</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">당대표 신년사 발표</h3>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                2025년 새해를 맞아 당대표의 신년사와 올해 주요 계획을 발표합니다.
+                            </p>
+                            <a href="news/notices.html" class="text-red-600 hover:text-red-700 font-medium text-sm">자세히 보기 →</a>
+                        </div>
                     </div>
                     
-                    <div class="bg-white p-8 rounded-lg shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">지역 활동</h3>
-                        <p class="text-gray-600 mb-4">
-                            전국 각지에서 시민과 만나 의견을 수렴하고 있습니다.
-                        </p>
-                        <ul class="text-gray-700 space-y-2">
-                            <li>• 지역별 간담회 개최</li>
-                            <li>• 직능단체 간담회</li>
-                            <li>• 청년들과의 토론회</li>
-                        </ul>
+                    <!-- 최신 보도자료 -->
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2"></div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between mb-3">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                    <i class="fas fa-newspaper mr-2"></i>보도자료
+                                </span>
+                                <span class="text-gray-500 text-sm">2025.01.19</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">청년 정책 발표</h3>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                청년층을 위한 종합적인 정책 패키지를 발표했습니다.
+                            </p>
+                            <a href="news/press-releases.html" class="text-blue-600 hover:text-blue-700 font-medium text-sm">자세히 보기 →</a>
+                        </div>
                     </div>
                     
-                    <div class="bg-white p-8 rounded-lg shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">대외 활동</h3>
-                        <p class="text-gray-600 mb-4">
-                            언론을 통해 정책 방향과 활동 내용을 알리고 있습니다.
-                        </p>
-                        <ul class="text-gray-700 space-y-2">
-                            <li>• 언론 인터뷰 참여</li>
-                            <li>• 정책 발표 기자회견</li>
-                            <li>• 토론 프로그램 출연</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-white p-8 rounded-lg shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">온라인 소통</h3>
-                        <p class="text-gray-600 mb-4">
-                            디지털 플랫폼을 통해 시민들과 소통하고 있습니다.
-                        </p>
-                        <ul class="text-gray-700 space-y-2">
-                            <li>• SNS 정책 홍보</li>
-                            <li>• 온라인 시민 의견 수렴</li>
-                            <li>• 라이브 정책 설명회</li>
-                        </ul>
+                    <!-- 최신 활동소식 -->
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 h-2"></div>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between mb-3">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                    <i class="fas fa-users mr-2"></i>활동소식
+                                </span>
+                                <span class="text-gray-500 text-sm">2025.01.18</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">시민과의 대화</h3>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                지역 시민들과의 정책 간담회를 개최했습니다.
+                            </p>
+                            <a href="news/activities.html" class="text-green-600 hover:text-green-700 font-medium text-sm">자세히 보기 →</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
     
-    <script src="nav.js"></script>
+    <script src="js/nav.js"></script>
     <script>
         loadNavigation();
     </script>

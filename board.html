@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소식 및 자료실 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <section class="hero-section" style="position:relative; height:40vh; display:flex; align-items:center; justify-content:center; background:url('images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">소식 및 자료실</h1>
+            <p style="font-size:1.2rem; margin-top:1rem; text-shadow:1px 1px 2px rgba(0,0,0,0.5);">자유와혁신의 모든 소식과 자료를 한눈에</p>
+        </div>
+    </section>
+
+    <main class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 게시판 카테고리 탭 -->
+            <div class="bg-white rounded-lg shadow-sm mb-8 overflow-hidden">
+                <div class="border-b border-gray-200">
+                    <nav class="flex space-x-8 px-6" aria-label="Tabs">
+                        <button onclick="switchBoard('all')" id="tab-all" class="board-tab active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                            전체
+                        </button>
+                        <button onclick="switchBoard('notice')" id="tab-notice" class="board-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                            <i class="fas fa-bullhorn mr-2"></i>공지사항
+                        </button>
+                        <button onclick="switchBoard('news')" id="tab-news" class="board-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                            <i class="fas fa-newspaper mr-2"></i>당 소식
+                        </button>
+                        <button onclick="switchBoard('press')" id="tab-press" class="board-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                            <i class="fas fa-microphone mr-2"></i>보도자료
+                        </button>
+                        <button onclick="switchBoard('resources')" id="tab-resources" class="board-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                            <i class="fas fa-folder mr-2"></i>자료실
+                        </button>
+                        <button onclick="switchBoard('gallery')" id="tab-gallery" class="board-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                            <i class="fas fa-images mr-2"></i>사진갤러리
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- 검색 및 정렬 영역 -->
+                <div class="p-6 bg-gray-50 border-b">
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-sm text-gray-600">전체 <strong id="total-count">47</strong>건</span>
+                            <select class="text-sm border border-gray-300 rounded px-3 py-1">
+                                <option>최신순</option>
+                                <option>조회순</option>
+                                <option>댓글순</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <select class="text-sm border border-gray-300 rounded px-3 py-1">
+                                <option>제목+내용</option>
+                                <option>제목</option>
+                                <option>작성자</option>
+                            </select>
+                            <input type="text" placeholder="검색어를 입력하세요" class="text-sm border border-gray-300 rounded px-3 py-2 w-64">
+                            <button class="bg-red-600 text-white px-4 py-2 rounded text-sm hover:bg-red-700">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 게시판 목록 -->
+                <div id="board-content" class="divide-y divide-gray-200">
+                    <!-- 공지사항 (상단 고정) -->
+                    <div class="bg-red-50 border-l-4 border-red-600">
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4 flex-1">
+                                <span class="bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">공지</span>
+                                <div class="flex-1">
+                                    <a href="board/view.html?id=1" class="text-lg font-semibold text-gray-900 hover:text-red-600">
+                                        자유와혁신 공식 출범 및 당원 모집 안내
+                                    </a>
+                                    <div class="text-sm text-gray-600 mt-1">
+                                        당 대표 | 2025.01.15 | 조회 1,247
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right text-sm text-gray-500">
+                                <i class="fas fa-thumbtack text-red-600"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 일반 게시글 -->
+                    <div class="hover:bg-gray-50">
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4 flex-1">
+                                <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs">정책</span>
+                                <div class="flex-1">
+                                    <a href="board/view.html?id=2" class="text-lg font-medium text-gray-900 hover:text-red-600">
+                                        10대 핵심 정책 상세 발표
+                                    </a>
+                                    <div class="text-sm text-gray-600 mt-1">
+                                        정책연구소 | 2025.01.19 | 조회 523
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right text-sm text-gray-500">
+                                <span class="bg-red-100 text-red-600 px-2 py-1 rounded-full text-xs">New</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hover:bg-gray-50">
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4 flex-1">
+                                <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-xs">활동</span>
+                                <div class="flex-1">
+                                    <a href="board/view.html?id=3" class="text-lg font-medium text-gray-900 hover:text-red-600">
+                                        전국 청년 당원 간담회 개최 결과
+                                    </a>
+                                    <div class="text-sm text-gray-600 mt-1">
+                                        청년위원회 | 2025.01.18 | 조회 892
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right text-sm text-gray-500">
+                                <i class="fas fa-comment mr-1"></i>12
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hover:bg-gray-50">
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4 flex-1">
+                                <span class="bg-purple-100 text-purple-600 px-2 py-1 rounded text-xs">보도</span>
+                                <div class="flex-1">
+                                    <a href="board/view.html?id=4" class="text-lg font-medium text-gray-900 hover:text-red-600">
+                                        [보도자료] 부정선거 척결을 위한 선거법 개정안 발의
+                                    </a>
+                                    <div class="text-sm text-gray-600 mt-1">
+                                        대변인실 | 2025.01.17 | 조회 1,156
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right text-sm text-gray-500">
+                                <i class="fas fa-file-pdf text-red-600 mr-1"></i>첨부
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hover:bg-gray-50">
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4 flex-1">
+                                <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs">자료</span>
+                                <div class="flex-1">
+                                    <a href="board/view.html?id=5" class="text-lg font-medium text-gray-900 hover:text-red-600">
+                                        2025년 경제정책 백서 (PDF 다운로드)
+                                    </a>
+                                    <div class="text-sm text-gray-600 mt-1">
+                                        정책연구소 | 2025.01.16 | 조회 678 | 다운로드 234
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right text-sm text-gray-500">
+                                <i class="fas fa-download text-blue-600"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 더 많은 게시글들... -->
+                    <div class="hover:bg-gray-50">
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-4 flex-1">
+                                <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">일반</span>
+                                <div class="flex-1">
+                                    <a href="board/view.html?id=6" class="text-lg font-medium text-gray-900 hover:text-red-600">
+                                        지역별 당원 모임 안내 및 일정
+                                    </a>
+                                    <div class="text-sm text-gray-600 mt-1">
+                                        조직위원회 | 2025.01.15 | 조회 445
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right text-sm text-gray-500">
+                                <i class="fas fa-comment mr-1"></i>7
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 페이지네이션 -->
+                <div class="p-6 border-t bg-white">
+                    <nav class="flex items-center justify-center space-x-2">
+                        <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="px-3 py-2 text-sm bg-red-600 text-white rounded">1</button>
+                        <button class="px-3 py-2 text-sm text-gray-700 hover:text-red-600">2</button>
+                        <button class="px-3 py-2 text-sm text-gray-700 hover:text-red-600">3</button>
+                        <button class="px-3 py-2 text-sm text-gray-700 hover:text-red-600">4</button>
+                        <button class="px-3 py-2 text-sm text-gray-700 hover:text-red-600">5</button>
+                        <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- 글쓰기 버튼 (관리자용) -->
+            <div class="text-right">
+                <button onclick="alert('관리자 로그인이 필요합니다.')" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors">
+                    <i class="fas fa-pen mr-2"></i>글쓰기
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="nav.js"></script>
+    <script>
+        if (typeof loadNavigation === 'function') loadNavigation();
+
+        // 게시판 탭 스위칭
+        function switchBoard(category) {
+            // 모든 탭에서 active 클래스 제거
+            document.querySelectorAll('.board-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 클릭된 탭에 active 클래스 추가
+            document.getElementById(`tab-${category}`).classList.add('active');
+            
+            // 실제로는 AJAX로 게시글을 로드하겠지만, 지금은 알림으로 대체
+            if (category !== 'all') {
+                alert(`${category} 카테고리로 필터링됩니다. (실제 구현 예정)`);
+            }
+        }
+
+        // CSS 스타일 추가
+        const style = document.createElement('style');
+        style.textContent = `
+            .board-tab {
+                border-color: transparent;
+                color: rgb(107, 114, 128);
+            }
+            .board-tab:hover {
+                color: rgb(55, 65, 81);
+                border-color: rgb(209, 213, 219);
+            }
+            .board-tab.active {
+                color: #A50034;
+                border-color: #A50034;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html> 

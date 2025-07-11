@@ -149,11 +149,11 @@ section.py-24 {
     margin: 0 !important;
 }
 
-/* Main page hero section */
+/* Default hero section for all pages */
 .hero-section {
-    height: 100vh;
-    min-height: 100vh;
-    max-height: 100vh;
+    height: 60vh;
+    min-height: 60vh;
+    max-height: 60vh;
     display: flex;
     align-items: center;
     margin: 0;
@@ -162,11 +162,11 @@ section.py-24 {
     overflow: hidden;
 }
 
-/* Menu pages hero section - smaller height */
-.hero-section[style*="height:60vh"] {
-    height: 60vh !important;
-    min-height: 60vh !important;
-    max-height: 60vh !important;
+/* Main page hero section - full height */
+#home.hero-section {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
 }
 
 /* Custom Scrollbar */
@@ -266,16 +266,16 @@ nav a::after {
 
 /* Enhanced Mobile Styles */
 @media (max-width: 640px) {
-    /* Hero Section - Main page */
+    /* Hero Section - Default for all pages */
     .hero-section {
-        height: 100vh;
-        min-height: 600px;
+        height: 60vh;
+        min-height: 60vh;
     }
     
-    /* Hero Section - Menu pages */
-    .hero-section[style*="height:60vh"] {
-        height: 60vh !important;
-        min-height: 60vh !important;
+    /* Hero Section - Main page only */
+    #home.hero-section {
+        height: 100vh !important;
+        min-height: 600px !important;
     }
     
     .hero-section h1 {
@@ -350,13 +350,14 @@ nav a::after {
 
 /* Ultra-wide screen styles */
 @media (min-width: 1920px) {
-    .hero-section {
-        height: 90vh;
+    /* Main page hero on ultra-wide */
+    #home.hero-section {
+        height: 90vh !important;
     }
     
-    /* Menu pages on ultra-wide */
-    .hero-section[style*="height:60vh"] {
-        height: 60vh !important;
+    /* Menu pages stay 60vh on ultra-wide */
+    .hero-section {
+        height: 60vh;
     }
     
     .max-w-7xl {

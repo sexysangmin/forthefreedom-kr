@@ -1,0 +1,84 @@
+# 자유와혁신 다운로드 센터 페이지 CMS 데이터
+
+meta:
+  title: "다운로드 - 자유와혁신"
+  description: "자유와혁신의 각종 자료를 다운로드하세요."
+  keywords: "자유와혁신, 다운로드, 자료실, 정책자료, 보도자료"
+
+hero:
+  title: "다운로드 센터"
+  subtitle: "필요한 자료를 쉽고 빠르게"
+  background_image: "../images/hero_image.png"
+
+categories:
+  - name: "정책자료"
+    count: 45
+    icon: "fas fa-file-alt"
+    description: "당의 주요 정책 문서"
+    
+  - name: "보도자료"
+    count: 89
+    icon: "fas fa-newspaper"
+    description: "공식 보도자료 및 성명서"
+    
+  - name: "홍보자료"
+    count: 67
+    icon: "fas fa-images"
+    description: "로고, 포스터, 브로셔 등"
+    
+  - name: "교육자료"
+    count: 34
+    icon: "fas fa-graduation-cap"
+    description: "정치교육 및 연수 자료"
+
+recent_files:
+  title: "최근 업로드"
+  files:
+    - title: "2025년 7대 핵심정책 백서"
+      date: "2025-01-20"
+      category: "정책자료"
+      size: "15.2MB"
+      format: "PDF"
+      downloads: 1248
+      
+    - title: "청년 일자리 정책 발표자료"
+      date: "2025-01-18"
+      category: "정책자료"
+      size: "8.7MB"
+      format: "PDF"
+      downloads: 892
+      
+    - title: "당 로고 및 CI 가이드"
+      date: "2025-01-15"
+      category: "홍보자료"
+      size: "25.4MB"
+      format: "ZIP"
+      downloads: 567
+
+popular_downloads:
+  title: "인기 다운로드"
+  files:
+    - title: "자유와혁신 강령집"
+      downloads: 5624
+      category: "정책자료"
+      
+    - title: "당원 가입 안내서"
+      downloads: 3789
+      category: "교육자료"
+      
+    - title: "당 홍보 포스터 세트"
+      downloads: 2956
+      category: "홍보자료"
+
+usage_terms:
+  title: "이용 약관"
+  terms:
+    - "자료는 비상업적 목적으로만 사용 가능"
+    - "출처 표기 필수 (자유와혁신 제공)"
+    - "무단 변형 및 편집 금지"
+    - "저작권법 준수"
+
+contact:
+  title: "자료 문의"
+  phone: "02-1234-5678"
+  email: "info@자유와혁신.kr" 

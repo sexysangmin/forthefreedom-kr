@@ -1,0 +1,49 @@
+# 자유와혁신 보도자료 페이지 CMS 데이터
+
+meta:
+  title: "보도자료 - 자유와혁신"
+  description: "자유와혁신의 공식 보도자료를 확인하세요."
+  keywords: "자유와혁신, 보도자료, 보도, 언론, 발표"
+
+hero:
+  title: "보도자료"
+  subtitle: "공식 발표 자료실"
+  background_image: "../images/hero_image.png"
+
+section:
+  title: "보도자료 및 성명서"
+  description: "자유와혁신의 공식 보도자료와 성명서를 확인하세요."
+
+press_releases:
+  - title: "자유와혁신 공식 출범, 새로운 정치의 시작"
+    date: "2024.01.15"
+    category: "보도자료"
+    category_style: "bg-red-100 text-red-600"
+    summary: "자유와혁신이 공식 출범하며 대한민국 정치에 새로운 바람을 불어넣겠다고 선언했습니다. 당은 \"자유로운 사회, 혁신적인 미래\"를 비전으로 내세우며 국민과 함께하는 정치를 추진하겠다고 밝혔습니다."
+    author: "당 대표"
+    link: "javascript:void(0)"
+    link_action: "alert('준비 중입니다')"
+  
+  - title: "7대 핵심 정책 발표 - 경제 성장과 사회 통합"
+    date: "2024.01.10"
+    category: "정책발표"
+    category_style: "bg-red-100 text-red-600"
+    summary: "자유와혁신이 경제 성장, 교육 혁신, 사회 안전망 강화 등을 포함한 7대 핵심 정책을 발표했습니다. 특히 미래 일자리 생태계 구축과 4차 산업혁명 대응에 중점을 두겠다고 밝혔습니다."
+    author: "정책위원장"
+    link: "javascript:void(0)"
+    link_action: "alert('준비 중입니다')"
+  
+  - title: "국정 현안에 대한 우리의 입장 성명"
+    date: "2024.01.05"
+    category: "성명서"
+    category_style: "bg-gray-100 text-gray-700"
+    summary: "현재 국정 현안에 대해 자유와혁신의 공식 입장을 성명합니다. 당은 국민의 목소리에 귀 기울이며 합리적이고 건설적인 대안을 제시하겠습니다."
+    author: "대변인"
+    link: "javascript:void(0)"
+    link_action: "alert('준비 중입니다')"
+
+contact:
+  title: "보도자료 문의"
+  phone: "02-1234-5673"
+  email: "press@자유와혁신.kr"
+  hours: "평일 09:00-18:00" 

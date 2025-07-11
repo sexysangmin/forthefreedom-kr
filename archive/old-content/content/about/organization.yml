@@ -1,0 +1,147 @@
+# 자유와혁신 조직구성 페이지 CMS 데이터
+# about/organization.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "조직구성 - 자유와혁신"
+  description: "자유와혁신의 조직구성과 주요 기구를 소개합니다. 체계적이고 민주적인 조직 운영을 통해 효율적인 정당 활동을 추진합니다."
+  keywords: "자유와혁신, 조직구성, 당 조직, 기구, 위원회, 지역조직"
+
+# 히어로 섹션
+hero:
+  title: "조직구성"
+  background_image: "../images/hero_image.png"
+
+# 조직도 섹션
+organization_chart:
+  title: "조직도"
+  description: "자유와혁신의 체계적인 조직 구성을 소개합니다"
+  
+  # 당 대표
+  leadership:
+    title: "당 대표"
+    name: "김○○"
+    role: "자유와혁신 당 대표"
+    image: "/images/leadership/representative.jpg"
+    placeholder: true
+  
+  # 주요 기구
+  main_bodies:
+    - name: "중앙위원회"
+      description: "당의 최고 의결기구"
+      members: 50
+      role: "주요 정책 결정 및 당무 총괄"
+    
+    - name: "정책위원회"
+      description: "정책 연구 및 개발"
+      members: 20
+      role: "7대 핵심정책 수립 및 정책 연구"
+    
+    - name: "선거대책위원회"
+      description: "선거 전략 수립 및 실행"
+      members: 15
+      role: "선거 기획 및 후보자 관리"
+
+# 부서별 조직
+departments:
+  title: "부서별 조직"
+  
+  departments_list:
+    - name: "정책기획부"
+      head: "이○○ 부위원장"
+      divisions:
+        - name: "정책연구실"
+          role: "정책 연구 및 분석"
+        - name: "공약개발실"
+          role: "선거 공약 개발"
+        - name: "입법기획실"
+          role: "법안 연구 및 입법 지원"
+    
+    - name: "조직운영부"
+      head: "박○○ 부위원장"
+      divisions:
+        - name: "당원관리실"
+          role: "당원 모집 및 관리"
+        - name: "지역조직실"
+          role: "지역 조직 운영 지원"
+        - name: "교육연수실"
+          role: "당원 교육 프로그램 운영"
+    
+    - name: "홍보소통부"
+      head: "최○○ 부위원장"
+      divisions:
+        - name: "미디어실"
+          role: "언론 대응 및 홍보"
+        - name: "온라인실"
+          role: "SNS 및 디지털 소통"
+        - name: "대변인실"
+          role: "공식 입장 발표"
+
+# 지역 조직
+regional_organization:
+  title: "지역 조직"
+  description: "전국 각지의 체계적인 조직망을 통해 국민과 소통합니다"
+  
+  levels:
+    - level: "시도당"
+      count: 17
+      description: "광역 단위 조직"
+      role: "지역 정책 개발 및 당무 총괄"
+    
+    - level: "구시군당"
+      count: 228
+      description: "기초 단위 조직"
+      role: "지역 현안 대응 및 당원 관리"
+    
+    - level: "읍면동당"
+      count: 450
+      description: "최일선 조직"
+      role: "주민 접촉 및 지역 활동"
+
+# 특별위원회
+special_committees:
+  title: "특별위원회"
+  description: "특정 분야의 전문성을 바탕으로 활동하는 위원회들입니다"
+  
+  committees:
+    - name: "청년위원회"
+      purpose: "청년 정책 개발 및 청년층 참여 확대"
+      chair: "김○○ 위원장"
+      members: 25
+    
+    - name: "여성위원회"
+      purpose: "여성 정책 개발 및 성평등 실현"
+      chair: "이○○ 위원장"
+      members: 20
+    
+    - name: "미래기술위원회"
+      purpose: "4차 산업혁명 대응 정책 연구"
+      chair: "박○○ 위원장"
+      members: 15
+    
+    - name: "중소기업위원회"
+      purpose: "중소기업 지원 정책 개발"
+      chair: "최○○ 위원장"
+      members: 18
+
+# 운영 원칙
+operating_principles:
+  title: "운영 원칙"
+  description: "민주적이고 투명한 조직 운영을 위한 기본 원칙입니다"
+  
+  principles:
+    - title: "민주적 의사결정"
+      description: "모든 주요 사안은 민주적 절차를 통해 결정"
+      icon: "fas fa-vote-yea"
+    
+    - title: "투명한 운영"
+      description: "조직 운영과 재정 사용의 투명성 보장"
+      icon: "fas fa-eye"
+    
+    - title: "전문성 강화"
+      description: "각 분야별 전문가 참여를 통한 전문성 확보"
+      icon: "fas fa-graduation-cap"
+    
+    - title: "효율적 소통"
+      description: "상하좌우 원활한 소통 체계 구축"
+      icon: "fas fa-comments" 

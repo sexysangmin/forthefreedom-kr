@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그 뷰어 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center">
+                        <img src="../images/logo.png" alt="자유와혁신 로고" class="h-10 w-auto mr-3">
+                        <span class="text-xl font-semibold text-gray-900">로그 뷰어</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="refreshLogs()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-sync-alt mr-2"></i>새로고침
+                    </button>
+                    <button onclick="clearCurrentLogs()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                        <i class="fas fa-trash mr-2"></i>로그 삭제
+                    </button>
+                    <a href="archive-manager.html" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-archive mr-2"></i>아카이브 관리
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- 로그 통계 -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-6">실시간 로그 모니터링</h1>
+            <div id="log-stats" class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <div class="text-2xl font-bold text-blue-600" id="total-logs">0</div>
+                    <div class="text-sm text-gray-600">총 로그 수</div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <div class="text-2xl font-bold text-green-600" id="page-views">0</div>
+                    <div class="text-sm text-gray-600">페이지 조회</div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <div class="text-2xl font-bold text-purple-600" id="file-uploads">0</div>
+                    <div class="text-sm text-gray-600">파일 업로드</div>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-lg">
+                    <div class="text-2xl font-bold text-orange-600" id="user-actions">0</div>
+                    <div class="text-sm text-gray-600">사용자 액션</div>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg">
+                    <div class="text-2xl font-bold text-red-600" id="session-time">0분</div>
+                    <div class="text-sm text-gray-600">세션 시간</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 필터 및 검색 -->
+        <div class="mb-6">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">로그 필터</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="log-type-filter" class="block text-sm font-medium text-gray-700 mb-2">로그 유형</label>
+                        <select id="log-type-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="">전체</option>
+                            <option value="page_view">페이지 조회</option>
+                            <option value="link_click">링크 클릭</option>
+                            <option value="button_click">버튼 클릭</option>
+                            <option value="form_submit">폼 제출</option>
+                            <option value="file_upload">파일 업로드</option>
+                            <option value="page_unload">페이지 종료</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="time-filter" class="block text-sm font-medium text-gray-700 mb-2">시간 필터</label>
+                        <select id="time-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="">전체</option>
+                            <option value="1hour">최근 1시간</option>
+                            <option value="1day">최근 1일</option>
+                            <option value="1week">최근 1주</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="search-logs" class="block text-sm font-medium text-gray-700 mb-2">검색</label>
+                        <input type="text" id="search-logs" placeholder="페이지, 액션 등..." 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">&nbsp;</label>
+                        <button onclick="applyFilters()" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            필터 적용
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 실시간 로그 -->
+        <div class="bg-white rounded-lg shadow-sm">
+            <div class="flex items-center justify-between p-6 border-b">
+                <h2 class="text-xl font-semibold text-gray-900">실시간 로그</h2>
+                <div class="flex items-center space-x-3">
+                    <div class="flex items-center">
+                        <div class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                        <span class="text-sm text-gray-600">실시간 모니터링</span>
+                    </div>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="auto-scroll" checked class="form-checkbox">
+                        <span class="ml-2 text-sm text-gray-600">자동 스크롤</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div id="log-container" class="h-96 overflow-y-auto p-4 bg-gray-900 text-green-400 font-mono text-sm">
+                <!-- 로그 엔트리들이 여기에 동적으로 추가됩니다 -->
+                <div class="text-center text-gray-500 py-8">
+                    로그를 불러오는 중...
+                </div>
+            </div>
+        </div>
+
+        <!-- 로그 세부 정보 모달 (숨겨진 상태) -->
+        <div id="log-detail-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-96 overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900">로그 상세 정보</h3>
+                        <button onclick="closeLogDetail()" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div id="log-detail-content" class="space-y-3">
+                        <!-- 상세 정보가 여기에 표시됩니다 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 하단 도구 -->
+        <div class="mt-8 flex flex-wrap gap-4">
+            <button onclick="exportLogs()" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                <i class="fas fa-file-export mr-2"></i>로그 내보내기
+            </button>
+            <button onclick="downloadLogReport()" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <i class="fas fa-chart-bar mr-2"></i>분석 보고서 생성
+            </button>
+            <button onclick="toggleRealtime()" id="realtime-toggle" class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                <i class="fas fa-pause mr-2"></i>실시간 모니터링 일시정지
+            </button>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="../js/log-manager.js"></script>
+    <script>
+        let filteredLogs = [];
+        let realtimeEnabled = true;
+        let updateInterval;
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeLogViewer();
+            startRealtimeUpdates();
+        });
+
+        function initializeLogViewer() {
+            loadAndDisplayLogs();
+            updateLogStats();
+        }
+
+        function loadAndDisplayLogs() {
+            // 로컬 스토리지에서 로그 불러오기
+            const pendingLogs = JSON.parse(localStorage.getItem('pending_logs') || '[]');
+            const sessionLogs = window.logManager ? window.logManager.logs : [];
+            
+            const allLogs = [...sessionLogs, ...pendingLogs];
+            filteredLogs = allLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            displayLogs(filteredLogs);
+            updateLogStats();
+        }
+
+        function displayLogs(logs) {
+            const container = document.getElementById('log-container');
+            if (!container) return;
+
+            if (logs.length === 0) {
+                container.innerHTML = '<div class="text-center text-gray-500 py-8">표시할 로그가 없습니다.</div>';
+                return;
+            }
+
+            const logEntries = logs.map(log => {
+                const time = new Date(log.timestamp).toLocaleTimeString();
+                const type = getLogTypeIcon(log.type);
+                const color = getLogTypeColor(log.type);
+                
+                return `
+                    <div class="log-entry hover:bg-gray-800 p-2 rounded cursor-pointer transition-colors" onclick="showLogDetail('${log.sessionId}_${log.timestamp}')">
+                        <span class="text-gray-400">[${time}]</span>
+                        <span class="${color}">${type}</span>
+                        <span class="text-white">${formatLogMessage(log)}</span>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = logEntries;
+
+            // 자동 스크롤이 활성화되어 있으면 맨 아래로 스크롤
+            if (document.getElementById('auto-scroll').checked) {
+                container.scrollTop = container.scrollHeight;
+            }
+        }
+
+        function getLogTypeIcon(type) {
+            const icons = {
+                'page_view': '📄',
+                'link_click': '🔗',
+                'button_click': '🔘',
+                'form_submit': '📝',
+                'file_upload': '📁',
+                'page_unload': '🚪'
+            };
+            return icons[type] || '📋';
+        }
+
+        function getLogTypeColor(type) {
+            const colors = {
+                'page_view': 'text-blue-400',
+                'link_click': 'text-green-400',
+                'button_click': 'text-yellow-400',
+                'form_submit': 'text-purple-400',
+                'file_upload': 'text-orange-400',
+                'page_unload': 'text-red-400'
+            };
+            return colors[type] || 'text-gray-400';
+        }
+
+        function formatLogMessage(log) {
+            switch (log.type) {
+                case 'page_view':
+                    return `페이지 조회: ${log.page}`;
+                case 'link_click':
+                    return `링크 클릭: ${log.text || log.link}`;
+                case 'button_click':
+                    return `버튼 클릭: ${log.buttonText}`;
+                case 'form_submit':
+                    return `폼 제출: ${log.formId}`;
+                case 'file_upload':
+                    return `파일 업로드: ${log.fileName} (${formatFileSize(log.fileSize)})`;
+                case 'page_unload':
+                    return `페이지 종료: ${log.page} (${Math.round(log.timeSpent / 1000)}초 체류)`;
+                default:
+                    return `${log.type}: ${JSON.stringify(log)}`;
+            }
+        }
+
+        function formatFileSize(bytes) {
+            if (!bytes) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function updateLogStats() {
+            if (!window.logManager) return;
+
+            const stats = window.logManager.getSessionStats();
+            
+            document.getElementById('total-logs').textContent = stats.totalLogs;
+            document.getElementById('page-views').textContent = stats.pageViews;
+            document.getElementById('file-uploads').textContent = stats.fileUploads;
+            document.getElementById('user-actions').textContent = stats.linkClicks + stats.buttonClicks;
+            
+            const sessionMinutes = Math.round((Date.now() - stats.startTime.getTime()) / 60000);
+            document.getElementById('session-time').textContent = `${sessionMinutes}분`;
+        }
+
+        function applyFilters() {
+            const typeFilter = document.getElementById('log-type-filter').value;
+            const timeFilter = document.getElementById('time-filter').value;
+            const searchTerm = document.getElementById('search-logs').value.toLowerCase();
+
+            let filtered = [...filteredLogs];
+
+            // 타입 필터
+            if (typeFilter) {
+                filtered = filtered.filter(log => log.type === typeFilter);
+            }
+
+            // 시간 필터
+            if (timeFilter) {
+                const now = Date.now();
+                const timeLimit = {
+                    '1hour': 60 * 60 * 1000,
+                    '1day': 24 * 60 * 60 * 1000,
+                    '1week': 7 * 24 * 60 * 60 * 1000
+                }[timeFilter];
+
+                if (timeLimit) {
+                    filtered = filtered.filter(log => 
+                        now - new Date(log.timestamp).getTime() <= timeLimit
+                    );
+                }
+            }
+
+            // 검색 필터
+            if (searchTerm) {
+                filtered = filtered.filter(log => 
+                    formatLogMessage(log).toLowerCase().includes(searchTerm) ||
+                    log.page?.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            displayLogs(filtered);
+        }
+
+        function showLogDetail(logId) {
+            // 로그 상세 정보 표시 (구현 필요)
+            const modal = document.getElementById('log-detail-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLogDetail() {
+            const modal = document.getElementById('log-detail-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function refreshLogs() {
+            loadAndDisplayLogs();
+        }
+
+        function clearCurrentLogs() {
+            if (confirm('현재 세션의 모든 로그를 삭제하시겠습니까?')) {
+                if (window.clearLogs) {
+                    window.clearLogs();
+                    loadAndDisplayLogs();
+                }
+            }
+        }
+
+        function exportLogs() {
+            if (window.downloadLogs) {
+                window.downloadLogs();
+            }
+        }
+
+        function downloadLogReport() {
+            const stats = window.logManager ? window.logManager.getSessionStats() : {};
+            const report = {
+                generatedAt: new Date().toISOString(),
+                sessionStats: stats,
+                totalLogs: filteredLogs.length,
+                logsByType: {},
+                topPages: {},
+                summary: '세션 활동 요약 보고서'
+            };
+
+            // 로그 유형별 통계
+            filteredLogs.forEach(log => {
+                report.logsByType[log.type] = (report.logsByType[log.type] || 0) + 1;
+                if (log.page) {
+                    report.topPages[log.page] = (report.topPages[log.page] || 0) + 1;
+                }
+            });
+
+            const content = JSON.stringify(report, null, 2);
+            const fileName = `log_report_${new Date().toISOString().split('T')[0]}.json`;
+            
+            const blob = new Blob([content], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function toggleRealtime() {
+            realtimeEnabled = !realtimeEnabled;
+            const button = document.getElementById('realtime-toggle');
+            
+            if (realtimeEnabled) {
+                button.innerHTML = '<i class="fas fa-pause mr-2"></i>실시간 모니터링 일시정지';
+                startRealtimeUpdates();
+            } else {
+                button.innerHTML = '<i class="fas fa-play mr-2"></i>실시간 모니터링 시작';
+                stopRealtimeUpdates();
+            }
+        }
+
+        function startRealtimeUpdates() {
+            if (updateInterval) clearInterval(updateInterval);
+            updateInterval = setInterval(() => {
+                if (realtimeEnabled) {
+                    loadAndDisplayLogs();
+                }
+            }, 2000); // 2초마다 업데이트
+        }
+
+        function stopRealtimeUpdates() {
+            if (updateInterval) {
+                clearInterval(updateInterval);
+                updateInterval = null;
+            }
+        }
+
+        // 페이지 종료 시 인터벌 정리
+        window.addEventListener('beforeunload', () => {
+            stopRealtimeUpdates();
+        });
+    </script>
+</body>
+</html> 

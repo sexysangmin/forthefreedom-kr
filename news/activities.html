@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>당 활동 - 자유와혁신</title>
+    <title>활동소식 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,136 +23,240 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
-        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
-        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">당 활동</h1>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-green-600 to-green-700 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-users text-4xl mr-4"></i>
+                    <h1 class="text-4xl font-bold">활동소식</h1>
+                </div>
+                <p class="text-xl opacity-90">현장 활동과 당원들의 다양한 활동을 확인하세요</p>
+                <nav class="mt-6 text-green-100">
+                    <a href="../index.html" class="hover:text-white">홈</a>
+                    <span class="mx-2">/</span>
+                    <a href="../news.html" class="hover:text-white">정당소식</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-white">활동소식</span>
+                </nav>
+            </div>
         </div>
     </section>
-    
-    <main style="position:relative; z-index:1; background:#fff;">
-        <!-- Activities Section -->
-        <section class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">당 활동</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신의 다양한 활동을 통해 시민과의 소통을 이어가고 있습니다.
-                    </p>
+
+    <main class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 활동 통계 -->
+            <div class="grid md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">18</div>
+                    <div class="text-gray-600">이번 달 활동</div>
                 </div>
-                
-                <!-- Activity Categories -->
-                <div class="grid md:grid-cols-3 gap-8 mb-16">
-                    <div class="bg-red-50 p-8 rounded-lg text-center">
-                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-users text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">지역 활동</h3>
-                        <p class="text-gray-600">전국 각지에서 시민과 만나 소통하는 활동</p>
-                    </div>
-                    
-                    <div class="bg-red-50 p-8 rounded-lg text-center">
-                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-microphone text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">정책 활동</h3>
-                        <p class="text-gray-600">정책 연구와 토론을 위한 각종 토의</p>
-                    </div>
-                    
-                    <div class="bg-red-50 p-8 rounded-lg text-center">
-                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-heart text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">사회 공헌</h3>
-                        <p class="text-gray-600">지역사회를 위한 봉사와 나눔 활동</p>
-                    </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">45</div>
+                    <div class="text-gray-600">간담회</div>
                 </div>
-                
-                <!-- Recent Activities -->
-                <div class="space-y-8">
-                    <article class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium">지역 활동</span>
-                            <span class="text-gray-500 text-sm">2024.01.12</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">서울 시민 간담회 개최</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            서울 시민들과 함께하는 정책 간담회를 개최했습니다. 
-                            시민들의 다양한 의견을 청취하고 정책에 반영하기 위한 소통의 시간을 가졌습니다.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-4">
-                                <span class="text-gray-500 text-sm">
-                                    <i class="fas fa-map-marker-alt mr-2"></i>
-                                    서울 강남구
-                                </span>
-                                <span class="text-gray-500 text-sm">
-                                    <i class="fas fa-users mr-2"></i>
-                                    120명 참석
-                                </span>
-                            </div>
-                            <a href="#" class="text-red-600 hover:text-red-700 font-medium">자세히 보기 →</a>
-                        </div>
-                    </article>
-                    
-                    <article class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium">정책 활동</span>
-                            <span class="text-gray-500 text-sm">2024.01.08</span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">교육 정책 토론회</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            교육 전문가들과 함께 미래 교육 정책 방향을 논의하는 토론회를 개최했습니다. 
-                            디지털 교육과 개별 맞춤형 교육에 대한 깊이 있는 토론이 이어졌습니다.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-4">
-                                <span class="text-gray-500 text-sm">
-                                    <i class="fas fa-map-marker-alt mr-2"></i>
-                                    국회 도서관
-                                </span>
-                                <span class="text-gray-500 text-sm">
-                                    <i class="fas fa-users mr-2"></i>
-                                    전문가 15명
-                                </span>
-                            </div>
-                            <a href="#" class="text-red-600 hover:text-red-700 font-medium">자세히 보기 →</a>
-                        </div>
-                    </article>
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">12</div>
+                    <div class="text-gray-600">현장 방문</div>
                 </div>
-                
-                <!-- Activity Stats -->
-                <div class="bg-gray-50 rounded-lg p-8 mt-16">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">활동 현황</h3>
-                    <div class="grid md:grid-cols-4 gap-8">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-red-600 mb-2">24</div>
-                            <div class="text-gray-600">지역 간담회</div>
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                    <div class="text-3xl font-bold text-orange-600 mb-2">156</div>
+                    <div class="text-gray-600">참여 시민</div>
+                </div>
+            </div>
+
+            <!-- 필터 및 검색 -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" placeholder="활동 검색..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
                         </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-red-600 mb-2">12</div>
-                            <div class="text-gray-600">정책 토론회</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-red-600 mb-2">8</div>
-                            <div class="text-gray-600">봉사 활동</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-red-600 mb-2">1,250</div>
-                            <div class="text-gray-600">참여 시민</div>
-                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            <option>전체 활동</option>
+                            <option>현장 방문</option>
+                            <option>간담회</option>
+                            <option>정책 토론</option>
+                            <option>시민 참여</option>
+                        </select>
+                        <button class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                            검색
+                        </button>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <!-- 활동소식 목록 -->
+            <div class="space-y-8">
+                <!-- 주요 활동 -->
+                <article class="bg-white rounded-lg shadow-sm border-l-4 border-green-500 overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="md:flex">
+                        <div class="md:w-1/3">
+                            <div class="h-48 md:h-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                                <i class="fas fa-handshake text-white text-6xl"></i>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                    <i class="fas fa-star mr-2"></i>주요활동
+                                </span>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                    시민참여
+                                </span>
+                                <span class="text-gray-500 text-sm">2025.01.18</span>
+                            </div>
+                            <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                청년층과의 정책 간담회 개최
+                            </h2>
+                            <p class="text-gray-600 leading-relaxed mb-4">
+                                서울 강남구 청년회관에서 20-30대 청년 50여 명과 함께 청년 정책에 대한 
+                                솔직한 대화의 시간을 가졌습니다. 취업, 주거, 창업 등 청년들이 직면한 
+                                현실적인 문제들에 대해 깊이 있는 논의가 이루어졌습니다.
+                            </p>
+                            <div class="flex items-center gap-6 text-sm text-gray-500 mb-4">
+                                <span><i class="fas fa-map-marker-alt mr-1"></i>서울 강남구</span>
+                                <span><i class="fas fa-users mr-1"></i>참여자 50명</span>
+                                <span><i class="fas fa-clock mr-1"></i>2시간</span>
+                                <span><i class="fas fa-camera mr-1"></i>사진 8장</span>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-900 mb-2">주요 논의 사항</h4>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 청년 취업 지원 확대 방안</li>
+                                    <li>• 청년 주택 정책 개선 아이디어</li>
+                                    <li>• 창업 생태계 활성화 방안</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 일반 활동 -->
+                <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="md:flex">
+                        <div class="md:w-1/3">
+                            <div class="h-48 md:h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                <i class="fas fa-building text-white text-5xl"></i>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                    현장방문
+                                </span>
+                                <span class="text-gray-500 text-sm">2025.01.16</span>
+                            </div>
+                            <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                중소기업 현장 방문 및 간담회
+                            </h2>
+                            <p class="text-gray-600 leading-relaxed mb-4">
+                                부산 소재 중소 제조업체를 방문하여 현장의 목소리를 직접 들었습니다. 
+                                코로나19 이후 회복 과정에서 겪는 어려움과 정부 지원 정책의 개선 방안에 
+                                대해 논의했습니다.
+                            </p>
+                            <div class="flex items-center gap-6 text-sm text-gray-500">
+                                <span><i class="fas fa-map-marker-alt mr-1"></i>부산 기장군</span>
+                                <span><i class="fas fa-users mr-1"></i>참여자 15명</span>
+                                <span><i class="fas fa-clock mr-1"></i>1.5시간</span>
+                                <span><i class="fas fa-camera mr-1"></i>사진 5장</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="md:flex">
+                        <div class="md:w-1/3">
+                            <div class="h-48 md:h-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                                <i class="fas fa-chalkboard-teacher text-white text-5xl"></i>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                                    정책토론
+                                </span>
+                                <span class="text-gray-500 text-sm">2025.01.14</span>
+                            </div>
+                            <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                교육 혁신 정책 전문가 토론회
+                            </h2>
+                            <p class="text-gray-600 leading-relaxed mb-4">
+                                교육 전문가, 현직 교사, 학부모 대표가 참여한 교육 정책 토론회를 개최했습니다. 
+                                미래형 교육 시스템 구축을 위한 다양한 의견과 아이디어를 수렴했습니다.
+                            </p>
+                            <div class="flex items-center gap-6 text-sm text-gray-500">
+                                <span><i class="fas fa-map-marker-alt mr-1"></i>서울 여의도</span>
+                                <span><i class="fas fa-users mr-1"></i>참여자 25명</span>
+                                <span><i class="fas fa-clock mr-1"></i>3시간</span>
+                                <span><i class="fas fa-camera mr-1"></i>사진 12장</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="md:flex">
+                        <div class="md:w-1/3">
+                            <div class="h-48 md:h-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
+                                <i class="fas fa-seedling text-white text-5xl"></i>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-orange-100 text-orange-800">
+                                    현장방문
+                                </span>
+                                <span class="text-gray-500 text-sm">2025.01.12</span>
+                            </div>
+                            <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                농업인과의 만남 및 농촌 현장 방문
+                            </h2>
+                            <p class="text-gray-600 leading-relaxed mb-4">
+                                전북 김제시 농촌 지역을 방문하여 농업인들과 간담회를 갖고, 
+                                스마트 농업 시설을 견학했습니다. 농업 정책 개선 방향에 대해 
+                                현장의 생생한 의견을 들었습니다.
+                            </p>
+                            <div class="flex items-center gap-6 text-sm text-gray-500">
+                                <span><i class="fas fa-map-marker-alt mr-1"></i>전북 김제시</span>
+                                <span><i class="fas fa-users mr-1"></i>참여자 30명</span>
+                                <span><i class="fas fa-clock mr-1"></i>4시간</span>
+                                <span><i class="fas fa-camera mr-1"></i>사진 15장</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 페이지네이션 -->
+            <div class="flex justify-center mt-12">
+                <nav class="flex items-center space-x-2">
+                    <button class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="px-4 py-2 rounded-lg bg-green-600 text-white">1</button>
+                    <button class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
+                    <button class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
+                    <span class="px-2 text-gray-500">...</span>
+                    <button class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">6</button>
+                    <button class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
     </main>
     
-    <script src="../nav.js"></script>
+    <script src="../js/nav.js"></script>
     <script>
         loadNavigation();
     </script>

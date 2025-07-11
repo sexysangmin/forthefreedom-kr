@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정보공개 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <section class="hero-section" style="position:relative; height:40vh; display:flex; align-items:center; justify-content:center; background:url('images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">정보공개</h1>
+        </div>
+    </section>
+
+    <main class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-red-50 p-6 rounded-lg mb-8">
+                <h2 class="text-xl font-bold text-red-800 mb-2">자유와혁신 정보공개</h2>
+                <p class="text-red-700">자유와혁신은 투명하고 공정한 정당 운영을 위해 정치자금법 및 정당법에 따라 각종 정보를 공개합니다.</p>
+                <p class="text-sm text-red-600 mt-2"><strong>최종 업데이트:</strong> 2025년 1월 15일</p>
+            </div>
+
+            <!-- 당 기본정보 -->
+            <section class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-info-circle text-red-600 mr-3"></i>
+                    당 기본정보
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">기본 현황</h4>
+                        <table class="w-full text-sm">
+                            <tr class="border-b">
+                                <td class="py-2 text-gray-600 font-medium">당명</td>
+                                <td class="py-2">자유와혁신</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-2 text-gray-600 font-medium">창당일</td>
+                                <td class="py-2">2025년 1월 15일</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-2 text-gray-600 font-medium">대표자</td>
+                                <td class="py-2">김교민</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-2 text-gray-600 font-medium">소재지</td>
+                                <td class="py-2">서울특별시 영등포구 국회대로 70길 15-1 삼성래미안 101동 1220호</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 text-gray-600 font-medium">당원수</td>
+                                <td class="py-2">1,247명 (2025년 1월 기준)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">연락처 정보</h4>
+                        <table class="w-full text-sm">
+                            <tr class="border-b">
+                                <td class="py-2 text-gray-600 font-medium">전화번호</td>
+                                <td class="py-2">준비중</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-2 text-gray-600 font-medium">팩스번호</td>
+                                <td class="py-2">준비중</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-2 text-gray-600 font-medium">이메일</td>
+                                <td class="py-2">준비중</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 text-gray-600 font-medium">홈페이지</td>
+                                <td class="py-2">www.forthefreedom.kr</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 정치자금 현황 -->
+            <section class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-coins text-red-600 mr-3"></i>
+                    정치자금 현황
+                </h3>
+                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                    <div class="text-center py-8">
+                        <i class="fas fa-chart-pie text-red-600 text-4xl mb-4"></i>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">정치자금 보고서</h4>
+                        <p class="text-gray-600 mb-4">정치자금법에 따른 정치자금 수입·지출 현황</p>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 max-w-md mx-auto">
+                            <p class="text-yellow-800 text-sm">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                창당 초기로 인해 첫 분기 보고서는 2025년 4월 공개 예정입니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 당규 및 강령 -->
+            <section class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-gavel text-red-600 mr-3"></i>
+                    당규 및 강령
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">당헌·당규</h4>
+                        <p class="text-gray-600 mb-4">자유와혁신의 기본 헌법과 운영 규칙</p>
+                        <div class="space-y-2">
+                            <button class="w-full text-left bg-gray-50 hover:bg-gray-100 p-3 rounded border" onclick="alert('준비중입니다.')">
+                                <i class="fas fa-file-pdf text-red-600 mr-2"></i>
+                                당헌 (준비중)
+                            </button>
+                            <button class="w-full text-left bg-gray-50 hover:bg-gray-100 p-3 rounded border" onclick="alert('준비중입니다.')">
+                                <i class="fas fa-file-pdf text-red-600 mr-2"></i>
+                                당규 (준비중)
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">정강정책</h4>
+                        <p class="text-gray-600 mb-4">자유와혁신의 핵심 정책과 비전</p>
+                        <div class="space-y-2">
+                            <a href="policy.html" class="w-full text-left bg-gray-50 hover:bg-gray-100 p-3 rounded border block">
+                                <i class="fas fa-file-alt text-red-600 mr-2"></i>
+                                10대 핵심 정책
+                            </a>
+                            <button class="w-full text-left bg-gray-50 hover:bg-gray-100 p-3 rounded border" onclick="alert('준비중입니다.')">
+                                <i class="fas fa-file-pdf text-red-600 mr-2"></i>
+                                정강정책 전문 (준비중)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 조직 현황 -->
+            <section class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-sitemap text-red-600 mr-3"></i>
+                    조직 현황
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                        <i class="fas fa-users text-red-600 text-3xl mb-4"></i>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">최고위원회</h4>
+                        <p class="text-gray-600 text-sm mb-4">당의 최고 의결기구</p>
+                        <button class="text-red-600 hover:text-red-700 text-sm font-medium" onclick="alert('준비중입니다.')">
+                            구성원 보기 →
+                        </button>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                        <i class="fas fa-user-tie text-red-600 text-3xl mb-4"></i>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">중앙당 조직</h4>
+                        <p class="text-gray-600 text-sm mb-4">중앙당 부서별 조직도</p>
+                        <button class="text-red-600 hover:text-red-700 text-sm font-medium" onclick="alert('준비중입니다.')">
+                            조직도 보기 →
+                        </button>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                        <i class="fas fa-map-marked-alt text-red-600 text-3xl mb-4"></i>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">지역조직</h4>
+                        <p class="text-gray-600 text-sm mb-4">전국 시·도당 현황</p>
+                        <button class="text-red-600 hover:text-red-700 text-sm font-medium" onclick="alert('준비중입니다.')">
+                            지역조직 보기 →
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 공시사항 -->
+            <section class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-bullhorn text-red-600 mr-3"></i>
+                    법정 공시사항
+                </h3>
+                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left font-medium text-gray-900">구분</th>
+                                    <th class="px-4 py-3 text-left font-medium text-gray-900">제목</th>
+                                    <th class="px-4 py-3 text-left font-medium text-gray-900">공시일</th>
+                                    <th class="px-4 py-3 text-left font-medium text-gray-900">첨부</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-3 text-gray-600">당무</td>
+                                    <td class="px-4 py-3">자유와혁신 창당 신고</td>
+                                    <td class="px-4 py-3 text-gray-600">2025.01.15</td>
+                                    <td class="px-4 py-3">
+                                        <button class="text-red-600 hover:text-red-700 text-sm" onclick="alert('준비중입니다.')">
+                                            <i class="fas fa-file-pdf mr-1"></i>PDF
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-4 py-3 text-center text-gray-500" colspan="4">
+                                        추가 공시사항은 분기별로 업데이트됩니다.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 정보공개 청구 -->
+            <section class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-question-circle text-red-600 mr-3"></i>
+                    정보공개 청구
+                </h3>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h4 class="text-lg font-semibold text-blue-900 mb-4">정보공개 청구 안내</h4>
+                    <p class="text-blue-800 mb-4">
+                        정보공개법에 따라 자유와혁신이 보유·관리하는 정보의 공개를 청구할 수 있습니다.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <h5 class="font-semibold text-blue-900 mb-2">청구 방법</h5>
+                            <ul class="text-blue-800 space-y-1">
+                                <li>• 서면, 우편, 팩스, 이메일</li>
+                                <li>• 방문 접수</li>
+                                <li>• 온라인 청구 (준비중)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-blue-900 mb-2">처리 기한</h5>
+                            <ul class="text-blue-800 space-y-1">
+                                <li>• 청구일로부터 10일 이내</li>
+                                <li>• 부득이한 경우 10일 연장 가능</li>
+                                <li>• 제3자 의견청취 시 별도 기간</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-blue-200">
+                        <p class="text-blue-800 text-sm">
+                            <strong>담당자:</strong> 준비중 | 
+                            <strong>연락처:</strong> 준비중 | 
+                            <strong>이메일:</strong> 준비중
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="bg-gray-100 p-6 rounded-lg text-center">
+                <p class="text-gray-600">
+                    <strong>자유와혁신</strong><br>
+                    서울특별시 영등포구 국회대로 70길 15-1 삼성래미안 101동 1220호<br>
+                    정보공개 담당: 준비중
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script src="nav.js"></script>
+    <script>
+        if (typeof loadNavigation === 'function') loadNavigation();
+    </script>
+</body>
+</html> 

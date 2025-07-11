@@ -28,7 +28,7 @@
     <style>
         .event-card {
             transition: all 0.3s ease;
-            cursor: pointer;
+            cursor: default;
         }
         .event-card:hover {
             transform: translateY(-5px);
@@ -43,6 +43,26 @@
         .swiper-pagination-bullet-active {
             background: #8B002C;
         }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            color: #6b7280;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .filter-btn:hover {
+            border-color: #A50034;
+            color: #A50034;
+            background: #fdf2f4;
+        }
+        .filter-btn.active {
+            background: #A50034;
+            color: white;
+            border-color: #A50034;
+        }
     </style>
 </head>
 <body>
@@ -51,8 +71,8 @@
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">행사/집회 안내</h1>
-            <p style="font-size:1.2rem; margin-top:1rem; opacity:0.9;">자유와혁신의 모든 집회와 행사 정보를 한 곳에서</p>
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">행사 및 집회</h1>
+            <p style="font-size:1.2rem; margin-top:1rem; opacity:0.9;">보수 단체 모든 집회와 행사 정보를 한 곳에서 확인하세요</p>
         </div>
     </section>
     
@@ -77,9 +97,9 @@
                                 </div>
                                 <h3 class="text-lg font-bold text-gray-900 mb-2">자유와혁신 정책 발표회</h3>
                                 <p class="text-gray-600 text-sm mb-3">서울 종로구 광화문광 | 자유와혁신 본부</p>
-                                <button onclick="openEventDetail('urgent-1')" class="text-red-600 hover:text-red-700 font-medium text-sm">
-                                    자세히 보기 <i class="fas fa-arrow-right ml-1"></i>
-                                </button>
+                                <p class="text-red-600 font-medium text-sm">
+                                    참여 신청 문의: 02-1234-5678
+                                </p>
                             </div>
                         </div>
                         
@@ -91,9 +111,9 @@
                                 </div>
                                 <h3 class="text-lg font-bold text-gray-900 mb-2">시민 토론회</h3>
                                 <p class="text-gray-600 text-sm mb-3">부산 해운대구 센텀 | 부산보수연합</p>
-                                <button onclick="openEventDetail('urgent-2')" class="text-red-600 hover:text-red-700 font-medium text-sm">
-                                    자세히 보기 <i class="fas fa-arrow-right ml-1"></i>
-                                </button>
+                                <p class="text-red-600 font-medium text-sm">
+                                    참여 신청 문의: 051-987-6543
+                                </p>
                             </div>
                         </div>
                         
@@ -105,9 +125,9 @@
                                 </div>
                                 <h3 class="text-lg font-bold text-gray-900 mb-2">자유민주주의 수호 대회</h3>
                                 <p class="text-gray-600 text-sm mb-3">대구 달성공원 | 대구경북보수단체연합</p>
-                                <button onclick="openEventDetail('urgent-3')" class="text-red-600 hover:text-red-700 font-medium text-sm">
-                                    자세히 보기 <i class="fas fa-arrow-right ml-1"></i>
-                                </button>
+                                <p class="text-red-600 font-medium text-sm">
+                                    참여 신청 문의: 053-456-7890
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -119,7 +139,7 @@
         <!-- Filter and Search -->
         <section class="py-6 bg-gray-50 border-b">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-center">
                     <div class="flex flex-wrap gap-2">
                         <button class="filter-btn active" data-filter="all">전체</button>
                         <button class="filter-btn" data-filter="today">오늘</button>
@@ -128,12 +148,6 @@
                         <button class="filter-btn" data-filter="busan">부산</button>
                         <button class="filter-btn" data-filter="daegu">대구</button>
                         <button class="filter-btn" data-filter="others">기타 지역</button>
-                    </div>
-                    <div class="flex gap-2">
-                        <input type="text" placeholder="제목이나 주제 검색..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
-                            <i class="fas fa-search"></i>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -144,7 +158,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid gap-6" id="events-list">
                     <!-- Event Card 1 -->
-                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="today seoul" onclick="openEventDetail('event-1')">
+                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="today seoul">
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="md:w-48 h-32 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <div class="text-center">
@@ -185,7 +199,7 @@
                     </div>
                     
                     <!-- Event Card 2 -->
-                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="week busan" onclick="openEventDetail('event-2')">
+                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="week busan">
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="md:w-48 h-32 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <div class="text-center">
@@ -226,7 +240,7 @@
                     </div>
                     
                     <!-- Event Card 3 -->
-                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="week daegu" onclick="openEventDetail('event-3')">
+                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="week daegu">
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="md:w-48 h-32 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <div class="text-center">
@@ -267,7 +281,7 @@
                     </div>
                     
                     <!-- Event Card 4 -->
-                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="others" onclick="openEventDetail('event-4')">
+                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="others">
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="md:w-48 h-32 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <div class="text-center">
@@ -309,119 +323,203 @@
                 </div>
                 
                 <!-- Load More Button -->
-                <div class="text-center mt-12">
-                    <button class="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors">
-                        더 많은 행사 보기
+                <div class="text-center mt-8">
+                    <button id="load-more-btn" class="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors font-medium">
+                        더 많은 행사 보기 <i class="fas fa-chevron-down ml-2"></i>
                     </button>
                 </div>
             </div>
         </section>
         
-        <!-- Event Statistics -->
-        <section class="py-16 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">행사 통계</h2>
-                <div class="grid md:grid-cols-4 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <div class="text-3xl font-bold text-red-600 mb-2">47</div>
-                        <div class="text-gray-600">총 행사 수</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <div class="text-3xl font-bold text-red-600 mb-2">23</div>
-                        <div class="text-gray-600">집회/시위</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <div class="text-3xl font-bold text-red-600 mb-2">16</div>
-                        <div class="text-gray-600">토론회/세미나</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                        <div class="text-3xl font-bold text-red-600 mb-2">8</div>
-                        <div class="text-gray-600">연대 행사</div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
-    
-    <!-- Event Detail Modal -->
-    <div id="eventModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-        <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-2xl font-bold text-gray-900">행사 상세정보</h3>
-                    <button onclick="closeEventDetail()" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-                <div id="eventDetailContent">
-                    <!-- 상세 내용이 여기에 표시됩니다 -->
-                </div>
-            </div>
-        </div>
-    </div>
-    
+        
     <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
     <script src="../nav.js"></script>
     <script>
-        loadNavigation();
-        
-        // Swiper 초기화
-        const swiper = new Swiper('.upcoming-events-swiper', {
-            loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            autoplay: {
-                delay: 3000,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 1,
+        // DOM이 완전히 로드된 후에 모든 기능 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            
+            // Swiper 초기화
+            const swiper = new Swiper('.upcoming-events-swiper', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
                 },
-                768: {
-                    slidesPerView: 2,
+                autoplay: {
+                    delay: 3000,
                 },
-                1024: {
-                    slidesPerView: 3,
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    },
                 },
-            },
-        });
-        
-        // 필터 기능
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                const filter = this.dataset.filter;
-                const events = document.querySelectorAll('.event-card');
-                
-                events.forEach(event => {
-                    if (filter === 'all' || event.dataset.category.includes(filter)) {
-                        event.style.display = 'block';
-                    } else {
-                        event.style.display = 'none';
-                    }
+            });
+            
+            // 필터 버튼 확인
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            console.log('Found filter buttons:', filterButtons.length);
+            
+            // 필터 기능 초기화
+            filterButtons.forEach(btn => {
+                console.log('Adding listener to button:', btn.textContent, btn.dataset.filter);
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Filter button clicked:', this.dataset.filter);
+                    
+                    // 모든 버튼에서 active 클래스 제거
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    // 클릭된 버튼에 active 클래스 추가
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    const events = document.querySelectorAll('.event-card');
+                    
+                    console.log('Filtering with:', filter, 'Found events:', events.length);
+                    
+                    events.forEach(event => {
+                        const category = event.dataset.category || '';
+                        console.log('Event category:', category);
+                        
+                        if (filter === 'all' || category.includes(filter)) {
+                            event.style.display = 'block';
+                            console.log('Showing event');
+                        } else {
+                            event.style.display = 'none';
+                            console.log('Hiding event');
+                        }
+                    });
                 });
             });
         });
         
-        // 이벤트 상세 모달
-        function openEventDetail(eventId) {
-            document.getElementById('eventModal').classList.remove('hidden');
-            document.getElementById('eventModal').classList.add('flex');
-            
-            // 여기에 실제 이벤트 데이터를 로드하는 코드를 추가할 수 있습니다
-            document.getElementById('eventDetailContent').innerHTML = `
-                <p class="text-gray-600 mb-4">이벤트 ID: ${eventId}</p>
-                <p class="text-gray-600">상세 정보를 불러오는 중...</p>
-            `;
-        }
+        // 무한 로딩 기능
+        let currentEventCount = 4;
+        const eventsPerLoad = 4;
         
-        function closeEventDetail() {
-            document.getElementById('eventModal').classList.add('hidden');
-            document.getElementById('eventModal').classList.remove('flex');
+        const additionalEvents = [
+            {
+                id: 'event-5',
+                title: '교육정책 개혁 토론회',
+                category: 'week seoul',
+                type: '토론회',
+                location: '서울',
+                date: '2025년 1월 22일(수) 18:00',
+                venue: '서울 마포구 국회 의원회관',
+                organizer: '자유와혁신 교육위원회',
+                phone: '02-567-8901',
+                description: '미래 교육 시스템 개혁 방안을 논의하는 전문가 토론회입니다.',
+                color: 'purple'
+            },
+            {
+                id: 'event-6',
+                title: '인천 지역 경제 활성화 대회',
+                category: 'others',
+                type: '대회',
+                location: '인천',
+                date: '2025년 1월 24일(금) 16:00',
+                venue: '인천 중구 송도컨벤시아',
+                organizer: '인천경제발전협의회',
+                phone: '032-678-9012',
+                description: '인천 지역의 경제 발전과 일자리 창출을 위한 시민 대회입니다.',
+                color: 'indigo'
+            },
+            {
+                id: 'event-7',
+                title: '국가안보 정책 세미나',
+                category: 'week seoul',
+                type: '세미나',
+                location: '서울',
+                date: '2025년 1월 23일(목) 15:00',
+                venue: '서울 용산구 국방부 컨벤션센터',
+                organizer: '자유와혁신 외교안보특위',
+                phone: '02-789-0123',
+                description: '한반도 평화와 국가안보 정책 방향을 논의하는 전문가 세미나입니다.',
+                color: 'teal'
+            },
+            {
+                id: 'event-8',
+                title: '울산 산업 혁신 포럼',
+                category: 'others',
+                type: '포럼',
+                location: '울산',
+                date: '2025년 1월 26일(일) 14:00',
+                venue: '울산 남구 현대중공업 문화센터',
+                organizer: '울산산업발전협회',
+                phone: '052-890-1234',
+                description: '4차 산업혁명 시대 울산 산업의 미래 방향을 모색하는 포럼입니다.',
+                color: 'orange'
+            }
+        ];
+        
+        document.getElementById('load-more-btn').addEventListener('click', function() {
+            const eventsList = document.getElementById('events-list');
+            const startIndex = currentEventCount - 4;
+            const endIndex = Math.min(startIndex + eventsPerLoad, additionalEvents.length);
+            
+            for (let i = startIndex; i < endIndex; i++) {
+                const event = additionalEvents[i];
+                const eventCard = createEventCard(event);
+                eventsList.insertAdjacentHTML('beforeend', eventCard);
+            }
+            
+            currentEventCount += eventsPerLoad;
+            
+            // 더 로드할 이벤트가 없으면 버튼 숨기기
+            if (currentEventCount >= additionalEvents.length + 4) {
+                this.style.display = 'none';
+            }
+        });
+        
+        function createEventCard(event) {
+            return `
+                <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="${event.category}">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="md:w-48 h-32 bg-${event.color}-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <div class="text-center">
+                                <i class="fas fa-calendar text-${event.color}-600 text-2xl mb-2"></i>
+                                <p class="text-${event.color}-700 font-medium text-sm">${event.type}</p>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <span class="bg-${event.color}-100 text-${event.color}-600 px-3 py-1 rounded-full text-sm font-medium">${event.type}</span>
+                                    <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">${event.location}</span>
+                                </div>
+                                <span class="text-${event.color}-600 font-bold">예정</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">${event.title}</h3>
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-calendar mr-2 text-${event.color}-600"></i>
+                                    <span>${event.date}</span>
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-map-marker-alt mr-2 text-${event.color}-600"></i>
+                                    <span>${event.venue}</span>
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-users mr-2 text-${event.color}-600"></i>
+                                    <span>${event.organizer}</span>
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <i class="fas fa-phone mr-2 text-${event.color}-600"></i>
+                                    <span>${event.phone}</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 line-clamp-2">${event.description}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
     </script>
 </body>

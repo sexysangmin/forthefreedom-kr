@@ -1,0 +1,190 @@
+# 자유와혁신 주요 인물 페이지 CMS 데이터
+# about/people.html의 모든 텍스트, 이미지, 링크, 설정을 이 파일에서 관리
+
+# 페이지 메타데이터
+meta:
+  title: "주요 인물 - 자유와혁신"
+  description: "자유와혁신을 이끌어가는 주요 인물들을 소개합니다. 다양한 분야의 전문가들이 새로운 정치를 만들어갑니다."
+  keywords: "자유와혁신, 주요 인물, 당 대표, 지도부, 정치인"
+
+# 히어로 섹션
+hero:
+  title: "주요 인물"
+  background_image: "../images/hero_image.png"
+
+# 당 대표 섹션
+party_leader:
+  title: "당 대표"
+  
+  profile:
+    name: "김○○"
+    position: "자유와혁신 당 대표"
+    image: "/images/people/representative.jpg"
+    placeholder: true
+    biography: "새로운 정치를 향한 혁신의 리더"
+    
+    background:
+      - "○○대학교 정치외교학과 졸업"
+      - "○○대학원 행정학 석사"
+      - "前 국회의원 (3선)"
+      - "前 ○○시장"
+      - "現 자유와혁신 당 대표"
+    
+    achievements:
+      - "지방자치 혁신 모델 구축"
+      - "청년 정책 개발 및 실행"
+      - "디지털 정부 구현"
+      - "투명한 행정 시스템 도입"
+    
+    philosophy: "국민과 함께 만들어가는 새로운 정치, 자유와 혁신으로 미래를 열어가겠습니다."
+
+# 최고위원 섹션
+supreme_council:
+  title: "최고위원"
+  description: "당의 주요 정책과 방향을 결정하는 최고위원들입니다"
+  
+  members:
+    - name: "이○○"
+      position: "정책위원장"
+      image: "/images/people/policy-chair.jpg"
+      placeholder: true
+      specialty: "경제정책, 일자리 창출"
+      experience: "前 경제부총리, 前 기획재정부 장관"
+      quote: "혁신적 경제정책으로 일자리 창출에 앞장서겠습니다"
+    
+    - name: "박○○"
+      position: "조직위원장"
+      image: "/images/people/org-chair.jpg"
+      placeholder: true
+      specialty: "조직관리, 당원 교육"
+      experience: "前 국회의원, 前 당 사무총장"
+      quote: "체계적인 조직 운영으로 강한 정당을 만들겠습니다"
+    
+    - name: "최○○"
+      position: "홍보위원장"
+      image: "/images/people/pr-chair.jpg"
+      placeholder: true
+      specialty: "소통, 미디어 전략"
+      experience: "前 언론인, 前 청와대 대변인"
+      quote: "국민과의 소통을 통해 신뢰받는 정치를 실현하겠습니다"
+
+# 부위원장 섹션
+vice_chairpersons:
+  title: "부위원장"
+  description: "각 분야별 전문성을 바탕으로 당무를 총괄하는 부위원장들입니다"
+  
+  members:
+    - name: "김○○"
+      position: "정책기획부 부위원장"
+      specialty: "교육정책, 복지정책"
+      image: "/images/people/vice1.jpg"
+      placeholder: true
+    
+    - name: "이○○"
+      position: "조직운영부 부위원장"
+      specialty: "지역조직, 당원관리"
+      image: "/images/people/vice2.jpg"
+      placeholder: true
+    
+    - name: "박○○"
+      position: "홍보소통부 부위원장"
+      specialty: "디지털 소통, SNS 전략"
+      image: "/images/people/vice3.jpg"
+      placeholder: true
+
+# 중앙위원 섹션
+central_committee:
+  title: "중앙위원"
+  description: "당의 주요 정책 결정에 참여하는 중앙위원들입니다"
+  
+  categories:
+    - category: "정책 전문가"
+      count: 15
+      description: "각 분야별 정책 전문가들"
+      expertise:
+        - "경제·재정 정책"
+        - "교육·복지 정책"
+        - "안보·외교 정책"
+        - "환경·에너지 정책"
+    
+    - category: "지역 대표"
+      count: 20
+      description: "전국 각 지역을 대표하는 위원들"
+      regions:
+        - "수도권 대표 (8명)"
+        - "영남권 대표 (5명)"
+        - "호남권 대표 (4명)"
+        - "충청권 대표 (3명)"
+    
+    - category: "청년·여성 대표"
+      count: 15
+      description: "청년층과 여성을 대표하는 위원들"
+      representation:
+        - "청년 위원 (8명)"
+        - "여성 위원 (7명)"
+
+# 자문위원 섹션
+advisory_committee:
+  title: "자문위원"
+  description: "당의 정책 개발과 전략 수립에 조언하는 전문가들입니다"
+  
+  advisors:
+    - name: "○○○ 교수"
+      affiliation: "○○대학교 경제학과"
+      expertise: "거시경제, 금융정책"
+      image: "/images/people/advisor1.jpg"
+      placeholder: true
+    
+    - name: "○○○ 前 장관"
+      affiliation: "前 교육부 장관"
+      expertise: "교육정책, 인적자원 개발"
+      image: "/images/people/advisor2.jpg"
+      placeholder: true
+    
+    - name: "○○○ 대표"
+      affiliation: "○○연구원 대표"
+      expertise: "국제관계, 외교정책"
+      image: "/images/people/advisor3.jpg"
+      placeholder: true
+
+# 차세대 리더 섹션
+next_generation:
+  title: "차세대 리더"
+  description: "미래 정치를 이끌어갈 청년 정치인들입니다"
+  
+  leaders:
+    - name: "김○○"
+      age: 35
+      position: "청년위원회 위원장"
+      background: "스타트업 CEO 출신"
+      focus: "청년 일자리, 창업 생태계"
+      image: "/images/people/youth1.jpg"
+      placeholder: true
+    
+    - name: "이○○"
+      age: 32
+      position: "여성위원회 부위원장"
+      background: "시민사회 활동가 출신"
+      focus: "성평등, 일가정 양립"
+      image: "/images/people/youth2.jpg"
+      placeholder: true
+    
+    - name: "박○○"
+      age: 38
+      position: "미래기술위원회 간사"
+      background: "IT 전문가 출신"
+      focus: "디지털 혁신, 스마트시티"
+      image: "/images/people/youth3.jpg"
+      placeholder: true
+
+# CTA 섹션
+call_to_action:
+  title: "함께 만들어가는 정치"
+  description: "자유와혁신과 함께 새로운 정치의 주역이 되어주세요"
+  buttons:
+    - text: "당원 가입하기"
+      url: "../members/join.html"
+      style: "primary"
+    - text: "조직구성 보기"
+      url: "organization.html"
+      style: "outline" 

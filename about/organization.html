@@ -22,19 +22,9 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
     <style>
-        .text-red-600 { color: #A50034 !important; }
-        .bg-red-600 { background-color: #A50034 !important; }
-        .border-red-600 { border-color: #A50034 !important; }
-        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
-        .hover\:text-red-600:hover { color: #A50034 !important; }
-        .hover\:text-red-700:hover { color: #8B002C !important; }
-        .hover\:border-red-600:hover { border-color: #A50034 !important; }
-        .bg-red-50 { background-color: #FDF2F4 !important; }
-        .bg-red-100 { background-color: #FCE7EA !important; }
-        .text-red-800 { color: #700024 !important; }
-        .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
-        
         /* 조직 구조 스타일 */
         .org-chart {
             position: relative;
@@ -117,16 +107,10 @@
             top: -25px;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <!-- Hero Section -->
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
@@ -186,90 +170,31 @@
 
                 <!-- 조직도 구조 -->
                 <div class="org-chart">
-                    <!-- 당 대표 -->
-                    <div class="org-level">
-                        <div class="org-card president">
-                            <div class="position-title">당 대표</div>
-                            <div class="person-name">김자유</div>
-                            <div class="department-desc">전체 당무 총괄</div>
+                    <!-- 창당 준비 중 안내 -->
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-16 rounded-2xl text-center">
+                        <div class="w-24 h-24 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                            <i class="fas fa-calendar-alt text-white text-3xl"></i>
                         </div>
-                    </div>
-
-                    <!-- 부대표 -->
-                    <div class="org-level">
-                        <div class="org-card vice-president">
-                            <div class="org-line vertical"></div>
-                            <div class="position-title">부대표</div>
-                            <div class="person-name">이혁신</div>
-                            <div class="department-desc">당무 보좌 및 대외 업무</div>
-                        </div>
-                    </div>
-
-                    <!-- 각 부서 -->
-                    <div class="org-level">
-                        <div class="org-card department">
-                            <div class="org-line vertical"></div>
-                            <div class="position-title">정책위원회</div>
-                            <div class="person-name">박정책</div>
-                            <div class="department-desc">
-                                정책 개발<br>
-                                공약 수립<br>
-                                정책 연구
-                            </div>
-                        </div>
-                        
-                        <div class="org-card department">
-                            <div class="org-line vertical"></div>
-                            <div class="position-title">조직위원회</div>
-                            <div class="person-name">최조직</div>
-                            <div class="department-desc">
-                                당원 관리<br>
-                                조직 확대<br>
-                                교육 훈련
-                            </div>
-                        </div>
-                        
-                        <div class="org-card department">
-                            <div class="org-line vertical"></div>
-                            <div class="position-title">홍보위원회</div>
-                            <div class="person-name">강홍보</div>
-                            <div class="department-desc">
-                                대외 홍보<br>
-                                미디어 관리<br>
-                                SNS 운영
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 하위 부서 -->
-                    <div class="org-level">
-                        <div class="org-card department">
-                            <div class="org-line vertical"></div>
-                            <div class="position-title">청년위원회</div>
-                            <div class="person-name">신청년</div>
-                            <div class="department-desc">
-                                청년 정책<br>
-                                청년 당원 활동
-                            </div>
-                        </div>
-                        
-                        <div class="org-card department">
-                            <div class="org-line vertical"></div>
-                            <div class="position-title">여성위원회</div>
-                            <div class="person-name">한여성</div>
-                            <div class="department-desc">
-                                여성 정책<br>
-                                여성 권익 보호
-                            </div>
-                        </div>
-                        
-                        <div class="org-card department">
-                            <div class="org-line vertical"></div>
-                            <div class="position-title">사무국</div>
-                            <div class="person-name">윤사무</div>
-                            <div class="department-desc">
-                                일반 사무<br>
-                                행정 업무
+                        <h3 class="text-3xl font-bold text-red-900 mb-6">창당 준비 중</h3>
+                        <p class="text-red-800 text-xl leading-relaxed mb-8">
+                            자유와혁신의 정식 조직도는<br>
+                            <strong>창당대회 및 각 조직원 선거 이후</strong> 표시됩니다.
+                        </p>
+                        <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+                            <h4 class="text-xl font-bold text-gray-900 mb-4">예정된 조직 구성</h4>
+                            <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
+                                <div class="text-left">
+                                    <p>• 당 대표</p>
+                                    <p>• 부대표</p>
+                                    <p>• 정책위원회</p>
+                                    <p>• 조직위원회</p>
+                                </div>
+                                <div class="text-left">
+                                    <p>• 홍보위원회</p>
+                                    <p>• 청년위원회</p>
+                                    <p>• 여성위원회</p>
+                                    <p>• 사무국</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -283,122 +208,60 @@
                 <div class="text-center mb-16">
                     <h2 class="text-4xl font-bold text-gray-900 mb-6">주요 인물 소개</h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신을 이끌어가는 핵심 인물들을 소개합니다.
+                        창당대회 및 각 조직원 선거 이후 소개됩니다.
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 당 대표 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="h-64 bg-gradient-to-b from-red-100 to-red-200 flex items-center justify-center">
-                            <div class="w-24 h-24 bg-red-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user text-white text-3xl"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">김자유</h3>
-                            <p class="text-red-600 font-semibold mb-3">당 대표</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                서울대학교 정치학과 졸업<br>
-                                前 국정기획자문위원회 위원<br>
-                                前 시민사회단체 대표<br>
-                                정치학 박사
-                            </p>
-                        </div>
+                <!-- 창당 준비 중 안내 -->
+                <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-16 rounded-2xl text-center">
+                    <div class="w-24 h-24 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                        <i class="fas fa-user-tie text-white text-3xl"></i>
                     </div>
-
-                    <!-- 부대표 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="h-64 bg-gradient-to-b from-blue-100 to-blue-200 flex items-center justify-center">
-                            <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user text-white text-3xl"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">인물 소개 준비 중</h3>
+                    <p class="text-gray-700 text-xl leading-relaxed mb-8">
+                        자유와혁신을 이끌어갈 핵심 인물들의 소개는<br>
+                        <strong>창당대회에서 정식 선출 이후</strong> 공개됩니다.
+                    </p>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">선출 예정 직책</h4>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-crown text-red-600 mr-2"></i>
+                                    <span>당 대표</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-blue-600 mr-2"></i>
+                                    <span>부대표</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt text-green-600 mr-2"></i>
+                                    <span>정책위원장</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-users text-purple-600 mr-2"></i>
+                                    <span>조직위원장</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">이혁신</h3>
-                            <p class="text-blue-600 font-semibold mb-3">부대표</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                연세대학교 경제학과 졸업<br>
-                                前 청와대 정책기획관<br>
-                                前 경제연구원 선임연구위원<br>
-                                경제학 박사
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 정책위원장 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="h-64 bg-gradient-to-b from-green-100 to-green-200 flex items-center justify-center">
-                            <div class="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user text-white text-3xl"></i>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-bullhorn text-yellow-600 mr-2"></i>
+                                    <span>홍보위원장</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-graduation-cap text-indigo-600 mr-2"></i>
+                                    <span>청년위원장</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-venus text-pink-600 mr-2"></i>
+                                    <span>여성위원장</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-briefcase text-gray-600 mr-2"></i>
+                                    <span>사무총장</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">박정책</h3>
-                            <p class="text-green-600 font-semibold mb-3">정책위원장</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                고려대학교 행정학과 졸업<br>
-                                前 국회 정책연구위원<br>
-                                前 정부출연 연구기관 연구위원<br>
-                                행정학 박사
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 조직위원장 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="h-64 bg-gradient-to-b from-purple-100 to-purple-200 flex items-center justify-center">
-                            <div class="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user text-white text-3xl"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">최조직</h3>
-                            <p class="text-purple-600 font-semibold mb-3">조직위원장</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                성균관대학교 사회학과 졸업<br>
-                                前 NGO 단체 사무총장<br>
-                                前 시민단체 활동가<br>
-                                사회학 석사
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 홍보위원장 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="h-64 bg-gradient-to-b from-yellow-100 to-yellow-200 flex items-center justify-center">
-                            <div class="w-24 h-24 bg-yellow-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user text-white text-3xl"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">강홍보</h3>
-                            <p class="text-yellow-600 font-semibold mb-3">홍보위원장</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                한국외국어대학교 신문방송학과 졸업<br>
-                                前 방송국 PD<br>
-                                前 광고회사 크리에이티브 디렉터<br>
-                                언론학 석사
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 사무총장 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div class="h-64 bg-gradient-to-b from-gray-100 to-gray-200 flex items-center justify-center">
-                            <div class="w-24 h-24 bg-gray-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user text-white text-3xl"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">윤사무</h3>
-                            <p class="text-gray-600 font-semibold mb-3">사무총장</p>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                중앙대학교 경영학과 졸업<br>
-                                前 대기업 인사팀장<br>
-                                前 정부기관 행정사무관<br>
-                                경영학 석사
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -502,7 +365,7 @@
                     <a href="../members/join.html" class="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                         당원 가입하기
                     </a>
-                    <a href="mailto:recruit@jayuhyeoksin.kr" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
+                    <a href="#" onclick="alert('현재는 인재 지원 기간이 아닙니다.')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
                         인재 지원하기
                     </a>
                 </div>
@@ -511,5 +374,6 @@
     </main>
 
     <script src="../nav.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html> 
