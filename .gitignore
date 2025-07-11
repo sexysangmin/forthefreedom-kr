@@ -1,21 +1,27 @@
-# Dependencies
-node_modules/
+# 로그 및 임시 파일
+_logs/daily/*.json
+_logs/uploads/*.json
+_logs/content/*.json
+_logs/admin/*.json
+logs/
 *.log
-npm-debug.log*
 
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# 아카이브 업로드 파일 (메타데이터는 유지)
+archive/images/*
+archive/documents/*
+archive/backups/*
+uploads/news/*
+uploads/resources/*
 
-# Build outputs
-dist/
-build/
-.tmp/
+# 임시 및 백업 파일
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
 
-# OS generated files
+# OS 생성 파일
 .DS_Store
 .DS_Store?
 ._*
@@ -23,35 +29,55 @@ build/
 .Trashes
 ehthumbs.db
 Thumbs.db
+desktop.ini
 
-# Editor directories and files
+# 편집기 임시 파일
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
+*.sublime-project
+*.sublime-workspace
 
-# Cursor AI
-.cursor/
+# Python 관련
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Backup files
-backup*/
-*.backup
-*.bak
+# 환경 변수
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Temporary files
-*.tmp
-*.temp
+# Node.js (미래 사용 대비)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Cache directories
+# 로컬 설정
+config.local.js
+settings.local.json
+
+# 개발 도구
 .cache/
-.parcel-cache/
-
-# Optional npm cache directory
-.npm
-
-# Optional ESLint cache
-.eslintcache
-
-# Netlify
-.netlify/ 
+.parcel-cache/ 
