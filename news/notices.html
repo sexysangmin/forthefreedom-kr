@@ -28,52 +28,19 @@
 <body>
     <div id="navigation-container"></div>
     
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-red-600 to-red-700 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <div class="flex items-center justify-center mb-4">
-                    <i class="fas fa-bullhorn text-4xl mr-4"></i>
-                    <h1 class="text-4xl font-bold">공지사항</h1>
-                </div>
-                <p class="text-xl opacity-90">당의 주요 공지사항과 중요한 알림을 확인하세요</p>
-                <nav class="mt-6 text-red-100">
-                    <a href="../index.html" class="hover:text-white">홈</a>
-                    <span class="mx-2">/</span>
-                    <a href="../news.html" class="hover:text-white">정당소식</a>
-                    <span class="mx-2">/</span>
-                    <span class="text-white">공지사항</span>
-                </nav>
-            </div>
+    <!-- Hero Section - 통일된 이미지 배경 스타일 -->
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">공지사항</h1>
+            <p style="font-size:1.25rem; margin-top:1rem; opacity:0.9;">당의 주요 공지사항과 중요한 알림을 확인하세요</p>
         </div>
     </section>
 
     <main class="py-16 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- 검색 및 필터 -->
-            <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
-                <div class="flex flex-col md:flex-row gap-4">
-                    <div class="flex-1">
-                        <div class="relative">
-                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input type="text" placeholder="공지사항 검색..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                        </div>
-                    </div>
-                    <div class="flex gap-2">
-                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                            <option>전체</option>
-                            <option>중요</option>
-                            <option>일반</option>
-                        </select>
-                        <button class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-                            검색
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             <!-- 공지사항 목록 -->
-            <div class="space-y-4">
+            <div id="notices-container" class="space-y-6">
                 <!-- 중요 공지 -->
                 <article class="bg-white rounded-lg shadow-sm border-l-4 border-red-500 hover:shadow-md transition-shadow">
                     <div class="p-6">
@@ -85,47 +52,12 @@
                                     </span>
                                     <span class="text-gray-500 text-sm">2025.01.20</span>
                                 </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3 hover:text-red-600 cursor-pointer">
+                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
                                     당대표 신년사 발표 및 2025년 주요 계획 안내
                                 </h2>
-                                <p class="text-gray-600 leading-relaxed mb-4">
+                                <p class="text-gray-600 leading-relaxed">
                                     2025년 새해를 맞아 당대표의 신년사를 발표하며, 올해 자유와혁신이 추진할 주요 정책과 활동 계획을 안내드립니다. 모든 당원과 시민 여러분의 많은 관심과 참여를 부탁드립니다.
                                 </p>
-                                <div class="flex items-center gap-4 text-sm text-gray-500">
-                                    <span><i class="fas fa-user mr-1"></i>관리자</span>
-                                    <span><i class="fas fa-eye mr-1"></i>127</span>
-                                    <span><i class="fas fa-comment mr-1"></i>3</span>
-                                </div>
-                            </div>
-                            <div class="ml-4">
-                                <i class="fas fa-chevron-right text-gray-400"></i>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 일반 공지 -->
-                <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div class="p-6">
-                        <div class="flex items-start justify-between">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                        <i class="fas fa-info-circle mr-2"></i>일반
-                                    </span>
-                                    <span class="text-gray-500 text-sm">2025.01.18</span>
-                                </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3 hover:text-red-600 cursor-pointer">
-                                    당원 정기 모임 일정 안내
-                                </h2>
-                                <p class="text-gray-600 leading-relaxed mb-4">
-                                    1월 정기 당원 모임이 1월 25일(토) 오후 2시에 개최됩니다. 이번 모임에서는 신년 계획 공유 및 지역별 활동 방안에 대해 논의할 예정입니다.
-                                </p>
-                                <div class="flex items-center gap-4 text-sm text-gray-500">
-                                    <span><i class="fas fa-user mr-1"></i>조직부</span>
-                                    <span><i class="fas fa-eye mr-1"></i>85</span>
-                                    <span><i class="fas fa-comment mr-1"></i>5</span>
-                                </div>
                             </div>
                             <div class="ml-4">
                                 <i class="fas fa-chevron-right text-gray-400"></i>
@@ -144,17 +76,12 @@
                                     </span>
                                     <span class="text-gray-500 text-sm">2025.01.15</span>
                                 </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3 hover:text-red-600 cursor-pointer">
+                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
                                     자유와혁신 공식 출범 공고
                                 </h2>
-                                <p class="text-gray-600 leading-relaxed mb-4">
+                                <p class="text-gray-600 leading-relaxed">
                                     자유와혁신이 정식으로 창당되었음을 알려드립니다. 앞으로 국민과 함께하는 정치, 미래를 여는 혁신 정치를 실현하겠습니다.
                                 </p>
-                                <div class="flex items-center gap-4 text-sm text-gray-500">
-                                    <span><i class="fas fa-user mr-1"></i>당대표실</span>
-                                    <span><i class="fas fa-eye mr-1"></i>203</span>
-                                    <span><i class="fas fa-comment mr-1"></i>12</span>
-                                </div>
                             </div>
                             <div class="ml-4">
                                 <i class="fas fa-chevron-right text-gray-400"></i>
@@ -173,17 +100,12 @@
                                     </span>
                                     <span class="text-gray-500 text-sm">2025.01.12</span>
                                 </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3 hover:text-red-600 cursor-pointer">
+                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
                                     웹사이트 오픈 및 이용 안내
                                 </h2>
-                                <p class="text-gray-600 leading-relaxed mb-4">
+                                <p class="text-gray-600 leading-relaxed">
                                     자유와혁신 공식 웹사이트가 오픈되었습니다. 당의 최신 소식, 정책 자료, 활동 내용을 확인하실 수 있습니다.
                                 </p>
-                                <div class="flex items-center gap-4 text-sm text-gray-500">
-                                    <span><i class="fas fa-user mr-1"></i>홍보부</span>
-                                    <span><i class="fas fa-eye mr-1"></i>156</span>
-                                    <span><i class="fas fa-comment mr-1"></i>8</span>
-                                </div>
                             </div>
                             <div class="ml-4">
                                 <i class="fas fa-chevron-right text-gray-400"></i>
@@ -191,30 +113,86 @@
                         </div>
                     </div>
                 </article>
+
+                <!-- 추가 공지사항들 (처음에는 숨김) -->
+                <div id="more-notices" class="space-y-6" style="display: none;">
+                    <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                            <i class="fas fa-calendar mr-2"></i>행사
+                                        </span>
+                                        <span class="text-gray-500 text-sm">2025.01.10</span>
+                                    </div>
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                        당원 신년 모임 개최 안내
+                                    </h2>
+                                    <p class="text-gray-600 leading-relaxed">
+                                        2025년 1월 25일 오후 2시, 당사에서 당원 신년 모임을 개최합니다. 많은 참석 부탁드립니다.
+                                    </p>
+                                </div>
+                                <div class="ml-4">
+                                    <i class="fas fa-chevron-right text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                            <i class="fas fa-info-circle mr-2"></i>일반
+                                        </span>
+                                        <span class="text-gray-500 text-sm">2025.01.08</span>
+                                    </div>
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                        당원 가입 절차 안내
+                                    </h2>
+                                    <p class="text-gray-600 leading-relaxed">
+                                        자유와혁신 당원 가입 절차와 필요 서류에 대해 안내드립니다.
+                                    </p>
+                                </div>
+                                <div class="ml-4">
+                                    <i class="fas fa-chevron-right text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
 
-            <!-- 페이지네이션 -->
-            <div class="flex justify-center mt-12">
-                <nav class="flex items-center space-x-2">
-                    <button class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="px-4 py-2 rounded-lg bg-red-600 text-white">1</button>
-                    <button class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
-                    <button class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
-                    <span class="px-2 text-gray-500">...</span>
-                    <button class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">10</button>
-                    <button class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </nav>
+            <!-- 더보기 버튼 -->
+            <div class="text-center mt-12">
+                <button id="load-more-btn" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
+                    <i class="fas fa-plus mr-2"></i>
+                    더보기
+                </button>
             </div>
         </div>
     </main>
     
-    <script src="../js/nav.js"></script>
+    <script src="../nav.js"></script>
     <script>
         loadNavigation();
+        
+        // 더보기 기능
+        document.getElementById('load-more-btn').addEventListener('click', function() {
+            const moreNotices = document.getElementById('more-notices');
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            
+            if (moreNotices.style.display === 'none') {
+                moreNotices.style.display = 'block';
+                loadMoreBtn.innerHTML = '<i class="fas fa-minus mr-2"></i>접기';
+            } else {
+                moreNotices.style.display = 'none';
+                loadMoreBtn.innerHTML = '<i class="fas fa-plus mr-2"></i>더보기';
+            }
+        });
     </script>
 </body>
 </html> 

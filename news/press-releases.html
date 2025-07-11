@@ -28,134 +28,42 @@
 <body>
     <div id="navigation-container"></div>
     
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <div class="flex items-center justify-center mb-4">
-                    <i class="fas fa-newspaper text-4xl mr-4"></i>
-                    <h1 class="text-4xl font-bold">보도자료</h1>
-                </div>
-                <p class="text-xl opacity-90">언론을 통해 발표한 정책과 입장을 확인하세요</p>
-                <nav class="mt-6 text-blue-100">
-                    <a href="../index.html" class="hover:text-white">홈</a>
-                    <span class="mx-2">/</span>
-                    <a href="../news.html" class="hover:text-white">정당소식</a>
-                    <span class="mx-2">/</span>
-                    <span class="text-white">보도자료</span>
-                </nav>
-            </div>
+    <!-- Hero Section - 통일된 이미지 배경 스타일 -->
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">보도자료</h1>
+            <p style="font-size:1.25rem; margin-top:1rem; opacity:0.9;">언론을 통해 발표한 정책과 입장을 확인하세요</p>
         </div>
     </section>
 
     <main class="py-16 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- 통계 섹션 -->
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                    <div class="text-3xl font-bold text-blue-600 mb-2">24</div>
-                    <div class="text-gray-600">총 보도자료</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                    <div class="text-3xl font-bold text-green-600 mb-2">8</div>
-                    <div class="text-gray-600">이번 달</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                    <div class="text-3xl font-bold text-orange-600 mb-2">156</div>
-                    <div class="text-gray-600">언론사 보도</div>
-                </div>
-            </div>
-
-            <!-- 필터 및 검색 -->
-            <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
-                <div class="flex flex-col md:flex-row gap-4">
-                    <div class="flex-1">
-                        <div class="relative">
-                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <input type="text" placeholder="보도자료 검색..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                    </div>
-                    <div class="flex gap-2">
-                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <option>전체 분야</option>
-                            <option>경제정책</option>
-                            <option>사회정책</option>
-                            <option>교육정책</option>
-                            <option>안보정책</option>
-                        </select>
-                        <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                            검색
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             <!-- 보도자료 목록 -->
-            <div class="space-y-6">
-                <!-- 최신 보도자료 -->
+            <div id="press-container" class="space-y-6">
+                <!-- 주요 보도자료 -->
                 <article class="bg-white rounded-lg shadow-sm border-l-4 border-blue-500 hover:shadow-md transition-shadow">
                     <div class="p-6">
                         <div class="flex items-start justify-between">
                             <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-4">
+                                <div class="flex items-center gap-3 mb-3">
                                     <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                        <i class="fas fa-star mr-2"></i>주요
+                                        <i class="fas fa-star mr-2"></i>중요
                                     </span>
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                        청년정책
-                                    </span>
-                                    <span class="text-gray-500 text-sm">2025.01.19 14:30</span>
-                                </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3 hover:text-blue-600 cursor-pointer">
-                                    청년층을 위한 종합 정책 패키지 발표 - '청년 희망 프로젝트'
-                                </h2>
-                                <p class="text-gray-600 leading-relaxed mb-4">
-                                    자유와혁신은 오늘 청년층의 취업, 주거, 창업을 종합적으로 지원하는 '청년 희망 프로젝트'를 발표했습니다. 
-                                    이번 정책은 청년 실업률 해소와 안정적인 사회 진출을 위한 다각적 지원 방안을 담고 있습니다.
-                                </p>
-                                <div class="flex items-center gap-6 text-sm text-gray-500 mb-4">
-                                    <span><i class="fas fa-user mr-1"></i>정책기획실</span>
-                                    <span><i class="fas fa-download mr-1"></i>PDF 다운로드</span>
-                                    <span><i class="fas fa-eye mr-1"></i>89</span>
-                                    <span><i class="fas fa-share mr-1"></i>공유</span>
-                                </div>
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <h4 class="font-medium text-gray-900 mb-2">주요 내용</h4>
-                                    <ul class="text-sm text-gray-600 space-y-1">
-                                        <li>• 청년 창업 지원 확대 및 멘토링 프로그램 운영</li>
-                                        <li>• 청년 주거 안정을 위한 임대주택 공급 확대</li>
-                                        <li>• 취업 역량 강화를 위한 직업훈련 프로그램 개선</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 보도자료 -->
-                <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div class="p-6">
-                        <div class="flex items-start justify-between">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
                                         경제정책
                                     </span>
-                                    <span class="text-gray-500 text-sm">2025.01.17 11:00</span>
+                                    <span class="text-gray-500 text-sm">2025.01.20</span>
                                 </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3 hover:text-blue-600 cursor-pointer">
-                                    중소기업 지원 확대 방안 발표
+                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                    자유와혁신, 중소기업 지원 확대 방안 발표
                                 </h2>
-                                <p class="text-gray-600 leading-relaxed mb-4">
-                                    경제의 근간이 되는 중소기업의 경쟁력 강화를 위한 종합 지원 방안을 발표합니다. 
-                                    금융 지원 확대와 규제 완화를 통해 중소기업이 성장할 수 있는 환경을 조성하겠습니다.
+                                <p class="text-gray-600 leading-relaxed">
+                                    자유와혁신이 중소기업의 경쟁력 강화를 위한 종합적인 지원 방안을 발표했습니다. 창업 지원부터 기술 개발, 판로 확대까지 전 과정에 걸친 체계적인 지원책을 제시했습니다.
                                 </p>
-                                <div class="flex items-center gap-6 text-sm text-gray-500">
-                                    <span><i class="fas fa-user mr-1"></i>경제정책실</span>
-                                    <span><i class="fas fa-download mr-1"></i>PDF 다운로드</span>
-                                    <span><i class="fas fa-eye mr-1"></i>67</span>
-                                    <span><i class="fas fa-share mr-1"></i>공유</span>
-                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <i class="fas fa-chevron-right text-gray-400"></i>
                             </div>
                         </div>
                     </div>
@@ -165,25 +73,24 @@
                     <div class="p-6">
                         <div class="flex items-start justify-between">
                             <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-4">
+                                <div class="flex items-center gap-3 mb-3">
                                     <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                        <i class="fas fa-file-alt mr-2"></i>보도자료
+                                    </span>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
                                         교육정책
                                     </span>
-                                    <span class="text-gray-500 text-sm">2025.01.15 16:20</span>
+                                    <span class="text-gray-500 text-sm">2025.01.18</span>
                                 </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3 hover:text-blue-600 cursor-pointer">
-                                    미래형 교육 시스템 구축 방안
+                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                    개별맞춤형 교육시스템 도입 방안 제시
                                 </h2>
-                                <p class="text-gray-600 leading-relaxed mb-4">
-                                    4차 산업혁명 시대에 맞는 창의적이고 혁신적인 교육 시스템 구축을 위한 종합 계획을 발표합니다. 
-                                    개별 맞춤형 교육과 디지털 교육 인프라 확충이 핵심입니다.
+                                <p class="text-gray-600 leading-relaxed">
+                                    학습자 개인의 특성과 수준에 맞춘 개별맞춤형 교육시스템 도입을 위한 구체적인 방안을 제시했습니다. 4차 산업혁명 시대에 맞는 창의적 인재 양성을 목표로 합니다.
                                 </p>
-                                <div class="flex items-center gap-6 text-sm text-gray-500">
-                                    <span><i class="fas fa-user mr-1"></i>교육정책실</span>
-                                    <span><i class="fas fa-download mr-1"></i>PDF 다운로드</span>
-                                    <span><i class="fas fa-eye mr-1"></i>78</span>
-                                    <span><i class="fas fa-share mr-1"></i>공유</span>
-                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <i class="fas fa-chevron-right text-gray-400"></i>
                             </div>
                         </div>
                     </div>
@@ -193,53 +100,114 @@
                     <div class="p-6">
                         <div class="flex items-start justify-between">
                             <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-4">
+                                <div class="flex items-center gap-3 mb-3">
                                     <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                        <i class="fas fa-file-alt mr-2"></i>보도자료
+                                    </span>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
                                         안보정책
                                     </span>
-                                    <span class="text-gray-500 text-sm">2025.01.12 09:30</span>
+                                    <span class="text-gray-500 text-sm">2025.01.15</span>
                                 </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3 hover:text-blue-600 cursor-pointer">
-                                    사이버 보안 강화 정책 발표
+                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                    사이버보안 강화방안 발표
                                 </h2>
-                                <p class="text-gray-600 leading-relaxed mb-4">
-                                    급증하는 사이버 위협에 대응하기 위한 국가 차원의 사이버 보안 강화 방안을 발표합니다. 
-                                    공공과 민간이 협력하여 사이버 보안 역량을 높이겠습니다.
+                                <p class="text-gray-600 leading-relaxed">
+                                    급증하는 사이버 위협에 대응하기 위한 국가 차원의 사이버보안 강화방안을 발표했습니다. 민·관 협력 체계 구축과 전문인력 양성에 중점을 둔 정책입니다.
                                 </p>
-                                <div class="flex items-center gap-6 text-sm text-gray-500">
-                                    <span><i class="fas fa-user mr-1"></i>안보정책실</span>
-                                    <span><i class="fas fa-download mr-1"></i>PDF 다운로드</span>
-                                    <span><i class="fas fa-eye mr-1"></i>45</span>
-                                    <span><i class="fas fa-share mr-1"></i>공유</span>
-                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <i class="fas fa-chevron-right text-gray-400"></i>
                             </div>
                         </div>
                     </div>
                 </article>
+
+                <!-- 추가 보도자료들 (처음에는 숨김) -->
+                <div id="more-press" class="space-y-6" style="display: none;">
+                    <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                            <i class="fas fa-file-alt mr-2"></i>보도자료
+                                        </span>
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                            사회복지
+                                        </span>
+                                        <span class="text-gray-500 text-sm">2025.01.12</span>
+                                    </div>
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                        사회안전망 강화정책 추진
+                                    </h2>
+                                    <p class="text-gray-600 leading-relaxed">
+                                        취약계층을 위한 사회안전망 강화정책을 발표했습니다. 고용보험 확대와 실업급여 개선 등을 통해 국민의 경제적 안정을 도모합니다.
+                                    </p>
+                                </div>
+                                <div class="ml-4">
+                                    <i class="fas fa-chevron-right text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                            <i class="fas fa-file-alt mr-2"></i>성명서
+                                        </span>
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-teal-100 text-teal-800">
+                                            환경정책
+                                        </span>
+                                        <span class="text-gray-500 text-sm">2025.01.10</span>
+                                    </div>
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                        기후변화 대응 정책 추진 의지 표명
+                                    </h2>
+                                    <p class="text-gray-600 leading-relaxed">
+                                        파리협정 목표 달성을 위한 적극적인 기후변화 대응 정책 추진 의지를 표명했습니다. 탄소중립 실현과 녹색경제 전환에 대한 구체적인 계획을 발표했습니다.
+                                    </p>
+                                </div>
+                                <div class="ml-4">
+                                    <i class="fas fa-chevron-right text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
 
-            <!-- 페이지네이션 -->
-            <div class="flex justify-center mt-12">
-                <nav class="flex items-center space-x-2">
-                    <button class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="px-4 py-2 rounded-lg bg-blue-600 text-white">1</button>
-                    <button class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
-                    <button class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
-                    <span class="px-2 text-gray-500">...</span>
-                    <button class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">8</button>
-                    <button class="px-3 py-2 rounded-lg border border-gray-300 text-gray-500 hover:bg-gray-50">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </nav>
+            <!-- 더보기 버튼 -->
+            <div class="text-center mt-12">
+                <button id="load-more-btn" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-plus mr-2"></i>
+                    더보기
+                </button>
             </div>
         </div>
     </main>
     
-    <script src="../js/nav.js"></script>
+    <script src="../nav.js"></script>
     <script>
         loadNavigation();
+        
+        // 더보기 기능
+        document.getElementById('load-more-btn').addEventListener('click', function() {
+            const morePress = document.getElementById('more-press');
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            
+            if (morePress.style.display === 'none') {
+                morePress.style.display = 'block';
+                loadMoreBtn.innerHTML = '<i class="fas fa-minus mr-2"></i>접기';
+            } else {
+                morePress.style.display = 'none';
+                loadMoreBtn.innerHTML = '<i class="fas fa-plus mr-2"></i>더보기';
+            }
+        });
     </script>
 </body>
 </html> 

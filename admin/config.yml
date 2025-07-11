@@ -19,8 +19,10 @@ collections:
       - { label: "발행일", name: "date", widget: "datetime" }
       - { label: "중요도", name: "priority", widget: "select", options: ["중요", "일반"], default: "일반" }
       - { label: "작성자", name: "author", widget: "string", default: "관리자" }
+      - { label: "요약", name: "excerpt", widget: "text", hint: "목록에서 표시될 요약 내용" }
       - { label: "내용", name: "body", widget: "markdown" }
       - { label: "첨부파일", name: "attachments", widget: "list", field: { label: "파일", name: "file", widget: "file" }, required: false }
+      - { label: "표시 순서", name: "order", widget: "number", default: 0, hint: "낮은 숫자가 먼저 표시됨" }
 
   - name: press-releases
     label: "보도자료"
@@ -30,12 +32,13 @@ collections:
     fields:
       - { label: "제목", name: "title", widget: "string" }
       - { label: "발행일", name: "date", widget: "datetime" }
-      - { label: "분야", name: "category", widget: "select", options: ["경제정책", "사회정책", "교육정책", "안보정책", "과학기술", "환경보호", "외교통상", "기타"], default: "기타" }
+      - { label: "분야", name: "category", widget: "select", options: ["경제정책", "교육정책", "안보정책", "사회복지", "과학기술", "환경보호", "외교통상"], default: "경제정책" }
+      - { label: "중요도", name: "priority", widget: "select", options: ["중요", "일반"], default: "일반" }
       - { label: "작성자", name: "author", widget: "string", default: "정책기획실" }
-      - { label: "요약", name: "excerpt", widget: "text" }
+      - { label: "요약", name: "excerpt", widget: "text", hint: "목록에서 표시될 요약 내용" }
       - { label: "내용", name: "body", widget: "markdown" }
       - { label: "첨부파일", name: "attachments", widget: "list", field: { label: "파일", name: "file", widget: "file" }, required: false }
-      - { label: "주요 내용", name: "highlights", widget: "list", field: { label: "항목", name: "item", widget: "string" }, required: false }
+      - { label: "표시 순서", name: "order", widget: "number", default: 0, hint: "낮은 숫자가 먼저 표시됨" }
 
   - name: activities
     label: "활동소식"
@@ -45,14 +48,14 @@ collections:
     fields:
       - { label: "제목", name: "title", widget: "string" }
       - { label: "활동일", name: "date", widget: "datetime" }
-      - { label: "활동 유형", name: "activity_type", widget: "select", options: ["현장방문", "간담회", "정책토론", "시민참여", "당원활동", "기타"], default: "기타" }
-      - { label: "장소", name: "location", widget: "string" }
-      - { label: "참여자 수", name: "participants", widget: "number", required: false }
-      - { label: "소요 시간", name: "duration", widget: "string", required: false }
-      - { label: "활동 설명", name: "description", widget: "text" }
+      - { label: "활동 유형", name: "activity_type", widget: "select", options: ["주요활동", "지역활동", "정책연구", "교육활동", "봉사활동", "당원활동"], default: "주요활동" }
+      - { label: "활동 분야", name: "activity_category", widget: "select", options: ["시민참여", "정책연구", "현장방문", "교육", "봉사", "당무"], default: "시민참여" }
+      - { label: "장소", name: "location", widget: "string", required: false }
+      - { label: "활동 설명", name: "description", widget: "text", hint: "목록에서 표시될 간단한 설명" }
       - { label: "내용", name: "body", widget: "markdown" }
-      - { label: "사진", name: "photos", widget: "list", field: { label: "이미지", name: "image", widget: "image" }, required: false }
-      - { label: "주요 논의사항", name: "discussion_points", widget: "list", field: { label: "항목", name: "item", widget: "string" }, required: false }
+      - { label: "대표 이미지", name: "featured_image", widget: "image", required: false }
+      - { label: "사진 갤러리", name: "photos", widget: "list", field: { label: "이미지", name: "image", widget: "image" }, required: false }
+      - { label: "표시 순서", name: "order", widget: "number", default: 0, hint: "낮은 숫자가 먼저 표시됨" }
 
   # 자료실
   - name: policy-materials
@@ -65,11 +68,12 @@ collections:
       - { label: "발행일", name: "date", widget: "datetime" }
       - { label: "정책 분야", name: "policy_area", widget: "select", options: ["경제성장", "교육혁신", "국가안보", "사회복지", "과학기술", "환경보호", "외교통상"], default: "경제성장" }
       - { label: "문서 유형", name: "document_type", widget: "select", options: ["백서", "정책안", "연구보고서", "제안서", "기타"], default: "정책안" }
-      - { label: "요약", name: "excerpt", widget: "text" }
+      - { label: "요약", name: "excerpt", widget: "text", hint: "자료 소개 및 주요 내용" }
       - { label: "내용", name: "body", widget: "markdown" }
       - { label: "PDF 파일", name: "pdf_file", widget: "file", required: false }
-      - { label: "파일 크기", name: "file_size", widget: "string", required: false }
+      - { label: "파일 크기", name: "file_size", widget: "string", required: false, hint: "예: 2.5MB" }
       - { label: "페이지 수", name: "page_count", widget: "number", required: false }
+      - { label: "표시 순서", name: "order", widget: "number", default: 0, hint: "낮은 숫자가 먼저 표시됨" }
 
   - name: party-constitution
     label: "당헌당규"
@@ -81,10 +85,12 @@ collections:
       - { label: "제정/개정일", name: "date", widget: "datetime" }
       - { label: "문서 유형", name: "document_type", widget: "select", options: ["강령", "당헌", "당규"], default: "당규" }
       - { label: "규정 분야", name: "regulation_area", widget: "select", options: ["운영규정", "선거규정", "재정규정", "윤리규정", "조직규정", "교육규정", "기타"], required: false }
-      - { label: "요약", name: "excerpt", widget: "text" }
+      - { label: "요약", name: "excerpt", widget: "text", hint: "규정 개요 및 주요 내용" }
       - { label: "내용", name: "body", widget: "markdown" }
       - { label: "PDF 파일", name: "pdf_file", widget: "file" }
+      - { label: "파일 크기", name: "file_size", widget: "string", required: false, hint: "예: 1.8MB" }
       - { label: "구성 체계", name: "structure", widget: "list", field: { label: "항목", name: "item", widget: "string" }, required: false }
+      - { label: "표시 순서", name: "order", widget: "number", default: 0, hint: "낮은 숫자가 먼저 표시됨" }
 
   - name: election-materials
     label: "선거자료"
@@ -96,10 +102,12 @@ collections:
       - { label: "발행일", name: "date", widget: "datetime" }
       - { label: "선거 종류", name: "election_type", widget: "select", options: ["대통령선거", "국회의원선거", "지방선거", "당대표선거", "기타"], default: "기타" }
       - { label: "자료 유형", name: "material_type", widget: "select", options: ["공약집", "정책백서", "홍보물", "토론자료", "분석자료", "법정자료"], default: "공약집" }
-      - { label: "요약", name: "excerpt", widget: "text" }
+      - { label: "준비 상태", name: "status", widget: "select", options: ["준비중", "완료", "업데이트예정"], default: "준비중" }
+      - { label: "요약", name: "excerpt", widget: "text", hint: "자료 소개 및 주요 내용" }
       - { label: "내용", name: "body", widget: "markdown" }
       - { label: "첨부파일", name: "attachments", widget: "list", field: { label: "파일", name: "file", widget: "file" }, required: false }
       - { label: "주요 공약", name: "key_promises", widget: "list", field: { label: "공약", name: "promise", widget: "string" }, required: false }
+      - { label: "표시 순서", name: "order", widget: "number", default: 0, hint: "낮은 숫자가 먼저 표시됨" }
 
   # 설정 페이지들
   - name: pages
@@ -123,6 +131,44 @@ collections:
               { label: "인스타그램", name: "instagram", widget: "string", required: false }
             ]}
 
+      - label: "메인 페이지 설정"
+        name: "homepage"
+        file: "_data/homepage.yml"
+        fields:
+          - { label: "히어로 섹션", name: "hero", widget: "object", fields: [
+              { label: "제목", name: "title", widget: "string" },
+              { label: "부제목", name: "subtitle", widget: "string" },
+              { label: "배경 이미지", name: "background_image", widget: "image" },
+              { label: "CTA 버튼 텍스트", name: "cta_text", widget: "string" },
+              { label: "CTA 버튼 링크", name: "cta_link", widget: "string" }
+            ]}
+          - { label: "7대 핵심 정책", name: "core_policies", widget: "list", fields: [
+              { label: "정책명", name: "name", widget: "string" },
+              { label: "아이콘", name: "icon", widget: "string", hint: "Font Awesome 클래스명" },
+              { label: "설명", name: "description", widget: "text" },
+              { label: "링크", name: "link", widget: "string", required: false }
+            ]}
+
+      - label: "더보기 설정"
+        name: "load-more-settings"
+        file: "_data/load-more.yml"
+        fields:
+          - { label: "페이지당 표시 개수", name: "items_per_page", widget: "number", default: 10 }
+          - { label: "공지사항 더보기 활성화", name: "notices_load_more", widget: "boolean", default: true }
+          - { label: "보도자료 더보기 활성화", name: "press_load_more", widget: "boolean", default: true }
+          - { label: "활동소식 더보기 활성화", name: "activities_load_more", widget: "boolean", default: true }
+          - { label: "정책자료 더보기 활성화", name: "policy_load_more", widget: "boolean", default: true }
+
 # 편집기 설정
 editor:
-  preview: false 
+  preview: false
+
+# 표시 설정
+display_url: https://forthefreedomkr.netlify.app
+logo_url: https://forthefreedomkr.netlify.app/images/logo.png
+
+# 미디어 설정
+media_library:
+  name: uploadcare
+  config:
+    publicKey: your_uploadcare_public_key 
