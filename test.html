@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 테스트</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .test-red { background: red; color: white; padding: 20px; }
+        .test-success { background: green; color: white; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="test-red">
+        <h1>CSS 로딩 테스트</h1>
+        <p>이 텍스트가 빨간 배경에 흰 글씨로 보인다면 인라인 CSS는 작동합니다.</p>
+    </div>
+    
+    <div class="hero-section" style="height: 200px; background: blue; color: white; display: flex; align-items: center; justify-content: center;">
+        <h2>외부 CSS 테스트 - 이 영역이 파란색이 아니라 다른 스타일이면 style.css가 로딩됨</h2>
+    </div>
+    
+    <div class="test-success">
+        <p>개발자 도구 Network 탭에서 style.css 로딩 상태를 확인하세요!</p>
+    </div>
+</body>
+</html> 
