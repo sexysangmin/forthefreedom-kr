@@ -8,12 +8,72 @@
     NODE_VERSION = "18"
     PYTHON_VERSION = "3.9"
 
+# 정적 파일 우선 처리 (CSS, JS, 이미지 등)
+[[redirects]]
+  from = "/style.css"
+  to = "/style.css"
+  status = 200
+
+[[redirects]]
+  from = "/script.js"
+  to = "/script.js"
+  status = 200
+
+[[redirects]]
+  from = "/nav.js"
+  to = "/nav.js"
+  status = 200
+
+[[redirects]]
+  from = "/js/*"
+  to = "/js/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/images/*"
+  to = "/images/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/uploads/*"
+  to = "/uploads/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*.css"
+  to = "/:splat.css"
+  status = 200
+
+[[redirects]]
+  from = "/*.js"
+  to = "/:splat.js"
+  status = 200
+
+[[redirects]]
+  from = "/*.png"
+  to = "/:splat.png"
+  status = 200
+
+[[redirects]]
+  from = "/*.jpg"
+  to = "/:splat.jpg"
+  status = 200
+
+[[redirects]]
+  from = "/*.svg"
+  to = "/:splat.svg"
+  status = 200
+
+[[redirects]]
+  from = "/*.ico"
+  to = "/:splat.ico"
+  status = 200
+
 # CMS 관리자 페이지 리디렉션
 [[redirects]]
-  from = "/freedom-control/*"
-  to = "/freedom-control/index.html"
+  from = "/admin/*"
+  to = "/admin/index.html"
   status = 200
-  force = true
 
 # API 라우팅 (필요시)
 [[redirects]]
@@ -21,13 +81,64 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
-# 정적 파일 직접 접근 허용
+# HTML 페이지 처리
 [[redirects]]
-  from = "/*.html"
-  to = "/:splat.html"
+  from = "/about"
+  to = "/about.html"
   status = 200
 
-# SPA 라우팅 지원 (모든 사용자)
+[[redirects]]
+  from = "/policy"
+  to = "/policy.html"
+  status = 200
+
+[[redirects]]
+  from = "/news"
+  to = "/news.html"
+  status = 200
+
+[[redirects]]
+  from = "/members"
+  to = "/members.html"
+  status = 200
+
+[[redirects]]
+  from = "/resources"
+  to = "/resources.html"
+  status = 200
+
+[[redirects]]
+  from = "/support"
+  to = "/support.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 200
+
+[[redirects]]
+  from = "/notices"
+  to = "/notices.html"
+  status = 200
+
+# 서브 페이지들
+[[redirects]]
+  from = "/about/*"
+  to = "/about/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/news/*"
+  to = "/news/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/resources/*"
+  to = "/resources/:splat.html"
+  status = 200
+
+# HTML 페이지만 index.html로 폴백 (정적 파일 제외)
 [[redirects]]
   from = "/*"
   to = "/index.html"
