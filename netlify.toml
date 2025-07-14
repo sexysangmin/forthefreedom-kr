@@ -1,5 +1,5 @@
 [build]
-  command = "echo 'Building...'"
+  command = "python3 scripts/build-notices.py && echo 'Build completed!'"
   publish = "."
   
 [build.environment]

@@ -21,14 +21,16 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
+      - { label: "레이아웃", name: "layout", widget: "hidden", default: "notice" }
       - { label: "제목", name: "title", widget: "string" }
       - { label: "발행일", name: "date", widget: "datetime" }
-      - { label: "중요도", name: "priority", widget: "select", options: ["중요", "일반"], default: "일반" }
-      - { label: "작성자", name: "author", widget: "string", default: "관리자" }
+      - { label: "카테고리", name: "category", widget: "select", options: ["중요", "일반"], default: "일반" }
+      - { label: "중요 공지", name: "priority", widget: "boolean", default: false, hint: "중요 공지로 설정하면 상단에 표시됩니다" }
+      - { label: "작성자", name: "author", widget: "string", default: "관리자", required: false }
       - { label: "요약", name: "excerpt", widget: "text", hint: "목록에서 표시될 요약 내용" }
       - { label: "내용", name: "body", widget: "markdown" }
       - { label: "첨부파일", name: "attachments", widget: "list", field: { label: "파일", name: "file", widget: "file" }, required: false }
-      - { label: "표시 순서", name: "order", widget: "number", default: 0, hint: "낮은 숫자가 먼저 표시됨" }
+      - { label: "표시 순서", name: "order", widget: "number", default: 0, hint: "낮은 숫자가 먼저 표시됨", required: false }
 
   - name: press-releases
     label: "보도자료"
