@@ -107,60 +107,36 @@
                     </p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 최신 공지사항 -->
-                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-gradient-to-r from-red-500 to-red-600 h-2"></div>
-                        <div class="p-6">
-                            <div class="flex items-start justify-between mb-3">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                                    <i class="fas fa-bullhorn mr-2"></i>공지사항
-                                </span>
-                                <span class="text-gray-500 text-sm">2025.01.20</span>
-                            </div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">당대표 신년사 발표</h3>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                2025년 새해를 맞아 당대표의 신년사와 올해 주요 계획을 발표합니다.
-                            </p>
-                            <a href="news/notices.html" class="text-red-600 hover:text-red-700 font-medium text-sm">자세히 보기 →</a>
-                        </div>
+                <!-- 로딩 상태 -->
+                <div id="latest-news-loading" class="text-center py-12">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
+                    <p class="mt-4 text-gray-600">최신 소식을 불러오는 중...</p>
+                </div>
+
+                <!-- 에러 상태 -->
+                <div id="latest-news-error" class="text-center py-12 hidden">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-exclamation-triangle text-4xl"></i>
                     </div>
-                    
-                    <!-- 최신 보도자료 -->
-                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2"></div>
-                        <div class="p-6">
-                            <div class="flex items-start justify-between mb-3">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                    <i class="fas fa-newspaper mr-2"></i>보도자료
-                                </span>
-                                <span class="text-gray-500 text-sm">2025.01.19</span>
-                            </div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">청년 정책 발표</h3>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                청년층을 위한 종합적인 정책 패키지를 발표했습니다.
-                            </p>
-                            <a href="news/press-releases.html" class="text-blue-600 hover:text-blue-700 font-medium text-sm">자세히 보기 →</a>
-                        </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">최신 소식을 불러올 수 없습니다</h3>
+                    <p class="text-gray-600 mb-6">네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</p>
+                    <button onclick="loadLatestNews()" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors">
+                        다시 시도
+                    </button>
+                </div>
+
+                <!-- 빈 상태 -->
+                <div id="latest-news-empty" class="text-center py-16 hidden">
+                    <div class="text-gray-400 mb-4">
+                        <i class="fas fa-newspaper text-6xl"></i>
                     </div>
-                    
-                    <!-- 최신 활동소식 -->
-                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-gradient-to-r from-green-500 to-green-600 h-2"></div>
-                        <div class="p-6">
-                            <div class="flex items-start justify-between mb-3">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                    <i class="fas fa-users mr-2"></i>활동소식
-                                </span>
-                                <span class="text-gray-500 text-sm">2025.01.18</span>
-                            </div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">시민과의 대화</h3>
-                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-                                지역 시민들과의 정책 간담회를 개최했습니다.
-                            </p>
-                            <a href="news/activities.html" class="text-green-600 hover:text-green-700 font-medium text-sm">자세히 보기 →</a>
-                        </div>
-                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">등록된 최신 소식이 없습니다</h3>
+                    <p class="text-gray-600">새로운 소식이 등록되면 여기에 표시됩니다.</p>
+                </div>
+                
+                <!-- 최신 소식 카드들 -->
+                <div id="latest-news-content" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
+                    <!-- 동적으로 생성되는 카드들 -->
                 </div>
             </div>
         </section>
@@ -169,6 +145,234 @@
     <script src="nav.js"></script>
     <script>
         loadNavigation();
+
+        const API_BASE = 'http://localhost:9000/api';
+
+        // 페이지 로드시 최신 소식 불러오기
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLatestNews();
+        });
+
+        // 최신 소식 불러오기
+        async function loadLatestNews() {
+            try {
+                showLoading();
+
+                // 각 카테고리별 최신 1개씩 병렬로 요청
+                const [noticesResponse, pressResponse, activitiesResponse] = await Promise.all([
+                    fetch(`${API_BASE}/notices?limit=1&sortBy=createdAt&sortOrder=desc`),
+                    fetch(`${API_BASE}/press-releases?limit=1&sortBy=createdAt&sortOrder=desc`),
+                    fetch(`${API_BASE}/activities?limit=1&sortBy=eventDate&sortOrder=desc`)
+                ]);
+
+                const [noticesData, pressData, activitiesData] = await Promise.all([
+                    noticesResponse.json(),
+                    pressResponse.json(),
+                    activitiesResponse.json()
+                ]);
+
+                // 최신 소식 렌더링
+                renderLatestNews(noticesData, pressData, activitiesData);
+                hideLoading();
+
+            } catch (error) {
+                console.error('최신 소식 로드 실패:', error);
+                showError();
+                hideLoading();
+            }
+        }
+
+        // 최신 소식 렌더링
+        function renderLatestNews(noticesData, pressData, activitiesData) {
+            const container = document.getElementById('latest-news-content');
+            container.innerHTML = '';
+
+            let hasContent = false;
+
+            // 공지사항 카드
+            if (noticesData.success && noticesData.data && noticesData.data.length > 0) {
+                const notice = noticesData.data[0];
+                container.appendChild(createNewsCard({
+                    type: 'notice',
+                    title: '공지사항',
+                    icon: 'fas fa-bullhorn',
+                    bgGradient: 'bg-gradient-to-r from-red-500 to-red-600',
+                    badgeStyle: 'bg-red-100 text-red-800',
+                    linkStyle: 'text-red-600 hover:text-red-700',
+                    linkUrl: `news/notice-detail.html?id=${notice._id}`,
+                    listUrl: 'news/notices.html',
+                    data: notice,
+                    dateField: 'createdAt'
+                }));
+                hasContent = true;
+            } else {
+                container.appendChild(createEmptyCard({
+                    type: 'notice',
+                    title: '공지사항',
+                    icon: 'fas fa-bullhorn',
+                    bgGradient: 'bg-gradient-to-r from-red-500 to-red-600',
+                    badgeStyle: 'bg-red-100 text-red-800',
+                    linkStyle: 'text-red-600 hover:text-red-700',
+                    linkUrl: 'news/notices.html',
+                    message: '등록된 공지사항이 없습니다'
+                }));
+            }
+
+            // 보도자료 카드
+            if (pressData.success && pressData.data && pressData.data.length > 0) {
+                const press = pressData.data[0];
+                container.appendChild(createNewsCard({
+                    type: 'press',
+                    title: '보도자료',
+                    icon: 'fas fa-newspaper',
+                    bgGradient: 'bg-gradient-to-r from-blue-500 to-blue-600',
+                    badgeStyle: 'bg-blue-100 text-blue-800',
+                    linkStyle: 'text-blue-600 hover:text-blue-700',
+                    linkUrl: `news/press-release-detail.html?id=${press._id}`,
+                    listUrl: 'news/press-releases.html',
+                    data: press,
+                    dateField: 'releaseDate'
+                }));
+                hasContent = true;
+            } else {
+                container.appendChild(createEmptyCard({
+                    type: 'press',
+                    title: '보도자료',
+                    icon: 'fas fa-newspaper',
+                    bgGradient: 'bg-gradient-to-r from-blue-500 to-blue-600',
+                    badgeStyle: 'bg-blue-100 text-blue-800',
+                    linkStyle: 'text-blue-600 hover:text-blue-700',
+                    linkUrl: 'news/press-releases.html',
+                    message: '등록된 보도자료가 없습니다'
+                }));
+            }
+
+            // 활동소식 카드
+            if (activitiesData.success && activitiesData.data && activitiesData.data.length > 0) {
+                const activity = activitiesData.data[0];
+                container.appendChild(createNewsCard({
+                    type: 'activity',
+                    title: '활동소식',
+                    icon: 'fas fa-users',
+                    bgGradient: 'bg-gradient-to-r from-green-500 to-green-600',
+                    badgeStyle: 'bg-green-100 text-green-800',
+                    linkStyle: 'text-green-600 hover:text-green-700',
+                    linkUrl: `news/activity-detail.html?id=${activity._id}`,
+                    listUrl: 'news/activities.html',
+                    data: activity,
+                    dateField: 'eventDate'
+                }));
+                hasContent = true;
+            } else {
+                container.appendChild(createEmptyCard({
+                    type: 'activity',
+                    title: '활동소식',
+                    icon: 'fas fa-users',
+                    bgGradient: 'bg-gradient-to-r from-green-500 to-green-600',
+                    badgeStyle: 'bg-green-100 text-green-800',
+                    linkStyle: 'text-green-600 hover:text-green-700',
+                    linkUrl: 'news/activities.html',
+                    message: '등록된 활동소식이 없습니다'
+                }));
+            }
+
+            // 내용이 있으면 표시, 없으면 빈 상태 표시
+            if (hasContent) {
+                showContent();
+            } else {
+                showEmpty();
+            }
+        }
+
+        // 뉴스 카드 생성
+        function createNewsCard(config) {
+            const card = document.createElement('div');
+            card.className = 'bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow';
+            
+            const date = config.data[config.dateField] || config.data.createdAt;
+            
+            card.innerHTML = `
+                <div class="${config.bgGradient} h-2"></div>
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${config.badgeStyle}">
+                            <i class="${config.icon} mr-2"></i>${config.title}
+                        </span>
+                        <span class="text-gray-500 text-sm">${formatDate(date)}</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">${config.data.title}</h3>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        ${config.data.excerpt || config.data.content.substring(0, 80) + '...'}
+                    </p>
+                    <a href="${config.linkUrl}" class="${config.linkStyle} font-medium text-sm">자세히 보기 →</a>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // 빈 카드 생성
+        function createEmptyCard(config) {
+            const card = document.createElement('div');
+            card.className = 'bg-white border border-gray-200 rounded-lg overflow-hidden';
+            
+            card.innerHTML = `
+                <div class="${config.bgGradient} h-2"></div>
+                <div class="p-6">
+                    <div class="flex items-center justify-center mb-3">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${config.badgeStyle}">
+                            <i class="${config.icon} mr-2"></i>${config.title}
+                        </span>
+                    </div>
+                    <div class="text-center py-8">
+                        <div class="text-gray-400 mb-3">
+                            <i class="${config.icon} text-3xl"></i>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">${config.message}</p>
+                        <a href="${config.linkUrl}" class="${config.linkStyle} font-medium text-sm">전체 보기 →</a>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+        }
+
+        // UI 상태 관리 함수들
+        function showLoading() {
+            document.getElementById('latest-news-loading').classList.remove('hidden');
+            document.getElementById('latest-news-content').classList.add('hidden');
+            document.getElementById('latest-news-error').classList.add('hidden');
+            document.getElementById('latest-news-empty').classList.add('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('latest-news-loading').classList.add('hidden');
+        }
+
+        function showContent() {
+            document.getElementById('latest-news-content').classList.remove('hidden');
+        }
+
+        function showError() {
+            document.getElementById('latest-news-error').classList.remove('hidden');
+            document.getElementById('latest-news-content').classList.add('hidden');
+            document.getElementById('latest-news-empty').classList.add('hidden');
+        }
+
+        function showEmpty() {
+            document.getElementById('latest-news-empty').classList.remove('hidden');
+            document.getElementById('latest-news-content').classList.add('hidden');
+        }
     </script>
 </body>
 </html> 

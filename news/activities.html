@@ -28,7 +28,7 @@
 <body>
     <div id="navigation-container"></div>
     
-    <!-- Hero Section - 통일된 이미지 배경 스타일 -->
+    <!-- Hero Section -->
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
@@ -38,178 +38,686 @@
     </section>
 
     <main class="py-16 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- 활동소식 목록 -->
-            <div id="activities-container" class="space-y-8">
-                <!-- 주요 활동 -->
-                <article class="bg-white rounded-lg shadow-sm border-l-4 border-green-500 overflow-hidden hover:shadow-md transition-shadow">
-                    <div class="md:flex">
-                        <div class="md:w-1/3">
-                            <div class="h-48 md:h-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
-                                <i class="fas fa-handshake text-white text-6xl"></i>
-                            </div>
-                        </div>
-                        <div class="md:w-2/3 p-6">
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                    <i class="fas fa-star mr-2"></i>주요활동
-                                </span>
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                    시민참여
-                                </span>
-                                <span class="text-gray-500 text-sm">2025.01.18</span>
-                            </div>
-                            <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                청년층과의 정책 간담회 개최
-                            </h2>
-                            <p class="text-gray-600 leading-relaxed">
-                                청년층의 목소리를 정책에 반영하기 위한 간담회를 개최했습니다. 청년 일자리, 주거 문제, 교육 등 다양한 이슈에 대해 활발한 토론이 이루어졌습니다.
-                            </p>
-                        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 필터 탭 -->
+            <div class="bg-white rounded-lg shadow-sm mb-8 p-6">
+                <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
+                    <!-- 타입 필터 -->
+                    <div class="flex bg-gray-100 rounded-lg p-1">
+                        <button id="all-btn" onclick="filterByType('all')" 
+                                class="type-filter-btn active px-6 py-2 rounded-md font-medium transition-all">
+                            <i class="fas fa-th mr-2"></i>전체
+                        </button>
+                        <button id="photo-btn" onclick="filterByType('photo')" 
+                                class="type-filter-btn px-6 py-2 rounded-md font-medium transition-all">
+                            <i class="fas fa-camera mr-2"></i>사진
+                        </button>
+                        <button id="video-btn" onclick="filterByType('video')" 
+                                class="type-filter-btn px-6 py-2 rounded-md font-medium transition-all">
+                            <i class="fas fa-video mr-2"></i>영상
+                        </button>
                     </div>
-                </article>
 
-                <!-- 지역 활동 -->
-                <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <div class="md:flex">
-                        <div class="md:w-1/3">
-                            <div class="h-48 md:h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                                <i class="fas fa-users text-white text-6xl"></i>
-                            </div>
-                        </div>
-                        <div class="md:w-2/3 p-6">
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                    <i class="fas fa-map-marker-alt mr-2"></i>지역활동
-                                </span>
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                    서울 강남구
-                                </span>
-                                <span class="text-gray-500 text-sm">2025.01.15</span>
-                            </div>
-                            <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                지역 주민과의 소통 간담회
-                            </h2>
-                            <p class="text-gray-600 leading-relaxed">
-                                강남구 지역 주민들과의 소통 간담회를 통해 지역 현안과 개선 방안에 대해 논의했습니다.
-                            </p>
-                        </div>
+                    <!-- 카테고리 필터 -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filterByCategory('all')" 
+                                class="category-filter-btn active px-4 py-2 bg-red-600 text-white rounded-full text-sm font-medium transition-all hover:bg-red-700">
+                            전체
+                        </button>
+                        <button onclick="filterByCategory('지역활동')" 
+                                class="category-filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium transition-all hover:bg-gray-300">
+                            지역활동
+                        </button>
+                        <button onclick="filterByCategory('정책연구')" 
+                                class="category-filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium transition-all hover:bg-gray-300">
+                            정책연구
+                        </button>
+                        <button onclick="filterByCategory('교육세미나')" 
+                                class="category-filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium transition-all hover:bg-gray-300">
+                            교육세미나
+                        </button>
+                        <button onclick="filterByCategory('회의')" 
+                                class="category-filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium transition-all hover:bg-gray-300">
+                            회의
+                        </button>
+                        <button onclick="filterByCategory('기타')" 
+                                class="category-filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium transition-all hover:bg-gray-300">
+                            기타
+                        </button>
                     </div>
-                </article>
-
-                <!-- 정책 활동 -->
-                <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <div class="md:flex">
-                        <div class="md:w-1/3">
-                            <div class="h-48 md:h-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
-                                <i class="fas fa-clipboard-list text-white text-6xl"></i>
-                            </div>
-                        </div>
-                        <div class="md:w-2/3 p-6">
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                                    <i class="fas fa-file-alt mr-2"></i>정책연구
-                                </span>
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                    경제정책
-                                </span>
-                                <span class="text-gray-500 text-sm">2025.01.12</span>
-                            </div>
-                            <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                중소기업 지원 정책 연구회 발족
-                            </h2>
-                            <p class="text-gray-600 leading-relaxed">
-                                중소기업 생태계 활성화를 위한 정책 연구회를 발족하고 첫 번째 연구 모임을 개최했습니다.
-                            </p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 추가 활동들 (처음에는 숨김) -->
-                <div id="more-activities" class="space-y-8" style="display: none;">
-                    <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                        <div class="md:flex">
-                            <div class="md:w-1/3">
-                                <div class="h-48 md:h-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                                    <i class="fas fa-graduation-cap text-white text-6xl"></i>
-                                </div>
-                            </div>
-                            <div class="md:w-2/3 p-6">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
-                                        <i class="fas fa-book mr-2"></i>교육활동
-                                    </span>
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                        당원교육
-                                    </span>
-                                    <span class="text-gray-500 text-sm">2025.01.10</span>
-                                </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                    당원 정책 교육 세미나
-                                </h2>
-                                <p class="text-gray-600 leading-relaxed">
-                                    당원들의 정책 이해도 향상을 위한 교육 세미나를 개최했습니다.
-                                </p>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                        <div class="md:flex">
-                            <div class="md:w-1/3">
-                                <div class="h-48 md:h-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center">
-                                    <i class="fas fa-volunteer text-white text-6xl"></i>
-                                </div>
-                            </div>
-                            <div class="md:w-2/3 p-6">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                                        <i class="fas fa-heart mr-2"></i>봉사활동
-                                    </span>
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                        사회복지
-                                    </span>
-                                    <span class="text-gray-500 text-sm">2025.01.08</span>
-                                </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                    지역사회 봉사활동 참여
-                                </h2>
-                                <p class="text-gray-600 leading-relaxed">
-                                    당원들이 지역사회 봉사활동에 적극 참여하여 사회적 책임을 다했습니다.
-                                </p>
-                            </div>
-                        </div>
-                    </article>
                 </div>
             </div>
 
-            <!-- 더보기 버튼 -->
-            <div class="text-center mt-12">
-                <button id="load-more-btn" class="inline-flex items-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors">
-                    <i class="fas fa-plus mr-2"></i>
-                    더보기
+            <!-- 로딩 상태 -->
+            <div id="loading" class="text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
+                <p class="mt-4 text-gray-600">활동소식을 불러오는 중...</p>
+            </div>
+
+            <!-- 에러 상태 -->
+            <div id="error" class="text-center py-12 hidden">
+                <div class="text-red-600 mb-4">
+                    <i class="fas fa-exclamation-triangle text-4xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">활동소식을 불러올 수 없습니다</h2>
+                <p class="text-gray-600 mb-8" id="error-message">네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</p>
+                <button onclick="loadActivities()" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors">
+                    다시 시도
                 </button>
+            </div>
+
+            <!-- 빈 상태 -->
+            <div id="empty" class="text-center py-16 hidden">
+                <div class="text-gray-400 mb-4">
+                    <i class="fas fa-folder-open text-6xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">등록된 활동소식이 없습니다</h2>
+                <p class="text-gray-600">새로운 활동소식이 등록되면 여기에 표시됩니다.</p>
+            </div>
+
+            <!-- 활동소식 그리드 -->
+            <div id="activities-container" class="hidden">
+                <div id="activities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- 활동자료들이 여기에 동적으로 추가됩니다 -->
+                </div>
+
+                <!-- 더보기 버튼 -->
+                <div id="load-more-container" class="text-center mt-12 hidden">
+                    <button id="load-more-btn" onclick="loadMoreActivities()" 
+                            class="px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors">
+                        <i class="fas fa-plus mr-2"></i>
+                        더 많은 활동소식 보기
+                    </button>
+                </div>
+
+                <!-- 로딩 중 표시 -->
+                <div id="loading-more" class="text-center mt-8 hidden">
+                    <div class="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-red-600"></div>
+                    <p class="mt-2 text-gray-600">더 많은 활동소식을 불러오는 중...</p>
+                </div>
             </div>
         </div>
     </main>
-    
-    <script src="../nav.js"></script>
+
+    <!-- 상세보기 모달 -->
+    <div id="detail-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white border-b p-4 flex justify-between items-center">
+                <h2 id="modal-title" class="text-xl font-bold text-gray-900"></h2>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="modal-content" class="p-6">
+                <!-- 상세 내용이 여기에 로드됩니다 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/nav.js"></script>
     <script>
-        loadNavigation();
-        
-        // 더보기 기능
-        document.getElementById('load-more-btn').addEventListener('click', function() {
-            const moreActivities = document.getElementById('more-activities');
-            const loadMoreBtn = document.getElementById('load-more-btn');
+        const API_BASE = 'http://localhost:9000/api';
+        let allActivities = [];
+        let filteredActivities = [];
+        let currentPage = 1;
+        let currentTypeFilter = 'all';
+        let currentCategoryFilter = 'all';
+        const itemsPerPage = 12;
+        let isLoading = false;
+        let hasMoreData = true;
+
+        // 페이지 로드시 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            loadActivities();
+        });
+
+        // 활동소식 로드
+        async function loadActivities(reset = false) {
+            if (isLoading) return;
             
-            if (moreActivities.style.display === 'none') {
-                moreActivities.style.display = 'block';
-                loadMoreBtn.innerHTML = '<i class="fas fa-minus mr-2"></i>접기';
+            try {
+                isLoading = true;
+                
+                if (reset) {
+                    currentPage = 1;
+                    hasMoreData = true;
+                    allActivities = [];
+                    filteredActivities = [];
+                    document.getElementById('activities-grid').innerHTML = '';
+                }
+                
+                if (currentPage === 1) {
+                    showLoading();
+                }
+
+                const response = await fetch(`${API_BASE}/activities?page=${currentPage}&limit=${itemsPerPage}&sortBy=eventDate&sortOrder=desc`);
+                const result = await response.json();
+
+                if (!result.success) {
+                    throw new Error(result.message || '활동소식을 불러올 수 없습니다.');
+                }
+
+                if (currentPage === 1) {
+                    allActivities = result.data;
+                } else {
+                    allActivities = [...allActivities, ...result.data];
+                }
+
+                applyFilters();
+                
+                // 페이지네이션 정보 업데이트
+                hasMoreData = result.pagination.hasNext;
+                updateLoadMoreButton();
+                
+                if (currentPage === 1) {
+                    hideLoading();
+                    if (allActivities.length === 0) {
+                        showEmpty();
+                    } else {
+                        showContent();
+                    }
+                }
+
+            } catch (error) {
+                console.error('활동소식 로드 실패:', error);
+                if (currentPage === 1) {
+                    showError(error.message);
+                }
+            } finally {
+                isLoading = false;
+                hideLoadingMore();
+            }
+        }
+
+        // 더 많은 활동소식 로드
+        function loadMoreActivities() {
+            if (!hasMoreData || isLoading) return;
+            
+            showLoadingMore();
+            currentPage++;
+            loadActivities();
+        }
+
+        // 타입별 필터링
+        function filterByType(type) {
+            currentTypeFilter = type;
+            
+            // 버튼 상태 업데이트
+            document.querySelectorAll('.type-filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`${type}-btn`).classList.add('active');
+            
+            applyFilters();
+        }
+
+        // 카테고리별 필터링
+        function filterByCategory(category) {
+            currentCategoryFilter = category;
+            
+            // 버튼 상태 업데이트
+            document.querySelectorAll('.category-filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+                btn.classList.remove('bg-red-600', 'text-white');
+            });
+            event.target.classList.add('active', 'bg-red-600', 'text-white');
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+            
+            applyFilters();
+        }
+
+        // 필터 적용
+        function applyFilters() {
+            filteredActivities = allActivities.filter(activity => {
+                const typeMatch = currentTypeFilter === 'all' || activity.activityType === currentTypeFilter;
+                const categoryMatch = currentCategoryFilter === 'all' || activity.category === currentCategoryFilter;
+                return typeMatch && categoryMatch;
+            });
+
+            renderActivities();
+            
+            if (filteredActivities.length === 0 && allActivities.length > 0) {
+                showEmpty();
+            } else if (filteredActivities.length > 0) {
+                showContent();
+            }
+        }
+
+        // 활동소식 렌더링
+        function renderActivities() {
+            const container = document.getElementById('activities-grid');
+            container.innerHTML = '';
+
+            filteredActivities.forEach(activity => {
+                const activityElement = createActivityCard(activity);
+                container.appendChild(activityElement);
+            });
+        }
+
+        // 활동소식 카드 생성
+        function createActivityCard(activity) {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer group';
+            card.onclick = () => openModal(activity);
+
+            const isVideo = activity.activityType === 'video' && activity.youtubeUrl;
+            
+            // 첨부파일 중 이미지 찾기
+            const imageAttachment = activity.attachments?.find(file => 
+                file.mimeType && file.mimeType.startsWith('image/')
+            );
+            
+            card.innerHTML = `
+                <div class="relative">
+                    ${isVideo ? `
+                        <div class="aspect-video bg-black flex items-center justify-center">
+                            <iframe 
+                                src="${getYouTubeEmbedUrl(activity.youtubeUrl)}" 
+                                class="w-full h-full" 
+                                frameborder="0" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    ` : imageAttachment ? `
+                        <div class="aspect-video relative overflow-hidden">
+                            <img 
+                                src="http://localhost:9000/uploads/${imageAttachment.filename}" 
+                                alt="${activity.title}"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                onerror="this.parentElement.innerHTML='<div class=\\'${getCategoryGradient(activity.category)} flex items-center justify-center h-full\\'>
+                                    <i class=\\'${getCategoryIcon(activity.category)} text-white text-4xl\\'></i>
+                                    <div class=\\'absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all\\'></div>
+                                </div>'"
+                            />
+                            <div class="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 transition-all"></div>
+                        </div>
+                    ` : `
+                        <div class="aspect-video ${getCategoryGradient(activity.category)} flex items-center justify-center relative">
+                            <i class="${getCategoryIcon(activity.category)} text-white text-4xl"></i>
+                            <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all"></div>
+                        </div>
+                    `}
+                    
+                    <!-- 타입 뱃지 -->
+                    <div class="absolute top-3 left-3">
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white bg-opacity-90 ${activity.activityType === 'video' ? 'text-red-600' : 'text-blue-600'}">
+                            <i class="fas fa-${activity.activityType === 'video' ? 'video' : imageAttachment ? 'image' : 'camera'} mr-1"></i>
+                            ${activity.activityType === 'video' ? '영상' : imageAttachment ? '사진' : '활동'}
+                        </span>
+                    </div>
+
+                    <!-- 카테고리 뱃지 -->
+                    <div class="absolute top-3 right-3">
+                        <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${getCategoryStyle(activity.category)}">
+                            ${activity.category}
+                        </span>
+                    </div>
+                    
+                    ${imageAttachment ? `
+                        <!-- 추가 이미지 개수 표시 -->
+                        ${activity.attachments.filter(f => f.mimeType && f.mimeType.startsWith('image/')).length > 1 ? `
+                            <div class="absolute bottom-3 right-3">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-black bg-opacity-60 text-white">
+                                    <i class="fas fa-images mr-1"></i>
+                                    +${activity.attachments.filter(f => f.mimeType && f.mimeType.startsWith('image/')).length - 1}
+                                </span>
+                            </div>
+                        ` : ''}
+                    ` : ''}
+                </div>
+
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-red-600 transition-colors">
+                        ${activity.title}
+                    </h3>
+                    
+                    <p class="text-sm text-gray-600 mb-3 line-clamp-2">
+                        ${activity.excerpt || activity.content.substring(0, 80) + '...'}
+                    </p>
+                    
+                    <div class="flex items-center justify-between text-xs text-gray-500">
+                        <span>
+                            <i class="fas fa-calendar mr-1"></i>
+                            ${formatDate(activity.eventDate || activity.createdAt)}
+                        </span>
+                        <span>
+                            <i class="fas fa-eye mr-1"></i>
+                            ${activity.views || 0}
+                        </span>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // 유튜브 임베드 URL 생성
+        function getYouTubeEmbedUrl(url) {
+            if (!url) return '';
+            
+            // 유튜브 URL에서 비디오 ID 추출
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+            
+            if (match && match[2].length === 11) {
+                return `https://www.youtube.com/embed/${match[2]}?rel=0&showinfo=0`;
+            }
+            
+            return url;
+        }
+
+        // 모달 열기
+        function openModal(activity) {
+            const modal = document.getElementById('detail-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+            
+            modalTitle.textContent = activity.title;
+            
+            const isVideo = activity.activityType === 'video' && activity.youtubeUrl;
+            const imageAttachments = activity.attachments?.filter(file => 
+                file.mimeType && file.mimeType.startsWith('image/')
+            ) || [];
+            
+            modalContent.innerHTML = `
+                <div class="space-y-6">
+                    <!-- 미디어 섹션 -->
+                    <div class="mb-6">
+                        ${isVideo ? `
+                            <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                                <iframe 
+                                    src="${getYouTubeEmbedUrl(activity.youtubeUrl)}" 
+                                    class="w-full h-full" 
+                                    frameborder="0" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        ` : imageAttachments.length > 0 ? `
+                            <!-- 이미지 갤러리 -->
+                            <div class="space-y-4">
+                                <!-- 메인 이미지 -->
+                                <div class="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                                    <img 
+                                        id="modal-main-image"
+                                        src="http://localhost:9000/uploads/${imageAttachments[0].filename}" 
+                                        alt="${activity.title}"
+                                        class="w-full h-full object-cover"
+                                        onerror="this.parentElement.innerHTML='<div class=\\'${getCategoryGradient(activity.category)} rounded-lg flex items-center justify-center h-full\\'>
+                                            <i class=\\'${getCategoryIcon(activity.category)} text-white text-8xl\\'></i>
+                                        </div>'"
+                                    />
+                                </div>
+                                
+                                ${imageAttachments.length > 1 ? `
+                                    <!-- 썸네일 갤러리 -->
+                                    <div class="flex gap-2 overflow-x-auto pb-2">
+                                        ${imageAttachments.map((img, index) => `
+                                            <div class="flex-shrink-0">
+                                                <img 
+                                                    src="http://localhost:9000/uploads/${img.filename}" 
+                                                    alt="이미지 ${index + 1}"
+                                                    class="w-20 h-20 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity ${index === 0 ? 'ring-2 ring-red-500' : ''}"
+                                                    onclick="changeMainImage('${img.filename}', ${index})"
+                                                />
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        ` : `
+                            <div class="aspect-video ${getCategoryGradient(activity.category)} rounded-lg flex items-center justify-center">
+                                <i class="${getCategoryIcon(activity.category)} text-white text-8xl"></i>
+                            </div>
+                        `}
+                    </div>
+
+                    <!-- 메타데이터 -->
+                    <div class="flex flex-wrap gap-4 items-center pb-4 border-b">
+                        <span class="inline-block px-3 py-1 rounded-full text-sm font-medium ${getCategoryStyle(activity.category)}">
+                            ${activity.category}
+                        </span>
+                        <span class="inline-flex items-center text-sm text-gray-600 ${activity.activityType === 'video' ? 'text-red-600' : imageAttachments.length > 0 ? 'text-green-600' : 'text-blue-600'}">
+                            <i class="fas fa-${activity.activityType === 'video' ? 'video' : imageAttachments.length > 0 ? 'image' : 'camera'} mr-1"></i>
+                            ${activity.activityType === 'video' ? '영상' : imageAttachments.length > 0 ? `사진 (${imageAttachments.length}장)` : '활동'}
+                        </span>
+                        <span class="text-sm text-gray-600">
+                            <i class="fas fa-calendar mr-1"></i>
+                            ${formatDate(activity.eventDate || activity.createdAt)}
+                        </span>
+                        <span class="text-sm text-gray-600">
+                            <i class="fas fa-user mr-1"></i>
+                            ${activity.author || '활동팀'}
+                        </span>
+                        <span class="text-sm text-gray-600">
+                            <i class="fas fa-eye mr-1"></i>
+                            조회 ${activity.views || 0}
+                        </span>
+                        ${activity.location ? `
+                            <span class="text-sm text-gray-600">
+                                <i class="fas fa-map-marker-alt mr-1"></i>
+                                ${activity.location}
+                            </span>
+                        ` : ''}
+                    </div>
+
+                    <!-- 내용 -->
+                    <div class="prose max-w-none">
+                        ${activity.content.replace(/\n/g, '<br>')}
+                    </div>
+
+                    ${activity.attachments && activity.attachments.length > 0 ? `
+                        <!-- 첨부파일 목록 -->
+                        <div class="pt-4 border-t">
+                            <h4 class="text-lg font-semibold mb-3">첨부파일</h4>
+                            <div class="space-y-2">
+                                ${activity.attachments.map(file => `
+                                    <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-${file.mimeType?.startsWith('image/') ? 'image' : 'file-alt'} text-gray-500 mr-3"></i>
+                                            <div>
+                                                <div class="font-medium">${file.originalName}</div>
+                                                <div class="text-sm text-gray-500">${formatFileSize(file.size)}</div>
+                                            </div>
+                                        </div>
+                                        <a href="http://localhost:9000/uploads/${file.filename}" 
+                                           target="_blank" 
+                                           class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                            ${file.mimeType?.startsWith('image/') ? '원본 보기' : '다운로드'}
+                                        </a>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    ${activity.tags && activity.tags.length > 0 ? `
+                        <div class="pt-4 border-t">
+                            <div class="flex flex-wrap gap-2">
+                                ${activity.tags.map(tag => `
+                                    <span class="inline-block px-3 py-1 text-sm bg-gray-100 text-gray-600 rounded-full">
+                                        #${tag}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 모달 닫기
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 카테고리별 스타일
+        function getCategoryStyle(category) {
+            const styles = {
+                '지역활동': 'bg-blue-100 text-blue-800',
+                '정책연구': 'bg-purple-100 text-purple-800',
+                '교육세미나': 'bg-green-100 text-green-800',
+                '회의': 'bg-orange-100 text-orange-800',
+                '기타': 'bg-gray-100 text-gray-800'
+            };
+            return styles[category] || styles['기타'];
+        }
+
+        function getCategoryGradient(category) {
+            const gradients = {
+                '지역활동': 'bg-gradient-to-br from-blue-400 to-blue-600',
+                '정책연구': 'bg-gradient-to-br from-purple-400 to-purple-600',
+                '교육세미나': 'bg-gradient-to-br from-green-400 to-green-600',
+                '회의': 'bg-gradient-to-br from-orange-400 to-orange-600',
+                '기타': 'bg-gradient-to-br from-gray-400 to-gray-600'
+            };
+            return gradients[category] || gradients['기타'];
+        }
+
+        function getCategoryIcon(category) {
+            const icons = {
+                '지역활동': 'fas fa-users',
+                '정책연구': 'fas fa-search',
+                '교육세미나': 'fas fa-graduation-cap',
+                '회의': 'fas fa-handshake',
+                '기타': 'fas fa-star'
+            };
+            return icons[category] || icons['기타'];
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+        }
+
+        // 파일 크기 포맷팅
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // 더보기 버튼 업데이트
+        function updateLoadMoreButton() {
+            const loadMoreContainer = document.getElementById('load-more-container');
+            if (hasMoreData && filteredActivities.length >= itemsPerPage) {
+                loadMoreContainer.classList.remove('hidden');
             } else {
-                moreActivities.style.display = 'none';
-                loadMoreBtn.innerHTML = '<i class="fas fa-plus mr-2"></i>더보기';
+                loadMoreContainer.classList.add('hidden');
+            }
+        }
+
+        // UI 상태 관리 함수들
+        function showLoading() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('activities-container').classList.add('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('empty').classList.add('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').classList.add('hidden');
+        }
+
+        function showContent() {
+            document.getElementById('activities-container').classList.remove('hidden');
+        }
+
+        function showError(message) {
+            document.getElementById('error').classList.remove('hidden');
+            document.getElementById('activities-container').classList.add('hidden');
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('empty').classList.add('hidden');
+            document.getElementById('error-message').textContent = message;
+        }
+
+        function showEmpty() {
+            document.getElementById('empty').classList.remove('hidden');
+            document.getElementById('activities-container').classList.add('hidden');
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.add('hidden');
+        }
+
+        function showLoadingMore() {
+            document.getElementById('loading-more').classList.remove('hidden');
+            document.getElementById('load-more-container').classList.add('hidden');
+        }
+
+        function hideLoadingMore() {
+            document.getElementById('loading-more').classList.add('hidden');
+            updateLoadMoreButton();
+        }
+
+        // 타입 필터 버튼 스타일
+        document.addEventListener('DOMContentLoaded', function() {
+            const style = document.createElement('style');
+            style.textContent = `
+                .type-filter-btn {
+                    color: #6b7280;
+                }
+                .type-filter-btn.active {
+                    background-color: #A50034;
+                    color: white;
+                }
+                .type-filter-btn:hover:not(.active) {
+                    background-color: #e5e7eb;
+                }
+                .line-clamp-2 {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+                .prose {
+                    line-height: 1.7;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
             }
         });
+
+        // 모달 배경 클릭시 닫기
+        document.getElementById('detail-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // 메인 이미지 변경
+        function changeMainImage(filename, index) {
+            const mainImage = document.getElementById('modal-main-image');
+            const thumbnailGallery = document.querySelector('.flex.gap-2.overflow-x-auto.pb-2');
+
+            if (thumbnailGallery) {
+                const thumbnails = thumbnailGallery.querySelectorAll('img');
+                thumbnails.forEach((img, i) => {
+                    if (i === index) {
+                        img.classList.add('ring-2', 'ring-red-500');
+                    } else {
+                        img.classList.remove('ring-2', 'ring-red-500');
+                    }
+                });
+                mainImage.src = `http://localhost:9000/uploads/${filename}`;
+            }
+        }
     </script>
 </body>
 </html> 

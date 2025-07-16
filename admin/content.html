@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유와혁신 - 콘텐츠 관리</title>
+    
+    <!-- EasyMDE CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .header h1 {
+            font-size: 1.3rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .content-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .content-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-title h2 {
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #38a169;
+        }
+
+        .btn-danger {
+            background: #f56565;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #e53e3e;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .search-filters {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 1rem;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .content-list {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-published {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .status-draft {
+            background: #fed7c7;
+            color: #9c4221;
+        }
+
+        .status-urgent {
+            background: #fed7d7;
+            color: #c53030;
+        }
+
+        .status-important {
+            background: #fef5e7;
+            color: #d69e2e;
+        }
+
+        .status-normal {
+            background: #e6fffa;
+            color: #319795;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+        }
+
+        .page-btn {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #e2e8f0;
+            background: white;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover {
+            background: #f8fafc;
+        }
+
+        .page-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .empty-state h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .error {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #c53030;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .modal-header h3 {
+            color: #333;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .form-group-modal {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group-modal label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group-modal input, 
+        .form-group-modal textarea, 
+        .form-group-modal select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group-modal textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-row {
+                flex-direction: column;
+            }
+            
+            .form-group {
+                min-width: auto;
+            }
+
+            .table-responsive {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* 파일 업로드 관련 스타일 */
+        .file-info {
+            margin-top: 0.5rem;
+        }
+
+        .file-info small {
+            display: block;
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .selected-files {
+            margin-top: 1rem;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .file-icon {
+            font-size: 1.2rem;
+        }
+
+        .file-details {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .file-size {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .remove-file {
+            background: #f56565;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .remove-file:hover {
+            background: #e53e3e;
+        }
+
+        .existing-attachments {
+            margin-top: 1rem;
+        }
+
+        .existing-file {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: #e6f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .image-preview {
+            max-width: 100px;
+            max-height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 0.5rem;
+        }
+
+        /* EasyMDE 마크다운 에디터 커스터마이징 */
+        .EasyMDEContainer {
+            margin-top: 0.5rem;
+        }
+        
+        .EasyMDEContainer .CodeMirror {
+            border: 2px solid #e1e5e9;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            min-height: 300px;
+        }
+        
+        .EasyMDEContainer .CodeMirror:focus-within {
+            border-color: #667eea;
+        }
+        
+        .editor-toolbar {
+            border: 2px solid #e1e5e9;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            background: #f8f9fa;
+        }
+        
+        .editor-toolbar button {
+            color: #666;
+        }
+        
+        .editor-toolbar button:hover {
+            background: #e9ecef;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <a href="dashboard.html" class="back-btn">← 대시보드</a>
+            <h1 id="pageTitle">콘텐츠 관리</h1>
+        </div>
+        <div class="user-info">
+            <span id="userName">관리자</span>
+            <button class="logout-btn" onclick="logout()">로그아웃</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="errorMessage" class="error" style="display: none;"></div>
+
+        <div class="content-header">
+            <div class="content-title">
+                <span id="contentIcon">📄</span>
+                <h2 id="contentTitle">콘텐츠</h2>
+            </div>
+            <div class="actions">
+                <button class="btn btn-success" onclick="openCreateModal()">새 글 작성</button>
+                <button class="btn btn-secondary" onclick="loadContent()">새로고침</button>
+            </div>
+        </div>
+
+        <div class="search-filters">
+            <div class="filter-row">
+                <div class="form-group">
+                    <label for="searchQuery">검색</label>
+                    <input type="text" id="searchQuery" placeholder="제목, 내용으로 검색...">
+                </div>
+                <div class="form-group">
+                    <label for="statusFilter">상태</label>
+                    <select id="statusFilter">
+                        <option value="">전체</option>
+                        <option value="published">게시됨</option>
+                        <option value="draft">임시저장</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sortBy">정렬</label>
+                    <select id="sortBy">
+                        <option value="-createdAt">최신순</option>
+                        <option value="createdAt">등록순</option>
+                        <option value="title">제목순</option>
+                        <option value="-title">제목역순</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-primary" onclick="searchContent()">검색</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            데이터를 불러오는 중...
+        </div>
+
+        <div id="contentList" class="content-list" style="display: none;">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>제목</th>
+                            <th>카테고리</th>
+                            <th>작성자</th>
+                            <th>상태</th>
+                            <th>등록일</th>
+                            <th>조회수</th>
+                            <th>작업</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contentTableBody">
+                    </tbody>
+                </table>
+            </div>
+            <div id="pagination" class="pagination">
+            </div>
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <h3>등록된 콘텐츠가 없습니다</h3>
+            <p>새로운 콘텐츠를 작성해보세요.</p>
+            <button class="btn btn-success" onclick="openCreateModal()">새 글 작성</button>
+        </div>
+    </div>
+
+    <!-- 콘텐츠 작성/수정 모달 -->
+    <div id="contentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">새 글 작성</h3>
+                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                </div>
+            <form id="contentForm" onsubmit="console.log('📝 폼 제출 이벤트 발생!'); submitForm(event); return false;" novalidate>
+                <input type="hidden" id="contentId">
+                <div class="form-group-modal">
+                    <label for="title">제목 *</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group-modal">
+                    <label for="excerpt">요약 *</label>
+                    <input type="text" id="excerpt" name="excerpt" placeholder="최대 200자" maxlength="200" required>
+                </div>
+                <div class="form-group-modal">
+                    <label for="category">카테고리 *</label>
+                    <select id="category" name="category" required>
+                        <option value="">카테고리 선택</option>
+                        <option value="중요">중요</option>
+                        <option value="일반">일반</option>
+                        <option value="긴급">긴급</option>
+                    </select>
+                </div>
+                <div class="form-group-modal">
+                    <label for="content">내용 *</label>
+                    <textarea id="content" name="content" placeholder="마크다운 형식으로 내용을 입력하세요..."></textarea>
+                </div>
+                <div class="form-group-modal">
+                    <label for="author">작성자</label>
+                    <input type="text" id="author" name="author" value="관리자">
+                </div>
+                <!-- 보도자료 전용 필드 -->
+                <div class="form-group-modal press-release-fields" id="originalUrlGroup" style="display: none;">
+                    <label for="originalUrl">원문 링크</label>
+                    <input type="url" id="originalUrl" name="originalUrl" placeholder="https://example.com/news/article">
+                    <div class="file-info">
+                        <small>보도자료의 원문 링크를 입력하면 사용자가 원문을 확인할 수 있습니다.</small>
+                    </div>
+                </div>
+                <div class="form-group-modal">
+                    <label for="status">상태</label>
+                    <select id="status" name="status">
+                        <option value="published">게시</option>
+                        <option value="draft">임시저장</option>
+                    </select>
+                </div>
+                <!-- 활동 전용 필드 -->
+                <div class="form-group-modal activity-fields" id="activityTypeGroup" style="display: none;">
+                    <label for="activityType">활동 타입 *</label>
+                    <select id="activityType" name="activityType" onchange="toggleYoutubeField()">
+                        <option value="photo">사진</option>
+                        <option value="video">영상</option>
+                    </select>
+                </div>
+                <div class="form-group-modal activity-fields" id="youtubeUrlGroup" style="display: none;">
+                    <label for="youtubeUrl">유튜브 링크</label>
+                    <input type="url" id="youtubeUrl" name="youtubeUrl" placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/...">
+                    <div class="file-info">
+                        <small>영상 타입 선택시 유튜브 링크를 입력하면 영상이 자동으로 임베드됩니다.</small>
+                    </div>
+                </div>
+                <div class="form-group-modal activity-fields" id="eventDateGroup" style="display: none;">
+                    <label for="eventDate">활동 일자</label>
+                    <input type="date" id="eventDate" name="eventDate">
+                </div>
+                <div class="form-group-modal activity-fields" id="locationGroup" style="display: none;">
+                    <label for="location">활동 장소</label>
+                    <input type="text" id="location" name="location" placeholder="활동이 진행된 장소를 입력하세요">
+                </div>
+                
+                <div class="form-group-modal">
+                    <label for="tags">태그 (쉼표로 구분)</label>
+                    <input type="text" id="tags" name="tags" placeholder="정책, 공지, 중요">
+                </div>
+                <div class="form-group-modal">
+                    <label for="attachments">첨부파일</label>
+                    <input type="file" id="attachments" name="attachments" multiple accept="image/*,.pdf,.doc,.docx,.hwp" onchange="handleFileSelection(event)">
+                    <div class="file-info">
+                        <small>이미지, PDF, 문서 파일을 첨부할 수 있습니다.</small>
+                        <small>파일당 최대 10MB, 총 5개까지 업로드 가능합니다.</small>
+                    </div>
+                    <div id="selectedFiles" class="selected-files"></div>
+                    <div id="existingAttachments" class="existing-attachments"></div>
+                </div>
+                <div class="actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">취소</button>
+                    <button type="submit" class="btn btn-success" id="saveBtn" onclick="console.log('💾 저장 버튼 클릭됨!')">저장</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:9000/api';
+        let currentContentType = '';
+        let currentPage = 1;
+        let isEditing = false;
+        let editingId = null;
+        let easyMDE = null;
+        let selectedFiles = [];
+        let existingAttachments = [];
+
+        // 콘텐츠 타입 설정
+        const contentTypes = {
+            'notices': { 
+                title: '공지사항', 
+                icon: '📢',
+                endpoint: '/notices',
+                categories: ['중요', '일반', '긴급'],
+                defaultAuthor: '관리자'
+            },
+            'press-releases': { 
+                title: '보도자료', 
+                icon: '📰',
+                endpoint: '/press-releases',
+                categories: ['정책발표', '성명서', '논평', '기타'],
+                defaultAuthor: '대변인'
+            },
+            'activities': { 
+                title: '활동자료', 
+                icon: '🎯',
+                endpoint: '/activities',
+                categories: ['지역활동', '정책연구', '교육세미나', '회의', '기타'],
+                defaultAuthor: '관리자'
+            },
+            'policy-materials': { 
+                title: '정책자료', 
+                icon: '📋',
+                endpoint: '/policy-materials',
+                categories: ['경제정책', '교육정책', '안보정책', '사회정책', '환경정책', '기타'],
+                defaultAuthor: '정책연구소'
+            },
+            'party-constitution': { 
+                title: '당헌당규', 
+                icon: '⚖️',
+                endpoint: '/party-constitution',
+                categories: ['당헌', '당규', '규정', '지침'],
+                defaultAuthor: '당무위원회'
+            },
+            'election-materials': { 
+                title: '선거자료', 
+                icon: '🗳️',
+                endpoint: '/election-materials',
+                categories: ['대선자료', '총선자료', '지방선거', '당내선거', '기타'],
+                defaultAuthor: '선거대책위원회'
+            }
+        };
+
+        // 페이지 초기화
+        window.addEventListener('load', function() {
+            if (!checkAuth()) return;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            currentContentType = urlParams.get('type') || 'notices';
+            
+            console.log('🔄 페이지 초기화');
+            console.log('📋 URL 파라미터:', window.location.search);
+            console.log('📋 설정된 콘텐츠 타입:', currentContentType);
+            
+            if (!contentTypes[currentContentType]) {
+                console.warn('⚠️ 알 수 없는 콘텐츠 타입, notices로 변경');
+                currentContentType = 'notices';
+            }
+
+            initializePage();
+            loadContent();
+
+            // 검색 입력 이벤트
+            document.getElementById('searchQuery').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchContent();
+                }
+            });
+
+            // 파일 선택 이벤트
+            document.getElementById('attachments').addEventListener('change', handleFileSelection);
+        });
+
+        // 인증 확인
+        function checkAuth() {
+            const token = localStorage.getItem('adminToken');
+            const user = localStorage.getItem('adminUser');
+            
+            if (!token) {
+                window.location.href = '/admin/index.html';
+                return false;
+            }
+
+            if (user) {
+                const userData = JSON.parse(user);
+                document.getElementById('userName').textContent = userData.username || '관리자';
+            }
+
+            return token;
+        }
+
+        // 로그아웃
+        function logout() {
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminUser');
+            window.location.href = '/admin/index.html';
+        }
+
+        // 페이지 초기화
+        function initializePage() {
+            const config = contentTypes[currentContentType];
+            document.getElementById('pageTitle').textContent = `${config.title} 관리`;
+            document.getElementById('contentIcon').textContent = config.icon;
+            document.getElementById('contentTitle').textContent = config.title;
+            document.title = `자유와혁신 - ${config.title} 관리`;
+            
+            // 카테고리 옵션 설정
+            updateCategoryOptions();
+        }
+
+        // 카테고리 옵션 업데이트
+        function updateCategoryOptions() {
+            const config = contentTypes[currentContentType];
+            const categorySelect = document.getElementById('category');
+            
+            categorySelect.innerHTML = '<option value="">카테고리 선택</option>';
+            config.categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelect.appendChild(option);
+            });
+        }
+
+        // API 호출 함수
+        async function apiCall(endpoint, options = {}) {
+            const token = localStorage.getItem('adminToken');
+            
+            // FormData인 경우 Content-Type 헤더를 설정하지 않음 (브라우저가 자동 설정)
+            const isFormData = options.body instanceof FormData;
+            
+            const defaultOptions = {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            };
+            
+            // FormData가 아닌 경우에만 Content-Type 설정
+            if (!isFormData) {
+                defaultOptions.headers['Content-Type'] = 'application/json';
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}${endpoint}`, {
+                    ...defaultOptions,
+                    ...options,
+                    headers: { ...defaultOptions.headers, ...options.headers }
+                });
+
+                if (response.status === 401) {
+                    logout();
+                    return;
+                }
+
+                return await response.json();
+            } catch (error) {
+                console.error('API call error:', error);
+                throw error;
+            }
+        }
+
+        // 콘텐츠 목록 로드
+        async function loadContent() {
+            try {
+                showLoading();
+                
+                const config = contentTypes[currentContentType];
+                const params = new URLSearchParams({
+                    page: currentPage,
+                    limit: 10,
+                    sort: document.getElementById('sortBy').value || '-createdAt'
+                });
+
+                const searchQuery = document.getElementById('searchQuery').value;
+                const statusFilter = document.getElementById('statusFilter').value;
+
+                if (searchQuery) params.append('search', searchQuery);
+                if (statusFilter) params.append('status', statusFilter);
+
+                const data = await apiCall(`${config.endpoint}?${params}`);
+
+                if (data.success) {
+                    renderContentList(data.data);
+                    renderPagination(data.pagination);
+                    
+                    if (data.data.length === 0) {
+                        showEmptyState();
+                    } else {
+                        showContentList();
+                    }
+                } else {
+                    throw new Error(data.message || '데이터를 불러오는데 실패했습니다.');
+                }
+
+            } catch (error) {
+                console.error('Error loading content:', error);
+                showError('데이터를 불러오는 중 오류가 발생했습니다: ' + error.message);
+                showEmptyState();
+            }
+        }
+
+        // 콘텐츠 목록 렌더링
+        function renderContentList(items) {
+            const tbody = document.getElementById('contentTableBody');
+            tbody.innerHTML = '';
+
+            items.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <strong>${item.title}</strong>
+                        ${item.excerpt ? `<br><small style="color: #666;">${item.excerpt}</small>` : ''}
+                        ${item.tags && item.tags.length > 0 ? 
+                            `<br><small style="color: #999;">#${item.tags.join(' #')}</small>` : ''
+                        }
+                    </td>
+                    <td>
+                        <span class="status-badge status-${item.category === '긴급' ? 'urgent' : item.category === '중요' ? 'important' : 'normal'}">
+                            ${item.category || '일반'}
+                        </span>
+                    </td>
+                    <td>${item.author || '관리자'}</td>
+                    <td>
+                        <span class="status-badge status-${item.status}">
+                            ${item.status === 'published' ? '게시됨' : '임시저장'}
+                        </span>
+                    </td>
+                    <td>${formatDate(item.createdAt)}</td>
+                    <td>${item.views || 0}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-sm btn-primary" onclick="editContent('${item._id}')">수정</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteContent('${item._id}')">삭제</button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // 페이지네이션 렌더링
+        function renderPagination(pagination) {
+            const container = document.getElementById('pagination');
+            container.innerHTML = '';
+
+            if (pagination.pages <= 1) return;
+
+            // 이전 버튼
+            if (pagination.hasPrev) {
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'page-btn';
+                prevBtn.textContent = '이전';
+                prevBtn.onclick = () => changePage(pagination.current - 1);
+                container.appendChild(prevBtn);
+            }
+
+            // 페이지 번호들
+            for (let i = 1; i <= pagination.pages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `page-btn ${i === pagination.current ? 'active' : ''}`;
+                pageBtn.textContent = i;
+                pageBtn.onclick = () => changePage(i);
+                container.appendChild(pageBtn);
+            }
+
+            // 다음 버튼
+            if (pagination.hasNext) {
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'page-btn';
+                nextBtn.textContent = '다음';
+                nextBtn.onclick = () => changePage(pagination.current + 1);
+                container.appendChild(nextBtn);
+            }
+        }
+
+        // 페이지 변경
+        function changePage(page) {
+            currentPage = page;
+            loadContent();
+        }
+
+        // 검색
+        function searchContent() {
+            currentPage = 1;
+            loadContent();
+        }
+
+        // 생성 모달 열기
+        function openCreateModal() {
+            console.log('📝 새 글 작성 모달 열기');
+            isEditing = false;
+            editingId = null;
+            document.getElementById('modalTitle').textContent = '새 글 작성';
+            document.getElementById('contentForm').reset();
+            document.getElementById('contentId').value = '';
+            
+            const config = contentTypes[currentContentType];
+            document.getElementById('author').value = config.defaultAuthor;
+            updateCategoryOptions();
+            toggleActivityFields();
+            
+            // 활동 관련 기본값 설정
+            if (currentContentType === 'activities') {
+                document.getElementById('eventDate').value = new Date().toISOString().split('T')[0];
+                document.getElementById('activityType').value = 'photo';
+                toggleYoutubeField();
+            }
+            
+            // 첨부파일 초기화
+            selectedFiles = [];
+            existingAttachments = [];
+            updateFileDisplay();
+            updateExistingAttachments();
+            
+            document.getElementById('contentModal').style.display = 'block';
+            
+            // 모달이 표시된 후 에디터 초기화
+            setTimeout(() => {
+                console.log('⏰ 200ms 후 에디터 초기화 시작');
+                initMarkdownEditor();
+            }, 200);
+        }
+
+        // 수정 모달 열기
+        async function editContent(id) {
+            try {
+                isEditing = true;
+                editingId = id;
+                
+                const config = contentTypes[currentContentType];
+                const data = await apiCall(`${config.endpoint}/${id}`);
+
+                if (data.success) {
+                    const item = data.data;
+                    document.getElementById('modalTitle').textContent = '글 수정';
+                    document.getElementById('contentId').value = item._id;
+                    document.getElementById('title').value = item.title;
+                    document.getElementById('excerpt').value = item.excerpt || '';
+                    document.getElementById('category').value = item.category || '';
+                    document.getElementById('author').value = item.author || '관리자';
+                    document.getElementById('status').value = item.status;
+                    document.getElementById('tags').value = item.tags ? item.tags.join(', ') : '';
+                    
+                    // 활동 관련 필드 설정
+                    if (currentContentType === 'activities') {
+                        document.getElementById('activityType').value = item.activityType || 'photo';
+                        document.getElementById('youtubeUrl').value = item.youtubeUrl || '';
+                        document.getElementById('eventDate').value = item.eventDate ? new Date(item.eventDate).toISOString().split('T')[0] : '';
+                        document.getElementById('location').value = item.location || '';
+                        toggleYoutubeField();
+                    }
+                    
+                    // 보도자료 관련 필드 설정
+                    if (currentContentType === 'press-releases') {
+                        document.getElementById('originalUrl').value = item.originalUrl || '';
+                    }
+                    
+                    toggleActivityFields();
+                    togglePressReleaseFields();
+                    
+                    // 첨부파일 초기화
+                    selectedFiles = [];
+                    existingAttachments = item.attachments || [];
+                    updateFileDisplay();
+                    updateExistingAttachments();
+                    
+                    document.getElementById('contentModal').style.display = 'block';
+                    
+                    // 모달이 표시된 후 에디터 초기화 (내용 설정 포함)
+                    setTimeout(() => {
+                        initMarkdownEditor(item.content);
+                    }, 200);
+                } else {
+                    showError('콘텐츠를 불러오는데 실패했습니다.');
+                }
+            } catch (error) {
+                console.error('Error loading content for edit:', error);
+                showError('콘텐츠를 불러오는 중 오류가 발생했습니다.');
+            }
+        }
+
+        // 모달 닫기
+        function closeModal() {
+            if (easyMDE) {
+                easyMDE.toTextArea();
+                easyMDE = null;
+            }
+            document.getElementById('contentModal').style.display = 'none';
+        }
+
+        // EasyMDE 에디터 초기화
+        function initMarkdownEditor(content = '') {
+            console.log('🔄 EasyMDE 에디터 초기화 시작, 내용:', content.substring(0, 50) + '...');
+            
+            // 기존 에디터가 있으면 제거
+            if (easyMDE) {
+                console.log('🗑️ 기존 에디터 제거');
+                easyMDE.toTextArea();
+                easyMDE = null;
+            }
+
+            // EasyMDE 에디터 생성
+            try {
+                console.log('📝 EasyMDE 생성 시도...');
+                easyMDE = new EasyMDE({
+                    element: document.getElementById('content'),
+                    spellChecker: false,
+                    status: false,
+                    placeholder: '마크다운 형식으로 내용을 입력하세요...',
+                    initialValue: content,
+                    toolbar: [
+                        'bold', 'italic', 'heading', '|',
+                        'quote', 'unordered-list', 'ordered-list', '|',
+                        'link', 'image', '|',
+                        'preview', 'side-by-side', 'fullscreen', '|',
+                        'guide'
+                    ],
+                    shortcuts: {
+                        toggleBold: 'Ctrl-B',
+                        toggleItalic: 'Ctrl-I',
+                        togglePreview: 'Ctrl-P'
+                    }
+                });
+                console.log('✅ EasyMDE 생성 성공!');
+            } catch (error) {
+                console.error('❌ EasyMDE 초기화 실패:', error);
+                showError('에디터 초기화에 실패했습니다: ' + error.message);
+            }
+        }
+
+        // 파일 선택 처리
+        function handleFileSelection(event) {
+            console.log('📁 파일 선택 이벤트 발생!', event);
+            const files = Array.from(event.target.files);
+            console.log('📁 선택된 파일 개수:', files.length);
+            
+            if (files.length === 0) {
+                console.log('⚠️ 선택된 파일이 없습니다');
+                return;
+            }
+            
+            // 기존 선택된 파일들과 합치기
+            files.forEach((file, index) => {
+                console.log(`📄 파일 ${index + 1}: ${file.name} (${file.size} bytes, ${file.type})`);
+                
+                // 파일 크기 체크 (10MB)
+                if (file.size > 10 * 1024 * 1024) {
+                    console.error(`❌ 파일 크기 초과: ${file.name}`);
+                    showError(`파일 "${file.name}"이 너무 큽니다. 10MB 이하의 파일만 업로드 가능합니다.`);
+                    return;
+                }
+                
+                // 중복 체크
+                const exists = selectedFiles.some(f => f.name === file.name && f.size === file.size);
+                if (!exists) {
+                    selectedFiles.push(file);
+                    console.log(`✅ 파일 추가됨: ${file.name}`);
+                } else {
+                    console.log(`⚠️ 중복 파일 무시: ${file.name}`);
+                }
+            });
+            
+            // 최대 10개 제한 (서버와 동일하게 변경)
+            if (selectedFiles.length > 10) {
+                selectedFiles = selectedFiles.slice(0, 10);
+                showError('최대 10개의 파일만 업로드할 수 있습니다.');
+            }
+            
+            console.log('📁 최종 선택된 파일 개수:', selectedFiles.length);
+            updateFileDisplay();
+            
+            // 파일 입력 필드 초기화하지 않음 (디버깅을 위해 일시적으로 주석 처리)
+            // event.target.value = '';
+        }
+
+        // 선택된 파일 목록 업데이트
+        function updateFileDisplay() {
+            console.log('🔄 파일 목록 업데이트 중...', selectedFiles.length);
+            const container = document.getElementById('selectedFiles');
+            
+            if (!container) {
+                console.error('❌ selectedFiles 컨테이너를 찾을 수 없습니다');
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            if (selectedFiles.length === 0) {
+                console.log('📁 선택된 파일이 없어서 목록을 비웁니다');
+                return;
+            }
+            
+            selectedFiles.forEach((file, index) => {
+                console.log(`📄 파일 UI 생성: ${index + 1}. ${file.name}`);
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                
+                const fileIcon = getFileIcon(file.type);
+                
+                fileItem.innerHTML = `
+                    <div class="file-info-item">
+                        <span class="file-icon">${fileIcon}</span>
+                        <div class="file-details">
+                            <div class="file-name">${file.name}</div>
+                            <div class="file-size">${formatFileSize(file.size)}</div>
+                        </div>
+                    </div>
+                    <button type="button" class="remove-file" onclick="removeSelectedFile(${index})">삭제</button>
+                `;
+                
+                container.appendChild(fileItem);
+            });
+            
+            console.log('✅ 파일 목록 UI 업데이트 완료');
+        }
+
+        // 기존 첨부파일 목록 업데이트
+        function updateExistingAttachments() {
+            const container = document.getElementById('existingAttachments');
+            container.innerHTML = '';
+            
+            if (existingAttachments.length === 0) return;
+            
+            const title = document.createElement('h4');
+            title.textContent = '기존 첨부파일';
+            title.style.marginBottom = '1rem';
+            title.style.color = '#333';
+            container.appendChild(title);
+            
+            existingAttachments.forEach((attachment, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'existing-file';
+                
+                const isImage = attachment.mimeType && attachment.mimeType.startsWith('image/');
+                const fileIcon = getFileIcon(attachment.mimeType);
+                
+                const imageUrl = isImage ? `http://localhost:9000${attachment.path}` : '';
+                const displayName = attachment.originalName || attachment.filename;
+                
+                fileItem.innerHTML = `
+                    <div class="file-info-item">
+                        ${isImage ? 
+                            `<img src="${imageUrl}" class="image-preview" alt="${displayName}">` : 
+                            `<span class="file-icon">${fileIcon}</span>`
+                        }
+                        <div class="file-details">
+                            <div class="file-name">${displayName}</div>
+                            <div class="file-size">${formatFileSize(attachment.size)}</div>
+                        </div>
+                    </div>
+                    <button type="button" class="remove-file" onclick="removeExistingAttachment(${index})">삭제</button>
+                `;
+                
+                container.appendChild(fileItem);
+            });
+        }
+
+        // 선택된 파일 제거
+        function removeSelectedFile(index) {
+            selectedFiles.splice(index, 1);
+            updateFileDisplay();
+        }
+
+        // 기존 첨부파일 제거
+        function removeExistingAttachment(index) {
+            existingAttachments.splice(index, 1);
+            updateExistingAttachments();
+        }
+
+        // 파일 아이콘 반환
+        function getFileIcon(mimeType) {
+            if (!mimeType) return '📄';
+            
+            if (mimeType.startsWith('image/')) return '🖼️';
+            if (mimeType.includes('pdf')) return '📕';
+            if (mimeType.includes('word') || mimeType.includes('document')) return '📘';
+            if (mimeType.includes('hwp')) return '📗';
+            if (mimeType.includes('spreadsheet') || mimeType.includes('excel')) return '📊';
+            if (mimeType.includes('presentation') || mimeType.includes('powerpoint')) return '📋';
+            
+            return '📄';
+        }
+
+        // 파일 크기 포맷팅
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // 폼 제출
+        async function submitForm(event) {
+            console.log('🚀 submitForm 함수 시작됨!');
+            event.preventDefault();
+            
+            // 디버깅: 기본 정보 출력
+            console.log('📋 이벤트:', event);
+            console.log('📋 currentContentType:', currentContentType);
+            console.log('📋 easyMDE 상태:', easyMDE);
+            console.log('📋 contentTypes:', contentTypes);
+            console.log('📋 현재 설정:', contentTypes[currentContentType]);
+            
+            // 에디터 내용 동기화
+            let content = '';
+            if (easyMDE) {
+                content = easyMDE.value();
+                document.getElementById('content').value = content;
+                console.log('✅ 에디터 내용 동기화 완료');
+            } else {
+                console.warn('⚠️ easyMDE가 초기화되지 않음');
+                content = document.getElementById('content').value;
+            }
+            
+            // 필수 필드 유효성 검사
+            const title = document.getElementById('title').value.trim();
+            const excerpt = document.getElementById('excerpt').value.trim();
+            const category = document.getElementById('category').value;
+            
+            if (!title) {
+                alert('제목을 입력해주세요.');
+                document.getElementById('title').focus();
+                return;
+            }
+            
+            if (!excerpt) {
+                alert('요약을 입력해주세요.');
+                document.getElementById('excerpt').focus();
+                return;
+            }
+            
+            if (!category) {
+                alert('카테고리를 선택해주세요.');
+                document.getElementById('category').focus();
+                return;
+            }
+            
+            if (!content.trim()) {
+                alert('내용을 입력해주세요.');
+                if (easyMDE) {
+                    easyMDE.codemirror.focus();
+                } else {
+                    document.getElementById('content').focus();
+                }
+                return;
+            }
+            
+            console.log('✅ 유효성 검사 통과');
+            
+            // 데이터 준비
+            const requestData = {
+                title,
+                excerpt,
+                category,
+                content
+            };
+            
+            // 선택 필드들 추가 (존재하는 경우에만)
+            const authorElement = document.getElementById('author');
+            if (authorElement && authorElement.value) {
+                requestData.author = authorElement.value;
+            }
+            
+            const publishDateElement = document.getElementById('publishDate');
+            if (publishDateElement && publishDateElement.value) {
+                requestData.publishDate = publishDateElement.value;
+            }
+            
+            const statusElement = document.getElementById('status');
+            requestData.status = (statusElement && statusElement.value) || 'published';
+            
+            const isImportantElement = document.getElementById('isImportant');
+            requestData.isImportant = isImportantElement ? isImportantElement.checked : false;
+            
+            // 태그 처리 (존재하는 경우에만)
+            const tagsElement = document.getElementById('tags');
+            if (tagsElement && tagsElement.value) {
+                const tagsValue = tagsElement.value;
+                requestData.tags = tagsValue.split(',').map(tag => tag.trim()).filter(tag => tag);
+            }
+            
+            // 활동 관련 필드 처리
+            if (currentContentType === 'activities') {
+                const activityTypeElement = document.getElementById('activityType');
+                if (activityTypeElement) {
+                    requestData.activityType = activityTypeElement.value;
+                }
+                
+                const youtubeUrlElement = document.getElementById('youtubeUrl');
+                if (youtubeUrlElement && youtubeUrlElement.value) {
+                    requestData.youtubeUrl = youtubeUrlElement.value;
+                }
+                
+                const eventDateElement = document.getElementById('eventDate');
+                if (eventDateElement && eventDateElement.value) {
+                    requestData.eventDate = eventDateElement.value;
+                }
+                
+                const locationElement = document.getElementById('location');
+                if (locationElement && locationElement.value) {
+                    requestData.location = locationElement.value;
+                }
+            }
+            
+            let requestBody, isFormData = false;
+            
+            // 첨부파일이 있으면 FormData, 없으면 JSON 사용
+            if (selectedFiles.length > 0 || existingAttachments.length > 0) {
+                const formData = new FormData();
+                
+                // 모든 필드를 FormData에 추가
+                Object.keys(requestData).forEach(key => {
+                    if (Array.isArray(requestData[key])) {
+                        requestData[key].forEach(item => formData.append(key, item));
+                    } else {
+                        formData.append(key, requestData[key]);
+                    }
+                });
+                
+                // 새로운 첨부파일 추가
+                selectedFiles.forEach(file => {
+                    formData.append('attachments', file);
+                });
+                
+                // 기존 첨부파일 정보 추가
+                if (existingAttachments.length > 0) {
+                    formData.append('existingAttachments', JSON.stringify(existingAttachments));
+                }
+                
+                requestBody = formData;
+                isFormData = true;
+                console.log('📤 FormData로 전송 (파일 첨부 포함)');
+            } else {
+                requestBody = JSON.stringify(requestData);
+                console.log('📤 JSON으로 전송:', requestData);
+            }
+
+            try {
+                const saveBtn = document.getElementById('saveBtn');
+                saveBtn.disabled = true;
+                saveBtn.textContent = '저장 중...';
+
+                const config = contentTypes[currentContentType];
+                console.log('📋 API 설정:', config);
+                
+                // 요청 옵션 설정
+                const requestOptions = {
+                    body: requestBody
+                };
+                
+                // JSON 전송시에만 Content-Type 설정 (FormData는 브라우저가 자동 설정)
+                if (!isFormData) {
+                    requestOptions.headers = {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    };
+                }
+                
+                let result;
+
+                if (isEditing && editingId) {
+                    console.log('✏️ 기존 글 수정 모드');
+                    result = await apiCall(`${config.endpoint}/${editingId}`, {
+                        method: 'PUT',
+                        ...requestOptions
+                    });
+                } else {
+                    console.log('➕ 새 글 작성 모드');
+                    result = await apiCall(config.endpoint, {
+                        method: 'POST',
+                        ...requestOptions
+                    });
+                }
+                
+                console.log('📦 서버 응답:', result);
+
+                if (result.success) {
+                    closeModal();
+                    loadContent();
+                    showSuccess(isEditing ? '콘텐츠가 수정되었습니다.' : '콘텐츠가 등록되었습니다.');
+                } else {
+                    throw new Error(result.message || '저장에 실패했습니다.');
+                }
+
+            } catch (error) {
+                console.error('Error saving content:', error);
+                showError('저장 중 오류가 발생했습니다: ' + error.message);
+            } finally {
+                const saveBtn = document.getElementById('saveBtn');
+                saveBtn.disabled = false;
+                saveBtn.textContent = '저장';
+            }
+        }
+
+        // 콘텐츠 삭제
+        async function deleteContent(id) {
+            if (!confirm('정말로 이 콘텐츠를 삭제하시겠습니까?')) {
+                return;
+            }
+
+            try {
+                const config = contentTypes[currentContentType];
+                const result = await apiCall(`${config.endpoint}/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (result.success) {
+                    loadContent();
+                    showSuccess('콘텐츠가 삭제되었습니다.');
+                } else {
+                    throw new Error(result.message || '삭제에 실패했습니다.');
+                }
+
+            } catch (error) {
+                console.error('Error deleting content:', error);
+                showError('삭제 중 오류가 발생했습니다: ' + error.message);
+            }
+        }
+
+        // UI 상태 관리
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('contentList').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        function showContentList() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('contentList').style.display = 'block';
+            document.getElementById('emptyState').style.display = 'none';
+        }
+
+        function showEmptyState() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('contentList').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'block';
+        }
+
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
+        }
+
+        function showSuccess(message) {
+            // 임시로 에러 메시지 엘리먼트를 성공 메시지로 사용
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.style.background = '#c6f6d5';
+            errorElement.style.borderColor = '#9ae6b4';
+            errorElement.style.color = '#22543d';
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+                // 원래 스타일로 복원
+                errorElement.style.background = '#fed7d7';
+                errorElement.style.borderColor = '#feb2b2';
+                errorElement.style.color = '#c53030';
+            }, 3000);
+        }
+
+        // 활동 필드 토글
+        function toggleActivityFields() {
+            const activityFields = document.querySelectorAll('.activity-fields');
+            const isActivity = currentContentType === 'activities';
+            
+            activityFields.forEach(field => {
+                field.style.display = isActivity ? 'block' : 'none';
+            });
+        }
+
+        // 보도자료 필드 토글
+        function togglePressReleaseFields() {
+            const pressReleaseFields = document.querySelectorAll('.press-release-fields');
+            const isPressRelease = currentContentType === 'press-releases';
+            
+            pressReleaseFields.forEach(field => {
+                field.style.display = isPressRelease ? 'block' : 'none';
+            });
+        }
+
+        // 유튜브 필드 토글
+        function toggleYoutubeField() {
+            const activityType = document.getElementById('activityType').value;
+            const youtubeGroup = document.getElementById('youtubeUrlGroup');
+            
+            if (activityType === 'video') {
+                youtubeGroup.style.display = 'block';
+            } else {
+                youtubeGroup.style.display = 'none';
+                document.getElementById('youtubeUrl').value = '';
+            }
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // 모달 외부 클릭시 닫기
+        window.onclick = function(event) {
+            const modal = document.getElementById('contentModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html> 

@@ -28,7 +28,7 @@
 <body>
     <div id="navigation-container"></div>
     
-    <!-- Hero Section - 통일된 이미지 배경 스타일 -->
+    <!-- Hero Section -->
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
@@ -39,151 +39,41 @@
 
     <main class="py-16 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- 보도자료 목록 -->
-            <div id="press-container" class="space-y-6">
-                <!-- 주요 보도자료 -->
-                <article class="bg-white rounded-lg shadow-sm border-l-4 border-blue-500 hover:shadow-md transition-shadow">
-                    <div class="p-6">
-                        <div class="flex items-start justify-between">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                        <i class="fas fa-star mr-2"></i>중요
-                                    </span>
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                                        경제정책
-                                    </span>
-                                    <span class="text-gray-500 text-sm">2025.01.20</span>
-                                </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                    자유와혁신, 중소기업 지원 확대 방안 발표
-                                </h2>
-                                <p class="text-gray-600 leading-relaxed">
-                                    자유와혁신이 중소기업의 경쟁력 강화를 위한 종합적인 지원 방안을 발표했습니다. 창업 지원부터 기술 개발, 판로 확대까지 전 과정에 걸친 체계적인 지원책을 제시했습니다.
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <i class="fas fa-chevron-right text-gray-400"></i>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+            <!-- 로딩 상태 -->
+            <div id="loading" class="text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
+                <p class="mt-4 text-gray-600">보도자료를 불러오는 중...</p>
+            </div>
 
-                <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div class="p-6">
-                        <div class="flex items-start justify-between">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                        <i class="fas fa-file-alt mr-2"></i>보도자료
-                                    </span>
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                        교육정책
-                                    </span>
-                                    <span class="text-gray-500 text-sm">2025.01.18</span>
-                                </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                    개별맞춤형 교육시스템 도입 방안 제시
-                                </h2>
-                                <p class="text-gray-600 leading-relaxed">
-                                    학습자 개인의 특성과 수준에 맞춘 개별맞춤형 교육시스템 도입을 위한 구체적인 방안을 제시했습니다. 4차 산업혁명 시대에 맞는 창의적 인재 양성을 목표로 합니다.
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <i class="fas fa-chevron-right text-gray-400"></i>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div class="p-6">
-                        <div class="flex items-start justify-between">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                        <i class="fas fa-file-alt mr-2"></i>보도자료
-                                    </span>
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
-                                        안보정책
-                                    </span>
-                                    <span class="text-gray-500 text-sm">2025.01.15</span>
-                                </div>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                    사이버보안 강화방안 발표
-                                </h2>
-                                <p class="text-gray-600 leading-relaxed">
-                                    급증하는 사이버 위협에 대응하기 위한 국가 차원의 사이버보안 강화방안을 발표했습니다. 민·관 협력 체계 구축과 전문인력 양성에 중점을 둔 정책입니다.
-                                </p>
-                            </div>
-                            <div class="ml-4">
-                                <i class="fas fa-chevron-right text-gray-400"></i>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 추가 보도자료들 (처음에는 숨김) -->
-                <div id="more-press" class="space-y-6" style="display: none;">
-                    <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <div class="p-6">
-                            <div class="flex items-start justify-between">
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-3 mb-3">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                            <i class="fas fa-file-alt mr-2"></i>보도자료
-                                        </span>
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                                            사회복지
-                                        </span>
-                                        <span class="text-gray-500 text-sm">2025.01.12</span>
-                                    </div>
-                                    <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                        사회안전망 강화정책 추진
-                                    </h2>
-                                    <p class="text-gray-600 leading-relaxed">
-                                        취약계층을 위한 사회안전망 강화정책을 발표했습니다. 고용보험 확대와 실업급여 개선 등을 통해 국민의 경제적 안정을 도모합니다.
-                                    </p>
-                                </div>
-                                <div class="ml-4">
-                                    <i class="fas fa-chevron-right text-gray-400"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <div class="p-6">
-                            <div class="flex items-start justify-between">
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-3 mb-3">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                                            <i class="fas fa-file-alt mr-2"></i>성명서
-                                        </span>
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-teal-100 text-teal-800">
-                                            환경정책
-                                        </span>
-                                        <span class="text-gray-500 text-sm">2025.01.10</span>
-                                    </div>
-                                    <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                        기후변화 대응 정책 추진 의지 표명
-                                    </h2>
-                                    <p class="text-gray-600 leading-relaxed">
-                                        파리협정 목표 달성을 위한 적극적인 기후변화 대응 정책 추진 의지를 표명했습니다. 탄소중립 실현과 녹색경제 전환에 대한 구체적인 계획을 발표했습니다.
-                                    </p>
-                                </div>
-                                <div class="ml-4">
-                                    <i class="fas fa-chevron-right text-gray-400"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+            <!-- 에러 상태 -->
+            <div id="error" class="text-center py-12 hidden">
+                <div class="text-red-600 mb-4">
+                    <i class="fas fa-exclamation-triangle text-4xl"></i>
                 </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">데이터를 불러올 수 없습니다</h3>
+                <p class="text-gray-600 mb-4">서버 연결을 확인해주세요.</p>
+                <button onclick="loadPressReleases()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+                    다시 시도
+                </button>
+            </div>
+
+            <!-- 빈 상태 -->
+            <div id="empty" class="text-center py-12 hidden">
+                <div class="text-gray-400 mb-4">
+                    <i class="fas fa-newspaper text-4xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">등록된 보도자료가 없습니다</h3>
+                <p class="text-gray-600">곧 새로운 보도자료가 업데이트될 예정입니다.</p>
+            </div>
+
+            <!-- 보도자료 목록 -->
+            <div id="press-container" class="space-y-6 hidden">
+                <!-- 동적으로 생성됨 -->
             </div>
 
             <!-- 더보기 버튼 -->
-            <div class="text-center mt-12">
-                <button id="load-more-btn" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+            <div id="load-more-container" class="text-center mt-12 hidden">
+                <button id="load-more-btn" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
                     <i class="fas fa-plus mr-2"></i>
                     더보기
                 </button>
@@ -195,19 +85,223 @@
     <script>
         loadNavigation();
         
-        // 더보기 기능
-        document.getElementById('load-more-btn').addEventListener('click', function() {
-            const morePress = document.getElementById('more-press');
-            const loadMoreBtn = document.getElementById('load-more-btn');
-            
-            if (morePress.style.display === 'none') {
-                morePress.style.display = 'block';
-                loadMoreBtn.innerHTML = '<i class="fas fa-minus mr-2"></i>접기';
-            } else {
-                morePress.style.display = 'none';
-                loadMoreBtn.innerHTML = '<i class="fas fa-plus mr-2"></i>더보기';
-            }
+        // API 설정
+        const API_BASE = 'http://localhost:9000/api';
+        let currentPage = 1;
+        let totalPages = 1;
+        let isLoading = false;
+
+        // 페이지 로드 시 보도자료 목록 로드
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPressReleases();
         });
+
+        // 보도자료 목록 로드
+        async function loadPressReleases(append = false) {
+            if (isLoading) return;
+            
+            try {
+                isLoading = true;
+                
+                if (!append) {
+                    showLoading();
+                    currentPage = 1;
+                }
+
+                const response = await fetch(`${API_BASE}/press-releases?page=${currentPage}&limit=6&sort=-createdAt&status=published`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    totalPages = data.pagination.pages;
+                    
+                    if (data.data.length === 0 && currentPage === 1) {
+                        showEmpty();
+                    } else {
+                        if (append) {
+                            appendPressReleases(data.data);
+                        } else {
+                            renderPressReleases(data.data);
+                        }
+                        showContent();
+                        updateLoadMoreButton();
+                    }
+                } else {
+                    throw new Error(data.message || '데이터를 불러오는데 실패했습니다');
+                }
+
+            } catch (error) {
+                console.error('Error loading press releases:', error);
+                if (!append) {
+                    showError();
+                }
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        // 보도자료 목록 렌더링
+        function renderPressReleases(pressReleases) {
+            const container = document.getElementById('press-container');
+            container.innerHTML = '';
+            
+            pressReleases.forEach(press => {
+                container.appendChild(createPressReleaseElement(press));
+            });
+        }
+
+        // 보도자료 목록 추가 (더보기)
+        function appendPressReleases(pressReleases) {
+            const container = document.getElementById('press-container');
+            
+            pressReleases.forEach(press => {
+                container.appendChild(createPressReleaseElement(press));
+            });
+        }
+
+        // 보도자료 요소 생성
+        function createPressReleaseElement(press) {
+            const article = document.createElement('article');
+            article.className = 'bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer';
+            
+            // 카테고리별 색상 설정
+            const categoryColors = {
+                '정책발표': 'bg-red-100 text-red-800',
+                '성명서': 'bg-blue-100 text-blue-800',
+                '논평': 'bg-green-100 text-green-800',
+                '기타': 'bg-gray-100 text-gray-800'
+            };
+
+            // 중요도별 표시
+            const isImportant = press.category === '정책발표' || press.tags?.includes('중요');
+            const borderClass = isImportant ? 'border-l-4 border-red-500' : '';
+
+            article.className += ` ${borderClass}`;
+            
+            article.innerHTML = `
+                <div class="p-6" onclick="viewPressRelease('${press._id}')">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                ${isImportant ? `
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                        <i class="fas fa-star mr-2"></i>중요
+                                    </span>
+                                ` : ''}
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${categoryColors[press.category] || categoryColors['기타']}">
+                                    <i class="fas fa-file-alt mr-2"></i>${press.category || '보도자료'}
+                                </span>
+                                <span class="text-gray-500 text-sm">${formatDate(press.createdAt)}</span>
+                            </div>
+                            <h2 class="text-xl font-semibold text-gray-900 mb-3">
+                                ${press.title}
+                            </h2>
+                            <p class="text-gray-600 leading-relaxed">
+                                ${press.excerpt || press.content.substring(0, 150) + '...'}
+                            </p>
+                            ${press.tags && press.tags.length > 0 ? `
+                                <div class="mt-3 flex flex-wrap gap-2">
+                                    ${press.tags.map(tag => `
+                                        <span class="inline-block px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">
+                                            #${tag}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                            <div class="mt-4 flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm text-gray-500">
+                                        <i class="fas fa-user mr-2"></i>${press.author || '대변인'}
+                                    </span>
+                                    <span class="text-sm text-gray-500">
+                                        <i class="fas fa-eye mr-2"></i>조회 ${press.views || 0}
+                                    </span>
+                                </div>
+                                ${press.originalUrl ? `
+                                    <a href="${press.originalUrl}" target="_blank" rel="noopener noreferrer" 
+                                       class="inline-flex items-center px-3 py-1 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                                       onclick="event.stopPropagation()">
+                                        <i class="fas fa-external-link-alt mr-2"></i>원문보기
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return article;
+        }
+
+        // 보도자료 상세 보기
+        function viewPressRelease(id) {
+            window.location.href = `press-release-detail.html?id=${id}`;
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+        }
+
+        // 더보기 버튼 업데이트
+        function updateLoadMoreButton() {
+            const container = document.getElementById('load-more-container');
+            const button = document.getElementById('load-more-btn');
+            
+            if (currentPage < totalPages) {
+                container.classList.remove('hidden');
+                button.onclick = function() {
+                    currentPage++;
+                    loadPressReleases(true);
+                };
+            } else {
+                container.classList.add('hidden');
+            }
+        }
+
+        // UI 상태 관리
+        function showLoading() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('empty').classList.add('hidden');
+            document.getElementById('press-container').classList.add('hidden');
+            document.getElementById('load-more-container').classList.add('hidden');
+        }
+
+        function showError() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.remove('hidden');
+            document.getElementById('empty').classList.add('hidden');
+            document.getElementById('press-container').classList.add('hidden');
+            document.getElementById('load-more-container').classList.add('hidden');
+        }
+
+        function showEmpty() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('empty').classList.remove('hidden');
+            document.getElementById('press-container').classList.add('hidden');
+            document.getElementById('load-more-container').classList.add('hidden');
+        }
+
+        function showContent() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('empty').classList.add('hidden');
+            document.getElementById('press-container').classList.remove('hidden');
+        }
     </script>
 </body>
 </html> 

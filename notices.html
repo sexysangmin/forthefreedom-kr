@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공�??�항 - ?�유?�?�신</title>
+    <title>공지사항 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -34,6 +34,20 @@
         .bg-red-100 { background-color: #FCE7EA !important; }
         .text-red-800 { color: #700024 !important; }
         .border-l-4.border-red-600 { border-left-color: #A50034 !important; }
+        
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #A50034;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +61,7 @@
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">공�??�항</h1>
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">공지사항</h1>
         </div>
     </section>
 
@@ -55,36 +69,255 @@
         <section class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">공�??�항</h2>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6"></h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        ?�유?�?�신??최신 ?�식�?중요??공�??�항???�인?�세??
+                        
                     </p>
                 </div>
 
-                <div class="space-y-6">
-                                       
-                    <article class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow">
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium">모집</span>
-                            <span class="text-gray-500 text-sm">2025??1??8??/span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">?�원 모집 ?�내</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            ?�로???�치�??�께 만들?�갈 ?�원??모집?�니?? 
-                            ?�유?�?�신??가치에 공감?�실 분들??많�? 참여 바랍?�다.
-                        </p>
-                        <a href="members.html" class="inline-flex items-center text-red-600 hover:text-red-700 font-medium">
-                            ?�세??보기 <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </article>
+                <!-- 필터 및 검색 -->
+                <div class="mb-8 flex flex-wrap gap-4 justify-center">
+                    <select id="categoryFilter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                        <option value="">전체 카테고리</option>
+                        <option value="중요">중요</option>
+                        <option value="일반">일반</option>
+                        <option value="긴급">긴급</option>
+                    </select>
+                    <input type="text" id="searchInput" placeholder="제목 검색..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 min-w-64">
+                    <button id="searchBtn" class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                        <i class="fas fa-search mr-2"></i>검색
+                    </button>
+                </div>
+
+                <!-- 로딩 상태 -->
+                <div id="loading" class="flex justify-center items-center py-16">
+                    <div class="loading-spinner"></div>
+                    <span class="ml-4 text-gray-600">공지사항을 불러오는 중...</span>
+                </div>
+
+                <!-- 에러 상태 -->
+                <div id="error" class="hidden text-center py-16">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
+                        <i class="fas fa-exclamation-triangle text-red-500 text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold text-red-800 mb-2">불러오기 실패</h3>
+                        <p class="text-red-600 mb-4">공지사항을 불러오는 중 오류가 발생했습니다.</p>
+                        <button id="retryBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                            다시 시도
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 공지사항 목록 -->
+                <div id="noticesList" class="space-y-6 hidden">
+                    <!-- 동적으로 생성됨 -->
+                </div>
+
+                <!-- 빈 상태 -->
+                <div id="empty" class="hidden text-center py-16">
+                    <div class="max-w-md mx-auto">
+                        <i class="fas fa-inbox text-gray-400 text-6xl mb-6"></i>
+                        <h3 class="text-xl font-semibold text-gray-600 mb-2">공지사항이 없습니다</h3>
+                        <p class="text-gray-500">조건에 맞는 공지사항을 찾을 수 없습니다.</p>
+                    </div>
+                </div>
+
+                <!-- 페이지네이션 -->
+                <div id="pagination" class="hidden mt-12 flex justify-center">
+                    <!-- 동적으로 생성됨 -->
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="js/nav.js"></script>
+    <script src="nav.js"></script>
     <script>
-        loadNavigation();
+        // API 설정
+        const API_BASE = 'http://localhost:9000/api';
+        let currentPage = 1;
+        let currentCategory = '';
+        let currentSearch = '';
+
+        // DOM 요소
+        const loading = document.getElementById('loading');
+        const error = document.getElementById('error');
+        const noticesList = document.getElementById('noticesList');
+        const empty = document.getElementById('empty');
+        const pagination = document.getElementById('pagination');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const retryBtn = document.getElementById('retryBtn');
+
+        // 카테고리별 스타일
+        const categoryStyles = {
+            '중요': 'bg-red-100 text-red-600',
+            '일반': 'bg-blue-100 text-blue-600',
+            '긴급': 'bg-orange-100 text-orange-600'
+        };
+
+        // 공지사항 불러오기
+        async function loadNotices(page = 1, category = '', search = '') {
+            showLoading();
+            
+            try {
+                let url = `${API_BASE}/notices?page=${page}&limit=10`;
+                if (category) url += `&category=${encodeURIComponent(category)}`;
+                if (search) url += `&search=${encodeURIComponent(search)}`;
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.success) {
+                    displayNotices(data.data);
+                    displayPagination(data.pagination);
+                } else {
+                    throw new Error(data.message || '데이터 불러오기 실패');
+                }
+            } catch (err) {
+                console.error('공지사항 불러오기 실패:', err);
+                showError();
+            }
+        }
+
+        // 공지사항 표시
+        function displayNotices(notices) {
+            hideAll();
+            
+            if (notices.length === 0) {
+                empty.classList.remove('hidden');
+                return;
+            }
+
+            noticesList.innerHTML = notices.map(notice => `
+                <article class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-shadow cursor-pointer" onclick="openNotice('${notice._id}')">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 rounded-full text-sm font-medium ${categoryStyles[notice.category] || 'bg-gray-100 text-gray-600'}">
+                            ${notice.category || '일반'}
+                        </span>
+                        <span class="text-gray-500 text-sm">${formatDate(notice.createdAt)}</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">${notice.title}</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed line-clamp-3">
+                        ${notice.excerpt || notice.content.substring(0, 150) + '...'}
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">작성자: ${notice.author}</span>
+                        <span class="inline-flex items-center text-red-600 hover:text-red-700 font-medium">
+                            자세히 보기 <i class="fas fa-arrow-right ml-2"></i>
+                        </span>
+                    </div>
+                </article>
+            `).join('');
+            
+            noticesList.classList.remove('hidden');
+        }
+
+        // 페이지네이션 표시
+        function displayPagination(paginationData) {
+            if (!paginationData || paginationData.totalPages <= 1) {
+                pagination.classList.add('hidden');
+                return;
+            }
+
+            const { currentPage: current, totalPages } = paginationData;
+            let paginationHTML = '<div class="flex space-x-2">';
+
+            // 이전 페이지
+            if (current > 1) {
+                paginationHTML += `<button onclick="changePage(${current - 1})" class="px-3 py-2 text-gray-500 hover:text-red-600 transition-colors">
+                    <i class="fas fa-chevron-left"></i>
+                </button>`;
+            }
+
+            // 페이지 번호
+            for (let i = Math.max(1, current - 2); i <= Math.min(totalPages, current + 2); i++) {
+                paginationHTML += `<button onclick="changePage(${i})" class="px-4 py-2 rounded-lg transition-colors ${i === current ? 'bg-red-600 text-white' : 'text-gray-600 hover:bg-gray-100'}">
+                    ${i}
+                </button>`;
+            }
+
+            // 다음 페이지
+            if (current < totalPages) {
+                paginationHTML += `<button onclick="changePage(${current + 1})" class="px-3 py-2 text-gray-500 hover:text-red-600 transition-colors">
+                    <i class="fas fa-chevron-right"></i>
+                </button>`;
+            }
+
+            paginationHTML += '</div>';
+            pagination.innerHTML = paginationHTML;
+            pagination.classList.remove('hidden');
+        }
+
+        // 페이지 변경
+        function changePage(page) {
+            currentPage = page;
+            loadNotices(page, currentCategory, currentSearch);
+        }
+
+        // 검색
+        function search() {
+            currentSearch = searchInput.value.trim();
+            currentPage = 1;
+            loadNotices(1, currentCategory, currentSearch);
+        }
+
+        // 카테고리 필터
+        function filterByCategory() {
+            currentCategory = categoryFilter.value;
+            currentPage = 1;
+            loadNotices(1, currentCategory, currentSearch);
+        }
+
+        // 공지사항 상세 페이지 열기
+        function openNotice(id) {
+            // 상세 페이지로 이동 (추후 구현)
+            alert(`공지사항 상세 페이지 (ID: ${id})\n추후 구현 예정`);
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // 상태 표시 함수들
+        function showLoading() {
+            hideAll();
+            loading.classList.remove('hidden');
+        }
+
+        function showError() {
+            hideAll();
+            error.classList.remove('hidden');
+        }
+
+        function hideAll() {
+            loading.classList.add('hidden');
+            error.classList.add('hidden');
+            noticesList.classList.add('hidden');
+            empty.classList.add('hidden');
+            pagination.classList.add('hidden');
+        }
+
+        // 이벤트 리스너
+        searchBtn.addEventListener('click', search);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') search();
+        });
+        categoryFilter.addEventListener('change', filterByCategory);
+        retryBtn.addEventListener('click', () => {
+            loadNotices(currentPage, currentCategory, currentSearch);
+        });
+
+        // 페이지 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            loadNavigation();
+            loadNotices();
+        });
     </script>
 </body>
 </html> 

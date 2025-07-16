@@ -1,25 +1,303 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>자유와혁신 콘텐츠 관리</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유와혁신 - 관리자 로그인</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <!-- Include the script that builds the page and powers Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-  
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
+    <div class="login-container">
+        <div class="logo">
+            <h1>자유와혁신</h1>
+            <p>콘텐츠 관리 시스템</p>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+
+        <!-- 구글 로그인 섹션 -->
+        <div id="googleLoginSection">
+            <div id="g_id_onload"
+                 data-client_id="722072230476-h2gbv36ed9bsgbh62hbvjr7bhojj5pki.apps.googleusercontent.com"
+                 data-context="signin"
+                 data-ux_mode="popup"
+                 data-callback="handleGoogleLogin"
+                 data-auto_prompt="false">
+            </div>
+            
+            <div class="g_id_signin" 
+                 data-type="standard"
+                 data-shape="rectangular"
+                 data-theme="outline"
+                 data-text="signin_with"
+                 data-size="large"
+                 data-logo_alignment="left"
+                 data-width="100%">
+            </div>
+            
+            <div style="text-align: center; margin: 1.5rem 0; color: #666;">
+                또는
+            </div>
+        </div>
+
+        <!-- 기존 로그인 폼 -->
+        <details style="margin-bottom: 1rem;">
+            <summary style="cursor: pointer; color: #667eea; font-size: 0.9rem;">비상용 로그인</summary>
+            <form id="loginForm" style="margin-top: 1rem;">
+                <div class="form-group">
+                    <label for="username">사용자명</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" id="loginBtn" class="login-btn">로그인</button>
+            </form>
+        </details>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            로그인 중...
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:9000/api';
+        
+        // 구글 클라이언트 ID 설정
+        const GOOGLE_CLIENT_ID = '722072230476-h2gbv36ed9bsgbh62hbvjr7bhojj5pki.apps.googleusercontent.com';
+
+        // 구글 로그인 콜백 함수
+        async function handleGoogleLogin(response) {
+            const loading = document.getElementById('loading');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            loading.style.display = 'block';
+            errorMessage.style.display = 'none';
+
+            try {
+                const result = await fetch(`${API_BASE}/auth/google-login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        credential: response.credential 
+                    })
+                });
+
+                const data = await result.json();
+
+                if (data.success) {
+                    // 토큰 저장
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+                    
+                    // 대시보드로 리다이렉트
+                    window.location.href = '/admin/dashboard.html';
+                } else {
+                    throw new Error(data.message || '구글 로그인에 실패했습니다.');
+                }
+
+            } catch (error) {
+                errorMessage.textContent = error.message;
+                errorMessage.style.display = 'block';
+                console.error('Google login error:', error);
+            } finally {
+                loading.style.display = 'none';
+            }
         }
-      });
-    }
-  </script>
+
+        // 기존 폼 로그인
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            const loading = document.getElementById('loading');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // UI 상태 변경
+            loginBtn.disabled = true;
+            loading.style.display = 'block';
+            errorMessage.style.display = 'none';
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // 토큰 저장
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+                    
+                    // 대시보드로 리다이렉트
+                    window.location.href = '/admin/dashboard.html';
+                } else {
+                    throw new Error(data.message || '로그인에 실패했습니다.');
+                }
+            } catch (error) {
+                errorMessage.textContent = error.message;
+                errorMessage.style.display = 'block';
+                console.error('Login error:', error);
+            } finally {
+                loginBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+
+        // 페이지 초기화
+        window.addEventListener('load', function() {
+            // 이미 로그인되어 있으면 대시보드로 리다이렉트
+            const token = localStorage.getItem('adminToken');
+            if (token) {
+                window.location.href = '/admin/dashboard.html';
+                return;
+            }
+
+            // 구글 로그인 초기화
+            initializeGoogleLogin();
+        });
+
+        // 구글 로그인 초기화
+        function initializeGoogleLogin() {
+            // 구글 클라이언트 ID 동적 설정
+            const onloadDiv = document.getElementById('g_id_onload');
+            onloadDiv.setAttribute('data-client_id', GOOGLE_CLIENT_ID);
+            
+            console.log('구글 로그인이 활성화되었습니다!');
+        }
+    </script>
 </body>
 </html> 

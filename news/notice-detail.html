@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 상세 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #A50034;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .content-body {
+            line-height: 1.8;
+        }
+        
+        .content-body h1, .content-body h2, .content-body h3 {
+            font-weight: bold;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        .content-body h1 { font-size: 1.5rem; }
+        .content-body h2 { font-size: 1.25rem; }
+        .content-body h3 { font-size: 1.125rem; }
+        
+        .content-body p {
+            margin: 1rem 0;
+        }
+        
+        .content-body ul, .content-body ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .content-body li {
+            margin: 0.5rem 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Marked.js 마크다운 렌더링 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../news.html" class="text-gray-500 hover:text-red-600">정당소식</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="notices.html" class="text-gray-500 hover:text-red-600">공지사항</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">상세보기</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <main class="bg-white">
+        <!-- 로딩 상태 -->
+        <div id="loading" class="flex justify-center items-center py-32">
+            <div class="loading-spinner"></div>
+            <span class="ml-4 text-gray-600">공지사항을 불러오는 중...</span>
+        </div>
+
+        <!-- 에러 상태 -->
+        <div id="error" class="hidden py-32">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="bg-red-50 border border-red-200 rounded-lg p-8">
+                    <i class="fas fa-exclamation-triangle text-red-500 text-3xl mb-4"></i>
+                    <h3 class="text-lg font-semibold text-red-800 mb-2">불러오기 실패</h3>
+                    <p class="text-red-600 mb-4">공지사항을 찾을 수 없거나 불러오는 중 오류가 발생했습니다.</p>
+                    <div class="space-x-4">
+                        <button id="retryBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                            다시 시도
+                        </button>
+                        <a href="notices.html" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                            목록으로 돌아가기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 공지사항 상세 내용 -->
+        <section id="noticeDetail" class="hidden py-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <article class="bg-white">
+                    <!-- 헤더 -->
+                    <header class="border-b border-gray-200 pb-8 mb-8">
+                        <div id="categoryBadge" class="mb-4">
+                            <!-- 동적으로 생성됨 -->
+                        </div>
+                        <h1 id="noticeTitle" class="text-3xl font-bold text-gray-900 mb-4">
+                            <!-- 동적으로 생성됨 -->
+                        </h1>
+                        <div class="flex flex-wrap items-center text-sm text-gray-500 space-x-6">
+                            <span>
+                                <i class="fas fa-user mr-2"></i>
+                                <span id="noticeAuthor"><!-- 동적으로 생성됨 --></span>
+                            </span>
+                            <span>
+                                <i class="fas fa-calendar mr-2"></i>
+                                <span id="noticeDate"><!-- 동적으로 생성됨 --></span>
+                            </span>
+                            <span>
+                                <i class="fas fa-eye mr-2"></i>
+                                <span id="noticeViews"><!-- 동적으로 생성됨 --></span>회
+                            </span>
+                        </div>
+                    </header>
+
+                    <!-- 본문 -->
+                    <div id="noticeContent" class="content-body text-gray-800 mb-12">
+                        <!-- 동적으로 생성됨 -->
+                    </div>
+
+                    <!-- 첨부파일 -->
+                    <div id="attachments" class="hidden mb-12">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                            <i class="fas fa-paperclip mr-2"></i>첨부파일
+                        </h3>
+                        <div id="attachmentsList" class="space-y-2">
+                            <!-- 동적으로 생성됨 -->
+                        </div>
+                    </div>
+
+                    <!-- 네비게이션 버튼 -->
+                    <div class="flex justify-between items-center pt-8 border-t border-gray-200">
+                        <a href="notices.html" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-list mr-2"></i>목록으로
+                        </a>
+                        <div class="space-x-4">
+                            <button id="prevBtn" class="hidden px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                                <i class="fas fa-chevron-left mr-2"></i>이전글
+                            </button>
+                            <button id="nextBtn" class="hidden px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                                다음글<i class="fas fa-chevron-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script src="../nav.js"></script>
+    <script>
+        // API 설정
+        const API_BASE = 'http://localhost:9000/api';
+        
+        // DOM 요소
+        const loading = document.getElementById('loading');
+        const error = document.getElementById('error');
+        const noticeDetail = document.getElementById('noticeDetail');
+        const retryBtn = document.getElementById('retryBtn');
+
+        // 카테고리별 스타일
+        const categoryStyles = {
+            '중요': 'bg-red-100 text-red-600',
+            '일반': 'bg-blue-100 text-blue-600',
+            '긴급': 'bg-orange-100 text-orange-600'
+        };
+
+        // URL 파라미터에서 공지사항 ID 가져오기
+        function getNoticeId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        // 공지사항 상세 정보 불러오기
+        async function loadNoticeDetail(id) {
+            showLoading();
+            
+            try {
+                const response = await fetch(`${API_BASE}/notices/${id}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    displayNoticeDetail(data.data);
+                } else {
+                    throw new Error(data.message || '공지사항을 찾을 수 없습니다');
+                }
+            } catch (err) {
+                console.error('공지사항 불러오기 실패:', err);
+                showError();
+            }
+        }
+
+        // 공지사항 상세 내용 표시
+        function displayNoticeDetail(notice) {
+            hideAll();
+            
+            // 제목 설정
+            document.title = `${notice.title} - 자유와혁신`;
+            
+            // 카테고리 배지
+            document.getElementById('categoryBadge').innerHTML = `
+                <span class="px-3 py-1 rounded-full text-sm font-medium ${categoryStyles[notice.category] || 'bg-gray-100 text-gray-600'}">
+                    ${notice.category || '일반'}
+                </span>
+            `;
+            
+            // 기본 정보
+            document.getElementById('noticeTitle').textContent = notice.title;
+            document.getElementById('noticeAuthor').textContent = notice.author;
+            document.getElementById('noticeDate').textContent = formatDate(notice.createdAt);
+            document.getElementById('noticeViews').textContent = notice.views || 0;
+            
+            // 본문 내용 (이미지 포함)
+            const contentDiv = document.getElementById('noticeContent');
+            contentDiv.innerHTML = formatContent(notice.content, notice.attachments);
+            
+            // 첨부파일 (문서 파일만)
+            const documentAttachments = notice.attachments ? notice.attachments.filter(file => 
+                !file.mimeType || !file.mimeType.startsWith('image/')
+            ) : [];
+            
+            if (documentAttachments.length > 0) {
+                displayAttachments(documentAttachments);
+            }
+            
+            noticeDetail.classList.remove('hidden');
+        }
+
+        // 본문 내용 포맷팅 (마크다운 지원)
+        function formatContent(content, attachments = []) {
+            // 마크다운 렌더링
+            let htmlContent = marked.parse(content);
+            
+            // 첨부된 이미지들 중 마크다운에 포함되지 않은 것들을 자동 추가
+            const imageAttachments = attachments.filter(file => 
+                file.mimeType && file.mimeType.startsWith('image/')
+            );
+            
+            // 마크다운에 이미 포함된 이미지 확인
+            const imageUrlsInContent = [];
+            const imgRegex = /!\[.*?\]\((.*?)\)/g;
+            let match;
+            while ((match = imgRegex.exec(content)) !== null) {
+                imageUrlsInContent.push(match[1]);
+            }
+            
+            // 마크다운에 포함되지 않은 이미지들만 자동 추가
+            const unincludedImages = imageAttachments.filter(image => {
+                const imageUrl = `http://localhost:9000/uploads/${image.filename}`;
+                return !imageUrlsInContent.some(url => url.includes(image.filename));
+            });
+            
+            if (unincludedImages.length > 0) {
+                const imagesHtml = unincludedImages.map(image => {
+                    const imageUrl = `http://localhost:9000/uploads/${encodeURIComponent(image.filename)}`;
+                    console.log('자동 추가 이미지 URL:', imageUrl);
+                    
+                    return `
+                    <div class="attached-image" style="margin: 1.5rem 0; text-align: center;">
+                        <img src="${imageUrl}" 
+                             alt="첨부 이미지" 
+                             style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"
+                             onerror="console.error('이미지 로드 실패:', this.src); this.parentElement.innerHTML='<p style=\\'color: red; font-style: italic;\\'>이미지를 로드할 수 없습니다</p>';"
+                             onload="console.log('이미지 로드 성공:', this.src);">
+                    </div>
+                    `;
+                }).join('');
+                
+                htmlContent += imagesHtml;
+            }
+            
+            return htmlContent;
+        }
+
+        // 첨부파일 표시
+        function displayAttachments(attachments) {
+            const attachmentsDiv = document.getElementById('attachments');
+            const attachmentsList = document.getElementById('attachmentsList');
+            
+            attachmentsList.innerHTML = attachments.map(file => `
+                <a href="${API_BASE}/uploads/${file.filename}" download="${file.originalName}" 
+                   class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-file mr-3 text-gray-400"></i>
+                    <div class="flex-1">
+                        <div class="font-medium text-gray-900">${file.originalName}</div>
+                        <div class="text-sm text-gray-500">${formatFileSize(file.size)}</div>
+                    </div>
+                    <i class="fas fa-download text-gray-400"></i>
+                </a>
+            `).join('');
+            
+            attachmentsDiv.classList.remove('hidden');
+        }
+
+        // 파일 크기 포맷팅
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // 상태 표시 함수들
+        function showLoading() {
+            hideAll();
+            loading.classList.remove('hidden');
+        }
+
+        function showError() {
+            hideAll();
+            error.classList.remove('hidden');
+        }
+
+        function hideAll() {
+            loading.classList.add('hidden');
+            error.classList.add('hidden');
+            noticeDetail.classList.add('hidden');
+        }
+
+        // 이벤트 리스너
+        retryBtn.addEventListener('click', () => {
+            const noticeId = getNoticeId();
+            if (noticeId) {
+                loadNoticeDetail(noticeId);
+            } else {
+                window.location.href = 'notices.html';
+            }
+        });
+
+        // 페이지 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            loadNavigation();
+            
+            const noticeId = getNoticeId();
+            if (noticeId) {
+                loadNoticeDetail(noticeId);
+            } else {
+                // ID가 없으면 목록으로 리다이렉트
+                window.location.href = 'notices.html';
+            }
+        });
+    </script>
+</body>
+</html> 

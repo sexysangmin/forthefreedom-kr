@@ -1,11 +1,12 @@
 // 간결한 네비게이션 컴포넌트 (국민의힘 스타일)
-document.addEventListener('DOMContentLoaded', function() {
+function loadNavigation() {
     // 현재 경로 확인하여 하위 폴더 내부인지 감지
     const currentPath = window.location.pathname;
-    // 하위 폴더들: about/, policy/, resources/ 등
+    // 하위 폴더들: about/, policy/, resources/, news/ 등
     const isInSubFolder = currentPath.includes('/about/') || 
                           currentPath.includes('/policy/') || 
                           currentPath.includes('/resources/') ||
+                          currentPath.includes('/news/') ||
                           currentPath.split('/').length > 2; // 일반적인 하위 폴더 감지
     const pathPrefix = isInSubFolder ? '../' : '';
     
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         
                         <!-- 정책 -->
-                        <a href="${pathPrefix}policy.html" class="text-gray-700 hover:text-red-600 font-medium py-2 px-1 transition-colors duration-200 text-xl">
+                        <a href="${pathPrefix}resources/policy.html" class="text-gray-700 hover:text-red-600 font-medium py-2 px-1 transition-colors duration-200 text-xl">
                             정책
                         </a>
                         
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200">
                     <div class="py-2 space-y-1">
                         <a href="${pathPrefix}about.html" class="block px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">소개</a>
-                        <a href="${pathPrefix}policy.html" class="block px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">정책</a>
+                        <a href="${pathPrefix}resources/policy.html" class="block px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">정책</a>
                         <a href="${pathPrefix}news.html" class="block px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">정당소식</a>
                         <a href="${pathPrefix}members.html" class="block px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">참여</a>
                         <a href="${pathPrefix}resources.html" class="block px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">자료실</a>
@@ -137,4 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-}); 
+}
+
+// DOMContentLoaded에서 자동으로 loadNavigation 실행
+document.addEventListener('DOMContentLoaded', loadNavigation);
