@@ -282,9 +282,10 @@
         </div>
     </div>
 
+    <script src="../config.js"></script>
     <script src="/nav.js"></script>
     <script>
-        const API_BASE = 'http://localhost:9000/api';
+        const API_BASE = window.API_BASE || 'http://localhost:9000/api';
         let currentPressRelease = null;
         let pressReleasesList = [];
         let currentIndex = -1;

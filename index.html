@@ -540,6 +540,7 @@
     </footer>
 
     <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
+    <script src="config.js"></script>
     <script src="js/log-manager.js"></script>
     <script src="script.js"></script>
     <script src="nav.js"></script>
@@ -547,7 +548,7 @@
         if (typeof loadNavigation === 'function') loadNavigation();
 
         // API 설정
-        const API_BASE = 'http://localhost:9000/api';
+        const API_BASE = window.API_BASE || 'http://localhost:9000/api';
 
         // 페이지 로드 시 최신 소식 로드
         document.addEventListener('DOMContentLoaded', function() {

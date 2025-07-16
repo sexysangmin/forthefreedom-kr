@@ -8,6 +8,7 @@
     <!-- EasyMDE CSS & JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
     <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <script src="../config.js"></script>
     
     <style>
         * {
@@ -751,7 +752,7 @@
     </div>
 
     <script>
-        const API_BASE = 'http://localhost:9000/api';
+        const API_BASE = window.API_BASE || 'http://localhost:9000/api';
         let currentContentType = '';
         let currentPage = 1;
         let isEditing = false;
