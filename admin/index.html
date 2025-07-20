@@ -171,7 +171,35 @@
     </div>
 
     <script>
-        // 환경 감지 및 API 설정
+        /*
+        =====================================================
+        📋 Google OAuth 재활성화 가이드
+        =====================================================
+        
+        현재 Google OAuth는 도메인 설정 문제로 임시 비활성화되어 있습니다.
+        재활성화하려면 다음 단계를 따르세요:
+        
+        1. 🔧 Google Cloud Console 설정:
+           - https://console.cloud.google.com/ 접속
+           - OAuth 2.0 클라이언트 ID 생성/수정
+           - 승인된 JavaScript 원본에 현재 도메인 추가
+           - 승인된 리디렉션 URI 설정
+        
+        2. 🚀 코드 수정:
+           - script src 주석 해제
+           - googleLoginSection의 display: none 제거
+           - handleGoogleLogin 함수 주석 해제
+           - initializeGoogleLogin 함수 주석 해제
+           - setTimeout(initializeGoogleLogin, 100) 주석 해제
+        
+        3. ✅ 테스트:
+           - 개발자 도구에서 Google OAuth 에러 없는지 확인
+           - 실제 Google 로그인 테스트
+        
+        =====================================================
+        */
+        
+        // API 엔드포인트 설정
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         const API_BASE = 'https://party-website-server.vercel.app/api';
         
