@@ -109,7 +109,7 @@ function loadNavigation() {
                                         </div>
                                     </div>
                                     <a href="#" onclick="console.log('나의정보조회 시스템 개발중'); alert('나의정보조회 시스템 개발중입니다.'); return false;" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">나의정보조회 <span class="text-xs text-gray-500">(개발중)</span></a>
-                                    <a href="${pathPrefix}support.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">당비납부 / 후원</a>
+                                    <a href="#" onclick="console.log('당비납부 시스템 개발중'); alert('당비납부 시스템 개발중입니다.'); return false;" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">당비납부 <span class="text-xs text-gray-500">(준비중)</span></a>
                                     <a href="#" onclick="console.log('당원교육 시스템 개발중'); alert('당원교육 시스템 개발중입니다.'); return false;" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">당원교육 <span class="text-xs text-gray-500">(개발중)</span></a>
                                 </div>
                             </div>
