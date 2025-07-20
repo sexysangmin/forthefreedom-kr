@@ -25,7 +25,7 @@ function loadNavigation() {
                     <div class="hidden md:flex items-center space-x-8">
                         <!-- 1. 소개 -->
                         <div class="relative group">
-                            <a href="${pathPrefix}about.html" class="text-gray-700 hover:text-red-600 font-medium py-2 px-1 transition-colors duration-200 text-xl">
+                            <a href="${pathPrefix}about.html" class="text-gray-700 hover:text-red-600 font-bold py-2 px-1 transition-colors duration-200 text-xl">
                                 소개
                             </a>
                             <div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
@@ -54,7 +54,7 @@ function loadNavigation() {
                         
                         <!-- 2. 소식 -->
                         <div class="relative group">
-                            <a href="${pathPrefix}news.html" class="text-gray-700 hover:text-red-600 font-medium py-2 px-1 transition-colors duration-200 text-xl">
+                            <a href="${pathPrefix}news.html" class="text-gray-700 hover:text-red-600 font-bold py-2 px-1 transition-colors duration-200 text-xl">
                                 소식
                             </a>
                             <div class="absolute left-0 top-full mt-2 w-60 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
@@ -92,7 +92,7 @@ function loadNavigation() {
                         
                         <!-- 3. 당원 -->
                         <div class="relative group">
-                            <a href="${pathPrefix}members.html" class="text-gray-700 hover:text-red-600 font-medium py-2 px-1 transition-colors duration-200 text-xl">
+                            <a href="${pathPrefix}members.html" class="text-gray-700 hover:text-red-600 font-bold py-2 px-1 transition-colors duration-200 text-xl">
                                 당원
                             </a>
                             <div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
@@ -116,7 +116,7 @@ function loadNavigation() {
                         </div>
                         
                         <!-- 4. 후원 -->
-                        <a href="${pathPrefix}support.html" class="text-gray-700 hover:text-red-600 font-medium py-2 px-1 transition-colors duration-200 text-xl">
+                        <a href="${pathPrefix}support.html" class="text-gray-700 hover:text-red-600 font-bold py-2 px-1 transition-colors duration-200 text-xl">
                             후원
                         </a>
                     </div>
