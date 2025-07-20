@@ -72,7 +72,9 @@
         // 1. 서버 연결 테스트
         async function testServerConnection() {
             try {
-                const response = await fetch('http://localhost:9000/api/card-news?limit=1');
+                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const API_BASE = isLocalhost ? 'http://localhost:9000/api' : 'https://web-production-d30c83e5.up.railway.app/api';
+                const response = await fetch(`${API_BASE}/card-news?limit=1`);
                 if (response.ok) {
                     document.getElementById('serverStatus').innerHTML = '✅ 서버 연결 성공 (Status: ' + response.status + ')';
                     return true;
@@ -92,7 +94,7 @@
             try {
                 document.getElementById('apiStatus').innerHTML = '🔄 API 호출 중...';
                 
-                const response = await fetch('http://localhost:9000/api/card-news?limit=3');
+                const response = await fetch(`${API_BASE}/card-news?limit=3`);
                 const data = await response.json();
                 
                 console.log('API 응답:', data);
@@ -142,7 +144,7 @@
             
             cardData.forEach((card, index) => {
                 const thumbnail = card.attachments?.find(att => att.mimetype?.startsWith('image/'));
-                const thumbnailUrl = thumbnail ? `http://localhost:9000/uploads/${thumbnail.filename}` : 'http://localhost:9000/images/logo.png';
+                const thumbnailUrl = thumbnail ? `${API_BASE.replace('/api', '')}/uploads/${thumbnail.filename}` : `${API_BASE.replace('/api', '')}/images/logo.png`;
                 const imageCount = card.attachments?.filter(att => att.mimetype?.startsWith('image/')).length || 0;
                 
                 html += `

@@ -557,8 +557,11 @@
     <script>
         if (typeof loadNavigation === 'function') loadNavigation();
 
-        // API 설정
-        const API_BASE = window.API_BASE || 'http://localhost:9000/api';
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
 
         // 페이지 로드 시 최신 소식 로드
         document.addEventListener('DOMContentLoaded', function() {
@@ -650,7 +653,7 @@
             article.innerHTML = `
                 <div class="${categoryConfig.bgClass} h-48 flex items-center justify-center relative overflow-hidden">
                     ${hasImage ? `
-                        <img src="http://localhost:9000${firstImage.path}" 
+                        <img src="${API_BASE.replace('/api', '')}${firstImage.path}" 
                              alt="${news.title}" 
                              class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-20"></div>

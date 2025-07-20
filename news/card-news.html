@@ -334,7 +334,7 @@
             cards.forEach((card, index) => {
                 const categoryText = getCategoryText(card.category);
                 const thumbnail = card.attachments?.find(att => att.mimetype?.startsWith('image/'));
-                const thumbnailUrl = thumbnail ? `http://localhost:9000/uploads/${thumbnail.filename}?t=${Date.now()}` : 'http://localhost:9000/images/logo.png';
+                const thumbnailUrl = thumbnail ? `${API_BASE.replace('/api', '')}/uploads/${thumbnail.filename}?t=${Date.now()}` : `${API_BASE.replace('/api', '')}/images/logo.png`;
                 const imageCount = card.attachments?.filter(att => att.mimetype?.startsWith('image/')).length || 0;
                 
                 html += `

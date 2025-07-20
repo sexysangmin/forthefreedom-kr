@@ -156,7 +156,11 @@
 
     <script src="/nav.js"></script>
     <script>
-        const API_BASE = 'http://localhost:9000/api';
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
         let allActivities = [];
         let filteredActivities = [];
         let currentPage = 1;
@@ -322,7 +326,7 @@
                     ` : imageAttachment ? `
                         <div class="aspect-video relative overflow-hidden">
                             <img 
-                                src="http://localhost:9000/uploads/${imageAttachment.filename}" 
+                                src="${API_BASE.replace('/api', '')}/uploads/${imageAttachment.filename}" 
                                 alt="${activity.title}"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 onerror="this.parentElement.innerHTML='<div class=\\'${getCategoryGradient(activity.category)} flex items-center justify-center h-full\\'>
@@ -440,7 +444,7 @@
                                 <div class="aspect-video bg-gray-100 rounded-lg overflow-hidden">
                                     <img 
                                         id="modal-main-image"
-                                        src="http://localhost:9000/uploads/${imageAttachments[0].filename}" 
+                                        src="${API_BASE.replace('/api', '')}/uploads/${imageAttachments[0].filename}" 
                                         alt="${activity.title}"
                                         class="w-full h-full object-cover"
                                         onerror="this.parentElement.innerHTML='<div class=\\'${getCategoryGradient(activity.category)} rounded-lg flex items-center justify-center h-full\\'>
@@ -455,7 +459,7 @@
                                         ${imageAttachments.map((img, index) => `
                                             <div class="flex-shrink-0">
                                                 <img 
-                                                    src="http://localhost:9000/uploads/${img.filename}" 
+                                                    src="${API_BASE.replace('/api', '')}/uploads/${img.filename}" 
                                                     alt="이미지 ${index + 1}"
                                                     class="w-20 h-20 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity ${index === 0 ? 'ring-2 ring-red-500' : ''}"
                                                     onclick="changeMainImage('${img.filename}', ${index})"
@@ -520,7 +524,7 @@
                                                 <div class="text-sm text-gray-500">${formatFileSize(file.size)}</div>
                                 </div>
                             </div>
-                                        <a href="http://localhost:9000/uploads/${file.filename}" 
+                                        <a href="${API_BASE.replace('/api', '')}/uploads/${file.filename}" 
                                            target="_blank" 
                                            class="text-blue-600 hover:text-blue-800 text-sm font-medium">
                                             ${file.mimeType?.startsWith('image/') ? '원본 보기' : '다운로드'}
@@ -715,7 +719,7 @@
                         img.classList.remove('ring-2', 'ring-red-500');
                     }
                 });
-                mainImage.src = `http://localhost:9000/uploads/${filename}`;
+                mainImage.src = `${API_BASE.replace('/api', '')}/uploads/${filename}`;
             }
         }
     </script>

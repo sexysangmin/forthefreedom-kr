@@ -408,7 +408,7 @@
         // 현재 이미지 업데이트
         function updateCurrentImage() {
             if (images[currentImageIndex]) {
-                currentImage.src = `http://localhost:9000/uploads/${images[currentImageIndex].filename}?t=${Date.now()}`;
+                currentImage.src = `${API_BASE.replace('/api', '')}/uploads/${images[currentImageIndex].filename}?t=${Date.now()}`;
                 currentImage.alt = currentCard.title;
             }
         }
@@ -420,7 +420,7 @@
                 const activeClass = index === currentImageIndex ? 'active' : '';
                 html += `
                     <div class="thumbnail-item ${activeClass}" onclick="goToImage(${index})">
-                        <img src="http://localhost:9000/uploads/${image.filename}?t=${Date.now()}" alt="페이지 ${index + 1}">
+                        <img src="${API_BASE.replace('/api', '')}/uploads/${image.filename}?t=${Date.now()}" alt="페이지 ${index + 1}">
                     </div>
                 `;
             });
@@ -498,7 +498,7 @@
                 const thumbnail = card.attachments?.find(att => att.mimetype.startsWith('image/'));
                 html += `
                     <div class="related-card bg-white border border-gray-200" onclick="goToCard('${card._id}')">
-                        <img src="${thumbnail ? `http://localhost:9000/uploads/${thumbnail.filename}?t=${Date.now()}` : 'http://localhost:9000/images/logo.png'}" 
+                        <img src="${thumbnail ? `${API_BASE.replace('/api', '')}/uploads/${thumbnail.filename}?t=${Date.now()}` : `${API_BASE.replace('/api', '')}/images/logo.png`}" 
                              alt="${card.title}" 
                              class="w-full aspect-[3/4] object-cover">
                         <div class="p-4">
@@ -522,7 +522,7 @@
         function downloadCurrentImage() {
             if (images[currentImageIndex]) {
                 const link = document.createElement('a');
-                link.href = `http://localhost:9000/uploads/${images[currentImageIndex].filename}`;
+                link.href = `${API_BASE.replace('/api', '')}/uploads/${images[currentImageIndex].filename}`;
                 link.download = `${currentCard.title}_${currentImageIndex + 1}.jpg`;
                 document.body.appendChild(link);
                 link.click();
