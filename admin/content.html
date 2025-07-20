@@ -12,10 +12,12 @@
     <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
     <link rel="icon" type="image/png" href="/images/logo.png">
     
+    <!-- API 설정 로드 -->
+    <script src="/config.js"></script>
+    
     <!-- EasyMDE CSS & JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
     <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
-    <script src="../config.js"></script>
     
     <style>
         * {
@@ -1052,56 +1054,17 @@
     <script>
         /*
         =====================================================
-        📋 로컬 모크 데이터 시스템 - CORS 문제 완전 해결
+        📋 관리자 콘텐츠 관리 시스템 - API 연동
         =====================================================
         
-        현재 CORS 문제로 인해 원격 API 대신 로컬 모크 데이터를 사용합니다.
-        실제 서버 연동 시 아래 주석 처리된 코드를 활성화하세요.
+        config.js에서 통일된 API 엔드포인트를 사용합니다.
+        실제 Railway 서버와 연동하여 CORS 문제를 근본적으로 해결합니다.
         
         =====================================================
         */
         
-        // 환경 감지 및 API 설정 (임시 비활성화)
-        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        
-        // 로컬 모크 데이터 시스템 (CORS 문제 해결)
-        const MOCK_DATA_ENABLED = true;
-        
-        /* 원격 API 설정 (CORS 해결 후 사용)
-        const API_BASE = isLocalhost 
-            ? 'http://localhost:9000/api'
-            : 'https://web-production-d30c83e5.up.railway.app/api';
-        */
-        
-        // 로컬 모크 데이터
-        const mockData = {
-            notices: [
-                {
-                    _id: 'notice1',
-                    title: '자유와혁신 창당 공고',
-                    content: '# 자유와혁신 창당 공고\n\n새로운 정치적 비전을 제시합니다.',
-                    author: '황교안',
-                    createdAt: new Date().toISOString(),
-                    status: 'published'
-                }
-            ],
-            events: [
-                {
-                    _id: 'event1', 
-                    title: '창당 기념 거리행진',
-                    content: '# 창당 기념 거리행진\n\n국민과 함께하는 새로운 시작',
-                    author: '홍보팀',
-                    createdAt: new Date().toISOString(),
-                    status: 'published'
-                }
-            ],
-            activities: [],
-            cardNews: [],
-            gallery: [],
-            mediaCoverage: [],
-            policyMaterials: [],
-            electionMaterials: []
-        };
+        // API 설정은 config.js에서 자동 로드됨
+        console.log('🔗 사용 중인 API_BASE:', window.API_BASE);
         
         let currentContentType = '';
         let currentPage = 1;
@@ -1303,140 +1266,11 @@
             });
         }
 
-        // API 호출 함수 (로컬 모크 데이터 시스템으로 변경)
-        async function apiCall(endpoint, options = {}) {
-            console.log('🔄 Mock API 호출:', endpoint, options.method || 'GET');
-            
-            // 짧은 지연으로 실제 API 호출처럼 보이게 함
-            await new Promise(resolve => setTimeout(resolve, 100));
-            
-            try {
-                const token = localStorage.getItem('adminToken');
-                if (!token) {
-                    return { success: false, message: '인증이 필요합니다.' };
-                }
-                
-                // 엔드포인트 파싱
-                const [path, queryString] = endpoint.split('?');
-                const pathSegments = path.split('/').filter(Boolean);
-                const contentType = pathSegments[0]; // notices, events, etc.
-                
-                // 메소드별 처리
-                const method = options.method || 'GET';
-                
-                switch (method) {
-                    case 'GET':
-                        return handleMockGet(contentType, queryString);
-                        
-                    case 'POST':
-                        return handleMockPost(contentType, options.body);
-                        
-                    case 'PUT':
-                        const id = pathSegments[1];
-                        return handleMockPut(contentType, id, options.body);
-                        
-                    case 'DELETE':
-                        const deleteId = pathSegments[1];
-                        return handleMockDelete(contentType, deleteId);
-                        
-                    default:
-                        return { success: false, message: '지원하지 않는 메소드입니다.' };
-                }
-                
-            } catch (error) {
-                console.error('Mock API 오류:', error);
-                return { success: false, message: error.message };
-            }
-        }
-        
-        // Mock GET 처리
-        function handleMockGet(contentType, queryString) {
-            const data = mockData[contentType] || [];
-            
-            return {
-                success: true,
-                data: data,
-                pagination: {
-                    currentPage: 1,
-                    totalPages: 1,
-                    totalItems: data.length,
-                    itemsPerPage: 10
-                }
-            };
-        }
-        
-        // Mock POST 처리 (새 항목 생성)
-        function handleMockPost(contentType, body) {
-            let data;
-            if (typeof body === 'string') {
-                data = JSON.parse(body);
-            } else if (body instanceof FormData) {
-                data = Object.fromEntries(body.entries());
-            } else {
-                data = body;
-            }
-            
-            const newItem = {
-                _id: 'mock_' + Date.now(),
-                ...data,
-                createdAt: new Date().toISOString(),
-                author: '관리자',
-                status: 'published'
-            };
-            
-            if (!mockData[contentType]) {
-                mockData[contentType] = [];
-            }
-            
-            mockData[contentType].unshift(newItem);
-            
-            return {
-                success: true,
-                data: newItem,
-                message: '성공적으로 생성되었습니다.'
-            };
-        }
-        
-        // Mock PUT 처리 (항목 수정)
-        function handleMockPut(contentType, id, body) {
-            const data = typeof body === 'string' ? JSON.parse(body) : body;
-            const items = mockData[contentType] || [];
-            const index = items.findIndex(item => item._id === id);
-            
-            if (index === -1) {
-                return { success: false, message: '항목을 찾을 수 없습니다.' };
-            }
-            
-            items[index] = { ...items[index], ...data, updatedAt: new Date().toISOString() };
-            
-            return {
-                success: true,
-                data: items[index],
-                message: '성공적으로 수정되었습니다.'
-            };
-        }
-        
-        // Mock DELETE 처리 (항목 삭제)
-        function handleMockDelete(contentType, id) {
-            const items = mockData[contentType] || [];
-            const index = items.findIndex(item => item._id === id);
-            
-            if (index === -1) {
-                return { success: false, message: '항목을 찾을 수 없습니다.' };
-            }
-            
-            items.splice(index, 1);
-            
-            return {
-                success: true,
-                message: '성공적으로 삭제되었습니다.'
-            };
-        }
-
-        /* 원격 API 호출 (CORS 해결 후 사용)
+        // API 호출 함수 (config.js 백업 시스템 사용)
         async function apiCall(endpoint, options = {}) {
             const token = localStorage.getItem('adminToken');
             
+            // FormData인 경우 Content-Type 헤더를 설정하지 않음 (브라우저가 자동 설정)
             const isFormData = options.body instanceof FormData;
             
             const defaultOptions = {
@@ -1445,29 +1279,42 @@
                 }
             };
             
+            // FormData가 아닌 경우에만 Content-Type 설정
             if (!isFormData) {
                 defaultOptions.headers['Content-Type'] = 'application/json';
             }
 
             try {
-                const response = await fetch(`${API_BASE}${endpoint}`, {
+                // config.js의 백업 URL 시스템 사용
+                const response = await window.apiCallWithFallback(endpoint, {
                     ...defaultOptions,
                     ...options,
                     headers: { ...defaultOptions.headers, ...options.headers }
                 });
 
                 if (response.status === 401) {
+                    console.warn('🔒 인증 만료, 로그아웃 처리');
                     logout();
-                    return;
+                    return { success: false, message: '인증이 만료되었습니다.' };
                 }
 
-                return await response.json();
+                const data = await response.json();
+                console.log('✅ API 응답 성공:', endpoint, data);
+                return data;
+                
             } catch (error) {
-                console.error('API call error:', error);
-                throw error;
+                console.error('❌ API 호출 실패:', endpoint, error);
+                
+                // 사용자 친화적 에러 메시지
+                if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                    throw new Error('네트워크 연결을 확인해주세요.');
+                } else if (error.message.includes('CORS')) {
+                    throw new Error('서버 연결에 문제가 있습니다. 잠시 후 다시 시도해주세요.');
+                } else {
+                    throw error;
+                }
             }
         }
-        */
 
         // 콘텐츠 목록 로드
         async function loadContent() {

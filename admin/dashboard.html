@@ -11,6 +11,10 @@
     <!-- 파비콘 설정 -->
     <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
     <link rel="icon" type="image/png" href="/images/logo.png">
+    
+    <!-- API 설정 로드 -->
+    <script src="/config.js"></script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -557,36 +561,17 @@
     <script>
         /*
         =====================================================
-        📋 대시보드 로컬 모크 데이터 시스템
+        📋 관리자 대시보드 - API 연동
+        =====================================================
+        
+        config.js에서 통일된 API 엔드포인트를 사용합니다.
+        실제 Railway 서버와 연동하여 대시보드 통계를 표시합니다.
+        
         =====================================================
         */
         
-        // 환경 감지 및 API 설정 (임시 비활성화)
-        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        
-        // 로컬 모크 데이터 시스템 (CORS 문제 해결)
-        const MOCK_DATA_ENABLED = true;
-        
-        /* 원격 API 설정 (CORS 해결 후 사용)
-        const API_BASE = isLocalhost 
-            ? 'http://localhost:9000/api'
-            : 'https://web-production-d30c83e5.up.railway.app/api';
-        */
-        
-        // 대시보드 모크 데이터
-        const dashboardMockData = {
-            notices: 3,
-            activities: 5,
-            policyCommittee: 10,
-            spokesperson: 8,
-            mediaCoverage: 6,
-            events: 2,
-            cardNews: 4,
-            gallery: 8,
-            policyMaterials: 12,
-            partyConstitution: 5,
-            electionMaterials: 7
-        };
+        // API 설정은 config.js에서 자동 로드됨
+        console.log('🔗 대시보드 API_BASE:', window.API_BASE);
 
         let totalContent = 0;
 
@@ -608,7 +593,7 @@
         async function loadDashboardData() {
             showLoading();
             
-            // 콘텐츠 통계 로드 (로컬 모크 데이터 사용)
+            // 콘텐츠 통계 로드 (config.js API 시스템 사용)
             const contentTypes = [
                 'notices', 'activities', 'policy-committee', 'spokesperson',
                 'media-coverage', 'events', 'card-news', 'gallery', 
@@ -618,29 +603,34 @@
             try {
                 totalContent = 0;
                 
-                console.log('📊 대시보드 통계 로드 시작 (Mock 데이터)');
+                console.log('📊 대시보드 통계 로드 시작 (실제 API)');
                 
-                // 모크 데이터를 사용하여 통계 업데이트
-                contentTypes.forEach((type) => {
-                    // 타입명 변환 (하이픈을 camelCase로)
-                    let mappedType;
-                    switch(type) {
-                        case 'policy-committee': mappedType = 'policyCommittee'; break;
-                        case 'media-coverage': mappedType = 'mediaCoverage'; break;
-                        case 'card-news': mappedType = 'cardNews'; break;
-                        case 'policy-materials': mappedType = 'policyMaterials'; break;
-                        case 'party-constitution': mappedType = 'partyConstitution'; break;
-                        case 'election-materials': mappedType = 'electionMaterials'; break;
-                        default: mappedType = type;
+                // 모든 콘텐츠 타입의 데이터를 병렬로 가져오기
+                const promises = contentTypes.map(async (type) => {
+                    try {
+                        // config.js의 백업 URL 시스템 사용
+                        const response = await window.apiCallWithFallback(`/${type}?page=1&limit=1`);
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            const count = data.pagination ? data.pagination.total : 0;
+                            updateContentCount(type, count);
+                            totalContent += count;
+                            console.log(`📋 ${type}: ${count}개`);
+                            return count;
+                        } else {
+                            console.warn(`⚠️ ${type} 응답 오류:`, response.status);
+                            updateContentCount(type, 0);
+                            return 0;
+                        }
+                    } catch (error) {
+                        console.warn(`❌ ${type} 데이터 로드 실패:`, error.message);
+                        updateContentCount(type, 0);
+                        return 0;
                     }
-                    
-                    const count = dashboardMockData[mappedType] || Math.floor(Math.random() * 5) + 1;
-                    
-                    updateContentCount(type, count);
-                    totalContent += count;
-                    
-                    console.log(`📋 ${type}: ${count}개`);
                 });
+
+                await Promise.all(promises);
                 
                 // 총 콘텐츠 수 업데이트
                 document.getElementById('total-content-hero').textContent = totalContent.toLocaleString();
