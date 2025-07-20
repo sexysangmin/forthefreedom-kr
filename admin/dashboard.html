@@ -4,17 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자유와혁신 - 관리자 대시보드</title>
-    
-    <!-- 보안 정책: 외부 스크립트 차단으로 SES 에러 완전 차단 -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'; object-src 'none';">
-    
-    <!-- 파비콘 설정 -->
-    <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
-    <link rel="icon" type="image/png" href="/images/logo.png">
-    
-    <!-- API 설정 로드 -->
-    <script src="/config.js"></script>
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -177,7 +166,7 @@
                 <div class="flex items-center space-x-6">
                     <!-- 총 콘텐츠 표시 -->
                     <div class="glass-card px-4 py-2 text-center">
-                        <div class="text-lg font-semibold text-blue-600" id="total-content-hero">0</div>
+                        <div class="text-lg font-semibold text-blue-600" id="total-content-hero">25</div>
                         <div class="text-xs text-gray-600">총 콘텐츠</div>
                     </div>
 
@@ -559,19 +548,11 @@
     </div>
 
     <script>
-        /*
-        =====================================================
-        📋 관리자 대시보드 - API 연동
-        =====================================================
-        
-        config.js에서 통일된 API 엔드포인트를 사용합니다.
-        실제 Railway 서버와 연동하여 대시보드 통계를 표시합니다.
-        
-        =====================================================
-        */
-        
-        // API 설정은 config.js에서 자동 로드됨
-        console.log('🔗 대시보드 API_BASE:', window.API_BASE);
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
 
         let totalContent = 0;
 
@@ -593,9 +574,8 @@
         async function loadDashboardData() {
             showLoading();
             
-            // 콘텐츠 통계 로드 (config.js API 시스템 사용)
             const contentTypes = [
-                'notices', 'activities', 'policy-committee', 'spokesperson',
+                'notices', 'spokesperson', 'policy-committee', 'new-media', 
                 'media-coverage', 'events', 'card-news', 'gallery', 
                 'policy-materials', 'party-constitution', 'election-materials'
             ];
@@ -603,41 +583,7 @@
             try {
                 totalContent = 0;
                 
-                console.log('📊 대시보드 통계 로드 시작 (실제 API)');
-                
                 // 모든 콘텐츠 타입의 데이터를 병렬로 가져오기
-                const promises = contentTypes.map(async (type) => {
-                    try {
-                        // config.js의 백업 URL 시스템 사용
-                        const response = await window.apiCallWithFallback(`/${type}?page=1&limit=1`);
-                        
-                        if (response.ok) {
-                            const data = await response.json();
-                            const count = data.pagination ? data.pagination.total : 0;
-                            updateContentCount(type, count);
-                            totalContent += count;
-                            console.log(`📋 ${type}: ${count}개`);
-                            return count;
-                        } else {
-                            console.warn(`⚠️ ${type} 응답 오류:`, response.status);
-                            updateContentCount(type, 0);
-                            return 0;
-                        }
-                    } catch (error) {
-                        console.warn(`❌ ${type} 데이터 로드 실패:`, error.message);
-                        updateContentCount(type, 0);
-                        return 0;
-                    }
-                });
-
-                await Promise.all(promises);
-                
-                // 총 콘텐츠 수 업데이트
-                document.getElementById('total-content-hero').textContent = totalContent.toLocaleString();
-                
-                console.log(`📊 총 콘텐츠: ${totalContent}개`);
-                
-                /* 원격 API 호출 (CORS 해결 후 사용)
                 const promises = contentTypes.map(async (type) => {
                     try {
                         const response = await fetch(`${API_BASE}/${type}?page=1&limit=1`);
@@ -659,7 +605,6 @@
                 
                 // 총 콘텐츠 수 업데이트
                 document.getElementById('total-content-hero').textContent = totalContent.toLocaleString();
-                */
                 
                 // 상위 통계 업데이트
                 updateTopStats();
