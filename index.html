@@ -152,13 +152,7 @@
                 <div class="order-1 lg:order-2">
                     <div class="relative">
                         <div class="w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden border-8 border-gray-100 shadow-xl bg-gray-100">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="text-center">
-                                    <h4 class="text-2xl font-bold mb-2 text-gray-900">자유와혁신당 대표</h4>
-                                    <p class="text-xl font-medium text-gray-700">황교안</p>
-                                    <p class="text-sm text-gray-500 mt-4">*사진 준비중</p>
-                                </div>
-                            </div>
+                            <img src="images/profile-pic.jpg" alt="자유와혁신당 대표 황교안" class="w-full h-full object-cover">
                         </div>
                         </div>
                     </div>
@@ -236,17 +230,6 @@
                     </div>
                     <h4 class="text-xl font-bold text-gray-900 mb-3">청년 희망 사다리 구축</h4>
                     <p class="text-gray-600">청년 패스트트랙과 기회 확대로 희망찬 미래 보장</p>
-                </div>
-            </div>
-
-            <!-- 더 보기 섹션 -->
-            <div class="text-center mb-8">
-                <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8">
-                    <div class="text-gray-600 mb-4">
-                        <i class="fas fa-plus-circle text-4xl mb-3"></i>
-                        <p class="text-lg font-medium">나머지 4개 핵심정책</p>
-                        <p class="text-sm">국민 안전 강화 • 자유 통일 기반 • 경제강국 실현 • 문화융성</p>
-                    </div>
                 </div>
             </div>
 
@@ -573,23 +556,24 @@
             try {
                 showNewsLoading();
 
-                // 보도자료와 공지사항을 병렬로 가져오기
-                const [pressResponse, noticesResponse] = await Promise.all([
-                    fetch(`${API_BASE}/press-releases?limit=5&sort=-createdAt&status=published`),
-                    fetch(`${API_BASE}/notices?limit=5&sort=-createdAt&status=published`)
+                // 대변인, 공지사항, 언론보도를 병렬로 가져오기
+                const [spokesmanResponse, noticesResponse, mediaResponse] = await Promise.all([
+                    fetch(`${API_BASE}/spokesperson?limit=1&sort=-createdAt`),
+                    fetch(`${API_BASE}/notices?limit=1&sort=-createdAt`),
+                    fetch(`${API_BASE}/media-coverage?limit=1&sort=-createdAt`)
                 ]);
 
                 let allNews = [];
 
-                // 보도자료 데이터 처리
-                if (pressResponse.ok) {
-                    const pressData = await pressResponse.json();
-                    if (pressData.success && pressData.data) {
-                        allNews = allNews.concat(pressData.data.map(item => ({
+                // 대변인 발언 데이터 처리
+                if (spokesmanResponse.ok) {
+                    const spokesmanData = await spokesmanResponse.json();
+                    if (spokesmanData.success && spokesmanData.data && spokesmanData.data.length > 0) {
+                        allNews = allNews.concat(spokesmanData.data.map(item => ({
                             ...item,
-                            type: 'press',
-                            category: item.category || '보도자료',
-                            url: `news/press-release-detail.html?id=${item._id}`
+                            type: 'spokesman',
+                            category: '대변인 발언',
+                            url: `news/press-policy.html?id=${item._id}`
                         })));
                     }
                 }
@@ -597,12 +581,25 @@
                 // 공지사항 데이터 처리
                 if (noticesResponse.ok) {
                     const noticesData = await noticesResponse.json();
-                    if (noticesData.success && noticesData.data) {
+                    if (noticesData.success && noticesData.data && noticesData.data.length > 0) {
                         allNews = allNews.concat(noticesData.data.map(item => ({
                             ...item,
                             type: 'notice',
                             category: item.category || '공지사항',
                             url: `news/notice-detail.html?id=${item._id}`
+                        })));
+                    }
+                }
+
+                // 언론보도 데이터 처리
+                if (mediaResponse.ok) {
+                    const mediaData = await mediaResponse.json();
+                    if (mediaData.success && mediaData.data && mediaData.data.length > 0) {
+                        allNews = allNews.concat(mediaData.data.map(item => ({
+                            ...item,
+                            type: 'media',
+                            category: '언론보도',
+                            url: `news/media-detail.html?id=${item._id}`
                         })));
                     }
                 }
@@ -706,37 +703,29 @@
         // 카테고리별 설정 가져오기
         function getCategoryConfig(category, type) {
             const configs = {
-                '정책발표': {
-                    bgClass: 'bg-red-100',
-                    icon: 'fas fa-bullhorn',
-                    iconClass: 'text-red-600',
-                    textClass: 'text-red-700',
-                    badgeClass: 'bg-red-100 text-red-600',
-                    title: '정책 발표'
-                },
-                '성명서': {
+                '대변인 발언': {
                     bgClass: 'bg-blue-100',
                     icon: 'fas fa-microphone',
                     iconClass: 'text-blue-600',
                     textClass: 'text-blue-700',
                     badgeClass: 'bg-blue-100 text-blue-600',
-                    title: '성명서'
+                    title: '대변인 발언'
                 },
-                '논평': {
+                '공지사항': {
                     bgClass: 'bg-green-100',
-                    icon: 'fas fa-comment',
+                    icon: 'fas fa-bullhorn',
                     iconClass: 'text-green-600',
                     textClass: 'text-green-700',
                     badgeClass: 'bg-green-100 text-green-600',
-                    title: '논평'
-                },
-                '공지사항': {
-                    bgClass: 'bg-yellow-100',
-                    icon: 'fas fa-bullhorn',
-                    iconClass: 'text-yellow-600',
-                    textClass: 'text-yellow-700',
-                    badgeClass: 'bg-yellow-100 text-yellow-600',
                     title: '공지사항'
+                },
+                '언론보도': {
+                    bgClass: 'bg-purple-100',
+                    icon: 'fas fa-tv',
+                    iconClass: 'text-purple-600',
+                    textClass: 'text-purple-700',
+                    badgeClass: 'bg-purple-100 text-purple-600',
+                    title: '언론보도'
                 },
                 '중요': {
                     bgClass: 'bg-red-100',
@@ -750,25 +739,33 @@
 
             // 타입별 기본값
             const typeDefaults = {
-                'press': {
+                'spokesman': {
                     bgClass: 'bg-blue-100',
-                    icon: 'fas fa-newspaper',
+                    icon: 'fas fa-microphone',
                     iconClass: 'text-blue-600',
                     textClass: 'text-blue-700',
                     badgeClass: 'bg-blue-100 text-blue-600',
-                    title: '보도자료'
+                    title: '대변인 발언'
                 },
                 'notice': {
                     bgClass: 'bg-green-100',
-                    icon: 'fas fa-bell',
+                    icon: 'fas fa-bullhorn',
                     iconClass: 'text-green-600',
                     textClass: 'text-green-700',
                     badgeClass: 'bg-green-100 text-green-600',
                     title: '공지사항'
+                },
+                'media': {
+                    bgClass: 'bg-purple-100',
+                    icon: 'fas fa-tv',
+                    iconClass: 'text-purple-600',
+                    textClass: 'text-purple-700',
+                    badgeClass: 'bg-purple-100 text-purple-600',
+                    title: '언론보도'
                 }
             };
 
-            return configs[category] || typeDefaults[type] || typeDefaults['press'];
+            return configs[category] || typeDefaults[type] || typeDefaults['notice'];
         }
 
         // 날짜 포맷팅
