@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자유와혁신 - 관리자 로그인</title>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- Google OAuth 임시 비활성화 (도메인 설정 완료 후 활성화 예정) -->
+    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
     <style>
         * {
             margin: 0;
@@ -135,35 +136,20 @@
 
         <div id="errorMessage" class="error-message"></div>
 
-        <!-- 구글 로그인 섹션 -->
-        <div id="googleLoginSection">
-            <div id="g_id_onload"
-                 data-client_id="722072230476-h2gbv36ed9bsgbh62hbvjr7bhojj5pki.apps.googleusercontent.com"
-                 data-context="signin"
-                 data-ux_mode="popup"
-                 data-callback="handleGoogleLogin"
-                 data-auto_prompt="false">
-            </div>    
-            
-            <div class="g_id_signin" 
-                 data-type="standard"
-                 data-shape="rectangular"
-                 data-theme="outline"
-                 data-text="signin_with"
-                 data-size="large"
-                 data-logo_alignment="left"
-                 style="width: 100%;">
-            </div>
-            
-            <div style="text-align: center; margin: 1.5rem 0; color: #666;">
-                또는
+        <!-- 구글 로그인 섹션 (임시 비활성화) -->
+        <div id="googleLoginSection" style="display: none;">
+            <div class="notice-box" style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 1rem; border-radius: 5px; margin-bottom: 1rem; text-align: center;">
+                <p style="color: #856404; margin: 0; font-size: 0.9rem;">
+                    🔧 Google 로그인은 현재 도메인 설정 중입니다.<br>
+                    아래 관리자 로그인을 이용해 주세요.
+                </p>
             </div>
         </div>
 
-        <!-- 기존 로그인 폼 -->
-        <details style="margin-bottom: 1rem;">
-            <summary style="cursor: pointer; color: #667eea; font-size: 0.9rem;">비상용 로그인</summary>
-            <form id="loginForm" style="margin-top: 1rem;">
+        <!-- 기존 로그인 폼 (메인 로그인으로 변경) -->
+        <div style="margin-bottom: 1rem;">
+            <h3 style="color: #333; margin-bottom: 1rem; text-align: center;">관리자 로그인</h3>
+            <form id="loginForm">
                 <div class="form-group">
                     <label for="username">사용자명</label>
                     <input type="text" id="username" name="username" required>
@@ -176,7 +162,7 @@
 
                 <button type="submit" id="loginBtn" class="login-btn">로그인</button>
             </form>
-        </details>
+        </div>
 
         <div id="loading" class="loading">
             <div class="spinner"></div>
@@ -187,14 +173,13 @@
     <script>
         // 환경 감지 및 API 설정
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const API_BASE = isLocalhost 
-            ? 'http://localhost:9000/api'
-            : 'https://forthefreedom.kr/api';
+        const API_BASE = 'https://party-website-server.vercel.app/api';
         
         // 구글 클라이언트 ID 설정
         const GOOGLE_CLIENT_ID = '722072230476-h2gbv36ed9bsgbh62hbvjr7bhojj5pki.apps.googleusercontent.com';
 
-        // 구글 로그인 콜백 함수
+        // 구글 로그인 콜백 함수 (임시 비활성화)
+        /*
         async function handleGoogleLogin(response) {
             const loading = document.getElementById('loading');
             const errorMessage = document.getElementById('errorMessage');
@@ -229,11 +214,11 @@
             } catch (error) {
                 errorMessage.textContent = error.message;
                 errorMessage.style.display = 'block';
-                console.error('Google login error:', error);
             } finally {
                 loading.style.display = 'none';
             }
         }
+        */
 
         // 기존 폼 로그인
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
@@ -292,69 +277,36 @@
                 }
 
                 // 구글 로그인 초기화 (지연 실행으로 라이브러리 로딩 대기)
-                setTimeout(initializeGoogleLogin, 100);
+                // setTimeout(initializeGoogleLogin, 100); // 구글 로그인 비활성화
                 
+                console.log('관리자 페이지 초기화 완료 - 일반 로그인만 사용');
             } catch (error) {
                 console.warn('페이지 초기화 중 오류:', error.message);
             }
         });
-        
-        // 구글 로그인 초기화
-        function initializeGoogleLogin() {
-            try {
-                // 구글 라이브러리가 로드되었는지 확인
-                if (typeof google !== 'undefined' && google.accounts) {
-                    console.log('구글 로그인이 활성화되었습니다!');
-                } else {
-                    console.log('구글 로그인 라이브러리 로딩 중...');
-                    // 라이브러리가 로드될 때까지 대기
-                    setTimeout(initializeGoogleLogin, 500);
-                }
-            } catch (error) {
-                console.warn('구글 로그인 초기화 중 오류:', error.message);
-            }
-        }
-        
-        // 콘솔 경고 메시지 필터링 (SES 관련 경고 숨기기)
-        const originalConsoleWarn = console.warn;
-        console.warn = function(...args) {
-            const message = args.join(' ');
-            // SES 관련 경고 메시지 필터링
-            if (message.includes('SES The') || 
-                message.includes('dateTaming') || 
-                message.includes('mathTaming') ||
-                message.includes('lockdown-install.js')) {
-                return; // SES 관련 경고는 출력하지 않음
-            }
-            originalConsoleWarn.apply(console, args);
-        };
-        
-        // 전역 에러 핸들러 (Google OAuth 관련 에러 처리)
-        window.addEventListener('error', function(event) {
-            // Google OAuth 관련 에러는 콘솔에 출력하지 않음
-            if (event.message && (
-                event.message.includes('lockdown-install.js') ||
-                event.message.includes('GSI_LOGGER') ||
-                event.message.includes('SES The')
-            )) {
-                event.preventDefault();
-                return false;
-            }
-        });
-        
-        // 콘솔 에러 메시지 필터링 (추가)
-        const originalConsoleError = console.error;
-        console.error = function(...args) {
-            const message = args.join(' ');
-            // Google OAuth 관련 에러 메시지 필터링
-            if (message.includes('GSI_LOGGER') || 
-                message.includes('lockdown-install.js') ||
-                message.includes('client ID is not found') ||
-                message.includes('Configuration ignored')) {
-                return; // Google OAuth 관련 에러는 출력하지 않음
-            }
-            originalConsoleError.apply(console, args);
-        };
+         
+         // 구글 로그인 초기화 (임시 비활성화)
+         /*
+         function initializeGoogleLogin() {
+             try {
+                 // 구글 라이브러리가 로드되었는지 확인
+                 if (typeof google !== 'undefined' && google.accounts) {
+                     console.log('구글 로그인이 활성화되었습니다!');
+                 } else {
+                     console.log('구글 로그인 라이브러리 로딩 중...');
+                     // 라이브러리가 로드될 때까지 대기
+                     setTimeout(initializeGoogleLogin, 500);
+                 }
+             } catch (error) {
+                 console.warn('구글 로그인 초기화 중 오류:', error.message);
+             }
+         }
+         */
+         
+         // 콘솔 에러 필터링 제거 (Google OAuth 비활성화로 불필요)
+         // 이제 Google 라이브러리가 로드되지 않으므로 SES 에러들이 발생하지 않습니다
+         
+         console.log('관리자 로그인 페이지가 로드되었습니다.');
     </script>
 </body>
 </html> 
