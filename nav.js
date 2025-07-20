@@ -144,12 +144,67 @@ function loadNavigation() {
                 <!-- 모바일 메뉴 -->
                 <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200">
                     <div class="py-2 space-y-1">
-                        <a href="${pathPrefix}about.html" class="block px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">소개</a>
-                        <a href="${pathPrefix}news.html" class="block px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">소식</a>
-                        <a href="${pathPrefix}members.html" class="block px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">당원</a>
-                        <a href="${pathPrefix}support.html" class="block px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">후원</a>
-                        <div class="border-t border-gray-200 mt-2 pt-2">
-                            <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" class="block px-3 py-2 text-lg bg-red-600 text-white rounded-md mx-3 text-center hover:bg-red-700 transition-colors">당원 가입하기</a>
+                        <!-- 소개 메뉴 -->
+                        <div class="mobile-menu-item">
+                            <button onclick="toggleMobileSubmenu('about-submenu')" class="w-full flex items-center justify-between px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">
+                                <span class="font-bold">소개</span>
+                                <i class="fas fa-chevron-down transition-transform duration-200" id="about-submenu-icon"></i>
+                            </button>
+                            <div id="about-submenu" class="hidden bg-gray-50 border-l-4 border-red-600 ml-3">
+                                <a href="${pathPrefix}about.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">당소개</a>
+                                <a href="${pathPrefix}about/principles.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">강령, 당헌, 당규</a>
+                                <a href="${pathPrefix}about/founding.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">창당 스토리</a>
+                                <a href="${pathPrefix}about/organization.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">조직도</a>
+                                <a href="${pathPrefix}about/people-central.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">중앙당</a>
+                                <a href="${pathPrefix}about/people-regional.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">시도당</a>
+                                <a href="${pathPrefix}resources/policy.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">정책</a>
+                                <a href="${pathPrefix}about/logo.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">로고</a>
+                                <a href="${pathPrefix}about/location.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">찾아오시는길</a>
+                            </div>
+                        </div>
+                        
+                        <!-- 소식 메뉴 -->
+                        <div class="mobile-menu-item">
+                            <button onclick="toggleMobileSubmenu('news-submenu')" class="w-full flex items-center justify-between px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">
+                                <span class="font-bold">소식</span>
+                                <i class="fas fa-chevron-down transition-transform duration-200" id="news-submenu-icon"></i>
+                            </button>
+                            <div id="news-submenu" class="hidden bg-gray-50 border-l-4 border-red-600 ml-3">
+                                <a href="${pathPrefix}news/notices.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">공지사항</a>
+                                <a href="${pathPrefix}news/press-releases.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">대변인</a>
+                                <a href="${pathPrefix}news/press-policy.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">정책위</a>
+                                <a href="${pathPrefix}news/press-media.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">뉴미디어팀</a>
+                                <a href="${pathPrefix}news/media.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">언론보도</a>
+                                <a href="${pathPrefix}news/events.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">주요일정</a>
+                                <a href="${pathPrefix}news/card-news.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">카드뉴스</a>
+                                <a href="${pathPrefix}news/gallery.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">포토갤러리</a>
+                                <a href="${pathPrefix}resources.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">자료실</a>
+                            </div>
+                        </div>
+                        
+                        <!-- 당원 메뉴 -->
+                        <div class="mobile-menu-item">
+                            <button onclick="toggleMobileSubmenu('members-submenu')" class="w-full flex items-center justify-between px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">
+                                <span class="font-bold">당원</span>
+                                <i class="fas fa-chevron-down transition-transform duration-200" id="members-submenu-icon"></i>
+                            </button>
+                            <div id="members-submenu" class="hidden bg-gray-50 border-l-4 border-red-600 ml-3">
+                                <a href="${pathPrefix}members/join.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">당원가입</a>
+                                <a href="${pathPrefix}members/faq.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">당원가입 FAQ</a>
+                                <a href="#" onclick="alert('나의정보조회 시스템 개발중입니다.'); return false;" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">나의정보조회 <span class="text-xs text-gray-500">(개발중)</span></a>
+                                <a href="#" onclick="alert('당비납부 시스템 개발중입니다.'); return false;" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">당비납부 <span class="text-xs text-gray-500">(준비중)</span></a>
+                                <a href="#" onclick="alert('당원교육 시스템 개발중입니다.'); return false;" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">당원교육 <span class="text-xs text-gray-500">(개발중)</span></a>
+                            </div>
+                        </div>
+                        
+                        <!-- 후원 메뉴 (단일 링크) -->
+                        <a href="${pathPrefix}support.html" class="block px-3 py-2 text-lg font-bold text-gray-700 hover:bg-gray-50 hover:text-red-600">후원</a>
+                        
+                        <!-- 당원가입 버튼 -->
+                        <div class="pt-4 px-3">
+                            <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" class="block w-full bg-red-600 text-white text-center py-3 rounded-lg font-bold hover:bg-red-700 transition-colors">
+                                당원 가입하기
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -283,5 +338,53 @@ function loadNavigation() {
     }
 }
 
-// DOMContentLoaded에서 자동으로 loadNavigation 실행
-document.addEventListener('DOMContentLoaded', loadNavigation);
+// 모바일 메뉴 토글 기능
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuButton = document.getElementById('mobile-menu-button');
+    
+    if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+        menuButton.innerHTML = '<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>';
+    } else {
+        mobileMenu.classList.add('hidden');
+        menuButton.innerHTML = '<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>';
+    }
+}
+
+// 모바일 서브메뉴 토글 기능
+function toggleMobileSubmenu(submenuId) {
+    const submenu = document.getElementById(submenuId);
+    const icon = document.getElementById(submenuId + '-icon');
+    
+    if (submenu.classList.contains('hidden')) {
+        // 모든 다른 서브메뉴 닫기
+        document.querySelectorAll('[id$="-submenu"]').forEach(menu => {
+            if (menu.id !== submenuId) {
+                menu.classList.add('hidden');
+            }
+        });
+        document.querySelectorAll('[id$="-submenu-icon"]').forEach(iconEl => {
+            if (iconEl.id !== submenuId + '-icon') {
+                iconEl.style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // 현재 서브메뉴 열기
+        submenu.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        // 현재 서브메뉴 닫기
+        submenu.classList.add('hidden');
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+
+// 페이지 로드 시 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', function() {
+    // 모바일 메뉴 버튼 클릭 이벤트
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    }
+});
