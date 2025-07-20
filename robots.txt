@@ -2,18 +2,29 @@ User-agent: *
 Allow: /
 
 # 중요 페이지들 우선순위 지정
-Allow: /about
-Allow: /policy
-Allow: /news
-Allow: /members
-Allow: /support
-Allow: /resources
+Allow: /about.html
+Allow: /news.html
+Allow: /members.html
+Allow: /support.html
+Allow: /resources.html
+Allow: /resources/policy.html
+
+# 하위 페이지들
+Allow: /about/
+Allow: /news/
+Allow: /members/
+Allow: /resources/
 
 # 관리자 페이지 제외
-Disallow: /freedom-control/
+Disallow: /admin/
+Disallow: /server/
+Disallow: /logs/
 
 # 사이트맵 위치
-Sitemap: https://libertyinnovation.kr/sitemap.xml
+Sitemap: https://forthefreedom.kr/sitemap.xml
 
 # 크롤링 지연 시간 (초)
-Crawl-delay: 1 
+Crawl-delay: 1
+
+# 검색 키워드 관련 힌트 (주석으로)
+# 황교안신당, 자유와혁신, 자유와혁신당, 자혁당, 자유당 
