@@ -689,3 +689,22 @@ textarea,
         padding: 20px;
     }
 } 
+
+/* 히어로 섹션 반응형 배경 위치 */
+.hero-bg-responsive {
+    background-position: center center; /* 데스크톱 기본값 */
+}
+
+/* 모바일 및 태블릿에서 배경 이미지를 왼쪽으로 */
+@media (max-width: 768px) {
+    .hero-bg-responsive {
+        background-position: left center; /* 모바일에서 왼쪽 정렬 */
+    }
+}
+
+/* 더 작은 모바일 화면에서는 더 왼쪽으로 */
+@media (max-width: 480px) {
+    .hero-bg-responsive {
+        background-position: 20% center; /* 작은 모바일에서 약간 오른쪽으로 조정 */
+    }
+} 
