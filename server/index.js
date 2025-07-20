@@ -21,10 +21,17 @@ app.use(helmet({
   contentSecurityPolicy: false, // 개발 중에는 비활성화
 }));
 
-// CORS 설정 - 개발 환경에서는 모든 요청 허용
+// CORS 설정 - 모든 프로덕션 도메인 허용
 app.use(cors({
   origin: config.NODE_ENV === 'production' 
-    ? ['https://yourpartywebsite.com', 'https://forthefreedom.kr'] 
+    ? [
+        'https://forthefreedom.kr',
+        'https://www.forthefreedom.kr', 
+        'https://forthefreedom-kr.vercel.app',
+        'https://forthefreedom-kr-git-main-sexysangmins-projects.vercel.app',
+        'https://forthefreedom-kr-sexysangmin.vercel.app',
+        'https://party-website-chi.vercel.app'
+      ]
     : true, // 개발환경에서는 모든 origin 허용
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
