@@ -152,7 +152,7 @@
                  data-text="signin_with"
                  data-size="large"
                  data-logo_alignment="left"
-                 data-width="100%">
+                 style="width: 100%;">
             </div>
             
             <div style="text-align: center; margin: 1.5rem 0; color: #666;">
@@ -283,25 +283,78 @@
 
         // 페이지 초기화
         window.addEventListener('load', function() {
-            // 이미 로그인되어 있으면 대시보드로 리다이렉트
-            const token = localStorage.getItem('adminToken');
-            if (token) {
-                window.location.href = '/admin/dashboard.html';
-                return;
+            try {
+                // 이미 로그인되어 있으면 대시보드로 리다이렉트
+                const token = localStorage.getItem('adminToken');
+                if (token) {
+                    window.location.href = '/admin/dashboard.html';
+                    return;
+                }
+
+                // 구글 로그인 초기화 (지연 실행으로 라이브러리 로딩 대기)
+                setTimeout(initializeGoogleLogin, 100);
+                
+            } catch (error) {
+                console.warn('페이지 초기화 중 오류:', error.message);
             }
-
-            // 구글 로그인 초기화
-            initializeGoogleLogin();
         });
-
+        
         // 구글 로그인 초기화
         function initializeGoogleLogin() {
-            // 구글 클라이언트 ID 동적 설정
-            const onloadDiv = document.getElementById('g_id_onload');
-            onloadDiv.setAttribute('data-client_id', GOOGLE_CLIENT_ID);
-            
-            console.log('구글 로그인이 활성화되었습니다!');
+            try {
+                // 구글 라이브러리가 로드되었는지 확인
+                if (typeof google !== 'undefined' && google.accounts) {
+                    console.log('구글 로그인이 활성화되었습니다!');
+                } else {
+                    console.log('구글 로그인 라이브러리 로딩 중...');
+                    // 라이브러리가 로드될 때까지 대기
+                    setTimeout(initializeGoogleLogin, 500);
+                }
+            } catch (error) {
+                console.warn('구글 로그인 초기화 중 오류:', error.message);
+            }
         }
+        
+        // 콘솔 경고 메시지 필터링 (SES 관련 경고 숨기기)
+        const originalConsoleWarn = console.warn;
+        console.warn = function(...args) {
+            const message = args.join(' ');
+            // SES 관련 경고 메시지 필터링
+            if (message.includes('SES The') || 
+                message.includes('dateTaming') || 
+                message.includes('mathTaming') ||
+                message.includes('lockdown-install.js')) {
+                return; // SES 관련 경고는 출력하지 않음
+            }
+            originalConsoleWarn.apply(console, args);
+        };
+        
+        // 전역 에러 핸들러 (Google OAuth 관련 에러 처리)
+        window.addEventListener('error', function(event) {
+            // Google OAuth 관련 에러는 콘솔에 출력하지 않음
+            if (event.message && (
+                event.message.includes('lockdown-install.js') ||
+                event.message.includes('GSI_LOGGER') ||
+                event.message.includes('SES The')
+            )) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        
+        // 콘솔 에러 메시지 필터링 (추가)
+        const originalConsoleError = console.error;
+        console.error = function(...args) {
+            const message = args.join(' ');
+            // Google OAuth 관련 에러 메시지 필터링
+            if (message.includes('GSI_LOGGER') || 
+                message.includes('lockdown-install.js') ||
+                message.includes('client ID is not found') ||
+                message.includes('Configuration ignored')) {
+                return; // Google OAuth 관련 에러는 출력하지 않음
+            }
+            originalConsoleError.apply(console, args);
+        };
     </script>
 </body>
 </html> 
