@@ -133,7 +133,7 @@ function loadNavigation() {
                     
                     <!-- 모바일 메뉴 버튼 -->
                     <div class="md:hidden">
-                        <button id="mobile-menu-button" class="text-gray-700 hover:text-red-600 focus:outline-none focus:text-red-600">
+                        <button id="mobile-menu-button" onclick="toggleMobileMenu()" class="text-gray-700 hover:text-red-600 focus:outline-none focus:text-red-600">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                             </svg>
@@ -221,9 +221,8 @@ function loadNavigation() {
         const mobileMenu = document.getElementById('mobile-menu');
         
         if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
+            // The toggleMobileMenu function is now directly on the button
+            // mobileMenuButton.addEventListener('click', toggleMobileMenu); 
         }
         
         // 플로팅 버튼 추가 (초기에는 숨김 상태)
@@ -343,12 +342,14 @@ function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
     const menuButton = document.getElementById('mobile-menu-button');
     
-    if (mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.remove('hidden');
-        menuButton.innerHTML = '<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>';
-    } else {
-        mobileMenu.classList.add('hidden');
-        menuButton.innerHTML = '<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>';
+    if (mobileMenu && menuButton) {
+        if (mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.remove('hidden');
+            menuButton.innerHTML = '<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>';
+        } else {
+            mobileMenu.classList.add('hidden');
+            menuButton.innerHTML = '<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>';
+        }
     }
 }
 
@@ -357,34 +358,40 @@ function toggleMobileSubmenu(submenuId) {
     const submenu = document.getElementById(submenuId);
     const icon = document.getElementById(submenuId + '-icon');
     
-    if (submenu.classList.contains('hidden')) {
-        // 모든 다른 서브메뉴 닫기
-        document.querySelectorAll('[id$="-submenu"]').forEach(menu => {
-            if (menu.id !== submenuId) {
-                menu.classList.add('hidden');
-            }
-        });
-        document.querySelectorAll('[id$="-submenu-icon"]').forEach(iconEl => {
-            if (iconEl.id !== submenuId + '-icon') {
-                iconEl.style.transform = 'rotate(0deg)';
-            }
-        });
-        
-        // 현재 서브메뉴 열기
-        submenu.classList.remove('hidden');
-        icon.style.transform = 'rotate(180deg)';
-    } else {
-        // 현재 서브메뉴 닫기
-        submenu.classList.add('hidden');
-        icon.style.transform = 'rotate(0deg)';
+    if (submenu && icon) {
+        if (submenu.classList.contains('hidden')) {
+            // 모든 다른 서브메뉴 닫기
+            document.querySelectorAll('[id$="-submenu"]').forEach(menu => {
+                if (menu.id !== submenuId) {
+                    menu.classList.add('hidden');
+                }
+            });
+            document.querySelectorAll('[id$="-submenu-icon"]').forEach(iconEl => {
+                if (iconEl.id !== submenuId + '-icon') {
+                    iconEl.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // 현재 서브메뉴 열기
+            submenu.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            // 현재 서브메뉴 닫기
+            submenu.classList.add('hidden');
+            icon.style.transform = 'rotate(0deg)';
+        }
     }
 }
 
+// 전역 함수로 등록
+window.toggleMobileMenu = toggleMobileMenu;
+window.toggleMobileSubmenu = toggleMobileSubmenu;
+
 // 페이지 로드 시 이벤트 리스너 추가
 document.addEventListener('DOMContentLoaded', function() {
-    // 모바일 메뉴 버튼 클릭 이벤트
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    if (mobileMenuButton) {
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
-    }
+    // 네비게이션 자동 로드
+    loadNavigation();
+    
+    // onclick 속성이 이미 설정되어 있으므로 추가 이벤트 리스너는 불필요
+    console.log('Navigation loaded with mobile menu functionality');
 });
