@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시도당 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">시도당</h1>
+            <p style="font-size:1.5rem; margin-top:1rem; text-shadow:1px 1px 2px rgba(0,0,0,0.5);">국민과 소통하며 일하는 일꾼이 되겠습니다</p>
+        </div>
+    </section>
+    
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- 시도당 소개 섹션 -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">전국 시도당</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        자유와혁신은 전국 17개 시도에서 국민과 함께하고 있습니다.
+                    </p>
+                </div>
+                
+                <!-- 검색 섹션 -->
+                <div class="mb-12">
+                    <div class="max-w-2xl mx-auto">
+                        <div class="relative">
+                            <input type="text" id="search-input" placeholder="지역명 또는 위원장명을 검색하세요" 
+                                   class="w-full px-6 py-4 text-lg border-2 border-gray-300 rounded-full focus:border-red-500 focus:outline-none">
+                            <button onclick="searchRegion()" class="absolute right-2 top-2 px-6 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors">
+                                <i class="fas fa-search"></i> 검색
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 지역 선택 탭 -->
+                <div class="mb-12">
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button onclick="filterRegion('all')" class="region-tab active px-6 py-3 bg-red-600 text-white rounded-full font-medium hover:bg-red-700 transition-colors">전체</button>
+                        <button onclick="filterRegion('서울')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">서울</button>
+                        <button onclick="filterRegion('부산')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">부산</button>
+                        <button onclick="filterRegion('대구')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">대구</button>
+                        <button onclick="filterRegion('인천')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">인천</button>
+                        <button onclick="filterRegion('광주')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">광주</button>
+                        <button onclick="filterRegion('대전')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">대전</button>
+                        <button onclick="filterRegion('울산')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">울산</button>
+                        <button onclick="filterRegion('세종')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">세종</button>
+                        <button onclick="filterRegion('경기')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">경기</button>
+                        <button onclick="filterRegion('강원')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">강원</button>
+                        <button onclick="filterRegion('충북')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">충북</button>
+                        <button onclick="filterRegion('충남')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">충남</button>
+                        <button onclick="filterRegion('전북')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">전북</button>
+                        <button onclick="filterRegion('전남')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">전남</button>
+                        <button onclick="filterRegion('경북')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">경북</button>
+                        <button onclick="filterRegion('경남')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">경남</button>
+                        <button onclick="filterRegion('제주')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">제주</button>
+                    </div>
+                </div>
+                
+                <!-- 시도당 위원장 목록 -->
+                <div id="chairperson-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 서울 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="서울">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">김서울</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">서울시당위원장</p>
+                            <p class="text-gray-600">종로구 을</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-birthday-cake w-5 mr-3 text-red-600"></i>
+                                <span>1975.03.15</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone w-5 mr-3 text-red-600"></i>
+                                <span>02-1234-5678</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600"></i>
+                                <span>seoul@freedom-innovation.kr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center space-x-4 mt-6">
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">
+                                <i class="fab fa-naver"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 부산 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="부산">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">박부산</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">부산시당위원장</p>
+                            <p class="text-gray-600">해운대구 갑</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-birthday-cake w-5 mr-3 text-red-600"></i>
+                                <span>1968.07.22</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone w-5 mr-3 text-red-600"></i>
+                                <span>051-2345-6789</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600"></i>
+                                <span>busan@freedom-innovation.kr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center space-x-4 mt-6">
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors">
+                                <i class="fab fa-youtube"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 대구 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="대구">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">이대구</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">대구시당위원장</p>
+                            <p class="text-gray-600">수성구 갑</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-birthday-cake w-5 mr-3 text-red-600"></i>
+                                <span>1972.11.08</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone w-5 mr-3 text-red-600"></i>
+                                <span>053-3456-7890</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600"></i>
+                                <span>daegu@freedom-innovation.kr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center space-x-4 mt-6">
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-gray-800 text-white rounded-full hover:bg-gray-900 transition-colors">
+                                <i class="fab fa-tiktok"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 인천 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="인천">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">최인천</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">인천시당위원장</p>
+                            <p class="text-gray-600">연수구</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-birthday-cake w-5 mr-3 text-red-600"></i>
+                                <span>1970.05.20</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone w-5 mr-3 text-red-600"></i>
+                                <span>032-4567-8901</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600"></i>
+                                <span>incheon@freedom-innovation.kr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center space-x-4 mt-6">
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">
+                                <i class="fab fa-naver"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 광주 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="광주">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">정광주</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">광주시당위원장</p>
+                            <p class="text-gray-600">서구 을</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-birthday-cake w-5 mr-3 text-red-600"></i>
+                                <span>1973.09.12</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone w-5 mr-3 text-red-600"></i>
+                                <span>062-5678-9012</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600"></i>
+                                <span>gwangju@freedom-innovation.kr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center space-x-4 mt-6">
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors">
+                                <i class="fab fa-youtube"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 대전 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="대전">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">강대전</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">대전시당위원장</p>
+                            <p class="text-gray-600">유성구 갑</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-birthday-cake w-5 mr-3 text-red-600"></i>
+                                <span>1969.12.25</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone w-5 mr-3 text-red-600"></i>
+                                <span>042-6789-0123</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600"></i>
+                                <span>daejeon@freedom-innovation.kr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center space-x-4 mt-6">
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">
+                                <i class="fab fa-naver"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 경기 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="경기">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">윤경기</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">경기도당위원장</p>
+                            <p class="text-gray-600">수원시 영통구 갑</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-birthday-cake w-5 mr-3 text-red-600"></i>
+                                <span>1971.04.18</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone w-5 mr-3 text-red-600"></i>
+                                <span>031-7890-1234</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600"></i>
+                                <span>gyeonggi@freedom-innovation.kr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center space-x-4 mt-6">
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors">
+                                <i class="fab fa-youtube"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 강원 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="강원">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">임강원</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">강원도당위원장</p>
+                            <p class="text-gray-600">춘천시 갑</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-birthday-cake w-5 mr-3 text-red-600"></i>
+                                <span>1967.08.03</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone w-5 mr-3 text-red-600"></i>
+                                <span>033-8901-2345</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600"></i>
+                                <span>gangwon@freedom-innovation.kr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-center space-x-4 mt-6">
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors">
+                                <i class="fab fa-naver"></i>
+                            </button>
+                            <button onclick="showPreparing()" class="w-10 h-10 bg-gray-800 text-white rounded-full hover:bg-gray-900 transition-colors">
+                                <i class="fab fa-tiktok"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 검색 결과 없음 메시지 -->
+                <div id="no-results" class="text-center py-12 hidden">
+                    <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-search text-3xl text-gray-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-600 mb-3">검색 결과가 없습니다</h3>
+                    <p class="text-gray-500">다른 검색어로 다시 시도해보세요.</p>
+                </div>
+                
+                <!-- 연락처 안내 -->
+                <div class="mt-20 bg-gradient-to-br from-red-50 to-red-100 p-12 rounded-2xl text-center">
+                    <h3 class="text-3xl font-bold text-red-900 mb-6">시도당 문의</h3>
+                    <p class="text-red-800 text-xl mb-8">
+                        각 지역 시도당에 직접 연락하거나 중앙당을 통해 문의하실 수 있습니다.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h4 class="text-xl font-bold text-gray-900 mb-4">중앙당 대표번호</h4>
+                            <div class="space-y-2 text-gray-700">
+                                <p class="flex items-center justify-center">
+                                    <i class="fas fa-phone text-red-600 mr-2"></i>
+                                    02-1234-5678
+                                </p>
+                                <p class="flex items-center justify-center">
+                                    <i class="fas fa-envelope text-red-600 mr-2"></i>
+                                    info@freedom-innovation.kr
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h4 class="text-xl font-bold text-gray-900 mb-4">운영시간</h4>
+                            <div class="space-y-2 text-gray-700">
+                                <p>평일: 09:00 - 18:00</p>
+                                <p>토요일: 09:00 - 13:00</p>
+                                <p>일요일/공휴일: 휴무</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 푸터 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">자유와혁신</h3>
+                    <p class="text-gray-300 mb-4">
+                        새로운 정치, 국민과 함께 만들어가는 미래
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">바로가기</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../about.html" class="text-gray-300 hover:text-white transition-colors">당 소개</a></li>
+                        <li><a href="../about/principles.html" class="text-gray-300 hover:text-white transition-colors">강령·핵심가치</a></li>
+                        <li><a href="../about/organization.html" class="text-gray-300 hover:text-white transition-colors">조직 구성</a></li>
+                        <li><a href="people-central.html" class="text-gray-300 hover:text-white transition-colors">중앙당</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">문의하기</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>서울특별시 ○○구 ○○로 123</li>
+                        <li>Tel: 02-1234-5678</li>
+                        <li>Email: contact@freedom-innovation.kr</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2025 자유와혁신. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../nav.js"></script>
+    <script>
+        // 준비중 알림 함수
+        function showPreparing() {
+            alert('해당 SNS 계정은 준비중입니다.');
+        }
+        
+        // 지역 필터링 함수
+        function filterRegion(region) {
+            const cards = document.querySelectorAll('.region-card');
+            const tabs = document.querySelectorAll('.region-tab');
+            const noResults = document.getElementById('no-results');
+            
+            // 탭 활성화 상태 변경
+            tabs.forEach(tab => {
+                tab.classList.remove('active', 'bg-red-600', 'text-white');
+                tab.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            
+            event.target.classList.add('active', 'bg-red-600', 'text-white');
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+            
+            let hasResults = false;
+            
+            if (region === 'all') {
+                cards.forEach(card => {
+                    card.style.display = 'block';
+                    hasResults = true;
+                });
+            } else {
+                cards.forEach(card => {
+                    if (card.dataset.region === region) {
+                        card.style.display = 'block';
+                        hasResults = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            // 검색 결과 없음 메시지 표시/숨김
+            if (hasResults) {
+                noResults.classList.add('hidden');
+            } else {
+                noResults.classList.remove('hidden');
+            }
+        }
+        
+        // 검색 함수
+        function searchRegion() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const cards = document.querySelectorAll('.region-card');
+            const noResults = document.getElementById('no-results');
+            let hasResults = false;
+            
+            if (searchTerm.trim() === '') {
+                // 검색어가 비어있으면 모든 카드 표시
+                cards.forEach(card => {
+                    card.style.display = 'block';
+                    hasResults = true;
+                });
+            } else {
+                cards.forEach(card => {
+                    const region = card.dataset.region.toLowerCase();
+                    const name = card.querySelector('h3').textContent.toLowerCase();
+                    const constituency = card.querySelector('.text-gray-600').textContent.toLowerCase();
+                    
+                    if (region.includes(searchTerm) || 
+                        name.includes(searchTerm) || 
+                        constituency.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        hasResults = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            // 검색 결과 없음 메시지 표시/숨김
+            if (hasResults) {
+                noResults.classList.add('hidden');
+            } else {
+                noResults.classList.remove('hidden');
+            }
+            
+            // 모든 탭 비활성화
+            const tabs = document.querySelectorAll('.region-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active', 'bg-red-600', 'text-white');
+                tab.classList.add('bg-gray-200', 'text-gray-700');
+            });
+        }
+        
+        // 엔터키로 검색
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchRegion();
+            }
+        });
+    </script>
+</body>
+</html> 

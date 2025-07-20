@@ -152,7 +152,7 @@
                 <!-- 상세 내용이 여기에 로드됩니다 -->
             </div>
         </div>
-    </div>
+                            </div>
 
     <script src="/nav.js"></script>
     <script>
@@ -331,7 +331,7 @@
                                 </div>'"
                             />
                             <div class="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 transition-all"></div>
-                        </div>
+                            </div>
                     ` : `
                         <div class="aspect-video ${getCategoryGradient(activity.category)} flex items-center justify-center relative">
                             <i class="${getCategoryIcon(activity.category)} text-white text-4xl"></i>
@@ -352,7 +352,7 @@
                         <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${getCategoryStyle(activity.category)}">
                             ${activity.category}
                         </span>
-                    </div>
+                            </div>
                     
                     ${imageAttachment ? `
                         <!-- 추가 이미지 개수 표시 -->
@@ -464,7 +464,7 @@
                                         `).join('')}
                                     </div>
                                 ` : ''}
-                            </div>
+                        </div>
                         ` : `
                             <div class="aspect-video ${getCategoryGradient(activity.category)} rounded-lg flex items-center justify-center">
                                 <i class="${getCategoryIcon(activity.category)} text-white text-8xl"></i>
@@ -499,7 +499,7 @@
                                 ${activity.location}
                             </span>
                         ` : ''}
-                    </div>
+                        </div>
 
                     <!-- 내용 -->
                     <div class="prose max-w-none">
@@ -518,14 +518,14 @@
                                             <div>
                                                 <div class="font-medium">${file.originalName}</div>
                                                 <div class="text-sm text-gray-500">${formatFileSize(file.size)}</div>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
                                         <a href="http://localhost:9000/uploads/${file.filename}" 
                                            target="_blank" 
                                            class="text-blue-600 hover:text-blue-800 text-sm font-medium">
                                             ${file.mimeType?.startsWith('image/') ? '원본 보기' : '다운로드'}
                                         </a>
-                                    </div>
+                                </div>
                                 `).join('')}
                             </div>
                         </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>활동소식 - 자유와혁신</title>
+    <title>활동소식 상세 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,372 +23,471 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
-    <!-- Marked.js for markdown rendering -->
-    <script src="https://cdn.jsdelivr.net/npm/marked@5.0.0/marked.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    
     <style>
-        /* Prose 스타일 for 마크다운 콘텐츠 */
-        .prose {
-            color: #374151;
-            line-height: 1.7;
+        .attachment-item {
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            transition: background-color 0.2s;
         }
-        .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-            color: #111827;
-            font-weight: 600;
-            margin-top: 2rem;
+        
+        .attachment-item:hover {
+            background: #e9ecef;
+        }
+        
+        .attachment-icon {
+            font-size: 1.2rem;
+            margin-right: 0.75rem;
+            color: #6c757d;
+        }
+        
+        .attachment-info {
+            flex: 1;
+        }
+        
+        .attachment-name {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+        
+        .attachment-size {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .content-body {
+            line-height: 1.8;
+        }
+        
+        .content-body h1, .content-body h2, .content-body h3 {
+            margin: 1.5rem 0 1rem 0;
+            font-weight: bold;
+        }
+        
+        .content-body h1 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-body h2 {
+            font-size: 1.5rem;
+        }
+        
+        .content-body h3 {
+            font-size: 1.3rem;
+        }
+        
+        .content-body p {
             margin-bottom: 1rem;
-            line-height: 1.25;
         }
-        .prose h1 { font-size: 2.25rem; }
-        .prose h2 { font-size: 1.875rem; }
-        .prose h3 { font-size: 1.5rem; }
-        .prose h4 { font-size: 1.25rem; }
-        .prose p {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
+        
+        .content-body ul, .content-body ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
         }
-        .prose ul, .prose ol {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-        }
-        .prose li {
-            margin-top: 0.5rem;
+        
+        .content-body li {
             margin-bottom: 0.5rem;
         }
-        .prose ul > li {
-            list-style-type: disc;
-        }
-        .prose ol > li {
-            list-style-type: decimal;
-        }
-        .prose blockquote {
+        
+        .content-body blockquote {
             border-left: 4px solid #A50034;
             padding-left: 1rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-            background-color: #f9fafb;
-            padding: 1rem;
-            border-radius: 0.375rem;
-        }
-        .prose code {
-            background-color: #f3f4f6;
-            padding: 0.125rem 0.375rem;
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-        }
-        .prose pre {
-            background-color: #1f2937;
-            color: #f9fafb;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-        }
-        .prose pre code {
-            background-color: transparent;
-            padding: 0;
-            color: inherit;
-        }
-        .prose a {
-            color: #A50034;
-            text-decoration: underline;
-        }
-        .prose a:hover {
-            color: #8B002C;
-        }
-        .prose strong {
-            font-weight: 600;
-            color: #111827;
-        }
-        .prose em {
+            margin: 1rem 0;
+            color: #666;
             font-style: italic;
         }
-        .prose hr {
-            border: 0;
-            border-top: 1px solid #d1d5db;
-            margin: 2rem 0;
+        
+        .content-body img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 5px;
         }
-        .prose table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
+        
+        /* 관리자 관련 CSS 제거 */
+        /*
+        .edit-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
         }
-        .prose table th,
-        .prose table td {
-            border: 1px solid #d1d5db;
-            padding: 0.75rem;
-            text-align: left;
-        }
-        .prose table th {
-            background-color: #f9fafb;
-            font-weight: 600;
-        }
+        */
     </style>
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <main class="py-16 bg-gray-50 min-h-screen">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- 뒤로가기 버튼 -->
-            <div class="mb-8">
-                <button onclick="goBack()" class="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors">
-                    <i class="fas fa-arrow-left mr-2"></i>
-                    활동소식 목록으로
-                </button>
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../news.html" class="text-gray-500 hover:text-red-600">정당소식</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="activities.html" class="text-gray-500 hover:text-red-600">활동소식</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">상세보기</li>
+                </ol>
+            </nav>
             </div>
+    </section>
 
+    <main class="bg-white">
             <!-- 로딩 상태 -->
-            <div id="loading" class="text-center py-16">
-                <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
-                <p class="mt-4 text-gray-600 text-lg">활동소식을 불러오는 중...</p>
+        <div id="loading" class="flex justify-center items-center py-16">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mb-4"></div>
+            <p class="text-gray-600">활동소식을 불러오는 중...</p>
             </div>
 
             <!-- 에러 상태 -->
-            <div id="error" class="text-center py-16 hidden">
-                <div class="text-red-600 mb-4">
-                    <i class="fas fa-exclamation-triangle text-4xl"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">활동소식을 찾을 수 없습니다</h2>
-                <p class="text-gray-600 mb-8">요청하신 활동소식이 존재하지 않거나 삭제되었습니다.</p>
-                <button onclick="goBack()" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors">
-                    활동소식 목록으로 돌아가기
-                </button>
+        <div id="error" class="hidden bg-red-50 border-l-4 border-red-500 p-4 m-4">
+            <div class="flex">
+                <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                <div class="text-red-700">활동소식을 불러올 수 없습니다.</div>
+            </div>
             </div>
 
-            <!-- 활동소식 내용 -->
-            <article id="content" class="bg-white rounded-lg shadow-sm overflow-hidden hidden">
-                <!-- 카테고리 및 메타 정보 -->
-                <div class="px-8 py-6 border-b border-gray-200">
-                    <div class="flex items-center justify-between mb-4">
-                        <span id="category" class="inline-block px-3 py-1 rounded-full text-sm font-medium"></span>
-                        <div class="flex items-center text-sm text-gray-500 space-x-4">
-                            <span id="date">
-                                <i class="fas fa-calendar mr-1"></i>
-                                <span class="date-text"></span>
+        <!-- 활동소식 상세 내용 -->
+        <div id="activity-content" class="hidden">
+            <section class="py-16">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- 헤더 -->
+                    <div class="mb-8">
+                        <div class="flex items-center mb-4">
+                            <span id="activity-category" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                활동
                             </span>
-                            <span id="views">
-                                <i class="fas fa-eye mr-1"></i>
-                                <span class="views-text">0</span>
-                            </span>
+                            <span id="activity-date" class="ml-4 text-gray-500 text-sm">2025-01-01</span>
+                        </div>
+                        <h1 id="activity-title" class="text-3xl font-bold text-gray-900 mb-4">활동소식 제목</h1>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>작성자: <span id="activity-author">관리자</span></span>
+                            <span class="mx-2">•</span>
+                            <span>조회수: <span id="activity-views">0</span></span>
+                            <span class="mx-2">•</span>
+                            <span>활동일: <span id="activity-event-date">2025-01-01</span></span>
                         </div>
                     </div>
                     
-                    <!-- 제목 -->
-                    <h1 id="title" class="text-3xl font-bold text-gray-900 leading-tight"></h1>
-                    
-                    <!-- 작성자 -->
-                    <div class="mt-4 flex items-center text-gray-600">
-                        <i class="fas fa-user mr-2"></i>
-                        <span id="author"></span>
-                    </div>
-                </div>
-
-                <!-- 요약 -->
-                <div id="excerpt-section" class="px-8 py-6 bg-gray-50 border-b border-gray-200 hidden">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">요약</h3>
-                    <p id="excerpt" class="text-gray-700 leading-relaxed"></p>
-                </div>
-
-                <!-- 본문 내용 -->
-                <div class="px-8 py-8">
-                    <div id="activity-content" class="prose max-w-none">
-                        <!-- 마크다운이 렌더링된 내용이 여기에 표시됩니다 -->
-                    </div>
-                </div>
-
-                <!-- 태그 -->
-                <div id="tags-section" class="px-8 py-6 bg-gray-50 border-t border-gray-200 hidden">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">태그</h3>
-                    <div id="tags" class="flex flex-wrap gap-2">
-                        <!-- 태그들이 여기에 표시됩니다 -->
-                    </div>
+                    <!-- 본문 -->
+                    <div id="activity-body" class="content-body text-gray-800 mb-8">
+                        <!-- 내용이 여기에 로드됩니다 -->
                 </div>
 
                 <!-- 첨부파일 -->
-                <div id="attachments-section" class="px-8 py-6 border-t border-gray-200 hidden">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">첨부파일</h3>
-                    <div id="attachments" class="space-y-3">
-                        <!-- 첨부파일들이 여기에 표시됩니다 -->
-                    </div>
+                    <div id="attachments-section" class="mb-8 hidden">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                            <i class="fas fa-paperclip mr-2"></i>첨부파일
+                        </h3>
+                        <div id="attachments-list">
+                            <!-- 첨부파일 목록이 여기에 로드됩니다 -->
+                        </div>
                 </div>
 
-                <!-- 하단 네비게이션 -->
-                <div class="px-8 py-6 bg-gray-50 border-t border-gray-200">
-                    <div class="flex justify-between items-center">
-                        <button onclick="goBack()" class="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors">
-                            <i class="fas fa-list mr-2"></i>
-                            목록으로
+                    <!-- 수정 섹션 (관리자 전용) -->
+                    <!-- 관리자 전용 HTML 섹션 제거 -->
+                    <!-- <div id="edit-section" class="edit-section hidden"> 전체 섹션 삭제 -->
+                        <!-- <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                            <i class="fas fa-edit mr-2"></i>관리자 기능
+                        </h3>
+                        <div class="flex gap-4">
+                            <button onclick="editActivity()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-edit mr-2"></i>수정하기
                         </button>
-                        <div class="flex space-x-4">
-                            <button id="prev-btn" onclick="navigateToPrev()" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                                <i class="fas fa-chevron-left mr-2"></i>
-                                이전 글
-                            </button>
-                            <button id="next-btn" onclick="navigateToNext()" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                                다음 글
-                                <i class="fas fa-chevron-right ml-2"></i>
+                            <button onclick="deleteActivity()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                                <i class="fas fa-trash mr-2"></i>삭제하기
                             </button>
                         </div>
                     </div>
+                    -->
+
+                    <!-- 공유 기능 -->
+                    <div class="border-t border-gray-200 pt-8 mb-8">
+                        <h4 class="text-sm font-medium text-gray-700 mb-4">링크 공유</h4>
+                        <div class="flex space-x-3">
+                            <button onclick="copyUrl()" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" title="링크 복사">
+                                <i class="fas fa-link mr-2"></i>링크 복사
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 목록으로 돌아가기 -->
+                    <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+                        <a href="activities.html" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-arrow-left mr-2"></i>목록으로
+                        </a>
+                    </div>
                 </div>
-            </article>
+            </section>
         </div>
     </main>
 
-    <script src="/nav.js"></script>
+    <script src="../nav.js"></script>
+    <script src="https://unpkg.com/marked/marked.min.js"></script>
     <script>
-        const API_BASE = 'http://localhost:9000/api';
-        let currentActivity = null;
-        let activitiesList = [];
-        let currentIndex = -1;
+        loadNavigation();
 
-        // 페이지 로드시 실행
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+
+        let currentActivity = null;
+
+        // 페이지 로드 시 활동소식 상세 정보 로드
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const activityId = urlParams.get('id');
             
             if (!activityId) {
-                showError('활동소식 ID가 제공되지 않았습니다.');
+                showError('활동소식 ID가 없습니다.');
                 return;
             }
             
-            loadActivity(activityId);
+            loadActivityDetail(activityId);
+            // 관리자 관련 JavaScript 함수들 제거:
+            // - checkAdminAccess()
+            // - editActivity() 
+            // - deleteActivity()
         });
 
-        // 활동소식 로드
-        async function loadActivity(id) {
+        // 활동소식 상세 정보 로드
+        async function loadActivityDetail(id) {
             try {
                 showLoading();
                 
-                // 개별 활동소식 조회
                 const response = await fetch(`${API_BASE}/activities/${id}`);
-                const result = await response.json();
-                
-                if (!result.success) {
-                    throw new Error(result.message || '활동소식을 불러올 수 없습니다.');
+                const data = await response.json();
+
+                if (data.success) {
+                    currentActivity = data.data;
+                    displayActivityDetail(currentActivity);
+                    // 조회수 증가
+                    incrementViews(id);
+                } else {
+                    throw new Error(data.message || '활동소식을 불러오는데 실패했습니다.');
                 }
-                
-                currentActivity = result.data;
-                renderActivity(currentActivity);
-                
-                // 전체 목록 로드 (이전/다음 글 네비게이션용)
-                await loadActivitiesList();
-                
-                hideLoading();
-                
             } catch (error) {
-                console.error('활동소식 로드 실패:', error);
-                showError(error.message);
-                hideLoading();
+                console.error('Error loading activity detail:', error);
+                showError('활동소식을 불러오는 중 오류가 발생했습니다.');
             }
         }
 
-        // 활동소식 목록 로드 (네비게이션용)
-        async function loadActivitiesList() {
-            try {
-                const response = await fetch(`${API_BASE}/activities?limit=1000&sortBy=eventDate&sortOrder=desc`);
-                const result = await response.json();
-                
-                if (result.success && result.data) {
-                    activitiesList = result.data;
-                    currentIndex = activitiesList.findIndex(item => item._id === currentActivity._id);
-                    updateNavigationButtons();
-                }
-            } catch (error) {
-                console.error('활동소식 목록 로드 실패:', error);
-            }
-        }
+        // 활동소식 상세 정보 표시
+        function displayActivityDetail(activity) {
+            hideLoading();
+            
+            // 기본 정보 설정
+            document.getElementById('activity-title').textContent = activity.title || '제목 없음';
+            document.getElementById('activity-category').textContent = activity.category || '활동';
+            document.getElementById('activity-date').textContent = formatDate(activity.createdAt);
+            document.getElementById('activity-author').textContent = activity.author || '관리자';
+            document.getElementById('activity-views').textContent = activity.views || '0';
+            document.getElementById('activity-event-date').textContent = formatDate(activity.eventDate || activity.createdAt);
 
-        // 활동소식 렌더링
-        function renderActivity(activity) {
-            // 제목
-            document.getElementById('title').textContent = activity.title;
-            
-            // 카테고리
-            const categoryElement = document.getElementById('category');
-            categoryElement.textContent = activity.category;
-            categoryElement.className = `inline-block px-3 py-1 rounded-full text-sm font-medium ${getCategoryStyle(activity.category)}`;
-            
-            // 날짜
-            document.querySelector('#date .date-text').textContent = formatDate(activity.eventDate || activity.createdAt);
-            
-            // 조회수
-            document.querySelector('#views .views-text').textContent = activity.views || 0;
-            
-            // 작성자
-            document.getElementById('author').textContent = activity.author || '활동팀';
-            
-            // 요약
-            if (activity.excerpt) {
-                document.getElementById('excerpt').textContent = activity.excerpt;
-                document.getElementById('excerpt-section').classList.remove('hidden');
-            }
-            
             // 본문 내용 (마크다운 렌더링)
-            const contentElement = document.getElementById('activity-content');
+            const contentBody = document.getElementById('activity-body');
             if (activity.content) {
-                contentElement.innerHTML = marked.parse(activity.content);
+                contentBody.innerHTML = marked.parse(activity.content);
             }
-            
-            // 태그
-            if (activity.tags && activity.tags.length > 0) {
-                const tagsContainer = document.getElementById('tags');
-                tagsContainer.innerHTML = activity.tags.map(tag => `
-                    <span class="inline-block px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
-                        #${tag}
-                    </span>
-                `).join('');
-                document.getElementById('tags-section').classList.remove('hidden');
-            }
-            
-            // 첨부파일
+
+            // 첨부파일 표시
             if (activity.attachments && activity.attachments.length > 0) {
-                const attachmentsContainer = document.getElementById('attachments');
-                attachmentsContainer.innerHTML = activity.attachments.map(file => `
-                    <div class="flex items-center p-3 bg-gray-50 rounded-lg border">
-                        <i class="fas fa-file-${getFileIcon(file.mimeType)} mr-3 text-gray-500"></i>
-                        <div class="flex-1">
-                            <p class="font-medium text-gray-900">${file.originalName}</p>
-                            <p class="text-sm text-gray-500">${formatFileSize(file.size)}</p>
+                displayAttachments(activity.attachments);
+            }
+
+            // 페이지 제목 업데이트
+            document.title = `${activity.title} - 활동소식 - 자유와혁신`;
+
+            document.getElementById('activity-content').classList.remove('hidden');
+        }
+
+        // 첨부파일 표시
+        function displayAttachments(attachments) {
+            const attachmentsSection = document.getElementById('attachments-section');
+            const attachmentsList = document.getElementById('attachments-list');
+            
+            // 이미지와 일반 파일을 분리
+            const images = attachments.filter(file => isImageFile(file.filename));
+            const files = attachments.filter(file => !isImageFile(file.filename));
+            
+            let content = '';
+            
+            // 이미지 파일들을 먼저 표시 (임베드)
+            if (images.length > 0) {
+                content += '<div class="mb-6"><h4 class="text-md font-semibold mb-3 text-gray-700">첨부 이미지</h4>';
+                content += '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+                images.forEach(attachment => {
+                    const imageUrl = `${API_BASE.replace('/api', '')}/uploads/${attachment.filename}`;
+                    content += `
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="${imageUrl}" alt="${attachment.filename}" 
+                                 class="w-full h-auto cursor-pointer hover:opacity-90 transition-opacity"
+                                 onclick="openImageModal('${imageUrl}', '${attachment.filename}')">
+                            <div class="p-3 bg-gray-50">
+                                <div class="text-sm font-medium text-gray-800">${attachment.filename}</div>
+                                <div class="text-xs text-gray-500">${formatFileSize(attachment.size)}</div>
+                                <a href="${imageUrl}" 
+                                   download="${attachment.filename}"
+                                   class="inline-block mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                    <i class="fas fa-download mr-1"></i>원본 다운로드
+                                </a>
+                            </div>
                         </div>
-                        <a href="${API_BASE.replace('/api', '')}${file.path}" 
-                           target="_blank" 
-                           class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors">
-                            <i class="fas fa-download mr-1"></i>
-                            다운로드
-                        </a>
+                    `;
+                });
+                content += '</div></div>';
+            }
+            
+            // 일반 파일들을 리스트로 표시
+            if (files.length > 0) {
+                content += '<div><h4 class="text-md font-semibold mb-3 text-gray-700">첨부 파일</h4>';
+                files.forEach(attachment => {
+                    const icon = getFileIcon(attachment.filename);
+                    const size = formatFileSize(attachment.size);
+                    const downloadUrl = `${API_BASE.replace('/api', '')}/uploads/${attachment.filename}`;
+                    
+                    content += `
+                        <div class="attachment-item">
+                            <i class="${icon} attachment-icon"></i>
+                            <div class="attachment-info">
+                                <div class="attachment-name">${attachment.filename}</div>
+                                <div class="attachment-size">${size}</div>
+                            </div>
+                            <a href="${downloadUrl}" download="${attachment.filename}" 
+                               class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-download mr-1"></i>다운로드
+                            </a>
+                        </div>
+                    `;
+                });
+                content += '</div>';
+            }
+            
+            attachmentsList.innerHTML = content;
+            attachmentsSection.classList.remove('hidden');
+        }
+
+        // 이미지 파일 확인
+        function isImageFile(filename) {
+            const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg'];
+            const ext = filename.split('.').pop().toLowerCase();
+            return imageExts.includes(ext);
+        }
+
+        // 이미지 모달 열기
+        function openImageModal(imageUrl, filename) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4';
+            modal.onclick = () => modal.remove();
+            
+            modal.innerHTML = `
+                <div class="max-w-4xl max-h-full relative">
+                    <img src="${imageUrl}" alt="${filename}" class="max-w-full max-h-full object-contain">
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="absolute bottom-4 left-4 text-white bg-black bg-opacity-50 px-3 py-2 rounded">
+                        ${filename}
                     </div>
-                `).join('');
-                document.getElementById('attachments-section').classList.remove('hidden');
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        // 조회수 증가
+        async function incrementViews(id) {
+            try {
+                await fetch(`${API_BASE}/activities/${id}/views`, { method: 'POST' });
+            } catch (error) {
+                console.error('Error incrementing views:', error);
             }
         }
 
-        // 카테고리 스타일
-        function getCategoryStyle(category) {
-            const styles = {
-                '지역활동': 'bg-blue-100 text-blue-800',
-                '정책연구': 'bg-purple-100 text-purple-800',
-                '교육세미나': 'bg-green-100 text-green-800',
-                '회의': 'bg-orange-100 text-orange-800',
-                '기타': 'bg-gray-100 text-gray-800'
+        // 관리자 관련 JavaScript 함수들 제거:
+        // - checkAdminAccess()
+        // - editActivity() 
+        // - deleteActivity()
+
+        // 공유 기능들
+        function shareKakao() {
+            if (!currentActivity) return;
+            // 카카오톡 공유 API 구현
+            alert('카카오톡 공유 기능은 준비 중입니다.');
+        }
+
+        function shareTwitter() {
+            if (!currentActivity) return;
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(currentActivity.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        }
+
+        function shareFacebook() {
+            if (!currentActivity) return;
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        }
+
+        function copyUrl() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('링크가 복사되었습니다.');
+            });
+        }
+
+        // 유틸리티 함수들
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function getFileIcon(filename) {
+            const ext = filename.toLowerCase().split('.').pop();
+            const iconMap = {
+                'pdf': 'fas fa-file-pdf',
+                'doc': 'fas fa-file-word',
+                'docx': 'fas fa-file-word',
+                'xls': 'fas fa-file-excel',
+                'xlsx': 'fas fa-file-excel',
+                'ppt': 'fas fa-file-powerpoint',
+                'pptx': 'fas fa-file-powerpoint',
+                'jpg': 'fas fa-file-image',
+                'jpeg': 'fas fa-file-image',
+                'png': 'fas fa-file-image',
+                'gif': 'fas fa-file-image',
+                'zip': 'fas fa-file-archive',
+                'rar': 'fas fa-file-archive'
             };
-            return styles[category] || styles['기타'];
+            return iconMap[ext] || 'fas fa-file';
         }
 
-        // 파일 아이콘 결정
-        function getFileIcon(mimeType) {
-            if (mimeType?.includes('pdf')) return 'pdf';
-            if (mimeType?.includes('image')) return 'image';
-            if (mimeType?.includes('word')) return 'word';
-            if (mimeType?.includes('excel') || mimeType?.includes('spreadsheet')) return 'excel';
-            if (mimeType?.includes('powerpoint') || mimeType?.includes('presentation')) return 'powerpoint';
-            return 'alt';
-        }
-
-        // 파일 크기 포맷팅
         function formatFileSize(bytes) {
             if (bytes === 0) return '0 Bytes';
             const k = 1024;
@@ -397,86 +496,20 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
-        // 날짜 포맷팅
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('ko-KR', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                weekday: 'short'
-            });
-        }
-
-        // 네비게이션 버튼 업데이트
-        function updateNavigationButtons() {
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            
-            // 이전 글 버튼
-            if (currentIndex > 0) {
-                prevBtn.disabled = false;
-                prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            } else {
-                prevBtn.disabled = true;
-                prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            }
-            
-            // 다음 글 버튼
-            if (currentIndex < activitiesList.length - 1 && currentIndex !== -1) {
-                nextBtn.disabled = false;
-                nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            } else {
-                nextBtn.disabled = true;
-                nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            }
-        }
-
-        // 이전 글로 이동
-        function navigateToPrev() {
-            if (currentIndex > 0) {
-                const prevActivity = activitiesList[currentIndex - 1];
-                window.location.href = `activity-detail.html?id=${prevActivity._id}`;
-            }
-        }
-
-        // 다음 글로 이동
-        function navigateToNext() {
-            if (currentIndex < activitiesList.length - 1 && currentIndex !== -1) {
-                const nextActivity = activitiesList[currentIndex + 1];
-                window.location.href = `activity-detail.html?id=${nextActivity._id}`;
-            }
-        }
-
-        // 뒤로가기
-        function goBack() {
-            window.location.href = 'activities.html';
-        }
-
-        // 로딩 표시
         function showLoading() {
             document.getElementById('loading').classList.remove('hidden');
-            document.getElementById('content').classList.add('hidden');
             document.getElementById('error').classList.add('hidden');
+            document.getElementById('activity-content').classList.add('hidden');
         }
 
-        // 로딩 숨김
         function hideLoading() {
             document.getElementById('loading').classList.add('hidden');
-            document.getElementById('content').classList.remove('hidden');
         }
 
-        // 에러 표시
         function showError(message) {
+            document.getElementById('error').querySelector('div').textContent = message;
             document.getElementById('error').classList.remove('hidden');
-            document.getElementById('content').classList.add('hidden');
             document.getElementById('loading').classList.add('hidden');
-            
-            // 에러 메시지 업데이트
-            const errorElement = document.querySelector('#error p');
-            if (errorElement) {
-                errorElement.textContent = message;
-            }
         }
     </script>
 </body>

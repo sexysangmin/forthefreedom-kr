@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정책위 보도자료 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">정책위 보도자료</h1>
+            <p style="font-size:1.25rem; margin-top:1rem; opacity:0.9;">자유와혁신 정책위원회의 공식 정책 발표 및 자료입니다</p>
+        </div>
+    </section>
+
+    <main class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 상단 정보 및 검색 -->
+            <div class="mb-8">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">정책위원회</h2>
+                        <p class="text-gray-600">자유와혁신 정책위원회의 정책 발표, 정책연구 자료 및 보도자료입니다.</p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <div class="flex space-x-2">
+                            <button onclick="filterByType('all')" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">전체</button>
+                            <button onclick="filterByType('회의록')" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">회의록</button>
+                            <button onclick="filterByType('정책연구')" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">정책연구</button>
+                            <button onclick="filterByType('토론회')" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">토론회</button>
+                            <button onclick="filterByType('간담회')" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">간담회</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 검색 영역 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">검색날짜</label>
+                            <input type="date" id="search-date" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">구분</label>
+                            <select id="search-category" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500">
+                                <option value="">전체</option>
+                                <option value="제목">제목</option>
+                                <option value="내용">내용</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">검색어</label>
+                            <input type="text" id="search-keyword" placeholder="검색어를 입력하세요" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500">
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="searchPosts()" class="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                                <i class="fas fa-search mr-2"></i>검색
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 게시물 개수 표시 -->
+            <div class="mb-4">
+                <p class="text-gray-600">총 <span id="total-count" class="font-semibold text-red-600">0</span>건의 글이 있습니다.</p>
+            </div>
+
+            <!-- 로딩 상태 -->
+            <div id="loading" class="text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
+                <p class="mt-4 text-gray-600">정책자료를 불러오는 중...</p>
+            </div>
+
+            <!-- 에러 상태 -->
+            <div id="error" class="text-center py-12 hidden">
+                <div class="text-red-600 mb-4">
+                    <i class="fas fa-exclamation-triangle text-4xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">데이터를 불러올 수 없습니다</h3>
+                <p class="text-gray-600 mb-4">서버 연결을 확인해주세요.</p>
+                <button onclick="loadPolicyPosts()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">다시 시도</button>
+            </div>
+
+            <!-- 빈 상태 -->
+            <div id="empty" class="text-center py-12 hidden">
+                <div class="text-gray-400 mb-4">
+                    <i class="fas fa-clipboard-list text-4xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">등록된 정책자료가 없습니다</h3>
+                <p class="text-gray-600">곧 새로운 정책자료가 업데이트될 예정입니다.</p>
+            </div>
+
+            <!-- 게시판 테이블 -->
+            <div id="board-container" class="hidden">
+                <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                    <!-- 테이블 헤더 -->
+                    <div class="bg-gray-50 border-b border-gray-200">
+                        <div class="grid grid-cols-12 gap-4 px-6 py-4 text-sm font-medium text-gray-700">
+                            <div class="col-span-1 text-center">번호</div>
+                            <div class="col-span-2 text-center">구분</div>
+                            <div class="col-span-7">제목</div>
+                            <div class="col-span-2 text-center">등록일</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 테이블 내용 -->
+                    <div id="board-list">
+                        <!-- 동적으로 생성됨 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 페이지네이션 -->
+            <div id="pagination" class="flex justify-center mt-8 hidden">
+                <nav class="flex space-x-2">
+                    <!-- 동적으로 생성됨 -->
+                </nav>
+            </div>
+        </div>
+    </main>
+    
+    <script src="../config.js"></script>
+    <script src="../nav.js"></script>
+    <script>
+        loadNavigation();
+        
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+        let currentPage = 1;
+        let totalPages = 1;
+        let totalCount = 0;
+        let currentFilter = 'all';
+        let isLoading = false;
+
+        // 페이지 로드 시 정책자료 목록 로드
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPolicyPosts();
+        });
+
+        // 정책자료 목록 로드
+        async function loadPolicyPosts(page = 1) {
+            if (isLoading) return;
+            
+            try {
+                isLoading = true;
+                showLoading();
+                
+                currentPage = page;
+                let url = `${API_BASE}/policy-committee?page=${page}&limit=20&sort=-createdAt&status=published`;
+                
+                // 필터 적용
+                if (currentFilter !== 'all') {
+                    url += `&category=${currentFilter}`;
+                }
+
+                console.log('🔍 API 요청 URL:', url);
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('📦 API 응답:', data);
+
+                if (data.success) {
+                    // API 응답 구조에 맞춰 수정
+                    totalPages = data.pagination?.totalPages || 1;
+                    totalCount = data.pagination?.total || 0;
+                    
+                    updateTotalCount();
+                    
+                    if (data.data.length === 0 && page === 1) {
+                        showEmpty();
+                    } else {
+                        renderBoard(data.data);
+                        showContent();
+                        renderPagination();
+                    }
+                } else {
+                    throw new Error(data.message || '데이터를 불러오는데 실패했습니다');
+                }
+
+            } catch (error) {
+                console.error('Error loading policy committee data:', error);
+                showError();
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        // 게시판 렌더링
+        function renderBoard(posts) {
+            const container = document.getElementById('board-list');
+            container.innerHTML = '';
+            
+            posts.forEach((post, index) => {
+                const row = createBoardRow(post, totalCount - ((currentPage - 1) * 20) - index);
+                container.appendChild(row);
+            });
+        }
+
+        // 게시판 행 생성
+        function createBoardRow(post, number) {
+            const row = document.createElement('div');
+            row.className = 'border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer';
+            row.onclick = () => viewPolicyPost(post._id);
+            
+            // 카테고리별 스타일
+            const categoryStyle = getCategoryStyle(post.category);
+            const isImportant = post.priority > 0 || post.category === '회의록';
+            
+            row.innerHTML = `
+                <div class="grid grid-cols-12 gap-4 px-6 py-4 items-center">
+                    <div class="col-span-1 text-center text-gray-600 font-medium">
+                        ${isImportant ? '<i class="fas fa-star text-yellow-500"></i>' : number}
+                    </div>
+                    <div class="col-span-2 text-center">
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${categoryStyle}">
+                            ${post.category || '정책위원회'}
+                        </span>
+                    </div>
+                    <div class="col-span-7">
+                        <h3 class="text-gray-900 font-medium hover:text-red-600 transition-colors">
+                            ${post.title}
+                            ${isImportant ? '<i class="fas fa-star text-yellow-500 ml-2"></i>' : ''}
+                        </h3>
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">
+                            ${post.excerpt || post.content?.substring(0, 100) + '...' || ''}
+                        </p>
+                    </div>
+                    <div class="col-span-2 text-center text-gray-600">
+                        ${formatDate(post.createdAt)}
+                    </div>
+                </div>
+            `;
+            
+            return row;
+        }
+
+        // 카테고리별 스타일 반환
+        function getCategoryStyle(category) {
+            const styles = {
+                '회의록': 'bg-blue-100 text-blue-800',
+                '정책연구': 'bg-green-100 text-green-800',
+                '토론회': 'bg-purple-100 text-purple-800',
+                '간담회': 'bg-orange-100 text-orange-800',
+                '세미나': 'bg-indigo-100 text-indigo-800',
+                '워크숍': 'bg-yellow-100 text-yellow-800'
+            };
+            return styles[category] || 'bg-gray-100 text-gray-800';
+        }
+
+        // 페이지네이션 렌더링
+        function renderPagination() {
+            const container = document.getElementById('pagination');
+            const nav = container.querySelector('nav');
+            nav.innerHTML = '';
+            
+            if (totalPages <= 1) {
+                container.classList.add('hidden');
+                return;
+            }
+            
+            container.classList.remove('hidden');
+            
+            // 이전 페이지
+            if (currentPage > 1) {
+                nav.appendChild(createPageButton(currentPage - 1, '이전'));
+            }
+            
+            // 페이지 번호들
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                nav.appendChild(createPageButton(i, i.toString(), i === currentPage));
+            }
+            
+            // 다음 페이지
+            if (currentPage < totalPages) {
+                nav.appendChild(createPageButton(currentPage + 1, '다음'));
+            }
+        }
+
+        // 페이지 버튼 생성
+        function createPageButton(page, text, isActive = false) {
+            const button = document.createElement('button');
+            button.className = isActive 
+                ? 'px-3 py-2 bg-red-600 text-white rounded-md'
+                : 'px-3 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50';
+            button.textContent = text;
+            button.onclick = () => loadPolicyPosts(page);
+            return button;
+        }
+
+        // 필터링
+        function filterByType(type) {
+            currentFilter = type;
+            
+            // 버튼 스타일 업데이트
+            document.querySelectorAll('button[onclick^="filterByType"]').forEach(btn => {
+                btn.className = 'px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors';
+            });
+            
+            event.target.className = 'px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors';
+            
+            loadPolicyPosts(1);
+        }
+
+        // 검색
+        function searchPosts() {
+            const searchDate = document.getElementById('search-date').value;
+            const searchCategory = document.getElementById('search-category').value;
+            const searchKeyword = document.getElementById('search-keyword').value;
+            
+            // 검색 기능 구현
+            if (!searchKeyword && !searchDate) {
+                alert('검색어나 날짜를 입력해주세요.');
+                return;
+            }
+            
+            // API 검색 요청
+            currentPage = 1;
+            loadPolicyPosts(1);
+        }
+
+        // 정책위원회 글 상세 보기
+        function viewPolicyPost(id) {
+            window.location.href = `policy-detail.html?id=${id}&type=policy-committee`;
+        }
+
+        // 전체 개수 업데이트 (안전하게 처리)
+        function updateTotalCount() {
+            const totalCountElement = document.getElementById('total-count');
+            if (totalCountElement && typeof totalCount === 'number') {
+                totalCountElement.textContent = totalCount.toLocaleString();
+            }
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).replace(/\./g, '-').replace(/ /g, '');
+        }
+
+        // UI 상태 관리
+        function showLoading() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('empty').classList.add('hidden');
+            document.getElementById('board-container').classList.add('hidden');
+            document.getElementById('pagination').classList.add('hidden');
+        }
+
+        function showError() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.remove('hidden');
+            document.getElementById('empty').classList.add('hidden');
+            document.getElementById('board-container').classList.add('hidden');
+            document.getElementById('pagination').classList.add('hidden');
+        }
+
+        function showEmpty() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('empty').classList.remove('hidden');
+            document.getElementById('board-container').classList.add('hidden');
+            document.getElementById('pagination').classList.add('hidden');
+        }
+
+        function showContent() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('empty').classList.add('hidden');
+            document.getElementById('board-container').classList.remove('hidden');
+        }
+    </script>
+    
+    <style>
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</body>
+</html> 

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일정 상세 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .event-badge {
+            @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+        }
+        .event-info-card {
+            @apply bg-gradient-to-r from-orange-50 to-amber-50 border-l-4 border-orange-500 p-6 rounded-lg;
+        }
+        .participant-avatar {
+            @apply w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-sm font-medium text-gray-600;
+        }
+        .calendar-icon {
+            @apply w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 text-2xl;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <img src="../images/logo.png" alt="자유와혁신" class="h-8">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="../index.html" class="text-gray-700 hover:text-red-600">홈</a>
+                        <a href="../about.html" class="text-gray-700 hover:text-red-600">당 소개</a>
+                        <a href="../news.html" class="text-red-600 font-medium">소식</a>
+                        <a href="../policy.html" class="text-gray-700 hover:text-red-600">정책</a>
+                        <a href="../members.html" class="text-gray-700 hover:text-red-600">당원</a>
+                        <a href="../resources.html" class="text-gray-700 hover:text-red-600">자료실</a>
+                        <a href="../support.html" class="text-gray-700 hover:text-red-600">후원</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="md:hidden">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 브레드크럼 -->
+    <nav class="bg-gray-100 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center space-x-2 text-sm text-gray-600">
+                <a href="../index.html" class="hover:text-red-600">홈</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <a href="../news.html" class="hover:text-red-600">소식</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <a href="events.html" class="hover:text-red-600">일정</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-gray-900">상세보기</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- 로딩 상태 -->
+        <div id="loading" class="flex flex-col items-center justify-center py-16">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mb-4"></div>
+            <p class="text-gray-600">일정 정보를 불러오는 중...</p>
+        </div>
+
+        <!-- 에러 상태 -->
+        <div id="error" class="hidden bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+            <div class="flex">
+                <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                <div class="text-red-700">일정을 불러오는 중 오류가 발생했습니다.</div>
+            </div>
+        </div>
+
+        <!-- 일정 상세 내용 -->
+        <div id="event-content" class="hidden">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <!-- 일정 헤더 -->
+                <div class="bg-gradient-to-r from-orange-600 to-amber-600 text-white p-8">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center mb-4">
+                                <span id="event-category" class="event-badge bg-white/20 text-white border border-white/30">
+                                    일정
+                                </span>
+                                <span id="event-status" class="event-badge bg-green-500 text-white ml-3">
+                                    예정
+                                </span>
+                            </div>
+                            <h1 id="event-title" class="text-3xl font-bold mb-4">일정 제목</h1>
+                            <div class="flex flex-wrap items-center gap-4 text-sm text-white/90">
+                                <span>작성자: <span id="event-author">관리자</span></span>
+                                <span>•</span>
+                                <span>조회수: <span id="event-views">0</span></span>
+                                <span>•</span>
+                                <span>등록일: <span id="event-created">2025-01-01</span></span>
+                            </div>
+                        </div>
+                        <div class="calendar-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 일정 정보 카드 -->
+                <div class="p-8">
+                    <div class="event-info-card mb-8">
+                        <h3 class="text-lg font-bold text-orange-800 mb-4 flex items-center">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            일정 정보
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        <i class="fas fa-calendar mr-2 text-orange-600"></i>일시
+                                    </label>
+                                    <div class="text-gray-900 font-medium" id="event-datetime">
+                                        2025년 1월 1일 (수) 오후 2:00
+                                    </div>
+                                    <div class="text-sm text-gray-600" id="event-duration">
+                                        약 2시간 소요 예정
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        <i class="fas fa-map-marker-alt mr-2 text-orange-600"></i>장소
+                                    </label>
+                                    <div class="text-gray-900" id="event-location">
+                                        장소 정보
+                                    </div>
+                                    <div class="text-sm text-gray-600" id="event-address">
+                                        상세 주소
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        <i class="fas fa-users mr-2 text-orange-600"></i>참석 대상
+                                    </label>
+                                    <div class="text-gray-900" id="event-target">
+                                        전체 당원
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        <i class="fas fa-user-tie mr-2 text-orange-600"></i>주최
+                                    </label>
+                                    <div class="text-gray-900" id="event-organizer">
+                                        자유와혁신
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        <i class="fas fa-phone mr-2 text-orange-600"></i>문의
+                                    </label>
+                                    <div class="text-gray-900" id="event-contact">
+                                        02-0000-0000
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 참석자 정보 -->
+                        <div id="participants-section" class="mt-6 pt-6 border-t border-orange-200">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                <i class="fas fa-user-friends mr-2 text-orange-600"></i>참석자 <span id="participant-count">(0명)</span>
+                            </label>
+                            <div id="participants-list" class="flex flex-wrap gap-2">
+                                <!-- 참석자 목록이 여기에 표시됩니다 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 일정 설명 -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">일정 설명</h3>
+                        <div id="event-description" class="prose max-w-none">
+                            <!-- 일정 설명이 여기에 표시됩니다 -->
+                        </div>
+                    </div>
+
+                    <!-- 첨부파일 -->
+                    <div id="attachments-section" class="hidden mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-paperclip mr-2 text-orange-600"></i>
+                            첨부파일
+                        </h3>
+                        <div id="attachments-list" class="space-y-2">
+                            <!-- 첨부파일 목록이 여기에 표시됩니다 -->
+                        </div>
+                    </div>
+
+                    <!-- 액션 버튼 -->
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <button id="join-event-btn" class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
+                            <i class="fas fa-user-plus mr-2"></i>
+                            참석 신청
+                        </button>
+                        <button id="add-calendar-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
+                            <i class="fas fa-calendar-plus mr-2"></i>
+                            내 캘린더에 추가
+                        </button>
+                        <button id="share-btn" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
+                            <i class="fas fa-share mr-2"></i>
+                            공유하기
+                        </button>
+                    </div>
+
+                    <!-- 관리자 액션 -->
+                    <div id="admin-actions" class="hidden border-t pt-8">
+                        <div class="flex flex-wrap gap-4">
+                            <button id="edit-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
+                                <i class="fas fa-edit mr-2"></i>
+                                수정
+                            </button>
+                            <button id="delete-btn" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
+                                <i class="fas fa-trash mr-2"></i>
+                                삭제
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 공유 버튼들 -->
+                    <div id="share-buttons" class="hidden mt-6 p-4 bg-gray-50 rounded-lg">
+                        <h4 class="font-medium text-gray-900 mb-3">공유하기</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="copyUrl()" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" title="링크 복사">
+                                <i class="fas fa-link mr-2"></i>링크 복사
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 관련 일정 -->
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">관련 일정</h3>
+                <div id="related-events" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 관련 일정 목록이 여기에 표시됩니다 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-900 text-white py-12 mt-20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-bold mb-4">자유와혁신</h4>
+                    <p class="text-gray-400 text-sm">대한민국의 새로운 미래를 열어가는 정당입니다.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">바로가기</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="../about.html" class="text-gray-400 hover:text-white">당 소개</a></li>
+                        <li><a href="../policy.html" class="text-gray-400 hover:text-white">정책</a></li>
+                        <li><a href="../members.html" class="text-gray-400 hover:text-white">당원</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">소식</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="notices.html" class="text-gray-400 hover:text-white">공지사항</a></li>
+                        <li><a href="press-releases.html" class="text-gray-400 hover:text-white">보도자료</a></li>
+                        <li><a href="activities.html" class="text-gray-400 hover:text-white">활동소식</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">연락처</h4>
+                    <p class="text-gray-400 text-sm">서울특별시 영등포구 여의대로 310</p>
+                    <p class="text-gray-400 text-sm">전화: 02-0000-0000</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+
+        let currentEvent = null;
+
+        // 페이지 로드시 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('id');
+            
+            if (eventId) {
+                loadEvent(eventId);
+            } else {
+                showError();
+            }
+
+            // 관리자 확인
+            checkAdminAuth();
+
+            // 이벤트 리스너 등록
+            document.getElementById('share-btn').addEventListener('click', toggleShareButtons);
+            document.getElementById('join-event-btn').addEventListener('click', joinEvent);
+            document.getElementById('add-calendar-btn').addEventListener('click', addToCalendar);
+            document.getElementById('edit-btn').addEventListener('click', editEvent);
+            document.getElementById('delete-btn').addEventListener('click', deleteEvent);
+        });
+
+        // 일정 정보 로드
+        async function loadEvent(id) {
+            try {
+                showLoading();
+                
+                // 조회수 증가
+                await fetch(`${API_BASE}/events/${id}/views`, { method: 'POST' });
+                
+                const response = await fetch(`${API_BASE}/events/${id}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentEvent = data.data;
+                    displayEvent(currentEvent);
+                    hideLoading();
+                } else {
+                    throw new Error(data.message || '일정을 불러올 수 없습니다.');
+                }
+            } catch (error) {
+                console.error('Error loading event:', error);
+                showError();
+            }
+        }
+
+        // 일정 정보 표시
+        function displayEvent(event) {
+            // 기본 정보
+            document.getElementById('event-title').textContent = event.title;
+            document.getElementById('event-author').textContent = event.author || '관리자';
+            document.getElementById('event-views').textContent = event.views || 0;
+            document.getElementById('event-created').textContent = formatDate(event.createdAt);
+            
+            // 카테고리 및 상태
+            document.getElementById('event-category').textContent = event.category || '일정';
+            setCategoryStyle(event.category);
+            
+            const status = getEventStatus(event.eventDate);
+            document.getElementById('event-status').textContent = status.text;
+            document.getElementById('event-status').className = `event-badge ${status.class}`;
+
+            // 일정 상세 정보
+            document.getElementById('event-datetime').textContent = formatEventDateTime(event.eventDate, event.endDate);
+            document.getElementById('event-duration').textContent = event.duration || '';
+            document.getElementById('event-location').textContent = event.location || '장소 미정';
+            document.getElementById('event-address').textContent = event.address || '';
+            document.getElementById('event-target').textContent = event.target || '전체 당원';
+            document.getElementById('event-organizer').textContent = event.organizer || '자유와혁신';
+            document.getElementById('event-contact').textContent = event.contact || '';
+
+            // 본문 내용
+            if (event.content) {
+                document.getElementById('event-description').innerHTML = marked.parse(event.content);
+            }
+
+            // 참석자 정보
+            if (event.participants && event.participants.length > 0) {
+                displayParticipants(event.participants);
+            }
+
+            // 첨부파일
+            if (event.attachments && event.attachments.length > 0) {
+                displayAttachments(event.attachments);
+            }
+
+            // 페이지 제목 업데이트
+            document.title = `${event.title} - 일정 - 자유와혁신`;
+
+            document.getElementById('event-content').classList.remove('hidden');
+        }
+
+        // 카테고리별 스타일 설정
+        function setCategoryStyle(category) {
+            const categoryElement = document.getElementById('event-category');
+            const styles = {
+                '당무회의': 'bg-blue-100 text-blue-800',
+                '정책토론': 'bg-purple-100 text-purple-800',
+                '지역행사': 'bg-green-100 text-green-800',
+                '교육세미나': 'bg-indigo-100 text-indigo-800',
+                '대외활동': 'bg-orange-100 text-orange-800'
+            };
+            const style = styles[category] || 'bg-gray-100 text-gray-800';
+            categoryElement.className = `event-badge ${style}`;
+        }
+
+        // 일정 상태 확인
+        function getEventStatus(eventDate) {
+            const now = new Date();
+            const eventTime = new Date(eventDate);
+            
+            if (eventTime > now) {
+                return { text: '예정', class: 'bg-green-500 text-white' };
+            } else if (eventTime.toDateString() === now.toDateString()) {
+                return { text: '진행중', class: 'bg-blue-500 text-white' };
+            } else {
+                return { text: '완료', class: 'bg-gray-500 text-white' };
+            }
+        }
+
+        // 일정 날짜/시간 포맷팅
+        function formatEventDateTime(startDate, endDate) {
+            const start = new Date(startDate);
+            const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+            
+            let result = `${start.getFullYear()}년 ${start.getMonth() + 1}월 ${start.getDate()}일 (${weekdays[start.getDay()]}) `;
+            result += formatTime(start);
+            
+            if (endDate) {
+                const end = new Date(endDate);
+                result += ` ~ ${formatTime(end)}`;
+            }
+            
+            return result;
+        }
+
+        // 시간 포맷팅
+        function formatTime(date) {
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const period = hours >= 12 ? '오후' : '오전';
+            const displayHours = hours > 12 ? hours - 12 : (hours === 0 ? 12 : hours);
+            
+            return `${period} ${displayHours}:${minutes.toString().padStart(2, '0')}`;
+        }
+
+        // 참석자 표시
+        function displayParticipants(participants) {
+            const participantsList = document.getElementById('participants-list');
+            const participantCount = document.getElementById('participant-count');
+            
+            participantCount.textContent = `(${participants.length}명)`;
+            
+            participantsList.innerHTML = '';
+            participants.forEach(participant => {
+                const avatar = document.createElement('div');
+                avatar.className = 'participant-avatar';
+                avatar.textContent = participant.name ? participant.name.charAt(0) : '?';
+                avatar.title = participant.name || '참석자';
+                participantsList.appendChild(avatar);
+            });
+        }
+
+        // 첨부파일 표시
+        function displayAttachments(attachments) {
+            const section = document.getElementById('attachments-section');
+            const list = document.getElementById('attachments-list');
+            
+            list.innerHTML = '';
+            attachments.forEach(file => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors';
+                fileItem.innerHTML = `
+                    <i class="fas fa-file text-gray-500 mr-3"></i>
+                    <div class="flex-1">
+                        <div class="font-medium text-gray-900">${file.originalName}</div>
+                        <div class="text-sm text-gray-500">${formatFileSize(file.size)}</div>
+                    </div>
+                    <a href="${API_BASE}/files/${file.filename}" download class="text-orange-600 hover:text-orange-700 ml-3">
+                        <i class="fas fa-download"></i>
+                    </a>
+                `;
+                list.appendChild(fileItem);
+            });
+            
+            section.classList.remove('hidden');
+        }
+
+        // 파일 크기 포맷팅
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // 일정 참석 신청
+        function joinEvent() {
+            if (!currentEvent) return;
+            
+            // 실제 구현에서는 사용자 인증 및 참석 신청 API 호출
+            alert('참석 신청이 완료되었습니다.');
+        }
+
+        // 캘린더에 추가
+        function addToCalendar() {
+            if (!currentEvent) return;
+            
+            const startDate = new Date(currentEvent.eventDate);
+            const endDate = currentEvent.endDate ? new Date(currentEvent.endDate) : new Date(startDate.getTime() + (2 * 60 * 60 * 1000)); // 기본 2시간
+            
+            const event = {
+                title: currentEvent.title,
+                start: startDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
+                end: endDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
+                description: currentEvent.content || '',
+                location: currentEvent.location || ''
+            };
+            
+            const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.start}/${event.end}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+            window.open(url, '_blank');
+        }
+
+        // 공유 버튼 토글
+        function toggleShareButtons() {
+            const shareButtons = document.getElementById('share-buttons');
+            shareButtons.classList.toggle('hidden');
+        }
+
+        // 관리자 인증 확인
+        function checkAdminAuth() {
+            const token = localStorage.getItem('adminToken');
+            if (token) {
+                document.getElementById('admin-actions').classList.remove('hidden');
+            }
+        }
+
+        // 일정 수정
+        function editEvent() {
+            if (!currentEvent) return;
+            window.location.href = `../admin/content.html?type=events&action=edit&id=${currentEvent._id}`;
+        }
+
+        // 일정 삭제
+        async function deleteEvent() {
+            if (!currentEvent) return;
+            
+            if (!confirm('정말로 이 일정을 삭제하시겠습니까?')) return;
+            
+            try {
+                const token = localStorage.getItem('adminToken');
+                const response = await fetch(`${API_BASE}/events/${currentEvent._id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    alert('일정이 삭제되었습니다.');
+                    window.location.href = 'events.html';
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                console.error('Error deleting event:', error);
+                alert('일정 삭제 중 오류가 발생했습니다.');
+            }
+        }
+
+        // 공유 함수들
+        function shareKakao() {
+            if (window.Kakao) {
+                Kakao.Share.sendDefault({
+                    objectType: 'feed',
+                    content: {
+                        title: currentEvent.title,
+                        description: currentEvent.content?.substring(0, 100) + '...' || '',
+                        imageUrl: 'https://forthefreedom.kr/images/logo.png',
+                        link: {
+                            mobileWebUrl: window.location.href,
+                            webUrl: window.location.href
+                        }
+                    }
+                });
+            }
+        }
+
+        function shareTwitter() {
+            const text = `${currentEvent.title} - 자유와혁신`;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareFacebook() {
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('링크가 복사되었습니다.');
+            });
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+        }
+
+        // 상태 표시 함수들
+        function showLoading() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('event-content').classList.add('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').classList.add('hidden');
+        }
+
+        function showError() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.remove('hidden');
+            document.getElementById('event-content').classList.add('hidden');
+        }
+    </script>
+</body>
+</html> 

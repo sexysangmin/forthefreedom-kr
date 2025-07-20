@@ -23,299 +23,652 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    
     <style>
-        .prose {
-            max-width: none;
+        .attachment-item {
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            transition: background-color 0.2s;
         }
-        .prose h1 { @apply text-3xl font-bold text-gray-900 mt-8 mb-4; }
-        .prose h2 { @apply text-2xl font-semibold text-gray-800 mt-6 mb-3; }
-        .prose h3 { @apply text-xl font-medium text-gray-800 mt-5 mb-2; }
-        .prose p { @apply text-gray-700 leading-relaxed mb-4; }
-        .prose ul { @apply list-disc list-inside text-gray-700 mb-4 ml-4; }
-        .prose ol { @apply list-decimal list-inside text-gray-700 mb-4 ml-4; }
-        .prose li { @apply mb-1; }
-        .prose strong { @apply font-semibold text-gray-900; }
-        .prose em { @apply italic; }
-        .prose blockquote { @apply border-l-4 border-blue-200 pl-4 italic text-gray-600 mb-4; }
-        .prose code { @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono; }
-        .prose pre { @apply bg-gray-100 p-4 rounded overflow-x-auto mb-4; }
-        .prose a { @apply text-blue-600 hover:text-blue-800 underline; }
-        .prose img { @apply max-w-full h-auto rounded-lg shadow-sm mb-4; }
-        .prose table { @apply min-w-full border-collapse border border-gray-300 mb-4; }
-        .prose th { @apply border border-gray-300 px-4 py-2 bg-gray-50 font-semibold; }
-        .prose td { @apply border border-gray-300 px-4 py-2; }
+        
+        .attachment-item:hover {
+            background: #e9ecef;
+        }
+        
+        .attachment-icon {
+            font-size: 1.2rem;
+            margin-right: 0.75rem;
+            color: #6c757d;
+        }
+        
+        .attachment-info {
+            flex: 1;
+        }
+        
+        .attachment-name {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+        
+        .attachment-size {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .content-body {
+            line-height: 1.8;
+        }
+        
+        .content-body h1, .content-body h2, .content-body h3 {
+            margin: 1.5rem 0 1rem 0;
+            font-weight: bold;
+        }
+        
+        .content-body h1 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-body h2 {
+            font-size: 1.5rem;
+        }
+        
+        .content-body h3 {
+            font-size: 1.3rem;
+        }
+        
+        .content-body p {
+            margin-bottom: 1rem;
+        }
+        
+        .content-body ul, .content-body ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .content-body li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .content-body blockquote {
+            border-left: 4px solid #A50034;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .content-body img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        
+        .edit-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .policy-info-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
     </style>
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <!-- 로딩 상태 -->
-    <div id="loading-state" class="min-h-screen flex items-center justify-center">
-        <div class="text-center">
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../resources.html" class="text-gray-500 hover:text-red-600">자료실</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="policy-materials.html" class="text-gray-500 hover:text-red-600">정책자료</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">상세보기</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <main class="bg-white">
+        <!-- 로딩 상태 -->
+        <div id="loading" class="flex justify-center items-center py-16">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mb-4"></div>
             <p class="text-gray-600">정책자료를 불러오는 중...</p>
         </div>
-    </div>
 
-    <!-- 에러 상태 -->
-    <div id="error-state" class="hidden min-h-screen flex items-center justify-center">
-        <div class="text-center max-w-md mx-auto p-6">
-            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
-            </div>
-            <h2 class="text-xl font-semibold text-gray-900 mb-2">정책자료를 찾을 수 없습니다</h2>
-            <p class="text-gray-600 mb-6">요청하신 정책자료가 존재하지 않거나 삭제되었을 수 있습니다.</p>
-            <div class="space-y-3">
-                <button onclick="location.reload()" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                    다시 시도
-                </button>
-                <a href="policy-materials.html" class="block w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 text-center">
-                    정책자료 목록으로 돌아가기
-                </a>
+        <!-- 에러 상태 -->
+        <div id="error" class="hidden bg-red-50 border-l-4 border-red-500 p-4 m-4">
+            <div class="flex">
+                <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                <div class="text-red-700">정책자료를 불러올 수 없습니다.</div>
             </div>
         </div>
-    </div>
 
-    <!-- 메인 콘텐츠 -->
-    <div id="main-content" class="hidden">
-        <!-- Hero Section -->
-        <section class="hero-section" style="position:relative; height:40vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
-            <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
-            <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-                <nav class="mb-4 text-white text-sm">
-                    <a href="../index.html" class="hover:underline">홈</a>
-                    <span class="mx-2">/</span>
-                    <a href="../resources.html" class="hover:underline">자료실</a>
-                    <span class="mx-2">/</span>
-                    <a href="policy-materials.html" class="hover:underline">정책자료</a>
-                    <span class="mx-2">/</span>
-                    <span>상세보기</span>
-                </nav>
-                <div id="hero-category" class="mb-2"></div>
-                <h1 id="hero-title" class="text-3xl font-bold mb-2"></h1>
-                <p id="hero-date" class="text-lg opacity-90"></p>
-            </div>
-        </section>
-
-        <main style="position:relative; z-index:1; background:#fff;" class="py-16">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- 정책자료 메타 정보 -->
-                <div class="bg-white rounded-lg shadow-sm border p-6 mb-8">
-                    <div class="flex flex-wrap items-center justify-between mb-4">
-                        <div class="flex flex-wrap items-center gap-3 mb-2 sm:mb-0">
-                            <span id="category-badge" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium"></span>
-                            <span id="date-info" class="text-gray-500 text-sm"></span>
+        <!-- 정책자료 상세 내용 -->
+        <div id="policy-content" class="hidden">
+            <section class="py-16">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- 정책자료 정보 카드 -->
+                    <div class="policy-info-card">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-4">
+                                <i id="policy-icon" class="fas fa-file-alt text-3xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h1 id="policy-title" class="text-3xl font-bold mb-2">정책자료 제목</h1>
+                                <div class="flex items-center text-white text-opacity-90">
+                                    <span id="policy-category" class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm mr-4">분야</span>
+                                    <span id="policy-date" class="text-sm">2025-01-01</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <span id="download-count" class="text-gray-500 text-sm"></span>
+                        
+                        <div class="grid md:grid-cols-4 gap-4">
+                            <div class="stat-item">
+                                <div class="text-2xl font-bold" id="policy-views">0</div>
+                                <div class="text-sm opacity-80">조회수</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="text-2xl font-bold" id="policy-downloads">0</div>
+                                <div class="text-sm opacity-80">다운로드</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="text-2xl font-bold" id="policy-pages">-</div>
+                                <div class="text-sm opacity-80">페이지 수</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="text-2xl font-bold" id="policy-size">-</div>
+                                <div class="text-sm opacity-80">파일 크기</div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <h1 id="policy-title" class="text-2xl font-bold text-gray-900 mb-4"></h1>
-                    
-                    <div id="policy-excerpt" class="text-lg text-gray-600 mb-4"></div>
-                    
-                    <div id="tags-container" class="flex flex-wrap gap-2 mb-4"></div>
-                    
+
+                    <!-- 요약 -->
+                    <div id="excerpt-section" class="hidden mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+                        <h3 class="text-lg font-semibold text-blue-900 mb-3">
+                            <i class="fas fa-lightbulb mr-2"></i>정책 요약
+                        </h3>
+                        <p id="policy-excerpt" class="text-blue-800 leading-relaxed"></p>
+                    </div>
+
+                    <!-- 정책 개요 -->
+                    <div id="overview-section" class="hidden mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">
+                            <i class="fas fa-clipboard-list mr-2"></i>정책 개요
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div>
+                                    <span class="text-sm font-medium text-gray-500">정책 분야</span>
+                                    <p id="policy-field" class="text-gray-900">-</p>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-medium text-gray-500">대상</span>
+                                    <p id="policy-target" class="text-gray-900">-</p>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-medium text-gray-500">시행 시기</span>
+                                    <p id="policy-implementation" class="text-gray-900">-</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <span class="text-sm font-medium text-gray-500">예산 규모</span>
+                                    <p id="policy-budget" class="text-gray-900">-</p>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-medium text-gray-500">관련 부처</span>
+                                    <p id="policy-department" class="text-gray-900">-</p>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-medium text-gray-500">법적 근거</span>
+                                    <p id="policy-legal" class="text-gray-900">-</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 본문 -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">
+                            <i class="fas fa-file-text mr-2"></i>상세 내용
+                        </h3>
+                        <div id="policy-body" class="content-body text-gray-800 bg-gray-50 p-6 rounded-lg">
+                            <!-- 내용이 여기에 로드됩니다 -->
+                        </div>
+                    </div>
+
+                    <!-- 핵심 정책 -->
+                    <div id="key-policies-section" class="hidden mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">
+                            <i class="fas fa-star mr-2"></i>핵심 정책 포인트
+                        </h3>
+                        <div id="key-policies-list" class="grid md:grid-cols-2 gap-4">
+                            <!-- 핵심 정책들이 여기에 로드됩니다 -->
+                        </div>
+                    </div>
+
+                    <!-- 태그 -->
+                    <div id="tags-section" class="hidden mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                            <i class="fas fa-tags mr-2"></i>관련 태그
+                        </h3>
+                        <div id="tags-list" class="flex flex-wrap gap-2">
+                            <!-- 태그들이 여기에 로드됩니다 -->
+                        </div>
+                    </div>
+
                     <!-- 첨부파일 -->
-                    <div id="attachments-section" class="hidden">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                    <div id="attachments-section" class="mb-8 hidden">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
                             <i class="fas fa-paperclip mr-2"></i>첨부파일
                         </h3>
-                        <div id="attachments-list" class="space-y-2 mb-4"></div>
+                        <div id="attachments-list">
+                            <!-- 첨부파일 목록이 여기에 로드됩니다 -->
+                        </div>
                     </div>
-                    
-                    <!-- 액션 버튼 -->
-                    <div class="flex flex-wrap gap-3 pt-4 border-t">
-                        <button id="download-all-btn" class="hidden px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                            <i class="fas fa-download mr-2"></i>전체 다운로드
-                        </button>
-                        <button onclick="window.print()" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
-                            <i class="fas fa-print mr-2"></i>인쇄
-                        </button>
-                        <button onclick="shareContent()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                            <i class="fas fa-share mr-2"></i>공유
-                        </button>
-                    </div>
-                </div>
 
-                <!-- 정책자료 내용 -->
-                <div class="bg-white rounded-lg shadow-sm border p-8">
-                    <div id="policy-content" class="prose prose-lg max-w-none"></div>
-                </div>
+                    <!-- 수정 섹션 (관리자 전용) -->
+                    <!-- 관리자 기능 제거됨 -->
 
-                <!-- 네비게이션 -->
-                <div class="mt-8 flex justify-between items-center">
-                    <a href="policy-materials.html" class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors">
-                        <i class="fas fa-arrow-left mr-2"></i>목록으로 돌아가기
-                    </a>
-                    
-                    <div class="flex gap-2">
-                        <button id="prev-btn" class="hidden px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                            <i class="fas fa-chevron-left mr-2"></i>이전 자료
-                        </button>
-                        <button id="next-btn" class="hidden px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                            다음 자료<i class="fas fa-chevron-right ml-2"></i>
-                        </button>
+                    <!-- 공유 기능 -->
+                    <div class="border-t border-gray-200 pt-8 mb-8">
+                        <h4 class="text-sm font-medium text-gray-700 mb-4">링크 공유</h4>
+                        <div class="flex space-x-3">
+                            <button onclick="copyUrl()" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" title="링크 복사">
+                                <i class="fas fa-link mr-2"></i>링크 복사
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 목록으로 돌아가기 -->
+                    <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+                        <a href="policy-materials.html" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-arrow-left mr-2"></i>목록으로
+                        </a>
                     </div>
                 </div>
-            </div>
-        </main>
-    </div>
+            </section>
+        </div>
+    </main>
     
     <script src="../nav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@13.0.3/marked.min.js"></script>
     <script>
         loadNavigation();
 
-        const API_BASE_URL = 'http://localhost:9000/api';
-        
-        // 카테고리별 색상 매핑
-        const categoryColors = {
-            '경제성장': { bg: 'bg-blue-100', text: 'text-blue-800', hero: 'bg-blue-600', icon: 'fas fa-chart-line' },
-            '교육혁신': { bg: 'bg-green-100', text: 'text-green-800', hero: 'bg-green-600', icon: 'fas fa-graduation-cap' },
-            '국가안보': { bg: 'bg-red-100', text: 'text-red-800', hero: 'bg-red-600', icon: 'fas fa-shield-alt' },
-            '사회복지': { bg: 'bg-purple-100', text: 'text-purple-800', hero: 'bg-purple-600', icon: 'fas fa-users' },
-            '과학기술': { bg: 'bg-indigo-100', text: 'text-indigo-800', hero: 'bg-indigo-600', icon: 'fas fa-rocket' },
-            '환경보호': { bg: 'bg-teal-100', text: 'text-teal-800', hero: 'bg-teal-600', icon: 'fas fa-leaf' },
-            '외교통상': { bg: 'bg-yellow-100', text: 'text-yellow-800', hero: 'bg-yellow-600', icon: 'fas fa-globe' },
-            '기타': { bg: 'bg-gray-100', text: 'text-gray-800', hero: 'bg-gray-600', icon: 'fas fa-file-alt' }
-        };
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
 
-        async function loadPolicyMaterial() {
+        let currentPolicy = null;
+
+        // 간단한 마크다운 처리 (marked.js 대체)
+        function simpleMarkdown(text) {
+            if (!text) return '';
+            
+            return text
+                // 헤딩
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                // 볼드
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/__(.*?)__/g, '<strong>$1</strong>')
+                // 이탤릭
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/_(.*?)_/g, '<em>$1</em>')
+                // 링크
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="text-blue-600 hover:underline">$1</a>')
+                // 줄바꿈
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>')
+                // 리스트
+                .replace(/^\* (.*$)/gim, '<li>$1</li>')
+                .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+                // 문단 감싸기
+                .replace(/^(?!<[h|u|l])/gim, '<p>')
+                .replace(/(?!<\/[h|u|l])$/gim, '</p>')
+                // 중복 태그 정리
+                .replace(/<p><\/p>/g, '')
+                .replace(/<p>(<[h|u])/g, '$1')
+                .replace(/(<\/[h|u]>)<\/p>/g, '$1');
+        }
+
+        // 마크다운 렌더링 함수
+        function renderMarkdown(text) {
+            try {
+                // marked.js가 로드되었는지 확인
+                if (typeof marked !== 'undefined') {
+                    return marked.parse(text);
+                } else {
+                    console.warn('marked.js가 로드되지 않았습니다. 간단한 마크다운 처리를 사용합니다.');
+                    return simpleMarkdown(text);
+                }
+            } catch (error) {
+                console.error('마크다운 렌더링 오류:', error);
+                // 에러 발생 시 간단한 처리로 대체
+                return simpleMarkdown(text);
+            }
+        }
+
+        // 페이지 로드 시 정책자료 상세 정보 로드
+        document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const materialId = urlParams.get('id');
-
-            if (!materialId) {
-                showError();
+            const policyId = urlParams.get('id');
+            
+            if (!policyId) {
+                showError('정책자료 ID가 없습니다.');
                 return;
             }
+            
+            loadPolicyDetail(policyId);
+        });
 
+        // 정책자료 상세 정보 로드
+        async function loadPolicyDetail(id) {
             try {
-                const response = await fetch(`${API_BASE_URL}/policy-materials/${materialId}`);
+                showLoading();
+                
+                const response = await fetch(`${API_BASE}/policy-materials/${id}`);
                 const data = await response.json();
 
-                if (!data.success || !data.data) {
-                    throw new Error('정책자료를 찾을 수 없습니다.');
+                if (data.success) {
+                    currentPolicy = data.data;
+                    displayPolicyDetail(currentPolicy);
+                    // 조회수 증가
+                    incrementViews(id);
+                } else {
+                    throw new Error(data.message || '정책자료를 불러오는데 실패했습니다.');
                 }
-
-                renderPolicyMaterial(data.data);
-                
-                // 다운로드 수 증가
-                updateDownloadCount(materialId);
-
             } catch (error) {
-                console.error('정책자료 로딩 오류:', error);
-                showError();
+                console.error('Error loading policy detail:', error);
+                showError('정책자료를 불러오는 중 오류가 발생했습니다.');
             }
         }
 
-        function renderPolicyMaterial(material) {
-            const categoryStyle = categoryColors[material.category] || categoryColors['기타'];
-            const formattedDate = new Date(material.createdAt).toLocaleDateString('ko-KR');
+        // 정책자료 상세 정보 표시
+        function displayPolicyDetail(policy) {
+            hideLoading();
+            
+            // 기본 정보 설정
+            document.getElementById('policy-title').textContent = policy.title || '제목 없음';
+            document.getElementById('policy-category').textContent = policy.category || '정책자료';
+            document.getElementById('policy-date').textContent = formatDate(policy.createdAt);
+            document.getElementById('policy-views').textContent = (policy.views || 0).toLocaleString();
+            document.getElementById('policy-downloads').textContent = (policy.downloadCount || 0).toLocaleString();
+
+            // 카테고리별 아이콘 설정
+            setCategoryIcon(policy.category);
+
+            // 파일 정보 설정
+            if (policy.attachments && policy.attachments.length > 0) {
+                const mainFile = policy.attachments[0];
+                document.getElementById('policy-pages').textContent = mainFile.pages || '-';
+                document.getElementById('policy-size').textContent = formatFileSize(mainFile.size);
+            }
+
+            // 요약 섹션
+            if (policy.excerpt) {
+                document.getElementById('policy-excerpt').textContent = policy.excerpt;
+                document.getElementById('excerpt-section').classList.remove('hidden');
+            }
+
+            // 정책 개요 섹션
+            if (policy.overview) {
+                displayPolicyOverview(policy.overview);
+            }
+
+            // 본문 내용 (마크다운 렌더링)
+            const contentBody = document.getElementById('policy-body');
+            if (policy.content) {
+                try {
+                    contentBody.innerHTML = renderMarkdown(policy.content);
+                } catch (error) {
+                    console.error('콘텐츠 렌더링 오류:', error);
+                    // 에러 발생 시 원본 텍스트 표시
+                    contentBody.innerHTML = policy.content.replace(/\n/g, '<br>');
+                }
+            }
+
+            // 핵심 정책 포인트
+            if (policy.keyPolicies && policy.keyPolicies.length > 0) {
+                displayKeyPolicies(policy.keyPolicies);
+            }
+
+            // 태그 표시
+            if (policy.tags && policy.tags.length > 0) {
+                displayTags(policy.tags);
+            }
+
+            // 첨부파일 표시
+            if (policy.attachments && policy.attachments.length > 0) {
+                displayAttachments(policy.attachments);
+            }
 
             // 페이지 제목 업데이트
-            document.title = `${material.title} - 정책자료 - 자유와혁신`;
+            document.title = `${policy.title} - 정책자료 - 자유와혁신`;
 
-            // Hero 섹션
-            document.getElementById('hero-category').innerHTML = `
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-white bg-opacity-20 text-white">
-                    <i class="${categoryStyle.icon} mr-2"></i>${material.category}
-                </span>
-            `;
-            document.getElementById('hero-title').textContent = material.title;
-            document.getElementById('hero-date').textContent = formattedDate;
-
-            // 메타 정보
-            document.getElementById('category-badge').className = `inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${categoryStyle.bg} ${categoryStyle.text}`;
-            document.getElementById('category-badge').innerHTML = `<i class="${categoryStyle.icon} mr-2"></i>${material.category}`;
-            document.getElementById('date-info').textContent = formattedDate;
-            document.getElementById('policy-title').textContent = material.title;
-            
-            if (material.excerpt) {
-                document.getElementById('policy-excerpt').textContent = material.excerpt;
-            } else {
-                document.getElementById('policy-excerpt').style.display = 'none';
-            }
-
-            // 다운로드 수
-            if (material.downloadCount) {
-                document.getElementById('download-count').innerHTML = `<i class="fas fa-download mr-1"></i>${material.downloadCount}회 다운로드`;
-            }
-
-            // 태그
-            const tagsContainer = document.getElementById('tags-container');
-            if (material.tags && material.tags.length > 0) {
-                tagsContainer.innerHTML = material.tags.map(tag => 
-                    `<span class="inline-flex items-center px-2 py-1 rounded text-xs bg-gray-100 text-gray-600">${tag}</span>`
-                ).join('');
-            } else {
-                tagsContainer.style.display = 'none';
-            }
-
-            // 첨부파일
-            if (material.attachments && material.attachments.length > 0) {
-                renderAttachments(material.attachments, material._id);
-            }
-
-            // 내용 렌더링
-            if (material.content) {
-                const contentHtml = marked.parse(material.content);
-                document.getElementById('policy-content').innerHTML = contentHtml;
-            }
-
-            // UI 상태 변경
-            document.getElementById('loading-state').classList.add('hidden');
-            document.getElementById('main-content').classList.remove('hidden');
+            document.getElementById('policy-content').classList.remove('hidden');
         }
 
-        function renderAttachments(attachments, materialId) {
-            const attachmentsSection = document.getElementById('attachments-section');
-            const attachmentsList = document.getElementById('attachments-list');
-            const downloadAllBtn = document.getElementById('download-all-btn');
+        // 카테고리별 아이콘 설정
+        function setCategoryIcon(category) {
+            const iconElement = document.getElementById('policy-icon');
+            const iconMap = {
+                '경제성장': 'fas fa-chart-line',
+                '교육혁신': 'fas fa-graduation-cap',
+                '국가안보': 'fas fa-shield-alt',
+                '사회복지': 'fas fa-users',
+                '과학기술': 'fas fa-rocket',
+                '환경보호': 'fas fa-leaf',
+                '외교통상': 'fas fa-globe'
+            };
+            iconElement.className = iconMap[category] || 'fas fa-file-alt';
+            iconElement.className += ' text-3xl';
+        }
 
-            attachmentsSection.classList.remove('hidden');
-            downloadAllBtn.classList.remove('hidden');
+        // 정책 개요 표시
+        function displayPolicyOverview(overview) {
+            document.getElementById('policy-field').textContent = overview.field || '-';
+            document.getElementById('policy-target').textContent = overview.target || '-';
+            document.getElementById('policy-implementation').textContent = overview.implementation || '-';
+            document.getElementById('policy-budget').textContent = overview.budget || '-';
+            document.getElementById('policy-department').textContent = overview.department || '-';
+            document.getElementById('policy-legal').textContent = overview.legal || '-';
+            
+            document.getElementById('overview-section').classList.remove('hidden');
+        }
 
-            attachmentsList.innerHTML = attachments.map(attachment => {
-                const fileSize = attachment.size ? formatFileSize(attachment.size) : '';
-                const fileIcon = getFileIcon(attachment.mimetype);
-                
-                return `
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                        <div class="flex items-center">
-                            <i class="${fileIcon} text-gray-600 mr-3"></i>
-                            <div>
-                                <div class="font-medium text-gray-900">${attachment.originalname}</div>
-                                ${fileSize ? `<div class="text-sm text-gray-500">${fileSize}</div>` : ''}
-                            </div>
+        // 핵심 정책 포인트 표시
+        function displayKeyPolicies(keyPolicies) {
+            const keyPoliciesSection = document.getElementById('key-policies-section');
+            const keyPoliciesList = document.getElementById('key-policies-list');
+            
+            keyPoliciesList.innerHTML = '';
+            
+            keyPolicies.forEach((policy, index) => {
+                const policyCard = document.createElement('div');
+                policyCard.className = 'bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow';
+                policyCard.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">
+                            ${index + 1}
                         </div>
-                        <button onclick="downloadAttachment('${materialId}', '${attachment.filename}')" 
-                                class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
-                            <i class="fas fa-download"></i>
-                        </button>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-900 mb-2">${policy.title}</h4>
+                            <p class="text-gray-600 text-sm">${policy.description}</p>
+                        </div>
                     </div>
                 `;
-            }).join('');
-
-            // 전체 다운로드 버튼
-            downloadAllBtn.onclick = () => downloadAllAttachments(materialId);
+                keyPoliciesList.appendChild(policyCard);
+            });
+            
+            keyPoliciesSection.classList.remove('hidden');
         }
 
-        function getFileIcon(mimetype) {
-            if (!mimetype) return 'fas fa-file';
+        // 태그 표시
+        function displayTags(tags) {
+            const tagsSection = document.getElementById('tags-section');
+            const tagsList = document.getElementById('tags-list');
             
-            if (mimetype.includes('pdf')) return 'fas fa-file-pdf';
-            if (mimetype.includes('word') || mimetype.includes('document')) return 'fas fa-file-word';
-            if (mimetype.includes('excel') || mimetype.includes('spreadsheet')) return 'fas fa-file-excel';
-            if (mimetype.includes('powerpoint') || mimetype.includes('presentation')) return 'fas fa-file-powerpoint';
-            if (mimetype.includes('image')) return 'fas fa-file-image';
-            if (mimetype.includes('video')) return 'fas fa-file-video';
-            if (mimetype.includes('audio')) return 'fas fa-file-audio';
-            if (mimetype.includes('zip') || mimetype.includes('rar')) return 'fas fa-file-archive';
+            tagsList.innerHTML = '';
             
-            return 'fas fa-file';
+            tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors';
+                tagElement.innerHTML = `<i class="fas fa-tag mr-1"></i>${tag}`;
+                tagsList.appendChild(tagElement);
+            });
+            
+            tagsSection.classList.remove('hidden');
+        }
+
+        // 첨부파일 표시
+        function displayAttachments(attachments) {
+            const attachmentsSection = document.getElementById('attachments-section');
+            const attachmentsList = document.getElementById('attachments-list');
+            
+            attachmentsList.innerHTML = '';
+            
+            attachments.forEach(attachment => {
+                const attachmentItem = document.createElement('div');
+                attachmentItem.className = 'attachment-item';
+                
+                const icon = getFileIcon(attachment.filename);
+                const size = formatFileSize(attachment.size);
+                
+                attachmentItem.innerHTML = `
+                    <i class="${icon} attachment-icon"></i>
+                    <div class="attachment-info">
+                        <div class="attachment-name">${attachment.originalName || attachment.filename}</div>
+                        <div class="attachment-size">${size}</div>
+                    </div>
+                    <button onclick="downloadFile('${attachment.filename}')" 
+                            class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-download mr-1"></i>다운로드
+                    </button>
+                `;
+                
+                attachmentsList.appendChild(attachmentItem);
+            });
+            
+            attachmentsSection.classList.remove('hidden');
+        }
+
+        // 파일 다운로드 - 정적 파일로 직접 다운로드
+        async function downloadFile(filename) {
+            try {
+                // 다운로드 카운트 증가
+                await fetch(`${API_BASE}/policy-materials/${currentPolicy._id}/download-count`, {
+                    method: 'POST'
+                });
+
+                // 다운로드 카운트 업데이트
+                const currentCount = parseInt(document.getElementById('policy-downloads').textContent.replace(/,/g, ''));
+                document.getElementById('policy-downloads').textContent = (currentCount + 1).toLocaleString();
+
+                // 정적 파일로 직접 다운로드
+                const downloadUrl = `/resources/documents/${filename}`;
+                
+                // 링크 생성하여 다운로드
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+            } catch (error) {
+                console.error('Error downloading file:', error);
+                // 에러가 있어도 다운로드는 시도
+                const downloadUrl = `/resources/documents/${filename}`;
+                window.open(downloadUrl, '_blank');
+            }
+        }
+
+        // 조회수 증가
+        async function incrementViews(id) {
+            try {
+                await fetch(`${API_BASE}/policy-materials/${id}/views`, { method: 'POST' });
+            } catch (error) {
+                console.error('Error incrementing views:', error);
+            }
+        }
+
+        // 공유 기능들
+        function copyUrl() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('링크가 복사되었습니다.');
+            });
+        }
+
+        // 유틸리티 함수들
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function getFileIcon(filename) {
+            const ext = filename.toLowerCase().split('.').pop();
+            const iconMap = {
+                'pdf': 'fas fa-file-pdf',
+                'doc': 'fas fa-file-word',
+                'docx': 'fas fa-file-word',
+                'xls': 'fas fa-file-excel',
+                'xlsx': 'fas fa-file-excel',
+                'ppt': 'fas fa-file-powerpoint',
+                'pptx': 'fas fa-file-powerpoint',
+                'jpg': 'fas fa-file-image',
+                'jpeg': 'fas fa-file-image',
+                'png': 'fas fa-file-image',
+                'gif': 'fas fa-file-image',
+                'zip': 'fas fa-file-archive',
+                'rar': 'fas fa-file-archive'
+            };
+            return iconMap[ext] || 'fas fa-file';
         }
 
         function formatFileSize(bytes) {
@@ -326,67 +679,21 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
-        async function downloadAttachment(materialId, filename) {
-            try {
-                // 다운로드 카운트 업데이트
-                await updateDownloadCount(materialId);
-                
-                // 개별 파일 다운로드
-                window.open(`${API_BASE_URL}/policy-materials/${materialId}/attachments/${filename}`, '_blank');
-            } catch (error) {
-                console.error('다운로드 오류:', error);
-                // 에러가 있어도 다운로드는 시도
-                window.open(`${API_BASE_URL}/policy-materials/${materialId}/attachments/${filename}`, '_blank');
-            }
+        function showLoading() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('policy-content').classList.add('hidden');
         }
 
-        async function downloadAllAttachments(materialId) {
-            try {
-                // 다운로드 카운트 업데이트
-                await updateDownloadCount(materialId);
-                
-                // 전체 자료 다운로드
-                window.open(`${API_BASE_URL}/policy-materials/${materialId}/download`, '_blank');
-            } catch (error) {
-                console.error('다운로드 오류:', error);
-                // 에러가 있어도 다운로드는 시도
-                window.open(`${API_BASE_URL}/policy-materials/${materialId}/download`, '_blank');
-            }
+        function hideLoading() {
+            document.getElementById('loading').classList.add('hidden');
         }
 
-        async function updateDownloadCount(materialId) {
-            try {
-                await fetch(`${API_BASE_URL}/policy-materials/${materialId}/download-count`, {
-                    method: 'POST'
-                });
-            } catch (error) {
-                console.error('다운로드 수 업데이트 오류:', error);
-            }
+        function showError(message) {
+            document.getElementById('error').querySelector('div').textContent = message;
+            document.getElementById('error').classList.remove('hidden');
+            document.getElementById('loading').classList.add('hidden');
         }
-
-        function shareContent() {
-            if (navigator.share) {
-                navigator.share({
-                    title: document.getElementById('policy-title').textContent,
-                    url: window.location.href
-                });
-            } else {
-                // 폴백: URL 복사
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('링크가 클립보드에 복사되었습니다.');
-                });
-            }
-        }
-
-        function showError() {
-            document.getElementById('loading-state').classList.add('hidden');
-            document.getElementById('error-state').classList.remove('hidden');
-        }
-
-        // 페이지 로드 시 정책자료 로드
-        document.addEventListener('DOMContentLoaded', function() {
-            loadPolicyMaterial();
-        });
     </script>
 </body>
 </html> 

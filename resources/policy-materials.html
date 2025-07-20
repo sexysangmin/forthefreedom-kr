@@ -23,99 +23,99 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .file-item {
+            transition: all 0.2s ease;
+        }
+        .file-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <!-- Hero Section -->
-    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
-        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
-        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">정책자료</h1>
-            <p style="font-size:1.25rem; margin-top:1rem; opacity:0.9;">7대 핵심 정책과 분야별 세부 정책 자료를 확인하세요</p>
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../resources.html" class="text-gray-500 hover:text-red-600">자료실</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">정책자료</li>
+                </ol>
+            </nav>
         </div>
     </section>
 
-    <main style="position:relative; z-index:1; background:#fff;" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- 정책 개요 -->
-            <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">자유와혁신 정책자료</h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        국민과 함께 만들어가는 미래, 혁신으로 여는 새로운 대한민국을 위한 정책 자료를 소개합니다.
-                    </p>
+    <main class="bg-white">
+        <section class="py-16">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 페이지 헤더 -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">정책자료</h1>
+                    <p class="text-xl text-gray-600">자유와혁신의 정책 자료를 다운로드하세요</p>
                 </div>
-                
-                <div id="policy-stats" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- 통계는 동적으로 로드됩니다 -->
-                </div>
-            </div>
 
-            <!-- 정책자료 목록 -->
-            <div id="policy-materials-container" class="space-y-8">
                 <!-- 로딩 상태 -->
-                <div id="loading-state" class="flex justify-center py-12">
-                    <div class="text-center">
-                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                        <p class="text-gray-600">정책자료를 불러오는 중...</p>
-                    </div>
+                <div id="loading-state" class="text-center py-16">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+                    <p class="text-gray-600">정책자료를 불러오는 중...</p>
                 </div>
 
                 <!-- 에러 상태 -->
-                <div id="error-state" class="hidden bg-red-50 border border-red-200 rounded-lg p-8 text-center">
-                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
+                <div id="error-state" class="hidden text-center py-16">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
+                        <i class="fas fa-exclamation-triangle text-red-500 text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold text-red-800 mb-2">불러오기 실패</h3>
+                        <p class="text-red-600 mb-4">정책자료를 불러오는 중 오류가 발생했습니다.</p>
+                        <button onclick="loadPolicyMaterials()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                            다시 시도
+                        </button>
                     </div>
-                    <h3 class="text-lg font-medium text-red-800 mb-2">데이터를 불러올 수 없습니다</h3>
-                    <p class="text-red-600 mb-4">정책자료 정보를 가져오는 중 오류가 발생했습니다.</p>
-                    <button onclick="loadPolicyMaterials()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
-                        다시 시도
-                    </button>
                 </div>
 
                 <!-- 빈 상태 -->
-                <div id="empty-state" class="hidden bg-gray-50 border border-gray-200 rounded-lg p-12 text-center">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-file-alt text-gray-400 text-2xl"></i>
+                <div id="empty-state" class="hidden text-center py-16">
+                    <div class="max-w-md mx-auto">
+                        <i class="fas fa-file-alt text-gray-400 text-6xl mb-6"></i>
+                        <h3 class="text-xl font-semibold text-gray-600 mb-2">정책자료가 없습니다</h3>
+                        <p class="text-gray-500">아직 등록된 정책자료가 없습니다.</p>
                     </div>
-                    <h3 class="text-lg font-medium text-gray-700 mb-2">등록된 정책자료가 없습니다</h3>
-                    <p class="text-gray-500">정책자료가 등록되면 이곳에 표시됩니다.</p>
                 </div>
 
-                <!-- 정책자료 목록 (동적으로 생성) -->
-                <div id="policy-materials-list" class="hidden space-y-6">
-                    <!-- 정책자료들이 여기에 동적으로 추가됩니다 -->
+                <!-- 정책자료 목록 -->
+                <div id="policy-materials-list" class="hidden space-y-4">
+                    <!-- 동적으로 생성됨 -->
+                </div>
+
+                <!-- 페이지네이션 -->
+                <div id="pagination-container" class="hidden mt-12 flex justify-center">
+                    <!-- 동적으로 생성됨 -->
                 </div>
             </div>
-
-            <!-- 페이지네이션 -->
-            <div id="pagination-container" class="hidden mt-8 flex justify-center">
-                <!-- 페이지네이션이 여기에 동적으로 추가됩니다 -->
-            </div>
-        </div>
+        </section>
     </main>
     
     <script src="../nav.js"></script>
     <script>
         loadNavigation();
 
-        const API_BASE_URL = 'http://localhost:9000/api';
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE_URL = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
         let currentPage = 1;
         const itemsPerPage = 10;
-
-        // 정책자료 카테고리별 색상 매핑
-        const categoryColors = {
-            '경제성장': { bg: 'bg-blue-100', text: 'text-blue-800', border: 'border-blue-500', icon: 'fas fa-chart-line' },
-            '교육혁신': { bg: 'bg-green-100', text: 'text-green-800', border: 'border-green-500', icon: 'fas fa-graduation-cap' },
-            '국가안보': { bg: 'bg-red-100', text: 'text-red-800', border: 'border-red-500', icon: 'fas fa-shield-alt' },
-            '사회복지': { bg: 'bg-purple-100', text: 'text-purple-800', border: 'border-purple-500', icon: 'fas fa-users' },
-            '과학기술': { bg: 'bg-indigo-100', text: 'text-indigo-800', border: 'border-indigo-500', icon: 'fas fa-rocket' },
-            '환경보호': { bg: 'bg-teal-100', text: 'text-teal-800', border: 'border-teal-500', icon: 'fas fa-leaf' },
-            '외교통상': { bg: 'bg-yellow-100', text: 'text-yellow-800', border: 'border-yellow-500', icon: 'fas fa-globe' },
-            '기타': { bg: 'bg-gray-100', text: 'text-gray-800', border: 'border-gray-500', icon: 'fas fa-file-alt' }
-        };
 
         async function loadPolicyMaterials(page = 1) {
             currentPage = page;
@@ -139,16 +139,14 @@
 
                 if (data.data.length === 0) {
                     document.getElementById('empty-state').classList.remove('hidden');
-                    updatePolicyStats(0);
                     return;
                 }
 
                 renderPolicyMaterials(data.data);
                 renderPagination(data.pagination);
-                updatePolicyStats(data.pagination.total);
 
             } catch (error) {
-                console.error('정책자료 로딩 오류:', error);
+                console.error('정책자료 로드 실패:', error);
                 document.getElementById('loading-state').classList.add('hidden');
                 document.getElementById('error-state').classList.remove('hidden');
             }
@@ -156,165 +154,129 @@
 
         function renderPolicyMaterials(materials) {
             const container = document.getElementById('policy-materials-list');
-            container.innerHTML = '';
-
-            materials.forEach(material => {
-                const categoryStyle = categoryColors[material.category] || categoryColors['기타'];
-                const materialCard = createPolicyMaterialCard(material, categoryStyle);
-                container.appendChild(materialCard);
-            });
-
-            document.getElementById('policy-materials-list').classList.remove('hidden');
-        }
-
-        function createPolicyMaterialCard(material, categoryStyle) {
-            const card = document.createElement('div');
-            card.className = 'bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 ' + categoryStyle.border;
             
-            const formattedDate = new Date(material.createdAt).toLocaleDateString('ko-KR');
-            const attachmentsCount = material.attachments ? material.attachments.length : 0;
-            
-            card.innerHTML = `
-                <div class="p-6">
-                    <div class="flex items-start justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${categoryStyle.bg} ${categoryStyle.text}">
-                                    <i class="${categoryStyle.icon} mr-2"></i>${material.category}
-                                </span>
-                                <span class="text-gray-500 text-sm">${formattedDate}</span>
-                                ${material.tags ? material.tags.map(tag => `
-                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs bg-gray-100 text-gray-600">
-                                        ${tag}
-                                    </span>
-                                `).join('') : ''}
+            const html = materials.map(material => {
+                const hasFiles = material.attachments && material.attachments.length > 0;
+                const fileCount = hasFiles ? material.attachments.length : 0;
+                
+                return `
+                    <div class="file-item bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-file-pdf text-red-500 text-xl mr-3"></i>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-900 hover:text-red-600 cursor-pointer" 
+                                            onclick="window.location.href='policy-material-detail.html?id=${material._id}'">
+                                            ${material.title}
+                                        </h3>
+                                        <div class="flex items-center text-sm text-gray-500 mt-1">
+                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-3">${material.category}</span>
+                                            <span><i class="fas fa-calendar mr-1"></i>${formatDate(material.createdAt)}</span>
+                                            ${hasFiles ? `<span class="ml-3"><i class="fas fa-paperclip mr-1"></i>${fileCount}개 파일</span>` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-4">${material.excerpt}</p>
+                                
+                                ${hasFiles ? `
+                                <div class="flex flex-wrap gap-2">
+                                    ${material.attachments.map(file => `
+                                        <button onclick="downloadFile('${file.filename}', '${file.originalName || file.filename}')" 
+                                                class="inline-flex items-center px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition-colors">
+                                            <i class="fas fa-download mr-1"></i>
+                                            ${file.originalName || file.filename}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                                ` : ''}
                             </div>
-                            <h4 class="text-xl font-semibold text-gray-900 mb-3 hover:text-blue-600 cursor-pointer" 
-                                onclick="goToPolicyMaterialDetail('${material._id}')">
-                                ${material.title}
-                            </h4>
-                            <p class="text-gray-600 mb-4 line-clamp-2">
-                                ${material.excerpt || material.content.substring(0, 150) + '...'}
-                            </p>
-                            <div class="flex items-center gap-6 text-sm text-gray-500">
-                                ${attachmentsCount > 0 ? `<span><i class="fas fa-paperclip mr-1"></i>${attachmentsCount}개 첨부</span>` : ''}
-                                ${material.downloadCount ? `<span><i class="fas fa-download mr-1"></i>${material.downloadCount}회 다운로드</span>` : ''}
-                                <span><i class="fas fa-eye mr-1"></i>상세보기</span>
+                            <div class="ml-6 text-right">
+                                <div class="text-sm text-gray-500">
+                                    <div>조회 ${material.views || 0}회</div>
+                                    <div>다운로드 ${material.downloadCount || 0}회</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ml-6 flex flex-col gap-2">
-                            <button onclick="goToPolicyMaterialDetail('${material._id}')" 
-                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                <i class="fas fa-eye mr-2"></i>상세보기
-                            </button>
-                            ${attachmentsCount > 0 ? `
-                                <button onclick="downloadPolicyMaterial('${material._id}')" 
-                                        class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                                    <i class="fas fa-download mr-2"></i>다운로드
-                                </button>
-                            ` : ''}
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+            }).join('');
             
-            return card;
+            container.innerHTML = html;
+            container.classList.remove('hidden');
         }
 
         function renderPagination(pagination) {
-            const container = document.getElementById('pagination-container');
+            if (!pagination || pagination.pages <= 1) return;
             
-            if (pagination.pages <= 1) {
-                container.classList.add('hidden');
-                return;
-            }
-
-            container.innerHTML = '';
-            container.classList.remove('hidden');
-
-            const paginationDiv = document.createElement('div');
-            paginationDiv.className = 'flex items-center gap-2';
-
-            // 이전 페이지
+            const container = document.getElementById('pagination-container');
+            let html = '<div class="flex items-center space-x-2">';
+            
+            // 이전 페이지 버튼
             if (pagination.hasPrev) {
-                const prevBtn = document.createElement('button');
-                prevBtn.className = 'px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50';
-                prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-                prevBtn.onclick = () => loadPolicyMaterials(currentPage - 1);
-                paginationDiv.appendChild(prevBtn);
+                html += `<button onclick="loadPolicyMaterials(${currentPage - 1})" 
+                                class="px-3 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>`;
             }
-
+            
             // 페이지 번호들
             const startPage = Math.max(1, currentPage - 2);
-            const endPage = Math.min(pagination.pages, startPage + 4);
-
+            const endPage = Math.min(pagination.pages, currentPage + 2);
+            
             for (let i = startPage; i <= endPage; i++) {
-                const pageBtn = document.createElement('button');
-                pageBtn.className = `px-3 py-2 border rounded-lg ${
-                    i === currentPage 
-                        ? 'bg-blue-600 text-white border-blue-600' 
-                        : 'bg-white border-gray-300 hover:bg-gray-50'
-                }`;
-                pageBtn.textContent = i;
-                pageBtn.onclick = () => loadPolicyMaterials(i);
-                paginationDiv.appendChild(pageBtn);
+                const isActive = i === currentPage;
+                html += `<button onclick="loadPolicyMaterials(${i})" 
+                                class="px-3 py-2 ${isActive ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'} 
+                                       rounded transition-colors">
+                            ${i}
+                        </button>`;
             }
-
-            // 다음 페이지
+            
+            // 다음 페이지 버튼
             if (pagination.hasNext) {
-                const nextBtn = document.createElement('button');
-                nextBtn.className = 'px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50';
-                nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-                nextBtn.onclick = () => loadPolicyMaterials(currentPage + 1);
-                paginationDiv.appendChild(nextBtn);
+                html += `<button onclick="loadPolicyMaterials(${currentPage + 1})" 
+                                class="px-3 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>`;
             }
-
-            container.appendChild(paginationDiv);
+            
+            html += '</div>';
+            container.innerHTML = html;
+            container.classList.remove('hidden');
         }
 
-        function updatePolicyStats(totalCount) {
-            const statsContainer = document.getElementById('policy-stats');
-            statsContainer.innerHTML = `
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-blue-600 mb-2">${totalCount}</div>
-                    <div class="text-gray-600">총 정책자료</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-green-600 mb-2">7개</div>
-                    <div class="text-gray-600">정책 분야</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-purple-600 mb-2">실시간</div>
-                    <div class="text-gray-600">업데이트</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-orange-600 mb-2">2025</div>
-                    <div class="text-gray-600">목표 연도</div>
-                </div>
-            `;
-        }
-
-        function goToPolicyMaterialDetail(id) {
-            window.location.href = `policy-material-detail.html?id=${id}`;
-        }
-
-        async function downloadPolicyMaterial(id) {
+        // 파일 다운로드
+        function downloadFile(filename, displayName) {
             try {
-                // 다운로드 카운트 업데이트
-                await fetch(`${API_BASE_URL}/policy-materials/${id}/download-count`, {
-                    method: 'POST'
-                });
+                const downloadUrl = `/resources/documents/${filename}`;
                 
-                // 파일 다운로드
-                window.open(`${API_BASE_URL}/policy-materials/${id}/download`, '_blank');
+                // 링크 생성하여 다운로드
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = displayName || filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
             } catch (error) {
-                console.error('다운로드 오류:', error);
+                console.error('파일 다운로드 오류:', error);
                 // 에러가 있어도 다운로드는 시도
-                window.open(`${API_BASE_URL}/policy-materials/${id}/download`, '_blank');
+                window.open(`/resources/documents/${filename}`, '_blank');
             }
         }
 
-        // 페이지 로드 시 정책자료 목록 로드
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // 페이지 로드 시 초기화
         document.addEventListener('DOMContentLoaded', function() {
             loadPolicyMaterials();
         });

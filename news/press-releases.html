@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>보도자료 - 자유와혁신</title>
+    <title>대변인 보도자료 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,51 +32,112 @@
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">보도자료</h1>
-            <p style="font-size:1.25rem; margin-top:1rem; opacity:0.9;">언론을 통해 발표한 정책과 입장을 확인하세요</p>
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">대변인 보도자료</h1>
+            <p style="font-size:1.25rem; margin-top:1rem; opacity:0.9;">자유와혁신 대변인의 공식 논평 및 보도자료입니다</p>
         </div>
     </section>
 
-    <main class="py-16 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 상단 정보 및 검색 -->
+            <div class="mb-8">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">대변인</h2>
+                        <p class="text-gray-600">자유와혁신 대변인 공식 논평 및 보도자료입니다.</p>
+                                </div>
+                    <div class="mt-4 md:mt-0">
+                        <div class="flex space-x-2">
+                            <button onclick="filterByType('all')" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">전체</button>
+                            <button onclick="filterByType('보도자료')" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">보도자료</button>
+                            <button onclick="filterByType('논평')" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">논평</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 검색 영역 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">검색날짜</label>
+                            <input type="date" id="search-date" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500">
+                                </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">구분</label>
+                            <select id="search-category" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500">
+                                <option value="">전체</option>
+                                <option value="제목">제목</option>
+                                <option value="내용">내용</option>
+                            </select>
+                            </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">검색어</label>
+                            <input type="text" id="search-keyword" placeholder="검색어를 입력하세요" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500">
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="searchPosts()" class="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                                <i class="fas fa-search mr-2"></i>검색
+                            </button>
+                        </div>
+                    </div>
+                                </div>
+                            </div>
+
+            <!-- 게시물 개수 표시 -->
+            <div class="mb-4">
+                <p class="text-gray-600">총 <span id="total-count" class="font-semibold text-red-600">0</span>건의 글이 있습니다.</p>
+            </div>
+
             <!-- 로딩 상태 -->
             <div id="loading" class="text-center py-12">
                 <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
                 <p class="mt-4 text-gray-600">보도자료를 불러오는 중...</p>
-            </div>
+                        </div>
 
             <!-- 에러 상태 -->
             <div id="error" class="text-center py-12 hidden">
                 <div class="text-red-600 mb-4">
                     <i class="fas fa-exclamation-triangle text-4xl"></i>
-                </div>
+                                    </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">데이터를 불러올 수 없습니다</h3>
                 <p class="text-gray-600 mb-4">서버 연결을 확인해주세요.</p>
-                <button onclick="loadPressReleases()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
-                    다시 시도
-                </button>
-            </div>
+                <button onclick="loadPressReleases()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">다시 시도</button>
+                                </div>
 
             <!-- 빈 상태 -->
             <div id="empty" class="text-center py-12 hidden">
                 <div class="text-gray-400 mb-4">
                     <i class="fas fa-newspaper text-4xl"></i>
-                </div>
+                                </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">등록된 보도자료가 없습니다</h3>
                 <p class="text-gray-600">곧 새로운 보도자료가 업데이트될 예정입니다.</p>
+                            </div>
+
+            <!-- 게시판 테이블 -->
+            <div id="board-container" class="hidden">
+                <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                    <!-- 테이블 헤더 -->
+                    <div class="bg-gray-50 border-b border-gray-200">
+                        <div class="grid grid-cols-12 gap-4 px-6 py-4 text-sm font-medium text-gray-700">
+                            <div class="col-span-1 text-center">번호</div>
+                            <div class="col-span-2 text-center">구분</div>
+                            <div class="col-span-7">제목</div>
+                            <div class="col-span-2 text-center">등록일</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 테이블 내용 -->
+                    <div id="board-list">
+                        <!-- 동적으로 생성됨 -->
+                    </div>
+                </div>
             </div>
 
-            <!-- 보도자료 목록 -->
-            <div id="press-container" class="space-y-6 hidden">
-                <!-- 동적으로 생성됨 -->
-            </div>
-
-            <!-- 더보기 버튼 -->
-            <div id="load-more-container" class="text-center mt-12 hidden">
-                <button id="load-more-btn" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
-                    <i class="fas fa-plus mr-2"></i>
-                    더보기
-                </button>
+            <!-- 페이지네이션 -->
+            <div id="pagination" class="flex justify-center mt-8 hidden">
+                <nav class="flex space-x-2">
+                    <!-- 동적으로 생성됨 -->
+                </nav>
             </div>
         </div>
     </main>
@@ -86,10 +147,15 @@
     <script>
         loadNavigation();
         
-        // API 설정
-        const API_BASE = window.API_BASE || 'http://localhost:9000/api';
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
         let currentPage = 1;
         let totalPages = 1;
+        let totalCount = 0;
+        let currentFilter = 'all';
         let isLoading = false;
 
         // 페이지 로드 시 보도자료 목록 로드
@@ -97,153 +163,105 @@
             loadPressReleases();
         });
 
-        // 보도자료 목록 로드
-        async function loadPressReleases(append = false) {
+        // 보도자료 불러오기 (press-releases + spokesperson 통합)
+        async function loadPressReleases(page = 1) {
             if (isLoading) return;
             
             try {
                 isLoading = true;
+                showLoading();
                 
-                if (!append) {
-                    showLoading();
-                    currentPage = 1;
+                currentPage = page;
+                
+                // 대변인 API만 호출
+                const spokespersonResponse = await fetch(`${API_BASE}/spokesperson?page=${page}&limit=20&sort=-createdAt&status=published${currentFilter !== 'all' ? `&category=${currentFilter}` : ''}`);
+                const spokespersonData = await spokespersonResponse.json();
+
+                console.log('📦 대변인 API 응답:', spokespersonData);
+
+                if (!spokespersonData.success) {
+                    throw new Error(spokespersonData.message || '데이터를 불러오는데 실패했습니다.');
                 }
 
-                const response = await fetch(`${API_BASE}/press-releases?page=${currentPage}&limit=6&sort=-createdAt&status=published`);
+                const data = spokespersonData.data || [];
+                const pagination = spokespersonData.pagination || {};
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
-                const data = await response.json();
-
-                if (data.success) {
-                    totalPages = data.pagination.pages;
-                    
-                    if (data.data.length === 0 && currentPage === 1) {
-                        showEmpty();
-                    } else {
-                        if (append) {
-                            appendPressReleases(data.data);
-                        } else {
-                            renderPressReleases(data.data);
-                        }
-                        showContent();
-                        updateLoadMoreButton();
-                    }
+                totalPages = pagination.totalPages || 1;
+                totalCount = pagination.total || 0;
+                
+                updateTotalCount();
+                
+                if (data.length === 0 && page === 1) {
+                    showEmpty();
                 } else {
-                    throw new Error(data.message || '데이터를 불러오는데 실패했습니다');
+                    renderBoard(data);
+                    showContent();
+                    renderPagination();
                 }
 
             } catch (error) {
                 console.error('Error loading press releases:', error);
-                if (!append) {
-                    showError();
-                }
+                showError();
             } finally {
                 isLoading = false;
             }
         }
 
-        // 보도자료 목록 렌더링
-        function renderPressReleases(pressReleases) {
-            const container = document.getElementById('press-container');
+        // 게시판 렌더링
+        function renderBoard(items) {
+            const container = document.getElementById('board-list');
             container.innerHTML = '';
             
-            pressReleases.forEach(press => {
-                container.appendChild(createPressReleaseElement(press));
-            });
-        }
-
-        // 보도자료 목록 추가 (더보기)
-        function appendPressReleases(pressReleases) {
-            const container = document.getElementById('press-container');
-            
-            pressReleases.forEach(press => {
-                container.appendChild(createPressReleaseElement(press));
-            });
-        }
-
-        // 보도자료 요소 생성
-        function createPressReleaseElement(press) {
-            const article = document.createElement('article');
-            article.className = 'bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer';
-            
-            // 카테고리별 색상 설정
-            const categoryColors = {
-                '정책발표': 'bg-red-100 text-red-800',
-                '성명서': 'bg-blue-100 text-blue-800',
-                '논평': 'bg-green-100 text-green-800',
-                '기타': 'bg-gray-100 text-gray-800'
-            };
-
-            // 중요도별 표시
-            const isImportant = press.category === '정책발표' || press.tags?.includes('중요');
-            const borderClass = isImportant ? 'border-l-4 border-red-500' : '';
-
-            article.className += ` ${borderClass}`;
-            
-            article.innerHTML = `
-                <div class="p-6" onclick="viewPressRelease('${press._id}')">
+            items.forEach((item, index) => {
+                // 순서 번호 올바르게 계산
+                const displayNumber = totalCount - ((currentPage - 1) * 20) - index;
+                const categoryClass = getCategoryClass(item.category);
+                
+                // source에 따라 적절한 링크 생성
+                const detailPageUrl = `press-release-detail.html?id=${item._id}`;
+                
+                const card = document.createElement('div');
+                card.className = 'bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer';
+                card.onclick = () => window.location.href = detailPageUrl;
+                
+                // 대변인 콘텐츠인 경우 추가 정보 표시
+                const sourceLabel = '';
+                const urgentMark = item.isUrgent ? '<span class="text-red-500 font-bold">[긴급]</span> ' : '';
+                
+                card.innerHTML = `
                     <div class="flex items-start justify-between">
                         <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-3">
-                                ${isImportant ? `
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                                        <i class="fas fa-star mr-2"></i>중요
-                                    </span>
-                                ` : ''}
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${categoryColors[press.category] || categoryColors['기타']}">
-                                    <i class="fas fa-file-alt mr-2"></i>${press.category || '보도자료'}
-                                </span>
-                                <span class="text-gray-500 text-sm">${formatDate(press.createdAt)}</span>
+                            <div class="flex items-center mb-2">
+                                <span class="text-sm font-medium text-gray-500 mr-3">${displayNumber}</span>
+                                <span class="category-badge ${categoryClass}">${item.category || '일반'}${sourceLabel}</span>
                             </div>
-                            <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                                ${press.title}
-                            </h2>
-                            <p class="text-gray-600 leading-relaxed">
-                                ${press.excerpt || press.content.substring(0, 150) + '...'}
-                            </p>
-                            ${press.tags && press.tags.length > 0 ? `
-                                <div class="mt-3 flex flex-wrap gap-2">
-                                    ${press.tags.map(tag => `
-                                        <span class="inline-block px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">
-                                            #${tag}
-                                        </span>
-                                    `).join('')}
-                                </div>
-                            ` : ''}
-                            <div class="mt-4 flex items-center justify-between">
-                                <div class="flex items-center gap-4">
-                                    <span class="text-sm text-gray-500">
-                                        <i class="fas fa-user mr-2"></i>${press.author || '대변인'}
-                                    </span>
-                                    <span class="text-sm text-gray-500">
-                                        <i class="fas fa-eye mr-2"></i>조회 ${press.views || 0}
-                                    </span>
-                                </div>
-                                ${press.originalUrl ? `
-                                    <a href="${press.originalUrl}" target="_blank" rel="noopener noreferrer" 
-                                       class="inline-flex items-center px-3 py-1 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-                                       onclick="event.stopPropagation()">
-                                        <i class="fas fa-external-link-alt mr-2"></i>원문보기
-                                    </a>
-                                ` : ''}
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2 hover:text-red-600 transition-colors">
+                                ${urgentMark}${item.title}
+                            </h3>
+                            ${item.excerpt ? `<p class="text-gray-600 text-sm mb-3">${item.excerpt}</p>` : ''}
+                            <div class="flex items-center text-sm text-gray-500 space-x-4">
+                                <span>${item.author || '대변인'}</span>
+                                <span>${formatDate(item.createdAt)}</span>
+                                <span>조회 ${item.views || 0}</span>
+                                ${item.spokespersonName ? `<span>발언자: ${item.spokespersonName}</span>` : ''}
                             </div>
                         </div>
                         <div class="ml-4">
                             <i class="fas fa-chevron-right text-gray-400"></i>
                         </div>
                     </div>
-                </div>
-            `;
-            
-            return article;
+                `;
+                
+                container.appendChild(card);
+            });
         }
 
-        // 보도자료 상세 보기
-        function viewPressRelease(id) {
-            window.location.href = `press-release-detail.html?id=${id}`;
+        // 전체 개수 업데이트 (안전하게 처리)
+        function updateTotalCount() {
+            const totalCountElement = document.getElementById('total-count');
+            if (totalCountElement && typeof totalCount === 'number') {
+                totalCountElement.textContent = totalCount.toLocaleString();
+            }
         }
 
         // 날짜 포맷팅
@@ -253,23 +271,7 @@
                 year: 'numeric',
                 month: '2-digit',
                 day: '2-digit'
-            });
-        }
-
-        // 더보기 버튼 업데이트
-        function updateLoadMoreButton() {
-            const container = document.getElementById('load-more-container');
-            const button = document.getElementById('load-more-btn');
-            
-            if (currentPage < totalPages) {
-                container.classList.remove('hidden');
-                button.onclick = function() {
-                    currentPage++;
-                    loadPressReleases(true);
-                };
-            } else {
-                container.classList.add('hidden');
-            }
+            }).replace(/\./g, '-').replace(/ /g, '');
         }
 
         // UI 상태 관리
@@ -277,32 +279,188 @@
             document.getElementById('loading').classList.remove('hidden');
             document.getElementById('error').classList.add('hidden');
             document.getElementById('empty').classList.add('hidden');
-            document.getElementById('press-container').classList.add('hidden');
-            document.getElementById('load-more-container').classList.add('hidden');
+            document.getElementById('board-container').classList.add('hidden');
+            document.getElementById('pagination').classList.add('hidden');
         }
 
         function showError() {
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('error').classList.remove('hidden');
             document.getElementById('empty').classList.add('hidden');
-            document.getElementById('press-container').classList.add('hidden');
-            document.getElementById('load-more-container').classList.add('hidden');
+            document.getElementById('board-container').classList.add('hidden');
+            document.getElementById('pagination').classList.add('hidden');
         }
 
         function showEmpty() {
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('error').classList.add('hidden');
             document.getElementById('empty').classList.remove('hidden');
-            document.getElementById('press-container').classList.add('hidden');
-            document.getElementById('load-more-container').classList.add('hidden');
+            document.getElementById('board-container').classList.add('hidden');
+            document.getElementById('pagination').classList.add('hidden');
         }
 
         function showContent() {
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('error').classList.add('hidden');
             document.getElementById('empty').classList.add('hidden');
-            document.getElementById('press-container').classList.remove('hidden');
+            document.getElementById('board-container').classList.remove('hidden');
+        }
+
+        // 보도자료 상세 보기
+        function openPressRelease(id) {
+            window.location.href = `press-release-detail.html?id=${id}`;
+        }
+
+        // 카테고리 클래스 반환
+        function getCategoryClass(category) {
+            switch (category) {
+                case '논평':
+                    return 'bg-red-100 text-red-800';
+                case '보도자료':
+                    return 'bg-blue-100 text-blue-800';
+                case '정책발표':
+                    return 'bg-green-100 text-green-800';
+                case '성명서':
+                    return 'bg-purple-100 text-purple-800';
+                default:
+                    return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        // 페이지네이션 렌더링
+        function renderPagination() {
+            const paginationContainer = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                paginationContainer.classList.add('hidden');
+                return;
+            }
+            
+            paginationContainer.classList.remove('hidden');
+            const nav = paginationContainer.querySelector('nav');
+            nav.innerHTML = '';
+            
+            // 이전 버튼
+            const prevBtn = document.createElement('button');
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.className = `px-3 py-2 rounded-lg border ${currentPage === 1 ? 'text-gray-400 border-gray-200 cursor-not-allowed' : 'text-gray-700 border-gray-300 hover:bg-gray-50'}`;
+            prevBtn.disabled = currentPage === 1;
+            if (currentPage > 1) {
+                prevBtn.onclick = () => loadPressReleases(currentPage - 1);
+            }
+            nav.appendChild(prevBtn);
+            
+            // 페이지 번호들
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.textContent = i;
+                pageBtn.className = `px-3 py-2 rounded-lg border ${i === currentPage ? 'bg-red-600 text-white border-red-600' : 'text-gray-700 border-gray-300 hover:bg-gray-50'}`;
+                if (i !== currentPage) {
+                    pageBtn.onclick = () => loadPressReleases(i);
+                }
+                nav.appendChild(pageBtn);
+            }
+            
+            // 다음 버튼
+            const nextBtn = document.createElement('button');
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.className = `px-3 py-2 rounded-lg border ${currentPage === totalPages ? 'text-gray-400 border-gray-200 cursor-not-allowed' : 'text-gray-700 border-gray-300 hover:bg-gray-50'}`;
+            nextBtn.disabled = currentPage === totalPages;
+            if (currentPage < totalPages) {
+                nextBtn.onclick = () => loadPressReleases(currentPage + 1);
+            }
+            nav.appendChild(nextBtn);
+        }
+
+        // 타입별 필터링
+        function filterByType(type) {
+            currentFilter = type;
+            currentPage = 1;
+            
+            // 버튼 스타일 업데이트
+            document.querySelectorAll('button[onclick^="filterByType"]').forEach(btn => {
+                btn.className = btn.className.replace('bg-red-600 text-white', 'border border-gray-300 text-gray-700');
+                btn.className = btn.className.replace('border-red-600', 'border-gray-300');
+                btn.className += ' hover:bg-gray-50 transition-colors';
+            });
+            
+            event.target.className = 'px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors';
+            
+            // 새로운 통합 로직 사용
+            loadPressReleases(1);
+        }
+
+        // 검색 기능 (두 API 모두 검색)
+        async function searchPosts() {
+            const searchDate = document.getElementById('search-date').value;
+            const searchCategory = document.getElementById('search-category').value;
+            const searchKeyword = document.getElementById('search-keyword').value;
+            
+            try {
+                // 두 API에 동일한 검색 조건 적용
+                let spokespersonUrl = `${API_BASE}/spokesperson?page=1&limit=50&sort=-createdAt&status=published`;
+                
+                if (currentFilter !== 'all') {
+                    spokespersonUrl += `&category=${currentFilter}`;
+                }
+                
+                if (searchDate) {
+                    spokespersonUrl += `&date=${searchDate}`;
+                }
+                
+                if (searchKeyword && searchCategory) {
+                    if (searchCategory === '제목') {
+                        spokespersonUrl += `&title=${encodeURIComponent(searchKeyword)}`;
+                    } else if (searchCategory === '내용') {
+                        spokespersonUrl += `&content=${encodeURIComponent(searchKeyword)}`;
+                    }
+                } else if (searchKeyword) {
+                    spokespersonUrl += `&search=${encodeURIComponent(searchKeyword)}`;
+                }
+                
+                currentPage = 1;
+                
+                // 대변인 API 검색
+                const spokespersonResponse = await fetch(spokespersonUrl);
+                const spokespersonData = await spokespersonResponse.json();
+                
+                if (!spokespersonData.success) {
+                    throw new Error(spokespersonData.message || '검색 결과를 불러오는데 실패했습니다.');
+                }
+
+                const data = spokespersonData.data || [];
+                const pagination = spokespersonData.pagination || {};
+                
+                totalPages = pagination.totalPages || 1;
+                totalCount = pagination.total || 0;
+                
+                updateTotalCount();
+                
+                if (data.length === 0) {
+                    showEmpty();
+                } else {
+                    renderBoard(data);
+                    showContent();
+                    renderPagination();
+                }
+                
+            } catch (error) {
+                console.error('검색 오류:', error);
+                showError();
+            }
         }
     </script>
+    
+    <style>
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
 </body>
 </html> 

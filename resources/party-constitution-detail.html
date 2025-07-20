@@ -23,365 +23,784 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    
     <style>
-        .prose {
-            max-width: none;
+        .attachment-item {
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            transition: background-color 0.2s;
         }
-        .prose h1 { @apply text-3xl font-bold text-gray-900 mt-8 mb-4; }
-        .prose h2 { @apply text-2xl font-semibold text-gray-800 mt-6 mb-3; }
-        .prose h3 { @apply text-xl font-medium text-gray-800 mt-5 mb-2; }
-        .prose p { @apply text-gray-700 leading-relaxed mb-4; }
-        .prose ul { @apply list-disc list-inside text-gray-700 mb-4 ml-4; }
-        .prose ol { @apply list-decimal list-inside text-gray-700 mb-4 ml-4; }
-        .prose li { @apply mb-1; }
-        .prose strong { @apply font-semibold text-gray-900; }
-        .prose em { @apply italic; }
-        .prose blockquote { @apply border-l-4 border-red-200 pl-4 italic text-gray-600 mb-4; }
-        .prose code { @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono; }
-        .prose pre { @apply bg-gray-100 p-4 rounded overflow-x-auto mb-4; }
-        .prose a { @apply text-red-600 hover:text-red-800 underline; }
-        .prose img { @apply max-w-full h-auto rounded-lg shadow-sm mb-4; }
-        .prose table { @apply min-w-full border-collapse border border-gray-300 mb-4; }
-        .prose th { @apply border border-gray-300 px-4 py-2 bg-gray-50 font-semibold; }
-        .prose td { @apply border border-gray-300 px-4 py-2; }
+        
+        .attachment-item:hover {
+            background: #e9ecef;
+        }
+        
+        .attachment-icon {
+            font-size: 1.2rem;
+            margin-right: 0.75rem;
+            color: #6c757d;
+        }
+        
+        .attachment-info {
+            flex: 1;
+        }
+        
+        .attachment-name {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+        
+        .attachment-size {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .content-body {
+            line-height: 1.8;
+        }
+        
+        .content-body h1, .content-body h2, .content-body h3 {
+            margin: 1.5rem 0 1rem 0;
+            font-weight: bold;
+        }
+        
+        .content-body h1 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-body h2 {
+            font-size: 1.5rem;
+        }
+        
+        .content-body h3 {
+            font-size: 1.3rem;
+        }
+        
+        .content-body p {
+            margin-bottom: 1rem;
+        }
+        
+        .content-body ul, .content-body ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .content-body li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .content-body blockquote {
+            border-left: 4px solid #A50034;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .content-body img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        
+        .edit-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .constitution-header {
+            background: linear-gradient(135deg, #A50034 0%, #700024 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .constitution-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .chapter-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .chapter-card:hover {
+            border-color: #A50034;
+            box-shadow: 0 4px 12px rgba(165, 0, 52, 0.1);
+        }
+
+        .chapter-card.active {
+            border-color: #A50034;
+            background: #FDF2F4;
+        }
+
+        .chapter-content {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .chapter-content.active {
+            display: block;
+        }
+
+        .article-item {
+            padding: 1rem;
+            border-left: 3px solid #e5e7eb;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .article-item:hover {
+            border-left-color: #A50034;
+            background: #FDF2F4;
+        }
+
+        .toc-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 100px;
+        }
+
+        .toc-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .toc-item:hover {
+            color: #A50034;
+            padding-left: 0.5rem;
+        }
+
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+
+        .version-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            color: white;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <!-- 로딩 상태 -->
-    <div id="loading-state" class="min-h-screen flex items-center justify-center">
-        <div class="text-center">
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
-            <p class="text-gray-600">당헌당규를 불러오는 중...</p>
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../resources.html" class="text-gray-500 hover:text-red-600">자료실</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="party-constitution.html" class="text-gray-500 hover:text-red-600">당헌당규</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">상세보기</li>
+                </ol>
+            </nav>
         </div>
+    </section>
+
+    <main class="bg-white">
+    <!-- 로딩 상태 -->
+        <div id="loading" class="flex justify-center items-center py-16">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mb-4"></div>
+            <p class="text-gray-600">당헌당규를 불러오는 중...</p>
     </div>
 
     <!-- 에러 상태 -->
-    <div id="error-state" class="hidden min-h-screen flex items-center justify-center">
-        <div class="text-center max-w-md mx-auto p-6">
-            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
-            </div>
-            <h2 class="text-xl font-semibold text-gray-900 mb-2">당헌당규를 찾을 수 없습니다</h2>
-            <p class="text-gray-600 mb-6">요청하신 당헌당규가 존재하지 않거나 삭제되었을 수 있습니다.</p>
-            <div class="space-y-3">
-                <button onclick="location.reload()" class="w-full px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
-                    다시 시도
-                </button>
-                <a href="party-constitution.html" class="block w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 text-center">
-                    당헌당규 목록으로 돌아가기
-                </a>
+        <div id="error" class="hidden bg-red-50 border-l-4 border-red-500 p-4 m-4">
+            <div class="flex">
+                <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                <div class="text-red-700">당헌당규를 불러올 수 없습니다.</div>
             </div>
         </div>
+
+        <!-- 당헌당규 상세 내용 -->
+        <div id="constitution-content" class="hidden">
+            <section class="py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- 당헌당규 헤더 -->
+                    <div class="constitution-header relative">
+                        <div class="flex items-center justify-between mb-6 relative z-10">
+                            <div class="flex items-center">
+                                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-balance-scale text-3xl"></i>
+                                </div>
+                                <div>
+                                    <h1 id="constitution-title" class="text-3xl font-bold mb-2">자유와혁신 당헌</h1>
+                                    <div id="constitution-subtitle" class="text-white text-opacity-90">민주주의와 자유를 위한 기본 규범</div>
+        </div>
     </div>
-
-    <!-- 메인 콘텐츠 -->
-    <div id="main-content" class="hidden">
-        <!-- Hero Section -->
-        <section class="hero-section" style="position:relative; height:40vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
-            <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
-            <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-                <nav class="mb-4 text-white text-sm">
-                    <a href="../index.html" class="hover:underline">홈</a>
-                    <span class="mx-2">/</span>
-                    <a href="../resources.html" class="hover:underline">자료실</a>
-                    <span class="mx-2">/</span>
-                    <a href="party-constitution.html" class="hover:underline">당헌당규</a>
-                    <span class="mx-2">/</span>
-                    <span>상세보기</span>
-                </nav>
-                <div id="hero-category" class="mb-2"></div>
-                <h1 id="hero-title" class="text-3xl font-bold mb-2"></h1>
-                <p id="hero-date" class="text-lg opacity-90"></p>
+                            <div class="version-badge">
+                                <div class="text-sm">현행</div>
+                                <div id="constitution-version" class="font-bold">제1호</div>
             </div>
-        </section>
-
-        <main style="position:relative; z-index:1; background:#fff;" class="py-16">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- 당헌당규 메타 정보 -->
-                <div class="bg-white rounded-lg shadow-sm border p-6 mb-8">
-                    <div class="flex flex-wrap items-center justify-between mb-4">
-                        <div class="flex flex-wrap items-center gap-3 mb-2 sm:mb-0">
-                            <span id="category-badge" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium"></span>
-                            <span id="date-info" class="text-gray-500 text-sm"></span>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <span id="download-count" class="text-gray-500 text-sm"></span>
+                        
+                        <div class="grid md:grid-cols-4 gap-4 relative z-10">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold" id="constitution-articles">0</div>
+                                <div class="text-sm opacity-80">조항</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold" id="constitution-chapters">0</div>
+                                <div class="text-sm opacity-80">장</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold" id="constitution-views">0</div>
+                                <div class="text-sm opacity-80">조회수</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold" id="constitution-date">2025.01</div>
+                                <div class="text-sm opacity-80">제정일</div>
+                            </div>
                         </div>
                     </div>
                     
-                    <h1 id="constitution-title" class="text-2xl font-bold text-gray-900 mb-4"></h1>
-                    
-                    <div id="constitution-excerpt" class="text-lg text-gray-600 mb-4"></div>
-                    
-                    <div id="tags-container" class="flex flex-wrap gap-2 mb-4"></div>
-                    
-                    <!-- 중요도 표시 -->
-                    <div id="importance-section" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-star text-red-600 mr-2"></i>
-                            <span class="font-medium text-red-800">핵심 문서</span>
-                            <span class="text-red-600 ml-2 text-sm">당의 기본 규범을 정의하는 중요한 문서입니다</span>
+                    <div class="grid lg:grid-cols-4 gap-8">
+                        <!-- 목차 -->
+                        <div class="lg:col-span-1">
+                            <div class="toc-container">
+                                <h3 class="text-lg font-bold text-gray-900 mb-4">
+                                    <i class="fas fa-list mr-2"></i>목차
+                                </h3>
+                                <div id="table-of-contents">
+                                    <!-- 목차가 여기에 로드됩니다 -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 본문 -->
+                        <div class="lg:col-span-3">
+                            <!-- 전문 -->
+                            <div id="preamble-section" class="hidden mb-8">
+                                <div class="bg-gradient-to-r from-red-50 to-red-100 border-l-4 border-red-500 p-6 rounded-lg">
+                                    <h3 class="text-xl font-bold text-red-900 mb-4">
+                                        <i class="fas fa-scroll mr-2"></i>전문 (前文)
+                                    </h3>
+                                    <div id="preamble-content" class="text-red-800 leading-relaxed italic">
+                                        <!-- 전문 내용이 여기에 로드됩니다 -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 장별 내용 -->
+                            <div id="chapters-container">
+                                <!-- 장별 내용이 여기에 로드됩니다 -->
+                            </div>
+
+                            <!-- 부칙 -->
+                            <div id="appendix-section" class="hidden mt-8">
+                                <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-4">
+                                        <i class="fas fa-plus-circle mr-2"></i>부칙
+                                    </h3>
+                                    <div id="appendix-content" class="text-gray-800">
+                                        <!-- 부칙 내용이 여기에 로드됩니다 -->
+                                    </div>
                         </div>
                     </div>
                     
                     <!-- 첨부파일 -->
-                    <div id="attachments-section" class="hidden">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                            <div id="attachments-section" class="mt-8 hidden">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">
                             <i class="fas fa-paperclip mr-2"></i>첨부파일
                         </h3>
-                        <div id="attachments-list" class="space-y-2 mb-4"></div>
+                                <div id="attachments-list">
+                                    <!-- 첨부파일 목록이 여기에 로드됩니다 -->
+                                </div>
                     </div>
                     
-                    <!-- 액션 버튼 -->
-                    <div class="flex flex-wrap gap-3 pt-4 border-t">
-                        <button id="download-all-btn" class="hidden px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                            <i class="fas fa-download mr-2"></i>전체 다운로드
-                        </button>
-                        <button onclick="window.print()" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
-                            <i class="fas fa-print mr-2"></i>인쇄
-                        </button>
-                        <button onclick="shareContent()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-                            <i class="fas fa-share mr-2"></i>공유
-                        </button>
+                            <!-- 수정 섹션 (관리자 전용) -->
+                            <!-- 관리자 기능 제거됨 -->
+
+                            <!-- 공유 기능 -->
+                            <div class="border-t border-gray-200 pt-8 mb-8">
+                                <h4 class="text-sm font-medium text-gray-700 mb-4">링크 공유</h4>
+                                <div class="flex space-x-3">
+                                    <button onclick="copyUrl()" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" title="링크 복사">
+                                        <i class="fas fa-link mr-2"></i>링크 복사
+                                    </button>
                     </div>
                 </div>
 
-                <!-- 당헌당규 내용 -->
-                <div class="bg-white rounded-lg shadow-sm border p-8">
-                    <div id="constitution-content" class="prose prose-lg max-w-none"></div>
-                </div>
-
-                <!-- 관련 문서 -->
-                <div id="related-documents" class="hidden mt-8 bg-gray-50 rounded-lg p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">
-                        <i class="fas fa-link mr-2"></i>관련 문서
-                    </h3>
-                    <div id="related-list" class="grid md:grid-cols-2 gap-4">
-                        <!-- 관련 문서들이 동적으로 추가됩니다 -->
+                            <!-- 목록으로 돌아가기 -->
+                            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+                                <a href="party-constitution.html" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                                    <i class="fas fa-arrow-left mr-2"></i>목록으로
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- 네비게이션 -->
-                <div class="mt-8 flex justify-between items-center">
-                    <a href="party-constitution.html" class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors">
-                        <i class="fas fa-arrow-left mr-2"></i>목록으로 돌아가기
-                    </a>
-                    
-                    <div class="flex gap-2">
-                        <button id="prev-btn" class="hidden px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-                            <i class="fas fa-chevron-left mr-2"></i>이전 문서
-                        </button>
-                        <button id="next-btn" class="hidden px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-                            다음 문서<i class="fas fa-chevron-right ml-2"></i>
-                        </button>
-                    </div>
-                </div>
+            </section>
             </div>
         </main>
-    </div>
     
     <script src="../nav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@13.0.3/marked.min.js"></script>
     <script>
         loadNavigation();
 
-        const API_BASE_URL = 'http://localhost:9000/api';
-        
-        // 카테고리별 색상 매핑
-        const categoryColors = {
-            '강령': { bg: 'bg-red-100', text: 'text-red-800', hero: 'bg-red-600', icon: 'fas fa-flag' },
-            '당헌': { bg: 'bg-blue-100', text: 'text-blue-800', hero: 'bg-blue-600', icon: 'fas fa-gavel' },
-            '당규': { bg: 'bg-green-100', text: 'text-green-800', hero: 'bg-green-600', icon: 'fas fa-book' },
-            '운영규정': { bg: 'bg-purple-100', text: 'text-purple-800', hero: 'bg-purple-600', icon: 'fas fa-cogs' },
-            '기타': { bg: 'bg-gray-100', text: 'text-gray-800', hero: 'bg-gray-600', icon: 'fas fa-file-alt' }
-        };
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
 
-        async function loadPartyConstitution() {
+        let currentConstitution = null;
+
+        // 간단한 마크다운 처리 함수 (marked.js fallback)
+        function simpleMarkdown(text) {
+            if (!text) return '';
+            
+            return text
+                // 헤딩
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                // 볼드
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/__(.*?)__/g, '<strong>$1</strong>')
+                // 이탤릭
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/_(.*?)_/g, '<em>$1</em>')
+                // 링크
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="text-blue-600 hover:underline">$1</a>')
+                // 줄바꿈
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>')
+                // 리스트
+                .replace(/^\* (.*$)/gim, '<li>$1</li>')
+                .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+                // 문단 감싸기
+                .replace(/^(?!<[h|u|l])/gim, '<p>')
+                .replace(/(?!<\/[h|u|l])$/gim, '</p>')
+                // 중복 태그 정리
+                .replace(/<p><\/p>/g, '')
+                .replace(/<p>(<[h|u])/g, '$1')
+                .replace(/(<\/[h|u]>)<\/p>/g, '$1');
+        }
+
+        // 마크다운 렌더링 함수
+        function renderMarkdown(text) {
+            try {
+                // marked.js가 로드되었는지 확인
+                if (typeof marked !== 'undefined') {
+                    return marked.parse(text);
+                } else {
+                    console.warn('marked.js가 로드되지 않았습니다. 간단한 마크다운 처리를 사용합니다.');
+                    return simpleMarkdown(text);
+                }
+            } catch (error) {
+                console.error('마크다운 렌더링 오류:', error);
+                // 에러 발생 시 간단한 처리로 대체
+                return simpleMarkdown(text);
+            }
+        }
+
+        // 페이지 로드 시 당헌당규 상세 정보 로드
+        document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const constitutionId = urlParams.get('id');
 
             if (!constitutionId) {
-                showError();
+                showError('당헌당규 ID가 없습니다.');
                 return;
             }
 
+            loadConstitutionDetail(constitutionId);
+        });
+
+        // 당헌당규 상세 정보 로드
+        async function loadConstitutionDetail(id) {
             try {
-                const response = await fetch(`${API_BASE_URL}/party-constitution/${constitutionId}`);
+                showLoading();
+                
+                const response = await fetch(`${API_BASE}/party-constitution/${id}`);
                 const data = await response.json();
 
-                if (!data.success || !data.data) {
-                    throw new Error('당헌당규를 찾을 수 없습니다.');
+                if (data.success) {
+                    currentConstitution = data.data;
+                    displayConstitutionDetail(currentConstitution);
+                    // 조회수 증가
+                    incrementViews(id);
+                } else {
+                    throw new Error(data.message || '당헌당규를 불러오는데 실패했습니다.');
                 }
-
-                renderPartyConstitution(data.data);
-                
-                // 다운로드 수 증가
-                updateDownloadCount(constitutionId);
-
-                // 관련 문서 로드
-                loadRelatedDocuments(data.data.category, constitutionId);
-
             } catch (error) {
-                console.error('당헌당규 로딩 오류:', error);
-                showError();
+                console.error('Error loading constitution detail:', error);
+                showError('당헌당규를 불러오는 중 오류가 발생했습니다.');
             }
         }
 
-        function renderPartyConstitution(constitution) {
-            const categoryStyle = categoryColors[constitution.category] || categoryColors['기타'];
-            const formattedDate = new Date(constitution.createdAt).toLocaleDateString('ko-KR');
+        // 당헌당규 상세 정보 표시
+        function displayConstitutionDetail(constitution) {
+            hideLoading();
+            
+            // 기본 정보 설정
+            document.getElementById('constitution-title').textContent = constitution.title || '자유와혁신 당헌';
+            document.getElementById('constitution-subtitle').textContent = constitution.subtitle || '민주주의와 자유를 위한 기본 규범';
+            document.getElementById('constitution-version').textContent = constitution.version || '제1호';
+            document.getElementById('constitution-views').textContent = (constitution.views || 0).toLocaleString();
+            document.getElementById('constitution-date').textContent = formatDate(constitution.enactmentDate || constitution.createdAt);
+
+            // 통계 정보 설정
+            if (constitution.chapters) {
+                document.getElementById('constitution-chapters').textContent = constitution.chapters.length || 0;
+                
+                let totalArticles = 0;
+                constitution.chapters.forEach(chapter => {
+                    if (chapter.articles) {
+                        totalArticles += chapter.articles.length;
+                    }
+                });
+                document.getElementById('constitution-articles').textContent = totalArticles;
+            }
+
+            // 전문 표시
+            if (constitution.preamble) {
+                document.getElementById('preamble-content').innerHTML = renderMarkdown(constitution.preamble);
+                document.getElementById('preamble-section').classList.remove('hidden');
+            }
+
+            // 목차 생성
+            if (constitution.chapters && constitution.chapters.length > 0) {
+                generateTableOfContents(constitution.chapters);
+                displayChapters(constitution.chapters);
+            }
+
+            // 부칙 표시
+            if (constitution.appendix) {
+                document.getElementById('appendix-content').innerHTML = renderMarkdown(constitution.appendix);
+                document.getElementById('appendix-section').classList.remove('hidden');
+            }
+
+            // 첨부파일 표시
+            if (constitution.attachments && constitution.attachments.length > 0) {
+                displayAttachments(constitution.attachments);
+            }
 
             // 페이지 제목 업데이트
             document.title = `${constitution.title} - 당헌당규 - 자유와혁신`;
 
-            // Hero 섹션
-            document.getElementById('hero-category').innerHTML = `
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-white bg-opacity-20 text-white">
-                    <i class="${categoryStyle.icon} mr-2"></i>${constitution.category}
-                </span>
-            `;
-            document.getElementById('hero-title').textContent = constitution.title;
-            document.getElementById('hero-date').textContent = formattedDate;
-
-            // 메타 정보
-            document.getElementById('category-badge').className = `inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${categoryStyle.bg} ${categoryStyle.text}`;
-            document.getElementById('category-badge').innerHTML = `<i class="${categoryStyle.icon} mr-2"></i>${constitution.category}`;
-            document.getElementById('date-info').textContent = formattedDate;
-            document.getElementById('constitution-title').textContent = constitution.title;
-            
-            if (constitution.excerpt) {
-                document.getElementById('constitution-excerpt').textContent = constitution.excerpt;
-            } else {
-                document.getElementById('constitution-excerpt').style.display = 'none';
-            }
-
-            // 다운로드 수
-            if (constitution.downloadCount) {
-                document.getElementById('download-count').innerHTML = `<i class="fas fa-download mr-1"></i>${constitution.downloadCount}회 다운로드`;
-            }
-
-            // 태그
-            const tagsContainer = document.getElementById('tags-container');
-            if (constitution.tags && constitution.tags.length > 0) {
-                tagsContainer.innerHTML = constitution.tags.map(tag => 
-                    `<span class="inline-flex items-center px-2 py-1 rounded text-xs bg-gray-100 text-gray-600">${tag}</span>`
-                ).join('');
-            } else {
-                tagsContainer.style.display = 'none';
-            }
-
-            // 중요도 표시 (강령, 당헌의 경우)
-            if (constitution.category === '강령' || constitution.category === '당헌') {
-                document.getElementById('importance-section').classList.remove('hidden');
-            }
-
-            // 첨부파일
-            if (constitution.attachments && constitution.attachments.length > 0) {
-                renderAttachments(constitution.attachments, constitution._id);
-            }
-
-            // 내용 렌더링
-            if (constitution.content) {
-                const contentHtml = marked.parse(constitution.content);
-                document.getElementById('constitution-content').innerHTML = contentHtml;
-            }
-
-            // UI 상태 변경
-            document.getElementById('loading-state').classList.add('hidden');
-            document.getElementById('main-content').classList.remove('hidden');
+            document.getElementById('constitution-content').classList.remove('hidden');
         }
 
-        function renderAttachments(attachments, constitutionId) {
+        // 목차 생성
+        function generateTableOfContents(chapters) {
+            const tocContainer = document.getElementById('table-of-contents');
+            tocContainer.innerHTML = '';
+
+            // 전문 링크
+            const preambleItem = document.createElement('div');
+            preambleItem.className = 'toc-item text-sm';
+            preambleItem.innerHTML = '<i class="fas fa-scroll mr-2"></i>전문';
+            preambleItem.onclick = () => scrollToSection('preamble-section');
+            tocContainer.appendChild(preambleItem);
+
+            // 각 장별 목차
+            chapters.forEach((chapter, chapterIndex) => {
+                const chapterItem = document.createElement('div');
+                chapterItem.className = 'toc-item';
+                chapterItem.innerHTML = `
+                    <div class="font-medium">${chapter.number}. ${chapter.title}</div>
+                `;
+                chapterItem.onclick = () => scrollToSection(`chapter-${chapterIndex}`);
+                tocContainer.appendChild(chapterItem);
+
+                // 각 조별 목차
+                if (chapter.articles && chapter.articles.length > 0) {
+                    chapter.articles.forEach((article, articleIndex) => {
+                        const articleItem = document.createElement('div');
+                        articleItem.className = 'toc-item text-sm pl-4 text-gray-600';
+                        articleItem.innerHTML = `제${article.number}조 ${article.title}`;
+                        articleItem.onclick = () => scrollToSection(`article-${chapterIndex}-${articleIndex}`);
+                        tocContainer.appendChild(articleItem);
+                    });
+                }
+            });
+
+            // 부칙 링크
+            const appendixItem = document.createElement('div');
+            appendixItem.className = 'toc-item text-sm';
+            appendixItem.innerHTML = '<i class="fas fa-plus-circle mr-2"></i>부칙';
+            appendixItem.onclick = () => scrollToSection('appendix-section');
+            tocContainer.appendChild(appendixItem);
+        }
+
+        // 장별 내용 표시
+        function displayChapters(chapters) {
+            const chaptersContainer = document.getElementById('chapters-container');
+            chaptersContainer.innerHTML = '';
+
+            chapters.forEach((chapter, chapterIndex) => {
+                const chapterCard = document.createElement('div');
+                chapterCard.className = 'chapter-card';
+                chapterCard.id = `chapter-${chapterIndex}`;
+                
+                chapterCard.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-gray-900">
+                            <i class="fas fa-bookmark mr-2 text-red-600"></i>
+                            ${chapter.number}. ${chapter.title}
+                        </h3>
+                        <i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+                    </div>
+                    ${chapter.description ? `<p class="text-gray-600 mt-2">${chapter.description}</p>` : ''}
+                    <div class="chapter-content" id="chapter-content-${chapterIndex}">
+                        ${chapter.articles ? generateArticlesHtml(chapter.articles, chapterIndex) : ''}
+                    </div>
+                `;
+
+                // 클릭 이벤트 추가
+                const header = chapterCard.querySelector('.flex');
+                header.onclick = () => toggleChapter(chapterIndex);
+
+                chaptersContainer.appendChild(chapterCard);
+            });
+
+            // 첫 번째 장 펼치기
+            if (chapters.length > 0) {
+                toggleChapter(0);
+            }
+        }
+
+        // 조항 HTML 생성
+        function generateArticlesHtml(articles, chapterIndex) {
+            return articles.map((article, articleIndex) => `
+                <div class="article-item" id="article-${chapterIndex}-${articleIndex}">
+                    <div class="flex items-start mb-3">
+                        <div class="w-12 h-12 bg-red-600 text-white rounded-lg flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">
+                            ${article.number}조
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-900 text-lg mb-2">${article.title}</h4>
+                            <div class="text-gray-700 leading-relaxed">
+                                ${marked.parse(article.content)}
+                            </div>
+                            ${article.items && article.items.length > 0 ? `
+                                <div class="mt-3">
+                                    <ol class="list-decimal list-inside space-y-1 text-gray-700">
+                                        ${article.items.map(item => `<li>${item}</li>`).join('')}
+                                    </ol>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 장 토글
+        function toggleChapter(chapterIndex) {
+            const chapterCard = document.getElementById(`chapter-${chapterIndex}`);
+            const chapterContent = document.getElementById(`chapter-content-${chapterIndex}`);
+            const chevron = chapterCard.querySelector('.fa-chevron-down');
+
+            const isActive = chapterContent.classList.contains('active');
+
+            // 모든 장 닫기
+            document.querySelectorAll('.chapter-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelectorAll('.chapter-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.fa-chevron-down').forEach(icon => {
+                icon.style.transform = 'rotate(0deg)';
+            });
+
+            // 선택한 장 열기 (이미 열려있지 않다면)
+            if (!isActive) {
+                chapterCard.classList.add('active');
+                chapterContent.classList.add('active');
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // 섹션으로 스크롤
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // 첨부파일 표시
+        function displayAttachments(attachments) {
             const attachmentsSection = document.getElementById('attachments-section');
             const attachmentsList = document.getElementById('attachments-list');
-            const downloadAllBtn = document.getElementById('download-all-btn');
-
-            attachmentsSection.classList.remove('hidden');
-            downloadAllBtn.classList.remove('hidden');
-
-            attachmentsList.innerHTML = attachments.map(attachment => {
-                const fileSize = attachment.size ? formatFileSize(attachment.size) : '';
-                const fileIcon = getFileIcon(attachment.mimetype);
+            
+            attachmentsList.innerHTML = '';
+            
+            attachments.forEach(attachment => {
+                const attachmentItem = document.createElement('div');
+                attachmentItem.className = 'attachment-item';
                 
-                return `
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                        <div class="flex items-center">
-                            <i class="${fileIcon} text-gray-600 mr-3"></i>
-                            <div>
-                                <div class="font-medium text-gray-900">${attachment.originalname}</div>
-                                ${fileSize ? `<div class="text-sm text-gray-500">${fileSize}</div>` : ''}
-                            </div>
-                        </div>
-                        <button onclick="downloadAttachment('${constitutionId}', '${attachment.filename}')" 
-                                class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">
-                            <i class="fas fa-download"></i>
-                        </button>
+                const icon = getFileIcon(attachment.filename);
+                const size = formatFileSize(attachment.size);
+                
+                attachmentItem.innerHTML = `
+                    <i class="${icon} attachment-icon"></i>
+                    <div class="attachment-info">
+                        <div class="attachment-name">${attachment.filename}</div>
+                        <div class="attachment-size">${size}</div>
                     </div>
+                    <button onclick="downloadFile('${attachment._id || attachment.filename}')" 
+                            class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-download mr-1"></i>다운로드
+                    </button>
                 `;
-            }).join('');
-
-            // 전체 다운로드 버튼
-            downloadAllBtn.onclick = () => downloadAllAttachments(constitutionId);
+                
+                attachmentsList.appendChild(attachmentItem);
+            });
+            
+            attachmentsSection.classList.remove('hidden');
         }
 
-        async function loadRelatedDocuments(category, currentId) {
+        // 파일 다운로드
+        async function downloadFile(attachmentId) {
             try {
-                const response = await fetch(`${API_BASE_URL}/party-constitution?category=${category}&limit=6`);
-                const data = await response.json();
-
-                if (data.success && data.data.length > 1) {
-                    const relatedDocs = data.data.filter(doc => doc._id !== currentId).slice(0, 4);
-                    if (relatedDocs.length > 0) {
-                        renderRelatedDocuments(relatedDocs);
-                    }
+                console.log('다운로드 시도:', attachmentId);
+                console.log('현재 당헌당규 ID:', currentConstitution._id);
+                
+                if (!attachmentId) {
+                    alert('첨부파일 정보가 없습니다.');
+                    return;
                 }
+                
+                const downloadUrl = `${API_BASE}/party-constitution/${currentConstitution._id}/download/${attachmentId}`;
+                console.log('다운로드 URL:', downloadUrl);
+                
+                // 다운로드 카운트 업데이트
+                try {
+                    await fetch(`${API_BASE}/party-constitution/${currentConstitution._id}/download-count`, {
+                        method: 'POST'
+                    });
+                } catch (countError) {
+                    console.warn('다운로드 카운트 업데이트 실패:', countError);
+                }
+                
+                // 파일 다운로드 - fetch로 먼저 확인 후 다운로드
+                try {
+                    const response = await fetch(downloadUrl, { method: 'HEAD' });
+                    if (response.ok) {
+                        // 성공적으로 파일이 존재하면 다운로드
+                        const link = document.createElement('a');
+                        link.href = downloadUrl;
+                        link.download = '';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    } else {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                } catch (fetchError) {
+                    console.warn('HEAD 요청 실패, window.open으로 시도:', fetchError);
+                    // HEAD 요청이 실패하면 window.open으로 시도
+                    window.open(downloadUrl, '_blank');
+                }
+                
             } catch (error) {
-                console.error('관련 문서 로딩 오류:', error);
+                console.error('파일 다운로드 오류:', error);
+                alert('파일 다운로드 중 오류가 발생했습니다: ' + error.message);
             }
         }
 
-        function renderRelatedDocuments(documents) {
-            const relatedSection = document.getElementById('related-documents');
-            const relatedList = document.getElementById('related-list');
-
-            relatedList.innerHTML = documents.map(doc => {
-                const categoryStyle = categoryColors[doc.category] || categoryColors['기타'];
-                const formattedDate = new Date(doc.createdAt).toLocaleDateString('ko-KR');
-                
-                return `
-                    <div class="bg-white rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow cursor-pointer" 
-                         onclick="window.location.href='party-constitution-detail.html?id=${doc._id}'">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium ${categoryStyle.bg} ${categoryStyle.text}">
-                                <i class="${categoryStyle.icon} mr-1"></i>${doc.category}
-                            </span>
-                            <span class="text-gray-500 text-xs">${formattedDate}</span>
-                        </div>
-                        <h4 class="font-medium text-gray-900 mb-2 line-clamp-2">${doc.title}</h4>
-                        <p class="text-sm text-gray-600 line-clamp-2">${doc.excerpt || doc.content.substring(0, 80) + '...'}</p>
-                    </div>
-                `;
-            }).join('');
-
-            relatedSection.classList.remove('hidden');
+        // 조회수 증가
+        async function incrementViews(id) {
+            try {
+                console.log('조회수 증가 요청:', `${API_BASE}/party-constitution/${id}/views`);
+                const response = await fetch(`${API_BASE}/party-constitution/${id}/views`, { method: 'POST' });
+                const result = await response.json();
+                console.log('조회수 증가 결과:', result);
+            } catch (error) {
+                console.error('조회수 증가 오류:', error);
+            }
         }
 
-        function getFileIcon(mimetype) {
-            if (!mimetype) return 'fas fa-file';
-            
-            if (mimetype.includes('pdf')) return 'fas fa-file-pdf';
-            if (mimetype.includes('word') || mimetype.includes('document')) return 'fas fa-file-word';
-            if (mimetype.includes('excel') || mimetype.includes('spreadsheet')) return 'fas fa-file-excel';
-            if (mimetype.includes('powerpoint') || mimetype.includes('presentation')) return 'fas fa-file-powerpoint';
-            if (mimetype.includes('image')) return 'fas fa-file-image';
-            if (mimetype.includes('video')) return 'fas fa-file-video';
-            if (mimetype.includes('audio')) return 'fas fa-file-audio';
-            if (mimetype.includes('zip') || mimetype.includes('rar')) return 'fas fa-file-archive';
-            
-            return 'fas fa-file';
+        // 공유 기능
+        function copyUrl() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('링크가 복사되었습니다.');
+            });
+        }
+
+        // 유틸리티 함수들
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: '2-digit'
+            }).replace(/\./g, '.').replace(/\s/g, '');
+        }
+
+        function getFileIcon(filename) {
+            const ext = filename.toLowerCase().split('.').pop();
+            const iconMap = {
+                'pdf': 'fas fa-file-pdf',
+                'doc': 'fas fa-file-word',
+                'docx': 'fas fa-file-word',
+                'xls': 'fas fa-file-excel',
+                'xlsx': 'fas fa-file-excel',
+                'ppt': 'fas fa-file-powerpoint',
+                'pptx': 'fas fa-file-powerpoint',
+                'jpg': 'fas fa-file-image',
+                'jpeg': 'fas fa-file-image',
+                'png': 'fas fa-file-image',
+                'gif': 'fas fa-file-image',
+                'zip': 'fas fa-file-archive',
+                'rar': 'fas fa-file-archive'
+            };
+            return iconMap[ext] || 'fas fa-file';
         }
 
         function formatFileSize(bytes) {
@@ -392,47 +811,21 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
-        function downloadAttachment(constitutionId, filename) {
-            window.open(`${API_BASE_URL}/party-constitution/${constitutionId}/attachments/${filename}`, '_blank');
+        function showLoading() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('constitution-content').classList.add('hidden');
         }
 
-        function downloadAllAttachments(constitutionId) {
-            window.open(`${API_BASE_URL}/party-constitution/${constitutionId}/download`, '_blank');
+        function hideLoading() {
+            document.getElementById('loading').classList.add('hidden');
         }
 
-        async function updateDownloadCount(constitutionId) {
-            try {
-                await fetch(`${API_BASE_URL}/party-constitution/${constitutionId}/download-count`, {
-                    method: 'POST'
-                });
-            } catch (error) {
-                console.error('다운로드 수 업데이트 오류:', error);
-            }
+        function showError(message) {
+            document.getElementById('error').querySelector('div').textContent = message;
+            document.getElementById('error').classList.remove('hidden');
+            document.getElementById('loading').classList.add('hidden');
         }
-
-        function shareContent() {
-            if (navigator.share) {
-                navigator.share({
-                    title: document.getElementById('constitution-title').textContent,
-                    url: window.location.href
-                });
-            } else {
-                // 폴백: URL 복사
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('링크가 클립보드에 복사되었습니다.');
-                });
-            }
-        }
-
-        function showError() {
-            document.getElementById('loading-state').classList.add('hidden');
-            document.getElementById('error-state').classList.remove('hidden');
-        }
-
-        // 페이지 로드 시 당헌당규 로드
-        document.addEventListener('DOMContentLoaded', function() {
-            loadPartyConstitution();
-        });
     </script>
 </body>
 </html> 

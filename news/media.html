@@ -22,132 +22,569 @@
             }
         }
     </script>
+    <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #A50034;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .board-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .board-table th,
+        .board-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .board-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+            text-align: center;
+        }
+        
+        .board-table td {
+            color: #1f2937;
+        }
+        
+        .board-table tr:hover {
+            background-color: #f9fafb;
+        }
+        
+        .title-cell {
+            text-align: left !important;
+            max-width: 400px;
+        }
+        
+        .title-link {
+            color: #1f2937;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+        }
+        
+        .title-link:hover {
+            color: #A50034;
+            text-decoration: underline;
+        }
+        
+        .media-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+        
+        .badge-kbs { background-color: #1e3a8a; color: white; }
+        .badge-mbc { background-color: #059669; color: white; }
+        .badge-sbs { background-color: #dc2626; color: white; }
+        .badge-ytn { background-color: #7c3aed; color: white; }
+        .badge-chosun { background-color: #1f2937; color: white; }
+        .badge-joongang { background-color: #0369a1; color: white; }
+        .badge-donga { background-color: #b91c1c; color: white; }
+        .badge-hankook { background-color: #374151; color: white; }
+        .badge-default { background-color: #6b7280; color: white; }
+        
+        .number-cell, .date-cell, .media-cell {
+            text-align: center !important;
+            width: 80px;
+        }
+        
+        .external-link {
+            color: #A50034;
+            text-decoration: none;
+        }
+        
+        .external-link:hover {
+            text-decoration: underline;
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
-        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
-        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">언론보도</h1>
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../news.html" class="text-gray-500 hover:text-red-600">정당소식</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">언론보도</li>
+                </ol>
+            </nav>
         </div>
     </section>
-    
-    <main style="position:relative; z-index:1; background:#fff;">
-        <!-- Media Coverage Section -->
-        <section class="py-16 bg-white">
+
+    <main class="bg-white">
+        <section class="py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">언론 보도</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신에 대한 주요 언론 보도를 확인하세요.
-                    </p>
+                <!-- 페이지 헤더 -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">언론보도</h1>
+                    <p class="text-xl text-gray-600">자유와혁신에 대한 언론 보도를 확인하세요</p>
                 </div>
-                
-                <!-- Featured News -->
-                <div class="mb-16">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8">주요 보도</h3>
-                    <div class="bg-red-50 border border-red-200 rounded-lg p-8">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">KBS</span>
-                            <span class="text-gray-600 text-sm">2024.01.15</span>
+
+                <!-- 필터 버튼 -->
+                <div class="mb-8 flex flex-wrap gap-3 justify-center">
+                    <button class="filter-btn active" data-media="">
+                        <i class="fas fa-list mr-2"></i>전체
+                    </button>
+                    <button class="filter-btn" data-media="tv">
+                        <i class="fas fa-tv mr-2"></i>TV
+                    </button>
+                    <button class="filter-btn" data-media="newspaper">
+                        <i class="fas fa-newspaper mr-2"></i>신문
+                    </button>
+                    <button class="filter-btn" data-media="online">
+                        <i class="fas fa-globe mr-2"></i>온라인
+                    </button>
+                </div>
+
+                <!-- 검색 영역 -->
+                <div class="mb-8 bg-gray-50 p-6 rounded-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">기간</label>
+                            <select id="dateFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                                <option value="">전체</option>
+                                <option value="today">오늘</option>
+                                <option value="week">일주일</option>
+                                <option value="month">한달</option>
+                                <option value="3months">3개월</option>
+                            </select>
                         </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-4">
-                            "자유와혁신 출범...새로운 정치 세력 등장"
-                        </h4>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            자유와혁신이 공식 출범하며 기존 정치권에 새로운 바람을 불어넣고 있다는 평가를 받고 있습니다. 
-                            특히 혁신적인 정책과 젊은 리더십이 주목받고 있습니다.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-4">
-                                <span class="text-gray-500 text-sm">
-                                    <i class="fas fa-tv mr-2"></i>
-                                    KBS 뉴스 9
-                                </span>
-                                <span class="text-gray-500 text-sm">
-                                    <i class="fas fa-clock mr-2"></i>
-                                    저녁 9시 방송
-                                </span>
-                            </div>
-                            <a href="https://news.kbs.co.kr" target="_blank" class="text-red-600 hover:text-red-700 font-medium">
-                                전문 보기 →
-                            </a>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">언론사</label>
+                            <select id="mediaFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                                <option value="">전체</option>
+                                <option value="kbs">KBS</option>
+                                <option value="mbc">MBC</option>
+                                <option value="sbs">SBS</option>
+                                <option value="ytn">YTN</option>
+                                <option value="chosun">조선일보</option>
+                                <option value="joongang">중앙일보</option>
+                                <option value="donga">동아일보</option>
+                                <option value="hankook">한국일보</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">검색어</label>
+                            <input type="text" id="searchInput" placeholder="제목, 내용 검색" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                        </div>
+                        <div class="flex items-end">
+                            <button id="searchBtn" class="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                                <i class="fas fa-search mr-2"></i>검색
+                            </button>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Recent Media Coverage -->
-                <div class="space-y-8">
-                    <div class="bg-white border border-gray-200 rounded-lg p-8">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">조선일보</span>
-                            <span class="text-gray-500 text-sm">2024.01.12</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-4">
-                            자유와혁신 "7대 핵심 정책으로 국정 혁신 이끌 것"
-                        </h4>
-                        <p class="text-gray-600 mb-6">
-                            자유와혁신이 발표한 7대 핵심 정책이 경제계와 학계의 주목을 받고 있다.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm">
-                                <i class="fas fa-newspaper mr-2"></i>
-                                조선일보 정치부
-                            </span>
-                            <a href="https://www.chosun.com" target="_blank" class="text-red-600 hover:text-red-700 font-medium">전문 보기 →</a>
-                        </div>
+
+                <!-- 로딩 상태 -->
+                <div id="loading" class="flex justify-center items-center py-16">
+                    <div class="loading-spinner"></div>
+                    <span class="ml-4 text-gray-600">언론보도를 불러오는 중...</span>
+                </div>
+
+                <!-- 에러 상태 -->
+                <div id="error" class="hidden text-center py-16">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
+                        <i class="fas fa-exclamation-triangle text-red-500 text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold text-red-800 mb-2">불러오기 실패</h3>
+                        <p class="text-red-600 mb-4">언론보도를 불러오는 중 오류가 발생했습니다.</p>
+                        <button id="retryBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                            다시 시도
+                        </button>
                     </div>
-                    
-                    <div class="bg-white border border-gray-200 rounded-lg p-8">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">중앙일보</span>
-                            <span class="text-gray-500 text-sm">2024.01.10</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-4">
-                            "청년층 지지 확산...새로운 정치 바람 예고"
-                        </h4>
-                        <p class="text-gray-600 mb-6">
-                            자유와혁신에 대한 청년층의 지지가 확산되고 있어 정치권의 관심이 집중되고 있다.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm">
-                                <i class="fas fa-newspaper mr-2"></i>
-                                중앙일보 정치부
-                            </span>
-                            <a href="https://www.joongang.co.kr" target="_blank" class="text-red-600 hover:text-red-700 font-medium">전문 보기 →</a>
-                        </div>
+                </div>
+
+                <!-- 게시판 테이블 -->
+                <div id="boardContainer" class="hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                        <table class="board-table">
+                            <thead>
+                                <tr>
+                                    <th class="number-cell">번호</th>
+                                    <th class="media-cell">언론사</th>
+                                    <th class="title-cell">제목</th>
+                                    <th class="date-cell">보도일</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mediaTableBody">
+                                <!-- 동적으로 생성됨 -->
+                            </tbody>
+                        </table>
                     </div>
-                    
-                    <div class="bg-white border border-gray-200 rounded-lg p-8">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">MBC</span>
-                            <span class="text-gray-500 text-sm">2024.01.08</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-4">
-                            자유와혁신 대표 "국민과 함께하는 정치 구현"
-                        </h4>
-                        <p class="text-gray-600 mb-6">
-                            자유와혁신 대표가 MBC 인터뷰에서 밝힌 향후 정치 방향과 비전이 화제가 되고 있다.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm">
-                                <i class="fas fa-tv mr-2"></i>
-                                MBC 뉴스데스크
-                            </span>
-                            <a href="https://imnews.imbc.com" target="_blank" class="text-red-600 hover:text-red-700 font-medium">전문 보기 →</a>
-                        </div>
+
+                    <!-- 페이지 정보 -->
+                    <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
+                        <span id="pageInfo"><!-- 동적으로 생성됨 --></span>
+                        <span>총 <span id="totalCount" class="font-semibold text-red-600">0</span>건</span>
+                    </div>
+
+                    <!-- 페이지네이션 -->
+                    <div id="pagination" class="mt-8 flex justify-center">
+                        <!-- 동적으로 생성됨 -->
+                    </div>
+                </div>
+
+                <!-- 빈 상태 -->
+                <div id="empty" class="hidden text-center py-16">
+                    <div class="max-w-md mx-auto">
+                        <i class="fas fa-inbox text-gray-400 text-6xl mb-6"></i>
+                        <h3 class="text-xl font-semibold text-gray-600 mb-2">언론보도가 없습니다</h3>
+                        <p class="text-gray-500">조건에 맞는 언론보도를 찾을 수 없습니다.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    
+
+    <style>
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: white;
+            border: 1px solid #d1d5db;
+            color: #6b7280;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .filter-btn:hover {
+            background-color: #f9fafb;
+            border-color: #A50034;
+            color: #A50034;
+        }
+        
+        .filter-btn.active {
+            background-color: #A50034;
+            border-color: #A50034;
+            color: white;
+        }
+    </style>
+
     <script src="../nav.js"></script>
     <script>
-        loadNavigation();
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+
+        let currentPage = 1;
+        let currentFilters = {
+            media: '',
+            date: '',
+            search: ''
+        };
+
+        // DOM 요소
+        const loading = document.getElementById('loading');
+        const error = document.getElementById('error');
+        const boardContainer = document.getElementById('boardContainer');
+        const empty = document.getElementById('empty');
+        const mediaTableBody = document.getElementById('mediaTableBody');
+        const pagination = document.getElementById('pagination');
+        const pageInfo = document.getElementById('pageInfo');
+        const totalCount = document.getElementById('totalCount');
+        const retryBtn = document.getElementById('retryBtn');
+
+        // 필터 버튼
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const dateFilter = document.getElementById('dateFilter');
+        const mediaFilter = document.getElementById('mediaFilter');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+        // 언론보도 불러오기
+        async function loadMediaCoverage(page = 1) {
+            showLoading();
+            
+            try {
+                let url = `${API_BASE}/media-coverage?page=${page}&limit=20`;
+                
+                if (currentFilters.media) {
+                    url += `&media=${encodeURIComponent(currentFilters.media)}`;
+                }
+                if (currentFilters.date) {
+                    url += `&dateFilter=${currentFilters.date}`;
+                }
+                if (currentFilters.search) {
+                    url += `&search=${encodeURIComponent(currentFilters.search)}`;
+                }
+
+                console.log('🔍 API 요청 URL:', url);
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                console.log('📦 API 응답:', data);
+                console.log('📋 데이터 구조:', data.data?.[0]);
+
+                if (data.success) {
+                    displayMediaCoverage(data.data, data.pagination);
+                } else {
+                    throw new Error(data.message || '데이터 불러오기 실패');
+                }
+            } catch (err) {
+                console.error('언론보도 불러오기 실패:', err);
+                showError();
+            }
+        }
+
+        // 언론보도 표시
+        function displayMediaCoverage(mediaList, paginationData) {
+            hideAll();
+            
+            if (!Array.isArray(mediaList) || mediaList.length === 0) {
+                empty.classList.remove('hidden');
+                return;
+            }
+
+            // API 응답 구조에 맞춰 수정
+            const totalItems = paginationData?.total || mediaList.length;
+            const currentPage = paginationData?.current || 1;
+            const totalPages = paginationData?.pages || 1;
+
+            // 총 개수 표시
+            totalCount.textContent = totalItems;
+            
+            // 페이지 정보
+            pageInfo.textContent = `${currentPage} / ${totalPages} 페이지`;
+
+            // 테이블 내용 생성
+            mediaTableBody.innerHTML = mediaList.map((media, index) => {
+                console.log('📋 개별 미디어 데이터:', media);
+                
+                const displayNumber = totalItems - ((currentPage - 1) * 20) - index;
+                const mediaOutlet = media?.mediaOutlet || media?.mediaCompany || '알 수 없음';
+                const mediaClass = getMediaClass(mediaOutlet);
+                const originalUrl = media?.originalUrl || '';
+                
+                return `
+                <tr onclick="openOriginalLink('${originalUrl}', '${media?.title || '제목 없음'}')" style="cursor: pointer;">
+                    <td class="number-cell font-medium">${displayNumber}</td>
+                    <td class="media-cell">
+                        <span class="media-badge ${mediaClass}">${mediaOutlet}</span>
+                    </td>
+                    <td class="title-cell">
+                        <div class="title-link">
+                            ${media?.title || '제목 없음'}
+                            ${originalUrl ? '<i class="fas fa-external-link-alt ml-2 text-blue-500 text-xs"></i>' : '<i class="fas fa-exclamation-triangle ml-2 text-yellow-500 text-xs" title="원본 링크 없음"></i>'}
+                        </div>
+                    </td>
+                    <td class="date-cell text-gray-600">${formatDate(media?.createdAt || media?.publishedAt)}</td>
+                </tr>
+                `;
+            }).join('');
+
+            renderPagination(paginationData);
+            boardContainer.classList.remove('hidden');
+        }
+
+        // 언론사별 클래스 반환
+        function getMediaClass(mediaCompany) {
+            const mediaKey = mediaCompany ? mediaCompany.toLowerCase() : '';
+            const mediaClasses = {
+                'kbs': 'badge-kbs',
+                'mbc': 'badge-mbc', 
+                'sbs': 'badge-sbs',
+                'ytn': 'badge-ytn',
+                '조선일보': 'badge-chosun',
+                '중앙일보': 'badge-joongang',
+                '동아일보': 'badge-donga',
+                '한국일보': 'badge-hankook'
+            };
+            return mediaClasses[mediaKey] || 'badge-default';
+        }
+
+        // 언론보도 상세 페이지로 이동
+        function openMediaDetail(mediaId) {
+            window.location.href = `media-detail.html?id=${mediaId}`;
+        }
+
+        // 원본 링크 열기
+        function openOriginalLink(url, title) {
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                alert('원본 링크가 없습니다.');
+            }
+        }
+
+        // 페이지네이션 렌더링 (API 응답 구조에 맞춰 수정)
+        function renderPagination(paginationData) {
+            if (!paginationData || !pagination) return;
+            
+            const currentPage = paginationData.current || 1;
+            const totalPages = paginationData.pages || 1;
+            
+            pagination.innerHTML = '';
+            
+            if (totalPages <= 1) return;
+            
+            // 이전 페이지 버튼
+            const prevBtn = document.createElement('button');
+            prevBtn.className = `px-3 py-2 text-sm font-medium ${currentPage <= 1 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-50'}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.disabled = currentPage <= 1;
+            if (currentPage > 1) {
+                prevBtn.onclick = () => loadMediaCoverage(currentPage - 1);
+            }
+            pagination.appendChild(prevBtn);
+            
+            // 페이지 번호 버튼들
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `px-3 py-2 text-sm font-medium ${i === currentPage ? 'bg-red-600 text-white' : 'text-gray-700 hover:bg-gray-50'}`;
+                pageBtn.textContent = i;
+                if (i !== currentPage) {
+                    pageBtn.onclick = () => loadMediaCoverage(i);
+                }
+                pagination.appendChild(pageBtn);
+            }
+            
+            // 다음 페이지 버튼
+            const nextBtn = document.createElement('button');
+            nextBtn.className = `px-3 py-2 text-sm font-medium ${currentPage >= totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-50'}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.disabled = currentPage >= totalPages;
+            if (currentPage < totalPages) {
+                nextBtn.onclick = () => loadMediaCoverage(currentPage + 1);
+            }
+            pagination.appendChild(nextBtn);
+        }
+
+        // 페이지 변경
+        function changePage(page) {
+            currentPage = page;
+            window.scrollTo(0, 0);
+            loadMediaCoverage(page);
+        }
+
+        // 언론보도 링크 열기
+        function openMediaLink(url) {
+            window.open(url, '_blank');
+        }
+
+        // 검색
+        function search() {
+            currentFilters.search = searchInput.value.trim();
+            currentFilters.date = dateFilter.value;
+            currentFilters.media = mediaFilter.value;
+            currentPage = 1;
+            loadMediaCoverage(1);
+        }
+
+        // 미디어 타입 필터 (버튼)
+        function setFilter(mediaType) {
+            currentFilters.media = mediaType;
+            currentPage = 1;
+            
+            // 버튼 상태 업데이트
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.media === mediaType) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            loadMediaCoverage(1);
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: '2-digit',
+                month: '2-digit',
+                day: '2-digit'
+            }).replace(/\./g, '.').replace(/\s/g, '');
+        }
+
+        // 상태 표시 함수들
+        function showLoading() {
+            hideAll();
+            loading.classList.remove('hidden');
+        }
+
+        function showError() {
+            hideAll();
+            error.classList.remove('hidden');
+        }
+
+        function hideAll() {
+            loading.classList.add('hidden');
+            error.classList.add('hidden');
+            boardContainer.classList.add('hidden');
+            empty.classList.add('hidden');
+        }
+
+        // 이벤트 리스너
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => setFilter(btn.dataset.media));
+        });
+
+        searchBtn.addEventListener('click', search);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') search();
+        });
+
+        mediaFilter.addEventListener('change', search);
+        dateFilter.addEventListener('change', search);
+
+        retryBtn.addEventListener('click', () => {
+            loadMediaCoverage(currentPage);
+        });
+
+        // 페이지 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            loadNavigation();
+            loadMediaCoverage();
+        });
     </script>
 </body>
 </html> 

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정책자료 상세 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    
+    <style>
+        .attachment-item {
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            transition: background-color 0.2s;
+        }
+        
+        .attachment-item:hover {
+            background: #e9ecef;
+        }
+        
+        .attachment-icon {
+            font-size: 1.2rem;
+            margin-right: 0.75rem;
+            color: #6c757d;
+        }
+        
+        .attachment-info {
+            flex: 1;
+        }
+        
+        .attachment-name {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+        
+        .attachment-size {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .content-body {
+            line-height: 1.8;
+        }
+        
+        .content-body h1, .content-body h2, .content-body h3 {
+            margin: 1.5rem 0 1rem 0;
+            font-weight: bold;
+        }
+        
+        .content-body h1 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-body h2 {
+            font-size: 1.5rem;
+        }
+        
+        .content-body h3 {
+            font-size: 1.3rem;
+        }
+        
+        .content-body p {
+            margin-bottom: 1rem;
+        }
+        
+        .content-body ul, .content-body ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .content-body li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .content-body blockquote {
+            border-left: 4px solid #A50034;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .content-body img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        
+        /* 관리자 관련 CSS 제거 */
+        /*
+        .edit-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        */
+        .attachment-download:hover {
+            color: #2563eb;
+        }
+        
+        /* 카드뉴스 갤러리 스타일 */
+        .card-news-gallery .card-news-item {
+            break-inside: avoid;
+        }
+        
+        .aspect-w-3 {
+            position: relative;
+            padding-bottom: 133.333333%; /* 4:3 ratio */
+        }
+        
+        .aspect-w-3 > * {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .card-news-item img {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-news-item:hover img {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .card-news-gallery {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../news.html" class="text-gray-500 hover:text-red-600">정당소식</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="press-policy.html" class="text-gray-500 hover:text-red-600">정책위 보도자료</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">상세보기</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <main class="bg-white">
+            <!-- 로딩 상태 -->
+        <div id="loading" class="flex justify-center items-center py-16">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mb-4"></div>
+            <p class="text-gray-600">정책자료를 불러오는 중...</p>
+            </div>
+
+            <!-- 에러 상태 -->
+        <div id="error" class="hidden bg-red-50 border-l-4 border-red-500 p-4 m-4">
+            <div class="flex">
+                <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                <div class="text-red-700">정책자료를 불러올 수 없습니다.</div>
+            </div>
+            </div>
+
+        <!-- 정책자료 상세 내용 -->
+        <div id="policy-content" class="hidden">
+            <section class="py-16">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 헤더 -->
+                    <div class="mb-8">
+                        <div class="flex items-center mb-4">
+                            <span id="policy-category" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                정책발표
+                            </span>
+                            <span id="policy-date" class="ml-4 text-gray-500 text-sm">2025-01-01</span>
+                        </div>
+                        <h1 id="policy-title" class="text-3xl font-bold text-gray-900 mb-4">정책자료 제목</h1>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>작성자: <span id="policy-author">정책위원회</span></span>
+                            <span class="mx-2">•</span>
+                            <span>조회수: <span id="policy-views">0</span></span>
+                            <span class="mx-2">•</span>
+                            <span>발표일: <span id="policy-release-date">2025-01-01</span></span>
+                        </div>
+                    </div>
+
+                    <!-- 요약 -->
+                    <div id="excerpt-section" class="hidden mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+                        <h3 class="text-lg font-semibold text-blue-900 mb-3">
+                            <i class="fas fa-lightbulb mr-2"></i>정책 요약
+                        </h3>
+                        <p id="policy-excerpt" class="text-blue-800 leading-relaxed"></p>
+                    </div>
+
+                    <!-- 본문 -->
+                    <div id="policy-body" class="content-body text-gray-800 mb-8">
+                        <!-- 내용이 여기에 로드됩니다 -->
+                    </div>
+
+                    <!-- 태그 -->
+                    <div id="tags-section" class="hidden mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                            <i class="fas fa-tags mr-2"></i>관련 태그
+                        </h3>
+                        <div id="tags-list" class="flex flex-wrap gap-2">
+                            <!-- 태그들이 여기에 로드됩니다 -->
+                        </div>
+                    </div>
+
+                <!-- 첨부파일 -->
+                <div id="attachments-section" class="mb-8 hidden">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                        <i class="fas fa-paperclip mr-2"></i>첨부파일
+                    </h3>
+                        <div id="attachments-list">
+                            <!-- 첨부파일 목록이 여기에 로드됩니다 -->
+                        </div>
+                    </div>
+
+                    <!-- 공유 기능 -->
+                    <div class="border-t border-gray-200 pt-8 mb-8">
+                        <h4 class="text-sm font-medium text-gray-700 mb-4">링크 공유</h4>
+                        <div class="flex space-x-3">
+                            <button onclick="copyUrl()" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" title="링크 복사">
+                                <i class="fas fa-link mr-2"></i>링크 복사
+                            </button>
+                    </div>
+                </div>
+
+                    <!-- 목록으로 돌아가기 -->
+                    <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+                        <a href="press-policy.html" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-arrow-left mr-2"></i>목록으로
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <script src="../nav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+    <script>
+        loadNavigation();
+        
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+
+        let currentPolicy = null;
+
+        // 페이지 로드 시 정책자료 상세 정보 로드
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const policyId = urlParams.get('id');
+            const type = urlParams.get('type') || 'policy-materials';
+            
+            if (!policyId) {
+                showError('정책자료 ID가 없습니다.');
+                return;
+            }
+            
+            loadPolicyDetail(policyId, type);
+            // 관리자 관련 JavaScript 함수들 제거:
+            // - checkAdminAccess()
+            // - editPolicy() 
+            // - deletePolicy()
+        });
+
+        // 정책자료 상세 정보 로드
+        async function loadPolicyDetail(id, type = 'policy-materials') {
+            try {
+                showLoading();
+                
+                // type에 따라 다른 API 엔드포인트 사용
+                let endpoint;
+                switch(type) {
+                    case 'policy-committee':
+                        endpoint = '/policy-committee';
+                        break;
+                    case 'new-media':
+                        endpoint = '/new-media';
+                        break;
+                    default:
+                        endpoint = '/policy-materials';
+                }
+                
+                const response = await fetch(`${API_BASE}${endpoint}/${id}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    currentPolicy = data.data;
+                    displayPolicyDetail(currentPolicy, type);
+                    // 조회수 증가
+                    incrementViews(id, type);
+                } else {
+                    throw new Error(data.message || '콘텐츠를 불러오는데 실패했습니다.');
+                }
+            } catch (error) {
+                console.error('Error loading policy detail:', error);
+                showError('콘텐츠를 불러오는 중 오류가 발생했습니다.');
+            }
+        }
+
+        // 정책자료 상세 정보 표시
+        function displayPolicyDetail(policy, type) {
+            hideLoading();
+            
+            // 기본 정보 설정
+            document.getElementById('policy-title').textContent = policy.title || '제목 없음';
+            document.getElementById('policy-category').textContent = policy.category || getDefaultCategory(type);
+            document.getElementById('policy-date').textContent = formatDate(policy.createdAt);
+            document.getElementById('policy-views').textContent = policy.views || '0';
+            
+            // type에 따른 작성자 및 날짜 설정
+            let author, releaseDate;
+            switch(type) {
+                case 'policy-committee':
+                    author = policy.chairperson ? `${policy.chairperson} (${policy.committeeName || '정책위원회'})` : policy.author || '정책위원회';
+                    releaseDate = policy.meetingDate || policy.createdAt;
+                    break;
+                case 'new-media':
+                    author = policy.designer || policy.author || '뉴미디어팀';
+                    releaseDate = policy.publishSchedule || policy.createdAt;
+                    break;
+                default:
+                    author = policy.author || '정책연구소';
+                    releaseDate = policy.releaseDate || policy.createdAt;
+            }
+            
+            document.getElementById('policy-author').textContent = author;
+            document.getElementById('policy-release-date').textContent = formatDate(releaseDate);
+
+            // 요약 섹션
+            if (policy.excerpt) {
+                document.getElementById('policy-excerpt').textContent = policy.excerpt;
+                document.getElementById('excerpt-section').classList.remove('hidden');
+            }
+
+            // 본문 내용 (마크다운 렌더링)
+            const contentBody = document.getElementById('policy-body');
+            if (policy.content) {
+                contentBody.innerHTML = marked.parse(policy.content);
+            }
+
+            // 태그 표시
+            if (policy.tags && policy.tags.length > 0) {
+                displayTags(policy.tags);
+            }
+
+            // 첨부파일 표시
+            if (policy.attachments && policy.attachments.length > 0) {
+                displayAttachments(policy.attachments, type);
+            }
+            
+            // 페이지 제목 업데이트
+            const pageTypeTitle = getPageTitle(type);
+            document.title = `${policy.title} - ${pageTypeTitle} - 자유와혁신`;
+
+            document.getElementById('policy-content').classList.remove('hidden');
+        }
+
+        // type에 따른 기본 카테고리 반환
+        function getDefaultCategory(type) {
+            switch(type) {
+                case 'policy-committee':
+                    return '정책위원회';
+                case 'new-media':
+                    return '뉴미디어';
+                default:
+                    return '정책자료';
+            }
+        }
+
+        // type에 따른 페이지 제목 반환
+        function getPageTitle(type) {
+            switch(type) {
+                case 'policy-committee':
+                    return '정책위원회';
+                case 'new-media':
+                    return '뉴미디어';
+                default:
+                    return '정책자료';
+            }
+        }
+
+        // 태그 표시
+        function displayTags(tags) {
+            const tagsSection = document.getElementById('tags-section');
+            const tagsList = document.getElementById('tags-list');
+            
+            tagsList.innerHTML = '';
+            
+            tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'inline-block px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors';
+                tagElement.innerHTML = `<i class="fas fa-tag mr-1"></i>${tag}`;
+                tagsList.appendChild(tagElement);
+            });
+            
+            tagsSection.classList.remove('hidden');
+        }
+
+        // 첨부파일 표시
+        function displayAttachments(attachments, type) {
+            const attachmentsSection = document.getElementById('attachments-section');
+            const attachmentsList = document.getElementById('attachments-list');
+            
+            // 이미지와 일반 파일을 분리
+            const images = attachments.filter(file => isImageFile(file.filename));
+            const files = attachments.filter(file => !isImageFile(file.filename));
+            
+            let content = '';
+            
+            // 카드뉴스인 경우 특별한 갤러리 레이아웃
+            if (type === 'new-media' && currentPolicy?.category === '카드뉴스' && images.length > 0) {
+                content += `
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold mb-4 text-gray-800">
+                            <i class="fas fa-images mr-2 text-blue-500"></i>카드뉴스 (${images.length}장)
+                        </h4>
+                        <div class="card-news-gallery grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                `;
+                
+                images.forEach((attachment, index) => {
+                    const imageUrl = `${API_BASE.replace('/api', '')}/uploads/${attachment.filename}`;
+                    content += `
+                        <div class="card-news-item group">
+                            <div class="relative overflow-hidden rounded-lg shadow-lg bg-white">
+                                <div class="aspect-w-3 aspect-h-4 bg-gray-100">
+                                    <img src="${imageUrl}" 
+                                         alt="카드뉴스 ${index + 1}페이지" 
+                                         class="w-full h-full object-contain cursor-pointer transition-transform duration-300 group-hover:scale-105"
+                                         onclick="openImageModal('${imageUrl}', '${attachment.filename}')">
+                                </div>
+                                <div class="absolute top-3 left-3 bg-black bg-opacity-60 text-white px-2 py-1 rounded text-sm font-medium">
+                                    ${index + 1}/${images.length}
+                                </div>
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-white">
+                                        <div class="text-sm font-medium">${attachment.filename}</div>
+                                        <div class="text-xs opacity-75">${formatFileSize(attachment.size)}</div>
+                                        <a href="${imageUrl}" 
+                                           download="${attachment.filename}"
+                                           class="inline-block mt-2 text-white hover:text-blue-200 text-sm">
+                                            <i class="fas fa-download mr-1"></i>다운로드
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                content += '</div></div>';
+            } 
+            // 일반 이미지 파일들을 표시 (카드뉴스가 아닌 경우)
+            else if (images.length > 0) {
+                content += '<div class="mb-6"><h4 class="text-md font-semibold mb-3 text-gray-700">첨부 이미지</h4>';
+                content += '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+                images.forEach(attachment => {
+                    const imageUrl = `${API_BASE.replace('/api', '')}/uploads/${attachment.filename}`;
+                    content += `
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="${imageUrl}" alt="${attachment.filename}" 
+                                 class="w-full h-auto cursor-pointer hover:opacity-90 transition-opacity"
+                                 onclick="openImageModal('${imageUrl}', '${attachment.filename}')">
+                            <div class="p-3 bg-gray-50">
+                                <div class="text-sm font-medium text-gray-800">${attachment.filename}</div>
+                                <div class="text-xs text-gray-500">${formatFileSize(attachment.size)}</div>
+                                <a href="${imageUrl}" 
+                                   download="${attachment.filename}"
+                                   class="inline-block mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                    <i class="fas fa-download mr-1"></i>원본 다운로드
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+                content += '</div></div>';
+            }
+            
+            // 일반 파일들을 리스트로 표시
+            if (files.length > 0) {
+                content += '<div><h4 class="text-md font-semibold mb-3 text-gray-700">첨부 파일</h4>';
+                files.forEach(attachment => {
+                    const icon = getFileIcon(attachment.filename);
+                    const size = formatFileSize(attachment.size);
+                    const downloadUrl = `${API_BASE.replace('/api', '')}/uploads/${attachment.filename}`;
+                    
+                    content += `
+                        <div class="attachment-item">
+                            <i class="${icon} attachment-icon"></i>
+                            <div class="attachment-info">
+                                <div class="attachment-name">${attachment.filename}</div>
+                                <div class="attachment-size">${size}</div>
+                            </div>
+                            <a href="${downloadUrl}" download="${attachment.filename}" 
+                               class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-download mr-1"></i>다운로드
+                            </a>
+                        </div>
+                    `;
+                });
+                content += '</div>';
+            }
+            
+            attachmentsList.innerHTML = content;
+            attachmentsSection.classList.remove('hidden');
+        }
+
+        // 이미지 파일 확인
+        function isImageFile(filename) {
+            const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg'];
+            const ext = filename.split('.').pop().toLowerCase();
+            return imageExts.includes(ext);
+        }
+
+        // 이미지 모달 열기
+        function openImageModal(imageUrl, filename) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4';
+            modal.onclick = () => modal.remove();
+            
+            modal.innerHTML = `
+                <div class="max-w-4xl max-h-full relative">
+                    <img src="${imageUrl}" alt="${filename}" class="max-w-full max-h-full object-contain">
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="absolute bottom-4 left-4 text-white bg-black bg-opacity-50 px-3 py-2 rounded">
+                        ${filename}
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        // 조회수 증가
+        async function incrementViews(id, type) {
+            try {
+                let endpoint;
+                switch(type) {
+                    case 'policy-committee':
+                        endpoint = '/policy-committee';
+                        break;
+                    case 'new-media':
+                        endpoint = '/new-media';
+                        break;
+                    default:
+                        endpoint = '/policy-materials';
+                }
+                await fetch(`${API_BASE}${endpoint}/${id}/view`, { method: 'POST' });
+            } catch (error) {
+                console.error('Error incrementing views:', error);
+            }
+        }
+
+        // 관리자 접근 권한 확인
+        // 관리자 관련 JavaScript 함수들 제거:
+        // - checkAdminAccess()
+        // - editPolicy() 
+        // - deletePolicy()
+
+        // 공유 기능들
+        function shareKakao() {
+            if (!currentPolicy) return;
+            // 카카오톡 공유 API 구현
+            alert('카카오톡 공유 기능은 준비 중입니다.');
+        }
+
+        function shareTwitter() {
+            if (!currentPolicy) return;
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(currentPolicy.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        }
+
+        function shareFacebook() {
+            if (!currentPolicy) return;
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        }
+
+        function copyUrl() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('링크가 복사되었습니다.');
+            });
+        }
+
+        // 유틸리티 함수들
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function getFileIcon(filename) {
+            const ext = filename.toLowerCase().split('.').pop();
+            const iconMap = {
+                'pdf': 'fas fa-file-pdf',
+                'doc': 'fas fa-file-word',
+                'docx': 'fas fa-file-word',
+                'xls': 'fas fa-file-excel',
+                'xlsx': 'fas fa-file-excel',
+                'ppt': 'fas fa-file-powerpoint',
+                'pptx': 'fas fa-file-powerpoint',
+                'jpg': 'fas fa-file-image',
+                'jpeg': 'fas fa-file-image',
+                'png': 'fas fa-file-image',
+                'gif': 'fas fa-file-image',
+                'zip': 'fas fa-file-archive',
+                'rar': 'fas fa-file-archive'
+            };
+            return iconMap[ext] || 'fas fa-file';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function showLoading() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('policy-content').classList.add('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').classList.add('hidden');
+        }
+
+        function showError(message) {
+            document.getElementById('error').querySelector('div').textContent = message;
+            document.getElementById('error').classList.remove('hidden');
+            document.getElementById('loading').classList.add('hidden');
+        }
+    </script>
+</body>
+</html> 

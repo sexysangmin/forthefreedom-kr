@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드뉴스 - 자유와혁신</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .card-item {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .card-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ef4444;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+        .card-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+        }
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-3">
+                        <img src="/images/logo.svg" alt="자유와혁신" class="h-8 w-auto">
+                        <span class="text-xl font-bold text-gray-900">자유와혁신</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/news.html" class="text-gray-700 hover:text-red-600">뉴스</a>
+                    <a href="/policy.html" class="text-gray-700 hover:text-red-600">정책</a>
+                    <a href="/about.html" class="text-gray-700 hover:text-red-600">당소개</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- 제목 -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">카드뉴스</h1>
+            <p class="text-gray-600">정책과 활동을 한눈에 볼 수 있는 카드뉴스입니다.</p>
+        </div>
+
+        <!-- 필터 버튼 -->
+        <div class="mb-8">
+            <div class="flex flex-wrap gap-2">
+                <button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-colors bg-red-600 text-white" data-category="all">
+                    전체
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-200 text-gray-700 hover:bg-gray-300" data-category="정책">
+                    정책
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-200 text-gray-700 hover:bg-gray-300" data-category="활동">
+                    활동
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-200 text-gray-700 hover:bg-gray-300" data-category="소식">
+                    소식
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-200 text-gray-700 hover:bg-gray-300" data-category="정보">
+                    정보
+                </button>
+            </div>
+        </div>
+
+        <!-- 카드뉴스 그리드 -->
+        <div class="card-grid" id="cardGrid">
+            <!-- 테스트 카드 1 -->
+            <div class="card-item" data-category="정책" onclick="openCard('test1')">
+                <div class="card-badge">정책</div>
+                <img src="http://localhost:9000/uploads/cardnews_01.jpg" 
+                     alt="2025년 신년 정책 발표" 
+                     class="card-image"
+                     loading="lazy"
+                     onerror="this.src='http://localhost:9000/images/logo.png'; this.style.objectFit='contain'; this.style.background='#f3f4f6';">
+                <div class="card-overlay">
+                    <h3 class="font-bold text-sm mb-1">2025년 신년 정책 발표 - 경제 혁신 정책</h3>
+                    <p class="text-xs opacity-90">2025.01.18</p>
+                    <p class="text-xs opacity-75 mt-1">3장</p>
+                </div>
+            </div>
+
+            <!-- 테스트 카드 2 -->
+            <div class="card-item" data-category="활동" onclick="openCard('test2')">
+                <div class="card-badge">활동</div>
+                <img src="http://localhost:9000/uploads/cardnews_02.jpg" 
+                     alt="교육 혁신 정책" 
+                     class="card-image"
+                     loading="lazy"
+                     onerror="this.src='http://localhost:9000/images/logo.png'; this.style.objectFit='contain'; this.style.background='#f3f4f6';">
+                <div class="card-overlay">
+                    <h3 class="font-bold text-sm mb-1">교육 혁신 정책 - 미래형 교육 시스템 구축</h3>
+                    <p class="text-xs opacity-90">2025.01.17</p>
+                    <p class="text-xs opacity-75 mt-1">2장</p>
+                </div>
+            </div>
+
+            <!-- 테스트 카드 3 -->
+            <div class="card-item" data-category="소식" onclick="openCard('test3')">
+                <div class="card-badge">소식</div>
+                <img src="http://localhost:9000/uploads/cardnews_03.jpg" 
+                     alt="청년 일자리 창출" 
+                     class="card-image"
+                     loading="lazy"
+                     onerror="this.src='http://localhost:9000/images/logo.png'; this.style.objectFit='contain'; this.style.background='#f3f4f6';">
+                <div class="card-overlay">
+                    <h3 class="font-bold text-sm mb-1">청년 일자리 창출 프로젝트</h3>
+                    <p class="text-xs opacity-90">2025.01.16</p>
+                    <p class="text-xs opacity-75 mt-1">3장</p>
+                </div>
+            </div>
+
+            <!-- 테스트 카드 4 -->
+            <div class="card-item" data-category="정보" onclick="openCard('test4')">
+                <div class="card-badge">정보</div>
+                <img src="http://localhost:9000/uploads/test-cardnews-1.jpg" 
+                     alt="디지털 정부 혁신" 
+                     class="card-image"
+                     loading="lazy"
+                     onerror="this.src='http://localhost:9000/images/logo.png'; this.style.objectFit='contain'; this.style.background='#f3f4f6';">
+                <div class="card-overlay">
+                    <h3 class="font-bold text-sm mb-1">디지털 정부 혁신 정책 소개</h3>
+                    <p class="text-xs opacity-90">2025.01.15</p>
+                    <p class="text-xs opacity-75 mt-1">4장</p>
+                </div>
+            </div>
+
+            <!-- 테스트 카드 5 -->
+            <div class="card-item" data-category="정책" onclick="openCard('test5')">
+                <div class="card-badge">정책</div>
+                <img src="http://localhost:9000/uploads/test-cardnews-2.jpg" 
+                     alt="환경 보호 정책" 
+                     class="card-image"
+                     loading="lazy"
+                     onerror="this.src='http://localhost:9000/images/logo.png'; this.style.objectFit='contain'; this.style.background='#f3f4f6';">
+                <div class="card-overlay">
+                    <h3 class="font-bold text-sm mb-1">환경 보호를 위한 녹색 정책</h3>
+                    <p class="text-xs opacity-90">2025.01.14</p>
+                    <p class="text-xs opacity-75 mt-1">5장</p>
+                </div>
+            </div>
+
+            <!-- 테스트 카드 6 -->
+            <div class="card-item" data-category="활동" onclick="openCard('test6')">
+                <div class="card-badge">활동</div>
+                <img src="http://localhost:9000/uploads/jpg-1752815725399-806118100.jpg" 
+                     alt="지역 순회 토론회" 
+                     class="card-image"
+                     loading="lazy"
+                     onerror="this.src='http://localhost:9000/images/logo.png'; this.style.objectFit='contain'; this.style.background='#f3f4f6';">
+                <div class="card-overlay">
+                    <h3 class="font-bold text-sm mb-1">지역 순회 토론회 개최</h3>
+                    <p class="text-xs opacity-90">2025.01.13</p>
+                    <p class="text-xs opacity-75 mt-1">6장</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 로딩 메시지 -->
+        <div id="loadingMessage" class="text-center py-8" style="display: none;">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto"></div>
+            <p class="mt-2 text-gray-600">로딩 중...</p>
+        </div>
+
+        <!-- 더보기 버튼 -->
+        <div class="text-center mt-8">
+            <button id="loadMoreBtn" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors">
+                더 많은 카드뉴스 보기
+            </button>
+        </div>
+    </main>
+
+    <script>
+        console.log('🎯 카드뉴스 테스트 페이지 로드됨');
+
+        // 필터 기능
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                
+                // 버튼 활성화 상태 변경
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-red-600', 'text-white');
+                    b.classList.add('bg-gray-200', 'text-gray-700');
+                });
+                btn.classList.remove('bg-gray-200', 'text-gray-700');
+                btn.classList.add('active', 'bg-red-600', 'text-white');
+                
+                // 카드 필터링
+                document.querySelectorAll('.card-item').forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                console.log(`🔍 필터 적용: ${category}`);
+            });
+        });
+
+        // 카드 클릭 처리
+        function openCard(id) {
+            console.log(`🖱️ 카드 클릭: ${id}`);
+            // 실제 구현에서는 card-news-detail.html로 이동
+            alert(`카드뉴스 "${id}" 상세 페이지로 이동합니다.\n(실제로는 card-news-detail.html?id=${id}로 이동)`);
+        }
+
+        // 이미지 로딩 상태 확인
+        document.querySelectorAll('.card-image').forEach((img, index) => {
+            img.addEventListener('load', () => {
+                console.log(`✅ 이미지 로딩 성공 ${index + 1}: ${img.src}`);
+            });
+            
+            img.addEventListener('error', () => {
+                console.error(`❌ 이미지 로딩 실패 ${index + 1}: ${img.src}`);
+            });
+        });
+
+        // 더보기 버튼
+        document.getElementById('loadMoreBtn').addEventListener('click', () => {
+            console.log('📜 더보기 버튼 클릭');
+            alert('더 많은 카드뉴스를 로드합니다.\n(실제로는 API 호출로 추가 데이터 로드)');
+        });
+
+        console.log('✅ 카드뉴스 테스트 페이지 초기화 완료');
+    </script>
+</body>
+</html> 

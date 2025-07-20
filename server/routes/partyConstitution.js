@@ -244,6 +244,73 @@ router.get('/:id/download', async (req, res) => {
     }
 });
 
+// 첨부파일 ID 기반 다운로드 (party-constitution-detail.html용)
+router.get('/:id/download/:attachmentId', async (req, res) => {
+    try {
+        const { id, attachmentId } = req.params;
+        
+        const constitution = await PartyConstitution.findById(id);
+        if (!constitution) {
+            return res.status(404).json({
+                success: false,
+                message: '당헌당규를 찾을 수 없습니다'
+            });
+        }
+
+        // attachmentId로 첨부파일 찾기 (MongoDB ObjectId 또는 filename)
+        const attachment = constitution.attachments.find(file => 
+            file._id.toString() === attachmentId || file.filename === attachmentId
+        );
+        
+        if (!attachment) {
+            return res.status(404).json({
+                success: false,
+                message: '첨부파일을 찾을 수 없습니다'
+            });
+        }
+
+        const filePath = path.join(uploadDir, attachment.filename);
+        if (!fs.existsSync(filePath)) {
+            return res.status(404).json({
+                success: false,
+                message: '파일이 존재하지 않습니다'
+            });
+        }
+
+        res.download(filePath, attachment.originalName);
+    } catch (error) {
+        console.error('첨부파일 다운로드 오류:', error);
+        res.status(500).json({
+            success: false,
+            message: '파일 다운로드 중 오류가 발생했습니다',
+            error: error.message
+        });
+    }
+});
+
+// 조회수 증가
+router.post('/:id/views', async (req, res) => {
+    try {
+        const { id } = req.params;
+        
+        await PartyConstitution.findByIdAndUpdate(id, { 
+            $inc: { views: 1 } 
+        });
+
+        res.json({
+            success: true,
+            message: '조회수가 업데이트되었습니다'
+        });
+    } catch (error) {
+        console.error('조회수 업데이트 오류:', error);
+        res.status(500).json({
+            success: false,
+            message: '조회수 업데이트 중 오류가 발생했습니다',
+            error: error.message
+        });
+    }
+});
+
 // 다운로드 카운트 업데이트
 router.post('/:id/download-count', async (req, res) => {
     try {

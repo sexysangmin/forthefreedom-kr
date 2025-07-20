@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>보도자료 - 자유와혁신</title>
+    <title>보도자료 상세 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,461 +23,516 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
-    <!-- Marked.js for markdown rendering -->
-    <script src="https://cdn.jsdelivr.net/npm/marked@5.0.0/marked.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    
     <style>
-        /* Prose 스타일 for 마크다운 콘텐츠 */
-        .prose {
-            color: #374151;
-            line-height: 1.7;
+        .attachment-item {
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            transition: background-color 0.2s;
         }
-        .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-            color: #111827;
-            font-weight: 600;
-            margin-top: 2rem;
+        
+        .attachment-item:hover {
+            background: #e9ecef;
+        }
+        
+        .attachment-icon {
+            font-size: 1.2rem;
+            margin-right: 0.75rem;
+            color: #6c757d;
+        }
+        
+        .attachment-info {
+            flex: 1;
+        }
+        
+        .attachment-name {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+        
+        .attachment-size {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .content-body {
+            line-height: 1.8;
+        }
+        
+        .content-body h1, .content-body h2, .content-body h3 {
+            margin: 1.5rem 0 1rem 0;
+            font-weight: bold;
+        }
+        
+        .content-body h1 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-body h2 {
+            font-size: 1.5rem;
+        }
+        
+        .content-body h3 {
+            font-size: 1.3rem;
+        }
+        
+        .content-body p {
             margin-bottom: 1rem;
-            line-height: 1.25;
         }
-        .prose h1 { font-size: 2.25rem; }
-        .prose h2 { font-size: 1.875rem; }
-        .prose h3 { font-size: 1.5rem; }
-        .prose h4 { font-size: 1.25rem; }
-        .prose p {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
+        
+        .content-body ul, .content-body ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
         }
-        .prose ul, .prose ol {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-        }
-        .prose li {
-            margin-top: 0.5rem;
+        
+        .content-body li {
             margin-bottom: 0.5rem;
         }
-        .prose ul > li {
-            list-style-type: disc;
-        }
-        .prose ol > li {
-            list-style-type: decimal;
-        }
-        .prose blockquote {
+        
+        .content-body blockquote {
             border-left: 4px solid #A50034;
             padding-left: 1rem;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
             font-style: italic;
-            background-color: #f9fafb;
-            padding: 1rem;
-            border-radius: 0.375rem;
+            color: #666;
         }
-        .prose code {
-            background-color: #f3f4f6;
-            padding: 0.125rem 0.375rem;
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+        
+        .content-body code {
+            background: #f1f3f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: monospace;
         }
-        .prose pre {
-            background-color: #1f2937;
-            color: #f9fafb;
+        
+        .content-body pre {
+            background: #f8f9fa;
             padding: 1rem;
-            border-radius: 0.5rem;
+            border-radius: 5px;
             overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #A50034;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .original-source {
+            background: #e6f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 1rem;
             margin: 1.5rem 0;
-        }
-        .prose pre code {
-            background-color: transparent;
-            padding: 0;
-            color: inherit;
-        }
-        .prose a {
-            color: #A50034;
-            text-decoration: underline;
-        }
-        .prose a:hover {
-            color: #8B002C;
-        }
-        .prose strong {
-            font-weight: 600;
-            color: #111827;
-        }
-        .prose em {
-            font-style: italic;
-        }
-        .prose hr {
-            border: 0;
-            border-top: 1px solid #d1d5db;
-            margin: 2rem 0;
-        }
-        .prose table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-        }
-        .prose table th,
-        .prose table td {
-            border: 1px solid #d1d5db;
-            padding: 0.75rem;
-            text-align: left;
-        }
-        .prose table th {
-            background-color: #f9fafb;
-            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <main class="py-16 bg-gray-50 min-h-screen">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- 뒤로가기 버튼 -->
-            <div class="mb-8">
-                <button onclick="goBack()" class="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors">
-                    <i class="fas fa-arrow-left mr-2"></i>
-                    보도자료 목록으로
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../news.html" class="text-gray-500 hover:text-red-600">정당소식</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="press-releases.html" class="text-gray-500 hover:text-red-600">보도자료</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">상세보기</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <main class="bg-white">
+        <!-- 로딩 상태 -->
+        <div id="loading" class="flex justify-center items-center py-16">
+            <div class="loading-spinner"></div>
+            <span class="ml-4 text-gray-600">보도자료를 불러오는 중...</span>
+        </div>
+
+        <!-- 에러 상태 -->
+        <div id="error" class="hidden text-center py-16">
+            <div class="max-w-md mx-auto">
+                <i class="fas fa-exclamation-triangle text-red-500 text-4xl mb-4"></i>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">불러오기 실패</h3>
+                <p class="text-gray-600 mb-4">보도자료를 불러오는 중 오류가 발생했습니다.</p>
+                <button onclick="location.reload()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                    다시 시도
                 </button>
             </div>
+        </div>
 
-            <!-- 로딩 상태 -->
-            <div id="loading" class="text-center py-16">
-                <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
-                <p class="mt-4 text-gray-600 text-lg">보도자료를 불러오는 중...</p>
-            </div>
-
-            <!-- 에러 상태 -->
-            <div id="error" class="text-center py-16 hidden">
-                <div class="text-red-600 mb-4">
-                    <i class="fas fa-exclamation-triangle text-4xl"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">보도자료를 찾을 수 없습니다</h2>
-                <p class="text-gray-600 mb-8">요청하신 보도자료가 존재하지 않거나 삭제되었습니다.</p>
-                <button onclick="goBack()" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors">
-                    보도자료 목록으로 돌아가기
-                </button>
-            </div>
-
-            <!-- 보도자료 내용 -->
-            <article id="content" class="bg-white rounded-lg shadow-sm overflow-hidden hidden">
-                <!-- 카테고리 및 메타 정보 -->
-                <div class="px-8 py-6 border-b border-gray-200">
-                    <div class="flex items-center justify-between mb-4">
-                        <span id="category" class="inline-block px-3 py-1 rounded-full text-sm font-medium"></span>
-                        <div class="flex items-center text-sm text-gray-500 space-x-4">
-                            <span id="date">
-                                <i class="fas fa-calendar mr-1"></i>
-                                <span class="date-text"></span>
+        <!-- 보도자료 내용 -->
+        <div id="press-content" class="hidden">
+            <section class="py-16">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- 헤더 -->
+                    <div class="border-b border-gray-200 pb-8 mb-8">
+                        <div class="mb-4">
+                            <span id="press-category" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                보도자료
                             </span>
-                            <span id="views">
-                                <i class="fas fa-eye mr-1"></i>
-                                <span class="views-text">0</span>
-                            </span>
+                            <span id="press-date" class="ml-4 text-gray-500 text-sm">2025-01-01</span>
+                        </div>
+                        <h1 id="press-title" class="text-3xl font-bold text-gray-900 mb-4">보도자료 제목</h1>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>작성자: <span id="press-author">대변인</span></span>
+                            <span class="mx-2">•</span>
+                            <span>조회수: <span id="press-views">0</span></span>
                         </div>
                     </div>
-                    
-                    <!-- 제목 -->
-                    <h1 id="title" class="text-3xl font-bold text-gray-900 leading-tight"></h1>
-                    
-                    <!-- 작성자 -->
-                    <div class="mt-4 flex items-center text-gray-600">
-                        <i class="fas fa-user mr-2"></i>
-                        <span id="author"></span>
+
+                    <!-- 원문 링크 (있는 경우) -->
+                    <div id="original-source" class="original-source hidden">
+                        <h4 class="text-sm font-semibold text-blue-800 mb-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>원문 보기
+                        </h4>
+                        <a id="original-link" href="#" target="_blank" class="text-blue-600 hover:text-blue-800 underline">
+                            원문 링크에서 전체 내용을 확인하세요
+                        </a>
                     </div>
-                    
-                    <!-- 원문 링크 -->
-                    <div id="original-url-section" class="mt-4 hidden">
-                        <a id="original-url-link" href="#" target="_blank" rel="noopener noreferrer" 
-                           class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-                            <i class="fas fa-external-link-alt mr-2"></i>
-                            원문 바로가기
+
+                    <!-- 본문 -->
+                    <div id="press-body" class="content-body text-gray-800 mb-8">
+                        <!-- 내용이 여기에 로드됩니다 -->
+                    </div>
+
+                    <!-- 첨부파일 -->
+                    <div id="attachments-section" class="mb-8 hidden">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                            <i class="fas fa-paperclip mr-2"></i>첨부파일
+                        </h3>
+                        <div id="attachments-list">
+                            <!-- 첨부파일 목록이 여기에 로드됩니다 -->
+                        </div>
+                    </div>
+
+                    <!-- 공유하기 -->
+                    <div class="border-t border-gray-200 pt-8 mb-8">
+                        <h4 class="text-sm font-medium text-gray-700 mb-4">링크 공유</h4>
+                        <div class="flex space-x-3">
+                            <button onclick="copyUrl()" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" title="링크 복사">
+                                <i class="fas fa-link mr-2"></i>링크 복사
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 목록으로 돌아가기 -->
+                    <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+                        <a href="press-releases.html" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-arrow-left mr-2"></i>목록으로
                         </a>
                     </div>
                 </div>
-
-                <!-- 요약 -->
-                <div id="excerpt-section" class="px-8 py-6 bg-gray-50 border-b border-gray-200 hidden">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">요약</h3>
-                    <p id="excerpt" class="text-gray-700 leading-relaxed"></p>
-                </div>
-
-                <!-- 본문 내용 -->
-                <div class="px-8 py-8">
-                    <div id="press-content" class="prose max-w-none">
-                        <!-- 마크다운이 렌더링된 내용이 여기에 표시됩니다 -->
-                    </div>
-                </div>
-
-                <!-- 태그 -->
-                <div id="tags-section" class="px-8 py-6 bg-gray-50 border-t border-gray-200 hidden">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">태그</h3>
-                    <div id="tags" class="flex flex-wrap gap-2">
-                        <!-- 태그들이 여기에 표시됩니다 -->
-                    </div>
-                </div>
-
-                <!-- 이미지 갤러리 -->
-                <div id="images-section" class="px-8 py-6 border-t border-gray-200 hidden">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">이미지</h3>
-                    <div id="images" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <!-- 이미지들이 여기에 표시됩니다 -->
-                    </div>
-                </div>
-
-                <!-- 첨부파일 -->
-                <div id="attachments-section" class="px-8 py-6 border-t border-gray-200 hidden">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">첨부파일</h3>
-                    <div id="attachments" class="space-y-3">
-                        <!-- 첨부파일들이 여기에 표시됩니다 -->
-                    </div>
-                </div>
-
-                <!-- 하단 네비게이션 -->
-                <div class="px-8 py-6 bg-gray-50 border-t border-gray-200">
-                    <div class="flex justify-between items-center">
-                        <button onclick="goBack()" class="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors">
-                            <i class="fas fa-list mr-2"></i>
-                            목록으로
-                        </button>
-                        <div class="flex space-x-4">
-                            <button id="prev-btn" onclick="navigateToPrev()" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                                <i class="fas fa-chevron-left mr-2"></i>
-                                이전 글
-                            </button>
-                            <button id="next-btn" onclick="navigateToNext()" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                                다음 글
-                                <i class="fas fa-chevron-right ml-2"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </article>
+            </section>
         </div>
     </main>
-
-    <!-- 이미지 모달 -->
-    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
-        <div class="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
-            <!-- 닫기 버튼 -->
-            <button onclick="closeImageModal()" class="absolute top-4 right-4 text-white hover:text-gray-300 z-10">
-                <i class="fas fa-times text-2xl"></i>
-            </button>
-            
-            <!-- 이전/다음 버튼 -->
-            <button id="prevImageBtn" onclick="showPrevImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10">
-                <i class="fas fa-chevron-left text-3xl"></i>
-            </button>
-            <button id="nextImageBtn" onclick="showNextImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10">
-                <i class="fas fa-chevron-right text-3xl"></i>
-            </button>
-            
-            <!-- 메인 이미지 -->
-            <img id="modalImage" src="" alt="" class="max-w-full max-h-full object-contain">
-            
-            <!-- 이미지 정보 -->
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-center">
-                <p id="modalImageName" class="text-lg font-medium mb-1"></p>
-                <p id="modalImageIndex" class="text-sm opacity-75"></p>
-            </div>
-        </div>
-    </div>
-
-    <script src="../config.js"></script>
-    <script src="/nav.js"></script>
+    
+    <script src="../nav.js"></script>
     <script>
-        const API_BASE = window.API_BASE || 'http://localhost:9000/api';
-        let currentPressRelease = null;
-        let pressReleasesList = [];
-        let currentIndex = -1;
+        loadNavigation();
 
-        // 페이지 로드시 실행
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+
+        let currentPressRelease = null;
+
+        // 페이지 로드 시 보도자료 상세 정보 로드
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const pressId = urlParams.get('id');
+            const source = urlParams.get('source');
             
-            if (!pressId) {
-                showError('보도자료 ID가 제공되지 않았습니다.');
-                return;
+            if (pressId) {
+                loadPressReleaseDetail(pressId, source);
+            } else {
+                showError('보도자료 ID가 없습니다.');
             }
-            
-            loadPressRelease(pressId);
         });
 
-        // 보도자료 로드
-        async function loadPressRelease(id) {
+        // 보도자료/대변인 상세 정보 로드
+        async function loadPressReleaseDetail(id, source = 'spokesperson') {
             try {
                 showLoading();
                 
-                // 개별 보도자료 조회
-                const response = await fetch(`${API_BASE}/press-releases/${id}`);
-                const result = await response.json();
-                
-                if (!result.success) {
-                    throw new Error(result.message || '보도자료를 불러올 수 없습니다.');
-                }
-                
-                currentPressRelease = result.data;
-                renderPressRelease(currentPressRelease);
-                
-                // 전체 목록 로드 (이전/다음 글 네비게이션용)
-                await loadPressReleasesList();
-                
-                hideLoading();
-                
-            } catch (error) {
-                console.error('보도자료 로드 실패:', error);
-                showError(error.message);
-                hideLoading();
-            }
-        }
+                // 대변인 API만 사용
+                const response = await fetch(`${API_BASE}/spokesperson/${id}`);
+                const data = await response.json();
 
-        // 보도자료 목록 로드 (네비게이션용)
-        async function loadPressReleasesList() {
-            try {
-                const response = await fetch(`${API_BASE}/press-releases?limit=1000&sortBy=createdAt&sortOrder=desc`);
-                const result = await response.json();
-                
-                if (result.success && result.data) {
-                    pressReleasesList = result.data;
-                    currentIndex = pressReleasesList.findIndex(item => item._id === currentPressRelease._id);
-                    updateNavigationButtons();
-                }
-            } catch (error) {
-                console.error('보도자료 목록 로드 실패:', error);
-            }
-        }
-
-        // 보도자료 렌더링
-        function renderPressRelease(press) {
-            // 제목
-            document.getElementById('title').textContent = press.title;
-            
-            // 카테고리
-            const categoryElement = document.getElementById('category');
-            categoryElement.textContent = press.category;
-            categoryElement.className = `inline-block px-3 py-1 rounded-full text-sm font-medium ${getCategoryStyle(press.category)}`;
-            
-            // 날짜
-            document.querySelector('#date .date-text').textContent = formatDate(press.releaseDate || press.createdAt);
-            
-            // 조회수
-            document.querySelector('#views .views-text').textContent = press.views || 0;
-            
-            // 작성자
-            document.getElementById('author').textContent = press.author || '대변인';
-            
-            // 원문 링크
-            const originalUrlSection = document.getElementById('original-url-section');
-            if (press.originalUrl && press.originalUrl.trim() !== '') {
-                document.getElementById('original-url-link').href = press.originalUrl;
-                originalUrlSection.classList.remove('hidden');
-            } else {
-                originalUrlSection.classList.add('hidden');
-            }
-            
-            // 요약
-            if (press.excerpt) {
-                document.getElementById('excerpt').textContent = press.excerpt;
-                document.getElementById('excerpt-section').classList.remove('hidden');
-            }
-            
-            // 본문 내용 (마크다운 렌더링)
-            const contentElement = document.getElementById('press-content');
-            if (press.content) {
-                contentElement.innerHTML = marked.parse(press.content);
-            }
-            
-            // 태그
-            if (press.tags && press.tags.length > 0) {
-                const tagsContainer = document.getElementById('tags');
-                tagsContainer.innerHTML = press.tags.map(tag => `
-                    <span class="inline-block px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
-                        #${tag}
-                    </span>
-                `).join('');
-                document.getElementById('tags-section').classList.remove('hidden');
-            }
-            
-            // 첨부파일 처리
-            if (press.attachments && press.attachments.length > 0) {
-                const imageFiles = press.attachments.filter(file => file.mimeType && file.mimeType.startsWith('image/'));
-                const documentFiles = press.attachments.filter(file => !file.mimeType || !file.mimeType.startsWith('image/'));
-                
-                // 이미지 갤러리
-                if (imageFiles.length > 0) {
-                    const imagesContainer = document.getElementById('images');
-                    imagesContainer.innerHTML = imageFiles.map((file, index) => {
-                        const imagePath = `http://localhost:9000${file.path}`;
-                        console.log('🖼️ 이미지 경로 생성:', imagePath);
-                        console.log('🖼️ 파일 정보:', file);
-                        
-                        return `
-                            <div class="relative group cursor-pointer" onclick="openImageModal(${index})">
-                                <img src="${imagePath}" 
-                                     alt="${file.originalName}"
-                                     class="w-full h-48 object-cover rounded-lg shadow-sm group-hover:shadow-md transition-all duration-200"
-                                     loading="lazy">
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"></i>
-                                </div>
-                            </div>
-                        `;
-                    }).join('');
-                    document.getElementById('images-section').classList.remove('hidden');
+                if (data.success) {
+                    currentPressRelease = data.data;
+                    displayPressReleaseDetail(data.data);
+                    
+                    // 조회수 증가
+                    incrementViews(id);
                 } else {
-                    document.getElementById('images-section').classList.add('hidden');
+                    throw new Error(data.message || '콘텐츠를 불러오는데 실패했습니다.');
                 }
                 
-                // 문서 파일들
-                if (documentFiles.length > 0) {
-                    const attachmentsContainer = document.getElementById('attachments');
-                    attachmentsContainer.innerHTML = documentFiles.map(file => `
-                        <div class="flex items-center p-3 bg-gray-50 rounded-lg border">
-                            <i class="fas fa-file-${getFileIcon(file.mimeType)} mr-3 text-gray-500"></i>
-                            <div class="flex-1">
-                                <p class="font-medium text-gray-900">${file.originalName}</p>
-                                <p class="text-sm text-gray-500">${formatFileSize(file.size)}</p>
+            } catch (error) {
+                console.error('Error loading detail:', error);
+                showError('콘텐츠를 불러오는 중 오류가 발생했습니다.');
+            }
+        }
+
+        // 보도자료 상세 표시
+        function displayPressReleaseDetail(pressRelease) {
+            hideAll();
+            
+            // 카테고리 배지 설정
+            const categoryBadge = document.getElementById('press-category');
+            const categoryText = pressRelease.category || '보도자료';
+            const sourceLabel = ''; // 대변인 콘텐츠는 카테고리 배지를 표시하지 않음
+            categoryBadge.textContent = categoryText + sourceLabel;
+            categoryBadge.className = getCategoryBadgeClass(pressRelease.category);
+            
+            // 제목 (긴급 표시 추가)
+            const titleElement = document.getElementById('press-title');
+            const urgentMark = pressRelease.isUrgent ? '[긴급] ' : '';
+            titleElement.textContent = urgentMark + pressRelease.title;
+            
+            // 날짜, 작성자 등 설정
+            document.getElementById('press-date').textContent = formatDate(pressRelease.createdAt);
+            
+            // 작성자 정보 (대변인 콘텐츠인 경우 추가 정보)
+            const authorElement = document.getElementById('press-author');
+            if (pressRelease.spokespersonName) {
+                authorElement.textContent = `${pressRelease.spokespersonName} ${pressRelease.spokespersonTitle || '대변인'}`;
+            } else {
+                authorElement.textContent = pressRelease.author || '관리자';
+            }
+            
+            document.getElementById('press-views').textContent = pressRelease.views || 0;
+            
+            // 원문 링크 표시 (보도자료인 경우에만)
+            if (pressRelease.originalUrl) {
+                const originalSource = document.getElementById('original-source');
+                const originalLink = document.getElementById('original-link');
+                originalLink.href = pressRelease.originalUrl;
+                originalSource.classList.remove('hidden');
+            }
+            
+            // 본문 내용 마크다운 렌더링
+            const bodyElement = document.getElementById('press-body');
+            bodyElement.innerHTML = renderMarkdown(pressRelease.content);
+            
+            // 첨부파일 표시
+            if (pressRelease.attachments && pressRelease.attachments.length > 0) {
+                displayAttachments(pressRelease.attachments);
+            }
+            
+            document.getElementById('press-content').classList.remove('hidden');
+            
+            // 페이지 제목 업데이트
+            const pageTitle = '보도자료';
+            document.title = `${pressRelease.title} - ${pageTitle} - 자유와혁신`;
+        }
+
+        // 첨부파일 표시
+        function displayAttachments(attachments) {
+            const attachmentsSection = document.getElementById('attachments-section');
+            const attachmentsList = document.getElementById('attachments-list');
+            
+            // 이미지와 일반 파일을 분리
+            const images = attachments.filter(file => isImageFile(file.originalName));
+            const files = attachments.filter(file => !isImageFile(file.originalName));
+            
+            let content = '';
+            
+            // 이미지 파일들을 먼저 표시 (임베드)
+            if (images.length > 0) {
+                content += '<div class="mb-6"><h4 class="text-md font-semibold mb-3 text-gray-700">첨부 이미지</h4>';
+                content += '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+                images.forEach(attachment => {
+                    const downloadUrl = `${API_BASE.replace('/api', '')}/uploads/${attachment.filename}`;
+                    content += `
+                        <div class="border rounded-lg overflow-hidden shadow-sm">
+                            <img src="${downloadUrl}" alt="${attachment.originalName}" 
+                                 class="w-full h-auto cursor-pointer hover:opacity-90 transition-opacity"
+                                 onclick="openImageModal('${downloadUrl}', '${attachment.originalName}')">
+                            <div class="p-3 bg-gray-50">
+                                <div class="text-sm font-medium text-gray-800">${attachment.originalName}</div>
+                                <div class="text-xs text-gray-500">${formatFileSize(attachment.size)}</div>
+                                <a href="${downloadUrl}" 
+                                   download="${attachment.originalName}"
+                                   class="inline-block mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                    <i class="fas fa-download mr-1"></i>원본 다운로드
+                                </a>
                             </div>
-                            <a href="http://localhost:9000${file.path}" 
-                               target="_blank" 
-                               class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors">
-                                <i class="fas fa-download mr-1"></i>
-                                다운로드
+                        </div>
+                    `;
+                });
+                content += '</div></div>';
+            }
+            
+            // 일반 파일들을 리스트로 표시
+            if (files.length > 0) {
+                content += '<div><h4 class="text-md font-semibold mb-3 text-gray-700">첨부 파일</h4>';
+                files.forEach(attachment => {
+                    const fileIcon = getFileIcon(attachment.mimeType);
+                    const downloadUrl = `${API_BASE.replace('/api', '')}/uploads/${attachment.filename}`;
+                    
+                    content += `
+                        <div class="attachment-item">
+                            <div class="attachment-icon">${fileIcon}</div>
+                            <div class="attachment-info">
+                                <div class="attachment-name">${attachment.originalName}</div>
+                                <div class="attachment-size">${formatFileSize(attachment.size)}</div>
+                            </div>
+                            <a href="${downloadUrl}" download class="text-red-600 hover:text-red-700 ml-4">
+                                <i class="fas fa-download"></i>
                             </a>
                         </div>
-                    `).join('');
-                    document.getElementById('attachments-section').classList.remove('hidden');
-                } else {
-                    document.getElementById('attachments-section').classList.add('hidden');
-                }
-            } else {
-                document.getElementById('images-section').classList.add('hidden');
-                document.getElementById('attachments-section').classList.add('hidden');
+                    `;
+                });
+                content += '</div>';
+            }
+            
+            attachmentsList.innerHTML = content;
+            attachmentsSection.classList.remove('hidden');
+        }
+
+        // 이미지 파일 확인
+        function isImageFile(filename) {
+            const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg'];
+            const ext = filename.split('.').pop().toLowerCase();
+            return imageExts.includes(ext);
+        }
+
+        // 이미지 모달 열기
+        function openImageModal(imageUrl, filename) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4';
+            modal.onclick = () => modal.remove();
+            
+            modal.innerHTML = `
+                <div class="max-w-4xl max-h-full relative">
+                    <img src="${imageUrl}" alt="${filename}" class="max-w-full max-h-full object-contain">
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="absolute bottom-4 left-4 text-white bg-black bg-opacity-50 px-3 py-2 rounded">
+                        ${filename}
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        // 마크다운 렌더링 (간단한 구현)
+        function renderMarkdown(markdown) {
+            if (!markdown) return '';
+            
+            let html = markdown
+                // 헤딩
+                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+                .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+                // 볼드, 이탤릭
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                // 링크
+                .replace(/\[([^\]]*)\]\(([^)]*)\)/g, '<a href="$2" target="_blank" class="text-red-600 hover:text-red-700 underline">$1</a>')
+                // 줄바꿈
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+            
+            return `<p>${html}</p>`;
+        }
+
+        // 조회수 증가
+        async function incrementViews(id) {
+            try {
+                await fetch(`${API_BASE}/spokesperson/${id}/view`, {
+                    method: 'POST'
+                });
+            } catch (error) {
+                console.error('Error incrementing views:', error);
             }
         }
 
-        // 카테고리 스타일
-        function getCategoryStyle(category) {
-            const styles = {
-                '정책발표': 'bg-red-100 text-red-800',
-                '성명서': 'bg-blue-100 text-blue-800',
-                '논평': 'bg-green-100 text-green-800',
-                '기타': 'bg-gray-100 text-gray-800'
-            };
-            return styles[category] || styles['기타'];
+        // 공유하기
+        function shareContent() {
+            const title = currentPressRelease?.title || '보도자료';
+            const url = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: title + ' - 자유와혁신',
+                    url: url
+                });
+            } else {
+                copyUrl();
+            }
         }
 
-        // 파일 아이콘 결정
+        // URL 복사
+        function copyUrl() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('링크가 복사되었습니다.');
+            }).catch(() => {
+                alert('링크 복사에 실패했습니다.');
+            });
+        }
+
+        // 유틸리티 함수들
+        function getCategoryBadgeClass(category) {
+            const baseClass = 'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium';
+            switch(category) {
+                case '정책발표': return `${baseClass} bg-green-100 text-green-800`;
+                case '논평': return `${baseClass} bg-red-100 text-red-800`;
+                case '성명서': return `${baseClass} bg-purple-100 text-purple-800`;
+                default: return `${baseClass} bg-blue-100 text-blue-800`;
+            }
+        }
+
         function getFileIcon(mimeType) {
-            if (mimeType?.includes('pdf')) return 'pdf';
-            if (mimeType?.includes('image')) return 'image';
-            if (mimeType?.includes('word')) return 'word';
-            if (mimeType?.includes('excel') || mimeType?.includes('spreadsheet')) return 'excel';
-            if (mimeType?.includes('powerpoint') || mimeType?.includes('presentation')) return 'powerpoint';
-            return 'alt';
+            if (!mimeType) return '📄';
+            
+            if (mimeType.startsWith('image/')) return '🖼️';
+            if (mimeType.includes('pdf')) return '📕';
+            if (mimeType.includes('word') || mimeType.includes('document')) return '📘';
+            if (mimeType.includes('hwp')) return '📗';
+            if (mimeType.includes('spreadsheet') || mimeType.includes('excel')) return '📊';
+            if (mimeType.includes('presentation') || mimeType.includes('powerpoint')) return '📋';
+            
+            return '📄';
         }
 
-        // 파일 크기 포맷팅
         function formatFileSize(bytes) {
             if (bytes === 0) return '0 Bytes';
             const k = 1024;
@@ -486,173 +541,33 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
-        // 날짜 포맷팅
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('ko-KR', {
                 year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                weekday: 'short'
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
             });
         }
 
-        // 네비게이션 버튼 업데이트
-        function updateNavigationButtons() {
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            
-            // 이전 글 버튼
-            if (currentIndex > 0) {
-                prevBtn.disabled = false;
-                prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            } else {
-                prevBtn.disabled = true;
-                prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            }
-            
-            // 다음 글 버튼
-            if (currentIndex < pressReleasesList.length - 1 && currentIndex !== -1) {
-                nextBtn.disabled = false;
-                nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            } else {
-                nextBtn.disabled = true;
-                nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            }
-        }
-
-        // 이전 글로 이동
-        function navigateToPrev() {
-            if (currentIndex > 0) {
-                const prevPress = pressReleasesList[currentIndex - 1];
-                window.location.href = `press-release-detail.html?id=${prevPress._id}`;
-            }
-        }
-
-        // 다음 글로 이동
-        function navigateToNext() {
-            if (currentIndex < pressReleasesList.length - 1 && currentIndex !== -1) {
-                const nextPress = pressReleasesList[currentIndex + 1];
-                window.location.href = `press-release-detail.html?id=${nextPress._id}`;
-            }
-        }
-
-        // 뒤로가기
-        function goBack() {
-            window.location.href = 'press-releases.html';
-        }
-
-        // 로딩 표시
+        // UI 상태 관리
         function showLoading() {
+            hideAll();
             document.getElementById('loading').classList.remove('hidden');
-            document.getElementById('content').classList.add('hidden');
-            document.getElementById('error').classList.add('hidden');
         }
 
-        // 로딩 숨김
-        function hideLoading() {
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('content').classList.remove('hidden');
-        }
-
-        // 에러 표시
-        function showError(message) {
+        function showError() {
+            hideAll();
             document.getElementById('error').classList.remove('hidden');
-            document.getElementById('content').classList.add('hidden');
+        }
+
+        function hideAll() {
             document.getElementById('loading').classList.add('hidden');
-            
-            // 에러 메시지 업데이트
-            const errorElement = document.querySelector('#error p');
-            if (errorElement) {
-                errorElement.textContent = message;
-            }
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('press-content').classList.add('hidden');
         }
-
-        // 이미지 모달 관련 변수들
-        let currentImageFiles = [];
-        let currentImageIndex = 0;
-
-        // 이미지 모달 열기
-        function openImageModal(index) {
-            if (!currentPressRelease || !currentPressRelease.attachments) return;
-            
-            currentImageFiles = currentPressRelease.attachments.filter(file => 
-                file.mimeType && file.mimeType.startsWith('image/')
-            );
-            
-            if (currentImageFiles.length === 0) return;
-            
-            currentImageIndex = index;
-            updateModalImage();
-            updateModalNavigation();
-            
-            document.getElementById('imageModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // 이미지 모달 닫기
-        function closeImageModal() {
-            document.getElementById('imageModal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        // 이전 이미지
-        function showPrevImage() {
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
-                updateModalImage();
-                updateModalNavigation();
-            }
-        }
-
-        // 다음 이미지
-        function showNextImage() {
-            if (currentImageIndex < currentImageFiles.length - 1) {
-                currentImageIndex++;
-                updateModalImage();
-                updateModalNavigation();
-            }
-        }
-
-        // 모달 이미지 업데이트
-        function updateModalImage() {
-            const currentImage = currentImageFiles[currentImageIndex];
-            const modalImage = document.getElementById('modalImage');
-            const modalImageName = document.getElementById('modalImageName');
-            const modalImageIndex = document.getElementById('modalImageIndex');
-            
-            modalImage.src = `http://localhost:9000${currentImage.path}`;
-            modalImage.alt = currentImage.originalName;
-            modalImageName.textContent = currentImage.originalName;
-            modalImageIndex.textContent = `${currentImageIndex + 1} / ${currentImageFiles.length}`;
-        }
-
-        // 모달 네비게이션 버튼 업데이트
-        function updateModalNavigation() {
-            const prevBtn = document.getElementById('prevImageBtn');
-            const nextBtn = document.getElementById('nextImageBtn');
-            
-            prevBtn.style.display = currentImageIndex > 0 ? 'block' : 'none';
-            nextBtn.style.display = currentImageIndex < currentImageFiles.length - 1 ? 'block' : 'none';
-        }
-
-        // ESC 키로 모달 닫기
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeImageModal();
-            } else if (event.key === 'ArrowLeft') {
-                showPrevImage();
-            } else if (event.key === 'ArrowRight') {
-                showNextImage();
-            }
-        });
-
-        // 모달 배경 클릭시 닫기
-        document.getElementById('imageModal').addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeImageModal();
-            }
-        });
     </script>
 </body>
 </html> 

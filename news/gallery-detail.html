@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포토갤러리 상세 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        .photo-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f3f4f6;
+        }
+        .photo-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 16px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .lightbox-nav.prev {
+            left: -80px;
+        }
+        .lightbox-nav.next {
+            right: -80px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -60px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .lightbox-info {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            color: white;
+            text-align: center;
+        }
+        .slideshow-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+        }
+        .slideshow-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .slideshow-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .gallery-header {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+        }
+        .view-mode-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 4px;
+            display: flex;
+            gap: 4px;
+        }
+        .view-mode-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .view-mode-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <img src="../images/logo.png" alt="자유와혁신" class="h-8">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="../index.html" class="text-gray-700 hover:text-red-600">홈</a>
+                        <a href="../about.html" class="text-gray-700 hover:text-red-600">당 소개</a>
+                        <a href="../news.html" class="text-red-600 font-medium">소식</a>
+                        <a href="../policy.html" class="text-gray-700 hover:text-red-600">정책</a>
+                        <a href="../members.html" class="text-gray-700 hover:text-red-600">당원</a>
+                        <a href="../resources.html" class="text-gray-700 hover:text-red-600">자료실</a>
+                        <a href="../support.html" class="text-gray-700 hover:text-red-600">후원</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="md:hidden">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 브레드크럼 -->
+    <nav class="bg-gray-100 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center space-x-2 text-sm text-gray-600">
+                <a href="../index.html" class="hover:text-red-600">홈</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <a href="../news.html" class="hover:text-red-600">소식</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <a href="gallery.html" class="hover:text-red-600">포토갤러리</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-gray-900">상세보기</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- 로딩 상태 -->
+        <div id="loading" class="flex flex-col items-center justify-center py-16">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-600 mb-4"></div>
+            <p class="text-gray-600">갤러리를 불러오는 중...</p>
+        </div>
+
+        <!-- 에러 상태 -->
+        <div id="error" class="hidden bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+            <div class="flex">
+                <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                <div class="text-red-700">갤러리를 불러오는 중 오류가 발생했습니다.</div>
+            </div>
+        </div>
+
+        <!-- 갤러리 상세 내용 -->
+        <div id="gallery-content" class="hidden">
+            <!-- 갤러리 헤더 -->
+            <div class="gallery-header text-white p-8 rounded-t-lg">
+                <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-4">
+                            <span id="gallery-category" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-white/20 text-white border border-white/30">
+                                포토갤러리
+                            </span>
+                            <span class="ml-3 text-sm text-white/80" id="photo-count">
+                                총 0장
+                            </span>
+                        </div>
+                        <h1 id="gallery-title" class="text-3xl font-bold mb-4">갤러리 제목</h1>
+                        <div class="flex flex-wrap items-center gap-4 text-sm text-white/90">
+                            <span>촬영자: <span id="gallery-photographer">관리자</span></span>
+                            <span>•</span>
+                            <span>촬영일: <span id="gallery-date">2025-01-01</span></span>
+                            <span>•</span>
+                            <span>조회수: <span id="gallery-views">0</span></span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="view-mode-toggle">
+                            <button class="view-mode-btn active" onclick="setViewMode('grid')" id="grid-btn">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button class="view-mode-btn" onclick="setViewMode('list')" id="list-btn">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                        <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-2xl">
+                            <i class="fas fa-images"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-b-lg shadow-md overflow-hidden">
+                <!-- 갤러리 설명 -->
+                <div class="p-8 border-b">
+                    <div id="gallery-description" class="prose max-w-none">
+                        <!-- 갤러리 설명이 여기에 표시됩니다 -->
+                    </div>
+                </div>
+
+                <!-- 갤러리 툴바 -->
+                <div class="p-6 bg-gray-50 border-b flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <button onclick="selectAll()" class="text-pink-600 hover:text-pink-700 font-medium text-sm">
+                            <i class="fas fa-check-square mr-2"></i>전체 선택
+                        </button>
+                        <button onclick="downloadSelected()" class="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                            <i class="fas fa-download mr-2"></i>선택 다운로드
+                        </button>
+                        <button onclick="startSlideshow()" class="text-green-600 hover:text-green-700 font-medium text-sm">
+                            <i class="fas fa-play mr-2"></i>슬라이드쇼
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-600" id="selected-count">선택된 사진: 0장</span>
+                        <button id="share-btn" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                            <i class="fas fa-share mr-2"></i>공유하기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 사진 그리드 -->
+                <div class="p-8">
+                    <div id="photo-grid" class="photo-grid">
+                        <!-- 사진들이 여기에 표시됩니다 -->
+                    </div>
+                </div>
+
+                <!-- 태그 -->
+                <div id="tags-section" class="hidden p-8 border-t">
+                    <h4 class="font-semibold text-gray-900 mb-3">태그</h4>
+                    <div id="tags-list" class="flex flex-wrap gap-2">
+                        <!-- 태그들이 여기에 표시됩니다 -->
+                    </div>
+                </div>
+
+                <!-- 관리자 액션 -->
+                <div id="admin-actions" class="hidden p-8 border-t">
+                    <div class="flex flex-wrap gap-4">
+                        <button id="edit-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
+                            <i class="fas fa-edit mr-2"></i>
+                            수정
+                        </button>
+                        <button id="delete-btn" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
+                            <i class="fas fa-trash mr-2"></i>
+                            삭제
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 공유 버튼들 -->
+                <div id="share-buttons" class="hidden p-6 bg-gray-50">
+                    <h4 class="font-medium text-gray-900 mb-3">공유하기</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="shareKakao()" class="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-lg flex items-center text-sm font-medium transition-colors">
+                            <i class="fas fa-comment mr-2"></i>카카오톡
+                        </button>
+                        <button onclick="shareTwitter()" class="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center text-sm font-medium transition-colors">
+                            <i class="fab fa-twitter mr-2"></i>트위터
+                        </button>
+                        <button onclick="shareFacebook()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center text-sm font-medium transition-colors">
+                            <i class="fab fa-facebook mr-2"></i>페이스북
+                        </button>
+                        <!-- 공유 버튼 -->
+                        <button onclick="copyUrl()" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" title="링크 복사">
+                            <i class="fas fa-link mr-2"></i>링크 복사
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 관련 갤러리 -->
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">관련 갤러리</h3>
+                <div id="related-galleries" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 관련 갤러리 목록이 여기에 표시됩니다 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 라이트박스 -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav prev" onclick="prevPhoto()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightbox-image" class="lightbox-image" src="" alt="사진">
+            <button class="lightbox-nav next" onclick="nextPhoto()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-info">
+                <div id="lightbox-caption" class="text-lg font-medium mb-2">사진 제목</div>
+                <div id="lightbox-counter" class="text-sm opacity-75">1 / 10</div>
+            </div>
+            <div class="slideshow-controls">
+                <button class="slideshow-btn" onclick="toggleSlideshow()" id="slideshow-toggle">
+                    <i class="fas fa-play"></i> 자동재생
+                </button>
+                <button class="slideshow-btn" onclick="downloadCurrentPhoto()">
+                    <i class="fas fa-download"></i> 다운로드
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-900 text-white py-12 mt-20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-bold mb-4">자유와혁신</h4>
+                    <p class="text-gray-400 text-sm">대한민국의 새로운 미래를 열어가는 정당입니다.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">바로가기</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="../about.html" class="text-gray-400 hover:text-white">당 소개</a></li>
+                        <li><a href="../policy.html" class="text-gray-400 hover:text-white">정책</a></li>
+                        <li><a href="../members.html" class="text-gray-400 hover:text-white">당원</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">소식</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="notices.html" class="text-gray-400 hover:text-white">공지사항</a></li>
+                        <li><a href="press-releases.html" class="text-gray-400 hover:text-white">보도자료</a></li>
+                        <li><a href="activities.html" class="text-gray-400 hover:text-white">활동소식</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">연락처</h4>
+                    <p class="text-gray-400 text-sm">서울특별시 영등포구 여의대로 310</p>
+                    <p class="text-gray-400 text-sm">전화: 02-0000-0000</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+
+        let currentGallery = null;
+        let currentPhotoIndex = 0;
+        let galleryPhotos = [];
+        let selectedPhotos = new Set();
+        let slideshowInterval = null;
+        let isSlideshow = false;
+
+        // 페이지 로드시 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const galleryId = urlParams.get('id');
+            
+            if (galleryId) {
+                loadGallery(galleryId);
+            } else {
+                showError();
+            }
+
+            // 관리자 확인
+            checkAdminAuth();
+
+            // 이벤트 리스너 등록
+            document.getElementById('share-btn').addEventListener('click', toggleShareButtons);
+            document.getElementById('edit-btn').addEventListener('click', editGallery);
+            document.getElementById('delete-btn').addEventListener('click', deleteGallery);
+            
+            // 키보드 네비게이션
+            document.addEventListener('keydown', function(e) {
+                if (document.getElementById('lightbox').style.display === 'flex') {
+                    if (e.key === 'ArrowLeft') {
+                        prevPhoto();
+                    } else if (e.key === 'ArrowRight') {
+                        nextPhoto();
+                    } else if (e.key === 'Escape') {
+                        closeLightbox();
+                    } else if (e.key === ' ') {
+                        e.preventDefault();
+                        toggleSlideshow();
+                    }
+                }
+            });
+        });
+
+        // 갤러리 정보 로드
+        async function loadGallery(id) {
+            try {
+                showLoading();
+                
+                // 조회수 증가
+                await fetch(`${API_BASE}/gallery/${id}/views`, { method: 'POST' });
+                
+                const response = await fetch(`${API_BASE}/gallery/${id}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentGallery = data.data;
+                    displayGallery(currentGallery);
+                    hideLoading();
+                } else {
+                    throw new Error(data.message || '갤러리를 불러올 수 없습니다.');
+                }
+            } catch (error) {
+                console.error('Error loading gallery:', error);
+                showError();
+            }
+        }
+
+        // 갤러리 정보 표시
+        function displayGallery(gallery) {
+            // 기본 정보
+            document.getElementById('gallery-title').textContent = gallery.title;
+            document.getElementById('gallery-photographer').textContent = gallery.photographer || '관리자';
+            document.getElementById('gallery-date').textContent = formatDate(gallery.photoDate || gallery.createdAt);
+            document.getElementById('gallery-views').textContent = gallery.views || 0;
+            
+            // 카테고리
+            document.getElementById('gallery-category').textContent = getCategoryDisplayName(gallery.category);
+
+            // 사진들
+            galleryPhotos = gallery.photos || [];
+            document.getElementById('photo-count').textContent = `총 ${galleryPhotos.length}장`;
+            
+            if (galleryPhotos.length > 0) {
+                displayPhotos();
+            }
+
+            // 설명
+            if (gallery.content) {
+                document.getElementById('gallery-description').innerHTML = marked.parse(gallery.content);
+            }
+
+            // 태그
+            if (gallery.tags && gallery.tags.length > 0) {
+                displayTags(gallery.tags);
+            }
+
+            // 페이지 제목 업데이트
+            document.title = `${gallery.title} - 포토갤러리 - 자유와혁신`;
+
+            document.getElementById('gallery-content').classList.remove('hidden');
+        }
+
+        // 사진들 표시
+        function displayPhotos() {
+            const grid = document.getElementById('photo-grid');
+            grid.innerHTML = '';
+            
+            galleryPhotos.forEach((photo, index) => {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+                photoItem.innerHTML = `
+                    <input type="checkbox" class="absolute top-3 left-3 w-5 h-5 rounded border-2 border-white bg-white/20 backdrop-blur-sm cursor-pointer z-10" 
+                           onchange="togglePhotoSelection(${index})" id="photo-${index}">
+                    <img src="${photo.thumbnailUrl || photo.url}" alt="${photo.caption || `사진 ${index + 1}`}" loading="lazy">
+                    <div class="photo-overlay">
+                        <div class="font-medium text-sm">${photo.caption || `사진 ${index + 1}`}</div>
+                        <div class="text-xs opacity-75 mt-1">${formatDate(photo.takenAt || currentGallery.createdAt)}</div>
+                    </div>
+                `;
+                photoItem.addEventListener('click', (e) => {
+                    if (e.target.type !== 'checkbox') {
+                        openLightbox(index);
+                    }
+                });
+                grid.appendChild(photoItem);
+            });
+        }
+
+        // 사진 선택 토글
+        function togglePhotoSelection(index) {
+            if (selectedPhotos.has(index)) {
+                selectedPhotos.delete(index);
+            } else {
+                selectedPhotos.add(index);
+            }
+            updateSelectedCount();
+        }
+
+        // 선택된 사진 수 업데이트
+        function updateSelectedCount() {
+            document.getElementById('selected-count').textContent = `선택된 사진: ${selectedPhotos.size}장`;
+        }
+
+        // 전체 선택
+        function selectAll() {
+            const checkboxes = document.querySelectorAll('#photo-grid input[type="checkbox"]');
+            const allSelected = selectedPhotos.size === galleryPhotos.length;
+            
+            if (allSelected) {
+                selectedPhotos.clear();
+                checkboxes.forEach(cb => cb.checked = false);
+            } else {
+                selectedPhotos.clear();
+                galleryPhotos.forEach((_, index) => selectedPhotos.add(index));
+                checkboxes.forEach(cb => cb.checked = true);
+            }
+            updateSelectedCount();
+        }
+
+        // 선택된 사진들 다운로드
+        function downloadSelected() {
+            if (selectedPhotos.size === 0) {
+                alert('다운로드할 사진을 선택해주세요.');
+                return;
+            }
+            
+            selectedPhotos.forEach(index => {
+                const photo = galleryPhotos[index];
+                const link = document.createElement('a');
+                link.href = photo.url;
+                link.download = `${currentGallery.title}_${index + 1}.jpg`;
+                link.click();
+            });
+        }
+
+        // 라이트박스 열기
+        function openLightbox(index) {
+            currentPhotoIndex = index;
+            updateLightboxImage();
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 라이트박스 닫기
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            stopSlideshow();
+        }
+
+        // 라이트박스 이미지 업데이트
+        function updateLightboxImage() {
+            const photo = galleryPhotos[currentPhotoIndex];
+            document.getElementById('lightbox-image').src = photo.url;
+            document.getElementById('lightbox-caption').textContent = photo.caption || `사진 ${currentPhotoIndex + 1}`;
+            document.getElementById('lightbox-counter').textContent = `${currentPhotoIndex + 1} / ${galleryPhotos.length}`;
+        }
+
+        // 다음 사진
+        function nextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % galleryPhotos.length;
+            updateLightboxImage();
+        }
+
+        // 이전 사진
+        function prevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
+            updateLightboxImage();
+        }
+
+        // 현재 사진 다운로드
+        function downloadCurrentPhoto() {
+            const photo = galleryPhotos[currentPhotoIndex];
+            const link = document.createElement('a');
+            link.href = photo.url;
+            link.download = `${currentGallery.title}_${currentPhotoIndex + 1}.jpg`;
+            link.click();
+        }
+
+        // 슬라이드쇼 시작
+        function startSlideshow() {
+            if (galleryPhotos.length === 0) return;
+            openLightbox(0);
+            toggleSlideshow();
+        }
+
+        // 슬라이드쇼 토글
+        function toggleSlideshow() {
+            if (isSlideshow) {
+                stopSlideshow();
+            } else {
+                startSlideshowMode();
+            }
+        }
+
+        // 슬라이드쇼 모드 시작
+        function startSlideshowMode() {
+            isSlideshow = true;
+            slideshowInterval = setInterval(nextPhoto, 3000);
+            document.getElementById('slideshow-toggle').innerHTML = '<i class="fas fa-pause"></i> 일시정지';
+        }
+
+        // 슬라이드쇼 정지
+        function stopSlideshow() {
+            isSlideshow = false;
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+                slideshowInterval = null;
+            }
+            document.getElementById('slideshow-toggle').innerHTML = '<i class="fas fa-play"></i> 자동재생';
+        }
+
+        // 보기 모드 설정
+        function setViewMode(mode) {
+            const gridBtn = document.getElementById('grid-btn');
+            const listBtn = document.getElementById('list-btn');
+            const photoGrid = document.getElementById('photo-grid');
+            
+            if (mode === 'grid') {
+                gridBtn.classList.add('active');
+                listBtn.classList.remove('active');
+                photoGrid.className = 'photo-grid';
+            } else {
+                gridBtn.classList.remove('active');
+                listBtn.classList.add('active');
+                photoGrid.className = 'space-y-4';
+                // 리스트 뷰 구현 (필요시)
+            }
+        }
+
+        // 카테고리 표시명 반환
+        function getCategoryDisplayName(category) {
+            const displayNames = {
+                '행사': '행사',
+                '회의': '회의',
+                '활동': '활동',
+                '기타': '기타'
+            };
+            return displayNames[category] || '포토갤러리';
+        }
+
+        // 태그 표시
+        function displayTags(tags) {
+            const section = document.getElementById('tags-section');
+            const list = document.getElementById('tags-list');
+            
+            list.innerHTML = '';
+            tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-800';
+                tagElement.innerHTML = `<i class="fas fa-tag mr-1"></i>${tag}`;
+                list.appendChild(tagElement);
+            });
+            
+            section.classList.remove('hidden');
+        }
+
+        // 공유 버튼 토글
+        function toggleShareButtons() {
+            const shareButtons = document.getElementById('share-buttons');
+            shareButtons.classList.toggle('hidden');
+        }
+
+        // 관리자 인증 확인
+        function checkAdminAuth() {
+            const token = localStorage.getItem('adminToken');
+            if (token) {
+                document.getElementById('admin-actions').classList.remove('hidden');
+            }
+        }
+
+        // 갤러리 수정
+        function editGallery() {
+            if (!currentGallery) return;
+            window.location.href = `../admin/content.html?type=gallery&action=edit&id=${currentGallery._id}`;
+        }
+
+        // 갤러리 삭제
+        async function deleteGallery() {
+            if (!currentGallery) return;
+            
+            if (!confirm('정말로 이 갤러리를 삭제하시겠습니까?')) return;
+            
+            try {
+                const token = localStorage.getItem('adminToken');
+                const response = await fetch(`${API_BASE}/gallery/${currentGallery._id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    alert('갤러리가 삭제되었습니다.');
+                    window.location.href = 'gallery.html';
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                console.error('Error deleting gallery:', error);
+                alert('갤러리 삭제 중 오류가 발생했습니다.');
+            }
+        }
+
+        // 공유 함수들
+        function shareKakao() {
+            if (window.Kakao) {
+                Kakao.Share.sendDefault({
+                    objectType: 'feed',
+                    content: {
+                        title: currentGallery.title,
+                        description: currentGallery.content?.substring(0, 100) + '...' || '',
+                        imageUrl: galleryPhotos[0]?.url || 'https://forthefreedom.kr/images/logo.png',
+                        link: {
+                            mobileWebUrl: window.location.href,
+                            webUrl: window.location.href
+                        }
+                    }
+                });
+            }
+        }
+
+        function shareTwitter() {
+            const text = `${currentGallery.title} - 자유와혁신 포토갤러리`;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareFacebook() {
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('링크가 복사되었습니다.');
+            });
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+        }
+
+        // 상태 표시 함수들
+        function showLoading() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('gallery-content').classList.add('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').classList.add('hidden');
+        }
+
+        function showError() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.remove('hidden');
+            document.getElementById('gallery-content').classList.add('hidden');
+        }
+    </script>
+</body>
+</html> 

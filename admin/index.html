@@ -143,7 +143,7 @@
                  data-ux_mode="popup"
                  data-callback="handleGoogleLogin"
                  data-auto_prompt="false">
-            </div>
+            </div>    
             
             <div class="g_id_signin" 
                  data-type="standard"
@@ -185,7 +185,11 @@
     </div>
 
     <script>
-        const API_BASE = 'http://localhost:9000/api';
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://forthefreedom.kr/api';
         
         // 구글 클라이언트 ID 설정
         const GOOGLE_CLIENT_ID = '722072230476-h2gbv36ed9bsgbh62hbvjr7bhojj5pki.apps.googleusercontent.com';

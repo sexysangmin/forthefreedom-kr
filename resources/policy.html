@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>정책 자료 - 자유와혁신</title>
+    <title>정강정책 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -28,234 +28,296 @@
 <body>
     <div id="navigation-container"></div>
     
-    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+    <!-- Hero Section -->
+    <section class="hero-section" style="position:relative; height:70vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">정책 자료</h1>
+            <h1 style="font-size:4rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">정강정책</h1>
+            <p style="font-size:1.5rem; margin-top:1rem; text-shadow:1px 1px 2px rgba(0,0,0,0.5);">자유민주주의와 혁신의 미래</p>
         </div>
     </section>
     
     <main style="position:relative; z-index:1; background:#fff;">
-        <!-- Policy Documents Section -->
+        <!-- Vision Section -->
         <section class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">정책 자료</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신의 핵심 정책과 관련 정책 자료를 자세히 안내합니다.
-                    </p>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">자유와혁신의 비전과 창당 정신</h2>
+                    <div class="w-24 h-1 bg-red-600 mx-auto mb-8"></div>
                 </div>
                 
-                <!-- Core Policies -->
-                <div class="mb-16">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8">7대 핵심 정책</h3>
-                    <div class="bg-red-50 border border-red-200 rounded-lg p-8">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-star text-white text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="text-xl font-bold text-gray-900 mb-4">자유와혁신 7대 핵심 정책 백서</h4>
-                                <p class="text-gray-600 mb-6">
-                                    경제 성장, 교육 혁신, 사회 안전망 강화 등 7개 핵심 분야의 정책 방향과 관련 추진 계획을 담은 종합 정책 백서입니다.
-                                </p>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-4">
-                                        <span class="text-gray-500 text-sm">
-                                            <i class="fas fa-calendar mr-2"></i>
-                                            2024.01.15 발행
-                                        </span>
-                                        <span class="text-gray-500 text-sm">
-                                            <i class="fas fa-file-pdf mr-2"></i>
-                                            PDF, 120페이지
-                                        </span>
-                                    </div>
-                                    <button onclick="downloadFile('documents/자유와혁신_7대핵심정책백서.pdf')" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
-                                        <i class="fas fa-download mr-2"></i>다운로드
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Policy by Category -->
-                <div class="space-y-8">
-                    <div class="bg-white border border-gray-200 rounded-lg p-8">
-                        <h4 class="text-xl font-bold text-gray-900 mb-6">경제·일자리 정책</h4>
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                <div>
-                                    <h5 class="font-semibold text-gray-900">창업기업 생태계 구축 방안</h5>
-                                    <p class="text-gray-600 text-sm">창업 지원 정책과 투자 유치 방안 (45페이지)</p>
-                                    <span class="text-xs text-gray-500">2024.02.01 발행</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-gray-500 text-sm">PDF</span>
-                                    <button onclick="downloadFile('documents/창업기업_생태계_구축방안.pdf')" class="text-red-600 hover:text-red-700">
-                                        <i class="fas fa-download"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                <div>
-                                    <h5 class="font-semibold text-gray-900">4차 산업혁명 대응 전략</h5>
-                                    <p class="text-gray-600 text-sm">디지털 전환과 혁신 기술 도입 방안 (38페이지)</p>
-                                    <span class="text-xs text-gray-500">2024.02.15 발행</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-gray-500 text-sm">PDF</span>
-                                    <button onclick="downloadFile('documents/4차산업혁명_대응전략.pdf')" class="text-red-600 hover:text-red-700">
-                                        <i class="fas fa-download"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                <div>
-                                    <h5 class="font-semibold text-gray-900">중소기업 지원 확대 방안</h5>
-                                    <p class="text-gray-600 text-sm">중소기업 경쟁력 강화 및 상생협력 모델 (35페이지)</p>
-                                    <span class="text-xs text-gray-500">2024.03.20 발행</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-gray-500 text-sm">PDF</span>
-                                    <button onclick="downloadFile('documents/중소기업_지원확대방안.pdf')" class="text-red-600 hover:text-red-700">
-                                        <i class="fas fa-download"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                <div class="max-w-5xl mx-auto">
+                    <div class="bg-red-50 border-l-4 border-red-600 p-8 rounded-lg mb-8">
+                        <h3 class="text-2xl font-bold text-red-800 mb-4">당의 정체성</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            '자유와혁신'은 대한민국의 자유민주주의 체제와 시장경제, 법치의 원칙을 신봉하고 혁신에 의한 정치·사회·경제·문화 발전을 추구하는 국민 모두를 위한 정당입니다.
+                        </p>
                     </div>
                     
-                    <div class="bg-white border border-gray-200 rounded-lg p-8">
-                        <h4 class="text-xl font-bold text-gray-900 mb-6">교육·복지 정책</h4>
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                <div>
-                                    <h5 class="font-semibold text-gray-900">개별 맞춤형 교육 시스템</h5>
-                                    <p class="text-gray-600 text-sm">학습자 중심의 맞춤형 교육 방안 (32페이지)</p>
-                                    <span class="text-xs text-gray-500">2024.03.01 발행</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-gray-500 text-sm">PDF</span>
-                                    <button onclick="downloadFile('documents/개별맞춤형_교육시스템.pdf')" class="text-red-600 hover:text-red-700">
-                                        <i class="fas fa-download"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                <div>
-                                    <h5 class="font-semibold text-gray-900">사회 안전망 강화 정책</h5>
-                                    <p class="text-gray-600 text-sm">기초보장과 의료 접근성 개선 (28페이지)</p>
-                                    <span class="text-xs text-gray-500">2024.03.15 발행</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-gray-500 text-sm">PDF</span>
-                                    <button onclick="downloadFile('documents/사회안전망_강화정책.pdf')" class="text-red-600 hover:text-red-700">
-                                        <i class="fas fa-download"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                <div>
-                                    <h5 class="font-semibold text-gray-900">평생학습 체계 구축 방안</h5>
-                                    <p class="text-gray-600 text-sm">성인 재교육 및 직업훈련 시스템 (30페이지)</p>
-                                    <span class="text-xs text-gray-500">2024.04.10 발행</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-gray-500 text-sm">PDF</span>
-                                    <button onclick="downloadFile('documents/평생학습_체계구축방안.pdf')" class="text-red-600 hover:text-red-700">
-                                        <i class="fas fa-download"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+                        <p>
+                            오늘날 대한민국이 세계 최상위 국가로 우뚝 선 데는 이승만 건국 대통령의 자유민주주의와 시장경제의 비전 그리고 한·미 동맹의 초석을 세운 데 힘입은 바 크다. 6·25 전쟁 후, 반공 국시 하에 박정희 산업화 대통령의 혁신을 바탕으로 한 국가개조는 오늘날의 부국강병과 민생 안정에 결정적으로 기여했다.
+                        </p>
+                        <p>
+                            '자유와혁신'은 시대를 앞서 간 이들 비저너리 선각자들의 정신을 계승, 새로운 대한민국 시대를 열어나갈 것입니다.
+                        </p>
+                        <p>
+                            부정선거로 선출된 국회의원 등은 국민의 환심을 살 목적으로 대중인기영합주의적 정책을 남발하고 있습니다. 우리는 이러한 포퓰리즘 정책 등이 끼친 해악을 바로잡고 혁신적 대안을 제시할 것입니다.
+                        </p>
                     </div>
-                </div>
-                
-                <!-- Policy Statistics -->
-                <div class="bg-gray-50 rounded-lg p-8 mt-16">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">정책 자료 현황</h3>
-                    <div class="grid md:grid-cols-4 gap-8">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-red-600 mb-2">62</div>
-                            <div class="text-gray-600">총 정책 문서</div>
+                    
+                    <div class="mt-12 grid md:grid-cols-3 gap-6">
+                        <div class="text-center p-6 bg-white border border-red-200 rounded-lg">
+                            <i class="fas fa-flag text-red-600 text-3xl mb-4"></i>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">자유민주주의 수호</h4>
+                            <p class="text-gray-600">대한민국의 헌법 가치와 자유민주주의 체제를 수호합니다</p>
                         </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-red-600 mb-2">9</div>
-                            <div class="text-gray-600">핵심 정책 분야</div>
+                        <div class="text-center p-6 bg-white border border-red-200 rounded-lg">
+                            <i class="fas fa-rocket text-red-600 text-3xl mb-4"></i>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">혁신과 발전</h4>
+                            <p class="text-gray-600">정치·사회·경제·문화 전 분야의 혁신적 발전을 추구합니다</p>
                         </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-red-600 mb-2">25</div>
-                            <div class="text-gray-600">연구진 참여</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-red-600 mb-2">3,450</div>
-                            <div class="text-gray-600">다운로드 수</div>
+                        <div class="text-center p-6 bg-white border border-red-200 rounded-lg">
+                            <i class="fas fa-globe text-red-600 text-3xl mb-4"></i>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">초일류 정상국가</h4>
+                            <p class="text-gray-600">글로벌 굴지의 강대국으로 도약하는 것을 목표로 합니다</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Security & Foreign Policy Section -->
-        <section class="py-16 bg-white">
+        <!-- Core Policies Section -->
+        <section class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">안보·외교 정책</h2>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">10대 핵심정책과제</h2>
+                    <div class="w-24 h-1 bg-red-600 mx-auto mb-8"></div>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        국가안보, 사이버 보안, 동아시아 외교 등 안보·외교 관련 정책 자료를 자세히 안내합니다.
+                        자유와혁신의 10대 핵심정책과제입니다. 국민 모두를 위한 정의, 공정, 희망의 미래를 약속합니다.
                     </p>
                 </div>
-                
-                <div class="bg-white border border-gray-200 rounded-lg p-8">
-                    <h4 class="text-xl font-bold text-gray-900 mb-6">안보·외교 정책</h4>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                            <div>
-                                <h5 class="font-semibold text-gray-900">국가안보 정책 방향</h5>
-                                <p class="text-gray-600 text-sm">한반도 평화와 국가안보 정책 로드맵 (25페이지)</p>
-                                <span class="text-xs text-gray-500">2024.04.01 발행</span>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 정책 1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-xl">1</span>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-gray-500 text-sm">PDF</span>
-                                <button onclick="downloadFile('documents/국가안보_정책방향.pdf')" class="text-red-600 hover:text-red-700">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                            <div>
-                                <h5 class="font-semibold text-gray-900">사이버 보안 강화 방안</h5>
-                                <p class="text-gray-600 text-sm">국가 사이버 보안 체계 구축 계획 (40페이지)</p>
-                                <span class="text-xs text-gray-500">2024.04.15 발행</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-gray-500 text-sm">PDF</span>
-                                <button onclick="downloadFile('documents/사이버보안_강화방안.pdf')" class="text-red-600 hover:text-red-700">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                            <div>
-                                <h5 class="font-semibold text-gray-900">동아시아 외교 전략</h5>
-                                <p class="text-gray-600 text-sm">한중일 협력과 동아시아 평화 구축 (33페이지)</p>
-                                <span class="text-xs text-gray-500">2024.05.01 발행</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-gray-500 text-sm">PDF</span>
-                                <button onclick="downloadFile('documents/동아시아_외교전략.pdf')" class="text-red-600 hover:text-red-700">
-                                    <i class="fas fa-download"></i>
-                                </button>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">정의, 공정, 희망을 추구하는 가치 정당</h3>
+                                <p class="text-gray-600 mb-4">
+                                    특권과 불공정, 편법과 부정부패의 고리를 단호히 끊고, 법 앞에 모두가 평등한 나라를 만들며, 희망이 살아 숨 쉬는 정치를 실현합니다.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 신뢰 회복을 위한 기초질서 확립</li>
+                                    <li>• 공정한 기회 보장 사회 구현</li>
+                                    <li>• 계층·지역·세대 간 불균형 해소</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+
+                    <!-- 정책 2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-xl">2</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">부정선거 척결</h3>
+                                <p class="text-gray-600 mb-4">
+                                    공명정대한 선거 시스템을 구축하고 부정선거 범죄자에게는 감 없는 중형을 법제화하여 처벌을 확행합니다.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 사전투표제 폐지, 당일 투표·수개표 실시</li>
+                                    <li>• 선관위 해체, 행정안전부 내 선거국 신설</li>
+                                    <li>• 감사원의 선거관리 감사 대상 포함</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 정책 3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-xl">3</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">반국가세력 척결</h3>
+                                <p class="text-gray-600 mb-4">
+                                    대한민국의 헌법 핵심 가치인 자유민주주의를 수호하고, 반헌법 행위를 일삼는 세력들을 엄단합니다.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 민주노총 해체, 건전 노조 육성 지원</li>
+                                    <li>• 통진당 잔존 세력 재발호 저지</li>
+                                    <li>• 전교조 불법 정치 활동 엄단</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 정책 4 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-xl">4</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">법치의 회복</h3>
+                                <p class="text-gray-600 mb-4">
+                                    국가안보 시스템을 전면 재정비하고, 경찰로 이관된 국정원의 대공 수사권을 복원합니다.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 국정원법 개정, 대공 수사권 복원</li>
+                                    <li>• 간첩법 개정, 처벌 대상 확대</li>
+                                    <li>• 대통령 직속 국가안보 혁신위원회 설치</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 정책 5 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-xl">5</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">4차 산업 활성화를 통한 미래도약</h3>
+                                <p class="text-gray-600 mb-4">
+                                    AI·로봇·양자컴퓨터 등 첨단 기술 강국으로 도약하기 위해 초격차 기술 핵심 클러스터를 구축합니다.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 전국 5개 거점 초격차 기술 클러스터 구축</li>
+                                    <li>• 국가 AI 육성 프로젝트 추진</li>
+                                    <li>• IT·BT·CT분야 R&D 투자 확대</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 정책 6 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-xl">6</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">청년 희망 사다리 구축</h3>
+                                <p class="text-gray-600 mb-4">
+                                    연공서열 문화를 불식하고 청년들에게 기회의 사다리를 제공하는 청년 패스트트랙을 마련합니다.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 내국인 역차별 금지, 외국인 우대정책 폐지</li>
+                                    <li>• 사회 각 분야 인재 선발·지원 전담기구 설치</li>
+                                    <li>• 사법시험 부활, K-컬처 종사자 지원 강화</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 정책 7 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-xl">7</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">국민 안전 강화와 국민 일상 보호</h3>
+                                <p class="text-gray-600 mb-4">
+                                    마약청을 신설하여 마약 청정국 지위를 회복하고, 종합안전관리체계를 정비합니다.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 마약청 신설, 단속 강화</li>
+                                    <li>• 마약 사범 감형 없는 중형 법제화</li>
+                                    <li>• 재난·테러·강력범죄 통합 대응체계 구축</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 정책 8 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-xl">8</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">자유 통일의 기반 구축</h3>
+                                <p class="text-gray-600 mb-4">
+                                    급작스럽게 다가올 통일에 대비해 사전 준비를 하고, 10만 통일꾼을 확보합니다.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 통일시 남북 분리 관리 시스템 구축</li>
+                                    <li>• 북한 주민 자유민주주의 교육 프로그램 마련</li>
+                                    <li>• 10만 통일꾼 확보 및 정기 교육·훈련</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 정책 9 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-xl">9</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">잘 사는 경제강국, 초일류 정상국가 실현</h3>
+                                <p class="text-gray-600 mb-4">
+                                    민간 중심의 활력 있는 시장경제 체제를 복원하고, G5 초일류정상국가를 달성합니다.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 과도한 규제와 반기업 정서 철폐</li>
+                                    <li>• 공정한 경쟁 질서 확립</li>
+                                    <li>• 성장과 분배의 선순환 실현</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 정책 10 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-xl">10</span>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3">문화융성으로 행복한 대한민국</h3>
+                                <p class="text-gray-600 mb-4">
+                                    문화융성을 국가 발전의 전략축으로 삼아, 국민이 일상에서 문화를 누리고 창조하는 품격 있는 문화국가를 실현합니다.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 전통문화 계승과 현대문화 창조 조화</li>
+                                    <li>• K-콘텐츠 전략적 수출 산업 육성</li>
+                                    <li>• 디지털 문화 생태계 기반 문화강국 실현</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="py-16 bg-red-600">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-white mb-6">함께 만들어갈 자유와혁신의 미래</h2>
+                <p class="text-xl text-red-100 mb-8 max-w-3xl mx-auto">
+                    자유민주주의 수호와 혁신적 국가 개조를 위해 국민과 함께 나아가겠습니다
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" 
+                       class="inline-flex items-center px-8 py-3 bg-white text-red-600 font-bold rounded-lg hover:bg-gray-100 transition-colors">
+                        당원 가입하기 <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="/support.html" 
+                       class="inline-flex items-center px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-red-600 transition-colors">
+                        후원하기 <i class="fas fa-heart ml-2"></i>
+                    </a>
                 </div>
             </div>
         </section>
@@ -263,63 +325,9 @@
     
     <script src="../nav.js"></script>
     <script>
-        // 다운로드 함수
-        function downloadFile(filePath) {
-            console.log('다운로드 시도:', filePath);
-            
-            // fetch로 파일 존재 여부 확인
-            fetch(filePath)
-                .then(response => {
-                    if (response.ok) {
-                        // 파일이 존재하면 다운로드 실행
-                        const link = document.createElement('a');
-                        link.href = filePath;
-                        link.download = filePath.split('/').pop();
-                        
-                        // 임시로 body에 추가하고 클릭 후 제거
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                        
-                        updateDownloadStats();
-                        
-                        // 성공 메시지
-                        showNotification('파일 다운로드가 시작되었습니다.', 'success');
-                    } else {
-                        throw new Error('파일을 찾을 수 없습니다.');
-                    }
-                })
-                .catch(error => {
-                    console.error('다운로드 오류:', error);
-                    showNotification('파일 다운로드에 실패했습니다. 잠시 후 다시 시도해주세요.', 'error');
-                });
-        }
-        
-        function updateDownloadStats() {
-            // 다운로드 통계 업데이트 (실제 구현 시 서버 API 호출)
-            console.log('다운로드 통계 업데이트됨');
-        }
-        
-        function showNotification(message, type) {
-            // 알림 요소 생성
-            const notification = document.createElement('div');
-            notification.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white font-medium`;
-            notification.className += type === 'success' ? ' bg-green-600' : ' bg-red-600';
-            notification.textContent = message;
-            
-            // body에 추가
-            document.body.appendChild(notification);
-            
-            // 3초 후 제거
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 3000);
-        }
-        
         // 내비게이션 로드
         document.addEventListener('DOMContentLoaded', function() {
-            // nav.js에서 자동으로 로드됨
-            console.log('페이지 로드 완료');
+            console.log('정강정책 페이지 로드 완료');
         });
     </script>
 </body>

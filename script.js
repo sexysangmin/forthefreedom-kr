@@ -28,7 +28,7 @@ class CMSDataLoader {
             
             // About 서브페이지들
             '/about/principles.html': 'content/about/principles.yml',
-            '/about/people.html': 'content/about/people.yml',
+            '/about/people-central.html': 'content/about/people.yml',
             '/about/organization.html': 'content/about/organization.yml',
             '/about/location.html': 'content/about/location.yml',
             '/about/founding.html': 'content/about/founding.yml',
@@ -36,7 +36,7 @@ class CMSDataLoader {
             
             // Members 서브페이지들
             '/members/join.html': 'content/members/join.yml',
-            '/members/dues.html': 'content/members/dues.yml',
+            '/support.html': 'content/members/dues.yml',
             
             // News 서브페이지들
             '/news/gallery.html': 'content/news/gallery.yml',
@@ -772,7 +772,7 @@ function initializeCounters() {
 
 // Scroll Animations
 function initializeScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.policy-card, .bg-white:not(nav *)');
+    const animatedElements = document.querySelectorAll('.policy-card');
     
     const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

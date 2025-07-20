@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로고 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">자유와혁신 로고</h1>
+            <p style="font-size:1.2rem; margin-top:1rem; text-shadow:1px 1px 2px rgba(0,0,0,0.5);">자유와혁신의 정체성과 가치를 담은 심볼과 로고를 소개합니다.</p>
+        </div>
+    </section>
+    
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- 로고 소개 섹션 -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 심볼 & 로고 -->
+                <div class="mb-20">
+                    <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">심볼 & 로고</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-12 mb-16">
+                        <!-- Asset 1 -->
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="bg-white p-8 rounded-xl mb-6 shadow-sm">
+                                <img src="../1x/Asset 1.png" alt="자유와혁신 로고 타입 1" class="mx-auto h-32 object-contain">
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-3">기본 로고</h4>
+                            <p class="text-gray-600">
+                                자유와혁신의 기본 로고입니다. 일반적인 용도에 사용됩니다.
+                            </p>
+                        </div>
+                        
+                        <!-- Asset 2 -->
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="bg-white p-8 rounded-xl mb-6 shadow-sm">
+                                <img src="../1x/Asset 2.png" alt="자유와혁신 로고 타입 2" class="mx-auto h-32 object-contain">
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-3">심볼 로고</h4>
+                            <p class="text-gray-600">
+                                자유와혁신의 심볼 로고입니다. 공간이 제한된 경우 사용됩니다.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 로고 의미 -->
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-12 rounded-2xl">
+                        <h4 class="text-2xl font-bold text-red-900 mb-6 text-center">로고의 의미</h4>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-fist-raised text-white text-xl"></i>
+                                </div>
+                                <h5 class="text-lg font-bold text-red-900 mb-2">자유</h5>
+                                <p class="text-red-800">개인의 자유와 시장경제의 자유를 상징합니다</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-rocket text-white text-xl"></i>
+                                </div>
+                                <h5 class="text-lg font-bold text-red-900 mb-2">혁신</h5>
+                                <p class="text-red-800">새로운 정치, 변화하는 미래를 추구합니다</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-users text-white text-xl"></i>
+                                </div>
+                                <h5 class="text-lg font-bold text-red-900 mb-2">국민</h5>
+                                <p class="text-red-800">국민과 함께하는 정치를 실현합니다</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 당 색상 -->
+                <div class="mb-20">
+                    <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">당 색상</h3>
+                    
+                    <!-- 주요 색상 -->
+                    <div class="mb-12">
+                        <h4 class="text-2xl font-bold text-gray-900 mb-8 text-center">주요 색상 (Primary Color)</h4>
+                        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                            <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 text-center shadow-sm">
+                                <div class="w-32 h-32 mx-auto mb-6 rounded-xl shadow-lg" style="background-color: #A50034;"></div>
+                                <h5 class="text-xl font-bold text-gray-900 mb-3">자유와혁신 레드</h5>
+                                <div class="space-y-2 text-gray-700">
+                                    <p><strong>HEX:</strong> #A50034</p>
+                                    <p><strong>RGB:</strong> 165, 0, 52</p>
+                                    <p><strong>Pantone:</strong> 207 C</p>
+                                    <p><strong>CMYK:</strong> 0, 100, 68, 35</p>
+                                </div>
+                            </div>
+                            <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 text-center shadow-sm">
+                                <div class="w-32 h-32 mx-auto mb-6 rounded-xl shadow-lg bg-white border border-gray-300"></div>
+                                <h5 class="text-xl font-bold text-gray-900 mb-3">화이트</h5>
+                                <div class="space-y-2 text-gray-700">
+                                    <p><strong>HEX:</strong> #FFFFFF</p>
+                                    <p><strong>RGB:</strong> 255, 255, 255</p>
+                                    <p><strong>용도:</strong> 배경, 텍스트</p>
+                                    <p><strong>조합:</strong> 주색상과 조합</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 보조 색상 -->
+                    <div class="mb-12">
+                        <h4 class="text-2xl font-bold text-gray-900 mb-8 text-center">보조 색상 (Secondary Colors)</h4>
+                        <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                            <!-- 다크 레드 -->
+                            <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm">
+                                <div class="w-20 h-20 mx-auto mb-4 rounded-lg shadow" style="background-color: #700024;"></div>
+                                <h6 class="font-bold text-gray-900 mb-2">다크 레드</h6>
+                                <div class="text-sm text-gray-600">
+                                    <p>#700024</p>
+                                    <p>강조용</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 라이트 레드 -->
+                            <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm">
+                                <div class="w-20 h-20 mx-auto mb-4 rounded-lg shadow" style="background-color: #FDF2F4;"></div>
+                                <h6 class="font-bold text-gray-900 mb-2">라이트 레드</h6>
+                                <div class="text-sm text-gray-600">
+                                    <p>#FDF2F4</p>
+                                    <p>배경용</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 다크 그레이 -->
+                            <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm">
+                                <div class="w-20 h-20 mx-auto mb-4 rounded-lg shadow" style="background-color: #374151;"></div>
+                                <h6 class="font-bold text-gray-900 mb-2">다크 그레이</h6>
+                                <div class="text-sm text-gray-600">
+                                    <p>#374151</p>
+                                    <p>텍스트용</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 라이트 그레이 -->
+                            <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm">
+                                <div class="w-20 h-20 mx-auto mb-4 rounded-lg shadow" style="background-color: #F9FAFB;"></div>
+                                <h6 class="font-bold text-gray-900 mb-2">라이트 그레이</h6>
+                                <div class="text-sm text-gray-600">
+                                    <p>#F9FAFB</p>
+                                    <p>배경용</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 색상 조합 예시 -->
+                    <div class="bg-gray-50 p-12 rounded-2xl">
+                        <h4 class="text-2xl font-bold text-gray-900 mb-8 text-center">색상 조합 예시</h4>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <!-- 조합 1 -->
+                            <div class="bg-white rounded-xl p-6 shadow-sm">
+                                <div class="flex h-16 mb-4 rounded-lg overflow-hidden">
+                                    <div class="flex-1" style="background-color: #A50034;"></div>
+                                    <div class="flex-1 bg-white"></div>
+                                </div>
+                                <h6 class="font-bold text-gray-900 mb-2">기본 조합</h6>
+                                <p class="text-sm text-gray-600">주색상 + 화이트</p>
+                            </div>
+                            
+                            <!-- 조합 2 -->
+                            <div class="bg-white rounded-xl p-6 shadow-sm">
+                                <div class="flex h-16 mb-4 rounded-lg overflow-hidden">
+                                    <div class="flex-1" style="background-color: #A50034;"></div>
+                                    <div class="flex-1" style="background-color: #FDF2F4;"></div>
+                                </div>
+                                <h6 class="font-bold text-gray-900 mb-2">소프트 조합</h6>
+                                <p class="text-sm text-gray-600">주색상 + 라이트 레드</p>
+                            </div>
+                            
+                            <!-- 조합 3 -->
+                            <div class="bg-white rounded-xl p-6 shadow-sm">
+                                <div class="flex h-16 mb-4 rounded-lg overflow-hidden">
+                                    <div class="flex-1" style="background-color: #A50034;"></div>
+                                    <div class="flex-1" style="background-color: #374151;"></div>
+                                </div>
+                                <h6 class="font-bold text-gray-900 mb-2">강조 조합</h6>
+                                <p class="text-sm text-gray-600">주색상 + 다크 그레이</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 사용 가이드라인 -->
+                <div>
+                    <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">사용 가이드라인</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <!-- 올바른 사용 -->
+                        <div class="bg-green-50 p-8 rounded-2xl">
+                            <div class="flex items-center mb-6">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-white"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-green-900">올바른 사용</h4>
+                            </div>
+                            <ul class="space-y-3 text-green-800">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
+                                    <span>지정된 색상 사용</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
+                                    <span>적절한 여백 확보</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
+                                    <span>명확한 배경과 대비</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
+                                    <span>원본 비율 유지</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
+                                    <span>고화질 이미지 사용</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 잘못된 사용 -->
+                        <div class="bg-red-50 p-8 rounded-2xl">
+                            <div class="flex items-center mb-6">
+                                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-times text-white"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-red-900">잘못된 사용</h4>
+                            </div>
+                            <ul class="space-y-3 text-red-800">
+                                <li class="flex items-start">
+                                    <i class="fas fa-times text-red-600 mt-1 mr-3"></i>
+                                    <span>임의의 색상 변경</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-times text-red-600 mt-1 mr-3"></i>
+                                    <span>로고 비율 변형</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-times text-red-600 mt-1 mr-3"></i>
+                                    <span>저화질 이미지 사용</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-times text-red-600 mt-1 mr-3"></i>
+                                    <span>배경과 구분 안됨</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-times text-red-600 mt-1 mr-3"></i>
+                                    <span>글자나 요소 추가</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 다운로드 섹션 -->
+                    <div class="mt-16 bg-gradient-to-br from-red-50 to-red-100 p-12 rounded-2xl text-center">
+                        <h4 class="text-2xl font-bold text-red-900 mb-6">로고 다운로드</h4>
+                        <p class="text-red-800 mb-8">
+                            자유와혁신의 공식 로고를 다운로드하여 사용하실 수 있습니다.
+                        </p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="../1x/Asset 1.png" download class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>
+                                기본 로고 (PNG)
+                            </a>
+                            <a href="../1x/Asset 2.png" download class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>
+                                심볼 로고 (PNG)
+                            </a>
+                        </div>
+                        <p class="text-sm text-red-700 mt-4">
+                            * 로고 사용 시 위의 가이드라인을 준수해주시기 바랍니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 푸터 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">자유와혁신</h3>
+                    <p class="text-gray-300 mb-4">
+                        새로운 정치, 국민과 함께 만들어가는 미래
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">바로가기</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../about.html" class="text-gray-300 hover:text-white transition-colors">당 소개</a></li>
+                        <li><a href="../about/principles.html" class="text-gray-300 hover:text-white transition-colors">강령·핵심가치</a></li>
+                        <li><a href="../about/organization.html" class="text-gray-300 hover:text-white transition-colors">조직 구성</a></li>
+                        <li><a href="../about/people-central.html" class="text-gray-300 hover:text-white transition-colors">주요 인물</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">문의하기</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>서울특별시 ○○구 ○○로 123</li>
+                        <li>Tel: 02-1234-5678</li>
+                        <li>Email: contact@freedom-innovation.kr</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2025 자유와혁신. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../nav.js"></script>
+</body>
+</html> 

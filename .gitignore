@@ -81,3 +81,18 @@ settings.local.json
 # 개발 도구
 .cache/
 .parcel-cache/ 
+
+# 백엔드 서버
+server/uploads/*
+server/.env
+server/logs/
+server/temp/
+
+# 임시 파일
+temp_*.json
+*.temp.json
+test_*.json
+
+# 배포 관련
+.vercel
+.railway 

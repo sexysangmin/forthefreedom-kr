@@ -48,6 +48,73 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .board-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .board-table th,
+        .board-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .board-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+            text-align: center;
+        }
+        
+        .board-table td {
+            color: #1f2937;
+        }
+        
+        .board-table tr:hover {
+            background-color: #f9fafb;
+        }
+        
+        .title-cell {
+            text-align: left !important;
+            max-width: 400px;
+        }
+        
+        .title-link {
+            color: #1f2937;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+        }
+        
+        .title-link:hover {
+            color: #A50034;
+            text-decoration: underline;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+        
+        .badge-important { background-color: #fef2f2; color: #dc2626; }
+        .badge-general { background-color: #eff6ff; color: #2563eb; }
+        .badge-urgent { background-color: #fff7ed; color: #ea580c; }
+        
+        .number-cell, .date-cell, .views-cell {
+            text-align: center !important;
+            width: 80px;
+        }
+        
+        .category-cell {
+            text-align: center !important;
+            width: 100px;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,36 +125,83 @@
 <body>
     <div id="navigation-container"></div>
     
-    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
-        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
-        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">공지사항</h1>
-            <p style="font-size:1.25rem; margin-top:1rem; opacity:0.9;">당의 주요 공지사항과 중요한 알림을 확인하세요</p>
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../news.html" class="text-gray-500 hover:text-red-600">정당소식</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">공지사항</li>
+                </ol>
+            </nav>
         </div>
     </section>
 
-    <main style="position:relative; z-index:1; background:#fff;">
-        <section class="py-16 bg-white">
+    <main class="bg-white">
+        <section class="py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6"></h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        
-                    </p>
+                <!-- 페이지 헤더 -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">공지사항</h1>
+                    <p class="text-xl text-gray-600">당의 주요 공지사항과 중요한 알림을 확인하세요</p>
                 </div>
 
-                <!-- 필터 및 검색 -->
-                <div class="mb-8 flex flex-wrap gap-4 justify-center">
-                    <select id="categoryFilter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
-                        <option value="">전체 카테고리</option>
-                        <option value="중요">중요</option>
-                        <option value="일반">일반</option>
-                        <option value="긴급">긴급</option>
-                    </select>
-                    <input type="text" id="searchInput" placeholder="제목 검색..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 min-w-64">
-                    <button id="searchBtn" class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-                        <i class="fas fa-search mr-2"></i>검색
+                <!-- 필터 버튼 -->
+                <div class="mb-8 flex flex-wrap gap-3 justify-center">
+                    <button class="filter-btn active" data-category="">
+                        <i class="fas fa-list mr-2"></i>전체
                     </button>
+                    <button class="filter-btn" data-category="중요">
+                        <i class="fas fa-star mr-2"></i>중요
+                    </button>
+                    <button class="filter-btn" data-category="일반">
+                        <i class="fas fa-info-circle mr-2"></i>일반
+                    </button>
+                    <button class="filter-btn" data-category="긴급">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>긴급
+                    </button>
+                </div>
+
+                <!-- 검색 영역 -->
+                <div class="mb-8 bg-gray-50 p-6 rounded-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">기간</label>
+                            <select id="dateFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                                <option value="">전체</option>
+                                <option value="today">오늘</option>
+                                <option value="week">일주일</option>
+                                <option value="month">한달</option>
+                                <option value="3months">3개월</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">카테고리</label>
+                            <select id="categoryFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                                <option value="">전체</option>
+                                <option value="중요">중요</option>
+                                <option value="일반">일반</option>
+                                <option value="긴급">긴급</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">검색어</label>
+                            <input type="text" id="searchInput" placeholder="제목, 내용 검색" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                        </div>
+                        <div class="flex items-end">
+                            <button id="searchBtn" class="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                                <i class="fas fa-search mr-2"></i>검색
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- 로딩 상태 -->
@@ -108,9 +222,35 @@
                     </div>
                 </div>
 
-                <!-- 공지사항 목록 -->
-                <div id="noticesList" class="space-y-6 hidden">
-                    <!-- 동적으로 생성됨 -->
+                <!-- 게시판 테이블 -->
+                <div id="boardContainer" class="hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                        <table class="board-table">
+                            <thead>
+                                <tr>
+                                    <th class="number-cell">번호</th>
+                                    <th class="category-cell">구분</th>
+                                    <th class="title-cell">제목</th>
+                                    <th class="date-cell">등록일</th>
+                                    <th class="views-cell">조회</th>
+                                </tr>
+                            </thead>
+                            <tbody id="noticesTableBody">
+                                <!-- 동적으로 생성됨 -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 페이지 정보 -->
+                    <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
+                        <span id="pageInfo"><!-- 동적으로 생성됨 --></span>
+                        <span>총 <span id="totalCount" class="font-semibold text-red-600">0</span>건</span>
+                    </div>
+
+                    <!-- 페이지네이션 -->
+                    <div id="pagination" class="mt-8 flex justify-center">
+                        <!-- 동적으로 생성됨 -->
+                    </div>
                 </div>
 
                 <!-- 빈 상태 -->
@@ -121,56 +261,91 @@
                         <p class="text-gray-500">조건에 맞는 공지사항을 찾을 수 없습니다.</p>
                     </div>
                 </div>
-
-                <!-- 페이지네이션 -->
-                <div id="pagination" class="hidden mt-12 flex justify-center">
-                    <!-- 동적으로 생성됨 -->
-                </div>
             </div>
         </section>
     </main>
 
+    <style>
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: white;
+            border: 1px solid #d1d5db;
+            color: #6b7280;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .filter-btn:hover {
+            background-color: #f9fafb;
+            border-color: #A50034;
+            color: #A50034;
+        }
+        
+        .filter-btn.active {
+            background-color: #A50034;
+            border-color: #A50034;
+            color: white;
+        }
+    </style>
+
     <script src="../nav.js"></script>
     <script>
-        // API 설정
-        const API_BASE = 'http://localhost:9000/api';
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+
         let currentPage = 1;
-        let currentCategory = '';
-        let currentSearch = '';
+        let currentFilters = {
+            category: '',
+            date: '',
+            search: ''
+        };
 
         // DOM 요소
         const loading = document.getElementById('loading');
         const error = document.getElementById('error');
-        const noticesList = document.getElementById('noticesList');
+        const boardContainer = document.getElementById('boardContainer');
         const empty = document.getElementById('empty');
+        const noticesTableBody = document.getElementById('noticesTableBody');
         const pagination = document.getElementById('pagination');
+        const pageInfo = document.getElementById('pageInfo');
+        const totalCount = document.getElementById('totalCount');
+        const retryBtn = document.getElementById('retryBtn');
+
+        // 필터 버튼
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const dateFilter = document.getElementById('dateFilter');
         const categoryFilter = document.getElementById('categoryFilter');
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
-        const retryBtn = document.getElementById('retryBtn');
-
-        // 카테고리별 스타일
-        const categoryStyles = {
-            '중요': 'bg-red-100 text-red-600',
-            '일반': 'bg-blue-100 text-blue-600',
-            '긴급': 'bg-orange-100 text-orange-600'
-        };
 
         // 공지사항 불러오기
-        async function loadNotices(page = 1, category = '', search = '') {
+        async function loadNotices(page = 1) {
             showLoading();
             
             try {
-                let url = `${API_BASE}/notices?page=${page}&limit=10`;
-                if (category) url += `&category=${encodeURIComponent(category)}`;
-                if (search) url += `&search=${encodeURIComponent(search)}`;
+                let url = `${API_BASE}/notices?page=${page}&limit=20`;
+                
+                if (currentFilters.category) {
+                    url += `&category=${encodeURIComponent(currentFilters.category)}`;
+                }
+                if (currentFilters.date) {
+                    url += `&dateFilter=${currentFilters.date}`;
+                }
+                if (currentFilters.search) {
+                    url += `&search=${encodeURIComponent(currentFilters.search)}`;
+                }
 
                 const response = await fetch(url);
                 const data = await response.json();
 
                 if (data.success) {
-                    displayNotices(data.data);
-                    displayPagination(data.pagination);
+                    displayNotices(data.data, data.pagination);
                 } else {
                     throw new Error(data.message || '데이터 불러오기 실패');
                 }
@@ -181,112 +356,141 @@
         }
 
         // 공지사항 표시
-        function displayNotices(notices) {
+        function displayNotices(notices, paginationData) {
             hideAll();
             
-            if (notices.length === 0) {
+            if (!Array.isArray(notices) || notices.length === 0) {
                 empty.classList.remove('hidden');
                 return;
             }
 
-            noticesList.innerHTML = notices.map(notice => `
-                <article class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer" onclick="openNotice('${notice._id}')">
-                    <div class="flex justify-between items-start mb-3">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium ${categoryStyles[notice.category] || 'bg-gray-100 text-gray-600'}">
-                            ${notice.category || '일반'}
-                        </span>
-                        <div class="text-right">
-                            <div class="text-gray-500 text-sm">${formatDate(notice.createdAt)}</div>
-                            <div class="text-gray-400 text-xs mt-1">
-                                <i class="fas fa-eye mr-1"></i>${notice.views || 0}회
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">${notice.title}</h3>
-                    <p class="text-gray-600 mb-4 leading-relaxed line-clamp-2">
-                        ${notice.excerpt || notice.content.substring(0, 120) + '...'}
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-500">작성자: ${notice.author}</span>
-                        <span class="inline-flex items-center text-red-600 hover:text-red-700 font-medium text-sm">
-                            자세히 보기 <i class="fas fa-arrow-right ml-2"></i>
-                        </span>
-                    </div>
-                </article>
-            `).join('');
+            // 총 개수 표시 (API 응답 구조에 맞춰 수정)
+            const totalItems = paginationData?.total || notices.length;
+            const currentPage = paginationData?.current || 1;
+            const totalPages = paginationData?.pages || 1;
             
-            noticesList.classList.remove('hidden');
+            totalCount.textContent = totalItems;
+            
+            // 페이지 정보
+            pageInfo.textContent = `${currentPage} / ${totalPages} 페이지`;
+
+            // 테이블 내용 생성 (순서 번호 올바르게 계산)
+            noticesTableBody.innerHTML = notices.map((notice, index) => {
+                const displayNumber = totalItems - ((currentPage - 1) * 20) - index;
+                const categoryClass = getCategoryClass(notice.category);
+                
+                return `
+                <tr onclick="openNotice('${notice._id}')" style="cursor: pointer;">
+                    <td class="number-cell font-medium">${displayNumber}</td>
+                    <td class="category-cell">
+                        <span class="category-badge ${categoryClass}">${notice.category || '일반'}</span>
+                    </td>
+                    <td class="title-cell">
+                        <a href="notice-detail.html?id=${notice._id}" class="title-link">
+                            ${notice.title}
+                            ${notice.isImportant ? '<i class="fas fa-star text-red-500 ml-2"></i>' : ''}
+                        </a>
+                    </td>
+                    <td class="date-cell text-gray-600">${formatDate(notice.createdAt)}</td>
+                    <td class="views-cell text-gray-600">${notice.views || 0}</td>
+                </tr>
+                `;
+            }).join('');
+
+            renderPagination(paginationData);
+            boardContainer.classList.remove('hidden');
         }
 
-        // 페이지네이션 표시
-        function displayPagination(paginationData) {
-            if (!paginationData || paginationData.totalPages <= 1) {
-                pagination.classList.add('hidden');
-                return;
+        // 페이지네이션 렌더링 (API 응답 구조에 맞춰 수정)
+        function renderPagination(paginationData) {
+            if (!paginationData) return;
+            
+            const currentPage = paginationData.current || 1;
+            const totalPages = paginationData.pages || 1;
+            
+            pagination.innerHTML = '';
+            
+            // 이전 페이지 버튼
+            const prevBtn = document.createElement('button');
+            prevBtn.className = `px-3 py-2 text-sm font-medium ${currentPage <= 1 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-50'}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.disabled = currentPage <= 1;
+            if (currentPage > 1) {
+                prevBtn.onclick = () => loadNotices(currentPage - 1);
             }
-
-            const { currentPage: current, totalPages } = paginationData;
-            let paginationHTML = '<div class="flex space-x-2">';
-
-            // 이전 페이지
-            if (current > 1) {
-                paginationHTML += `<button onclick="changePage(${current - 1})" class="px-3 py-2 text-gray-500 hover:text-red-600 transition-colors">
-                    <i class="fas fa-chevron-left"></i>
-                </button>`;
+            pagination.appendChild(prevBtn);
+            
+            // 페이지 번호 버튼들
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `px-3 py-2 text-sm font-medium ${i === currentPage ? 'bg-red-600 text-white' : 'text-gray-700 hover:bg-gray-50'}`;
+                pageBtn.textContent = i;
+                if (i !== currentPage) {
+                    pageBtn.onclick = () => loadNotices(i);
+                }
+                pagination.appendChild(pageBtn);
             }
-
-            // 페이지 번호
-            for (let i = Math.max(1, current - 2); i <= Math.min(totalPages, current + 2); i++) {
-                paginationHTML += `<button onclick="changePage(${i})" class="px-4 py-2 rounded-lg transition-colors ${i === current ? 'bg-red-600 text-white' : 'text-gray-600 hover:bg-gray-100'}">
-                    ${i}
-                </button>`;
+            
+            // 다음 페이지 버튼
+            const nextBtn = document.createElement('button');
+            nextBtn.className = `px-3 py-2 text-sm font-medium ${currentPage >= totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-50'}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.disabled = currentPage >= totalPages;
+            if (currentPage < totalPages) {
+                nextBtn.onclick = () => loadNotices(currentPage + 1);
             }
+            pagination.appendChild(nextBtn);
+        }
 
-            // 다음 페이지
-            if (current < totalPages) {
-                paginationHTML += `<button onclick="changePage(${current + 1})" class="px-3 py-2 text-gray-500 hover:text-red-600 transition-colors">
-                    <i class="fas fa-chevron-right"></i>
-                </button>`;
+        // 카테고리 클래스 반환
+        function getCategoryClass(category) {
+            switch(category) {
+                case '중요': return 'badge-important';
+                case '긴급': return 'badge-urgent';
+                default: return 'badge-general';
             }
-
-            paginationHTML += '</div>';
-            pagination.innerHTML = paginationHTML;
-            pagination.classList.remove('hidden');
-        }
-
-        // 페이지 변경
-        function changePage(page) {
-            currentPage = page;
-            loadNotices(page, currentCategory, currentSearch);
-        }
-
-        // 검색
-        function search() {
-            currentSearch = searchInput.value.trim();
-            currentPage = 1;
-            loadNotices(1, currentCategory, currentSearch);
-        }
-
-        // 카테고리 필터
-        function filterByCategory() {
-            currentCategory = categoryFilter.value;
-            currentPage = 1;
-            loadNotices(1, currentCategory, currentSearch);
-        }
-
-        // 공지사항 상세 페이지 열기
-        function openNotice(id) {
-            window.location.href = `notice-detail.html?id=${id}`;
         }
 
         // 날짜 포맷팅
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('ko-KR', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
+                year: '2-digit',
+                month: '2-digit',
+                day: '2-digit'
+            }).replace(/\./g, '.').replace(/\s/g, '');
+        }
+
+        // 검색 함수
+        function search() {
+            const searchTerm = searchInput.value.trim();
+            currentFilters.search = searchTerm;
+            currentPage = 1;
+            loadNotices(1);
+        }
+
+        // 카테고리 필터
+        function setFilter(category) {
+            currentFilters.category = category;
+            currentPage = 1;
+            
+            // 버튼 상태 업데이트
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                }
             });
+            
+            loadNotices(1);
+        }
+
+        // 공지사항 상세 보기
+        function openNotice(id) {
+            window.location.href = `notice-detail.html?id=${id}`;
         }
 
         // 상태 표시 함수들
@@ -303,19 +507,26 @@
         function hideAll() {
             loading.classList.add('hidden');
             error.classList.add('hidden');
-            noticesList.classList.add('hidden');
+            boardContainer.classList.add('hidden');
             empty.classList.add('hidden');
-            pagination.classList.add('hidden');
         }
 
         // 이벤트 리스너
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => setFilter(btn.dataset.category));
+        });
+
         searchBtn.addEventListener('click', search);
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') search();
         });
-        categoryFilter.addEventListener('change', filterByCategory);
+
+        categoryFilter.addEventListener('change', () => {
+            setFilter(categoryFilter.value);
+        });
+
         retryBtn.addEventListener('click', () => {
-            loadNotices(currentPage, currentCategory, currentSearch);
+            loadNotices(currentPage);
         });
 
         // 페이지 초기화

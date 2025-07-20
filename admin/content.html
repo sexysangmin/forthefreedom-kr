@@ -564,6 +564,43 @@
             background: #e9ecef;
             color: #333;
         }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            margin: 0;
+            width: auto;
+        }
+
+        .checkmark {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ddd;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .checkbox-label input:checked + .checkmark {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .checkbox-label input:checked + .checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: -2px;
+            left: 2px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -690,14 +727,188 @@
                     <label for="author">작성자</label>
                     <input type="text" id="author" name="author" value="관리자">
                 </div>
-                <!-- 보도자료 전용 필드 -->
-                <div class="form-group-modal press-release-fields" id="originalUrlGroup" style="display: none;">
-                    <label for="originalUrl">원문 링크</label>
-                    <input type="url" id="originalUrl" name="originalUrl" placeholder="https://example.com/news/article">
+                <!-- 정책위원회 전용 필드 -->
+                <div class="form-group-modal policy-committee-fields" style="display: none;">
+                    <label for="policyArea">정책 분야 *</label>
+                    <select id="policyArea" name="policyArea">
+                        <option value="">선택하세요</option>
+                        <option value="경제">경제</option>
+                        <option value="교육">교육</option>
+                        <option value="국방">국방</option>
+                        <option value="외교">외교</option>
+                        <option value="복지">복지</option>
+                        <option value="환경">환경</option>
+                        <option value="과학기술">과학기술</option>
+                        <option value="문화">문화</option>
+                        <option value="법무">법무</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </div>
+                <div class="form-group-modal policy-committee-fields" style="display: none;">
+                    <label for="committeeName">위원회명</label>
+                    <input type="text" id="committeeName" name="committeeName" placeholder="정책위원회" value="정책위원회">
+                </div>
+                <div class="form-group-modal policy-committee-fields" style="display: none;">
+                    <label for="chairperson">위원장</label>
+                    <input type="text" id="chairperson" name="chairperson" placeholder="위원장 이름">
+                </div>
+                <div class="form-group-modal policy-committee-fields" style="display: none;">
+                    <label for="meetingDate">회의일시</label>
+                    <input type="datetime-local" id="meetingDate" name="meetingDate">
+                </div>
+                <div class="form-group-modal policy-committee-fields" style="display: none;">
+                    <label for="location">장소</label>
+                    <input type="text" id="location" name="location" placeholder="회의 장소">
+                </div>
+
+                <!-- 뉴미디어팀 전용 필드 -->
+                <div class="form-group-modal new-media-fields" style="display: none;">
+                    <label for="mediaType">미디어 타입 *</label>
+                    <select id="mediaType" name="mediaType">
+                        <option value="">선택하세요</option>
+                        <option value="image">이미지</option>
+                        <option value="video">동영상</option>
+                        <option value="audio">오디오</option>
+                        <option value="document">문서</option>
+                        <option value="interactive">인터랙티브</option>
+                    </select>
+                </div>
+                <div class="form-group-modal new-media-fields" style="display: none;">
+                    <label for="platform">플랫폼 *</label>
+                    <select id="platform" name="platform">
+                        <option value="">선택하세요</option>
+                        <option value="페이스북">페이스북</option>
+                        <option value="인스타그램">인스타그램</option>
+                        <option value="유튜브">유튜브</option>
+                        <option value="트위터">트위터</option>
+                        <option value="틱톡">틱톡</option>
+                        <option value="네이버블로그">네이버블로그</option>
+                        <option value="카카오스토리">카카오스토리</option>
+                        <option value="웹사이트">웹사이트</option>
+                    </select>
+                </div>
+                <div class="form-group-modal new-media-fields" style="display: none;">
+                    <label for="youtubeUrl">유튜브 URL</label>
+                    <input type="url" id="youtubeUrl" name="youtubeUrl" placeholder="https://youtube.com/watch?v=...">
                     <div class="file-info">
-                        <small>보도자료의 원문 링크를 입력하면 사용자가 원문을 확인할 수 있습니다.</small>
+                        <small>유튜브 동영상인 경우 URL을 입력하세요.</small>
                     </div>
                 </div>
+                <div class="form-group-modal new-media-fields" style="display: none;">
+                    <label for="targetAudience">타겟 대상</label>
+                    <select id="targetAudience" name="targetAudience">
+                        <option value="일반">일반</option>
+                        <option value="청년">청년</option>
+                        <option value="중장년">중장년</option>
+                        <option value="전문가">전문가</option>
+                        <option value="당원">당원</option>
+                        <option value="전체">전체</option>
+                    </select>
+                </div>
+
+                <!-- 대변인 전용 필드 -->
+                <div class="form-group-modal spokesperson-fields" style="display: none;">
+                    <label for="spokespersonName">대변인 이름 *</label>
+                    <input type="text" id="spokespersonName" name="spokespersonName" placeholder="홍길동">
+                </div>
+                <div class="form-group-modal spokesperson-fields" style="display: none;">
+                    <label for="spokespersonTitle">직책</label>
+                    <input type="text" id="spokespersonTitle" name="spokespersonTitle" placeholder="대변인" value="대변인">
+                </div>
+                <div class="form-group-modal spokesperson-fields" style="display: none;">
+                    <label for="issueDate">발표일시</label>
+                    <input type="datetime-local" id="issueDate" name="issueDate">
+                </div>
+                <div class="form-group-modal spokesperson-fields" style="display: none;">
+                    <label for="isUrgent">긴급 논평</label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="isUrgent" name="isUrgent">
+                        <span class="checkmark"></span>
+                        긴급 논평으로 표시
+                    </label>
+                </div>
+
+                <!-- 언론보도 전용 필드 -->
+                <div class="form-group-modal media-coverage-fields" style="display: none;">
+                    <label for="mediaOutlet">언론사 *</label>
+                    <input type="text" id="mediaOutlet" name="mediaOutlet" placeholder="KBS, MBC, 조선일보 등">
+                </div>
+                <div class="form-group-modal media-coverage-fields" style="display: none;">
+                    <label for="mediaType">매체 유형 *</label>
+                    <select id="mediaType" name="mediaType">
+                        <option value="TV" selected>TV</option>
+                        <option value="신문">신문</option>
+                        <option value="온라인">온라인</option>
+                        <option value="라디오">라디오</option>
+                        <option value="잡지">잡지</option>
+                    </select>
+                </div>
+                <div class="form-group-modal media-coverage-fields" style="display: none;">
+                    <label for="journalist">기자명</label>
+                    <input type="text" id="journalist" name="journalist" placeholder="기자 이름">
+                </div>
+                <div class="form-group-modal media-coverage-fields" style="display: none;">
+                    <label for="program">프로그램/지면</label>
+                    <input type="text" id="program" name="program" placeholder="뉴스9, 1면 등">
+                </div>
+                <div class="form-group-modal media-coverage-fields" style="display: none;">
+                    <label for="broadcastDate">방송일시 *</label>
+                    <input type="datetime-local" id="broadcastDate" name="broadcastDate">
+                </div>
+                <div class="form-group-modal media-coverage-fields" style="display: none;">
+                    <label for="tone">보도 성향</label>
+                    <select id="tone" name="tone">
+                        <option value="중립" selected>중립</option>
+                        <option value="긍정">긍정</option>
+                        <option value="부정">부정</option>
+                        <option value="비판">비판</option>
+                        <option value="지지">지지</option>
+                    </select>
+                </div>
+                <div class="form-group-modal media-coverage-fields" style="display: none;">
+                    <label for="importance">중요도</label>
+                    <select id="importance" name="importance">
+                        <option value="중" selected>중</option>
+                        <option value="상">상</option>
+                        <option value="하">하</option>
+                    </select>
+                </div>
+                <div class="form-group-modal media-coverage-fields" style="display: none;">
+                    <label for="originalUrl">원본 링크 *</label>
+                    <input type="url" id="originalUrl" name="originalUrl" placeholder="https://example.com/news/article" required>
+                    <div class="file-info">
+                        <small>언론사 원본 기사 링크를 입력하세요. 사용자가 클릭하면 이 링크로 이동합니다.</small>
+                    </div>
+                </div>
+
+                <!-- 주요일정 전용 필드 -->
+                <div class="form-group-modal events-fields" style="display: none;">
+                    <label for="eventDate">행사일시 *</label>
+                    <input type="datetime-local" id="eventDate" name="eventDate">
+                </div>
+                <div class="form-group-modal events-fields" style="display: none;">
+                    <label for="endDate">종료일시</label>
+                    <input type="datetime-local" id="endDate" name="endDate">
+                </div>
+                <div class="form-group-modal events-fields" style="display: none;">
+                    <label for="eventLocation">장소 *</label>
+                    <input type="text" id="eventLocation" name="eventLocation" placeholder="행사 장소">
+                </div>
+                <div class="form-group-modal events-fields" style="display: none;">
+                    <label for="organizer">주최자</label>
+                    <input type="text" id="organizer" name="organizer" placeholder="주최 기관/단체">
+                </div>
+                <div class="form-group-modal events-fields" style="display: none;">
+                    <label for="contact">연락처</label>
+                    <input type="text" id="contact" name="contact" placeholder="문의 전화번호">
+                </div>
+
+                <!-- 카드뉴스/갤러리 전용 필드 -->
+                <div class="form-group-modal card-news-fields gallery-fields" style="display: none;">
+                    <label for="imageCount">이미지 수</label>
+                    <input type="number" id="imageCount" name="imageCount" min="1" placeholder="이미지 개수">
+                </div>
+
                 <div class="form-group-modal">
                     <label for="status">상태</label>
                     <select id="status" name="status">
@@ -728,6 +939,86 @@
                     <label for="location">활동 장소</label>
                     <input type="text" id="location" name="location" placeholder="활동이 진행된 장소를 입력하세요">
                 </div>
+
+                <!-- 선거자료 전용 필드 -->
+                <div class="form-group-modal election-materials-fields" style="display: none;">
+                    <label for="electionType">선거 유형 *</label>
+                    <select id="electionType" name="electionType">
+                        <option value="">선택하세요</option>
+                        <option value="대통령선거">대통령선거</option>
+                        <option value="국회의원선거">국회의원선거</option>
+                        <option value="지방선거">지방선거</option>
+                        <option value="당대표선거">당대표선거</option>
+                    </select>
+                </div>
+                <div class="form-group-modal election-materials-fields" style="display: none;">
+                    <label for="electionYear">선거 연도 *</label>
+                    <input type="number" id="electionYear" name="electionYear" min="2020" max="2030" value="2025">
+                </div>
+                <div class="form-group-modal election-materials-fields" style="display: none;">
+                    <label for="electionDate">선거일</label>
+                    <input type="date" id="electionDate" name="electionDate">
+                </div>
+                <div class="form-group-modal election-materials-fields" style="display: none;">
+                    <label for="constituency">선거구</label>
+                    <input type="text" id="constituency" name="constituency" placeholder="ex) 서울 강남구 갑">
+                </div>
+                <div class="form-group-modal election-materials-fields" style="display: none;">
+                    <label for="priority">우선순위</label>
+                    <input type="number" id="priority" name="priority" min="0" max="10" value="0">
+                    <div class="file-info">
+                        <small>숫자가 높을수록 우선순위가 높습니다. (0-10)</small>
+                    </div>
+                </div>
+
+                <!-- 정책자료 전용 필드 -->
+                <div class="form-group-modal policy-materials-fields" style="display: none;">
+                    <label for="policyArea">정책 분야 *</label>
+                    <select id="policyArea" name="policyArea">
+                        <option value="">선택하세요</option>
+                        <option value="경제정책">경제정책</option>
+                        <option value="교육정책">교육정책</option>
+                        <option value="안보정책">안보정책</option>
+                        <option value="사회정책">사회정책</option>
+                        <option value="환경정책">환경정책</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </div>
+                <div class="form-group-modal policy-materials-fields" style="display: none;">
+                    <label for="effectiveDate">시행일</label>
+                    <input type="date" id="effectiveDate" name="effectiveDate">
+                </div>
+                <div class="form-group-modal policy-materials-fields" style="display: none;">
+                    <label for="priority">우선순위</label>
+                    <input type="number" id="priority" name="priority" min="0" max="10" value="0">
+                    <div class="file-info">
+                        <small>숫자가 높을수록 우선순위가 높습니다. (0-10)</small>
+                    </div>
+                </div>
+
+                <!-- 당헌당규 전용 필드 -->
+                <div class="form-group-modal party-constitution-fields" style="display: none;">
+                    <label for="constitutionType">문서 유형 *</label>
+                    <select id="constitutionType" name="constitutionType">
+                        <option value="">선택하세요</option>
+                        <option value="당헌">당헌</option>
+                        <option value="당규">당규</option>
+                        <option value="규정">규정</option>
+                        <option value="지침">지침</option>
+                    </select>
+                </div>
+                <div class="form-group-modal party-constitution-fields" style="display: none;">
+                    <label for="effectiveDate">시행일</label>
+                    <input type="date" id="effectiveDate" name="effectiveDate">
+                </div>
+                <div class="form-group-modal party-constitution-fields" style="display: none;">
+                    <label for="version">버전</label>
+                    <input type="text" id="version" name="version" placeholder="ex) v1.0, 제3차 개정">
+                </div>
+                <div class="form-group-modal party-constitution-fields" style="display: none;">
+                    <label for="approvalDate">승인일</label>
+                    <input type="date" id="approvalDate" name="approvalDate">
+                </div>
                 
                 <div class="form-group-modal">
                     <label for="tags">태그 (쉼표로 구분)</label>
@@ -752,7 +1043,11 @@
     </div>
 
     <script>
-        const API_BASE = window.API_BASE || 'http://localhost:9000/api';
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
         let currentContentType = '';
         let currentPage = 1;
         let isEditing = false;
@@ -770,12 +1065,68 @@
                 categories: ['중요', '일반', '긴급'],
                 defaultAuthor: '관리자'
             },
-            'press-releases': { 
-                title: '보도자료', 
-                icon: '📰',
-                endpoint: '/press-releases',
-                categories: ['정책발표', '성명서', '논평', '기타'],
-                defaultAuthor: '대변인'
+            'spokesperson': { 
+                title: '대변인', 
+                icon: '🎤',
+                endpoint: '/spokesperson',
+                categories: ['논평', '성명', '입장발표', '브리핑', '인터뷰'],
+                defaultAuthor: '대변인실'
+            },
+            'policy-committee': { 
+                title: '정책위', 
+                icon: '⚖️',
+                endpoint: '/policy-committee',
+                categories: ['회의록', '정책연구', '토론회', '간담회', '세미나', '워크숍'],
+                defaultAuthor: '정책위원회'
+            },
+            'new-media': { 
+                title: '뉴미디어팀', 
+                icon: '📱',
+                endpoint: '/new-media',
+                categories: ['카드뉴스', '영상', '홍보물', 'SNS콘텐츠', '인포그래픽', '웹툰'],
+                defaultAuthor: '뉴미디어팀'
+            },
+            'media-coverage': { 
+                title: '언론보도', 
+                icon: '📺',
+                endpoint: '/media-coverage',
+                categories: ['뉴스', '토론', '인터뷰', '기획', '칼럼', '사설', '기타'],
+                defaultAuthor: '미디어팀'
+            },
+            'events': { 
+                title: '주요일정', 
+                icon: '📅',
+                endpoint: '/events',
+                categories: ['당 행사', '정책토론회', '간담회', '세미나', '봉사활동', '기타'],
+                defaultAuthor: '기획조정실'
+            },
+            'card-news': { 
+                title: '카드뉴스', 
+                icon: '🃏',
+                endpoint: '/card-news',
+                categories: ['정책', '활동', '소식', '정보'],
+                defaultAuthor: '뉴미디어팀'
+            },
+            'gallery': { 
+                title: '포토갤러리', 
+                icon: '📷',
+                endpoint: '/gallery',
+                categories: ['당 행사', '지역활동', '회의', '세미나', '기타'],
+                defaultAuthor: '홍보팀'
+            },
+            'policy-committee': { 
+                title: '정책위원회', 
+                icon: '📋',
+                endpoint: '/policy-committee',
+                categories: ['회의록', '정책연구', '토론회', '간담회', '세미나', '워크숍'],
+                defaultAuthor: '정책위원회'
+            },
+            'new-media': { 
+                title: '뉴미디어팀', 
+                icon: '🎬',
+                endpoint: '/new-media',
+                categories: ['카드뉴스', '영상', '홍보물', 'SNS콘텐츠', '인포그래픽', '웹툰'],
+                defaultAuthor: '뉴미디어팀'
             },
             'activities': { 
                 title: '활동자료', 
@@ -813,10 +1164,12 @@
 
             const urlParams = new URLSearchParams(window.location.search);
             currentContentType = urlParams.get('type') || 'notices';
+            const action = urlParams.get('action');
             
             console.log('🔄 페이지 초기화');
             console.log('📋 URL 파라미터:', window.location.search);
             console.log('📋 설정된 콘텐츠 타입:', currentContentType);
+            console.log('📋 액션:', action);
             
             if (!contentTypes[currentContentType]) {
                 console.warn('⚠️ 알 수 없는 콘텐츠 타입, notices로 변경');
@@ -825,6 +1178,13 @@
 
             initializePage();
             loadContent();
+            
+            // action=create인 경우 즉시 새 글 작성 모달 열기
+            if (action === 'create') {
+                setTimeout(() => {
+                    openCreateModal();
+                }, 500);
+            }
 
             // 검색 입력 이벤트
             document.getElementById('searchQuery').addEventListener('keypress', function(e) {
@@ -1063,14 +1423,10 @@
             const config = contentTypes[currentContentType];
             document.getElementById('author').value = config.defaultAuthor;
             updateCategoryOptions();
-            toggleActivityFields();
+            toggleSpecificFields();
             
-            // 활동 관련 기본값 설정
-            if (currentContentType === 'activities') {
-                document.getElementById('eventDate').value = new Date().toISOString().split('T')[0];
-                document.getElementById('activityType').value = 'photo';
-                toggleYoutubeField();
-            }
+            // 콘텐츠 타입별 기본값 설정
+            setDefaultValues();
             
             // 첨부파일 초기화
             selectedFiles = [];
@@ -1107,22 +1463,111 @@
                     document.getElementById('status').value = item.status;
                     document.getElementById('tags').value = item.tags ? item.tags.join(', ') : '';
                     
-                    // 활동 관련 필드 설정
-                    if (currentContentType === 'activities') {
-                        document.getElementById('activityType').value = item.activityType || 'photo';
-                        document.getElementById('youtubeUrl').value = item.youtubeUrl || '';
-                        document.getElementById('eventDate').value = item.eventDate ? new Date(item.eventDate).toISOString().split('T')[0] : '';
-                        document.getElementById('location').value = item.location || '';
-                        toggleYoutubeField();
+                    // 콘텐츠 타입별 전용 필드 설정
+                    switch(currentContentType) {
+                        case 'spokesperson':
+                            setFieldValue('spokespersonName', item.spokespersonName);
+                            setFieldValue('spokespersonTitle', item.spokespersonTitle);
+                            setFieldValue('issueDate', item.issueDate, 'datetime');
+                            setFieldValue('isUrgent', item.isUrgent, 'checkbox');
+                            break;
+                            
+                        case 'policy-committee':
+                            setFieldValue('policyArea', item.policyArea);
+                            setFieldValue('committeeName', item.committeeName);
+                            setFieldValue('chairperson', item.chairperson);
+                            setFieldValue('meetingDate', item.meetingDate, 'datetime');
+                            setFieldValue('location', item.location);
+                            break;
+                            
+                        case 'new-media':
+                            setFieldValue('mediaType', item.mediaType);
+                            setFieldValue('platform', item.platform);
+                            setFieldValue('youtubeUrl', item.youtubeUrl);
+                            setFieldValue('targetAudience', item.targetAudience);
+                            break;
+                            
+                        case 'media-coverage':
+                            setFieldValue('mediaOutlet', item.mediaOutlet);
+                            setFieldValue('mediaType', item.mediaType);
+                            setFieldValue('journalist', item.journalist);
+                            setFieldValue('program', item.program);
+                            setFieldValue('broadcastDate', item.broadcastDate, 'datetime');
+                            setFieldValue('tone', item.tone);
+                            setFieldValue('importance', item.importance);
+                            setFieldValue('originalUrl', item.originalUrl);
+                            break;
+                            
+                        case 'events':
+                            setFieldValue('eventDate', item.eventDate, 'datetime');
+                            setFieldValue('endDate', item.endDate, 'datetime');
+                            setFieldValue('eventLocation', item.eventLocation);
+                            setFieldValue('organizer', item.organizer);
+                            setFieldValue('contact', item.contact);
+                            break;
+                            
+                        case 'card-news':
+                        case 'gallery':
+                            setFieldValue('imageCount', item.imageCount);
+                            break;
+                            
+                        case 'press-releases':
+                            setFieldValue('originalUrl', item.originalUrl);
+                            break;
+                            
+                        case 'activities':
+                            setFieldValue('activityType', item.activityType);
+                            setFieldValue('youtubeUrl', item.youtubeUrl);
+                            setFieldValue('eventDate', item.eventDate, 'date');
+                            setFieldValue('location', item.location);
+                            toggleYoutubeField();
+                            break;
+                            
+                        case 'election-materials':
+                            setFieldValue('electionType', item.electionType);
+                            setFieldValue('electionYear', item.electionYear);
+                            setFieldValue('electionDate', item.electionDate, 'date');
+                            setFieldValue('constituency', item.constituency);
+                            setFieldValue('priority', item.priority);
+                            break;
+                            
+                        case 'policy-materials':
+                            setFieldValue('policyArea', item.policyArea);
+                            setFieldValue('effectiveDate', item.effectiveDate, 'date');
+                            setFieldValue('priority', item.priority);
+                            break;
+                            
+                        case 'party-constitution':
+                            setFieldValue('constitutionType', item.constitutionType);
+                            setFieldValue('effectiveDate', item.effectiveDate, 'date');
+                            setFieldValue('version', item.version);
+                            setFieldValue('approvalDate', item.approvalDate, 'date');
+                            break;
                     }
                     
-                    // 보도자료 관련 필드 설정
-                    if (currentContentType === 'press-releases') {
-                        document.getElementById('originalUrl').value = item.originalUrl || '';
+                    // 필드 값 설정 헬퍼 함수
+                    function setFieldValue(fieldId, value, type = 'text') {
+                        const element = document.getElementById(fieldId);
+                        if (element && value !== undefined && value !== null) {
+                            if (type === 'checkbox') {
+                                element.checked = Boolean(value);
+                            } else if (type === 'datetime') {
+                                if (value) {
+                                    const date = new Date(value);
+                                    element.value = date.toISOString().slice(0, 16);
+                                }
+                            } else if (type === 'date') {
+                                if (value) {
+                                    const date = new Date(value);
+                                    element.value = date.toISOString().split('T')[0];
+                                }
+                            } else {
+                                element.value = value;
+                            }
+                        }
                     }
                     
-                    toggleActivityFields();
-                    togglePressReleaseFields();
+                    toggleSpecificFields();
                     
                     // 첨부파일 초기화
                     selectedFiles = [];
@@ -1300,7 +1745,8 @@
                 const isImage = attachment.mimeType && attachment.mimeType.startsWith('image/');
                 const fileIcon = getFileIcon(attachment.mimeType);
                 
-                const imageUrl = isImage ? `http://localhost:9000${attachment.path}` : '';
+                // API_BASE를 사용하여 올바른 URL 생성
+                const imageUrl = isImage ? `${API_BASE}${attachment.path}?t=${Date.now()}` : '';
                 const displayName = attachment.originalName || attachment.filename;
                 
                 fileItem.innerHTML = `
@@ -1329,7 +1775,15 @@
 
         // 기존 첨부파일 제거
         function removeExistingAttachment(index) {
+            console.log('🗑️ 파일 삭제 요청 - 인덱스:', index);
+            console.log('🗑️ 삭제할 파일:', existingAttachments[index]);
+            console.log('🗑️ 삭제 전 전체 파일들:', existingAttachments.map(att => att.filename || att.originalName));
+            
             existingAttachments.splice(index, 1);
+            
+            console.log('🗑️ 삭제 후 남은 파일들:', existingAttachments.map(att => att.filename || att.originalName));
+            console.log('🗑️ 남은 파일 개수:', existingAttachments.length);
+            
             updateExistingAttachments();
         }
 
@@ -1414,6 +1868,74 @@
             
             console.log('✅ 유효성 검사 통과');
             
+            // 언론보도 타입의 경우 추가 validation
+            if (currentContentType === 'media-coverage') {
+                const mediaOutletElement = document.getElementById('mediaOutlet');
+                const mediaTypeElement = document.getElementById('mediaType');
+                const broadcastDateElement = document.getElementById('broadcastDate');
+                
+                console.log('🔍 언론보도 필드 디버깅:');
+                console.log('mediaOutletElement:', mediaOutletElement);
+                console.log('mediaTypeElement:', mediaTypeElement);
+                console.log('broadcastDateElement:', broadcastDateElement);
+                
+                let mediaOutlet = mediaOutletElement?.value?.trim() || '';
+                let mediaType = mediaTypeElement?.value || '';
+                let broadcastDate = broadcastDateElement?.value || '';
+                
+                console.log('mediaOutlet 값:', `"${mediaOutlet}"`);
+                console.log('mediaType 값:', `"${mediaType}"`);
+                console.log('broadcastDate 값:', `"${broadcastDate}"`);
+                
+                // 빈 값인 경우 기본값 설정
+                if (!mediaType) {
+                    mediaType = 'TV';
+                    mediaTypeElement.value = 'TV';
+                    console.log('📝 mediaType 기본값 설정: TV');
+                }
+                
+                if (!mediaOutlet) {
+                    alert('언론사명을 입력해주세요.');
+                    mediaOutletElement?.focus();
+                    return;
+                }
+                
+                if (!broadcastDate) {
+                    alert('방송일시를 입력해주세요.');
+                    broadcastDateElement?.focus();
+                    return;
+                }
+                
+                console.log('✅ 언론보도 validation 통과');
+            }
+            
+            // 주요일정 타입의 경우 추가 validation
+            if (currentContentType === 'events') {
+                const eventDateElement = document.getElementById('eventDate');
+                const eventLocationElement = document.getElementById('eventLocation');
+                
+                const eventDate = eventDateElement?.value || '';
+                const eventLocation = eventLocationElement?.value?.trim() || '';
+                
+                console.log('🔍 주요일정 필드 디버깅:');
+                console.log('eventDate 값:', `"${eventDate}"`);
+                console.log('eventLocation 값:', `"${eventLocation}"`);
+                
+                if (!eventDate) {
+                    alert('행사일시를 입력해주세요.');
+                    eventDateElement?.focus();
+                    return;
+                }
+                
+                if (!eventLocation) {
+                    alert('행사 장소를 입력해주세요.');
+                    eventLocationElement?.focus();
+                    return;
+                }
+                
+                console.log('✅ 주요일정 validation 통과');
+            }
+            
             // 데이터 준비
             const requestData = {
                 title,
@@ -1446,26 +1968,122 @@
                 requestData.tags = tagsValue.split(',').map(tag => tag.trim()).filter(tag => tag);
             }
             
-            // 활동 관련 필드 처리
-            if (currentContentType === 'activities') {
-                const activityTypeElement = document.getElementById('activityType');
-                if (activityTypeElement) {
-                    requestData.activityType = activityTypeElement.value;
-                }
-                
-                const youtubeUrlElement = document.getElementById('youtubeUrl');
-                if (youtubeUrlElement && youtubeUrlElement.value) {
-                    requestData.youtubeUrl = youtubeUrlElement.value;
-                }
-                
-                const eventDateElement = document.getElementById('eventDate');
-                if (eventDateElement && eventDateElement.value) {
-                    requestData.eventDate = eventDateElement.value;
-                }
-                
-                const locationElement = document.getElementById('location');
-                if (locationElement && locationElement.value) {
-                    requestData.location = locationElement.value;
+            // 콘텐츠 타입별 전용 필드 처리
+            switch(currentContentType) {
+                case 'spokesperson':
+                    addIfExists('spokespersonName', requestData);
+                    addIfExists('spokespersonTitle', requestData);
+                    addIfExists('issueDate', requestData);
+                    addIfExists('isUrgent', requestData, 'checkbox');
+                    break;
+                    
+                case 'policy-committee':
+                    addIfExists('policyArea', requestData);
+                    addIfExists('committeeName', requestData);
+                    addIfExists('chairperson', requestData);
+                    addIfExists('meetingDate', requestData);
+                    addIfExists('location', requestData);
+                    break;
+                    
+                case 'new-media':
+                    addIfExists('mediaType', requestData);
+                    addIfExists('platform', requestData);
+                    addIfExists('youtubeUrl', requestData);
+                    addIfExists('targetAudience', requestData);
+                    break;
+                    
+                case 'media-coverage':
+                    // 필수 필드들 - 빈 값인 경우 기본값 사용
+                    requestData.mediaOutlet = document.getElementById('mediaOutlet').value.trim() || '';
+                    requestData.mediaType = document.getElementById('mediaType').value || 'TV';
+                    requestData.broadcastDate = document.getElementById('broadcastDate').value || new Date().toISOString();
+                    
+                    console.log('📦 최종 전송 데이터:');
+                    console.log('mediaOutlet:', `"${requestData.mediaOutlet}"`);
+                    console.log('mediaType:', `"${requestData.mediaType}"`);
+                    console.log('broadcastDate:', `"${requestData.broadcastDate}"`);
+                    
+                    // 선택적 필드들
+                    addIfExists('journalist', requestData);
+                    addIfExists('program', requestData);
+                    addIfExists('tone', requestData);
+                    addIfExists('importance', requestData);
+                    addIfExists('originalUrl', requestData);
+                    break;
+                    
+                case 'events':
+                    // 필수 필드들 확인 및 전송
+                    requestData.eventDate = document.getElementById('eventDate').value || new Date().toISOString();
+                    requestData.eventLocation = document.getElementById('eventLocation').value.trim() || '';
+                    
+                    console.log('📦 주요일정 최종 전송 데이터:');
+                    console.log('eventDate:', `"${requestData.eventDate}"`);
+                    console.log('eventLocation:', `"${requestData.eventLocation}"`);
+                    
+                    // 선택적 필드들
+                    addIfExists('endDate', requestData);
+                    addIfExists('organizer', requestData);
+                    addIfExists('contact', requestData);
+                    break;
+                    
+                case 'card-news':
+                case 'gallery':
+                    addIfExists('imageCount', requestData, 'number');
+                    break;
+                    
+                case 'press-releases':
+                    addIfExists('originalUrl', requestData);
+                    break;
+                    
+                case 'activities':
+                    addIfExists('activityType', requestData);
+                    addIfExists('youtubeUrl', requestData);
+                    addIfExists('eventDate', requestData);
+                    addIfExists('location', requestData);
+                    break;
+                    
+                case 'election-materials':
+                    // 선거자료 전용 필드들 처리
+                    addIfExists('electionType', requestData);
+                    addIfExists('electionYear', requestData, 'number');
+                    addIfExists('electionDate', requestData);
+                    addIfExists('constituency', requestData);
+                    addIfExists('priority', requestData, 'number');
+                    break;
+                    
+                case 'policy-materials':
+                    // 정책자료 전용 필드들 처리
+                    addIfExists('policyArea', requestData);
+                    addIfExists('effectiveDate', requestData);
+                    addIfExists('status', requestData);
+                    addIfExists('priority', requestData, 'number');
+                    break;
+                    
+                case 'party-constitution':
+                    // 당헌당규 전용 필드들 처리
+                    addIfExists('constitutionType', requestData);
+                    addIfExists('effectiveDate', requestData);
+                    addIfExists('version', requestData);
+                    addIfExists('approvalDate', requestData);
+                    break;
+            }
+            
+            // 필드 값 추가 헬퍼 함수
+            function addIfExists(fieldId, data, type = 'text') {
+                const element = document.getElementById(fieldId);
+                if (element) {
+                    if (type === 'checkbox') {
+                        data[fieldId] = element.checked;
+                    } else if (type === 'number') {
+                        const value = parseInt(element.value);
+                        if (!isNaN(value)) {
+                            data[fieldId] = value;
+                        }
+                    } else {
+                        if (element.value) {
+                            data[fieldId] = element.value;
+                        }
+                    }
                 }
             }
             
@@ -1490,8 +2108,13 @@
                 });
                 
                 // 기존 첨부파일 정보 추가
-                if (existingAttachments.length > 0) {
+                if (existingAttachments.length >= 0) {
+                    console.log('📤 전송할 기존 첨부파일들:', existingAttachments);
+                    console.log('📦 JSON.stringify 결과:', JSON.stringify(existingAttachments));
                     formData.append('existingAttachments', JSON.stringify(existingAttachments));
+                    
+                    // FormData 내용 확인
+                    console.log('📦 FormData에 추가된 existingAttachments:', formData.get('existingAttachments'));
                 }
                 
                 requestBody = formData;
@@ -1630,23 +2253,135 @@
         }
 
         // 활동 필드 토글
-        function toggleActivityFields() {
-            const activityFields = document.querySelectorAll('.activity-fields');
-            const isActivity = currentContentType === 'activities';
+        // 콘텐츠 타입별 전용 필드 토글
+        function toggleSpecificFields() {
+            // 모든 전용 필드 그룹 숨기기
+            const fieldGroups = [
+                'spokesperson-fields',
+                'policy-committee-fields', 
+                'new-media-fields',
+                'media-coverage-fields',
+                'events-fields',
+                'card-news-fields',
+                'gallery-fields',
+                'press-release-fields',
+                'activity-fields',
+                'election-materials-fields',
+                'policy-materials-fields',
+                'party-constitution-fields'
+            ];
             
-            activityFields.forEach(field => {
-                field.style.display = isActivity ? 'block' : 'none';
+            fieldGroups.forEach(group => {
+                const fields = document.querySelectorAll(`.${group}`);
+                fields.forEach(field => {
+                    field.style.display = 'none';
+                });
+            });
+            
+            // 현재 콘텐츠 타입에 맞는 필드만 표시
+            let targetFields = [];
+            switch(currentContentType) {
+                case 'spokesperson':
+                    targetFields = ['spokesperson-fields'];
+                    break;
+                case 'policy-committee':
+                    targetFields = ['policy-committee-fields'];
+                    break;
+                case 'new-media':
+                    targetFields = ['new-media-fields'];
+                    break;
+                case 'media-coverage':
+                    targetFields = ['media-coverage-fields'];
+                    break;
+                case 'events':
+                    targetFields = ['events-fields'];
+                    break;
+                case 'card-news':
+                    targetFields = ['card-news-fields'];
+                    break;
+                case 'gallery':
+                    targetFields = ['gallery-fields'];
+                    break;
+                case 'policy-committee':
+                    targetFields = ['policy-committee-fields'];
+                    break;
+                case 'new-media':
+                    targetFields = ['new-media-fields'];
+                    break;
+                case 'activities':
+                    targetFields = ['activity-fields'];
+                    toggleYoutubeField();
+                    break;
+                case 'election-materials':
+                    targetFields = ['election-materials-fields'];
+                    break;
+                case 'policy-materials':
+                    targetFields = ['policy-materials-fields'];
+                    break;
+                case 'party-constitution':
+                    targetFields = ['party-constitution-fields'];
+                    break;
+            }
+            
+            targetFields.forEach(group => {
+                const fields = document.querySelectorAll(`.${group}`);
+                fields.forEach(field => {
+                    field.style.display = 'block';
+                });
             });
         }
 
-        // 보도자료 필드 토글
-        function togglePressReleaseFields() {
-            const pressReleaseFields = document.querySelectorAll('.press-release-fields');
-            const isPressRelease = currentContentType === 'press-releases';
+        // 콘텐츠 타입별 기본값 설정
+        function setDefaultValues() {
+            const today = new Date().toISOString().split('T')[0];
+            const now = new Date().toISOString().slice(0, 16);
             
-            pressReleaseFields.forEach(field => {
-                field.style.display = isPressRelease ? 'block' : 'none';
-            });
+            switch(currentContentType) {
+                case 'spokesperson':
+                    if (document.getElementById('issueDate')) {
+                        document.getElementById('issueDate').value = now;
+                    }
+                    break;
+                    
+                case 'policy-committee':
+                    if (document.getElementById('meetingDate')) {
+                        document.getElementById('meetingDate').value = now;
+                    }
+                    break;
+                    
+                case 'new-media':
+                    if (document.getElementById('platform')) {
+                        document.getElementById('platform').value = '웹사이트';
+                    }
+                    if (document.getElementById('targetAudience')) {
+                        document.getElementById('targetAudience').value = '일반';
+                    }
+                    break;
+                    
+                case 'media-coverage':
+                    if (document.getElementById('broadcastDate')) {
+                        document.getElementById('broadcastDate').value = now;
+                    }
+                    if (document.getElementById('tone')) {
+                        document.getElementById('tone').value = '중립';
+                    }
+                    if (document.getElementById('importance')) {
+                        document.getElementById('importance').value = '중';
+                    }
+                    break;
+                    
+                case 'events':
+                    if (document.getElementById('eventDate')) {
+                        document.getElementById('eventDate').value = now;
+                    }
+                    break;
+                    
+                case 'activities':
+                    if (document.getElementById('activityType')) {
+                        document.getElementById('activityType').value = 'photo';
+                    }
+                    break;
+            }
         }
 
         // 유튜브 필드 토글
@@ -1656,7 +2391,7 @@
             
             if (activityType === 'video') {
                 youtubeGroup.style.display = 'block';
-            } else {
+                } else {
                 youtubeGroup.style.display = 'none';
                 document.getElementById('youtubeUrl').value = '';
             }

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드뉴스 - 자유와혁신</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #A50034;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .card-viewer {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .card-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .card-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .card-nav-btn:hover {
+            background: rgba(165, 0, 52, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .card-nav-btn:disabled {
+            background: rgba(0, 0, 0, 0.3);
+            cursor: not-allowed;
+            transform: translateY(-50%) scale(1);
+        }
+        
+        .card-nav-prev {
+            left: 20px;
+        }
+        
+        .card-nav-next {
+            right: 20px;
+        }
+        
+        .page-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .thumbnail-nav {
+            display: flex;
+            gap: 8px;
+            padding: 16px;
+            overflow-x: auto;
+            justify-content: center;
+        }
+        
+        .thumbnail-item {
+            width: 60px;
+            height: 80px;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .thumbnail-item.active {
+            opacity: 1;
+            border-color: #A50034;
+        }
+        
+        .thumbnail-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .related-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../news.html" class="text-gray-500 hover:text-red-600">정당소식</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="card-news.html" class="text-gray-500 hover:text-red-600">카드뉴스</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900" id="breadcrumbTitle">카드뉴스</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <main class="bg-white">
+        <!-- 로딩 상태 -->
+        <div id="loading" class="flex justify-center items-center py-20">
+            <div class="loading-spinner"></div>
+            <span class="ml-4 text-gray-600">카드뉴스를 불러오는 중...</span>
+        </div>
+
+        <!-- 에러 상태 -->
+        <div id="error" class="hidden text-center py-20">
+            <div class="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
+                <i class="fas fa-exclamation-triangle text-red-500 text-3xl mb-4"></i>
+                <h3 class="text-lg font-semibold text-red-800 mb-2">불러오기 실패</h3>
+                <p class="text-red-600 mb-4">카드뉴스를 불러오는 중 오류가 발생했습니다.</p>
+                <button id="retryBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                    다시 시도
+                </button>
+            </div>
+        </div>
+
+        <!-- 카드뉴스 상세 -->
+        <section id="cardDetail" class="hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- 카드뉴스 뷰어 -->
+                    <div class="lg:col-span-2">
+                        <div class="card-viewer">
+                            <div class="relative">
+                                <img id="currentImage" src="" alt="" class="card-image">
+                                <button id="prevBtn" class="card-nav-btn card-nav-prev">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button id="nextBtn" class="card-nav-btn card-nav-next">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                                <div id="pageIndicator" class="page-indicator">
+                                    1 / 1
+                                </div>
+                            </div>
+                            <!-- 썸네일 네비게이션 -->
+                            <div id="thumbnailNav" class="thumbnail-nav">
+                                <!-- 동적으로 생성됨 -->
+                            </div>
+                        </div>
+                        
+                        <!-- 액션 버튼 -->
+                        <div class="flex justify-center gap-4 mt-6">
+                            <button id="downloadBtn" class="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>다운로드
+                            </button>
+                            <button id="shareBtn" class="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-share mr-2"></i>링크 복사
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 카드뉴스 정보 -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <div class="mb-4">
+                                <span id="cardCategory" class="inline-block bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                    정책
+                                </span>
+                            </div>
+                            
+                            <h1 id="cardTitle" class="text-2xl font-bold text-gray-900 mb-4">
+                                카드뉴스 제목
+                            </h1>
+                            
+                            <div id="cardExcerpt" class="text-gray-600 mb-6">
+                                카드뉴스 설명
+                            </div>
+                            
+                            <div class="space-y-3 text-sm text-gray-500">
+                                <div class="flex items-center">
+                                    <i class="fas fa-user mr-2"></i>
+                                    <span id="cardAuthor">뉴미디어팀</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar mr-2"></i>
+                                    <span id="cardDate">2025년 1월 1일</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    <span id="cardViews">0</span>회 조회
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-images mr-2"></i>
+                                    <span id="cardImageCount">1</span>장
+                                </div>
+                            </div>
+                            
+                            <!-- 태그 -->
+                            <div id="cardTags" class="mt-6">
+                                <!-- 동적으로 생성됨 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 관련 카드뉴스 -->
+                <div class="mt-16">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-8">관련 카드뉴스</h2>
+                    <div id="relatedCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- 동적으로 생성됨 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../nav.js"></script>
+    <script>
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+
+        let currentCard = null;
+        let currentImageIndex = 0;
+        let images = [];
+
+        // DOM 요소
+        const loading = document.getElementById('loading');
+        const error = document.getElementById('error');
+        const cardDetail = document.getElementById('cardDetail');
+        const retryBtn = document.getElementById('retryBtn');
+        
+        const currentImage = document.getElementById('currentImage');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageIndicator = document.getElementById('pageIndicator');
+        const thumbnailNav = document.getElementById('thumbnailNav');
+        
+        const downloadBtn = document.getElementById('downloadBtn');
+        const shareBtn = document.getElementById('shareBtn');
+
+        // URL에서 카드뉴스 ID 가져오기
+        function getCardId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        // 카드뉴스 불러오기
+        async function loadCardNews(id) {
+            showLoading();
+            
+            try {
+                const response = await fetch(`${API_BASE}/card-news/${id}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    currentCard = data.data;
+                    await incrementViews(id);
+                    displayCardNews(currentCard);
+                    loadRelatedCards(currentCard.category, id);
+                } else {
+                    throw new Error(data.message || '카드뉴스 불러오기 실패');
+                }
+            } catch (err) {
+                console.error('카드뉴스 불러오기 실패:', err);
+                showError();
+            }
+        }
+
+        // 조회수 증가
+        async function incrementViews(id) {
+            try {
+                await fetch(`${API_BASE}/card-news/${id}/view`, { method: 'PATCH' });
+            } catch (err) {
+                console.warn('조회수 증가 실패:', err);
+            }
+        }
+
+        // 카드뉴스 표시
+        function displayCardNews(card) {
+            hideAll();
+            
+            // 이미지 목록 생성
+            images = card.attachments?.filter(att => att.mimetype.startsWith('image/')) || [];
+            currentImageIndex = 0;
+            
+            // 제목 및 메타 정보 설정
+            document.getElementById('breadcrumbTitle').textContent = card.title;
+            document.getElementById('cardCategory').textContent = card.category;
+            document.getElementById('cardTitle').textContent = card.title;
+            document.getElementById('cardExcerpt').textContent = card.excerpt;
+            document.getElementById('cardAuthor').textContent = card.author;
+            document.getElementById('cardDate').textContent = formatDate(card.createdAt);
+            document.getElementById('cardViews').textContent = card.views || 0;
+            document.getElementById('cardImageCount').textContent = images.length;
+            
+            // 태그 표시
+            displayTags(card.tags || []);
+            
+            // 이미지 뷰어 설정
+            if (images.length > 0) {
+                setupImageViewer();
+            } else {
+                // 이미지가 없는 경우 기본 이미지 표시
+                currentImage.src = '/images/logo.png';
+                currentImage.alt = card.title;
+            }
+            
+            cardDetail.classList.remove('hidden');
+        }
+
+        // 이미지 뷰어 설정
+        function setupImageViewer() {
+            updateCurrentImage();
+            updateThumbnailNav();
+            updateNavButtons();
+            updatePageIndicator();
+        }
+
+        // 현재 이미지 업데이트
+        function updateCurrentImage() {
+            if (images[currentImageIndex]) {
+                currentImage.src = `http://localhost:9000/uploads/${images[currentImageIndex].filename}?t=${Date.now()}`;
+                currentImage.alt = currentCard.title;
+            }
+        }
+
+        // 썸네일 네비게이션 업데이트
+        function updateThumbnailNav() {
+            let html = '';
+            images.forEach((image, index) => {
+                const activeClass = index === currentImageIndex ? 'active' : '';
+                html += `
+                    <div class="thumbnail-item ${activeClass}" onclick="goToImage(${index})">
+                        <img src="http://localhost:9000/uploads/${image.filename}?t=${Date.now()}" alt="페이지 ${index + 1}">
+                    </div>
+                `;
+            });
+            thumbnailNav.innerHTML = html;
+        }
+
+        // 네비게이션 버튼 상태 업데이트
+        function updateNavButtons() {
+            prevBtn.disabled = currentImageIndex === 0;
+            nextBtn.disabled = currentImageIndex === images.length - 1;
+        }
+
+        // 페이지 인디케이터 업데이트
+        function updatePageIndicator() {
+            pageIndicator.textContent = `${currentImageIndex + 1} / ${images.length}`;
+        }
+
+        // 이미지 이동
+        function goToImage(index) {
+            if (index >= 0 && index < images.length) {
+                currentImageIndex = index;
+                updateCurrentImage();
+                updateThumbnailNav();
+                updateNavButtons();
+                updatePageIndicator();
+            }
+        }
+
+        // 이전 이미지
+        function previousImage() {
+            goToImage(currentImageIndex - 1);
+        }
+
+        // 다음 이미지
+        function nextImage() {
+            goToImage(currentImageIndex + 1);
+        }
+
+        // 태그 표시
+        function displayTags(tags) {
+            const cardTags = document.getElementById('cardTags');
+            if (tags.length > 0) {
+                let html = '<div class="flex flex-wrap gap-2">';
+                tags.forEach(tag => {
+                    html += `<span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">#${tag}</span>`;
+                });
+                html += '</div>';
+                cardTags.innerHTML = html;
+            } else {
+                cardTags.innerHTML = '';
+            }
+        }
+
+        // 관련 카드뉴스 불러오기
+        async function loadRelatedCards(category, excludeId) {
+            try {
+                const response = await fetch(`${API_BASE}/card-news?category=${encodeURIComponent(category)}&limit=4`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const relatedCards = data.data.filter(card => card._id !== excludeId).slice(0, 4);
+                    displayRelatedCards(relatedCards);
+                }
+            } catch (err) {
+                console.warn('관련 카드뉴스 불러오기 실패:', err);
+            }
+        }
+
+        // 관련 카드뉴스 표시
+        function displayRelatedCards(cards) {
+            const relatedCardsContainer = document.getElementById('relatedCards');
+            let html = '';
+            
+            cards.forEach(card => {
+                const thumbnail = card.attachments?.find(att => att.mimetype.startsWith('image/'));
+                html += `
+                    <div class="related-card bg-white border border-gray-200" onclick="goToCard('${card._id}')">
+                        <img src="${thumbnail ? `http://localhost:9000/uploads/${thumbnail.filename}?t=${Date.now()}` : 'http://localhost:9000/images/logo.png'}" 
+                             alt="${card.title}" 
+                             class="w-full aspect-[3/4] object-cover">
+                        <div class="p-4">
+                            <div class="text-xs text-red-600 font-medium mb-2">${card.category}</div>
+                            <h3 class="font-bold text-gray-900 text-sm mb-2 line-clamp-2">${card.title}</h3>
+                            <div class="text-xs text-gray-500">${formatDate(card.createdAt)}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            relatedCardsContainer.innerHTML = html;
+        }
+
+        // 다른 카드뉴스로 이동
+        function goToCard(id) {
+            window.location.href = `card-news-detail.html?id=${id}`;
+        }
+
+        // 다운로드
+        function downloadCurrentImage() {
+            if (images[currentImageIndex]) {
+                const link = document.createElement('a');
+                link.href = `http://localhost:9000/uploads/${images[currentImageIndex].filename}`;
+                link.download = `${currentCard.title}_${currentImageIndex + 1}.jpg`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        // 링크 복사
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('링크가 복사되었습니다.');
+            }).catch(() => {
+                alert('링크 복사에 실패했습니다.');
+            });
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // 상태 표시 함수들
+        function showLoading() {
+            hideAll();
+            loading.classList.remove('hidden');
+        }
+
+        function showError() {
+            hideAll();
+            error.classList.remove('hidden');
+        }
+
+        function hideAll() {
+            loading.classList.add('hidden');
+            error.classList.add('hidden');
+            cardDetail.classList.add('hidden');
+        }
+
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                previousImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+
+        // 이벤트 리스너
+        prevBtn.addEventListener('click', previousImage);
+        nextBtn.addEventListener('click', nextImage);
+        downloadBtn.addEventListener('click', downloadCurrentImage);
+        shareBtn.addEventListener('click', copyLink);
+        retryBtn.addEventListener('click', () => {
+            const cardId = getCardId();
+            if (cardId) loadCardNews(cardId);
+        });
+
+        // 페이지 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            loadNavigation();
+            const cardId = getCardId();
+            if (cardId) {
+                loadCardNews(cardId);
+            } else {
+                showError();
+            }
+        });
+    </script>
+</body>
+</html> 

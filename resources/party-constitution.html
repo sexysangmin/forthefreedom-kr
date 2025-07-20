@@ -23,96 +23,99 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .file-item {
+            transition: all 0.2s ease;
+        }
+        .file-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <!-- Hero Section -->
-    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
-        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
-        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">당헌당규</h1>
-            <p style="font-size:1.25rem; margin-top:1rem; opacity:0.9;">자유와혁신의 강령, 당헌, 당규 등 기본 규정을 확인하세요</p>
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../resources.html" class="text-gray-500 hover:text-red-600">자료실</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">당헌당규</li>
+                </ol>
+            </nav>
         </div>
     </section>
 
-    <main style="position:relative; z-index:1; background:#fff;" class="py-16 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- 개요 -->
-            <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">당의 기본 규정</h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신의 기본 이념과 가치, 조직 운영의 근간이 되는 강령과 당헌, 당규를 제공합니다.
-                    </p>
+    <main class="bg-white">
+        <section class="py-16">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 페이지 헤더 -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">당헌당규</h1>
+                    <p class="text-xl text-gray-600">자유와혁신의 당헌, 당규 및 관련 규정을 확인하세요</p>
                 </div>
-                
-                <div id="constitution-stats" class="grid md:grid-cols-3 gap-6">
-                    <!-- 통계는 동적으로 로드됩니다 -->
-                </div>
-            </div>
 
-            <!-- 당헌당규 목록 -->
-            <div id="constitution-container" class="space-y-8">
                 <!-- 로딩 상태 -->
-                <div id="loading-state" class="flex justify-center py-12">
-                    <div class="text-center">
-                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
-                        <p class="text-gray-600">당헌당규를 불러오는 중...</p>
-                    </div>
+                <div id="loading-state" class="text-center py-16">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+                    <p class="text-gray-600">당헌당규를 불러오는 중...</p>
                 </div>
 
                 <!-- 에러 상태 -->
-                <div id="error-state" class="hidden bg-red-50 border border-red-200 rounded-lg p-8 text-center">
-                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
+                <div id="error-state" class="hidden text-center py-16">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
+                        <i class="fas fa-exclamation-triangle text-red-500 text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold text-red-800 mb-2">불러오기 실패</h3>
+                        <p class="text-red-600 mb-4">당헌당규를 불러오는 중 오류가 발생했습니다.</p>
+                        <button onclick="loadPartyConstitution()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                            다시 시도
+                        </button>
                     </div>
-                    <h3 class="text-lg font-medium text-red-800 mb-2">데이터를 불러올 수 없습니다</h3>
-                    <p class="text-red-600 mb-4">당헌당규 정보를 가져오는 중 오류가 발생했습니다.</p>
-                    <button onclick="loadPartyConstitution()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
-                        다시 시도
-                    </button>
                 </div>
 
                 <!-- 빈 상태 -->
-                <div id="empty-state" class="hidden bg-gray-50 border border-gray-200 rounded-lg p-12 text-center">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-balance-scale text-gray-400 text-2xl"></i>
+                <div id="empty-state" class="hidden text-center py-16">
+                    <div class="max-w-md mx-auto">
+                        <i class="fas fa-balance-scale text-gray-400 text-6xl mb-6"></i>
+                        <h3 class="text-xl font-semibold text-gray-600 mb-2">당헌당규가 없습니다</h3>
+                        <p class="text-gray-500">아직 등록된 당헌당규가 없습니다.</p>
                     </div>
-                    <h3 class="text-lg font-medium text-gray-700 mb-2">등록된 당헌당규가 없습니다</h3>
-                    <p class="text-gray-500">당헌당규가 등록되면 이곳에 표시됩니다.</p>
                 </div>
 
-                <!-- 당헌당규 목록 (동적으로 생성) -->
-                <div id="constitution-list" class="hidden space-y-6">
-                    <!-- 당헌당규들이 여기에 동적으로 추가됩니다 -->
+                <!-- 당헌당규 목록 -->
+                <div id="constitution-list" class="hidden space-y-4">
+                    <!-- 동적으로 생성됨 -->
+                </div>
+
+                <!-- 페이지네이션 -->
+                <div id="pagination-container" class="hidden mt-12 flex justify-center">
+                    <!-- 동적으로 생성됨 -->
                 </div>
             </div>
-
-            <!-- 페이지네이션 -->
-            <div id="pagination-container" class="hidden mt-8 flex justify-center">
-                <!-- 페이지네이션이 여기에 동적으로 추가됩니다 -->
-            </div>
-        </div>
+        </section>
     </main>
     
     <script src="../nav.js"></script>
     <script>
         loadNavigation();
 
-        const API_BASE_URL = 'http://localhost:9000/api';
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE_URL = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
         let currentPage = 1;
         const itemsPerPage = 10;
-
-        // 당헌당규 카테고리별 색상 매핑
-        const categoryColors = {
-            '강령': { bg: 'bg-red-100', text: 'text-red-800', border: 'border-red-500', icon: 'fas fa-flag' },
-            '당헌': { bg: 'bg-blue-100', text: 'text-blue-800', border: 'border-blue-500', icon: 'fas fa-gavel' },
-            '당규': { bg: 'bg-green-100', text: 'text-green-800', border: 'border-green-500', icon: 'fas fa-book' },
-            '운영규정': { bg: 'bg-purple-100', text: 'text-purple-800', border: 'border-purple-500', icon: 'fas fa-cogs' },
-            '기타': { bg: 'bg-gray-100', text: 'text-gray-800', border: 'border-gray-500', icon: 'fas fa-file-alt' }
-        };
 
         async function loadPartyConstitution(page = 1) {
             currentPage = page;
@@ -136,212 +139,153 @@
 
                 if (data.data.length === 0) {
                     document.getElementById('empty-state').classList.remove('hidden');
-                    updateConstitutionStats(0);
                     return;
                 }
 
-                renderPartyConstitution(data.data);
-                renderPagination(data.pagination);
-                updateConstitutionStats(data.pagination.total);
+                renderConstitution(data.data);
+                if (data.pagination && data.pagination.pages > 1) {
+                    renderPagination(data.pagination);
+                }
 
             } catch (error) {
-                console.error('당헌당규 로딩 오류:', error);
+                console.error('당헌당규 로드 실패:', error);
                 document.getElementById('loading-state').classList.add('hidden');
                 document.getElementById('error-state').classList.remove('hidden');
             }
         }
 
-        function renderPartyConstitution(constitutions) {
+        function renderConstitution(items) {
             const container = document.getElementById('constitution-list');
-            container.innerHTML = '';
-
-            // 카테고리별로 그룹화
-            const groupedByCategory = constitutions.reduce((groups, constitution) => {
-                const category = constitution.category || '기타';
-                if (!groups[category]) {
-                    groups[category] = [];
-                }
-                groups[category].push(constitution);
-                return groups;
-            }, {});
-
-            // 카테고리 순서 정의
-            const categoryOrder = ['강령', '당헌', '당규', '운영규정', '기타'];
-
-            categoryOrder.forEach(categoryName => {
-                if (groupedByCategory[categoryName]) {
-                    const categorySection = createCategorySection(categoryName, groupedByCategory[categoryName]);
-                    container.appendChild(categorySection);
-                }
-            });
-
-            document.getElementById('constitution-list').classList.remove('hidden');
-        }
-
-        function createCategorySection(categoryName, constitutions) {
-            const categoryStyle = categoryColors[categoryName] || categoryColors['기타'];
-            const section = document.createElement('div');
-            section.className = 'bg-white rounded-lg shadow-sm';
-
-            section.innerHTML = `
-                <div class="border-l-4 ${categoryStyle.border} p-6">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 ${categoryStyle.bg} rounded-lg flex items-center justify-center mr-4">
-                            <i class="${categoryStyle.icon} ${categoryStyle.text.replace('text-', 'text-').replace('-800', '-600')} text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900">${categoryName}</h3>
-                            <p class="text-gray-600">${getCategoryDescription(categoryName)}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        ${constitutions.map(constitution => createConstitutionCard(constitution, categoryStyle)).join('')}
-                    </div>
-                </div>
-            `;
-
-            return section;
-        }
-
-        function createConstitutionCard(constitution, categoryStyle) {
-            const formattedDate = new Date(constitution.createdAt).toLocaleDateString('ko-KR');
-            const attachmentsCount = constitution.attachments ? constitution.attachments.length : 0;
-
-            return `
-                <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-                    <div class="flex items-start justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${categoryStyle.bg} ${categoryStyle.text}">
-                                    ${constitution.category || '기타'}
-                                </span>
-                                <span class="text-gray-500 text-sm">${formattedDate}</span>
-                                ${constitution.tags ? constitution.tags.map(tag => `
-                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs bg-gray-100 text-gray-600">
-                                        ${tag}
-                                    </span>
-                                `).join('') : ''}
+            
+            const html = items.map(item => {
+                const hasFiles = item.attachments && item.attachments.length > 0;
+                const fileCount = hasFiles ? item.attachments.length : 0;
+                
+                return `
+                    <div class="file-item bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-balance-scale text-red-500 text-xl mr-3"></i>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-900 hover:text-red-600 cursor-pointer" 
+                                            onclick="window.location.href='party-constitution-detail.html?id=${item._id}'">
+                                            ${item.title}
+                                        </h3>
+                                        <div class="flex items-center text-sm text-gray-500 mt-1">
+                                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs mr-3">${item.category}</span>
+                                            <span><i class="fas fa-calendar mr-1"></i>${formatDate(item.createdAt)}</span>
+                                            ${hasFiles ? `<span class="ml-3"><i class="fas fa-paperclip mr-1"></i>${fileCount}개 파일</span>` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-4">${item.excerpt}</p>
+                                
+                                ${hasFiles ? `
+                                <div class="flex flex-wrap gap-2">
+                                    ${item.attachments.map(file => `
+                                        <button onclick="downloadAttachment('${item._id}', '${file.filename}', '${file.originalName || file.filename}')" 
+                                                class="inline-flex items-center px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition-colors">
+                                            <i class="fas fa-download mr-1"></i>
+                                            ${file.originalName || file.filename}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                                ` : ''}
                             </div>
-                            <h4 class="text-xl font-semibold text-gray-900 mb-3 hover:text-blue-600 cursor-pointer"
-                                onclick="goToConstitutionDetail('${constitution._id}')">
-                                ${constitution.title}
-                            </h4>
-                            <p class="text-gray-600 mb-4">
-                                ${constitution.excerpt || constitution.content.substring(0, 150) + '...'}
-                            </p>
-                            <div class="flex items-center gap-6 text-sm text-gray-500">
-                                ${attachmentsCount > 0 ? `<span><i class="fas fa-paperclip mr-1"></i>${attachmentsCount}개 첨부</span>` : ''}
-                                ${constitution.downloadCount ? `<span><i class="fas fa-download mr-1"></i>${constitution.downloadCount}회 다운로드</span>` : ''}
-                                <span><i class="fas fa-eye mr-1"></i>상세보기</span>
+                            <div class="ml-6 text-right">
+                                <div class="text-sm text-gray-500">
+                                    <div>조회 ${item.views || 0}회</div>
+                                    <div>다운로드 ${item.downloadCount || 0}회</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="ml-6 flex flex-col gap-2">
-                            <button onclick="goToConstitutionDetail('${constitution._id}')" 
-                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                <i class="fas fa-eye mr-2"></i>상세보기
-                            </button>
-                            ${attachmentsCount > 0 ? `
-                                <button onclick="downloadConstitution('${constitution._id}')" 
-                                        class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                                    <i class="fas fa-download mr-2"></i>다운로드
-                                </button>
-                            ` : ''}
-                        </div>
                     </div>
-                </div>
-            `;
-        }
-
-        function getCategoryDescription(categoryName) {
-            const descriptions = {
-                '강령': '자유와혁신의 기본 이념과 가치',
-                '당헌': '당의 기본 조직과 운영 원칙',
-                '당규': '당 운영의 세부 규정',
-                '운영규정': '조직 운영의 실무 지침',
-                '기타': '기타 규정 및 지침'
-            };
-            return descriptions[categoryName] || '기타 문서';
+                `;
+            }).join('');
+            
+            container.innerHTML = html;
+            container.classList.remove('hidden');
         }
 
         function renderPagination(pagination) {
             const container = document.getElementById('pagination-container');
+            let html = '<div class="flex items-center space-x-2">';
             
-            if (pagination.pages <= 1) {
-                container.classList.add('hidden');
-                return;
-            }
-
-            container.innerHTML = '';
-            container.classList.remove('hidden');
-
-            const paginationDiv = document.createElement('div');
-            paginationDiv.className = 'flex items-center gap-2';
-
-            // 이전 페이지
+            // 이전 페이지 버튼
             if (pagination.hasPrev) {
-                const prevBtn = document.createElement('button');
-                prevBtn.className = 'px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50';
-                prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-                prevBtn.onclick = () => loadPartyConstitution(currentPage - 1);
-                paginationDiv.appendChild(prevBtn);
+                html += `<button onclick="loadPartyConstitution(${currentPage - 1})" 
+                                class="px-3 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>`;
             }
-
+            
             // 페이지 번호들
             const startPage = Math.max(1, currentPage - 2);
-            const endPage = Math.min(pagination.pages, startPage + 4);
-
+            const endPage = Math.min(pagination.pages, currentPage + 2);
+            
             for (let i = startPage; i <= endPage; i++) {
-                const pageBtn = document.createElement('button');
-                pageBtn.className = `px-3 py-2 border rounded-lg ${
-                    i === currentPage 
-                        ? 'bg-red-600 text-white border-red-600' 
-                        : 'bg-white border-gray-300 hover:bg-gray-50'
-                }`;
-                pageBtn.textContent = i;
-                pageBtn.onclick = () => loadPartyConstitution(i);
-                paginationDiv.appendChild(pageBtn);
+                const isActive = i === currentPage;
+                html += `<button onclick="loadPartyConstitution(${i})" 
+                                class="px-3 py-2 ${isActive ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'} 
+                                       rounded transition-colors">
+                            ${i}
+                        </button>`;
             }
-
-            // 다음 페이지
+            
+            // 다음 페이지 버튼
             if (pagination.hasNext) {
-                const nextBtn = document.createElement('button');
-                nextBtn.className = 'px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50';
-                nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-                nextBtn.onclick = () => loadPartyConstitution(currentPage + 1);
-                paginationDiv.appendChild(nextBtn);
+                html += `<button onclick="loadPartyConstitution(${currentPage + 1})" 
+                                class="px-3 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>`;
             }
-
-            container.appendChild(paginationDiv);
+            
+            html += '</div>';
+            container.innerHTML = html;
+            container.classList.remove('hidden');
         }
 
-        function updateConstitutionStats(totalCount) {
-            const statsContainer = document.getElementById('constitution-stats');
-            statsContainer.innerHTML = `
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-red-600 mb-2">${totalCount}</div>
-                    <div class="text-gray-600">총 문서</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-blue-600 mb-2">실시간</div>
-                    <div class="text-gray-600">업데이트</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-green-600 mb-2">2025</div>
-                    <div class="text-gray-600">제정 연도</div>
-                </div>
-            `;
+        // 첨부파일 다운로드
+        async function downloadAttachment(materialId, filename, displayName) {
+            try {
+                const downloadUrl = `${API_BASE_URL}/party-constitution/${materialId}/attachments/${filename}`;
+                
+                // 다운로드 카운트 업데이트
+                try {
+                    await fetch(`${API_BASE_URL}/party-constitution/${materialId}/download-count`, {
+                        method: 'POST'
+                    });
+                } catch (countError) {
+                    console.warn('다운로드 카운트 업데이트 실패:', countError);
+                }
+                
+                // 링크 생성하여 다운로드
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = displayName || filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+            } catch (error) {
+                console.error('파일 다운로드 오류:', error);
+                // 에러가 있어도 다운로드는 시도
+                window.open(`${API_BASE_URL}/party-constitution/${materialId}/attachments/${filename}`, '_blank');
+            }
         }
 
-        function goToConstitutionDetail(id) {
-            window.location.href = `party-constitution-detail.html?id=${id}`;
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
         }
 
-        function downloadConstitution(id) {
-            window.open(`${API_BASE_URL}/party-constitution/${id}/download`, '_blank');
-        }
-
-        // 페이지 로드 시 당헌당규 목록 로드
+        // 페이지 로드 시 초기화
         document.addEventListener('DOMContentLoaded', function() {
             loadPartyConstitution();
         });

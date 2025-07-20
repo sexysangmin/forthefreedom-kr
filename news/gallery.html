@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>포토&영상 - 자유와혁신</title>
+    <title>포토갤러리 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -22,433 +22,572 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
     <style>
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #A50034;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 12px;
             aspect-ratio: 4/3;
-            background: linear-gradient(135deg, #FDF2F4, #FCE7EA);
+            background: white;
             transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
         }
         
         .gallery-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(165, 0, 52, 0.15);
+            border-color: #A50034;
         }
         
-        .gallery-icon {
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: rgba(165, 0, 52, 0.1);
-            border: 2px solid #A50034;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 16px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
         
-        .gallery-icon i {
-            font-size: 28px;
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: white;
+            border: 1px solid #d1d5db;
+            color: #6b7280;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .filter-btn:hover {
+            background-color: #f9fafb;
+            border-color: #A50034;
             color: #A50034;
         }
         
-        .video-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            background: #000;
-            transition: all 0.3s ease;
+        .filter-btn.active {
+            background-color: #A50034;
+            border-color: #A50034;
+            color: white;
         }
         
-        .video-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(165, 0, 52, 0.15);
-        }
-        
-        .youtube-embed {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .video-placeholder {
-            position: absolute;
+        .modal-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, #2d3748, #1a202c);
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 50;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        
-        .video-play-btn {
-            width: 70px;
-            height: 70px;
-            background: rgba(165, 0, 52, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-        
-        .video-play-btn:hover {
-            background: #A50034;
-            transform: scale(1.1);
-        }
-        
-        .video-play-btn i {
-            color: white;
-            font-size: 24px;
-            margin-left: 3px;
-        }
-        
-        .video-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-            color: white;
             padding: 20px;
         }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .modal-prev {
+            left: 20px;
+        }
+        
+        .modal-next {
+            right: 20px;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
-        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
-        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">우리들의 기록</h1>
-            <p style="font-size:1.25rem; margin-top:1rem; text-shadow:1px 1px 2px rgba(0,0,0,0.5);">생생한 현장의 기록</p>
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../news.html" class="text-gray-500 hover:text-red-600">정당소식</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">포토갤러리</li>
+                </ol>
+            </nav>
         </div>
     </section>
     
-    <main style="position:relative; z-index:1; background:#fff;">
-        <!-- Photo Gallery Section -->
-        <section class="py-16 bg-white">
+    <main class="bg-white">
+        <section class="py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">포토 갤러리</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신의 다양한 활동 현장을 사진으로 만나보세요.
-                    </p>
+                <!-- 페이지 헤더 -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">포토갤러리</h1>
+                    <p class="text-xl text-gray-600">자유와혁신의 다양한 활동을 사진으로 만나보세요</p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Photo Gallery Items -->
-                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 1)">
-                        <div class="gallery-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                            <h3 class="text-white text-lg font-bold">청년 정책 토론회</h3>
-                            <p class="text-white/90 text-sm">2024.01.20 | 서울 당사</p>
-                        </div>
-                    </div>
+                <!-- 필터 버튼 -->
+                <div class="mb-8 flex flex-wrap gap-3 justify-center">
+                    <button class="filter-btn active" data-category="">
+                        <i class="fas fa-th mr-2"></i>전체
+                    </button>
+                    <button class="filter-btn" data-category="당 행사">
+                        <i class="fas fa-calendar mr-2"></i>당 행사
+                    </button>
+                    <button class="filter-btn" data-category="지역활동">
+                        <i class="fas fa-map-marker-alt mr-2"></i>지역활동
+                    </button>
+                    <button class="filter-btn" data-category="회의">
+                        <i class="fas fa-users mr-2"></i>회의
+                    </button>
+                    <button class="filter-btn" data-category="세미나">
+                        <i class="fas fa-graduation-cap mr-2"></i>세미나
+                    </button>
+                    <button class="filter-btn" data-category="기타">
+                        <i class="fas fa-ellipsis-h mr-2"></i>기타
+                    </button>
+                </div>
                     
-                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 2)">
-                        <div class="gallery-icon">
-                            <i class="fas fa-camera"></i>
+                <!-- 검색 영역 -->
+                <div class="mb-8 bg-gray-50 p-6 rounded-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">기간</label>
+                            <select id="dateFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
+                                <option value="">전체</option>
+                                <option value="today">오늘</option>
+                                <option value="week">일주일</option>
+                                <option value="month">한달</option>
+                                <option value="3months">3개월</option>
+                            </select>
                         </div>
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                            <h3 class="text-white text-lg font-bold">시민 간담회</h3>
-                            <p class="text-white/90 text-sm">2024.01.18 | 여의도 문화회관</p>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">검색어</label>
+                            <input type="text" id="searchInput" placeholder="제목, 내용 검색" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
                         </div>
-                    </div>
-                    
-                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 3)">
-                        <div class="gallery-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                            <h3 class="text-white text-lg font-bold">신입 당원 교육</h3>
-                            <p class="text-white/90 text-sm">2024.01.15 | 당사 교육장</p>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 4)">
-                        <div class="gallery-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                            <h3 class="text-white text-lg font-bold">지역 방문</h3>
-                            <p class="text-white/90 text-sm">2024.01.12 | 부산 해운대구</p>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 5)">
-                        <div class="gallery-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                            <h3 class="text-white text-lg font-bold">봉사 활동</h3>
-                            <p class="text-white/90 text-sm">2024.01.10 | 서울 종로구</p>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item cursor-pointer" onclick="openGallery('photo', 6)">
-                        <div class="gallery-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                            <h3 class="text-white text-lg font-bold">당원 워크숍</h3>
-                            <p class="text-white/90 text-sm">2024.01.08 | 강남구 컨벤션센터</p>
-                        </div>
+                        <div class="flex items-end">
+                            <button id="searchBtn" class="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                                <i class="fas fa-search mr-2"></i>검색
+                            </button>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- Video Gallery Section -->
-        <section class="py-16 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">영상 갤러리</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        당 활동의 생생한 현장을 영상으로 확인하세요.
-                    </p>
+
+                <!-- 로딩 상태 -->
+                <div id="loading" class="flex justify-center items-center py-16">
+                    <div class="loading-spinner"></div>
+                    <span class="ml-4 text-gray-600">포토갤러리를 불러오는 중...</span>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Video Gallery Items with YouTube Embed -->
-                    <div class="video-item">
-                        <div class="video-placeholder" onclick="playYouTubeVideo('dQw4w9WgXcQ', this)">
-                            <div class="video-play-btn">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <p class="text-white text-sm">HD 영상 재생</p>
-                        </div>
-                        <div class="video-info">
-                            <h3 class="text-lg font-bold mb-1">자유와혁신 창당 1주년 기념 영상</h3>
-                            <p class="text-sm opacity-90">2024.01.18 | 3분 45초</p>
-                            <p class="text-sm mt-2">창당 1주년을 맞아 제작한 기념 영상</p>
+                <!-- 에러 상태 -->
+                <div id="error" class="hidden text-center py-16">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
+                        <i class="fas fa-exclamation-triangle text-red-500 text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold text-red-800 mb-2">불러오기 실패</h3>
+                        <p class="text-red-600 mb-4">포토갤러리를 불러오는 중 오류가 발생했습니다.</p>
+                        <button id="retryBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                            다시 시도
+                        </button>
                         </div>
                     </div>
                     
-                    <div class="video-item">
-                        <div class="video-placeholder" onclick="playYouTubeVideo('jNQXAC9IVRw', this)">
-                            <div class="video-play-btn">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <p class="text-white text-sm">HD 영상 재생</p>
-                        </div>
-                        <div class="video-info">
-                            <h3 class="text-lg font-bold mb-1">청년 정책 토론회 하이라이트</h3>
-                            <p class="text-sm opacity-90">2024.01.15 | 8분 22초</p>
-                            <p class="text-sm mt-2">청년 일자리 정책의 핵심 발언들</p>
+                <!-- 갤러리 그리드 -->
+                <div id="galleryContainer" class="hidden">
+                    <div id="galleryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <!-- 동적으로 생성됨 -->
+                    </div>
+                    
+                    <!-- 더보기 버튼 -->
+                    <div class="text-center mt-12">
+                        <button id="loadMoreBtn" class="px-8 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium">
+                            더 많은 사진 보기 <i class="fas fa-chevron-down ml-2"></i>
+                        </button>
                         </div>
                     </div>
                     
-                    <div class="video-item">
-                        <div class="video-placeholder" onclick="playYouTubeVideo('9bZkp7q19f0', this)">
-                            <div class="video-play-btn">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <p class="text-white text-sm">HD 영상 재생</p>
-                        </div>
-                        <div class="video-info">
-                            <h3 class="text-lg font-bold mb-1">당 대표 신년 인사말</h3>
-                            <p class="text-sm opacity-90">2024.01.01 | 4분 12초</p>
-                            <p class="text-sm mt-2">2024년 신년을 맞이한 당 대표의 인사말</p>
-                        </div>
-                    </div>
-                    
-                    <div class="video-item">
-                        <div class="video-placeholder" onclick="playYouTubeVideo('ScMzIvxBSi4', this)">
-                            <div class="video-play-btn">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <p class="text-white text-sm">HD 영상 재생</p>
-                        </div>
-                        <div class="video-info">
-                            <h3 class="text-lg font-bold mb-1">7대 핵심 정책 발표회</h3>
-                            <p class="text-sm opacity-90">2024.01.10 | 15분 30초</p>
-                            <p class="text-sm mt-2">당의 핵심 정책 발표 전체 영상</p>
-                        </div>
+                <!-- 빈 상태 -->
+                <div id="empty" class="hidden text-center py-16">
+                    <div class="max-w-md mx-auto">
+                        <i class="fas fa-images text-gray-400 text-6xl mb-6"></i>
+                        <h3 class="text-xl font-semibold text-gray-600 mb-2">사진이 없습니다</h3>
+                        <p class="text-gray-500">조건에 맞는 사진을 찾을 수 없습니다.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
     
-    <!-- Photo Gallery Modal -->
-    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
-        <div class="relative max-w-4xl w-full mx-4">
-            <button onclick="closeGallery()" class="absolute top-4 right-4 text-white text-2xl hover:text-red-400 z-10">
+    <!-- 이미지 모달 -->
+    <div id="imageModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
                 <i class="fas fa-times"></i>
             </button>
-            
-            <div id="galleryContent" class="bg-white rounded-lg overflow-hidden">
-                <!-- 갤러리 내용이 여기에 표시됩니다 -->
-            </div>
-            
-            <div class="flex justify-between items-center mt-6">
-                <button onclick="prevGalleryItem()" class="text-white text-2xl hover:text-red-400">
+            <button class="modal-nav modal-prev" onclick="prevImage()">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <div class="text-white text-center">
-                    <span id="currentItem">1</span> / <span id="totalItems">6</span>
-                </div>
-                <button onclick="nextGalleryItem()" class="text-white text-2xl hover:text-red-400">
+            <button class="modal-nav modal-next" onclick="nextImage()">
                     <i class="fas fa-chevron-right"></i>
                 </button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- YouTube Video Modal -->
-    <div id="youtubeModal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
-        <div class="relative w-full max-w-4xl mx-4">
-            <button onclick="closeYouTube()" class="absolute -top-12 right-0 text-white text-2xl hover:text-red-400 z-10">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="aspect-video w-full">
-                <iframe id="youtubeFrame" class="w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <div class="p-6">
+                <h3 id="modalTitle" class="text-xl font-bold text-gray-900 mb-2"></h3>
+                <p id="modalDate" class="text-gray-600 mb-2"></p>
+                <p id="modalDescription" class="text-gray-700"></p>
             </div>
         </div>
     </div>
     
     <script src="../nav.js"></script>
     <script>
-        loadNavigation();
-        
-        let currentGalleryIndex = 0;
-        
-        const photoData = {
-            1: {
-                title: "청년 정책 토론회",
-                date: "2024.01.20",
-                location: "서울 당사 3층 회의실",
-                description: "청년층의 일자리 문제 해결을 위한 정책 토론회가 열렸습니다. 다양한 전문가들이 참석하여 실질적인 해결 방안을 논의했습니다."
-            },
-            2: {
-                title: "시민 간담회",
-                date: "2024.01.18",
-                location: "여의도 문화회관",
-                description: "지역 주민들과의 소통을 위한 간담회가 진행되었습니다. 주민들의 다양한 의견을 수렴하는 시간이었습니다."
-            },
-            3: {
-                title: "신입 당원 교육",
-                date: "2024.01.15",
-                location: "당사 2층 교육장",
-                description: "새로 가입한 당원들을 위한 교육 프로그램이 실시되었습니다. 당의 이념과 정책에 대한 이해를 높였습니다."
-            },
-            4: {
-                title: "지역 방문",
-                date: "2024.01.12",
-                location: "부산 해운대구",
-                description: "부산 지역 당원들과 주민들을 만나 지역 현안에 대해 논의했습니다."
-            },
-            5: {
-                title: "봉사 활동",
-                date: "2024.01.10",
-                location: "서울 종로구",
-                description: "지역사회를 위한 봉사 활동에 당원들이 적극 참여했습니다."
-            },
-            6: {
-                title: "당원 워크숍",
-                date: "2024.01.08",
-                location: "강남구 컨벤션센터",
-                description: "당원들의 역량 강화를 위한 워크숍이 개최되었습니다."
-            }
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+
+        let currentPage = 1;
+        let currentFilters = {
+            category: '',
+            date: '',
+            search: ''
         };
-        
-        // YouTube 영상 재생
-        function playYouTubeVideo(videoId, element) {
-            const modal = document.getElementById('youtubeModal');
-            const iframe = document.getElementById('youtubeFrame');
+        let galleryData = [];
+        let currentImageIndex = 0;
+
+        // DOM 요소
+        const loading = document.getElementById('loading');
+        const error = document.getElementById('error');
+        const galleryContainer = document.getElementById('galleryContainer');
+        const empty = document.getElementById('empty');
+        const galleryGrid = document.getElementById('galleryGrid');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const retryBtn = document.getElementById('retryBtn');
+
+        // 필터 버튼
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const dateFilter = document.getElementById('dateFilter');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+        // 모달 요소
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDate = document.getElementById('modalDate');
+        const modalDescription = document.getElementById('modalDescription');
+
+        // 포토갤러리 불러오기
+        async function loadGallery(page = 1, loadMore = false) {
+            if (!loadMore) showLoading();
             
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            try {
+                let url = `${API_BASE}/gallery?page=${page}&limit=12`;
+                
+                if (currentFilters.category) {
+                    url += `&category=${encodeURIComponent(currentFilters.category)}`;
+                }
+                if (currentFilters.date) {
+                    url += `&dateFilter=${currentFilters.date}`;
+                }
+                if (currentFilters.search) {
+                    url += `&search=${encodeURIComponent(currentFilters.search)}`;
+                }
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.success) {
+                    if (loadMore) {
+                        galleryData = [...galleryData, ...data.data];
+                    } else {
+                        galleryData = data.data;
+                    }
+                    displayGallery(galleryData, data.pagination, loadMore);
+                } else {
+                    throw new Error(data.message || '데이터 불러오기 실패');
+                }
+            } catch (err) {
+                console.error('포토갤러리 불러오기 실패:', err);
+                showError();
+            }
         }
-        
-        // YouTube 모달 닫기
-        function closeYouTube() {
-            const modal = document.getElementById('youtubeModal');
-            const iframe = document.getElementById('youtubeFrame');
+
+        // 갤러리 표시
+        function displayGallery(photos, paginationData, loadMore = false) {
+            if (!loadMore) hideAll();
             
-            iframe.src = '';
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-        
-        // 사진 갤러리 열기
-        function openGallery(type, index) {
-            currentGalleryIndex = index;
-            const modal = document.getElementById('galleryModal');
-            const content = document.getElementById('galleryContent');
-            const data = photoData[index];
-            
-            content.innerHTML = `
-                <div class="aspect-video bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fas fa-image text-red-600 text-6xl mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">${data.title}</h3>
-                        <p class="text-gray-600">고해상도 사진을 불러오는 중...</p>
+            if (photos.length === 0) {
+                if (!loadMore) empty.classList.remove('hidden');
+                return;
+            }
+
+            let html = '';
+            photos.forEach((photo, index) => {
+                const imageUrl = photo.thumbnailUrl || photo.imageUrl || '';
+                const cacheBustedUrl = imageUrl ? `${imageUrl}${imageUrl.includes('?') ? '&' : '?'}t=${Date.now()}` : '';
+                
+                html += `
+                    <div class="gallery-item" onclick="openModal(${index})">
+                        <img src="${cacheBustedUrl}" 
+                             alt="${photo.title}" 
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="gallery-overlay">
+                            <h3 class="font-bold text-sm mb-1">${photo.title}</h3>
+                            <p class="text-xs opacity-90">${formatDate(photo.createdAt)}</p>
                     </div>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">${data.title}</h3>
-                    <p class="text-gray-600 mb-4">${data.date} | ${data.location}</p>
-                    <p class="text-gray-700">${data.description}</p>
-                </div>
-            `;
+                `;
+            });
+
+            if (loadMore) {
+                galleryGrid.innerHTML += html;
+            } else {
+                galleryGrid.innerHTML = html;
+                galleryContainer.classList.remove('hidden');
+            }
+
+            // 더보기 버튼 표시/숨김
+            if (paginationData && paginationData.hasNext) {
+                loadMoreBtn.classList.remove('hidden');
+            } else {
+                loadMoreBtn.classList.add('hidden');
+            }
+        }
+
+        // 모달 열기
+        function openModal(index) {
+            currentImageIndex = index;
+            const photo = galleryData[index];
             
-            document.getElementById('currentItem').textContent = index;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            const imageUrl = photo.imageUrl || '';
+            const cacheBustedUrl = imageUrl ? `${imageUrl}${imageUrl.includes('?') ? '&' : '?'}t=${Date.now()}` : '';
+            
+            modalImage.src = cacheBustedUrl;
+            modalTitle.textContent = photo.title;
+            modalDate.textContent = formatDate(photo.createdAt);
+            modalDescription.textContent = photo.description || '';
+            
+            imageModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
-        
-        // 갤러리 닫기
-        function closeGallery() {
-            document.getElementById('galleryModal').classList.add('hidden');
-            document.getElementById('galleryModal').classList.remove('flex');
+
+        // 모달 닫기
+        function closeModal() {
+            imageModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
         }
-        
-        // 이전/다음 사진
-        function prevGalleryItem() {
-            if (currentGalleryIndex > 1) {
-                openGallery('photo', currentGalleryIndex - 1);
+
+        // 이전/다음 이미지
+        function prevImage() {
+            if (currentImageIndex > 0) {
+                openModal(currentImageIndex - 1);
             }
         }
-        
-        function nextGalleryItem() {
-            if (currentGalleryIndex < 6) {
-                openGallery('photo', currentGalleryIndex + 1);
+
+        function nextImage() {
+            if (currentImageIndex < galleryData.length - 1) {
+                openModal(currentImageIndex + 1);
             }
         }
+
+        // 검색
+        function search() {
+            currentFilters.search = searchInput.value.trim();
+            currentFilters.date = dateFilter.value;
+            currentPage = 1;
+            loadGallery(1);
+        }
+
+        // 카테고리 필터
+        function setFilter(category) {
+            currentFilters.category = category;
+            currentPage = 1;
+            
+            // 버튼 상태 업데이트
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            loadGallery(1);
+        }
+
+        // 더보기
+        function loadMore() {
+            currentPage++;
+            loadGallery(currentPage, true);
+        }
+
+        // 날짜 포맷팅
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // 상태 표시 함수들
+        function showLoading() {
+            hideAll();
+            loading.classList.remove('hidden');
+        }
+
+        function showError() {
+            hideAll();
+            error.classList.remove('hidden');
+        }
+
+        function hideAll() {
+            loading.classList.add('hidden');
+            error.classList.add('hidden');
+            galleryContainer.classList.add('hidden');
+            empty.classList.add('hidden');
+        }
+
+        // 이벤트 리스너
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => setFilter(btn.dataset.category));
+        });
+
+        searchBtn.addEventListener('click', search);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') search();
+        });
+
+        dateFilter.addEventListener('change', search);
+        loadMoreBtn.addEventListener('click', loadMore);
+        retryBtn.addEventListener('click', () => loadGallery(currentPage));
         
         // 키보드 이벤트
-        document.addEventListener('keydown', function(e) {
-            if (document.getElementById('galleryModal').classList.contains('flex')) {
+        document.addEventListener('keydown', (e) => {
+            if (!imageModal.classList.contains('hidden')) {
                 if (e.key === 'Escape') {
-                    closeGallery();
+                    closeModal();
                 } else if (e.key === 'ArrowLeft') {
-                    prevGalleryItem();
+                    prevImage();
                 } else if (e.key === 'ArrowRight') {
-                    nextGalleryItem();
-                }
-            } else if (document.getElementById('youtubeModal').classList.contains('flex')) {
-                if (e.key === 'Escape') {
-                    closeYouTube();
+                    nextImage();
                 }
             }
+        });
+
+        // 모달 배경 클릭 시 닫기
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                closeModal();
+            }
+        });
+
+        // 페이지 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            loadNavigation();
+            loadGallery();
         });
     </script>
 </body>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 로딩 테스트</title>
+</head>
+<body>
+    <h1>이미지 로딩 테스트</h1>
+    
+    <h2>직접 경로 테스트:</h2>
+    <img src="/uploads/cardnews_01.jpg" alt="카드뉴스 1" style="max-width: 300px; border: 1px solid #ccc;">
+    <img src="/uploads/cardnews_02.jpg" alt="카드뉴스 2" style="max-width: 300px; border: 1px solid #ccc;">
+    
+    <h2>서버 경로 테스트:</h2>
+    <img src="http://localhost:9000/uploads/cardnews_01.jpg" alt="카드뉴스 1 (서버)" style="max-width: 300px; border: 1px solid #ccc;">
+    
+    <h2>API 테스트:</h2>
+    <div id="apiTest">로딩 중...</div>
+    
+    <script>
+        console.log('🔍 이미지 로딩 테스트 시작');
+        
+        // API 호출 테스트
+        fetch('/api/card-news?limit=1')
+            .then(response => response.json())
+            .then(data => {
+                console.log('API 응답:', data);
+                const testDiv = document.getElementById('apiTest');
+                
+                if (data.success && data.data.length > 0) {
+                    const card = data.data[0];
+                    const attachments = card.attachments || [];
+                    
+                    let html = '<h3>API에서 가져온 데이터:</h3>';
+                    html += `<p>제목: ${card.title}</p>`;
+                    html += `<p>첨부파일 개수: ${attachments.length}</p>`;
+                    
+                    attachments.forEach((att, index) => {
+                        html += `<div style="margin: 10px 0; padding: 10px; border: 1px solid #ddd;">`;
+                        html += `<p>파일 ${index + 1}: ${att.filename}</p>`;
+                        html += `<p>원본명: ${att.originalName}</p>`;
+                        html += `<p>타입: ${att.mimetype}</p>`;
+                        html += `<p>경로: ${att.path || 'path 없음'}</p>`;
+                        
+                        if (att.mimetype && att.mimetype.startsWith('image/')) {
+                            html += `<img src="/uploads/${att.filename}" alt="${att.originalName}" style="max-width: 200px; display: block; margin: 5px 0;">`;
+                        }
+                        html += `</div>`;
+                    });
+                    
+                    testDiv.innerHTML = html;
+                } else {
+                    testDiv.innerHTML = '<p>API 데이터가 없습니다.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('API 오류:', error);
+                document.getElementById('apiTest').innerHTML = '<p>API 호출 실패: ' + error.message + '</p>';
+            });
+    </script>
+</body>
+</html> 

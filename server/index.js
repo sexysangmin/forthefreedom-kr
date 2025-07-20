@@ -21,21 +21,11 @@ app.use(helmet({
   contentSecurityPolicy: false, // 개발 중에는 비활성화
 }));
 
-// CORS 설정 - 개발 환경에서는 모든 로컬 주소 허용
+// CORS 설정 - 개발 환경에서는 모든 요청 허용
 app.use(cors({
   origin: config.NODE_ENV === 'production' 
-    ? ['https://yourpartywebsite.com'] 
-    : function (origin, callback) {
-        // 개발환경에서는 모든 localhost와 127.0.0.1 주소 허용
-        if (!origin || 
-            origin.includes('localhost') || 
-            origin.includes('127.0.0.1') ||
-            origin.includes('file://')) {
-          callback(null, true);
-        } else {
-          callback(new Error('CORS 정책에 의해 차단됨'));
-        }
-      },
+    ? ['https://yourpartywebsite.com', 'https://forthefreedom.kr'] 
+    : true, // 개발환경에서는 모든 origin 허용
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
@@ -79,11 +69,19 @@ app.get('/api/health', (req, res) => {
 // API 라우트들
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/notices', require('./routes/notices'));
-app.use('/api/press-releases', require('./routes/pressReleases'));
 app.use('/api/activities', require('./routes/activities'));
 app.use('/api/policy-materials', require('./routes/policyMaterials'));
 app.use('/api/party-constitution', require('./routes/partyConstitution'));
 app.use('/api/election-materials', require('./routes/electionMaterials'));
+app.use('/api/spokesperson', require('./routes/spokesperson'));
+app.use('/api/policy-committee', require('./routes/policyCommittee'));
+app.use('/api/new-media', require('./routes/newMedia'));
+app.use('/api/media-coverage', require('./routes/mediaCoverage'));
+
+// 추가 콘텐츠 타입 라우트들
+app.use('/api/events', require('./routes/events'));
+app.use('/api/card-news', require('./routes/cardNews'));
+app.use('/api/gallery', require('./routes/gallery'));
 
 // 404 에러 핸들링
 app.use('*', (req, res) => {

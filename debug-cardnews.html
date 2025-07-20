@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드뉴스 이미지 로딩 디버그</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .test-image { max-width: 300px; margin: 10px; border: 2px solid #ccc; }
+        .success { border-color: green; }
+        .error { border-color: red; }
+        .loading { border-color: orange; }
+        .info { background: #f0f8ff; padding: 10px; margin: 10px 0; border-radius: 3px; }
+        .debug { background: #f5f5f5; padding: 10px; margin: 10px 0; font-family: monospace; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 카드뉴스 이미지 로딩 디버그</h1>
+    
+    <div class="info">
+        <strong>현재 페이지 URL:</strong> <span id="currentUrl"></span><br>
+        <strong>베이스 URL:</strong> <span id="baseUrl"></span>
+    </div>
+
+    <div class="test-section">
+        <h2>1. 서버 연결 테스트</h2>
+        <div id="serverStatus">테스트 중...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. 정적 파일 경로 테스트</h2>
+        <div>
+            <h3>로고 이미지 (기본):</h3>
+            <img src="/images/logo.png" alt="로고" class="test-image loading" onload="this.className='test-image success'" onerror="this.className='test-image error'">
+            <div class="debug">경로: /images/logo.png</div>
+        </div>
+        
+        <div>
+            <h3>업로드 이미지들:</h3>
+            <img src="http://localhost:9000/uploads/cardnews_01.jpg" alt="카드뉴스 1" class="test-image loading" onload="this.className='test-image success'" onerror="this.className='test-image error'">
+            <div class="debug">경로: http://localhost:9000/uploads/cardnews_01.jpg</div>
+            
+            <img src="http://localhost:9000/uploads/cardnews_02.jpg" alt="카드뉴스 2" class="test-image loading" onload="this.className='test-image success'" onerror="this.className='test-image error'">
+            <div class="debug">경로: http://localhost:9000/uploads/cardnews_02.jpg</div>
+            
+            <img src="http://localhost:9000/uploads/test-cardnews-1.jpg" alt="테스트 카드뉴스 1" class="test-image loading" onload="this.className='test-image success'" onerror="this.className='test-image error'">
+            <div class="debug">경로: http://localhost:9000/uploads/test-cardnews-1.jpg</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. API 테스트</h2>
+        <div id="apiStatus">테스트 중...</div>
+        <div id="apiResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. 카드뉴스 실제 데이터</h2>
+        <div id="cardNewsData">로딩 중...</div>
+    </div>
+
+    <script>
+        // 현재 URL 정보 표시
+        document.getElementById('currentUrl').textContent = window.location.href;
+        document.getElementById('baseUrl').textContent = window.location.origin;
+
+        console.log('🔍 디버깅 시작');
+        console.log('현재 URL:', window.location.href);
+        console.log('베이스 URL:', window.location.origin);
+
+        // 1. 서버 연결 테스트
+        async function testServerConnection() {
+            try {
+                const response = await fetch('http://localhost:9000/api/card-news?limit=1');
+                if (response.ok) {
+                    document.getElementById('serverStatus').innerHTML = '✅ 서버 연결 성공 (Status: ' + response.status + ')';
+                    return true;
+                } else {
+                    document.getElementById('serverStatus').innerHTML = '❌ 서버 응답 오류 (Status: ' + response.status + ')';
+                    return false;
+                }
+            } catch (error) {
+                document.getElementById('serverStatus').innerHTML = '❌ 서버 연결 실패: ' + error.message;
+                console.error('서버 연결 실패:', error);
+                return false;
+            }
+        }
+
+        // 2. API 테스트
+        async function testAPI() {
+            try {
+                document.getElementById('apiStatus').innerHTML = '🔄 API 호출 중...';
+                
+                const response = await fetch('http://localhost:9000/api/card-news?limit=3');
+                const data = await response.json();
+                
+                console.log('API 응답:', data);
+                
+                if (data.success && data.data && data.data.length > 0) {
+                    document.getElementById('apiStatus').innerHTML = '✅ API 호출 성공 (' + data.data.length + '개 아이템)';
+                    
+                    let html = '<h3>API 응답 데이터:</h3>';
+                    data.data.forEach((item, index) => {
+                        html += `<div class="debug">
+                            <strong>카드뉴스 ${index + 1}:</strong><br>
+                            제목: ${item.title}<br>
+                            첨부파일 개수: ${item.attachments ? item.attachments.length : 0}<br>
+                        `;
+                        
+                        if (item.attachments && item.attachments.length > 0) {
+                            html += '첨부파일들:<br>';
+                            item.attachments.forEach((att, i) => {
+                                html += `&nbsp;&nbsp;${i + 1}. ${att.filename} (${att.mimetype})<br>`;
+                            });
+                        }
+                        html += '</div>';
+                    });
+                    
+                    document.getElementById('apiResult').innerHTML = html;
+                    return data.data;
+                } else {
+                    document.getElementById('apiStatus').innerHTML = '❌ API 데이터 없음';
+                    document.getElementById('apiResult').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                    return null;
+                }
+            } catch (error) {
+                document.getElementById('apiStatus').innerHTML = '❌ API 호출 실패: ' + error.message;
+                console.error('API 호출 실패:', error);
+                return null;
+            }
+        }
+
+        // 3. 카드뉴스 실제 렌더링 테스트
+        async function testCardNewsRendering(cardData) {
+            if (!cardData || cardData.length === 0) {
+                document.getElementById('cardNewsData').innerHTML = '❌ 렌더링할 데이터가 없습니다.';
+                return;
+            }
+
+            let html = '<h3>실제 카드뉴스 렌더링:</h3>';
+            
+            cardData.forEach((card, index) => {
+                const thumbnail = card.attachments?.find(att => att.mimetype?.startsWith('image/'));
+                const thumbnailUrl = thumbnail ? `http://localhost:9000/uploads/${thumbnail.filename}` : 'http://localhost:9000/images/logo.png';
+                const imageCount = card.attachments?.filter(att => att.mimetype?.startsWith('image/')).length || 0;
+                
+                html += `
+                    <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px;">
+                        <h4>${card.title}</h4>
+                        <p>카테고리: ${card.category}</p>
+                        <p>이미지 개수: ${imageCount}장</p>
+                        <p>썸네일 경로: ${thumbnailUrl}</p>
+                        <img src="${thumbnailUrl}" alt="${card.title}" class="test-image loading" 
+                             onload="this.className='test-image success'; console.log('✅ 이미지 로딩 성공:', '${thumbnailUrl}')" 
+                             onerror="this.className='test-image error'; console.error('❌ 이미지 로딩 실패:', '${thumbnailUrl}')">
+                    </div>
+                `;
+            });
+            
+            document.getElementById('cardNewsData').innerHTML = html;
+        }
+
+        // 순차적으로 테스트 실행
+        async function runAllTests() {
+            console.log('🚀 모든 테스트 시작');
+            
+            const serverOK = await testServerConnection();
+            if (serverOK) {
+                const cardData = await testAPI();
+                await testCardNewsRendering(cardData);
+            }
+            
+            console.log('✅ 모든 테스트 완료');
+        }
+
+        // 페이지 로드 시 테스트 실행
+        window.addEventListener('load', runAllTests);
+    </script>
+</body>
+</html> 

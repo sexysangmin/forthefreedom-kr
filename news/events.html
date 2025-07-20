@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>행사/집회 안내 - 자유와혁신</title>
+    <title>주요일정 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -22,505 +22,560 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
-    <link rel="stylesheet" href="/style.css">
     <style>
-        .event-card {
-            transition: all 0.3s ease;
-            cursor: default;
+        .text-red-600 { color: #A50034 !important; }
+        .bg-red-600 { background-color: #A50034 !important; }
+        .border-red-600 { border-color: #A50034 !important; }
+        .hover\:bg-red-700:hover { background-color: #8B002C !important; }
+        .hover\:text-red-600:hover { color: #A50034 !important; }
+        .hover\:text-red-700:hover { color: #8B002C !important; }
+        .hover\:border-red-600:hover { border-color: #A50034 !important; }
+        .bg-red-50 { background-color: #FDF2F4 !important; }
+        .bg-red-100 { background-color: #FCE7EA !important; }
+        .text-red-800 { color: #700024 !important; }
+        
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #A50034;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
         }
-        .event-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        .event-badge {
-            animation: pulse 2s infinite;
+
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        .swiper-pagination-bullet {
-            background: #A50034;
+        
+        .calendar-table td {
+            border: 1px solid #e5e7eb;
+            height: 120px;
+            vertical-align: top;
+            padding: 8px;
+            position: relative;
         }
-        .swiper-pagination-bullet-active {
-            background: #8B002C;
+        
+        .calendar-table th {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            color: #374151;
         }
-        .filter-btn {
-            padding: 8px 16px;
-            border: 2px solid #e5e7eb;
-            background: white;
-            color: #6b7280;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        
+        .date-number {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
         }
-        .filter-btn:hover {
-            border-color: #A50034;
-            color: #A50034;
-            background: #fdf2f4;
+        
+        .today {
+            background-color: #FDF2F4;
         }
-        .filter-btn.active {
-            background: #A50034;
+        
+        .other-month {
+            color: #d1d5db;
+            background-color: #f9fafb;
+        }
+        
+        .event-item {
+            background-color: #A50034;
             color: white;
+            padding: 2px 6px;
+            margin: 1px 0;
+            border-radius: 3px;
+            font-size: 11px;
+            cursor: pointer;
+            line-height: 1.2;
+            transition: background-color 0.2s;
+        }
+        
+        .event-item:hover {
+            background-color: #8B002C;
+        }
+        
+        .nav-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .nav-btn:hover {
+            background-color: #f3f4f6;
+            color: #A50034;
+        }
+        
+        .month-selector {
+            padding: 8px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+            font-size: 16px;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .events-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .event-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            background: white;
+            transition: all 0.2s;
+        }
+        
+        .event-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             border-color: #A50034;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/hero_image.png') center/cover no-repeat;">
-        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
-        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">행사 및 집회</h1>
-            <p style="font-size:1.2rem; margin-top:1rem; opacity:0.9;">보수 단체 모든 집회와 행사 정보를 한 곳에서 확인하세요</p>
+    <!-- 브레드크럼 -->
+    <section class="bg-gray-50 py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex space-x-2">
+                    <li class="flex items-center">
+                        <a href="../index.html" class="text-gray-500 hover:text-red-600">홈</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="../news.html" class="text-gray-500 hover:text-red-600">정당소식</a>
+                        <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                    </li>
+                    <li class="text-gray-900">주요일정</li>
+                </ol>
+            </nav>
         </div>
     </section>
-    
-    <main style="position:relative; z-index:1; background:#fff;">
-        <!-- Urgent Events Slider -->
-        <section class="py-8 bg-red-50">
+
+    <main class="bg-white">
+        <section class="py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center mb-6">
-                    <div class="event-badge bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">
-                        <i class="fas fa-calendar-check mr-1"></i>이번 주
-                    </div>
-                    <h2 class="text-2xl font-bold text-gray-900">예정된 주요 행사</h2>
+                <!-- 페이지 헤더 -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">주요일정</h1>
+                    <p class="text-xl text-gray-600">자유와혁신의 주요 일정을 확인하세요</p>
                 </div>
-                
-                <div class="swiper upcoming-events-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="bg-white rounded-lg p-6 shadow-lg border-l-4 border-red-600">
-                                <div class="flex justify-between items-start mb-3">
-                                    <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-bold">오늘 오후 2시</span>
-                                    <span class="text-red-600 font-bold">D-0</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">자유와혁신 정책 발표회</h3>
-                                <p class="text-gray-600 text-sm mb-3">서울 종로구 광화문광 | 자유와혁신 본부</p>
-                                <p class="text-red-600 font-medium text-sm">
-                                    참여 신청 문의: 02-1234-5678
-                                </p>
-                            </div>
-                        </div>
+
+                <!-- 캘린더 컨트롤 -->
+                <div class="flex justify-between items-center mb-8">
+                    <button class="nav-btn" onclick="previousMonth()" title="이전 달">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    
+                    <div class="flex items-center space-x-4">
+                        <!-- 연도 선택 -->
+                        <select id="yearSelector" class="month-selector">
+                            <!-- 동적으로 생성됨 -->
+                        </select>
                         
-                        <div class="swiper-slide">
-                            <div class="bg-white rounded-lg p-6 shadow-lg border-l-4 border-orange-500">
-                                <div class="flex justify-between items-start mb-3">
-                                    <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs font-bold">내일 오후 6시</span>
-                                    <span class="text-orange-600 font-bold">D-1</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">시민 토론회</h3>
-                                <p class="text-gray-600 text-sm mb-3">부산 해운대구 센텀 | 부산보수연합</p>
-                                <p class="text-red-600 font-medium text-sm">
-                                    참여 신청 문의: 051-987-6543
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="swiper-slide">
-                            <div class="bg-white rounded-lg p-6 shadow-lg border-l-4 border-yellow-500">
-                                <div class="flex justify-between items-start mb-3">
-                                    <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-bold">이번 주 토요일</span>
-                                    <span class="text-yellow-600 font-bold">D-3</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-900 mb-2">자유민주주의 수호 대회</h3>
-                                <p class="text-gray-600 text-sm mb-3">대구 달성공원 | 대구경북보수단체연합</p>
-                                <p class="text-red-600 font-medium text-sm">
-                                    참여 신청 문의: 053-456-7890
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination mt-6"></div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Filter and Search -->
-        <section class="py-6 bg-gray-50 border-b">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row gap-4 items-center justify-center">
-                    <div class="flex flex-wrap gap-2">
-                        <button class="filter-btn active" data-filter="all">전체</button>
-                        <button class="filter-btn" data-filter="today">오늘</button>
-                        <button class="filter-btn" data-filter="week">이번 주</button>
-                        <button class="filter-btn" data-filter="seoul">서울</button>
-                        <button class="filter-btn" data-filter="busan">부산</button>
-                        <button class="filter-btn" data-filter="daegu">대구</button>
-                        <button class="filter-btn" data-filter="others">기타 지역</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Events List -->
-        <section class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid gap-6" id="events-list">
-                    <!-- Event Card 1 -->
-                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="today seoul">
-                        <div class="flex flex-col md:flex-row gap-6">
-                            <div class="md:w-48 h-32 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <div class="text-center">
-                                    <i class="fas fa-bullhorn text-red-600 text-2xl mb-2"></i>
-                                    <p class="text-red-700 font-medium text-sm">자유와혁신 집회</p>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-start justify-between mb-3">
-                                    <div>
-                                        <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium">집회</span>
-                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">서울</span>
-                                    </div>
-                                    <span class="text-red-600 font-bold">오늘</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">길거리 행진</h3>
-                                <div class="grid md:grid-cols-2 gap-4 mb-4">
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-calendar mr-2 text-red-600"></i>
-                                        <span>2025년 1월 18일(토) 14:00</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-map-marker-alt mr-2 text-red-600"></i>
-                                        <span>서울 종로구 광화문광장</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-users mr-2 text-red-600"></i>
-                                        <span>자유수호시민행동본부</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-phone mr-2 text-red-600"></i>
-                                        <span>02-123-4567</span>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 line-clamp-2">자유민주주의 가치 수호를 위한 평화로운 길거리 행진입니다. 많은 참여 바랍니다.</p>
-                            </div>
-                        </div>
+                        <!-- 월 선택 -->
+                        <select id="monthSelector" class="month-selector">
+                            <option value="0">1월</option>
+                            <option value="1">2월</option>
+                            <option value="2">3월</option>
+                            <option value="3">4월</option>
+                            <option value="4">5월</option>
+                            <option value="5">6월</option>
+                            <option value="6">7월</option>
+                            <option value="7">8월</option>
+                            <option value="8">9월</option>
+                            <option value="9">10월</option>
+                            <option value="10">11월</option>
+                            <option value="11">12월</option>
+                        </select>
                     </div>
                     
-                    <!-- Event Card 2 -->
-                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="week busan">
-                        <div class="flex flex-col md:flex-row gap-6">
-                            <div class="md:w-48 h-32 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <div class="text-center">
-                                    <i class="fas fa-microphone text-blue-600 text-2xl mb-2"></i>
-                                    <p class="text-blue-700 font-medium text-sm">시민 토론회</p>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-start justify-between mb-3">
-                                    <div>
-                                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">토론회</span>
-                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">부산</span>
-                                    </div>
-                                    <span class="text-blue-600 font-bold">이번 주</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">부산 경제 발전 토론회</h3>
-                                <div class="grid md:grid-cols-2 gap-4 mb-4">
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-calendar mr-2 text-blue-600"></i>
-                                        <span>2025년 1월 20일(월) 19:00</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-map-marker-alt mr-2 text-blue-600"></i>
-                                        <span>부산 해운대구 센텀시티</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-users mr-2 text-blue-600"></i>
-                                        <span>부산경제발전연구회</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-phone mr-2 text-blue-600"></i>
-                                        <span>051-789-0123</span>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 line-clamp-2">부산의 미래 경제 발전 방향과 전략을 논의하는 공개 토론회입니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Event Card 3 -->
-                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="week daegu">
-                        <div class="flex flex-col md:flex-row gap-6">
-                            <div class="md:w-48 h-32 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <div class="text-center">
-                                    <i class="fas fa-flag text-green-600 text-2xl mb-2"></i>
-                                    <p class="text-green-700 font-medium text-sm">자유 수호 대회</p>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-start justify-between mb-3">
-                                    <div>
-                                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium">대회</span>
-                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">대구</span>
-                                    </div>
-                                    <span class="text-green-600 font-bold">이번 주</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">자유민주주의 수호 대회</h3>
-                                <div class="grid md:grid-cols-2 gap-4 mb-4">
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-calendar mr-2 text-green-600"></i>
-                                        <span>2025년 1월 21일(화) 15:00</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-map-marker-alt mr-2 text-green-600"></i>
-                                        <span>대구 달성공원 야외무대</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-users mr-2 text-green-600"></i>
-                                        <span>대구경북보수단체연합</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-phone mr-2 text-green-600"></i>
-                                        <span>053-456-7890</span>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 line-clamp-2">자유민주주의 가치와 헌법 정신을 지키기 위한 시민 대회입니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Event Card 4 -->
-                    <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="others">
-                        <div class="flex flex-col md:flex-row gap-6">
-                            <div class="md:w-48 h-32 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <div class="text-center">
-                                    <i class="fas fa-handshake text-purple-600 text-2xl mb-2"></i>
-                                    <p class="text-purple-700 font-medium text-sm">연대 집회</p>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-start justify-between mb-3">
-                                    <div>
-                                        <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">연대</span>
-                                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">광주</span>
-                                    </div>
-                                    <span class="text-purple-600 font-bold">다음 주</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">보수 진영 연대 집회</h3>
-                                <div class="grid md:grid-cols-2 gap-4 mb-4">
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-calendar mr-2 text-purple-600"></i>
-                                        <span>2025년 1월 25일(토) 16:00</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-map-marker-alt mr-2 text-purple-600"></i>
-                                        <span>광주 동구 금남로 광장</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-users mr-2 text-purple-600"></i>
-                                        <span>호남보수연합</span>
-                                    </div>
-                                    <div class="flex items-center text-gray-600">
-                                        <i class="fas fa-phone mr-2 text-purple-600"></i>
-                                        <span>062-234-5678</span>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 line-clamp-2">전국 보수 진영의 연대와 결속을 다지는 대규모 집회입니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Load More Button -->
-                <div class="text-center mt-8">
-                    <button id="load-more-btn" class="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors font-medium">
-                        더 많은 행사 보기 <i class="fas fa-chevron-down ml-2"></i>
+                    <button class="nav-btn" onclick="nextMonth()" title="다음 달">
+                        <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
-            </div>
-        </section>
-        
-    </main>
-        
-    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
-    <script src="../nav.js"></script>
-    <script>
-        // DOM이 완전히 로드된 후에 모든 기능 초기화
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, initializing...');
-            
-            // Swiper 초기화
-            const swiper = new Swiper('.upcoming-events-swiper', {
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 3000,
-                },
-                breakpoints: {
-                    640: {
-                        slidesPerView: 1,
-                    },
-                    768: {
-                        slidesPerView: 2,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                    },
-                },
-            });
-            
-            // 필터 버튼 확인
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            console.log('Found filter buttons:', filterButtons.length);
-            
-            // 필터 기능 초기화
-            filterButtons.forEach(btn => {
-                console.log('Adding listener to button:', btn.textContent, btn.dataset.filter);
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    console.log('Filter button clicked:', this.dataset.filter);
-                    
-                    // 모든 버튼에서 active 클래스 제거
-                    filterButtons.forEach(b => b.classList.remove('active'));
-                    // 클릭된 버튼에 active 클래스 추가
-                    this.classList.add('active');
-                    
-                    const filter = this.dataset.filter;
-                    const events = document.querySelectorAll('.event-card');
-                    
-                    console.log('Filtering with:', filter, 'Found events:', events.length);
-                    
-                    events.forEach(event => {
-                        const category = event.dataset.category || '';
-                        console.log('Event category:', category);
-                        
-                        if (filter === 'all' || category.includes(filter)) {
-                            event.style.display = 'block';
-                            console.log('Showing event');
-                        } else {
-                            event.style.display = 'none';
-                            console.log('Hiding event');
-                        }
-                    });
-                });
-            });
-        });
-        
-        // 무한 로딩 기능
-        let currentEventCount = 4;
-        const eventsPerLoad = 4;
-        
-        const additionalEvents = [
-            {
-                id: 'event-5',
-                title: '교육정책 개혁 토론회',
-                category: 'week seoul',
-                type: '토론회',
-                location: '서울',
-                date: '2025년 1월 22일(수) 18:00',
-                venue: '서울 마포구 국회 의원회관',
-                organizer: '자유와혁신 교육위원회',
-                phone: '02-567-8901',
-                description: '미래 교육 시스템 개혁 방안을 논의하는 전문가 토론회입니다.',
-                color: 'purple'
-            },
-            {
-                id: 'event-6',
-                title: '인천 지역 경제 활성화 대회',
-                category: 'others',
-                type: '대회',
-                location: '인천',
-                date: '2025년 1월 24일(금) 16:00',
-                venue: '인천 중구 송도컨벤시아',
-                organizer: '인천경제발전협의회',
-                phone: '032-678-9012',
-                description: '인천 지역의 경제 발전과 일자리 창출을 위한 시민 대회입니다.',
-                color: 'indigo'
-            },
-            {
-                id: 'event-7',
-                title: '국가안보 정책 세미나',
-                category: 'week seoul',
-                type: '세미나',
-                location: '서울',
-                date: '2025년 1월 23일(목) 15:00',
-                venue: '서울 용산구 국방부 컨벤션센터',
-                organizer: '자유와혁신 외교안보특위',
-                phone: '02-789-0123',
-                description: '한반도 평화와 국가안보 정책 방향을 논의하는 전문가 세미나입니다.',
-                color: 'teal'
-            },
-            {
-                id: 'event-8',
-                title: '울산 산업 혁신 포럼',
-                category: 'others',
-                type: '포럼',
-                location: '울산',
-                date: '2025년 1월 26일(일) 14:00',
-                venue: '울산 남구 현대중공업 문화센터',
-                organizer: '울산산업발전협회',
-                phone: '052-890-1234',
-                description: '4차 산업혁명 시대 울산 산업의 미래 방향을 모색하는 포럼입니다.',
-                color: 'orange'
-            }
-        ];
-        
-        document.getElementById('load-more-btn').addEventListener('click', function() {
-            const eventsList = document.getElementById('events-list');
-            const startIndex = currentEventCount - 4;
-            const endIndex = Math.min(startIndex + eventsPerLoad, additionalEvents.length);
-            
-            for (let i = startIndex; i < endIndex; i++) {
-                const event = additionalEvents[i];
-                const eventCard = createEventCard(event);
-                eventsList.insertAdjacentHTML('beforeend', eventCard);
-            }
-            
-            currentEventCount += eventsPerLoad;
-            
-            // 더 로드할 이벤트가 없으면 버튼 숨기기
-            if (currentEventCount >= additionalEvents.length + 4) {
-                this.style.display = 'none';
-            }
-        });
-        
-        function createEventCard(event) {
-            return `
-                <div class="event-card bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all" data-category="${event.category}">
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <div class="md:w-48 h-32 bg-${event.color}-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <div class="text-center">
-                                <i class="fas fa-calendar text-${event.color}-600 text-2xl mb-2"></i>
-                                <p class="text-${event.color}-700 font-medium text-sm">${event.type}</p>
+
+                <!-- 로딩 상태 -->
+                <div id="loading" class="flex justify-center items-center py-16">
+                    <div class="loading-spinner"></div>
+                    <span class="ml-4 text-gray-600">일정을 불러오는 중...</span>
+                </div>
+
+                <!-- 에러 상태 -->
+                <div id="error" class="hidden text-center py-16">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
+                        <i class="fas fa-exclamation-triangle text-red-500 text-3xl mb-4"></i>
+                        <h3 class="text-lg font-semibold text-red-800 mb-2">불러오기 실패</h3>
+                        <p class="text-red-600 mb-4">일정을 불러오는 중 오류가 발생했습니다.</p>
+                        <button id="retryBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                            다시 시도
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 캘린더 및 일정 목록 -->
+                <div id="calendarContainer" class="hidden">
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <!-- 캘린더 -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                                <table class="calendar-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-red-600">일</th>
+                                            <th>월</th>
+                                            <th>화</th>
+                                            <th>수</th>
+                                            <th>목</th>
+                                            <th>금</th>
+                                            <th class="text-blue-600">토</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="calendarBody">
+                                        <!-- 동적으로 생성됨 -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="flex-1">
-                            <div class="flex items-start justify-between mb-3">
-                                <div>
-                                    <span class="bg-${event.color}-100 text-${event.color}-600 px-3 py-1 rounded-full text-sm font-medium">${event.type}</span>
-                                    <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium ml-2">${event.location}</span>
-                                </div>
-                                <span class="text-${event.color}-600 font-bold">예정</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">${event.title}</h3>
-                            <div class="grid md:grid-cols-2 gap-4 mb-4">
-                                <div class="flex items-center text-gray-600">
-                                    <i class="fas fa-calendar mr-2 text-${event.color}-600"></i>
-                                    <span>${event.date}</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <i class="fas fa-map-marker-alt mr-2 text-${event.color}-600"></i>
-                                    <span>${event.venue}</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <i class="fas fa-users mr-2 text-${event.color}-600"></i>
-                                    <span>${event.organizer}</span>
-                                </div>
-                                <div class="flex items-center text-gray-600">
-                                    <i class="fas fa-phone mr-2 text-${event.color}-600"></i>
-                                    <span>${event.phone}</span>
+
+                        <!-- 일정 목록 -->
+                        <div class="lg:col-span-1">
+                            <div class="bg-gray-50 rounded-lg p-6">
+                                <h3 class="text-lg font-bold text-gray-900 mb-4">
+                                    <span id="selectedDateTitle">이번 달 일정</span>
+                                </h3>
+                                <div id="eventsList" class="events-list">
+                                    <!-- 동적으로 생성됨 -->
                                 </div>
                             </div>
-                            <p class="text-gray-600 line-clamp-2">${event.description}</p>
                         </div>
                     </div>
                 </div>
-            `;
+            </div>
+        </section>
+    </main>
+
+    <script src="../nav.js"></script>
+    <script>
+        // 환경 감지 및 API 설정
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const API_BASE = isLocalhost 
+            ? 'http://localhost:9000/api'
+            : 'https://web-production-d30c83e5.up.railway.app/api';
+
+        let currentDate = new Date();
+        let currentYear = currentDate.getFullYear();
+        let currentMonth = currentDate.getMonth();
+        let eventsData = {};
+
+        // DOM 요소
+        const loading = document.getElementById('loading');
+        const error = document.getElementById('error');
+        const calendarContainer = document.getElementById('calendarContainer');
+        const calendarBody = document.getElementById('calendarBody');
+        const eventsList = document.getElementById('eventsList');
+        const selectedDateTitle = document.getElementById('selectedDateTitle');
+        const yearSelector = document.getElementById('yearSelector');
+        const monthSelector = document.getElementById('monthSelector');
+        const retryBtn = document.getElementById('retryBtn');
+
+        // 연도 선택 옵션 생성
+        function initializeYearSelector() {
+            const currentYear = new Date().getFullYear();
+            yearSelector.innerHTML = '';
+            
+            for (let year = currentYear - 2; year <= currentYear + 3; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = `${year}년`;
+                if (year === currentYear) option.selected = true;
+                yearSelector.appendChild(option);
+            }
         }
+
+        // 월 일정 불러오기
+        async function loadMonthEvents(year, month) {
+            showLoading();
+            
+            const apiUrl = `${API_BASE}/events?year=${year}&month=${month + 1}`;
+            console.log('🔗 API 호출:', apiUrl);
+            console.log('📅 요청 년월:', year, month + 1);
+            
+            try {
+                const response = await fetch(apiUrl);
+                console.log('📡 응답 상태:', response.status, response.statusText);
+                
+                const data = await response.json();
+                console.log('📦 응답 데이터:', data);
+
+                if (data.success) {
+                    eventsData = data.data;
+                    console.log('✅ eventsData 설정됨:', eventsData);
+                    console.log('📊 이벤트 개수:', Object.keys(eventsData).length);
+                    
+                    // 각 날짜별 이벤트 로깅
+                    Object.keys(eventsData).forEach(dateKey => {
+                        console.log(`📅 ${dateKey}:`, eventsData[dateKey]);
+                    });
+                    
+                    displayCalendar(year, month);
+                    displayMonthEvents(year, month);
+                } else {
+                    console.error('❌ API 응답 실패:', data.message);
+                    throw new Error(data.message || '일정 불러오기 실패');
+                }
+            } catch (err) {
+                console.error('💥 일정 불러오기 실패:', err);
+                showError();
+            }
+        }
+
+        // 캘린더 표시
+        function displayCalendar(year, month) {
+            hideAll();
+            
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const startDate = new Date(firstDay);
+            startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+            const today = new Date();
+            const isCurrentMonth = year === today.getFullYear() && month === today.getMonth();
+            
+            let html = '';
+            let date = new Date(startDate);
+
+            for (let week = 0; week < 6; week++) {
+                html += '<tr>';
+                for (let day = 0; day < 7; day++) {
+                    const dateKey = formatDateKey(date);
+                    const dayEvents = eventsData[dateKey] || [];
+                    const isToday = isCurrentMonth && date.getDate() === today.getDate() && 
+                                   date.getMonth() === month && date.getFullYear() === year;
+                    const isOtherMonth = date.getMonth() !== month;
+                    
+                    let cellClass = '';
+                    if (isToday) cellClass += 'today ';
+                    if (isOtherMonth) cellClass += 'other-month ';
+
+                    html += `<td class="${cellClass}" onclick="selectDate('${dateKey}')">`;
+                    html += `<div class="date-number">${date.getDate()}</div>`;
+                    
+                    // 이벤트 표시 (최대 3개)
+                    dayEvents.slice(0, 3).forEach(event => {
+                        html += `<div class="event-item" title="${event.title}">${event.title}</div>`;
+                    });
+                    
+                    if (dayEvents.length > 3) {
+                        html += `<div class="event-item" style="background-color: #6b7280;">+${dayEvents.length - 3}개 더</div>`;
+                    }
+                    
+                    html += '</td>';
+                    date.setDate(date.getDate() + 1);
+                }
+                html += '</tr>';
+            }
+
+            calendarBody.innerHTML = html;
+            calendarContainer.classList.remove('hidden');
+        }
+
+        // 월별 일정 목록 표시
+        function displayMonthEvents(year, month) {
+            const monthEvents = [];
+            Object.keys(eventsData).forEach(dateKey => {
+                // 날짜 키를 로컬 시간대 기준으로 올바르게 파싱
+                const dateParts = dateKey.split('-');
+                const eventYear = parseInt(dateParts[0]);
+                const eventMonth = parseInt(dateParts[1]) - 1; // 월은 0부터 시작
+                const eventDay = parseInt(dateParts[2]);
+                const eventDate = new Date(eventYear, eventMonth, eventDay);
+                
+                if (eventDate.getFullYear() === year && eventDate.getMonth() === month) {
+                    eventsData[dateKey].forEach(event => {
+                        monthEvents.push({
+                            ...event,
+                            date: eventDate
+                        });
+                    });
+                }
+            });
+
+            // 날짜순 정렬
+            monthEvents.sort((a, b) => a.date - b.date);
+
+            if (monthEvents.length === 0) {
+                eventsList.innerHTML = '<p class="text-gray-500 text-center py-8">일정이 없습니다.</p>';
+                return;
+            }
+
+            let html = '';
+            monthEvents.forEach(event => {
+                html += `
+                    <div class="event-card">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-gray-900">${event.title}</h4>
+                            <span class="text-xs text-gray-500">${formatEventDate(event.date)}</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-2">${event.time}</p>
+                        <p class="text-sm text-gray-700">${event.location}</p>
+                        ${event.description ? `<p class="text-xs text-gray-500 mt-2">${event.description}</p>` : ''}
+                    </div>
+                `;
+            });
+
+            eventsList.innerHTML = html;
+        }
+
+        // 특정 날짜 선택
+        function selectDate(dateKey) {
+            console.log(`🎯 selectDate 호출됨: dateKey="${dateKey}"`);
+            
+            const selectedEvents = eventsData[dateKey] || [];
+            console.log(`📋 해당 날짜의 이벤트 개수: ${selectedEvents.length}`);
+            
+            // 날짜 키를 로컬 시간대 기준으로 올바르게 파싱
+            const dateParts = dateKey.split('-');
+            const year = parseInt(dateParts[0]);
+            const month = parseInt(dateParts[1]) - 1; // 월은 0부터 시작
+            const day = parseInt(dateParts[2]);
+            const date = new Date(year, month, day);
+            
+            console.log(`🔍 날짜 클릭 디버깅:`);
+            console.log(`   dateKey: ${dateKey}`);
+            console.log(`   파싱 결과: year=${year}, month=${month}, day=${day}`);
+            console.log(`   생성된 Date 객체: ${date}`);
+            console.log(`   표시될 텍스트: ${date.getMonth() + 1}월 ${date.getDate()}일`);
+            
+            selectedDateTitle.textContent = `${date.getMonth() + 1}월 ${date.getDate()}일 일정`;
+            
+            if (selectedEvents.length === 0) {
+                eventsList.innerHTML = '<p class="text-gray-500 text-center py-8">선택한 날짜에 일정이 없습니다.</p>';
+                return;
+            }
+
+            let html = '';
+            selectedEvents.forEach(event => {
+                html += `
+                    <div class="event-card">
+                        <h4 class="font-bold text-gray-900 mb-2">${event.title}</h4>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-clock mr-1"></i>${event.time}
+                        </p>
+                        <p class="text-sm text-gray-700 mb-2">
+                            <i class="fas fa-map-marker-alt mr-1"></i>${event.location}
+                        </p>
+                        ${event.description ? `<p class="text-sm text-gray-600">${event.description}</p>` : ''}
+                    </div>
+                `;
+            });
+
+            eventsList.innerHTML = html;
+        }
+
+        // 이전/다음 달 이동
+        function previousMonth() {
+            if (currentMonth === 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else {
+                currentMonth--;
+            }
+            updateSelectors();
+            loadMonthEvents(currentYear, currentMonth);
+        }
+
+        function nextMonth() {
+            if (currentMonth === 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else {
+                currentMonth++;
+            }
+            updateSelectors();
+            loadMonthEvents(currentYear, currentMonth);
+        }
+
+        // 선택기 업데이트
+        function updateSelectors() {
+            yearSelector.value = currentYear;
+            monthSelector.value = currentMonth;
+        }
+
+        // 날짜 포맷팅
+        function formatDateKey(date) {
+            // 로컬 시간대 기준으로 날짜 키 생성
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function formatEventDate(date) {
+            return `${date.getMonth() + 1}/${date.getDate()}`;
+        }
+
+        // 상태 표시 함수들
+        function showLoading() {
+            hideAll();
+            loading.classList.remove('hidden');
+        }
+
+        function showError() {
+            hideAll();
+            error.classList.remove('hidden');
+        }
+
+        function hideAll() {
+            loading.classList.add('hidden');
+            error.classList.add('hidden');
+            calendarContainer.classList.add('hidden');
+        }
+
+        // 이벤트 리스너
+        yearSelector.addEventListener('change', () => {
+            currentYear = parseInt(yearSelector.value);
+            loadMonthEvents(currentYear, currentMonth);
+        });
+
+        monthSelector.addEventListener('change', () => {
+            currentMonth = parseInt(monthSelector.value);
+            loadMonthEvents(currentYear, currentMonth);
+        });
+
+        retryBtn.addEventListener('click', () => {
+            loadMonthEvents(currentYear, currentMonth);
+        });
+
+        // 페이지 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            loadNavigation();
+            initializeYearSelector();
+            updateSelectors();
+            loadMonthEvents(currentYear, currentMonth);
+        });
     </script>
 </body>
 </html> 
