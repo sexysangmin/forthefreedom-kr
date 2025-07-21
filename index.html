@@ -572,16 +572,16 @@
     <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
     <script src="config.js"></script>
     <script src="js/log-manager.js"></script>
+    <!-- API 설정 로드 -->
+    <script src="config.js"></script>
     <script src="script.js"></script>
     <script src="nav.js"></script>
     <script>
         if (typeof loadNavigation === 'function') loadNavigation();
 
         // 환경 감지 및 API 설정
-        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const API_BASE = isLocalhost 
-            ? 'http://localhost:9000/api'
-            : 'https://web-production-d30c83e5.up.railway.app/api';
+        // API 설정 - config.js에서 로드된 설정 사용
+        const API_BASE = window.API_BASE;
 
         // 페이지 로드 시 최신 소식 로드
         document.addEventListener('DOMContentLoaded', function() {

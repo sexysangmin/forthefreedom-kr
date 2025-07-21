@@ -224,9 +224,8 @@
         =====================================================
         */
         
-        // API 엔드포인트 설정
-        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const API_BASE = 'https://party-website-server.vercel.app/api';
+        // API 엔드포인트 설정 - config.js에서 로드된 설정 사용
+        const API_BASE = window.API_BASE;
         
         // 구글 클라이언트 ID 설정
         const GOOGLE_CLIENT_ID = '722072230476-h2gbv36ed9bsgbh62hbvjr7bhojj5pki.apps.googleusercontent.com';
