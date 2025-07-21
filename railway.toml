@@ -8,7 +8,7 @@ startCommand = "cd server && npm start"
 [volumes]
 uploads = "/app/uploads"
 
-[environments.production]
-# Volume 마운트 포인트 설정  
+# 환경변수 설정
+[environments.production.variables]
 UPLOADS_PATH = "/app/uploads"
-RAILWAY_VOLUME_MOUNT_PATH = "/app/uploads" 
+NODE_ENV = "production" 

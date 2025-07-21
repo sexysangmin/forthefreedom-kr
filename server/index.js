@@ -49,9 +49,37 @@ app.use((req, res, next) => {
 });
 
 // 정적 파일 제공 - Railway Volume 경로 사용
-const uploadsPath = process.env.UPLOADS_PATH || path.join(__dirname, 'uploads');
+// Railway에서 Volume이 /app/uploads에 마운트되므로 직접 사용
+const uploadsPath = '/app/uploads';
 console.log('업로드 디렉토리 경로:', uploadsPath);
 console.log('Railway Volume 사용:', process.env.UPLOADS_PATH ? 'YES' : 'NO (로컬 개발)');
+
+// Volume 마운트 상태 확인
+console.log('🔍 환경변수 확인:');
+console.log('  - UPLOADS_PATH:', process.env.UPLOADS_PATH || 'undefined');
+console.log('  - NODE_ENV:', process.env.NODE_ENV || 'undefined');
+console.log('  - PWD:', process.env.PWD || 'undefined');
+
+// 실제 디렉토리 상태 확인
+try {
+  const stats = fs.statSync(uploadsPath);
+  console.log('📁 uploads 디렉토리 상태:');
+  console.log('  - 경로:', uploadsPath);
+  console.log('  - 존재:', fs.existsSync(uploadsPath));
+  console.log('  - 타입:', stats.isDirectory() ? 'directory' : 'file');
+  
+  // 마운트 정보 확인 (Linux에서만 작동)
+  if (process.platform === 'linux') {
+    try {
+      const mountInfo = require('child_process').execSync('mount | grep uploads || echo "No uploads mount found"', { encoding: 'utf8' });
+      console.log('🗂️ 마운트 정보:', mountInfo.trim());
+    } catch (e) {
+      console.log('🗂️ 마운트 정보 확인 실패:', e.message);
+    }
+  }
+} catch (error) {
+  console.log('❌ uploads 디렉토리 확인 실패:', error.message);
+}
 
 // uploads 디렉토리가 없으면 생성
 const fs = require('fs');
