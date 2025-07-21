@@ -1285,20 +1285,20 @@
             }
 
             try {
-                // config.js의 백업 URL 시스템 사용
-                const response = await window.apiCallWithFallback(endpoint, {
+                // config.js의 백업 URL 시스템 사용 (이미 JSON 파싱된 데이터 반환)
+                const data = await window.apiCallWithFallback(endpoint, {
                     ...defaultOptions,
                     ...options,
                     headers: { ...defaultOptions.headers, ...options.headers }
                 });
 
-                if (response.status === 401) {
+                // 인증 오류 체크 (데이터에서 확인)
+                if (data && data.error && data.error.includes('401')) {
                     console.warn('🔒 인증 만료, 로그아웃 처리');
                     logout();
                     return { success: false, message: '인증이 만료되었습니다.' };
                 }
 
-                const data = await response.json();
                 console.log('✅ API 응답 성공:', endpoint, data);
                 return data;
                 

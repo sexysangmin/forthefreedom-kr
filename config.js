@@ -48,34 +48,22 @@ window.getMockData = function(endpoint) {
     
     // auth/login 요청인 경우 인증 실패 응답
     if (endpoint.includes('/auth/login')) {
-        const mockResponse = {
+        return Promise.resolve({
             success: false,
             message: 'Railway 서버에 연결할 수 없습니다. 네트워크를 확인해주세요.'
-        };
-        
-        // Response 객체처럼 .json() 메서드를 가진 객체 반환
-        return Promise.resolve({
-            ok: false,
-            status: 503,
-            json: () => Promise.resolve(mockResponse)
         });
     }
     
-    // 일반 데이터 요청인 경우
-    const mockResponse = {
+    // 일반 데이터 요청인 경우 (관리자 대시보드 호환)
+    return Promise.resolve({
         success: true,
         data: [],
-        total: 0,
-        page: 1,
-        limit: 10,
-        hasMore: false
-    };
-    
-    // Response 객체처럼 .json() 메서드를 가진 객체 반환
-    return Promise.resolve({
-        ok: true,
-        status: 200,
-        json: () => Promise.resolve(mockResponse)
+        pagination: {
+            total: 0,
+            page: 1,
+            limit: 10,
+            hasMore: false
+        }
     });
 };
 
@@ -105,7 +93,7 @@ window.apiCallWithFallback = async function(endpoint, options = {}) {
     } catch (error) {
         console.error(`❌ API 실패 (${mainUrl}):`, error.message);
         
-        // Railway 서버 실패 시 모크 데이터 반환
+        // Railway 서버 실패 시 모크 데이터 반환 (이미 파싱된 데이터)
         return await window.getMockData(endpoint);
     }
 }; 
