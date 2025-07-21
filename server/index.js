@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const path = require('path');
+const fs = require('fs');
 
 // 설정 및 데이터베이스
 const config = require('./config/config');
@@ -82,7 +83,6 @@ try {
 }
 
 // uploads 디렉토리가 없으면 생성
-const fs = require('fs');
 if (!fs.existsSync(uploadsPath)) {
   fs.mkdirSync(uploadsPath, { recursive: true });
   console.log('uploads 디렉토리 생성됨');
