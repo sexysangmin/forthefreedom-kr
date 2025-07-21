@@ -77,7 +77,8 @@ window.apiCallWithFallback = async function(endpoint, options = {}) {
         const response = await fetch(mainUrl, {
             ...options,
             headers: {
-                'Content-Type': 'application/json',
+                // FormData인 경우 Content-Type을 설정하지 않음 (브라우저가 자동 설정)
+                ...(options.body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
                 ...options.headers
             }
         });

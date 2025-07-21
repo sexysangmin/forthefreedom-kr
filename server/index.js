@@ -30,8 +30,23 @@ app.use(cors({
   optionsSuccessStatus: 200
 }));
 
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+// 조건부 JSON/URL 인코딩 미들웨어 (multipart/form-data는 제외)
+app.use((req, res, next) => {
+  const contentType = req.get('content-type') || '';
+  
+  // multipart/form-data는 multer가 처리하므로 제외
+  if (!contentType.includes('multipart/form-data')) {
+    if (contentType.includes('application/json')) {
+      express.json({ limit: '10mb' })(req, res, next);
+    } else if (contentType.includes('application/x-www-form-urlencoded')) {
+      express.urlencoded({ extended: true, limit: '10mb' })(req, res, next);
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 
 // 정적 파일 제공
 const uploadsPath = path.join(__dirname, 'uploads');
