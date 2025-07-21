@@ -1,6 +1,8 @@
 // 환경변수 로딩
 require('dotenv').config();
 
+// Railway Volume 지속성 테스트 - 2025-01-21 - 재배포 후 파일 보존 확인
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');

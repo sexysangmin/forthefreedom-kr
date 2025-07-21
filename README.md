@@ -6,6 +6,9 @@
 [![배포 상태](https://img.shields.io/badge/배포-준비완료-green.svg)](https://자유와혁신.netlify.app)
 [![CMS 상태](https://img.shields.io/badge/CMS-활성화-blue.svg)](https://자유와혁신.netlify.app/freedom-control)
 [![로그시스템](https://img.shields.io/badge/로그시스템-활성화-orange.svg)](#로그-및-아카이브-시스템)
+[![Railway Volume](https://img.shields.io/badge/Railway_Volume-5GB_활성화-brightgreen.svg)](#railway-volume-테스트)
+
+<!-- Railway Volume 지속성 테스트: 2025-01-21 - 파일 영구 보존 확인 중 -->
 
 ---
 
