@@ -1,0 +1,14 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "cd server && npm start"
+
+# Volume 설정 - uploads 디렉토리를 영구 저장소로 마운트
+[volumes]
+uploads = "/app/uploads"
+
+[environments.production]
+# Volume 마운트 포인트 설정  
+UPLOADS_PATH = "/app/uploads"
+RAILWAY_VOLUME_MOUNT_PATH = "/app/uploads" 

@@ -7,7 +7,7 @@ const { CardNews } = require('../models');
 const { getAll, getById, deleteById } = require('../controllers/baseController');
 
 // 업로드 디렉토리 생성
-const uploadDir = path.join(__dirname, '../uploads');
+const uploadDir = process.env.UPLOADS_PATH || path.join(__dirname, '../uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }

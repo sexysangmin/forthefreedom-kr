@@ -48,9 +48,10 @@ app.use((req, res, next) => {
   }
 });
 
-// 정적 파일 제공
-const uploadsPath = path.join(__dirname, 'uploads');
+// 정적 파일 제공 - Railway Volume 경로 사용
+const uploadsPath = process.env.UPLOADS_PATH || path.join(__dirname, 'uploads');
 console.log('업로드 디렉토리 경로:', uploadsPath);
+console.log('Railway Volume 사용:', process.env.UPLOADS_PATH ? 'YES' : 'NO (로컬 개발)');
 
 // uploads 디렉토리가 없으면 생성
 const fs = require('fs');

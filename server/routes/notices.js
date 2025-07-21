@@ -7,8 +7,8 @@ const router = express.Router();
 const { Notice } = require('../models');
 const { getAll, getById, deleteById } = require('../controllers/baseController');
 
-// 업로드 디렉토리 생성
-const uploadDir = path.join(__dirname, '../uploads');
+// 업로드 디렉토리 생성 - Railway Volume 경로 사용
+const uploadDir = process.env.UPLOADS_PATH || path.join(__dirname, '../uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
