@@ -218,8 +218,14 @@ function initActivityDetection() {
     console.log('👀 사용자 활동 감지 시스템 시작 (10분 자동 로그아웃)');
 }
 
-// 🔐 관리자 페이지 보안 초기화 (토큰 검증 포함)
+// 🔐 관리자 페이지 보안 초기화 (안전한 토큰 검증)
 async function initAdminSecurity() {
+    // 무한 리다이렉트 방지 플래그
+    if (window.securityInitialized) {
+        return;
+    }
+    window.securityInitialized = true;
+    
     // 관리자 페이지인지 확인
     if (window.location.pathname.includes('admin') && !window.location.pathname.includes('index.html')) {
         const token = localStorage.getItem('adminToken');
@@ -227,46 +233,58 @@ async function initAdminSecurity() {
         
         if (!token || !tokenExpiry) {
             console.log('🚪 토큰 정보 없음 - 로그인 페이지로 이동');
-            clearAllTokens();
-            window.location.href = '/admin/index.html';
+            safeRedirectToLogin();
             return;
         }
         
-        // 토큰 만료 확인
+        // 토큰 만료 확인 (클라이언트 사이드)
         const expiryTime = parseInt(tokenExpiry);
         const now = Date.now();
         
         if (now >= expiryTime) {
             console.log('🚪 토큰 만료됨 - 로그인 페이지로 이동');
-            clearAllTokens();
-            window.location.href = '/admin/index.html';
+            safeRedirectToLogin();
             return;
         }
         
-        // 서버에서 토큰 유효성 검증
+        // 서버 토큰 검증 (선택적 - 네트워크 문제시 무시)
         try {
+            console.log('🔍 서버 토큰 검증 시도...');
+            
+            // 5초 타임아웃 설정
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000);
+            
             const response = await fetch(`${window.API_BASE}/auth/me`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
-                }
+                },
+                signal: controller.signal
             });
             
-            if (!response.ok) {
-                throw new Error('토큰 검증 실패');
-            }
+            clearTimeout(timeoutId);
             
-            const userData = await response.json();
-            if (!userData.success) {
-                throw new Error('유효하지 않은 사용자');
+            if (response.ok) {
+                const userData = await response.json();
+                if (userData.success) {
+                    console.log('✅ 서버 토큰 검증 성공:', userData.user.username);
+                } else {
+                    console.log('⚠️ 서버 토큰 무효 - 로그인 페이지로 이동');
+                    safeRedirectToLogin();
+                    return;
+                }
+            } else if (response.status === 401) {
+                console.log('🚪 서버에서 토큰 거부 - 로그인 페이지로 이동');
+                safeRedirectToLogin();
+                return;
+            } else {
+                // 다른 HTTP 에러는 무시하고 클라이언트 토큰으로 진행
+                console.log('⚠️ 서버 통신 오류 (무시):', response.status);
             }
-            
-            console.log('✅ 토큰 검증 성공:', userData.user.username);
             
         } catch (error) {
-            console.log('🚪 토큰 검증 실패 - 로그인 페이지로 이동:', error.message);
-            clearAllTokens();
-            window.location.href = '/admin/index.html';
-            return;
+            // 네트워크 오류는 무시하고 클라이언트 토큰으로 진행
+            console.log('⚠️ 서버 토큰 검증 실패 (무시):', error.message);
         }
         
         // 활동 감지 시작
@@ -277,6 +295,29 @@ async function initAdminSecurity() {
         
         console.log('🛡️ 관리자 보안 시스템 활성화');
     }
+}
+
+// 🚪 안전한 로그인 페이지 리다이렉트 (무한 루프 방지)
+function safeRedirectToLogin() {
+    // 이미 로그인 페이지에 있으면 리다이렉트 안함
+    if (window.location.pathname.includes('index.html')) {
+        return;
+    }
+    
+    // 무한 리다이렉트 방지 (5초에 1번만)
+    const lastRedirect = sessionStorage.getItem('lastRedirectTime');
+    const now = Date.now();
+    
+    if (lastRedirect && (now - parseInt(lastRedirect)) < 5000) {
+        console.log('⚠️ 무한 리다이렉트 방지 - 리다이렉트 스킵');
+        return;
+    }
+    
+    sessionStorage.setItem('lastRedirectTime', now.toString());
+    clearAllTokens();
+    
+    console.log('🚪 안전한 로그인 페이지 이동');
+    window.location.href = '/admin/index.html';
 }
 
 // 🗑️ 모든 토큰 정보 완전 삭제
