@@ -156,8 +156,8 @@ const loginRateLimit = rateLimit({
         type: 'login_rate_limit'
     },
     standardHeaders: true,
-    legacyHeaders: false,
-    keyGenerator: (req) => req.ip
+    legacyHeaders: false
+    // keyGenerator 제거 - 기본 IP 처리 사용 (IPv6 호환)
 });
 
 const loginSlowDown = slowDown({

@@ -234,7 +234,8 @@ app.post('/api/test/create-sample-file', (req, res) => {
 });
 
 // API 라우트들
-app.use('/api/auth', require('./routes/auth'));
+const { router: authRouter } = require('./routes/auth');
+app.use('/api/auth', authRouter);
 app.use('/api/notices', require('./routes/notices'));
 app.use('/api/activities', require('./routes/activities'));
 app.use('/api/policy-materials', require('./routes/policyMaterials'));
