@@ -424,15 +424,29 @@
 
             let html = '';
             photos.forEach((photo, index) => {
-                const imageUrl = photo.thumbnailUrl || photo.imageUrl || '';
-                const cacheBustedUrl = imageUrl ? `${imageUrl}${imageUrl.includes('?') ? '&' : '?'}t=${Date.now()}` : '';
+                // 이미지 URL 생성 - attachments에서 첫 번째 이미지 찾기
+                let imageUrl = '';
+                if (photo.attachments && photo.attachments.length > 0) {
+                    const firstImage = photo.attachments.find(att => att.mimetype && att.mimetype.startsWith('image/'));
+                    if (firstImage) {
+                        imageUrl = `${API_BASE.replace('/api', '')}/uploads/${firstImage.filename}`;
+                    }
+                }
+                
+                // 만약 attachments에 이미지가 없다면 기본 이미지나 다른 필드 확인
+                if (!imageUrl) {
+                    imageUrl = photo.thumbnailUrl || photo.imageUrl || photo.path || `${API_BASE.replace('/api', '')}/images/logo.png`;
+                }
+                
+                const cacheBustedUrl = imageUrl ? `${imageUrl}?t=${Date.now()}` : `${API_BASE.replace('/api', '')}/images/logo.png`;
                 
                 html += `
                     <div class="gallery-item" onclick="openModal(${index})">
                         <img src="${cacheBustedUrl}" 
                              alt="${photo.title}" 
                              class="gallery-image"
-                             loading="lazy">
+                             loading="lazy"
+                             onerror="this.src='${API_BASE.replace('/api', '')}/images/logo.png'; this.onerror=null;">
                         <div class="gallery-overlay">
                             <h3 class="font-bold text-sm mb-1">${photo.title}</h3>
                             <p class="text-xs opacity-90">${formatDate(photo.createdAt)}</p>
@@ -461,13 +475,26 @@
             currentImageIndex = index;
             const photo = galleryData[index];
             
-            const imageUrl = photo.imageUrl || '';
-            const cacheBustedUrl = imageUrl ? `${imageUrl}${imageUrl.includes('?') ? '&' : '?'}t=${Date.now()}` : '';
+            // 이미지 URL 생성 - attachments에서 첫 번째 이미지 찾기
+            let imageUrl = '';
+            if (photo.attachments && photo.attachments.length > 0) {
+                const firstImage = photo.attachments.find(att => att.mimetype && att.mimetype.startsWith('image/'));
+                if (firstImage) {
+                    imageUrl = `${API_BASE.replace('/api', '')}/uploads/${firstImage.filename}`;
+                }
+            }
+            
+            // 만약 attachments에 이미지가 없다면 기본 이미지나 다른 필드 확인
+            if (!imageUrl) {
+                imageUrl = photo.imageUrl || photo.thumbnailUrl || photo.path || `${API_BASE.replace('/api', '')}/images/logo.png`;
+            }
+            
+            const cacheBustedUrl = imageUrl ? `${imageUrl}?t=${Date.now()}` : `${API_BASE.replace('/api', '')}/images/logo.png`;
             
             modalImage.src = cacheBustedUrl;
             modalTitle.textContent = photo.title;
             modalDate.textContent = formatDate(photo.createdAt);
-            modalDescription.textContent = photo.description || '';
+            modalDescription.textContent = photo.description || photo.excerpt || '';
             
             imageModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';

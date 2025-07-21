@@ -588,67 +588,105 @@
             loadLatestNews();
         });
 
-        // 최신 소식 로드
+        // 최신 소식 로드 (API 데이터 + 고정 썸네일)
         async function loadLatestNews() {
             try {
                 showNewsLoading();
 
-                // 대변인, 공지사항, 언론보도를 병렬로 가져오기
-                const [spokesmanResponse, noticesResponse, mediaResponse] = await Promise.all([
-                    fetch(`${API_BASE}/spokesperson?limit=1&sort=-createdAt`),
+                // 공지사항, 대변인, 카드뉴스를 병렬로 가져오기
+                const [noticesResponse, spokesmanResponse, cardNewsResponse] = await Promise.all([
                     fetch(`${API_BASE}/notices?limit=1&sort=-createdAt`),
-                    fetch(`${API_BASE}/media-coverage?limit=1&sort=-createdAt`)
+                    fetch(`${API_BASE}/spokesperson?limit=1&sort=-createdAt`),
+                    fetch(`${API_BASE}/card-news?limit=1&sort=-createdAt`)
                 ]);
 
-                let allNews = [];
-
-                // 대변인 발언 데이터 처리
-                if (spokesmanResponse.ok) {
-                    const spokesmanData = await spokesmanResponse.json();
-                    if (spokesmanData.success && spokesmanData.data && spokesmanData.data.length > 0) {
-                        allNews = allNews.concat(spokesmanData.data.map(item => ({
-                            ...item,
-                            type: 'spokesman',
-                            category: '대변인 발언',
-                            url: `news/press-policy.html?id=${item._id}`
-                        })));
-                    }
-                }
+                const newsItems = [];
 
                 // 공지사항 데이터 처리
                 if (noticesResponse.ok) {
                     const noticesData = await noticesResponse.json();
                     if (noticesData.success && noticesData.data && noticesData.data.length > 0) {
-                        allNews = allNews.concat(noticesData.data.map(item => ({
-                            ...item,
+                        const notice = noticesData.data[0];
+                        newsItems.push({
+                            ...notice,
                             type: 'notice',
-                            category: item.category || '공지사항',
-                            url: `news/notice-detail.html?id=${item._id}`
-                        })));
+                            category: notice.category || '공지사항',
+                            image: 'images/flag-pic.jpg', // 고정 이미지
+                            url: 'news/notices.html' // 메인 목록 페이지로 연결
+                        });
+                    } else {
+                        // 공지사항이 없는 경우
+                        newsItems.push({
+                            type: 'notice',
+                            category: '공지사항',
+                            title: '등록된 공지사항이 없습니다',
+                            excerpt: '새로운 공지사항이 곧 업데이트될 예정입니다.',
+                            image: 'images/flag-pic.jpg',
+                            url: 'news/notices.html',
+                            createdAt: new Date(),
+                            isEmpty: true
+                        });
                     }
                 }
 
-                // 언론보도 데이터 처리
-                if (mediaResponse.ok) {
-                    const mediaData = await mediaResponse.json();
-                    if (mediaData.success && mediaData.data && mediaData.data.length > 0) {
-                        allNews = allNews.concat(mediaData.data.map(item => ({
-                            ...item,
-                            type: 'media',
-                            category: '언론보도',
-                            url: `news/media-detail.html?id=${item._id}`
-                        })));
+                // 대변인 발언 데이터 처리
+                if (spokesmanResponse.ok) {
+                    const spokesmanData = await spokesmanResponse.json();
+                    if (spokesmanData.success && spokesmanData.data && spokesmanData.data.length > 0) {
+                        const spokesman = spokesmanData.data[0];
+                        newsItems.push({
+                            ...spokesman,
+                            type: 'spokesman',
+                            category: '대변인 발언',
+                            image: 'images/sit-pic.jpg', // 고정 이미지
+                            url: 'news/press-releases.html' // 메인 목록 페이지로 연결
+                        });
+                    } else {
+                        // 대변인 발언이 없는 경우
+                        newsItems.push({
+                            type: 'spokesman',
+                            category: '대변인 발언',
+                            title: '등록된 대변인 발언이 없습니다',
+                            excerpt: '새로운 대변인 발언이 곧 업데이트될 예정입니다.',
+                            image: 'images/sit-pic.jpg',
+                            url: 'news/press-releases.html',
+                            createdAt: new Date(),
+                            isEmpty: true
+                        });
                     }
                 }
 
-                // 날짜순으로 정렬하고 최신 3개만 선택
-                allNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                const latestNews = allNews.slice(0, 3);
+                // 카드뉴스 데이터 처리
+                if (cardNewsResponse.ok) {
+                    const cardNewsData = await cardNewsResponse.json();
+                    if (cardNewsData.success && cardNewsData.data && cardNewsData.data.length > 0) {
+                        const cardNews = cardNewsData.data[0];
+                        newsItems.push({
+                            ...cardNews,
+                            type: 'cardnews',
+                            category: '카드뉴스',
+                            image: 'images/activity.jpg', // 고정 이미지
+                            url: 'news/card-news.html' // 메인 목록 페이지로 연결
+                        });
+                    } else {
+                        // 카드뉴스가 없는 경우
+                        newsItems.push({
+                            type: 'cardnews',
+                            category: '카드뉴스',
+                            title: '등록된 카드뉴스가 없습니다',
+                            excerpt: '새로운 카드뉴스가 곧 업데이트될 예정입니다.',
+                            image: 'images/activity.jpg',
+                            url: 'news/card-news.html',
+                            createdAt: new Date(),
+                            isEmpty: true
+                        });
+                    }
+                }
 
-                if (latestNews.length === 0) {
+                if (newsItems.length === 0) {
                     showNewsEmpty();
                 } else {
-                    renderNews(latestNews);
+                    renderNews(newsItems);
                     showNewsContent();
                 }
 
@@ -680,35 +718,27 @@
             // 카테고리별 색상 및 아이콘 설정
             const categoryConfig = getCategoryConfig(news.category, news.type);
             
-            // 첫 번째 이미지 찾기 (있는 경우)
-            const firstImage = news.attachments?.find(att => att.mimeType?.startsWith('image/'));
-            const hasImage = firstImage && firstImage.path;
+            // 고정 이미지 사용 (API 이미지 대신)
+            const fixedImage = news.image; // 이미 고정 이미지 경로가 설정됨
 
             article.innerHTML = `
-                <div class="${categoryConfig.bgClass} h-48 flex items-center justify-center relative overflow-hidden">
-                    ${hasImage ? `
-                        <img src="${API_BASE.replace('/api', '')}${firstImage.path}" 
-                             alt="${news.title}" 
-                             class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center text-white">
-                                <i class="${categoryConfig.icon} text-3xl mb-2"></i>
-                                <p class="font-medium">${categoryConfig.title}</p>
-                            </div>
+                <div class="h-48 flex items-center justify-center relative overflow-hidden">
+                    <img src="${fixedImage}" 
+                         alt="${news.title}" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i class="${categoryConfig.icon} text-3xl mb-2"></i>
+                            <p class="font-medium">${categoryConfig.title}</p>
                         </div>
-                    ` : `
-                        <div class="text-center">
-                            <i class="${categoryConfig.icon} ${categoryConfig.iconClass} text-3xl mb-2"></i>
-                            <p class="${categoryConfig.textClass} font-medium">${categoryConfig.title}</p>
-                        </div>
-                    `}
+                    </div>
                 </div>
                 <div class="p-6">
                     <span class="${categoryConfig.badgeClass} px-3 py-1 rounded-full text-sm font-medium">
                         ${news.category}
                     </span>
-                    <h4 class="text-lg font-bold text-gray-900 mt-3 mb-2 line-clamp-2">
+                    <h4 class="text-lg font-bold text-gray-900 mt-3 mb-2 line-clamp-2 ${news.isEmpty ? 'text-gray-500' : ''}">
                         ${news.title}
                     </h4>
                     <p class="text-gray-600 text-sm mb-4 line-clamp-3">
@@ -716,11 +746,11 @@
                     </p>
                     <div class="flex items-center justify-between">
                         <span class="text-gray-500 text-xs">
-                            ${formatDate(news.createdAt)}
+                            ${news.isEmpty ? '내용 없음' : formatDate(news.createdAt)}
                         </span>
                         <a href="${news.url}" 
                            class="text-red-600 hover:text-red-700 text-sm font-medium">
-                            자세히 보기 →
+                            ${news.isEmpty ? '목록 보기' : '자세히 보기'} →
                         </a>
                     </div>
                 </div>
