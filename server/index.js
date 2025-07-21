@@ -60,15 +60,51 @@ if (!fs.existsSync(uploadsPath)) {
 }
 
 app.use('/uploads', express.static(uploadsPath, {
-  setHeaders: (res, filePath) => {
+  setHeaders: (res, filePath, stat) => {
+    // 기본 CORS 헤더
     res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Methods', 'GET');
-    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
+    
+    // Cross-Origin 정책 헤더
     res.set('Cross-Origin-Resource-Policy', 'cross-origin');
     res.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
-    console.log('정적 파일 요청:', filePath);
+    res.set('Cross-Origin-Opener-Policy', 'unsafe-none');
+    
+    // 캐시 및 보안 헤더
+    res.set('Cache-Control', 'public, max-age=31536000');
+    res.set('X-Content-Type-Options', 'nosniff');
+    
+    // 파일 타입별 Content-Type 명시적 설정
+    const ext = path.extname(filePath).toLowerCase();
+    const mimeTypes = {
+      '.jpg': 'image/jpeg',
+      '.jpeg': 'image/jpeg',
+      '.png': 'image/png',
+      '.gif': 'image/gif',
+      '.webp': 'image/webp',
+      '.pdf': 'application/pdf',
+      '.doc': 'application/msword',
+      '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    };
+    
+    if (mimeTypes[ext]) {
+      res.set('Content-Type', mimeTypes[ext]);
+    }
+    
+    console.log('정적 파일 요청:', filePath, `(${stat.size} bytes)`);
   }
 }));
+
+// OPTIONS 요청 처리 (uploads 경로용)
+app.options('/uploads/*', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+  res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.set('Access-Control-Max-Age', '86400'); // 24시간
+  res.status(200).end();
+});
 
 // 기본 라우트
 app.get('/api/health', (req, res) => {
