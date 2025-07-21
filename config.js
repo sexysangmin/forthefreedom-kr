@@ -218,14 +218,53 @@ function initActivityDetection() {
     console.log('👀 사용자 활동 감지 시스템 시작 (10분 자동 로그아웃)');
 }
 
-// 🔐 관리자 페이지 보안 초기화
-function initAdminSecurity() {
+// 🔐 관리자 페이지 보안 초기화 (토큰 검증 포함)
+async function initAdminSecurity() {
     // 관리자 페이지인지 확인
     if (window.location.pathname.includes('admin') && !window.location.pathname.includes('index.html')) {
         const token = localStorage.getItem('adminToken');
+        const tokenExpiry = localStorage.getItem('tokenExpiry');
         
-        if (!token) {
-            console.log('🚪 토큰 없음 - 로그인 페이지로 이동');
+        if (!token || !tokenExpiry) {
+            console.log('🚪 토큰 정보 없음 - 로그인 페이지로 이동');
+            clearAllTokens();
+            window.location.href = '/admin/index.html';
+            return;
+        }
+        
+        // 토큰 만료 확인
+        const expiryTime = parseInt(tokenExpiry);
+        const now = Date.now();
+        
+        if (now >= expiryTime) {
+            console.log('🚪 토큰 만료됨 - 로그인 페이지로 이동');
+            clearAllTokens();
+            window.location.href = '/admin/index.html';
+            return;
+        }
+        
+        // 서버에서 토큰 유효성 검증
+        try {
+            const response = await fetch(`${window.API_BASE}/auth/me`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error('토큰 검증 실패');
+            }
+            
+            const userData = await response.json();
+            if (!userData.success) {
+                throw new Error('유효하지 않은 사용자');
+            }
+            
+            console.log('✅ 토큰 검증 성공:', userData.user.username);
+            
+        } catch (error) {
+            console.log('🚪 토큰 검증 실패 - 로그인 페이지로 이동:', error.message);
+            clearAllTokens();
             window.location.href = '/admin/index.html';
             return;
         }
@@ -238,6 +277,17 @@ function initAdminSecurity() {
         
         console.log('🛡️ 관리자 보안 시스템 활성화');
     }
+}
+
+// 🗑️ 모든 토큰 정보 완전 삭제
+function clearAllTokens() {
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminRefreshToken');
+    localStorage.removeItem('adminUser');
+    localStorage.removeItem('tokenExpiry');
+    localStorage.removeItem('authToken'); // 기존 토큰도 삭제
+    sessionStorage.clear();
+    console.log('🗑️ 모든 토큰 정보 삭제 완료');
 }
 
 // 페이지 로드 시 보안 시스템 초기화

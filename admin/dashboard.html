@@ -712,10 +712,42 @@
             loadDashboardData();
         }
 
-        // 로그아웃
-        function logout() {
+        // 🚪 완전한 로그아웃 함수
+        async function logout() {
             if (confirm('정말 로그아웃하시겠습니까?')) {
-                localStorage.removeItem('authToken');
+                try {
+                    const token = localStorage.getItem('adminToken');
+                    const refreshToken = localStorage.getItem('adminRefreshToken');
+                    
+                    // 서버에 로그아웃 API 호출
+                    if (token) {
+                        await fetch(`${API_BASE}/auth/logout`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ refreshToken })
+                        });
+                    }
+                } catch (error) {
+                    console.log('서버 로그아웃 호출 실패 (무시):', error);
+                }
+                
+                // 모든 토큰 정보 완전 삭제
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminRefreshToken');
+                localStorage.removeItem('adminUser');
+                localStorage.removeItem('tokenExpiry');
+                localStorage.removeItem('authToken'); // 기존 토큰도 삭제
+                
+                // 세션 스토리지도 정리
+                sessionStorage.clear();
+                
+                console.log('🚪 완전 로그아웃 완료');
+                alert('로그아웃되었습니다.');
+                
+                // 로그인 페이지로 강제 이동
                 window.location.href = 'index.html';
             }
         }
