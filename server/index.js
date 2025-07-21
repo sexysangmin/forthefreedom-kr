@@ -104,8 +104,18 @@ app.use((error, req, res, next) => {
 
 // 서버 시작
 const PORT = config.PORT;
-app.listen(PORT, () => {
+const HOST = '0.0.0.0'; // Railway에서 외부 접근을 위해 0.0.0.0으로 바인딩
+
+app.listen(PORT, HOST, () => {
   console.log(`🚀 자유와혁신 API 서버가 포트 ${PORT}에서 시작되었습니다`);
   console.log(`🌍 환경: ${config.NODE_ENV}`);
-  console.log(`📍 Health Check: http://localhost:${PORT}/api/health`);
+  console.log(`🌐 호스트: ${HOST}:${PORT}`);
+  
+  // Railway 환경에서는 실제 공개 URL 표시
+  if (config.NODE_ENV === 'production') {
+    console.log(`📍 Health Check: https://forthefreedom-kr-production.up.railway.app/api/health`);
+    console.log(`🔗 API Base: https://forthefreedom-kr-production.up.railway.app/api`);
+  } else {
+    console.log(`📍 Health Check: http://localhost:${PORT}/api/health`);
+  }
 }); 
