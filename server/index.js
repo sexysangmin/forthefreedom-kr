@@ -59,43 +59,74 @@ if (!fs.existsSync(uploadsPath)) {
   console.log('uploads 디렉토리 생성됨');
 }
 
-app.use('/uploads', express.static(uploadsPath, {
-  setHeaders: (res, filePath, stat) => {
-    // 기본 CORS 헤더
-    res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
-    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    res.set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
+// uploads 디렉토리의 파일 요청 처리 (개선된 오류 처리 포함)
+app.use('/uploads', (req, res, next) => {
+  const requestedFile = req.path.substring(1); // /를 제거
+  const filePath = path.join(uploadsPath, requestedFile);
+  
+  console.log(`📂 파일 요청: ${requestedFile}`);
+  console.log(`📍 전체 경로: ${filePath}`);
+  console.log(`📁 uploads 디렉토리 존재: ${fs.existsSync(uploadsPath)}`);
+  
+  // 파일 존재 여부 확인
+  if (!fs.existsSync(filePath)) {
+    console.log(`❌ 파일 없음: ${requestedFile}`);
     
-    // Cross-Origin 정책 헤더
-    res.set('Cross-Origin-Resource-Policy', 'cross-origin');
-    res.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
-    res.set('Cross-Origin-Opener-Policy', 'unsafe-none');
-    
-    // 캐시 및 보안 헤더
-    res.set('Cache-Control', 'public, max-age=31536000');
-    res.set('X-Content-Type-Options', 'nosniff');
-    
-    // 파일 타입별 Content-Type 명시적 설정
-    const ext = path.extname(filePath).toLowerCase();
-    const mimeTypes = {
-      '.jpg': 'image/jpeg',
-      '.jpeg': 'image/jpeg',
-      '.png': 'image/png',
-      '.gif': 'image/gif',
-      '.webp': 'image/webp',
-      '.pdf': 'application/pdf',
-      '.doc': 'application/msword',
-      '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    };
-    
-    if (mimeTypes[ext]) {
-      res.set('Content-Type', mimeTypes[ext]);
+    // uploads 디렉토리의 모든 파일 목록 (디버깅용)
+    try {
+      const allFiles = fs.readdirSync(uploadsPath);
+      console.log(`📋 uploads 디렉토리 파일들 (${allFiles.length}개):`, allFiles.slice(0, 5));
+    } catch (error) {
+      console.log(`❌ uploads 디렉토리 읽기 실패:`, error.message);
     }
     
-    console.log('정적 파일 요청:', filePath, `(${stat.size} bytes)`);
+    return res.status(404).json({
+      success: false,
+      message: `파일을 찾을 수 없습니다: ${requestedFile}`,
+      path: filePath,
+      uploadsDir: uploadsPath
+    });
   }
-}));
+  
+  // 파일이 존재하면 express.static으로 처리
+  express.static(uploadsPath, {
+    setHeaders: (res, filePath, stat) => {
+      // 기본 CORS 헤더
+      res.set('Access-Control-Allow-Origin', '*');
+      res.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+      res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+      res.set('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
+      
+      // Cross-Origin 정책 헤더
+      res.set('Cross-Origin-Resource-Policy', 'cross-origin');
+      res.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
+      res.set('Cross-Origin-Opener-Policy', 'unsafe-none');
+      
+      // 캐시 및 보안 헤더
+      res.set('Cache-Control', 'public, max-age=31536000');
+      res.set('X-Content-Type-Options', 'nosniff');
+      
+      // 파일 타입별 Content-Type 명시적 설정
+      const ext = path.extname(filePath).toLowerCase();
+      const mimeTypes = {
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.png': 'image/png',
+        '.gif': 'image/gif',
+        '.webp': 'image/webp',
+        '.pdf': 'application/pdf',
+        '.doc': 'application/msword',
+        '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      };
+      
+      if (mimeTypes[ext]) {
+        res.set('Content-Type', mimeTypes[ext]);
+      }
+      
+      console.log('✅ 정적 파일 제공:', filePath, `(${stat.size} bytes)`);
+    }
+  })(req, res, next);
+});
 
 // OPTIONS 요청 처리 (uploads 경로용)
 app.options('/uploads/*', (req, res) => {
@@ -113,6 +144,62 @@ app.get('/api/health', (req, res) => {
     message: '자유와혁신 API 서버가 정상 작동 중입니다',
     timestamp: new Date().toISOString()
   });
+});
+
+// 파일 존재 여부 확인 엔드포인트 (디버깅용)
+app.get('/api/files/check/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, 'uploads', filename);
+  
+  try {
+    const exists = fs.existsSync(filePath);
+    const stats = exists ? fs.statSync(filePath) : null;
+    
+    // uploads 디렉토리의 모든 파일 목록
+    const uploadsDir = path.join(__dirname, 'uploads');
+    const allFiles = fs.existsSync(uploadsDir) ? fs.readdirSync(uploadsDir) : [];
+    
+    res.json({
+      success: true,
+      filename: filename,
+      exists: exists,
+      fullPath: filePath,
+      fileSize: stats ? stats.size : null,
+      uploadsDirExists: fs.existsSync(uploadsDir),
+      totalFilesInUploads: allFiles.length,
+      allFiles: allFiles.slice(0, 10) // 최대 10개만 표시
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      filename: filename
+    });
+  }
+});
+
+// 테스트용 파일 생성 엔드포인트
+app.post('/api/test/create-sample-file', (req, res) => {
+  try {
+    const testContent = `테스트 파일 생성 시간: ${new Date().toISOString()}\nRailway ephemeral file system 테스트`;
+    const testFileName = `test-${Date.now()}.txt`;
+    const testFilePath = path.join(__dirname, 'uploads', testFileName);
+    
+    fs.writeFileSync(testFilePath, testContent);
+    
+    res.json({
+      success: true,
+      message: '테스트 파일이 생성되었습니다',
+      filename: testFileName,
+      path: testFilePath,
+      url: `/uploads/${testFileName}`
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
 });
 
 // API 라우트들

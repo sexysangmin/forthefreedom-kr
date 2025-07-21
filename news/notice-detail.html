@@ -342,18 +342,33 @@
                 content += '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
                 images.forEach(file => {
                     const imageUrl = `${API_BASE.replace('/api', '')}/uploads/${file.filename}`;
+                    const imageId = `img-${file.filename.replace(/[^a-zA-Z0-9]/g, '')}`;
                     content += `
                         <div class="border rounded-lg overflow-hidden shadow-sm">
-                            <img src="${imageUrl}" alt="${file.originalName}" 
-                                 class="w-full h-auto cursor-pointer hover:opacity-90 transition-opacity"
-                                 onclick="openImageModal('${imageUrl}', '${file.originalName}')">
+                            <div class="relative">
+                                <img id="${imageId}" src="${imageUrl}" alt="${file.originalName}" 
+                                     class="w-full h-auto cursor-pointer hover:opacity-90 transition-opacity"
+                                     onclick="openImageModal('${imageUrl}', '${file.originalName}')"
+                                     onerror="handleImageError(this, '${file.originalName}', '${file.filename}')">
+                                <div id="${imageId}-error" class="hidden absolute inset-0 bg-gray-100 flex items-center justify-center">
+                                    <div class="text-center p-4">
+                                        <i class="fas fa-image text-gray-400 text-4xl mb-2"></i>
+                                        <p class="text-sm text-gray-600">이미지를 불러올 수 없습니다</p>
+                                        <p class="text-xs text-gray-500">${file.originalName}</p>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="p-3 bg-gray-50">
                                 <div class="text-sm font-medium text-gray-800">${file.originalName}</div>
                                 <div class="text-xs text-gray-500">${formatFileSize(file.size)}</div>
+                                <button onclick="checkFileStatus('${file.filename}')" 
+                                        class="inline-block mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium mr-3">
+                                    <i class="fas fa-search mr-1"></i>파일 확인
+                                </button>
                                 <a href="${imageUrl}" 
                                    download="${file.originalName}"
                                    class="inline-block mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium">
-                                    <i class="fas fa-download mr-1"></i>원본 다운로드
+                                    <i class="fas fa-download mr-1"></i>다운로드
                                 </a>
                             </div>
                         </div>
@@ -512,6 +527,42 @@
             return imageExts.includes(ext);
         }
 
+        // 이미지 로딩 오류 처리
+        function handleImageError(imgElement, originalName, filename) {
+            console.log(`❌ 이미지 로딩 실패: ${filename}`);
+            
+            // 이미지 숨기고 오류 메시지 표시
+            imgElement.style.display = 'none';
+            const errorDiv = document.getElementById(`img-${filename.replace(/[^a-zA-Z0-9]/g, '')}-error`);
+            if (errorDiv) {
+                errorDiv.classList.remove('hidden');
+            }
+            
+            // 서버에 파일 상태 확인 (자동으로)
+            checkFileStatus(filename);
+        }
+
+        // 파일 상태 확인 함수
+        async function checkFileStatus(filename) {
+            try {
+                const response = await fetch(`${API_BASE}/files/check/${filename}`);
+                const data = await response.json();
+                
+                console.log(`📋 파일 상태 확인 결과:`, data);
+                
+                if (!data.exists) {
+                    alert(`파일이 서버에 존재하지 않습니다: ${filename}\n\n` +
+                          `서버의 uploads 디렉토리에 ${data.totalFilesInUploads}개 파일이 있습니다.\n` +
+                          `Railway의 ephemeral file system으로 인해 서버 재시작 시 파일이 삭제될 수 있습니다.`);
+                } else {
+                    alert(`파일이 서버에 존재합니다: ${filename}\n크기: ${data.fileSize} bytes`);
+                }
+            } catch (error) {
+                console.error('파일 상태 확인 실패:', error);
+                alert('파일 상태를 확인할 수 없습니다.');
+            }
+        }
+
         // 이미지 모달 열기
         function openImageModal(imageUrl, filename) {
             const modal = document.createElement('div');
@@ -520,7 +571,8 @@
             
             modal.innerHTML = `
                 <div class="max-w-4xl max-h-full relative">
-                    <img src="${imageUrl}" alt="${filename}" class="max-w-full max-h-full object-contain">
+                    <img src="${imageUrl}" alt="${filename}" class="max-w-full max-h-full object-contain"
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzZiNzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBmb3VuZDwvdGV4dD48L3N2Zz4='">
                     <button onclick="this.parentElement.parentElement.remove()" 
                             class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75">
                         <i class="fas fa-times"></i>
