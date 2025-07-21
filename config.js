@@ -1,4 +1,6 @@
-// API Configuration
+// API Configuration - v2.0 (캐시버스터: 2025-07-21-06:45)
+console.log('🔄 Config.js 로드됨 - v2.0 - 2025-07-21-06:45');
+
 const API_CONFIG = {
     // 개발 환경
     development: {
@@ -6,8 +8,8 @@ const API_CONFIG = {
     },
     // 프로덕션 환경 - Railway에서 생성된 실제 Public Domain 주소
     production: {
-        // TODO: Railway Generate Domain 후 실제 URL로 업데이트 필요
-        API_BASE: 'https://forthefreedom-kr-production.up.railway.app/api' // ← 이 URL을 실제 생성된 도메인으로 변경
+        // ✅ Railway Public Domain 확정: forthefreedom-kr-production.up.railway.app
+        API_BASE: 'https://forthefreedom-kr-production.up.railway.app/api'
     }
 };
 
