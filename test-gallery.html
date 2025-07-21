@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>갤러리 테스트</title>
+    <!-- API 설정 로드 -->
+    <script src="config.js"></script>
     <style>
         body { 
             font-family: Arial, sans-serif; 
@@ -99,11 +101,8 @@
     </div>
 
     <script>
-        // 환경 감지 및 API 설정
-        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const API_BASE = isLocalhost 
-            ? 'http://localhost:9000/api'
-            : 'https://forthefreedom.kr/api';
+        // API 설정 - config.js에서 로드된 설정 사용
+        const API_BASE = window.API_BASE;
 
         console.log('🔧 API_BASE:', API_BASE);
 
