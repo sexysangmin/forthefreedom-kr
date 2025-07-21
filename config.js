@@ -4,9 +4,10 @@ const API_CONFIG = {
     development: {
         API_BASE: 'http://localhost:9000/api'
     },
-    // 프로덕션 환경 - Railway에 배포된 실제 백엔드 서버 주소
+    // 프로덕션 환경 - Railway에서 생성된 실제 Public Domain 주소
     production: {
-        API_BASE: 'https://forthefreedom-kr-production.up.railway.app/api'
+        // TODO: Railway Generate Domain 후 실제 URL로 업데이트 필요
+        API_BASE: 'https://forthefreedom-kr-production.up.railway.app/api' // ← 이 URL을 실제 생성된 도메인으로 변경
     }
 };
 
@@ -43,7 +44,22 @@ window.BACKUP_API_URLS = [
 window.getMockData = function(endpoint) {
     console.log('🔄 Railway 서버 실패, 모크 데이터 반환:', endpoint);
     
-    // 기본 모크 응답 구조
+    // auth/login 요청인 경우 인증 실패 응답
+    if (endpoint.includes('/auth/login')) {
+        const mockResponse = {
+            success: false,
+            message: 'Railway 서버에 연결할 수 없습니다. 네트워크를 확인해주세요.'
+        };
+        
+        // Response 객체처럼 .json() 메서드를 가진 객체 반환
+        return Promise.resolve({
+            ok: false,
+            status: 503,
+            json: () => Promise.resolve(mockResponse)
+        });
+    }
+    
+    // 일반 데이터 요청인 경우
     const mockResponse = {
         success: true,
         data: [],
@@ -53,7 +69,12 @@ window.getMockData = function(endpoint) {
         hasMore: false
     };
     
-    return Promise.resolve(mockResponse);
+    // Response 객체처럼 .json() 메서드를 가진 객체 반환
+    return Promise.resolve({
+        ok: true,
+        status: 200,
+        json: () => Promise.resolve(mockResponse)
+    });
 };
 
 // API 호출 실패 시 백업 URL로 재시도하는 함수
