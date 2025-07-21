@@ -123,25 +123,25 @@ window.apiCallWithFallback = async function(endpoint, options = {}) {
     }
 };
 
-// 🔄 자동 토큰 갱신 시스템
+// 🔄 자동 토큰 갱신 시스템 (안전 모드)
 async function checkAndRefreshToken() {
-    const token = localStorage.getItem('adminToken');
-    const refreshToken = localStorage.getItem('adminRefreshToken');
-    const tokenExpiry = localStorage.getItem('tokenExpiry');
-    
-    if (!token || !refreshToken || !tokenExpiry) {
-        return; // 인증 정보 없음
-    }
-    
-    const expiryTime = parseInt(tokenExpiry);
-    const now = Date.now();
-    const fiveMinutes = 5 * 60 * 1000; // 5분
-    
-    // 토큰이 5분 내에 만료되면 갱신
-    if (now + fiveMinutes >= expiryTime) {
-        console.log('🔄 토큰 갱신 필요 - 자동 갱신 시작');
+    try {
+        const token = localStorage.getItem('adminToken');
+        const refreshToken = localStorage.getItem('adminRefreshToken');
+        const tokenExpiry = localStorage.getItem('tokenExpiry');
         
-        try {
+        if (!token || !refreshToken || !tokenExpiry) {
+            return; // 인증 정보 없음
+        }
+        
+        const expiryTime = parseInt(tokenExpiry);
+        const now = Date.now();
+        const fiveMinutes = 5 * 60 * 1000; // 5분
+        
+        // 토큰이 5분 내에 만료되면 갱신
+        if (now + fiveMinutes >= expiryTime) {
+            console.log('🔄 토큰 갱신 필요 - 자동 갱신 시작');
+            
             const response = await fetch(`${window.API_BASE}/auth/refresh`, {
                 method: 'POST',
                 headers: {
@@ -163,25 +163,32 @@ async function checkAndRefreshToken() {
                     resetActivityTimer();
                 }
             } else {
-                throw new Error('토큰 갱신 실패');
+                console.log('⚠️ 토큰 갱신 실패 - 로그아웃 처리');
+                clearAllTokens();
             }
-        } catch (error) {
-            console.error('❌ 토큰 갱신 실패:', error);
-            handleTokenExpiry();
         }
+    } catch (error) {
+        console.log('⚠️ 토큰 갱신 중 오류 (무시):', error.message);
+        // 에러 발생시 리다이렉트 하지 않고 무시
     }
 }
 
-// 🚪 토큰 만료 처리
+// 🚪 토큰 만료 처리 (안전 모드)
 function handleTokenExpiry() {
-    // 토큰 정보 삭제
-    localStorage.removeItem('adminToken');
-    localStorage.removeItem('adminRefreshToken');
-    localStorage.removeItem('adminUser');
-    localStorage.removeItem('tokenExpiry');
+    console.log('🚪 토큰 만료 처리 시작');
     
-    // 로그인 페이지로 리다이렉트
-    if (window.location.pathname.includes('admin') && !window.location.pathname.includes('index.html')) {
+    // 토큰 정보 삭제
+    clearAllTokens();
+    
+    // 이미 로그인 페이지에 있으면 리다이렉트 안함
+    if (window.location.pathname.includes('index.html')) {
+        console.log('⚠️ 이미 로그인 페이지에 있음 - 리다이렉트 생략');
+        return;
+    }
+    
+    // 관리자 페이지에서만 리다이렉트
+    if (window.location.pathname.includes('admin')) {
+        console.log('🚪 관리자 페이지에서 로그인 페이지로 이동');
         alert('세션이 만료되었습니다. 다시 로그인해주세요.');
         window.location.href = '/admin/index.html';
     }
@@ -218,105 +225,34 @@ function initActivityDetection() {
     console.log('👀 사용자 활동 감지 시스템 시작 (10분 자동 로그아웃)');
 }
 
-// 🔐 관리자 페이지 보안 초기화 (안전한 토큰 검증)
-async function initAdminSecurity() {
-    // 무한 리다이렉트 방지 플래그
-    if (window.securityInitialized) {
-        return;
-    }
-    window.securityInitialized = true;
-    
+// 🔐 관리자 페이지 보안 초기화 (단순화 버전)
+function initAdminSecurity() {
     // 관리자 페이지인지 확인
     if (window.location.pathname.includes('admin') && !window.location.pathname.includes('index.html')) {
         const token = localStorage.getItem('adminToken');
-        const tokenExpiry = localStorage.getItem('tokenExpiry');
         
-        if (!token || !tokenExpiry) {
-            console.log('🚪 토큰 정보 없음 - 로그인 페이지로 이동');
-            safeRedirectToLogin();
+        // 토큰이 없으면 로그인 페이지로 (단순 검증만)
+        if (!token) {
+            console.log('🚪 토큰 없음 - 로그인 페이지로 이동');
+            window.location.href = '/admin/index.html';
             return;
         }
         
-        // 토큰 만료 확인 (클라이언트 사이드)
-        const expiryTime = parseInt(tokenExpiry);
-        const now = Date.now();
+        console.log('✅ 토큰 확인됨 - 관리자 페이지 로드');
         
-        if (now >= expiryTime) {
-            console.log('🚪 토큰 만료됨 - 로그인 페이지로 이동');
-            safeRedirectToLogin();
-            return;
-        }
-        
-        // 서버 토큰 검증 (선택적 - 네트워크 문제시 무시)
-        try {
-            console.log('🔍 서버 토큰 검증 시도...');
-            
-            // 5초 타임아웃 설정
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 5000);
-            
-            const response = await fetch(`${window.API_BASE}/auth/me`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
-                signal: controller.signal
-            });
-            
-            clearTimeout(timeoutId);
-            
-            if (response.ok) {
-                const userData = await response.json();
-                if (userData.success) {
-                    console.log('✅ 서버 토큰 검증 성공:', userData.user.username);
-                } else {
-                    console.log('⚠️ 서버 토큰 무효 - 로그인 페이지로 이동');
-                    safeRedirectToLogin();
-                    return;
-                }
-            } else if (response.status === 401) {
-                console.log('🚪 서버에서 토큰 거부 - 로그인 페이지로 이동');
-                safeRedirectToLogin();
-                return;
-            } else {
-                // 다른 HTTP 에러는 무시하고 클라이언트 토큰으로 진행
-                console.log('⚠️ 서버 통신 오류 (무시):', response.status);
-            }
-            
-        } catch (error) {
-            // 네트워크 오류는 무시하고 클라이언트 토큰으로 진행
-            console.log('⚠️ 서버 토큰 검증 실패 (무시):', error.message);
-        }
-        
-        // 활동 감지 시작
+        // 활동 감지 시작 (10분 자동 로그아웃)
         initActivityDetection();
         
         // 정기적으로 토큰 상태 확인 (1분마다)
         setInterval(checkAndRefreshToken, 60 * 1000);
         
-        console.log('🛡️ 관리자 보안 시스템 활성화');
+        console.log('🛡️ 관리자 보안 시스템 활성화 (단순 모드)');
     }
 }
 
-// 🚪 안전한 로그인 페이지 리다이렉트 (무한 루프 방지)
+// 🚪 안전한 로그인 페이지 리다이렉트 (단순화)
 function safeRedirectToLogin() {
-    // 이미 로그인 페이지에 있으면 리다이렉트 안함
-    if (window.location.pathname.includes('index.html')) {
-        return;
-    }
-    
-    // 무한 리다이렉트 방지 (5초에 1번만)
-    const lastRedirect = sessionStorage.getItem('lastRedirectTime');
-    const now = Date.now();
-    
-    if (lastRedirect && (now - parseInt(lastRedirect)) < 5000) {
-        console.log('⚠️ 무한 리다이렉트 방지 - 리다이렉트 스킵');
-        return;
-    }
-    
-    sessionStorage.setItem('lastRedirectTime', now.toString());
     clearAllTokens();
-    
-    console.log('🚪 안전한 로그인 페이지 이동');
     window.location.href = '/admin/index.html';
 }
 
@@ -331,9 +267,6 @@ function clearAllTokens() {
     console.log('🗑️ 모든 토큰 정보 삭제 완료');
 }
 
-// 페이지 로드 시 보안 시스템 초기화
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAdminSecurity);
-} else {
-    initAdminSecurity();
-} 
+// 🚫 자동 보안 시스템 초기화 비활성화 (무한 새로고침 방지)
+// 필요시 수동으로 initAdminSecurity() 호출
+console.log('⚠️ 자동 보안 시스템 초기화 비활성화됨 - 무한 새로고침 방지'); 
