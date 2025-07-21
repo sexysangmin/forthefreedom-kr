@@ -176,6 +176,15 @@
                         <div class="text-sm font-medium text-gray-900" id="currentTime">--:--:--</div>
                     </div>
 
+                    <!-- API 연결 상태 -->
+                    <div class="text-center">
+                        <div class="text-xs text-gray-500">API 상태</div>
+                        <div class="flex items-center justify-center space-x-1">
+                            <div class="w-2 h-2 rounded-full bg-gray-400" id="apiStatusDot"></div>
+                            <span class="text-xs font-medium text-gray-600" id="apiStatusText">확인중</span>
+                        </div>
+                    </div>
+
                     <!-- 사용자 정보 -->
                     <div class="flex items-center space-x-3">
                         <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
@@ -563,10 +572,45 @@
             document.getElementById('currentTime').textContent = timeString;
         }
 
+        // API 상태 체크
+        async function checkApiStatus() {
+            const statusDot = document.getElementById('apiStatusDot');
+            const statusText = document.getElementById('apiStatusText');
+            
+            try {
+                // 간단한 API 호출로 연결 상태 확인
+                const response = await fetch(`${window.API_BASE}/health`, {
+                    method: 'GET',
+                    timeout: 5000 // 5초 타임아웃
+                });
+                
+                if (response.ok) {
+                    // 연결 성공
+                    statusDot.className = 'w-2 h-2 rounded-full bg-green-500';
+                    statusText.textContent = '연결됨';
+                    statusText.className = 'text-xs font-medium text-green-600';
+                    console.log('✅ API 연결 상태: 정상');
+                } else {
+                    throw new Error('API 응답 오류');
+                }
+            } catch (error) {
+                // 연결 실패
+                statusDot.className = 'w-2 h-2 rounded-full bg-red-500';
+                statusText.textContent = '연결안됨';
+                statusText.className = 'text-xs font-medium text-red-600';
+                console.log('❌ API 연결 상태: 비정상');
+            }
+        }
+
         // 페이지 로드 시 실행
         document.addEventListener('DOMContentLoaded', function() {
             updateTime();
             setInterval(updateTime, 1000);
+            
+            // API 상태 체크 시작 (즉시 한 번, 그 후 30초마다)
+            checkApiStatus();
+            setInterval(checkApiStatus, 30000); // 30초마다 체크
+            
             loadDashboardData();
         });
 
