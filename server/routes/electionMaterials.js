@@ -40,12 +40,24 @@ const upload = multer({
             'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp',
             'application/pdf', 'application/msword', 
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            'application/vnd.hancom.hwp', 'text/plain'
+            // HWP 파일의 다양한 MIME 타입들
+            'application/vnd.hancom.hwp',
+            'application/x-hwp',
+            'application/haansofthwp',
+            'application/hwp',
+            'text/plain'
         ];
         
-        if (allowedMimes.includes(file.mimetype)) {
+        // 파일 확장자로도 HWP 파일 확인
+        const isHwpFile = file.originalname.toLowerCase().endsWith('.hwp');
+        
+        // 디버깅을 위한 로그
+        console.log(`[선거자료] 파일 업로드 시도: ${file.originalname}, MIME타입: ${file.mimetype}`);
+        
+        if (allowedMimes.includes(file.mimetype) || isHwpFile) {
             cb(null, true);
         } else {
+            console.log(`[선거자료] 거부된 파일: ${file.originalname}, MIME타입: ${file.mimetype}`);
             cb(new Error('지원하지 않는 파일 형식입니다.'), false);
         }
     }
