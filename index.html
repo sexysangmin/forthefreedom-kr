@@ -98,6 +98,24 @@
                 }
             }
         }
+        
+        // 🚀 즉시 WebP 감지 실행 (페이지 로드 전)
+        (function() {
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = 1;
+                canvas.height = 1;
+                const dataURL = canvas.toDataURL('image/webp');
+                if (dataURL.indexOf('data:image/webp') === 0) {
+                    document.documentElement.classList.add('webp');
+                    console.log('⚡ 즉시 WebP 감지 완료');
+                } else {
+                    document.documentElement.classList.add('no-webp');
+                }
+            } catch (e) {
+                document.documentElement.classList.add('no-webp');
+            }
+        })();
     </script>
     <style>
         .text-red-600 { color: #A50034 !important; }
@@ -133,7 +151,7 @@
     <div id="navigation-container"></div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section hero-bg-responsive" style="height: 100vh; min-height: 600px; width: 100%; position: relative; margin: 0px; padding: 0px; overflow: hidden; background-image: url('images/hero-image.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: scroll; background-position: center; transform: translateY(0px);">
+    <section id="home" class="hero-section hero-bg-responsive" style="height: 100vh; min-height: 600px; width: 100%; position: relative; margin: 0px; padding: 0px; overflow: hidden; background-size: cover; background-repeat: no-repeat; background-attachment: scroll; background-position: center; transform: translateY(0px);">
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.6), rgba(0,0,0,0.3)); z-index: 2;"></div>
         <div style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 10; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem;">
             <div style="max-width: 48rem; color: white; text-align: left; margin-left: 0; padding-left: 48px;">
@@ -209,7 +227,7 @@
                         <div class="w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden border-8 border-gray-100 shadow-xl bg-gray-100">
                             <picture>
                                 <source srcset="images/profile-pic.webp" type="image/webp">
-                                <img src="images/profile-pic.jpg" alt="자유와혁신당 대표 황교안" class="w-full h-full object-cover" loading="lazy" width="500" height="500">
+                                <img src="images/profile-pic.jpg" alt="자유와혁신당 대표 황교안" class="w-full h-full object-cover" loading="lazy" decoding="async" width="500" height="500">
                             </picture>
                         </div>
                         </div>
@@ -627,10 +645,14 @@
         const API_BASE = window.API_BASE;
 
         // 페이지 로드 시 최신 소식 로드
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             console.log('🚀 페이지 로드 시작');
+            
+            // WebP 감지를 가장 먼저 실행
+            await initImageOptimization();
+            
+            // 그 다음 뉴스 로드
             loadLatestNews();
-            initImageOptimization();
             
             // WebP 상태 확인용 디버깅
             setTimeout(() => {
@@ -642,12 +664,24 @@
                     userAgent: navigator.userAgent
                 });
                 
-                // 실제 배경 이미지 확인
+                // 실제 배경 이미지 확인 및 강제 적용
                 const heroSection = document.querySelector('.hero-section');
                 if (heroSection) {
                     const computedStyle = window.getComputedStyle(heroSection);
                     const backgroundImage = computedStyle.backgroundImage;
                     console.log('🖼️ 히어로 섹션 배경 이미지:', backgroundImage);
+                    
+                    // WebP 지원시 강제로 WebP 이미지 적용
+                    if (hasWebPClass && !backgroundImage.includes('hero-image.webp')) {
+                        console.log('🔄 WebP 이미지로 강제 변경 중...');
+                        heroSection.style.setProperty('background-image', "url('images/hero-image.webp')", 'important');
+                        
+                        // 변경 후 재확인
+                        setTimeout(() => {
+                            const newStyle = window.getComputedStyle(heroSection);
+                            console.log('✅ 변경된 배경 이미지:', newStyle.backgroundImage);
+                        }, 100);
+                    }
                 }
             }, 1000);
         });
@@ -1125,33 +1159,33 @@
         
         /* WebP 지원 확인 및 fallback */
         .hero-section {
-            background-image: url('images/hero-image.jpg'); /* fallback */
+            background-image: url('images/hero-image.jpg') !important; /* fallback */
         }
         
         .webp .hero-section {
-            background-image: url('images/hero-image.webp');
+            background-image: url('images/hero-image.webp') !important;
         }
         
         /* 추가 이미지 fallback */
         .news-image-activity {
-            background-image: url('images/activity.jpg');
+            background-image: url('images/activity.jpg') !important;
         }
         .webp .news-image-activity {
-            background-image: url('images/activity.webp');
+            background-image: url('images/activity.webp') !important;
         }
         
         .news-image-sit {
-            background-image: url('images/sit-pic.jpg');
+            background-image: url('images/sit-pic.jpg') !important;
         }
         .webp .news-image-sit {
-            background-image: url('images/sit-pic.webp');
+            background-image: url('images/sit-pic.webp') !important;
         }
         
         .news-image-flag {
-            background-image: url('images/flag-pic.jpg');
+            background-image: url('images/flag-pic.jpg') !important;
         }
         .webp .news-image-flag {
-            background-image: url('images/flag-pic.webp');
+            background-image: url('images/flag-pic.webp') !important;
         }
         
         /* 이미지 로딩 상태 */
