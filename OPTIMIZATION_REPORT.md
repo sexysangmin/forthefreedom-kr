@@ -4,7 +4,7 @@
 
 ### ✅ **잘 구현된 부분**
 - **반응형 디자인**: Tailwind CSS 기반 모바일 퍼스트
-- **CMS 시스템**: Netlify CMS + GitHub Actions 자동화
+- **관리자 시스템**: 자체 서버 기반 CMS + GitHub Actions 자동화
 - **브랜드 통일성**: #A50034 색상으로 일관된 디자인
 - **네비게이션**: nav.js로 모든 페이지 통일
 - **성능**: 경량화된 HTML/CSS 구조
@@ -311,8 +311,8 @@ Google Analytics 4 설정:
 ### **현재 스택**
 ```
 Frontend: HTML5, CSS3, JavaScript, Tailwind CSS
-CMS: Netlify CMS + GitHub Actions
-Hosting: Netlify
+CMS: 자체 서버 기반 관리자 시스템 + GitHub Actions  
+Hosting: Vercel + Railway (API)
 ```
 
 ### **개선된 스택 제안**

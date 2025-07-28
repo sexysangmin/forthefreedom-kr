@@ -141,7 +141,7 @@
                     <span style="font-weight: 700;">자유</span><span style="font-weight: 400;">와</span><span style="font-weight: 700;">혁신</span><br><span style="font-size: 0.85em;">자유민주주의와 혁신의 미래</span>
                 </h1>
                 <p style="font-size: clamp(1.1rem, 3vw, 1.5rem); margin-bottom: 2rem; font-weight: 400; line-height: 1.6; font-family: 'Inter', 'Noto Sans KR', sans-serif; max-width: 90%; text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">
-                    <span class="mobile-break">부정선거 • 반국가세력 척결로<br class="mobile-only">청년에게 미래를!!</span>
+                    <span class="mobile-break">부정선거 • 반국가세력 척결로 <br class="mobile-only">청년에게 미래를!!</span>
                 </p>
                 <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" style="background-color: #A50034; color: white; padding: 0.875rem 2rem; font-size: clamp(1rem, 2.5vw, 1.125rem); font-weight: 500; border: none; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', 'Noto Sans KR', sans-serif; margin-top: 1rem; text-decoration: none; display: inline-block; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);" onmouseover="this.style.backgroundColor='#8B002C'" onmouseout="this.style.backgroundColor='#A50034'">
                 당원 가입하기
@@ -628,8 +628,28 @@
 
         // 페이지 로드 시 최신 소식 로드
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 페이지 로드 시작');
             loadLatestNews();
             initImageOptimization();
+            
+            // WebP 상태 확인용 디버깅
+            setTimeout(() => {
+                const hasWebPClass = document.documentElement.classList.contains('webp');
+                const hasNoWebPClass = document.documentElement.classList.contains('no-webp');
+                console.log('🔍 WebP 클래스 상태:', {
+                    webp: hasWebPClass,
+                    noWebp: hasNoWebPClass,
+                    userAgent: navigator.userAgent
+                });
+                
+                // 실제 배경 이미지 확인
+                const heroSection = document.querySelector('.hero-section');
+                if (heroSection) {
+                    const computedStyle = window.getComputedStyle(heroSection);
+                    const backgroundImage = computedStyle.backgroundImage;
+                    console.log('🖼️ 히어로 섹션 배경 이미지:', backgroundImage);
+                }
+            }, 1000);
         });
         
         // 🖼️ 이미지 최적화 초기화
@@ -663,24 +683,43 @@
             }
         }
         
-        // WebP 지원 감지 (개선된 버전)
+        // WebP 지원 감지 (더 간단하고 확실한 버전)
         function detectWebPSupport() {
             return new Promise((resolve) => {
+                // 1. Canvas 방법으로 먼저 감지
+                const canvas = document.createElement('canvas');
+                canvas.width = 1;
+                canvas.height = 1;
+                const ctx = canvas.getContext('2d');
+                
+                try {
+                    const dataURL = canvas.toDataURL('image/webp');
+                    if (dataURL.indexOf('data:image/webp') === 0) {
+                        document.documentElement.classList.add('webp');
+                        console.log('✅ WebP 지원됨 (Canvas 방법)');
+                        resolve(true);
+                        return;
+                    }
+                } catch (e) {
+                    console.log('Canvas WebP 감지 실패:', e);
+                }
+                
+                // 2. 백업: 기존 이미지 방법
                 const webp = new Image();
                 webp.onload = () => {
-                    const support = webp.width > 0 && webp.height > 0;
-                    if (support) {
+                    if (webp.height === 2) {
                         document.documentElement.classList.add('webp');
-                        console.log('WebP 지원됨');
+                        console.log('✅ WebP 지원됨 (Image 방법)');
+                        resolve(true);
                     } else {
                         document.documentElement.classList.add('no-webp');
-                        console.log('WebP 지원 안됨');
+                        console.log('❌ WebP 지원 안됨');
+                        resolve(false);
                     }
-                    resolve(support);
                 };
                 webp.onerror = () => {
                     document.documentElement.classList.add('no-webp');
-                    console.log('WebP 지원 안됨 (오류)');
+                    console.log('❌ WebP 지원 안됨 (오류)');
                     resolve(false);
                 };
                 webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';

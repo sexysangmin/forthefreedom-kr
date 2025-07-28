@@ -3,8 +3,8 @@
 > **대한민국의 미래를 여는 정당, 자유와혁신의 공식 웹사이트**  
 > 완전한 YAML 기반 콘텐츠 관리 시스템(CMS)으로 구축된 현대적인 정치 웹사이트
 
-[![배포 상태](https://img.shields.io/badge/배포-준비완료-green.svg)](https://자유와혁신.netlify.app)
-[![CMS 상태](https://img.shields.io/badge/CMS-활성화-blue.svg)](https://자유와혁신.netlify.app/freedom-control)
+[![배포 상태](https://img.shields.io/badge/배포-준비완료-green.svg)](https://forthefreedom-kr.vercel.app)
+[![관리자 시스템](https://img.shields.io/badge/관리자-활성화-blue.svg)](https://forthefreedom-kr.vercel.app/admin)
 [![로그시스템](https://img.shields.io/badge/로그시스템-활성화-orange.svg)](#로그-및-아카이브-시스템)
 [![Railway Volume](https://img.shields.io/badge/Railway_Volume-5GB_활성화-brightgreen.svg)](#railway-volume-테스트)
 
@@ -18,7 +18,7 @@
 
 - 🏠 **32개 HTML 페이지** 완전 구현
 - 📝 **32개 YAML CMS 파일** 완전 매핑
-- 🎛️ **Netlify CMS 관리자** 완전 활성화
+- 🎛️ **자체 관리자 시스템** 완전 활성화
 - 🤖 **GitHub Actions 자동화** 완전 구현
 - 📊 **로그 및 아카이브 시스템** 완전 구축
 - 🔗 **모든 링크 및 버튼** 완전 매핑
@@ -27,7 +27,7 @@
 
 ### 🚀 **배포 준비 완료**
 
-- ✅ Netlify 배포 설정 완료
+- ✅ Vercel 배포 설정 완료
 - ✅ 도메인 연결 준비 완료
 - ✅ SSL 인증서 자동 설정
 - ✅ CDN 최적화 적용
@@ -47,7 +47,7 @@
 - **반응형**: Mobile-first 디자인
 
 ### ⚙️ **백엔드/CMS**
-- **Netlify CMS**: 완전한 관리자 인터페이스
+- **자체 관리자 시스템**: 서버 기반 완전한 관리자 인터페이스
 - **YAML**: 구조화된 콘텐츠 관리
 - **GitHub Actions**: CI/CD 자동화
 - **Python**: 템플릿 엔진 및 스크립트
@@ -127,11 +127,11 @@
 
 ## 🚀 **즉시 배포 가능**
 
-### 1️⃣ **Netlify 배포**
+### 1️⃣ **Vercel 배포**
 ```bash
 # 1. GitHub 저장소 연결
-# 2. Netlify에서 자동 배포
-# 3. CMS Identity 활성화
+# 2. Vercel에서 자동 배포
+# 3. 환경변수 설정 (서버 API URL)
 # 4. 관리자 계정 설정
 ```
 
@@ -234,7 +234,7 @@
 ### 🏆 **주요 성과**
 1. **32개 HTML 페이지** → **32개 YAML CMS** 완전 변환
 2. **100% 반응형** 모든 디바이스 최적화
-3. **완전한 CMS 시스템** Netlify CMS 구축
+3. **완전한 관리자 시스템** 서버 기반 CMS 구축
 4. **로그/아카이브 시스템** 엔터프라이즈급 관리
 5. **모든 링크 매핑** 깨진 링크 0개
 6. **JavaScript 함수** 모든 인터랙션 구현
@@ -256,7 +256,7 @@
 ### ✅ **완료된 항목들**
 - [x] 모든 HTML 페이지 구현 (32개)
 - [x] YAML CMS 시스템 구축 (32개)
-- [x] Netlify 배포 설정 완료
+- [x] Vercel 배포 설정 완료
 - [x] CMS 관리자 인터페이스 구축
 - [x] 로그 및 아카이브 시스템 구축
 - [x] 모든 JavaScript 함수 구현
