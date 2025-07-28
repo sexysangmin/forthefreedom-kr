@@ -31,7 +31,18 @@ function loadNavigation() {
                             <div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
                                 <div class="py-2">
                                     <a href="${pathPrefix}about.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">당소개</a>
-                                    <a href="${pathPrefix}about/principles.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">강령, 당헌, 당규</a>
+                                    <div class="relative group/sub">
+                                        <a href="#" class="flex items-center justify-between px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">
+                                            강령, 당헌, 당규 <i class="fas fa-chevron-right text-xs ml-2"></i>
+                                        </a>
+                                        <div class="absolute left-full top-0 mt-0 ml-1 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
+                                            <div class="py-2">
+                                                <a href="${pathPrefix}about/principles.html#platform" class="block px-4 py-2 text-base text-gray-700 hover:bg-gray-50 hover:text-red-600">강령</a>
+                                                <a href="${pathPrefix}about/principles.html#charter" class="block px-4 py-2 text-base text-gray-700 hover:bg-gray-50 hover:text-red-600">당헌</a>
+                                                <a href="${pathPrefix}about/principles.html#rules" class="block px-4 py-2 text-base text-gray-700 hover:bg-gray-50 hover:text-red-600">당규</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <a href="${pathPrefix}about/founding.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">창당 스토리</a>
                                     <a href="${pathPrefix}about/organization.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">조직도</a>
                                     <div class="relative group/sub">
@@ -152,7 +163,9 @@ function loadNavigation() {
                             </button>
                             <div id="about-submenu" class="hidden bg-gray-50 border-l-4 border-red-600 ml-3">
                                 <a href="${pathPrefix}about.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">당소개</a>
-                                <a href="${pathPrefix}about/principles.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">강령, 당헌, 당규</a>
+                                <a href="${pathPrefix}about/principles.html#platform" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">강령</a>
+                                <a href="${pathPrefix}about/principles.html#charter" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">당헌</a>
+                                <a href="${pathPrefix}about/principles.html#rules" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">당규</a>
                                 <a href="${pathPrefix}about/founding.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">창당 스토리</a>
                                 <a href="${pathPrefix}about/organization.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">조직도</a>
                                 <a href="${pathPrefix}about/people-central.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">중앙당</a>

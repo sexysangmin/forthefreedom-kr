@@ -77,6 +77,10 @@
     <meta name="msapplication-TileImage" content="1x/Asset%202.png?v=2">
     <meta name="msapplication-TileColor" content="#A50034">
     
+    <!-- Critical 이미지 Preload -->
+    <link rel="preload" as="image" href="images/hero-image.webp" type="image/webp">
+    <link rel="preload" as="image" href="images/profile-pic.webp" type="image/webp">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -129,7 +133,7 @@
     <div id="navigation-container"></div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section hero-bg-responsive" style="height: 100vh; min-height: 600px; width: 100%; position: relative; margin: 0px; padding: 0px; overflow: hidden; background-image: url('images/hero-image.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: scroll; background-position: center; transform: translateY(0px);">
+    <section id="home" class="hero-section hero-bg-responsive" style="height: 100vh; min-height: 600px; width: 100%; position: relative; margin: 0px; padding: 0px; overflow: hidden; background-image: url('images/hero-image.webp'); background-size: cover; background-repeat: no-repeat; background-attachment: scroll; background-position: center; transform: translateY(0px);">
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.6), rgba(0,0,0,0.3)); z-index: 2;"></div>
         <div style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 10; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem;">
             <div style="max-width: 48rem; color: white; text-align: left; margin-left: 0; padding-left: 48px;">
@@ -172,15 +176,28 @@
                                 부정선거와 반국가행위를 엄단하고, 법치주의를 확립하여 국민이 안심하고 살 수 있는 나라, 4차 산업혁명을 선도하며 청년들에게 무한한 기회가 보장되는 나라를 만들겠습니다. 이를 위해 우리 당의 10대 핵심정책을 반드시 실현하겠습니다.
                             </p>
                         </div>
-                        <div class="pt-6 border-t border-gray-200">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-gray-900 font-bold text-xl">자유와혁신당 대표</p>
-                                    <p class="text-gray-700 font-medium text-lg mt-2">황 교 안</p>
+                        <div class="pt-8 border-t border-gray-200">
+                            <div class="flex items-end justify-between">
+                                <div class="flex flex-col">
+                                    <p class="text-gray-600 text-sm mb-1">자유와혁신</p>
+                                    <p class="text-gray-900 font-bold text-2xl">당 대표</p>
+                                    <p class="text-gray-500 text-sm mt-1 italic">대한민국 제 44대 국무총리</p>
                                 </div>
-                                <div class="w-24 h-24 flex items-center justify-center">
-                                    <div class="w-20 h-20 border-4 border-red-600 rounded-full flex items-center justify-center">
-                                        <span class="text-red-600 font-bold">당인</span>
+                                <div class="w-48 h-28 flex items-center justify-center">
+                                    <div class="relative w-full h-full border-2 border-red-600 rounded-lg bg-gray-50">
+                                        <!-- 깔끔한 네모 장식 -->
+                                        <div class="absolute top-1 left-1 w-3 h-3 bg-red-600 rounded-sm"></div>
+                                        <div class="absolute top-1 right-1 w-3 h-3 bg-red-600 rounded-sm"></div>
+                                        <div class="absolute bottom-1 left-1 w-3 h-3 bg-red-600 rounded-sm"></div>
+                                        <div class="absolute bottom-1 right-1 w-3 h-3 bg-red-600 rounded-sm"></div>
+                                        
+                                        <!-- 서명 -->
+                                        <div class="absolute inset-3 flex items-center justify-center">
+                                            <picture>
+                                                <source srcset="images/signiture.webp" type="image/webp">
+                                                <img src="images/signiture.PNG" alt="황교안 대표 서명" class="max-w-full max-h-full object-contain" loading="lazy" width="192" height="112">
+                                            </picture>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +207,10 @@
                 <div class="order-1 lg:order-2">
                     <div class="relative">
                         <div class="w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden border-8 border-gray-100 shadow-xl bg-gray-100">
-                            <img src="images/profile-pic.jpg" alt="자유와혁신당 대표 황교안" class="w-full h-full object-cover">
+                            <picture>
+                                <source srcset="images/profile-pic.webp" type="image/webp">
+                                <img src="images/profile-pic.jpg" alt="자유와혁신당 대표 황교안" class="w-full h-full object-cover" loading="lazy" width="500" height="500">
+                            </picture>
                         </div>
                         </div>
                     </div>
@@ -205,75 +225,84 @@
             <div class="text-center mb-16">
                 <div class="flex items-center justify-center mb-6">
                     <div class="w-4 h-4 bg-red-600 mr-4"></div>
-                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase">10대 핵심 정책</h2>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase">7대 핵심 정책</h2>
                 </div>
                 <h3 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                    국민 모두를 위한 10대 핵심 정책
+                    새로운 대한민국을 위한 7대 핵심 정책
                 </h3>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    자유와혁신의 10대 핵심 정책과제입니다. 국민 모두를 위한 정의, 공정, 희망의 미래를 약속합니다.
+                    자유와혁신의 7대 핵심 정강정책입니다. 국민 모두를 위한 정의, 공정, 희망의 미래를 약속합니다.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <!-- 정책 1 -->
+                <!-- 정책 1: 정의, 공정, 희망 -->
                 <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-balance-scale text-white text-xl"></i>
                     </div>
                     <h4 class="text-xl font-bold text-gray-900 mb-3">정의, 공정, 희망을 추구하는 가치 정당</h4>
-                    <p class="text-gray-600">특권과 불공정 척결, 법치 확립을 통한 공정사회 구현</p>
+                    <p class="text-gray-600">특권과 불공정, 편법과 부정부패의 고리를 단호히 끊어내고 법 앞에 만인이 평등한 사회 구현</p>
                 </div>
 
-                <!-- 정책 2 -->
+                <!-- 정책 2: 부정선거 척결 -->
                 <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-vote-yea text-white text-xl"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3">부정선거 척결</h4>
-                    <p class="text-gray-600">공명정대한 선거 시스템 구축과 엄정한 처벌 법제화</p>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">부정선거 세력 척결</h4>
+                    <p class="text-gray-600">사전투표제 폐지, 당일 투표·당일 수개표 원칙 확립으로 선거 시스템의 투명성 확보</p>
                 </div>
 
-                <!-- 정책 3 -->
+                <!-- 정책 3: 국가 안보 강화 -->
                 <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-shield-alt text-white text-xl"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3">반국가세력 척결</h4>
-                    <p class="text-gray-600">자유민주주의 수호와 국가안보 위협세력 엄단</p>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">국가 안보 및 사회 건전성 강화</h4>
+                    <p class="text-gray-600">반국가세력 엄단, 국정원 대공수사권 복원, 마약청 신설로 국민 안전과 일상 보호</p>
                 </div>
 
-                <!-- 정책 4 -->
+                <!-- 정책 4: 4차 산업 활성화 -->
                 <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-gavel text-white text-xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3">법치의 회복</h4>
-                    <p class="text-gray-600">국가안보 시스템 재정비와 국정원 대공 수사권 복원</p>
-                </div>
-
-                <!-- 정책 5 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-microchip text-white text-xl"></i>
                     </div>
                     <h4 class="text-xl font-bold text-gray-900 mb-3">4차 산업 활성화를 통한 미래도약</h4>
-                    <p class="text-gray-600">AI·로봇 등 첨단기술 강국으로 도약하는 미래산업 육성</p>
+                    <p class="text-gray-600">AI·로봇·양자컴퓨터 등 첨단기술 강국 육성과 초격차 기술 핵심 클러스터 구축</p>
                 </div>
 
-                <!-- 정책 6 -->
+                <!-- 정책 5: 청년 희망 사다리 -->
                 <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-rocket text-white text-xl"></i>
                     </div>
                     <h4 class="text-xl font-bold text-gray-900 mb-3">청년 희망 사다리 구축</h4>
-                    <p class="text-gray-600">청년 패스트트랙과 기회 확대로 희망찬 미래 보장</p>
+                    <p class="text-gray-600">청년 패스트트랙 마련, 내국인 역차별 금지, 사법시험 부활로 공정한 기회 보장</p>
+                </div>
+
+                <!-- 정책 6: 자유 통일 기반 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-handshake text-white text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">자유 통일의 기반 구축</h4>
+                    <p class="text-gray-600">통일 한국의 번영을 위한 사전 준비, 10만 통일꾼 확보 및 북한 주민 교육 프로그램</p>
+                </div>
+
+                <!-- 정책 7: 문화 융성 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-paint-brush text-white text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">문화 융성을 통한 행복한 대한민국</h4>
+                    <p class="text-gray-600">품격 있는 문화국가 실현, K-콘텐츠 전략적 수출 산업 육성으로 글로벌 문화강국 도약</p>
                 </div>
             </div>
 
             <div class="text-center">
                 <a class="inline-flex items-center px-8 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors" href="resources/policy.html">
-                    전체 10대 정책 보기 <i class="fas fa-arrow-right ml-2"></i>
+                    전체 7대 정강정책 보기 <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </div>
@@ -288,7 +317,10 @@
                     <div class="relative">
                         <div class="grid grid-cols-2 gap-4">
                             <div class="relative h-48 rounded-lg overflow-hidden group">
-                                <img src="images/activity.jpg" alt="당원 모임" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <picture>
+                                    <source srcset="images/activity.webp" type="image/webp">
+                                    <img src="images/activity.jpg" alt="당원 모임" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="192">
+                                </picture>
                                 <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                                     <div class="text-center text-white">
                                         <p class="text-white font-bold text-lg">당원 모임</p>
@@ -296,7 +328,10 @@
                                 </div>
                             </div>
                             <div class="relative h-48 rounded-lg overflow-hidden group">
-                                <img src="images/activity2.jpg" alt="소통 활동" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <picture>
+                                    <source srcset="images/activity2.webp" type="image/webp">
+                                    <img src="images/activity2.jpg" alt="소통 활동" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="192">
+                                </picture>
                                 <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                                     <div class="text-center text-white">
                                         <p class="text-white font-bold text-lg">소통 활동</p>
@@ -304,7 +339,10 @@
                                 </div>
                             </div>
                             <div class="relative h-48 rounded-lg overflow-hidden col-span-2 group">
-                                <img src="images/activity3.jpg" alt="당 활동 현장" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <picture>
+                                    <source srcset="images/activity3.webp" type="image/webp">
+                                    <img src="images/activity3.jpg" alt="당 활동 현장" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="800" height="192">
+                                </picture>
                                 <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                                     <div class="text-center text-white">
                                         <p class="text-white font-bold text-lg">당 활동 현장</p>
@@ -591,7 +629,40 @@
         // 페이지 로드 시 최신 소식 로드
         document.addEventListener('DOMContentLoaded', function() {
             loadLatestNews();
+            initImageOptimization();
         });
+        
+        // 🖼️ 이미지 최적화 초기화
+        function initImageOptimization() {
+            // WebP 지원 감지
+            detectWebPSupport();
+            
+            // Lazy loading 이미지 로드 완료 처리
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            lazyImages.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.classList.add('loaded');
+                });
+                
+                // 이미 로드된 이미지 처리
+                if (img.complete) {
+                    img.classList.add('loaded');
+                }
+            });
+        }
+        
+        // WebP 지원 감지
+        function detectWebPSupport() {
+            const webp = new Image();
+            webp.onload = webp.onerror = function () {
+                if (webp.height === 2) {
+                    document.documentElement.classList.add('webp');
+                } else {
+                    document.documentElement.classList.add('no-webp');
+                }
+            };
+            webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        }
 
         // 최신 소식 로드 (API 데이터 + 고정 썸네일)
         async function loadLatestNews() {
@@ -876,12 +947,14 @@
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            line-clamp: 2;
             overflow: hidden;
         }
         .line-clamp-3 {
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
+            line-clamp: 3;
             overflow: hidden;
         }
 
@@ -969,6 +1042,34 @@
         /* ⚡ 성능 최적화 */
         * {
             box-sizing: border-box;
+        }
+        
+        /* 🖼️ 이미지 로딩 최적화 */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: optimize-contrast;
+        }
+        
+        /* WebP 지원 확인 및 fallback */
+        .hero-section {
+            background-image: url('images/hero-image.jpg'); /* fallback */
+        }
+        
+        .webp .hero-section {
+            background-image: url('images/hero-image.webp');
+        }
+        
+        /* 이미지 로딩 상태 */
+        img[loading="lazy"] {
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        img[loading="lazy"]:not(.loaded) {
+            opacity: 0;
+        }
+        
+        img[loading="lazy"].loaded {
+            opacity: 1;
         }
         
         /* 🔄 애니메이션 안정화 */

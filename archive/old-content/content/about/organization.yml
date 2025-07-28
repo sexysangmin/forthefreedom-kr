@@ -109,8 +109,8 @@ special_committees:
       chair: "김○○ 위원장"
       members: 25
     
-    - name: "여성위원회"
-      purpose: "여성 정책 개발 및 성평등 실현"
+    - name: "가족위원회"
+      purpose: "가족 정책 개발 및 가족가치 실현"
       chair: "이○○ 위원장"
       members: 20
     

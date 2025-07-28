@@ -116,12 +116,12 @@ central_committee:
         - "호남권 대표 (4명)"
         - "충청권 대표 (3명)"
     
-    - category: "청년·여성 대표"
+    - category: "청년·가족 대표"
       count: 15
-      description: "청년층과 여성을 대표하는 위원들"
+      description: "청년층과 가족을 대표하는 위원들"
       representation:
         - "청년 위원 (8명)"
-        - "여성 위원 (7명)"
+        - "가족 위원 (7명)"
 
 # 자문위원 섹션
 advisory_committee:
@@ -163,9 +163,9 @@ next_generation:
     
     - name: "이○○"
       age: 32
-      position: "여성위원회 부위원장"
+      position: "가족위원회 부위원장"
       background: "시민사회 활동가 출신"
-      focus: "성평등, 일가정 양립"
+      focus: "가족가치, 일가정 양립"
       image: "/images/people/youth2.jpg"
       placeholder: true
     

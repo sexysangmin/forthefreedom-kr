@@ -1,0 +1,23 @@
+{
+  "name": "party-website-image-optimizer",
+  "version": "1.0.0",
+  "description": "자유와혁신 웹사이트 이미지 최적화 도구",
+  "main": "scripts/optimize-images.js",
+  "scripts": {
+    "optimize": "node scripts/optimize-images.js",
+    "install-deps": "npm install sharp",
+    "start": "npm run install-deps && npm run optimize"
+  },
+  "dependencies": {
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "image-optimization",
+    "webp",
+    "compression",
+    "website-performance"
+  ],
+  "author": "자유와혁신당",
+  "license": "MIT"
+} 

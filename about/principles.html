@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>강령·핵심가치 - 자유와혁신</title>
+    <title>강령·당헌·당규 - 자유와혁신</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,306 +32,406 @@
     <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('../images/night-pic.jpg') center/cover no-repeat;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
-            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">강령·핵심가치</h1>
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">강령·당헌·당규</h1>
             <p style="font-size:1.2rem; margin-top:1rem; text-shadow:1px 1px 2px rgba(0,0,0,0.5);">자유민주주의와 혁신을 통한 국가 재건</p>
         </div>
     </section>
 
     <main style="position:relative; z-index:1; background:#fff;">
-        <!-- Introduction Section -->
-        <section class="py-20 bg-white">
+        <!-- 탭 네비게이션 -->
+        <section class="py-8 bg-white border-b border-gray-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">자유와혁신의 강령</h2>
-                    <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                        자유와혁신은 대한민국의 자유민주주의 체제와 시장경제, 법치의 원칙을 신봉하고<br>
-                        혁신에 의한 정치·사회·경제·문화 발전을 추구하는 국민 모두를 위한 정당입니다.
-                    </p>
-                </div>
-                
-                <!-- 기본 이념 -->
-                <div class="bg-gradient-to-br from-red-50 to-red-100 p-12 rounded-2xl mb-16">
-                    <div class="text-center mb-8">
-                        <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-flag text-white text-3xl"></i>
+                <div class="flex justify-center">
+                    <div class="bg-gray-50 p-1 rounded-lg">
+                        <div class="flex space-x-1">
+                            <button id="tab-강령" class="tab-button px-8 py-3 rounded-md font-semibold text-lg transition-all duration-200" onclick="switchTab('강령')">
+                                <i class="fas fa-flag mr-2"></i>강령
+                            </button>
+                            <button id="tab-당헌" class="tab-button px-8 py-3 rounded-md font-semibold text-lg transition-all duration-200" onclick="switchTab('당헌')">
+                                <i class="fas fa-book mr-2"></i>당헌
+                            </button>
+                            <button id="tab-당규" class="tab-button px-8 py-3 rounded-md font-semibold text-lg transition-all duration-200" onclick="switchTab('당규')">
+                                <i class="fas fa-gavel mr-2"></i>당규
+                            </button>
                         </div>
-                        <h3 class="text-3xl font-bold text-red-900 mb-4">당의 기본 이념</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 강령 콘텐츠 -->
+        <div id="content-강령" class="tab-content">
+            <!-- Introduction Section -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">자유와혁신의 강령</h2>
+                        <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                            자유와혁신은 대한민국의 자유민주주의 체제와 시장경제, 법치의 원칙을 신봉하고<br>
+                            혁신에 의한 정치·사회·경제·문화 발전을 추구하는 국민 모두를 위한 정당입니다.
+                        </p>
+                    </div>
+                    
+                    <!-- 기본 이념 -->
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-12 rounded-2xl mb-16">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-flag text-white text-3xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-red-900 mb-4">당의 기본 이념</h3>
+                        </div>
+                        <div class="prose prose-lg max-w-none text-center">
+                            <p class="text-red-800 text-xl leading-relaxed mb-6">
+                                오늘날 대한민국이 세계 최상위 국가로 우뚝 선 데는 이승만 건국 대통령의 자유민주주의와 
+                                시장경제의 비전 그리고 한·미 동맹의 초석을 세운 데 힘입은 바 큽니다.
+                            </p>
+                            <p class="text-red-800 text-xl leading-relaxed">
+                                6·25 전쟁 후, 반공 국시 하에 박정희 산업화 대통령의 혁신을 바탕으로 한 국가개조는 
+                                오늘날의 부국강병과 민생 안정에 결정적으로 기여했습니다. 자유와혁신은 시대를 앞서 간 
+                                이들 비저너리 선각자들의 정신을 계승, 새로운 대한민국 시대를 열어나갈 것입니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 현실 인식과 위기 의식 -->
+                    <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                        <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-red-600">
+                            <h3 class="text-2xl font-bold text-red-600 mb-6">
+                                <i class="fas fa-exclamation-triangle mr-3"></i>
+                                현실 인식
+                            </h3>
+                            <div class="space-y-4 text-gray-700">
+                                <p>불행히도 작금의 대한민국의 현실은 물질적 풍요 속에 국민정신은 이완되고 안일한 나머지, 북한 봉건 세습 독재를 추종하는 반국가세력이 준동해도 전혀 경각심을 갖지 않게 되었습니다.</p>
+                                <p>6·25 때 쳐들어 온 중국 공산당이 사회 곳곳에 침투해도 경보는 발령되지 않고 있습니다.</p>
+                                <p>사악한 이들 반국가 세력은 외세와 결탁하여 우리의 선거를 조작하기 시작했고 민의를 거듭 왜곡해 왔습니다.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-blue-600">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-6">
+                                <i class="fas fa-shield-alt mr-3"></i>
+                                창당 의지
+                            </h3>
+                            <div class="space-y-4 text-gray-700">
+                                <p>2020년 4.15 총선 이래 거듭된 투·개표 조작을 고발하며 경고의 목소리를 높였던 애국 세력과 분노한 청년들이 급기야 거리로 쏟아져 나왔습니다.</p>
+                                <p>거악과 체제 투쟁을 벌이기 위해 '자유와혁신'을 창당했습니다.</p>
+                                <p>우리는 제도권에 진출, 더 큰 목소리로 위기를 외치며 의기충천하여 싸워나갈 것입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 당면 과제와 목표 -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">당면 과제와 목표</h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                            자유와혁신이 추진할 단계별 과제와 궁극적 목표입니다.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                        <!-- 즉시 과제 -->
+                        <div class="bg-white p-8 rounded-lg shadow-lg">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-gavel text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-red-600">즉시 추진</h3>
+                            </div>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-1"></i>
+                                    <span>부정선거 카르텔 발본색원</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-1"></i>
+                                    <span>공모자들 단죄</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-1"></i>
+                                    <span>동맹국과의 긴밀 협력</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 단기 과제 -->
+                        <div class="bg-white p-8 rounded-lg shadow-lg">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-shield-alt text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-blue-600">단기 목표</h3>
+                            </div>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-600 mr-2 mt-1"></i>
+                                    <span>반국가세력 척결</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-600 mr-2 mt-1"></i>
+                                    <span>정보기관 위상과 기능 회복</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-600 mr-2 mt-1"></i>
+                                    <span>국가안보 시스템 강화</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 장기 비전 -->
+                        <div class="bg-white p-8 rounded-lg shadow-lg">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-globe text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-green-600">장기 비전</h3>
+                            </div>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-600 mr-2 mt-1"></i>
+                                    <span>통일한국 실현</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-600 mr-2 mt-1"></i>
+                                    <span>글로벌 굴지 강대국 건설</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-600 mr-2 mt-1"></i>
+                                    <span>홍익인간 이념 세계 구현</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 궁극적 목표 -->
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-12 rounded-2xl">
+                        <div class="text-center">
+                            <h3 class="text-3xl font-bold text-green-900 mb-6">궁극적 목표</h3>
+                            <p class="text-green-800 text-xl leading-relaxed">
+                                유라시아 대륙과 맞닿은 통일한국이 미국 등 동맹국과 손잡고 세계 평화와 발전에 
+                                결정적으로 공헌할 수 있는 글로벌 굴지의 강대국에서 최대 정당이 되는 것을 목표로 삼습니다. 
+                                자랑스러운 선조로부터 물려받은 홍익인간의 이념을 세계 무대에서 구현할 것입니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 혁신 정책 방향 -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">혁신 정책 방향</h2>
+                        <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                            초일류정상국가를 지향하는 자유와혁신의 혁신적 정책 방향입니다.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div class="space-y-8">
+                            <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-blue-600">
+                                <h3 class="text-2xl font-bold text-blue-600 mb-4">
+                                    <i class="fas fa-microchip mr-3"></i>
+                                    4차 산업혁명 대응
+                                </h3>
+                                <p class="text-gray-700 leading-relaxed">
+                                    4차 산업혁명으로 시대사조가 바뀌는 세기적 전환기에 대한민국의 첨단 산업을 
+                                    주도할 수 있도록 파격적인 정책 발굴에 적극 나설 것입니다.
+                                </p>
+                            </div>
+
+                            <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-purple-600">
+                                <h3 class="text-2xl font-bold text-purple-600 mb-4">
+                                    <i class="fas fa-users mr-3"></i>
+                                    청년 인재 기용
+                                </h3>
+                                <p class="text-gray-700 leading-relaxed">
+                                    전국 당 조직에 젊은 청년들을 과감하게 지도부에 기용, 대한민국 수립 이래 
+                                    가장 탁월한 세대라는 이들에게 기량을 발휘할 수 있는 기회를 한껏 부여할 것입니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-8">
+                            <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-red-600">
+                                <h3 class="text-2xl font-bold text-red-600 mb-4">
+                                    <i class="fas fa-shield-virus mr-3"></i>
+                                    사회악 퇴치
+                                </h3>
+                                <p class="text-gray-700 leading-relaxed">
+                                    좌파 정부에서 기하급수적으로 늘어난 마약에 대해 우리 사회를 단번에 병들게 할 수 있는 
+                                    치명적 사회악이므로 강력한 마약 퇴치를 통해 건전한 사회 분위기를 진작하는데 앞장 설 것입니다.
+                                </p>
+                            </div>
+
+                            <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-green-600">
+                                <h3 class="text-2xl font-bold text-green-600 mb-4">
+                                    <i class="fas fa-balance-scale mr-3"></i>
+                                    포퓰리즘 정책 개선
+                                </h3>
+                                <p class="text-gray-700 leading-relaxed">
+                                    부정선거로 선출된 국회의원 등이 남발하는 대중인기영합주의적 정책과 
+                                    국내 체류 외국인 우대 현실 등 포퓰리즘 정책의 해악을 바로잡고 혁신적 대안을 제시할 것입니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 핵심 가치 -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">핵심 가치</h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                            자유와혁신의 모든 정책과 활동의 기준이 되는 핵심가치입니다.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                                <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-flag text-red-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">자유민주주의</h3>
+                            <p class="text-gray-600 mb-6">헌법적 가치를 바탕으로 한 자유민주주의 체제 수호</p>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-cogs text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">혁신</h3>
+                            <p class="text-gray-600 mb-6">과감한 변화와 지속적 발전을 통한 미래 준비</p>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">국가안보</h3>
+                            <p class="text-gray-600 mb-6">반국가세력 척결과 강력한 안보체계 구축</p>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                            <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-globe text-purple-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">세계평화</h3>
+                            <p class="text-gray-600 mb-6">홍익인간 이념으로 세계 평화와 발전에 기여</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 다짐과 약속 -->
+            <section class="py-20 bg-red-600 text-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div class="mb-8">
+                        <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-fist-raised text-red-600 text-3xl"></i>
+                        </div>
+                        <h2 class="text-4xl font-bold mb-6">국민과의 약속</h2>
                     </div>
                     <div class="prose prose-lg max-w-none text-center">
-                        <p class="text-red-800 text-xl leading-relaxed mb-6">
-                            오늘날 대한민국이 세계 최상위 국가로 우뚝 선 데는 이승만 건국 대통령의 자유민주주의와 
-                            시장경제의 비전 그리고 한·미 동맹의 초석을 세운 데 힘입은 바 큽니다.
-                        </p>
-                        <p class="text-red-800 text-xl leading-relaxed">
-                            6·25 전쟁 후, 반공 국시 하에 박정희 산업화 대통령의 혁신을 바탕으로 한 국가개조는 
-                            오늘날의 부국강병과 민생 안정에 결정적으로 기여했습니다. 자유와혁신은 시대를 앞서 간 
-                            이들 비저너리 선각자들의 정신을 계승, 새로운 대한민국 시대를 열어나갈 것입니다.
+                        <p class="text-xl text-red-100 leading-relaxed">
+                            헌법기관임을 내세워 뻔뻔하게 부정, 불법을 저지르는 국가기관과 구태 정당에 염증을 느껴 
+                            반국가 세력에 분노하여 굳게 뭉친 우리 '자유와혁신'은<br><br>
+                            <strong class="text-white text-2xl">중단없는 투쟁으로 자유민주주의 재건과 혁신적 국가 개조에 적극적으로 나설 것임을 국민께 굳게 약속드립니다.</strong>
                         </p>
                     </div>
-                </div>
 
-                <!-- 현실 인식과 위기 의식 -->
-                <div class="grid lg:grid-cols-2 gap-12 mb-16">
-                    <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-red-600">
-                        <h3 class="text-2xl font-bold text-red-600 mb-6">
-                            <i class="fas fa-exclamation-triangle mr-3"></i>
-                            현실 인식
-                        </h3>
-                        <div class="space-y-4 text-gray-700">
-                            <p>불행히도 작금의 대한민국의 현실은 물질적 풍요 속에 국민정신은 이완되고 안일한 나머지, 북한 봉건 세습 독재를 추종하는 반국가세력이 준동해도 전혀 경각심을 갖지 않게 되었습니다.</p>
-                            <p>6·25 때 쳐들어 온 중국 공산당이 사회 곳곳에 침투해도 경보는 발령되지 않고 있습니다.</p>
-                            <p>사악한 이들 반국가 세력은 외세와 결탁하여 우리의 선거를 조작하기 시작했고 민의를 거듭 왜곡해 왔습니다.</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-blue-600">
-                        <h3 class="text-2xl font-bold text-blue-600 mb-6">
-                            <i class="fas fa-shield-alt mr-3"></i>
-                            창당 의지
-                        </h3>
-                        <div class="space-y-4 text-gray-700">
-                            <p>2020년 4.15 총선 이래 거듭된 투·개표 조작을 고발하며 경고의 목소리를 높였던 애국 세력과 분노한 청년들이 급기야 거리로 쏟아져 나왔습니다.</p>
-                            <p>거악과 체제 투쟁을 벌이기 위해 '자유와혁신'을 창당했습니다.</p>
-                            <p>우리는 제도권에 진출, 더 큰 목소리로 위기를 외치며 의기충천하여 싸워나갈 것입니다.</p>
-                        </div>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                        <a href="../members/join.html" class="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            투쟁에 동참하기
+                        </a>
+                        <a href="../resources/policy.html" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
+                            정책 보기
+                        </a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
-        <!-- 당면 과제와 목표 -->
-        <section class="py-20 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">당면 과제와 목표</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신이 추진할 단계별 과제와 궁극적 목표입니다.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-                    <!-- 즉시 과제 -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg">
-                        <div class="text-center mb-6">
-                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-gavel text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-red-600">즉시 추진</h3>
+        <!-- 당헌 콘텐츠 -->
+        <div id="content-당헌" class="tab-content hidden">
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                            <i class="fas fa-book text-blue-600 text-4xl"></i>
                         </div>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mr-2 mt-1"></i>
-                                <span>부정선거 카르텔 발본색원</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mr-2 mt-1"></i>
-                                <span>공모자들 단죄</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-red-600 mr-2 mt-1"></i>
-                                <span>동맹국과의 긴밀 협력</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- 단기 과제 -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg">
-                        <div class="text-center mb-6">
-                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-shield-alt text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-blue-600">단기 목표</h3>
-                        </div>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-blue-600 mr-2 mt-1"></i>
-                                <span>반국가세력 척결</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-blue-600 mr-2 mt-1"></i>
-                                <span>정보기관 위상과 기능 회복</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-blue-600 mr-2 mt-1"></i>
-                                <span>국가안보 시스템 강화</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- 장기 비전 -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg">
-                        <div class="text-center mb-6">
-                            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-globe text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-green-600">장기 비전</h3>
-                        </div>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-600 mr-2 mt-1"></i>
-                                <span>통일한국 실현</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-600 mr-2 mt-1"></i>
-                                <span>글로벌 굴지 강대국 건설</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-600 mr-2 mt-1"></i>
-                                <span>홍익인간 이념 세계 구현</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- 궁극적 목표 -->
-                <div class="bg-gradient-to-br from-green-50 to-green-100 p-12 rounded-2xl">
-                    <div class="text-center">
-                        <h3 class="text-3xl font-bold text-green-900 mb-6">궁극적 목표</h3>
-                        <p class="text-green-800 text-xl leading-relaxed">
-                            유라시아 대륙과 맞닿은 통일한국이 미국 등 동맹국과 손잡고 세계 평화와 발전에 
-                            결정적으로 공헌할 수 있는 글로벌 굴지의 강대국에서 최대 정당이 되는 것을 목표로 삼습니다. 
-                            자랑스러운 선조로부터 물려받은 홍익인간의 이념을 세계 무대에서 구현할 것입니다.
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">당헌</h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                            자유와혁신의 당헌은 현재 준비 중입니다.
                         </p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 혁신 정책 방향 -->
-        <section class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">혁신 정책 방향</h2>
-                    <p class="text-xl text-gray-600 max-w-4xl mx-auto">
-                        초일류정상국가를 지향하는 자유와혁신의 혁신적 정책 방향입니다.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="space-y-8">
-                        <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-blue-600">
-                            <h3 class="text-2xl font-bold text-blue-600 mb-4">
-                                <i class="fas fa-microchip mr-3"></i>
-                                4차 산업혁명 대응
-                            </h3>
-                            <p class="text-gray-700 leading-relaxed">
-                                4차 산업혁명으로 시대사조가 바뀌는 세기적 전환기에 대한민국의 첨단 산업을 
-                                주도할 수 있도록 파격적인 정책 발굴에 적극 나설 것입니다.
-                            </p>
+                    
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-16 rounded-2xl text-center">
+                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                            <i class="fas fa-clock text-white text-2xl"></i>
                         </div>
-
-                        <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-purple-600">
-                            <h3 class="text-2xl font-bold text-purple-600 mb-4">
-                                <i class="fas fa-users mr-3"></i>
-                                청년 인재 기용
-                            </h3>
-                            <p class="text-gray-700 leading-relaxed">
-                                전국 당 조직에 젊은 청년들을 과감하게 지도부에 기용, 대한민국 수립 이래 
-                                가장 탁월한 세대라는 이들에게 기량을 발휘할 수 있는 기회를 한껏 부여할 것입니다.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-8">
-                        <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-red-600">
-                            <h3 class="text-2xl font-bold text-red-600 mb-4">
-                                <i class="fas fa-shield-virus mr-3"></i>
-                                사회악 퇴치
-                            </h3>
-                            <p class="text-gray-700 leading-relaxed">
-                                좌파 정부에서 기하급수적으로 늘어난 마약에 대해 우리 사회를 단번에 병들게 할 수 있는 
-                                치명적 사회악이므로 강력한 마약 퇴치를 통해 건전한 사회 분위기를 진작하는데 앞장 설 것입니다.
-                            </p>
-                        </div>
-
-                        <div class="bg-white p-8 rounded-lg shadow-lg border-l-4 border-green-600">
-                            <h3 class="text-2xl font-bold text-green-600 mb-4">
-                                <i class="fas fa-balance-scale mr-3"></i>
-                                포퓰리즘 정책 개선
-                            </h3>
-                            <p class="text-gray-700 leading-relaxed">
-                                부정선거로 선출된 국회의원 등이 남발하는 대중인기영합주의적 정책과 
-                                국내 체류 외국인 우대 현실 등 포퓰리즘 정책의 해악을 바로잡고 혁신적 대안을 제시할 것입니다.
-                            </p>
+                        <h3 class="text-3xl font-bold text-blue-900 mb-6">곧 공개될 예정입니다</h3>
+                        <p class="text-blue-800 text-xl leading-relaxed mb-8">
+                            자유와혁신의 당헌은 당의 조직과 운영에 관한 기본 규범으로,<br>
+                            민주적이고 투명한 당 운영을 위한 체계를 담고 있습니다.<br><br>
+                            보다 완성도 높은 당헌을 제정하기 위해 전문가와 당원들의 의견을 수렴하고 있으며,<br>
+                            조만간 공개할 예정입니다.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="../members/join.html" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                당원 가입하기
+                            </a>
+                            <a href="../news.html" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors">
+                                최신 소식 보기
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
-        <!-- 핵심 가치 -->
-        <section class="py-20 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">핵심 가치</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신의 모든 정책과 활동의 기준이 되는 핵심가치입니다.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-flag text-red-600 text-2xl"></i>
+        <!-- 당규 콘텐츠 -->
+        <div id="content-당규" class="tab-content hidden">
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                            <i class="fas fa-gavel text-green-600 text-4xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">자유민주주의</h3>
-                        <p class="text-gray-600 mb-6">헌법적 가치를 바탕으로 한 자유민주주의 체제 수호</p>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">당규</h2>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                            자유와혁신의 당규는 현재 준비 중입니다.
+                        </p>
                     </div>
-
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-cogs text-blue-600 text-2xl"></i>
+                    
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-16 rounded-2xl text-center">
+                        <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                            <i class="fas fa-clock text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">혁신</h3>
-                        <p class="text-gray-600 mb-6">과감한 변화와 지속적 발전을 통한 미래 준비</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
+                        <h3 class="text-3xl font-bold text-green-900 mb-6">곧 공개될 예정입니다</h3>
+                        <p class="text-green-800 text-xl leading-relaxed mb-8">
+                            자유와혁신의 당규는 당의 세부 운영 규칙과 절차를 정하는 실무 규범으로,<br>
+                            효율적이고 공정한 당 활동을 보장하는 구체적인 지침을 담고 있습니다.<br><br>
+                            당원들의 권익 보호와 민주적 의사결정을 위한 상세한 규정을 마련하고 있으며,<br>
+                            조만간 공개할 예정입니다.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="../members/join.html" class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                                당원 가입하기
+                            </a>
+                            <a href="../support.html" class="border-2 border-green-600 text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-colors">
+                                후원하기
+                            </a>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">국가안보</h3>
-                        <p class="text-gray-600 mb-6">반국가세력 척결과 강력한 안보체계 구축</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                        <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-globe text-purple-600 text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">세계평화</h3>
-                        <p class="text-gray-600 mb-6">홍익인간 이념으로 세계 평화와 발전에 기여</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- 다짐과 약속 -->
-        <section class="py-20 bg-red-600 text-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div class="mb-8">
-                    <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-fist-raised text-red-600 text-3xl"></i>
-                    </div>
-                    <h2 class="text-4xl font-bold mb-6">국민과의 약속</h2>
-                </div>
-                <div class="prose prose-lg max-w-none text-center">
-                    <p class="text-xl text-red-100 leading-relaxed">
-                        헌법기관임을 내세워 뻔뻔하게 부정, 불법을 저지르는 국가기관과 구태 정당에 염증을 느껴 
-                        반국가 세력에 분노하여 굳게 뭉친 우리 '자유와혁신'은<br><br>
-                        <strong class="text-white text-2xl">중단없는 투쟁으로 자유민주주의 재건과 혁신적 국가 개조에 적극적으로 나설 것임을 국민께 굳게 약속드립니다.</strong>
-                    </p>
-                </div>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                    <a href="../members/join.html" class="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                        투쟁에 동참하기
-                    </a>
-                    <a href="../resources/policy.html" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
-                        정책 보기
-                    </a>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer class="bg-gray-800 text-white py-12">
@@ -361,10 +461,10 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">연락처</h4>
                     <div class="text-gray-400 space-y-2">
-                        <p>서울특별시 중구 세종대로 1가 31</p>
-                        <p>정동빌딩 7층</p>
-                        <p>Tel: 02-1234-5678</p>
-                        <p>Email: info@jayuhyeoksin.kr</p>
+                        <p>서울 용산구 청파로45길 19</p>
+                        <p>복조빌딩 3층</p>
+                        <p>Tel: 연락처 준비중</p>
+                        <p>Email: 이메일 준비중</p>
                     </div>
                 </div>
             </div>
@@ -373,6 +473,93 @@
             </div>
         </div>
     </footer>
+
+    <!-- 탭 전환 스크립트 -->
+    <script>
+        // 영어 해시 → 한글 탭 매핑
+        const hashToTab = {
+            'platform': '강령',
+            'charter': '당헌', 
+            'rules': '당규'
+        };
+        
+        // 한글 탭 → 영어 해시 매핑 (역방향)
+        const tabToHash = {
+            '강령': 'platform',
+            '당헌': 'charter',
+            '당규': 'rules'
+        };
+        
+        // 탭 전환 함수
+        function switchTab(tabName) {
+            // 모든 탭 버튼에서 active 클래스 제거
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('bg-red-600', 'text-white', 'shadow-md');
+                button.classList.add('text-gray-600', 'hover:text-gray-800');
+            });
+            
+            // 모든 탭 콘텐츠 숨김
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // 선택된 탭 버튼 활성화
+            const activeButton = document.getElementById(`tab-${tabName}`);
+            if (activeButton) {
+                activeButton.classList.remove('text-gray-600', 'hover:text-gray-800');
+                activeButton.classList.add('bg-red-600', 'text-white', 'shadow-md');
+            }
+            
+            // 선택된 탭 콘텐츠 표시
+            const activeContent = document.getElementById(`content-${tabName}`);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+            }
+            
+            // URL 해시 업데이트 (영어 해시 사용)
+            const englishHash = tabToHash[tabName] || 'platform';
+            window.history.replaceState(null, null, `#${englishHash}`);
+        }
+        
+        // 페이지 로드 시 URL 해시에 따라 탭 설정
+        function initializeTabs() {
+            const hash = window.location.hash.substring(1); // # 제거
+            
+            // 영어 해시를 한글 탭으로 변환
+            const tabName = hashToTab[hash];
+            
+            if (tabName) {
+                switchTab(tabName);
+            } else {
+                // 기본값: 강령
+                switchTab('강령');
+            }
+        }
+        
+        // 해시 변경 이벤트 리스너
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1);
+            const tabName = hashToTab[hash];
+            
+            if (tabName) {
+                switchTab(tabName);
+            }
+        });
+        
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTabs();
+        });
+        
+        // 탭 버튼 기본 스타일 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.tab-button').forEach(button => {
+                if (!button.classList.contains('bg-red-600')) {
+                    button.classList.add('text-gray-600', 'hover:text-gray-800');
+                }
+            });
+        });
+    </script>
 
     <script src="../nav.js"></script>
     <script src="../script.js"></script>
