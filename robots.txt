@@ -27,4 +27,4 @@ Sitemap: https://forthefreedom.kr/sitemap.xml
 Crawl-delay: 1
 
 # 검색 키워드 관련 힌트 (주석으로)
-# 황교안신당, 자유와혁신, 자유와혁신당, 자혁당, 자유당 
+# 황교안신당, 자유와혁신, 자혁당, 자유당 
