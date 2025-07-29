@@ -406,5 +406,4 @@ document.addEventListener('DOMContentLoaded', function() {
     loadNavigation();
     
     // onclick 속성이 이미 설정되어 있으므로 추가 이벤트 리스너는 불필요
-    console.log('Navigation loaded with mobile menu functionality');
 });

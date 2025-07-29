@@ -109,7 +109,6 @@
                 const dataURL = canvas.toDataURL('image/webp');
                 if (dataURL.indexOf('data:image/webp') === 0) {
                     document.documentElement.classList.add('webp');
-                    console.log('⚡ 즉시 WebP 감지 완료');
                 } else {
                     document.documentElement.classList.add('no-webp');
                 }
@@ -645,41 +644,23 @@
 
         // 페이지 로드 시 최신 소식 로드
         document.addEventListener('DOMContentLoaded', async function() {
-            console.log('🚀 페이지 로드 시작');
-            
             // WebP 감지를 가장 먼저 실행
             await initImageOptimization();
             
             // 그 다음 뉴스 로드
             loadLatestNews();
             
-            // WebP 상태 확인용 디버깅
+            // WebP 강제 적용 로직
             setTimeout(() => {
                 const hasWebPClass = document.documentElement.classList.contains('webp');
-                const hasNoWebPClass = document.documentElement.classList.contains('no-webp');
-                console.log('🔍 WebP 클래스 상태:', {
-                    webp: hasWebPClass,
-                    noWebp: hasNoWebPClass,
-                    userAgent: navigator.userAgent
-                });
-                
-                // 실제 배경 이미지 확인 및 강제 적용
                 const heroSection = document.querySelector('.hero-section');
-                if (heroSection) {
+                if (heroSection && hasWebPClass) {
                     const computedStyle = window.getComputedStyle(heroSection);
                     const backgroundImage = computedStyle.backgroundImage;
-                    console.log('🖼️ 히어로 섹션 배경 이미지:', backgroundImage);
                     
                     // WebP 지원시 강제로 WebP 이미지 적용
-                    if (hasWebPClass && !backgroundImage.includes('hero-image.webp')) {
-                        console.log('🔄 WebP 이미지로 강제 변경 중...');
+                    if (!backgroundImage.includes('hero-image.webp')) {
                         heroSection.style.setProperty('background-image', "url('images/hero-image.webp')", 'important');
-                        
-                        // 변경 후 재확인
-                        setTimeout(() => {
-                            const newStyle = window.getComputedStyle(heroSection);
-                            console.log('✅ 변경된 배경 이미지:', newStyle.backgroundImage);
-                        }, 100);
                     }
                 }
             }, 1000);
@@ -700,7 +681,6 @@
                     
                     // 에러 처리 추가
                     img.addEventListener('error', function() {
-                        console.warn('이미지 로드 실패:', this.src);
                         this.classList.add('error');
                     });
                     
@@ -710,9 +690,8 @@
                     }
                 });
                 
-                console.log('이미지 최적화 초기화 완료');
             } catch (error) {
-                console.error('이미지 최적화 초기화 실패:', error);
+                // 이미지 최적화 초기화 실패 (무시)
             }
         }
         
@@ -729,12 +708,11 @@
                     const dataURL = canvas.toDataURL('image/webp');
                     if (dataURL.indexOf('data:image/webp') === 0) {
                         document.documentElement.classList.add('webp');
-                        console.log('✅ WebP 지원됨 (Canvas 방법)');
                         resolve(true);
                         return;
                     }
                 } catch (e) {
-                    console.log('Canvas WebP 감지 실패:', e);
+                    // Canvas WebP 감지 실패 (무시)
                 }
                 
                 // 2. 백업: 기존 이미지 방법
@@ -742,17 +720,14 @@
                 webp.onload = () => {
                     if (webp.height === 2) {
                         document.documentElement.classList.add('webp');
-                        console.log('✅ WebP 지원됨 (Image 방법)');
                         resolve(true);
                     } else {
                         document.documentElement.classList.add('no-webp');
-                        console.log('❌ WebP 지원 안됨');
                         resolve(false);
                     }
                 };
                 webp.onerror = () => {
                     document.documentElement.classList.add('no-webp');
-                    console.log('❌ WebP 지원 안됨 (오류)');
                     resolve(false);
                 };
                 webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
@@ -862,7 +837,6 @@
                 }
 
             } catch (error) {
-                console.error('최신 소식 로드 실패:', error);
                 showNewsEmpty();
             }
         }

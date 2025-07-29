@@ -1,5 +1,4 @@
 // API Configuration - v2.0 (캐시버스터: 2025-07-21-06:45)
-console.log('🔄 Config.js 로드됨 - v2.0 - 2025-07-21-06:45');
 
 const API_CONFIG = {
     // 개발 환경
@@ -34,9 +33,6 @@ function getApiBase() {
 // 전역 변수로 설정
 window.API_BASE = getApiBase();
 
-console.log('🌍 Environment:', getCurrentEnvironment());
-console.log('🔗 API Base URL:', window.API_BASE);
-
 // 🔧 수정된 백업 URL 시스템 (존재하지 않는 서버들 제거)
 window.BACKUP_API_URLS = [
     // Railway 서버만 사용 (다른 백업 URL들은 404이므로 제거)
@@ -44,7 +40,6 @@ window.BACKUP_API_URLS = [
 
 // Railway 서버 실패 시 모크 데이터 반환 함수
 window.getMockData = function(endpoint) {
-    console.log('🔄 Railway 서버 실패, 모크 데이터 반환:', endpoint);
     
     // auth/login 요청인 경우 인증 실패 응답
     if (endpoint.includes('/auth/login')) {
@@ -79,8 +74,6 @@ window.apiCallWithFallback = async function(endpoint, options = {}) {
     const mainUrl = window.API_BASE + endpoint;
     
     try {
-        console.log(`🔄 API 요청:`, mainUrl);
-        
         const response = await fetch(mainUrl, {
             ...options,
             headers: {
@@ -93,7 +86,6 @@ window.apiCallWithFallback = async function(endpoint, options = {}) {
         
         if (response.status === 401) {
             // 토큰 만료 또는 무효 - 로그인 페이지로 리다이렉트
-            console.log('🚪 토큰 만료 - 로그인 페이지로 이동');
             handleTokenExpiry();
             throw new Error('로그인이 필요합니다.');
         }
@@ -103,11 +95,9 @@ window.apiCallWithFallback = async function(endpoint, options = {}) {
         }
         
         const data = await response.json();
-        console.log(`✅ API 성공:`, mainUrl);
         return data;
         
     } catch (error) {
-        console.error(`❌ API 실패 (${mainUrl}):`, error.message);
         
         // 토큰 관련 오류인 경우 재시도 안함
         if (error.message.includes('로그인이 필요') || error.message.includes('401')) {
@@ -268,5 +258,4 @@ function clearAllTokens() {
 }
 
 // 🚫 자동 보안 시스템 초기화 비활성화 (무한 새로고침 방지)
-// 필요시 수동으로 initAdminSecurity() 호출
-console.log('⚠️ 자동 보안 시스템 초기화 비활성화됨 - 무한 새로고침 방지'); 
+// 필요시 수동으로 initAdminSecurity() 호출 
