@@ -195,7 +195,7 @@ function handleTokenExpiry() {
 }
 
 // ⏰ 자동 로그아웃 시스템 (10분 비활성)
-let activityTimer = null;
+let activityTimer;
 const INACTIVITY_TIME = 10 * 60 * 1000; // 10분
 
 function resetActivityTimer() {
