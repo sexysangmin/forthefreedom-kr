@@ -23,15 +23,20 @@ const storage = multer.diskStorage({
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const ext = path.extname(file.originalname);
         
-        // 한글 파일명을 영문으로 변환하거나 안전한 파일명 생성
+        // 한글 파일명을 안전하게 처리 (한글 보존)
         const safeName = file.originalname
-            .replace(/[^\w\s.-]/g, '') // 특수문자 제거
-            .replace(/\s+/g, '-')      // 공백을 하이픈으로
-            .replace(/^[-]+|[-]+$/g, '') // 앞뒤 하이픈 제거
-            .toLowerCase();
+            .replace(/[<>:"/\\|?*]/g, '') // 파일시스템에서 금지된 문자만 제거
+            .replace(/\s+/g, '_')          // 공백을 언더스코어로
+            .replace(/^[._-]+|[._-]+$/g, ''); // 앞뒤 특수문자 제거
             
         const baseName = path.basename(safeName, ext) || 'uploaded-file';
-        cb(null, `${baseName}-${uniqueSuffix}${ext}`);
+        
+        // 파일명이 너무 길면 잘라내기 (최대 100자)
+        const maxLength = 100 - uniqueSuffix.toString().length - ext.length - 1;
+        const truncatedBaseName = baseName.length > maxLength ? 
+            baseName.substring(0, maxLength) : baseName;
+            
+        cb(null, `${truncatedBaseName}-${uniqueSuffix}${ext}`);
     }
 });
 

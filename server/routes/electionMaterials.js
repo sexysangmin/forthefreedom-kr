@@ -20,13 +20,21 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const ext = path.extname(file.originalname);
+        
+        // 한글 파일명을 안전하게 처리 (한글 보존)
         const safeName = file.originalname
-            .replace(/[^\w\s.-]/g, '')
-            .replace(/\s+/g, '-')
-            .replace(/^[-]+|[-]+$/g, '')
-            .toLowerCase();
+            .replace(/[<>:"/\\|?*]/g, '') // 파일시스템에서 금지된 문자만 제거
+            .replace(/\s+/g, '_')          // 공백을 언더스코어로
+            .replace(/^[._-]+|[._-]+$/g, ''); // 앞뒤 특수문자 제거
+            
         const baseName = path.basename(safeName, ext) || 'election-material';
-        cb(null, `${baseName}-${uniqueSuffix}${ext}`);
+        
+        // 파일명이 너무 길면 잘라내기 (최대 100자)
+        const maxLength = 100 - uniqueSuffix.toString().length - ext.length - 1;
+        const truncatedBaseName = baseName.length > maxLength ? 
+            baseName.substring(0, maxLength) : baseName;
+            
+        cb(null, `${truncatedBaseName}-${uniqueSuffix}${ext}`);
     }
 });
 
@@ -203,6 +211,14 @@ router.get('/:id/attachments/:filename', async (req, res) => {
             });
         }
 
+        // 한글 파일명을 위한 적절한 헤더 설정
+        const encodedFilename = encodeURIComponent(attachment.originalName);
+        const fallbackFilename = attachment.originalName.replace(/[^\x00-\x7F]/g, ""); // ASCII만 남김
+        
+        res.setHeader('Content-Disposition', 
+            `attachment; filename="${fallbackFilename}"; filename*=UTF-8''${encodedFilename}`);
+        res.setHeader('Content-Type', attachment.mimeType || 'application/octet-stream');
+        
         res.download(filePath, attachment.originalName);
     } catch (error) {
         console.error('파일 다운로드 오류:', error);
@@ -245,6 +261,14 @@ router.get('/:id/download', async (req, res) => {
             });
         }
 
+        // 한글 파일명을 위한 적절한 헤더 설정
+        const encodedFilename = encodeURIComponent(attachment.originalName);
+        const fallbackFilename = attachment.originalName.replace(/[^\x00-\x7F]/g, ""); // ASCII만 남김
+        
+        res.setHeader('Content-Disposition', 
+            `attachment; filename="${fallbackFilename}"; filename*=UTF-8''${encodedFilename}`);
+        res.setHeader('Content-Type', attachment.mimeType || 'application/octet-stream');
+        
         res.download(filePath, attachment.originalName);
     } catch (error) {
         console.error('전체 다운로드 오류:', error);
@@ -289,6 +313,14 @@ router.get('/:id/download/:attachmentId', async (req, res) => {
             });
         }
 
+        // 한글 파일명을 위한 적절한 헤더 설정
+        const encodedFilename = encodeURIComponent(attachment.originalName);
+        const fallbackFilename = attachment.originalName.replace(/[^\x00-\x7F]/g, ""); // ASCII만 남김
+        
+        res.setHeader('Content-Disposition', 
+            `attachment; filename="${fallbackFilename}"; filename*=UTF-8''${encodedFilename}`);
+        res.setHeader('Content-Type', attachment.mimeType || 'application/octet-stream');
+        
         res.download(filePath, attachment.originalName);
     } catch (error) {
         console.error('첨부파일 다운로드 오류:', error);
