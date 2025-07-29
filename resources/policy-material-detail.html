@@ -582,7 +582,7 @@
                         <div class="attachment-name">${attachment.originalName || attachment.filename}</div>
                         <div class="attachment-size">${size}</div>
                     </div>
-                    <button onclick="downloadFile('${attachment.filename}')" 
+                    <button onclick="downloadFile('${attachment.filename}', '${attachment.originalName || attachment.filename}')" 
                             class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors">
                         <i class="fas fa-download mr-1"></i>다운로드
                     </button>
@@ -594,9 +594,11 @@
             attachmentsSection.classList.remove('hidden');
         }
 
-        // 파일 다운로드 - 정적 파일로 직접 다운로드
-        async function downloadFile(filename) {
+        // 파일 다운로드 - API 엔드포인트를 통한 다운로드
+        async function downloadFile(filename, displayName) {
             try {
+                const downloadUrl = `${API_BASE}/policy-materials/${currentPolicy._id}/attachments/${filename}`;
+                
                 // 다운로드 카운트 증가
                 await fetch(`${API_BASE}/policy-materials/${currentPolicy._id}/download-count`, {
                     method: 'POST'
@@ -606,21 +608,17 @@
                 const currentCount = parseInt(document.getElementById('policy-downloads').textContent.replace(/,/g, ''));
                 document.getElementById('policy-downloads').textContent = (currentCount + 1).toLocaleString();
 
-                // 정적 파일로 직접 다운로드
-                const downloadUrl = `/resources/documents/${filename}`;
-                
-                // 링크 생성하여 다운로드
+                // API를 통한 다운로드
                 const link = document.createElement('a');
                 link.href = downloadUrl;
-                link.download = filename;
+                link.download = displayName || filename;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
                 
             } catch (error) {
-                console.error('Error downloading file:', error);
                 // 에러가 있어도 다운로드는 시도
-                const downloadUrl = `/resources/documents/${filename}`;
+                const downloadUrl = `${API_BASE}/policy-materials/${currentPolicy._id}/attachments/${filename}`;
                 window.open(downloadUrl, '_blank');
             }
         }
