@@ -16,10 +16,10 @@ function loadNavigation() {
                 <div class="flex justify-between items-center py-4">
                     <!-- 로고 -->
                     <div class="flex items-center">
-                        <a href="${pathPrefix}index.html" class="flex items-center bg-white/95 rounded-lg px-3 py-2 shadow-sm">
+                        <a href="${pathPrefix}index.html" class="flex items-center">
                             <picture>
                                 <source srcset="${pathPrefix}images/logo.webp" type="image/webp">
-                                <img src="${pathPrefix}images/logo.png" alt="자유와혁신 로고" class="h-16 w-auto">
+                                <img src="${pathPrefix}images/logo.png" alt="자유와혁신 로고" class="h-16 w-auto logo-transparent">
                             </picture>
                         </a>
                     </div>
@@ -59,7 +59,7 @@ function loadNavigation() {
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="${pathPrefix}resources/policy.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">정책</a>
+                                    <a href="${pathPrefix}about/policy.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">정책</a>
                                     <a href="${pathPrefix}about/logo.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">로고</a>
                                     <a href="${pathPrefix}about/location.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">찾아오시는길</a>
                                 </div>
@@ -173,7 +173,7 @@ function loadNavigation() {
                                 <a href="${pathPrefix}about/organization.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">조직도</a>
                                 <a href="${pathPrefix}about/people-central.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">중앙당</a>
                                 <a href="${pathPrefix}about/people-regional.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">시도당</a>
-                                <a href="${pathPrefix}resources/policy.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">정책</a>
+                                <a href="${pathPrefix}about/policy.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">정책</a>
                                 <a href="${pathPrefix}about/logo.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">로고</a>
                                 <a href="${pathPrefix}about/location.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">찾아오시는길</a>
                             </div>
@@ -266,6 +266,20 @@ function loadNavigation() {
             </div>
             
             <style>
+            /* 로고 배경 투명화 처리 */
+            .logo-transparent {
+                background: transparent !important;
+                border-radius: 8px;
+                padding: 4px 8px;
+            }
+            
+            /* 네비게이션 배경과 동일하게 */
+            nav .logo-transparent {
+                background-color: rgba(255, 255, 255, 0.9) !important;
+                backdrop-filter: blur(4px);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+            
             .floating-btn {
                 display: flex;
                 align-items: center;
