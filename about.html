@@ -68,11 +68,21 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/style.css">
+    
+    <style>
+        /* WebP 지원을 위한 배경 이미지 */
+        .hero-bg-about {
+            background: url('images/night-pic.jpg') center/cover no-repeat;
+        }
+        .webp .hero-bg-about {
+            background: url('images/night-pic.webp') center/cover no-repeat;
+        }
+    </style>
 </head>
 <body>
     <div id="navigation-container"></div>
     
-    <section class="hero-section" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center; background:url('images/night-pic.jpg') center/cover no-repeat;">
+    <section class="hero-section hero-bg-about" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
             <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">자유와혁신을 소개합니다</h1>
@@ -134,7 +144,10 @@
                 <div class="order-1 lg:order-2">
                     <div class="relative">
                         <div class="w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden border-8 border-gray-100 shadow-xl">
-                            <img src="images/profile-pic.jpg" alt="자유와혁신 대표 황교안" class="w-full h-full object-cover">
+                            <picture>
+                                <source srcset="images/profile-pic.webp" type="image/webp">
+                                <img src="images/profile-pic.jpg" alt="자유와혁신 대표 황교안" class="w-full h-full object-cover">
+                            </picture>
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
                                 <div class="text-white text-center">
                                     <h4 class="text-2xl font-bold mb-2">황교안</h4>
@@ -407,6 +420,23 @@
     <script src="nav.js"></script>
     <script>
       loadNavigation();
+      
+      // WebP 지원 감지
+      (function() {
+          try {
+              const canvas = document.createElement('canvas');
+              canvas.width = 1;
+              canvas.height = 1;
+              const dataURL = canvas.toDataURL('image/webp');
+              if (dataURL.indexOf('data:image/webp') === 0) {
+                  document.documentElement.classList.add('webp');
+              } else {
+                  document.documentElement.classList.add('no-webp');
+              }
+          } catch (e) {
+              document.documentElement.classList.add('no-webp');
+          }
+      })();
     </script>
 </body>
 </html> 
