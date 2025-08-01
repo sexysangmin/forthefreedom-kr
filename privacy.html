@@ -127,6 +127,23 @@
     <script src="nav.js"></script>
     <script>
         if (typeof loadNavigation === 'function') loadNavigation();
+        
+        // WebP 지원 감지
+        (function() {
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = 1;
+                canvas.height = 1;
+                const dataURL = canvas.toDataURL('image/webp');
+                if (dataURL.indexOf('data:image/webp') === 0) {
+                    document.documentElement.classList.add('webp');
+                } else {
+                    document.documentElement.classList.add('no-webp');
+                }
+            } catch (e) {
+                document.documentElement.classList.add('no-webp');
+            }
+        })();
     </script>
 </body>
 </html> 
