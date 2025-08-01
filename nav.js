@@ -263,18 +263,22 @@ function loadNavigation() {
             </div>
             
             <style>
-            /* 로고 배경 투명화 처리 */
+            /* 로고 완전 투명 처리 */
             .logo-transparent {
                 background: transparent !important;
-                border-radius: 8px;
-                padding: 4px 8px;
+                border: none !important;
+                box-shadow: none !important;
+                backdrop-filter: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
             
-            /* 네비게이션 배경과 동일하게 */
+            /* 네비게이션에서도 투명 유지 */
             nav .logo-transparent {
-                background-color: rgba(255, 255, 255, 0.9) !important;
-                backdrop-filter: blur(4px);
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                backdrop-filter: none !important;
             }
             
             .floating-btn {
