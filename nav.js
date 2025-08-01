@@ -30,7 +30,7 @@ function loadNavigation() {
                             </a>
                             <div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
                                 <div class="py-2">
-                                    <a href="${pathPrefix}about.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">당소개</a>
+                                    <a href="${pathPrefix}about.html" title="자유와혁신 당 소개 - 황교안 대표 소개 및 당의 정체성" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">당소개</a>
                                     <div class="relative group/sub">
                                         <a href="#" class="flex items-center justify-between px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">
                                             강령, 당헌, 당규 <i class="fas fa-chevron-right text-xs ml-2"></i>
@@ -56,7 +56,7 @@ function loadNavigation() {
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="${pathPrefix}about/policy.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">정책</a>
+                                    <a href="${pathPrefix}about/policy.html" title="자유와혁신 정강정책 - 7대 핵심정책과 정당의 정책 방향" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">정책</a>
                                     <a href="${pathPrefix}about/logo.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">로고</a>
                                     <a href="${pathPrefix}about/location.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">찾아오시는길</a>
                                 </div>
@@ -65,7 +65,7 @@ function loadNavigation() {
                         
                         <!-- 2. 소식 -->
                         <div class="relative group">
-                            <a href="${pathPrefix}news.html" class="text-gray-700 hover:text-red-600 font-bold py-2 px-1 transition-colors duration-200 text-xl">
+                            <a href="${pathPrefix}news.html" title="자유와혁신 최신 소식 - 공지사항, 보도자료, 당 활동 소식" class="text-gray-700 hover:text-red-600 font-bold py-2 px-1 transition-colors duration-200 text-xl">
                                 소식
                             </a>
                             <div class="absolute left-0 top-full mt-2 w-60 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
