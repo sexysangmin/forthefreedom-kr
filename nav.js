@@ -16,7 +16,7 @@ function loadNavigation() {
                 <div class="flex justify-between items-center py-4">
                     <!-- 로고 -->
                     <div class="flex items-center">
-                        <a href="${pathPrefix}index.html" class="flex items-center">
+                        <a href="${pathPrefix}index.html" class="flex items-center bg-white/95 rounded-lg px-3 py-2 shadow-sm">
                             <picture>
                                 <source srcset="${pathPrefix}images/logo.webp" type="image/webp">
                                 <img src="${pathPrefix}images/logo.png" alt="자유와혁신 로고" class="h-16 w-auto">

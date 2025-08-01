@@ -29,7 +29,7 @@
     <div id="navigation-container"></div>
     
     <!-- Hero Section -->
-    <section class="hero-section hero-bg-hero-sub" style="position:relative; height:70vh; display:flex; align-items:center; justify-content:center;">
+    <section class="hero-section hero-bg-night-sub" style="position:relative; height:70vh; display:flex; align-items:center; justify-content:center;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
         <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
             <h1 style="font-size:4rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">자유와혁신 정강정책</h1>
@@ -397,6 +397,23 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('자유와혁신 정강정책 페이지 로드 완료');
         });
+        
+        // WebP 지원 감지
+        (function() {
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = 1;
+                canvas.height = 1;
+                const dataURL = canvas.toDataURL('image/webp');
+                if (dataURL.indexOf('data:image/webp') === 0) {
+                    document.documentElement.classList.add('webp');
+                } else {
+                    document.documentElement.classList.add('no-webp');
+                }
+            } catch (e) {
+                document.documentElement.classList.add('no-webp');
+            }
+        })();
     </script>
 </body>
 </html> 
