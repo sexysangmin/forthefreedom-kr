@@ -1,4 +1,13 @@
+# 모든 검색엔진 로봇 허용
 User-agent: *
+Allow: /
+
+# 네이버 검색봇 명시적 허용 (Yeti)
+User-agent: Yeti
+Allow: /
+
+# 구글 검색봇 명시적 허용
+User-agent: Googlebot
 Allow: /
 
 # 중요 페이지들 우선순위 지정
@@ -15,16 +24,26 @@ Allow: /news/
 Allow: /members/
 Allow: /resources/
 
-# 관리자 페이지 제외
+# 관리자 페이지 제외 (보안)
 Disallow: /admin/
 Disallow: /server/
 Disallow: /logs/
+Disallow: /*.log$
+
+# 임시 파일 제외
+Disallow: /tmp/
+Disallow: /*.tmp$
+
+# 파비콘 허용 (네이버 권장)
+Allow: /favicon.ico
+Allow: /images/favicon.png
+
+# CSS, JS 파일 허용 (네이버 권장)
+Allow: /*.css$
+Allow: /*.js$
 
 # 사이트맵 위치
 Sitemap: https://forthefreedom.kr/sitemap.xml
 
-# 크롤링 지연 시간 (초)
-Crawl-delay: 1
-
-# 검색 키워드 관련 힌트 (주석으로)
-# 황교안신당, 자유와혁신, 자혁당, 자유당 
+# 크롤링 지연 시간 (초) - 서버 부하 방지
+Crawl-delay: 1 
