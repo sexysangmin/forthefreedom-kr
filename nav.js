@@ -17,10 +17,7 @@ function loadNavigation() {
                     <!-- 로고 -->
                     <div class="flex items-center">
                         <a href="${pathPrefix}index.html" class="flex items-center">
-                            <picture>
-                                <source srcset="${pathPrefix}images/logo.webp" type="image/webp">
-                                <img src="${pathPrefix}images/logo.png" alt="자유와혁신 로고" class="h-16 w-auto logo-transparent">
-                            </picture>
+                            <img src="${pathPrefix}1x/Asset 1.png" alt="자유와혁신 로고" class="h-16 w-auto logo-transparent">
                         </a>
                     </div>
                     
