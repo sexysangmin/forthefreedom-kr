@@ -707,4 +707,99 @@ textarea,
     .hero-bg-responsive {
         background-position: 20% center; /* 작은 모바일에서 약간 오른쪽으로 조정 */
     }
+}
+
+/* 한국어 단어별 줄바꿈 */
+html, body {
+    word-break: keep-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, div, li, td, th {
+    word-break: keep-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* 모든 페이지 Hero 배경 이미지 WebP 지원 */
+/* night-pic 이미지 (about 폴더) */
+.hero-bg-night {
+    background: url('images/night-pic.jpg') center/cover no-repeat;
+}
+.webp .hero-bg-night {
+    background: url('images/night-pic.webp') center/cover no-repeat;
+}
+
+/* surrouding-pic 이미지 (news 폴더, resources.html) */
+.hero-bg-surrounding {
+    background: url('images/surrouding-pic.jpg') center/cover no-repeat;
+}
+.webp .hero-bg-surrounding {
+    background: url('images/surrouding-pic.webp') center/cover no-repeat;
+}
+
+/* flag-pic 이미지 (members 폴더) */
+.hero-bg-flag {
+    background: url('images/flag-pic.jpg') center/cover no-repeat;
+}
+.webp .hero-bg-flag {
+    background: url('images/flag-pic.webp') center/cover no-repeat;
+}
+
+/* flag2-pic 이미지 (support, privacy, terms, disclosure) */
+.hero-bg-flag2 {
+    background: url('images/flag2-pic.jpg') center/cover no-repeat;
+}
+.webp .hero-bg-flag2 {
+    background: url('images/flag2-pic.webp') center/cover no-repeat;
+}
+
+/* hero-image 이미지 (resources/policy.html) */
+.hero-bg-hero {
+    background: url('images/hero-image.jpg') center/cover no-repeat;
+}
+.webp .hero-bg-hero {
+    background: url('images/hero-image.webp') center/cover no-repeat;
+}
+
+/* 하위 폴더용 상대 경로 */
+/* night-pic 이미지 (about 폴더) */
+.hero-bg-night-sub {
+    background: url('../images/night-pic.jpg') center/cover no-repeat;
+}
+.webp .hero-bg-night-sub {
+    background: url('../images/night-pic.webp') center/cover no-repeat;
+}
+
+/* surrouding-pic 이미지 (news 폴더) */
+.hero-bg-surrounding-sub {
+    background: url('../images/surrouding-pic.jpg') center/cover no-repeat;
+}
+.webp .hero-bg-surrounding-sub {
+    background: url('../images/surrouding-pic.webp') center/cover no-repeat;
+}
+
+/* flag-pic 이미지 (members 폴더) */
+.hero-bg-flag-sub {
+    background: url('../images/flag-pic.jpg') center/cover no-repeat;
+}
+.webp .hero-bg-flag-sub {
+    background: url('../images/flag-pic.webp') center/cover no-repeat;
+}
+
+/* flag2-pic 이미지 (resources 폴더) */
+.hero-bg-flag2-sub {
+    background: url('../images/flag2-pic.jpg') center/cover no-repeat;
+}
+.webp .hero-bg-flag2-sub {
+    background: url('../images/flag2-pic.webp') center/cover no-repeat;
+}
+
+/* hero-image 이미지 (resources/policy.html) */
+.hero-bg-hero-sub {
+    background: url('../images/hero-image.jpg') center/cover no-repeat;
+}
+.webp .hero-bg-hero-sub {
+    background: url('../images/hero-image.webp') center/cover no-repeat;
 } 
