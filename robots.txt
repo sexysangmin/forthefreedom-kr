@@ -7,7 +7,7 @@ Allow: /news.html
 Allow: /members.html
 Allow: /support.html
 Allow: /resources.html
-Allow: /resources/policy.html
+Allow: /about/policy.html
 
 # 하위 페이지들
 Allow: /about/
