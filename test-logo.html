@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로고 테스트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 200px;
+            border: 2px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>로고 이미지 로딩 테스트</h1>
+    
+    <div class="test-container">
+        <h2>1. Asset 1.png 직접 로딩</h2>
+        <img src="1x/Asset 1.png" alt="Asset 1" id="asset1">
+        <p id="asset1-status">로딩 중...</p>
+    </div>
+    
+    <div class="test-container">
+        <h2>2. Asset 2.png 직접 로딩</h2>
+        <img src="1x/Asset 2.png" alt="Asset 2" id="asset2">
+        <p id="asset2-status">로딩 중...</p>
+    </div>
+    
+    <div class="test-container">
+        <h2>3. 기존 logo.png (이미지 폴더)</h2>
+        <img src="images/logo.png" alt="Logo PNG" id="logo-png">
+        <p id="logo-png-status">로딩 중...</p>
+    </div>
+    
+    <div class="test-container">
+        <h2>4. 네비게이션과 같은 방식</h2>
+        <img src="1x/Asset 1.png" alt="자유와혁신 로고" class="h-16 w-auto logo-transparent">
+        <p id="nav-style-status">로딩 중...</p>
+        <style>
+            .logo-transparent {
+                background: transparent !important;
+                border-radius: 8px;
+                padding: 4px 8px;
+                height: 64px;
+                width: auto;
+            }
+        </style>
+    </div>
+
+    <script>
+        // 이미지 로딩 상태 확인
+        function checkImageLoad(imgId, statusId) {
+            const img = document.getElementById(imgId);
+            const status = document.getElementById(statusId);
+            
+            img.onload = function() {
+                status.textContent = '✅ 로딩 성공';
+                status.className = 'success';
+            };
+            
+            img.onerror = function() {
+                status.textContent = '❌ 로딩 실패 - 파일을 찾을 수 없음';
+                status.className = 'error';
+            };
+            
+            // 이미 로드된 경우
+            if (img.complete) {
+                if (img.naturalWidth > 0) {
+                    status.textContent = '✅ 로딩 성공 (즉시)';
+                    status.className = 'success';
+                } else {
+                    status.textContent = '❌ 로딩 실패 (즉시)';
+                    status.className = 'error';
+                }
+            }
+        }
+        
+        // 페이지 로드 후 확인
+        document.addEventListener('DOMContentLoaded', function() {
+            checkImageLoad('asset1', 'asset1-status');
+            checkImageLoad('asset2', 'asset2-status');
+            checkImageLoad('logo-png', 'logo-png-status');
+            
+            // 네비게이션 스타일 테스트
+            const navStyleImg = document.querySelector('.logo-transparent');
+            if (navStyleImg.complete) {
+                if (navStyleImg.naturalWidth > 0) {
+                    document.getElementById('nav-style-status').textContent = '✅ 네비게이션 스타일 로딩 성공';
+                    document.getElementById('nav-style-status').className = 'success';
+                } else {
+                    document.getElementById('nav-style-status').textContent = '❌ 네비게이션 스타일 로딩 실패';
+                    document.getElementById('nav-style-status').className = 'error';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

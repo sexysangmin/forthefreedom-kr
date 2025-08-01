@@ -17,7 +17,9 @@ function loadNavigation() {
                     <!-- 로고 -->
                     <div class="flex items-center">
                         <a href="${pathPrefix}index.html" class="flex items-center">
-                            <img src="${pathPrefix}1x/Asset 1.png" alt="자유와혁신 로고" class="h-16 w-auto logo-transparent">
+                            <img src="${pathPrefix}1x/Asset 1.png" alt="자유와혁신 로고" class="h-16 w-auto logo-transparent" 
+                                 onerror="console.error('로고 이미지 로딩 실패:', this.src); this.onerror=null; this.src='${pathPrefix}images/logo.png';"
+                                 onload="console.log('로고 이미지 로딩 성공:', this.src);">
                         </a>
                     </div>
                     
