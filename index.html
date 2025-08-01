@@ -4,17 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.75, maximum-scale=2.0, user-scalable=yes">
     
-    <!-- DNS Prefetch and Preconnect for Performance -->
-    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
-    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- 중요 폰트 Preload -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap"></noscript>
-    
     <!-- SEO 메타 태그 -->
     <title>자유와혁신</title>
     <meta name="description" content="황교안 대표 자유와혁신 공식 홈페이지. 자유민주주의 수호와 부정선거 척결을 위한 보수정당">
@@ -93,27 +82,7 @@
     <link rel="preload" as="image" href="images/hero-image.jpg" type="image/jpeg">
     <link rel="preload" as="image" href="images/profile-pic.jpg" type="image/jpeg">
     
-    <!-- Critical CSS 인라인 -->
-    <style>
-        /* Critical CSS for above-the-fold content */
-        .hero-section{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;background-image:url('images/hero-image.jpg');background-size:cover;background-position:center;background-attachment:fixed}
-        .hero-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(0,0,0,0.7),rgba(0,0,0,0.2));z-index:1}
-        .hero-content{position:relative;z-index:2;color:#fff;text-align:center}
-        .max-w-7xl{max-width:80rem;margin:0 auto}
-        .px-4{padding-left:1rem;padding-right:1rem}
-        .py-20{padding-top:5rem;padding-bottom:5rem}
-        .bg-white{background-color:#fff}
-        .text-center{text-align:center}
-        .text-4xl{font-size:2.25rem;line-height:2.5rem}
-        .font-bold{font-weight:700}
-        .text-gray-900{color:#111827}
-        .mb-8{margin-bottom:2rem}
-        .webp .hero-section{background-image:url('images/hero-image.webp')!important}
-    </style>
-    
-    <!-- Tailwind CSS 지연 로딩 -->
-    <link rel="preload" href="https://cdn.tailwindcss.com/3.4.17" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.tailwindcss.com/3.4.17"></noscript>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -171,9 +140,7 @@
         .text-lg.font-medium.text-red-600 { color: #A50034 !important; }
         .text-sm.text-red-600 { color: #A50034 !important; }
     </style>
-    <!-- FontAwesome 지연 로딩 -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -279,10 +246,10 @@
                 <div class="order-1 lg:order-2">
                     <div class="relative">
                         <div class="w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden border-8 border-gray-100 shadow-xl bg-gray-100">
-                                                    <picture>
-                            <source srcset="images/profile-pic.webp" type="image/webp" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 350px">
-                            <img src="images/profile-pic.jpg" alt="자유와혁신 대표 황교안" class="w-full h-full object-cover" loading="lazy" decoding="async" width="350" height="622" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 350px">
-                        </picture>
+                            <picture>
+                                <source srcset="images/profile-pic.webp" type="image/webp">
+                                <img src="images/profile-pic.jpg" alt="자유와혁신 대표 황교안" class="w-full h-full object-cover" loading="lazy" decoding="async" width="500" height="500">
+                            </picture>
                         </div>
                         </div>
                     </div>
@@ -390,8 +357,8 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div class="relative h-48 rounded-lg overflow-hidden group">
                                 <picture>
-                                    <source srcset="images/activity.webp" type="image/webp" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px">
-                                    <img src="images/activity.jpg" alt="당원 모임" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="300" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px">
+                                    <source srcset="images/activity.webp" type="image/webp">
+                                    <img src="images/activity.jpg" alt="당원 모임" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="192">
                                 </picture>
                                 <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                                     <div class="text-center text-white">
@@ -686,11 +653,11 @@
         </div>
     </footer>
 
-    <!-- 스크립트 지연 로딩 -->
-    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js" defer></script>
-    <script src="config.js" defer></script>
-    <script src="script.js" defer></script>
-    <script src="nav.js" defer></script>
+    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
+        <!-- API 설정 로드 -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+    <script src="nav.js"></script>
     <script>
         if (typeof loadNavigation === 'function') loadNavigation();
 
