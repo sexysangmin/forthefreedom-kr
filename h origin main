@@ -1,0 +1,3 @@
+[33m0955cad[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m feat: 새로운 히어로 이미지 WebP 변환 및 최적화
+[33mb116bdb[m[33m ([m[1;31morigin/main[m[33m)[m 파비콘 이미지 업데이트: Asset 3.png로 변경된 favicon.png 파일 내용 반영
+[33m38fa877[m 전체 HTML 파일에 파비콘 통합 적용: Asset 3.png 기반 파비콘을 모든 페이지에 추가하여 브랜드 일관성 확보
