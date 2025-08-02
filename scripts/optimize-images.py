@@ -100,11 +100,11 @@ def main():
                     new_size = os.path.getsize(output_path)
                     total_new_size += new_size
                     
-                    # 원본 파일을 백업 폴더로 이동 (이미 WebP가 아닌 경우만)
+                    # JPG 이미지를 백업 폴더에 복사 (WebP가 아닌 경우만)
                     if file_ext != '.webp':
                         backup_path = os.path.join(backup_dir, filename)
-                        shutil.move(file_path, backup_path)
-                        print(f"   원본 백업: {backup_path}")
+                        shutil.copy2(file_path, backup_path)
+                        print(f"   JPG 백업: {backup_path}")
                     
                     optimized_count += 1
                     print()
