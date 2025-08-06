@@ -28,6 +28,8 @@ Allow: /resources/
 Disallow: /admin/
 Disallow: /server/
 Disallow: /logs/
+Disallow: /archive/
+Disallow: /scripts/
 Disallow: /*.log$
 
 # 임시 파일 제외

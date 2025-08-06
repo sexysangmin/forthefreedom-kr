@@ -51,28 +51,7 @@
       "use": "@vercel/static"
     }
   ],
-  "redirects": [
-    {
-      "source": "/server/(.*)",
-      "destination": "/404.html",
-      "statusCode": 404
-    },
-    {
-      "source": "/archive/(.*)",
-      "destination": "/404.html",
-      "statusCode": 404
-    },
-    {
-      "source": "/logs/(.*)",
-      "destination": "/404.html",
-      "statusCode": 404
-    },
-    {
-      "source": "/scripts/(.*)",
-      "destination": "/404.html",
-      "statusCode": 404
-    }
-  ],
+
   "headers": [
     {
       "source": "/(.*)\\.webp",
