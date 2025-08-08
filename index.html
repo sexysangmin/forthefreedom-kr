@@ -366,76 +366,64 @@
         </div>
     </section>
 
-    <!-- Members Count Section -->
-    <section class="py-16 bg-white" style="opacity: 1; transform: translateY(0px); transition: 0.6s;">
+    <!-- Activity Gallery Section -->
+    <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="order-1">
-                    <!-- 당원 활동 이미지 자리 -->
-                    <div class="relative">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="relative h-48 rounded-lg overflow-hidden group">
-                                <picture>
-                                    <source srcset="images/activity.webp" type="image/webp">
-                                    <img src="images/activity.jpg" alt="당원 모임" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="192">
-                                </picture>
-                                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                                    <div class="text-center text-white">
-                                        <p class="text-white font-bold text-lg">당원 모임</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="relative h-48 rounded-lg overflow-hidden group">
-                                <picture>
-                                    <source srcset="images/activity2.webp" type="image/webp">
-                                    <img src="images/activity2.jpg" alt="소통 활동" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="192">
-                                </picture>
-                                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                                    <div class="text-center text-white">
-                                        <p class="text-white font-bold text-lg">소통 활동</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="relative h-48 rounded-lg overflow-hidden col-span-2 group">
-                                <picture>
-                                    <source srcset="images/activity3.webp" type="image/webp">
-                                    <img src="images/activity3.jpg" alt="당 활동 현장" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="800" height="192">
-                                </picture>
-                                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                                    <div class="text-center text-white">
-                                        <p class="text-white font-bold text-lg">당 활동 현장</p>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="w-4 h-4 bg-red-600 mr-4"></div>
+                    <h2 class="text-lg font-medium text-red-600 tracking-wider uppercase">당 활동 현장</h2>
+                </div>
+                <h3 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    함께 만들어가는<br>
+                    <span class="text-red-600">새로운 정치</span>
+                </h3>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    전국 각지에서 자유와혁신의 가치에 공감하는 분들과 함께 새로운 정치를 만들어가고 있습니다.
+                </p>
+            </div>
+            
+            <!-- 활동 이미지 갤러리 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="relative h-64 rounded-lg overflow-hidden group">
+                    <picture>
+                        <source srcset="images/activity.webp" type="image/webp">
+                        <img src="images/activity.jpg" alt="당원 모임" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="256">
+                    </picture>
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="text-center text-white">
+                            <p class="text-white font-bold text-lg">당원 모임</p>
                         </div>
                     </div>
                 </div>
-                <div class="order-2">
-                    <div class="space-y-6">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-1 h-12 bg-red-600"></div>
-                            <span class="text-red-600 font-medium text-lg">함께하는 분들</span>
-                        </div>
-                        <h3 class="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
-                            <span class="text-red-600">8,490 명</span>의 당원들이<br>
-                            지난주부터 함께하고 있습니다
-                        </h3>
-                        <div class="space-y-4 text-lg text-gray-600 leading-relaxed">
-                            <p>
-                                전국 각지에서 자유와혁신의 가치에 공감하는 분들이 새로운 정치를 만들어가고 있습니다.
-                            </p>
-                            <p>
-                                여러분의 목소리가 정책이 되고, 여러분의 참여가 변화의 원동력이 됩니다.
-                            </p>
-                        </div>
-
-                        <div class="pt-4">
-                            <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
-                                당원 가입하기 <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
+                <div class="relative h-64 rounded-lg overflow-hidden group">
+                    <picture>
+                        <source srcset="images/activity2.webp" type="image/webp">
+                        <img src="images/activity2.jpg" alt="소통 활동" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="256">
+                    </picture>
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="text-center text-white">
+                            <p class="text-white font-bold text-lg">소통 활동</p>
                         </div>
                     </div>
                 </div>
+                <div class="relative h-64 rounded-lg overflow-hidden group md:col-span-2 lg:col-span-1">
+                    <picture>
+                        <source srcset="images/activity3.webp" type="image/webp">
+                        <img src="images/activity3.jpg" alt="당 활동 현장" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" width="400" height="256">
+                    </picture>
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="text-center text-white">
+                            <p class="text-white font-bold text-lg">당 활동 현장</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" class="inline-flex items-center px-8 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors">
+                    당원 가입하기 <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </div>
     </section>
