@@ -2,22 +2,14 @@
 (function() {
     // 보수 모드 설정
     const MAINTENANCE_CONFIG = {
-        enabled: true,           // 보수 모드 활성화 여부
-        startDate: '2025-08-10', // 보수 시작일 (YYYY-MM-DD)
-        endDate: '2025-08-13',   // 보수 종료일 (YYYY-MM-DD)
+        enabled: true,           // 보수 모드 활성화 여부 (이 스크립트가 있는 동안 항상 활성화)
         message: '웹사이트 보수중입니다',
         description: '더 나은 서비스 제공을 위해 웹사이트를 개선하고 있습니다.<br>불편을 드려 죄송합니다.'
     };
 
-    // 현재 날짜 확인
+    // 보수 모드 확인 (스크립트가 있으면 항상 활성화)
     function isMaintenanceTime() {
-        if (!MAINTENANCE_CONFIG.enabled) return false;
-        
-        const now = new Date();
-        const start = new Date(MAINTENANCE_CONFIG.startDate);
-        const end = new Date(MAINTENANCE_CONFIG.endDate + 'T23:59:59');
-        
-        return now >= start && now <= end;
+        return MAINTENANCE_CONFIG.enabled;
     }
 
     // 보수중 페이지 HTML 생성
@@ -76,7 +68,7 @@
                         margin: 0 0 30px 0;
                     ">${MAINTENANCE_CONFIG.description}</p>
 
-                    <!-- 날짜 정보 -->
+                    <!-- 추가 안내 -->
                     <div style="
                         background: #f8f9fa;
                         padding: 20px;
@@ -88,7 +80,7 @@
                             font-size: 14px;
                             margin: 0;
                             font-weight: 600;
-                        ">예상 완료일: 2025년 8월 13일</p>
+                        ">빠른 시일 내에 정상 서비스를 제공하겠습니다</p>
                     </div>
 
                     <!-- 당 정보 -->

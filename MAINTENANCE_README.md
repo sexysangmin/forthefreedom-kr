@@ -5,32 +5,23 @@
 
 ## 🚀 보수 모드 활성화/비활성화
 
-`maintenance.js` 파일을 수정하여 보수 모드를 제어할 수 있습니다.
+### 1. 보수 모드 켜기 (현재 설정)
+- `maintenance.js` 파일이 존재하는 동안 항상 활성화됨
+- 별도의 날짜 설정 없이 스크립트가 있으면 계속 보수 모드
 
-### 1. 보수 모드 켜기
-```javascript
-const MAINTENANCE_CONFIG = {
-    enabled: true,           // ← 이 값을 true로 설정
-    startDate: '2025-01-27', // 보수 시작일
-    endDate: '2025-01-31',   // 보수 종료일 (이 날짜 이후 자동 해제)
-    // ...
-};
+### 2. 보수 모드 끄기 (완전 해제)
+**방법 1: 파일 삭제 (권장)**
+```bash
+# maintenance.js 파일을 삭제하고 커밋/푸시
+git rm maintenance.js
+git commit -m "보수 모드 해제"
+git push
 ```
 
-### 2. 보수 모드 끄기 (즉시 해제)
+**방법 2: 설정 변경**
 ```javascript
 const MAINTENANCE_CONFIG = {
     enabled: false,          // ← 이 값을 false로 설정
-    // ...
-};
-```
-
-### 3. 날짜 설정으로 자동 해제
-```javascript
-const MAINTENANCE_CONFIG = {
-    enabled: true,
-    startDate: '2025-01-27',
-    endDate: '2025-01-30',   // ← 이 날짜가 지나면 자동으로 해제됨
     // ...
 };
 ```
