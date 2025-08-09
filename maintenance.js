@@ -39,16 +39,23 @@
                 ">
                     <!-- 로고/아이콘 -->
                     <div style="
-                        width: 80px;
-                        height: 80px;
-                        background: #A50034;
+                        width: 100px;
+                        height: 100px;
+                        background: white;
                         border-radius: 50%;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         margin: 0 auto 30px;
+                        border: 3px solid #A50034;
+                        padding: 10px;
+                        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
                     ">
-                        <i class="fas fa-tools" style="color: white; font-size: 35px;"></i>
+                        <img src="images/logo.png" alt="자유와혁신 로고" style="
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                        ">
                     </div>
 
                     <!-- 제목 -->
