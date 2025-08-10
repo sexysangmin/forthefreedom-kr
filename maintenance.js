@@ -136,15 +136,26 @@
         console.log('보수 모드 활성화됨');
     }
 
+    // 메인페이지 확인 함수
+    function isMainPage() {
+        const path = window.location.pathname;
+        // 메인페이지: /, /index.html, 또는 루트 도메인만
+        return path === '/' || path === '/index.html' || path.endsWith('/index.html') || 
+               (path === '' && !window.location.href.includes('/'));
+    }
+
     // 페이지 로드 시 실행
     function init() {
-        if (isMaintenanceTime()) {
-            // DOM이 준비되면 보수중 페이지 표시
+        if (isMaintenanceTime() && isMainPage()) {
+            // DOM이 준비되면 보수중 페이지 표시 (메인페이지만)
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', showMaintenancePage);
             } else {
                 showMaintenancePage();
             }
+            console.log('메인페이지 보수 모드 활성화됨');
+        } else if (isMaintenanceTime()) {
+            console.log('서브페이지는 정상 접근 가능');
         }
     }
 
