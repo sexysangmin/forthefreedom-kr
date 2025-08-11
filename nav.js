@@ -47,7 +47,7 @@ function loadNavigation() {
                                     <a href="${pathPrefix}about/organization.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">조직도</a>
                                     <div class="relative group/sub">
                                         <a href="#" class="flex items-center justify-between px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">
-                                            일꾼들 <i class="fas fa-chevron-right text-xs ml-2"></i>
+                                            사람들 <i class="fas fa-chevron-right text-xs ml-2"></i>
                                         </a>
                                         <div class="absolute left-full top-0 mt-0 ml-1 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
                                             <div class="py-2">
@@ -78,8 +78,8 @@ function loadNavigation() {
                                         <div class="absolute left-full top-0 mt-0 ml-1 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
                                             <div class="py-2">
                                                 <a href="${pathPrefix}news/press-releases.html" class="block px-4 py-2 text-base text-gray-700 hover:bg-gray-50 hover:text-red-600">대변인</a>
-                                                <a href="${pathPrefix}news/press-policy.html" class="block px-4 py-2 text-base text-gray-700 hover:bg-gray-50 hover:text-red-600">정책위</a>
-                                                <a href="${pathPrefix}news/press-media.html" class="block px-4 py-2 text-base text-gray-700 hover:bg-gray-50 hover:text-red-600">뉴미디어팀</a>
+                                                <a href="${pathPrefix}news/press-policy.html" class="block px-4 py-2 text-base text-gray-700 hover:bg-gray-50 hover:text-red-600">정책위원회</a>
+                                                <a href="${pathPrefix}news/press-media.html" class="block px-4 py-2 text-base text-gray-700 hover:bg-gray-50 hover:text-red-600">뉴미디어위원회</a>
                                             </div>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@ function loadNavigation() {
                                     <a href="${pathPrefix}news/events.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">주요일정</a>
                                     <div class="relative group/sub">
                                         <a href="#" class="flex items-center justify-between px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">
-                                            홍보 <i class="fas fa-chevron-right text-xs ml-2"></i>
+                                            미디어홍보 <i class="fas fa-chevron-right text-xs ml-2"></i>
                                         </a>
                                         <div class="absolute left-full top-0 mt-0 ml-1 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
                                             <div class="py-2">
@@ -103,7 +103,7 @@ function loadNavigation() {
                         
                         <!-- 3. 당원 -->
                         <div class="relative group">
-                            <a href="${pathPrefix}members.html" class="text-gray-700 hover:text-red-600 font-bold py-2 px-1 transition-colors duration-200 text-xl">
+                            <a href="${pathPrefix}members/join.html" class="text-gray-700 hover:text-red-600 font-bold py-2 px-1 transition-colors duration-200 text-xl">
                                 당원
                             </a>
                             <div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">

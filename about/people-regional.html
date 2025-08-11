@@ -43,7 +43,7 @@
                 <div class="text-center mb-16">
                     <h2 class="text-4xl font-bold text-gray-900 mb-6">전국 시도당</h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        자유와혁신은 전국 13개 시도에서 국민과 함께하고 있습니다.
+                        자유와혁신은 전국 17개 시도에서 국민과 함께하고 있습니다.
                     </p>
                 </div>
                 
@@ -65,17 +65,21 @@
                     <div class="flex flex-wrap justify-center gap-3">
                         <button onclick="filterRegion('all')" class="region-tab active px-6 py-3 bg-red-600 text-white rounded-full font-medium hover:bg-red-700 transition-colors">전체</button>
                         <button onclick="filterRegion('서울')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">서울</button>
-                        <button onclick="filterRegion('부산')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">부산</button>
-                        <button onclick="filterRegion('대구')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">대구</button>
-                        <button onclick="filterRegion('인천')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">인천</button>
-                        <button onclick="filterRegion('광주')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">광주</button>
-                        <button onclick="filterRegion('대전')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">대전</button>
-                        <button onclick="filterRegion('울산')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">울산</button>
                         <button onclick="filterRegion('경기')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">경기</button>
+                        <button onclick="filterRegion('인천')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">인천</button>
                         <button onclick="filterRegion('강원')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">강원</button>
+                        <button onclick="filterRegion('대전')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">대전</button>
+                        <button onclick="filterRegion('충북')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">충북</button>
                         <button onclick="filterRegion('충남')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">충남</button>
+                        <button onclick="filterRegion('세종')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">세종</button>
+                        <button onclick="filterRegion('대구')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">대구</button>
                         <button onclick="filterRegion('경북')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">경북</button>
+                        <button onclick="filterRegion('부산')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">부산</button>
+                        <button onclick="filterRegion('울산')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">울산</button>
                         <button onclick="filterRegion('경남')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">경남</button>
+                        <button onclick="filterRegion('광주')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">광주</button>
+                        <button onclick="filterRegion('전북')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">전북</button>
+                        <button onclick="filterRegion('전남')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">전남</button>
                         <button onclick="filterRegion('제주')" class="region-tab px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 transition-colors">제주</button>
                     </div>
                 </div>
@@ -113,82 +117,30 @@
                         </div>
                     </div>
                     
-                    <!-- 부산 -->
-                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="부산">
+                    <!-- 경기 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="경기">
                         <div class="text-center mb-6">
                             <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
-                                <img src="../images/서미란_부산.webp" alt="서미란 부산광역시당위원장" class="w-full h-full object-cover">
+                                <img src="../images/김의현_경기.webp" alt="김의현 경기도당위원장" class="w-full h-full object-cover">
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">서미란</h3>
-                            <p class="text-lg text-red-600 font-medium mb-1">부산광역시당위원장</p>
-                        </div>
-                        <div class="space-y-3 text-gray-700 text-sm">
-                            <div class="flex items-start">
-                                <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>행정학 박사</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-briefcase w-5 mr-3 text-red-600 mt-1"></i>
-                                <div>
-                                    <div>전) 부산과학기술대학교 의무행정학과 겸임교수</div>
-                                    <div>전) 사단법인한국지방정부학회 총무부위원장</div>
-                                    <div>현) 신라대학교 보건행정학 겸임교수</div>
-                                    <div>현) 부정선거부패방지대 사무총장</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 대구 위원장 -->
-                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="대구">
-                        <div class="text-center mb-6">
-                            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
-                                <img src="../images/황현정_대구.webp" alt="황현정 대구광역시당위원장" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">황현정</h3>
-                            <p class="text-lg text-red-600 font-medium mb-1">대구광역시당위원장</p>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">김의현</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">경기도당위원장</p>
                         </div>
                         <div class="space-y-3 text-gray-700 text-sm">
                             <div class="flex items-start">
                                 <i class="fas fa-envelope w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>pride1024@hanmail.net</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-briefcase w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>국민은행 근무</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 대구 부위원장 -->
-                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="대구">
-                        <div class="text-center mb-6">
-                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                                <i class="fas fa-user text-6xl text-gray-500"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">김성현</h3>
-                            <p class="text-lg text-red-600 font-medium mb-1">대구광역시당부위원장</p>
-                        </div>
-                        <div class="space-y-3 text-gray-700 text-sm">
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>kshyun9@gmail.com</span>
+                                <span>uihyeon.kim@snu.ac.kr</span>
                             </div>
                             <div class="flex items-start">
                                 <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
                                 <div>
-                                    <div>고려대학교 무역학 졸업</div>
-                                    <div>국립금오공과대학교 컨설팅대학원 박사 수료</div>
+                                    <div>연세대학교 건축공학과 졸업</div>
+                                    <div>서울대학교 건축학과 대학원 재학</div>
                                 </div>
                             </div>
                             <div class="flex items-start">
                                 <i class="fas fa-briefcase w-5 mr-3 text-red-600 mt-1"></i>
-                                <div>
-                                    <div>구미대학교 스마트경영과 겸임교수</div>
-                                    <div>구미시 일자리추진위원회 위원</div>
-                                    <div>일자리창출 유공 '대통령 표창' (2024.9.5)</div>
-                                    <div>황교안 대통령 후보 자유행동 정책특보</div>
-                                </div>
+                                <span>전) 21대 대선 황교안 후보 중앙선거대책위원회 공동선대위원장</span>
                             </div>
                         </div>
                     </div>
@@ -224,121 +176,14 @@
                         </div>
                     </div>
                     
-                    <!-- 광주 -->
-                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="광주">
-                        <div class="text-center mb-6">
-                            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
-                                <img src="../images/황영철_광주.webp" alt="황영철 광주광역시당위원장" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">황영철</h3>
-                            <p class="text-lg text-red-600 font-medium mb-1">광주광역시당위원장</p>
-                        </div>
-                        <div class="space-y-3 text-gray-700 text-sm">
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>yungchulhwang@gmail.com</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
-                                <div>
-                                    <div>육군사관학교 31기</div>
-                                    <div>전남대학교 경영대학원 석사</div>
-                                    <div>호주 울런공대학교 상경대학원 석사</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-briefcase w-5 mr-3 text-red-600 mt-1"></i>
-                                <div>
-                                    <div>전) 경기도 보견환경국장</div>
-                                    <div>전) 경기도 포천시 부시장</div>
-                                    <div>전) 경기도 군포시 부시장</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 대전 -->
-                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="대전">
-                        <div class="text-center mb-6">
-                            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
-                                <img src="../images/김재훈_대전.webp" alt="김재훈 대전광역시당위원장" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">김재훈</h3>
-                            <p class="text-lg text-red-600 font-medium mb-1">대전광역시당위원장</p>
-                        </div>
-                        <div class="space-y-3 text-gray-700 text-sm">
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>skqlrkdy50@gmail.com</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>대구카톨릭대학교 졸업</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-briefcase w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>현) 로보틱스 sw 개발업</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 울산 -->
-                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="울산">
-                        <div class="text-center mb-6">
-                            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
-                                <img src="../images/지광선_울산.webp" alt="지광선 울산광역시당위원장" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">지광선</h3>
-                            <p class="text-lg text-red-600 font-medium mb-1">울산광역시당위원장</p>
-                        </div>
-                        <div class="space-y-3 text-gray-700 text-sm">
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>jjlightsun@daum.net</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>총신대학교 신학대학원 졸업</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 경기 -->
-                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="경기">
-                        <div class="text-center mb-6">
-                            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
-                                <img src="../images/김의현_경기.webp" alt="김의현 경기도당위원장" class="w-full h-full object-cover">
-                            </div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">김의현</h3>
-                            <p class="text-lg text-red-600 font-medium mb-1">경기도당위원장</p>
-                        </div>
-                        <div class="space-y-3 text-gray-700 text-sm">
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>uihyeon.kim@snu.ac.kr</span>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
-                                <div>
-                                    <div>연세대학교 건축공학과 졸업</div>
-                                    <div>서울대학교 건축학과 대학원 재학</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-briefcase w-5 mr-3 text-red-600 mt-1"></i>
-                                <span>전) 21대 대선 황교안 후보 중앙선거대책위원회 공동선대위원장</span>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <!-- 강원 -->
                     <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="강원">
                         <div class="text-center mb-6">
                             <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
-                                <img src="../images/이수동_강원.webp" alt="이수동 강원도당위원장" class="w-full h-full object-cover">
+                                <img src="../images/이수동_강원.webp" alt="이수동 강원도당창준위위원장" class="w-full h-full object-cover">
                             </div>
                             <h3 class="text-2xl font-bold text-gray-900 mb-2">이수동</h3>
-                            <p class="text-lg text-red-600 font-medium mb-1">강원도당위원장</p>
+                            <p class="text-lg text-red-600 font-medium mb-1">강원도당창준위위원장</p>
                         </div>
                         <div class="space-y-3 text-gray-700 text-sm">
                             <div class="flex items-start">
@@ -359,6 +204,48 @@
                         </div>
                     </div>
                     
+                    <!-- 대전 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="대전">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
+                                <img src="../images/김재훈_대전.webp" alt="김재훈 대전광역시창준위위원장" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">김재훈</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">대전광역시창준위위원장</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700 text-sm">
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600 mt-1"></i>
+                                <span>skqlrkdy50@gmail.com</span>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
+                                <span>대구카톨릭대학교 졸업</span>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-briefcase w-5 mr-3 text-red-600 mt-1"></i>
+                                <span>현) 로보틱스 sw 개발업</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 충북 (신규 추가) -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="충북">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">위원장 준비중</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">충북도당창준위위원장</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700 text-sm">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle w-5 mr-3 text-red-600 mt-1"></i>
+                                <span class="text-gray-500">위원장 선임 예정</span>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- 충남 -->
                     <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="충남">
                         <div class="text-center mb-6">
@@ -366,7 +253,7 @@
                                 <i class="fas fa-user text-6xl text-gray-500"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-gray-900 mb-2">강창모</h3>
-                            <p class="text-lg text-red-600 font-medium mb-1">충남도당위원장</p>
+                            <p class="text-lg text-red-600 font-medium mb-1">충남도당창준위위원장</p>
                         </div>
                         <div class="space-y-3 text-gray-700 text-sm">
                             <div class="flex items-start">
@@ -376,6 +263,44 @@
                             <div class="flex items-start">
                                 <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
                                 <span>군산대학교 체육학과 졸업</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 세종 (신규 추가) -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="세종">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">위원장 준비중</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">세종특별자치시당창준위위원장</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700 text-sm">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle w-5 mr-3 text-red-600 mt-1"></i>
+                                <span class="text-gray-500">위원장 선임 예정</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 대구 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="대구">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
+                                <img src="../images/황현정_대구.webp" alt="황현정 대구광역시당위원장" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">황현정</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">대구광역시당위원장</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700 text-sm">
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600 mt-1"></i>
+                                <span>pride1024@hanmail.net</span>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-briefcase w-5 mr-3 text-red-600 mt-1"></i>
+                                <span>국민은행 근무</span>
                             </div>
                         </div>
                     </div>
@@ -403,6 +328,53 @@
                                     <div>현) 고애연 대외협력본부장</div>
                                     <div>전) 제21대 대통령선거 황교안 후보 중앙선거대책위원회 미주총괄본부장</div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 부산 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="부산">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
+                                <img src="../images/서미란_부산.webp" alt="서미란 부산광역시당위원장" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">서미란</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">부산광역시당위원장</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700 text-sm">
+                            <div class="flex items-start">
+                                <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
+                                <span>행정학 박사</span>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-briefcase w-5 mr-3 text-red-600 mt-1"></i>
+                                <div>
+                                    <div>전) 부산과학기술대학교 의무행정학과 겸임교수</div>
+                                    <div>전) 사단법인한국지방정부학회 총무부위원장</div>
+                                    <div>현) 신라대학교 보건행정학 겸임교수</div>
+                                    <div>현) 부정선거부패방지대 사무총장</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 울산 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="울산">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
+                                <img src="../images/지광선_울산.webp" alt="지광선 울산광역시당위원장" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">지광선</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">울산광역시당위원장</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700 text-sm">
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600 mt-1"></i>
+                                <span>jjlightsun@daum.net</span>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
+                                <span>총신대학교 신학대학원 졸업</span>
                             </div>
                         </div>
                     </div>
@@ -439,6 +411,73 @@
                         </div>
                     </div>
                     
+                    <!-- 광주 -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="광주">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
+                                <img src="../images/황영철_광주.webp" alt="황영철 광주광역시창준위위원장" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">황영철</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">광주광역시창준위위원장</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700 text-sm">
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope w-5 mr-3 text-red-600 mt-1"></i>
+                                <span>yungchulhwang@gmail.com</span>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-graduation-cap w-5 mr-3 text-red-600 mt-1"></i>
+                                <div>
+                                    <div>육군사관학교 31기</div>
+                                    <div>전남대학교 경영대학원 석사</div>
+                                    <div>호주 울런공대학교 상경대학원 석사</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-briefcase w-5 mr-3 text-red-600 mt-1"></i>
+                                <div>
+                                    <div>전) 경기도 보견환경국장</div>
+                                    <div>전) 경기도 포천시 부시장</div>
+                                    <div>전) 경기도 군포시 부시장</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 전북 (신규 추가) -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="전북">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">위원장 준비중</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">전북특별자치도당창준위위원장</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700 text-sm">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle w-5 mr-3 text-red-600 mt-1"></i>
+                                <span class="text-gray-500">위원장 선임 예정</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 전남 (신규 추가) -->
+                    <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="전남">
+                        <div class="text-center mb-6">
+                            <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gray-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">위원장 준비중</h3>
+                            <p class="text-lg text-red-600 font-medium mb-1">전남도당창준위위원장</p>
+                        </div>
+                        <div class="space-y-3 text-gray-700 text-sm">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle w-5 mr-3 text-red-600 mt-1"></i>
+                                <span class="text-gray-500">위원장 선임 예정</span>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- 제주 -->
                     <div class="region-card bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-300 hover:shadow-lg transition-all" data-region="제주">
                         <div class="text-center mb-6">
@@ -446,7 +485,7 @@
                                 <i class="fas fa-user text-6xl text-gray-500"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-gray-900 mb-2">이누림</h3>
-                            <p class="text-lg text-red-600 font-medium mb-1">제주도당위원장</p>
+                            <p class="text-lg text-red-600 font-medium mb-1">제주도당창준위위원장</p>
                         </div>
                         <div class="space-y-3 text-gray-700 text-sm">
                             <div class="flex items-start">
@@ -455,6 +494,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 
                 <!-- 검색 결과 없음 메시지 -->
@@ -478,7 +518,7 @@
                             <div class="space-y-2 text-gray-700">
                                 <p class="flex items-center justify-center">
                                     <i class="fas fa-phone text-red-600 mr-2"></i>
-                                    02-1234-5678
+                                    02-2634-2022, 02-2634-2024
                                 </p>
                                 <p class="flex items-center justify-center">
                                     <i class="fas fa-envelope text-red-600 mr-2"></i>
@@ -600,11 +640,11 @@
                 cards.forEach(card => {
                     const region = card.dataset.region.toLowerCase();
                     const name = card.querySelector('h3').textContent.toLowerCase();
-                    const constituency = card.querySelector('.text-gray-600').textContent.toLowerCase();
+                    const position = card.querySelector('.text-red-600').textContent.toLowerCase();
                     
                     if (region.includes(searchTerm) || 
                         name.includes(searchTerm) || 
-                        constituency.includes(searchTerm)) {
+                        position.includes(searchTerm)) {
                         card.style.display = 'block';
                         hasResults = true;
                     } else {
