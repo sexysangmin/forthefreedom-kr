@@ -134,11 +134,11 @@ function loadNavigation() {
                     
                     <!-- 가입 및 후원 버튼 -->
                     <div class="hidden md:flex items-center space-x-3">
-                        <a href="${pathPrefix}support.html" class="border-2 border-red-600 text-red-600 px-4 py-1.5 rounded-md font-medium text-lg hover:border-b-4 transition-all duration-200">
+                        <a href="${pathPrefix}support.html" class="border-2 border-red-600 text-red-600 px-6 py-2 rounded-md font-medium text-xl hover:bg-red-600 hover:text-white transition-all duration-200 min-w-[120px] text-center">
                             후원하기
                         </a>
-                        <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" class="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition-colors duration-200 font-medium text-xl">
-                            당원 가입하기
+                        <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" class="border-2 border-red-600 bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 hover:border-red-700 transition-colors duration-200 font-medium text-xl min-w-[120px] text-center">
+                            당원가입
                         </a>
                     </div>
                     
@@ -216,7 +216,7 @@ function loadNavigation() {
                         <!-- 당원가입 버튼 -->
                         <div class="pt-4 px-3">
                             <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" class="block w-full bg-red-600 text-white text-center py-3 rounded-lg font-bold hover:bg-red-700 transition-colors">
-                                당원 가입하기
+                                당원가입
                             </a>
                         </div>
                     </div>
