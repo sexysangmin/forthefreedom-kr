@@ -189,6 +189,102 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
+    <!-- 점검 중 오버레이 -->
+    <div id="maintenance-overlay" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        color: white;
+        font-family: 'Noto Sans KR', sans-serif;
+    ">
+        <div style="
+            max-width: 600px;
+            padding: 2rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        ">
+            <div style="
+                width: 80px;
+                height: 80px;
+                border: 4px solid #A50034;
+                border-top: 4px solid transparent;
+                border-radius: 50%;
+                margin: 0 auto 2rem;
+                animation: spin 2s linear infinite;
+            "></div>
+            <h2 style="
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: #A50034;
+            ">점검 중</h2>
+            <p style="
+                font-size: 1.25rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
+                opacity: 0.9;
+            ">
+                현재 홈페이지 점검 작업 중입니다.<br>
+                불편을 끼쳐드려 죄송합니다.
+            </p>
+            <p style="
+                font-size: 1rem;
+                color: #ccc;
+                margin-bottom: 0;
+            ">
+                문의사항: 02-2634-2022<br>
+                이메일: forthefreedom2025@naver.com
+            </p>
+        </div>
+    </div>
+
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <script>
+        // 점검 모드 활성화/비활성화
+        const MAINTENANCE_MODE = true; // false로 변경하면 점검 모드 해제
+        
+        if (MAINTENANCE_MODE) {
+            // 점검 모드일 때 페이지 스크롤 방지
+            document.body.style.overflow = 'hidden';
+            
+            // 3초 후 점검 메시지 표시 (로딩 효과)
+            setTimeout(function() {
+                const overlay = document.getElementById('maintenance-overlay');
+                if (overlay) {
+                    overlay.style.opacity = '0';
+                    overlay.style.transition = 'opacity 0.5s ease-in-out';
+                    setTimeout(function() {
+                        overlay.style.opacity = '1';
+                    }, 100);
+                }
+            }, 500);
+        } else {
+            // 점검 모드가 아닐 때 오버레이 숨김
+            const overlay = document.getElementById('maintenance-overlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+    
     <!-- Navigation Component -->
     <div id="navigation-container"></div>
 
