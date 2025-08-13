@@ -18,17 +18,17 @@ function openMembershipPopup() {
 
 // 후원 폼 열기 함수
 function openDonationForm() {
-    alert('후원 기능은 준비 중입니다. 문의: 02-1234-5678');
+    alert('후원 기능은 준비 중입니다. 문의: 02-2634-2022');
 }
 
 // 자원봉사 신청 폼 열기 함수
 function openVolunteerForm() {
-    alert('자원봉사 신청 기능은 준비 중입니다. 문의: 02-1234-5678');
+    alert('자원봉사 신청 기능은 준비 중입니다. 문의: 02-2634-2022');
 }
 
 // 지원 폼 열기 함수
 function openSupportForm() {
-    alert('지원 신청 기능은 준비 중입니다. 문의: 02-1234-5678');
+    alert('지원 신청 기능은 준비 중입니다. 문의: 02-2634-2022');
 }
 
 // 이벤트 상세 정보 모달 (events.html용)
@@ -51,7 +51,7 @@ function openEventDetail(eventId) {
                 </ul>
                 <div class="mt-4 p-3 bg-yellow-50 rounded">
                     <p class="text-sm text-yellow-800">
-                        <strong>참석 문의:</strong> 02-1234-5678<br>
+                        <strong>참석 문의:</strong> 02-2634-2022<br>
                         <strong>방송:</strong> 유튜브 라이브 동시 진행
                     </p>
                 </div>

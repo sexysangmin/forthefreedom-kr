@@ -47,7 +47,7 @@ function loadNavigation() {
                                     <a href="${pathPrefix}about/organization.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">조직도</a>
                                     <div class="relative group/sub">
                                         <a href="#" class="flex items-center justify-between px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">
-                                            사람들 <i class="fas fa-chevron-right text-xs ml-2"></i>
+                                            일꾼들 <i class="fas fa-chevron-right text-xs ml-2"></i>
                                         </a>
                                         <div class="absolute left-full top-0 mt-0 ml-1 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
                                             <div class="py-2">
