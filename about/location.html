@@ -24,8 +24,8 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/style.css">
-    <!-- 네이버 지도 API -->
-    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b1m8ololzq"></script>
+    <!-- 카카오맵 API -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=531db5953ea81b4592c31083c955717f"></script>
 </head>
 <body>
     <div id="navigation-container"></div>
@@ -319,72 +319,142 @@
     <script src="../nav.js"></script>
     <script src="../script.js"></script>
     
-    <!-- 네이버 지도 초기화 스크립트 -->
+    <!-- 카카오맵 초기화 스크립트 -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 자유와혁신 사무실 좌표 (서울 용산구 청파로45길 19)
-            var mapOptions = {
-                center: new naver.maps.LatLng(37.5427, 126.9697), // 청파로45길 19 근처 좌표
-                zoom: 17,
-                mapTypeControl: true,
-                mapTypeControlOptions: {
-                    style: naver.maps.MapTypeControlStyle.BUTTON,
-                    position: naver.maps.Position.TOP_RIGHT
-                },
-                zoomControl: true,
-                zoomControlOptions: {
-                    style: naver.maps.ZoomControlStyle.LARGE,
-                    position: naver.maps.Position.TOP_LEFT
+            // 오류 처리를 위한 함수
+            function initializeKakaoMap() {
+                try {
+                    // 카카오맵 API가 로드되었는지 확인
+                    if (typeof kakao === 'undefined' || typeof kakao.maps === 'undefined') {
+                        throw new Error('카카오맵 API가 로드되지 않았습니다.');
+                    }
+
+                    // 지도를 표시할 div
+                    var mapContainer = document.getElementById('map');
+                    
+                    // 자유와혁신 사무실 좌표 (서울 용산구 청파로45길 19)
+                    var mapOptions = {
+                        center: new kakao.maps.LatLng(37.5427, 126.9697), // 청파로45길 19 근처 좌표
+                        level: 3 // 지도 확대 레벨
+                    };
+
+                    // 지도 생성
+                    var map = new kakao.maps.Map(mapContainer, mapOptions);
+
+                    // 마커가 표시될 위치
+                    var markerPosition = new kakao.maps.LatLng(37.5427, 126.9697);
+
+                    // 마커 생성
+                    var marker = new kakao.maps.Marker({
+                        position: markerPosition,
+                        title: '자유와혁신 중앙당'
+                    });
+
+                    // 마커를 지도에 표시
+                    marker.setMap(map);
+
+                    // 커스텀 오버레이 (정보창) 생성
+                    var overlayContent = 
+                        '<div style="background-color: white; border: 2px solid #A50034; border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); min-width: 280px;">' +
+                        '   <div style="text-align: center;">' +
+                        '       <div style="background-color: #A50034; color: white; padding: 8px; border-radius: 5px; margin-bottom: 10px; font-weight: bold;">' +
+                        '           <i class="fas fa-flag"></i> 자유와혁신 중앙당' +
+                        '       </div>' +
+                        '       <p style="margin: 5px 0; font-size: 14px; color: #333; font-weight: bold;">서울 용산구 청파로45길 19, 301호</p>' +
+                        '       <p style="margin: 5px 0; font-size: 13px; color: #666;">(복조빌딩)</p>' +
+                        '       <div style="margin-top: 12px;">' +
+                        '           <a href="tel:02-2634-2022" style="background-color: #A50034; color: white; padding: 8px 12px; text-decoration: none; border-radius: 5px; font-size: 12px; margin-right: 8px; display: inline-block;">' +
+                        '               <i class="fas fa-phone"></i> 전화하기' +
+                        '           </a>' +
+                        '           <a href="mailto:forthefreedom2025@naver.com" style="background-color: #666; color: white; padding: 8px 12px; text-decoration: none; border-radius: 5px; font-size: 12px; display: inline-block;">' +
+                        '               <i class="fas fa-envelope"></i> 이메일' +
+                        '           </a>' +
+                        '       </div>' +
+                        '   </div>' +
+                        '   <button onclick="closeOverlay()" style="position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 16px; color: #999; cursor: pointer;">×</button>' +
+                        '</div>';
+
+                    var overlay = new kakao.maps.CustomOverlay({
+                        content: overlayContent,
+                        position: markerPosition,
+                        yAnchor: 1.3
+                    });
+
+                    // 오버레이를 지도에 표시
+                    overlay.setMap(map);
+
+                    // 마커 클릭 시 오버레이 토글
+                    kakao.maps.event.addListener(marker, 'click', function() {
+                        if (overlay.getMap()) {
+                            overlay.setMap(null);
+                        } else {
+                            overlay.setMap(map);
+                        }
+                    });
+
+                    // 오버레이 닫기 함수
+                    window.closeOverlay = function() {
+                        overlay.setMap(null);
+                    };
+
+                    // 지도 타입 컨트롤 추가
+                    var mapTypeControl = new kakao.maps.MapTypeControl();
+                    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+                    // 줌 컨트롤 추가
+                    var zoomControl = new kakao.maps.ZoomControl();
+                    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+                    console.log('카카오맵 초기화 성공');
+
+                } catch (error) {
+                    console.error('지도 초기화 오류:', error);
+                    showMapError();
                 }
-            };
+            }
 
-            // 지도 생성
-            var map = new naver.maps.Map('map', mapOptions);
+            // 오류 시 대체 UI 표시
+            function showMapError() {
+                var mapContainer = document.getElementById('map');
+                mapContainer.innerHTML = `
+                    <div class="flex items-center justify-center h-full bg-gray-100 rounded-lg">
+                        <div class="text-center p-8">
+                            <i class="fas fa-map-marked-alt text-4xl text-gray-400 mb-4"></i>
+                            <h3 class="text-lg font-semibold text-gray-700 mb-2">지도 서비스 준비 중</h3>
+                            <p class="text-gray-600 text-sm mb-4">카카오맵 API 키 설정이 필요합니다.</p>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <p><strong>주소:</strong> 서울 용산구 청파로45길 19, 301호 (복조빌딩)</p>
+                                <p><strong>전화:</strong> <a href="tel:02-2634-2022" class="text-red-600 hover:underline">02-2634-2022</a></p>
+                            </div>
+                            <button onclick="initializeKakaoMap()" class="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">
+                                지도 다시 로드
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
 
-            // 마커 생성
-            var marker = new naver.maps.Marker({
-                position: new naver.maps.LatLng(37.5427, 126.9697),
-                map: map,
-                title: '자유와혁신 중앙당',
-                icon: {
-                    content: '<div style="background-color: #A50034; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"><i class="fas fa-flag"></i> 자유와혁신</div>',
-                    size: new naver.maps.Size(120, 30),
-                    anchor: new naver.maps.Point(60, 30)
-                }
-            });
+            // 지도 초기화 시도
+            if (typeof kakao !== 'undefined' && typeof kakao.maps !== 'undefined') {
+                kakao.maps.load(function() {
+                    initializeKakaoMap();
+                });
+            } else {
+                // API 로드를 기다림
+                setTimeout(function() {
+                    if (typeof kakao !== 'undefined' && typeof kakao.maps !== 'undefined') {
+                        kakao.maps.load(function() {
+                            initializeKakaoMap();
+                        });
+                    } else {
+                        showMapError();
+                    }
+                }, 2000);
+            }
 
-            // 정보창 생성
-            var infoWindow = new naver.maps.InfoWindow({
-                content: [
-                    '<div style="width:250px;text-align:center;padding:10px;">',
-                    '   <h4 style="margin-top:5px; color: #A50034; font-weight: bold;">자유와혁신 중앙당</h4>',
-                    '   <p style="margin:5px 0; font-size:13px; color:#666;">서울 용산구 청파로45길 19, 301호</p>',
-                    '   <p style="margin:5px 0; font-size:13px; color:#666;">(복조빌딩)</p>',
-                    '   <div style="margin-top:10px;">',
-                    '       <a href="tel:02-2634-2022" style="background-color:#A50034; color:white; padding:5px 10px; text-decoration:none; border-radius:3px; font-size:12px; margin-right:5px;">',
-                    '           <i class="fas fa-phone"></i> 전화하기',
-                    '       </a>',
-                    '       <a href="mailto:forthefreedom2025@naver.com" style="background-color:#666; color:white; padding:5px 10px; text-decoration:none; border-radius:3px; font-size:12px;">',
-                    '           <i class="fas fa-envelope"></i> 이메일',
-                    '       </a>',
-                    '   </div>',
-                    '</div>'
-                ].join('')
-            });
-
-            // 마커 클릭 시 정보창 열기
-            naver.maps.Event.addListener(marker, 'click', function() {
-                if (infoWindow.getMap()) {
-                    infoWindow.close();
-                } else {
-                    infoWindow.open(map, marker);
-                }
-            });
-
-            // 지도 로드 후 정보창 자동으로 열기 (3초 후)
-            setTimeout(function() {
-                infoWindow.open(map, marker);
-            }, 1500);
+            // 전역 함수로 등록 (재시도 버튼용)
+            window.initializeKakaoMap = initializeKakaoMap;
         });
     </script>
 </body>
