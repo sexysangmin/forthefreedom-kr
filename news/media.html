@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>언론보도 - 자유와혁신</title>
+    
+    <!-- SEO 메타 태그 -->
+    <meta name="description" content="자유와혁신 언론보도 모음. KBS, MBC, SBS, 조선일보, 중앙일보 등 주요 언론사의 자유와혁신 관련 보도를 확인하세요.">
+    <meta name="keywords" content="자유와혁신, 언론보도, 뉴스, 황교안, 정치뉴스, KBS, MBC, SBS, 조선일보, 중앙일보">
+    <meta name="author" content="자유와혁신">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://forthefreedom.kr/news/media.html">
+    
+    <!-- 파비콘 설정 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.png">
+    <link rel="icon" href="../images/favicon.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -182,7 +197,7 @@
                 <div class="mb-8 bg-gray-50 p-6 rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">기간</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">방송기간</label>
                             <select id="dateFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
                                 <option value="">전체</option>
                                 <option value="today">오늘</option>
@@ -245,7 +260,7 @@
                                     <th class="number-cell">번호</th>
                                     <th class="media-cell">언론사</th>
                                     <th class="title-cell">제목</th>
-                                    <th class="date-cell">보도일</th>
+                                    <th class="date-cell">방송일</th>
                                 </tr>
                             </thead>
                             <tbody id="mediaTableBody">
@@ -342,7 +357,7 @@
             showLoading();
             
             try {
-                let url = `${API_BASE}/media-coverage?page=${page}&limit=20`;
+                let url = `${API_BASE}/media-coverage?page=${page}&limit=20&sortBy=broadcastDate&order=desc`;
                 
                 if (currentFilters.media) {
                     url += `&media=${encodeURIComponent(currentFilters.media)}`;
@@ -413,7 +428,7 @@
                             ${originalUrl ? '<i class="fas fa-external-link-alt ml-2 text-blue-500 text-xs"></i>' : '<i class="fas fa-exclamation-triangle ml-2 text-yellow-500 text-xs" title="원본 링크 없음"></i>'}
                         </div>
                     </td>
-                    <td class="date-cell text-gray-600">${formatDate(media?.createdAt || media?.publishedAt)}</td>
+                    <td class="date-cell text-gray-600">${formatDate(media?.broadcastDate || media?.createdAt)}</td>
                 </tr>
                 `;
             }).join('');

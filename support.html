@@ -12,6 +12,13 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://forthefreedom.kr/support.html">
     
+    <!-- 파비콘 설정 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" href="images/favicon.png">
+    
     <!-- Open Graph 메타 태그 -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="자유와혁신 후원 | 황교안신당 자혁당 자유당 후원계좌">
@@ -233,31 +240,67 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- 후원 문의 -->
-                <div class="bg-gray-50 rounded-xl p-8 text-center">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
-                        <i class="fas fa-question-circle text-gray-600 mr-3"></i>
-                        후원 문의
-                    </h3>
-                    <p class="text-gray-700 mb-6">
-                        후원에 관한 문의사항이 있으시면 언제든지 연락해 주세요.
+
+                <!-- 후원 영수증 신청 -->
+                <div class="mb-16" id="receipt-section">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">후원 영수증 신청</h3>
+                    <p class="text-lg text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+                        후원해 주신 분들을 위한 영수증 신청 서비스입니다. 소득공제를 위해 영수증이 필요하신 분은 신청해 주세요.
                     </p>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="text-center">
-                            <i class="fas fa-envelope text-red-600 text-2xl mb-2"></i>
-                            <p class="font-medium text-gray-900">이메일</p>
-                            <p class="text-gray-600 text-sm">준비중</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <!-- 자유와혁신 후원회 영수증 -->
+                        <div class="bg-white border-2 border-red-200 rounded-xl p-8 text-center hover:shadow-lg transition-shadow">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-receipt text-red-600 text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-4">자유와혁신 후원회</h4>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                자유와혁신 정당 활동 후원에 대한<br>
+                                영수증을 신청하실 수 있습니다.
+                            </p>
+                            <button onclick="showReceiptNotReady('자유와혁신 후원회')" 
+                                    class="w-full bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                영수증 신청하기
+                            </button>
+                            <p class="text-xs text-gray-500 mt-3">정당 활동 후원 영수증</p>
                         </div>
-                        <div class="text-center">
-                            <i class="fas fa-phone text-red-600 text-2xl mb-2"></i>
-                            <p class="font-medium text-gray-900">전화</p>
-                            <p class="text-gray-600 text-sm">준비중</p>
+
+                        <!-- 대통령후보 황교안 후원회 영수증 -->
+                        <div class="bg-white border-2 border-blue-200 rounded-xl p-8 text-center hover:shadow-lg transition-shadow">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-vote-yea text-blue-600 text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-4">대통령후보 황교안 후원회</h4>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                6.3 대선 황교안 후보 후원에 대한<br>
+                                영수증을 신청하실 수 있습니다.
+                            </p>
+                            <button onclick="showReceiptNotReady('대통령후보 황교안 후원회')" 
+                                    class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                영수증 신청하기
+                            </button>
+                            <p class="text-xs text-gray-500 mt-3">6.3 대선 후원 영수증</p>
                         </div>
-                        <div class="text-center">
-                            <i class="fas fa-map-marker-alt text-red-600 text-2xl mb-2"></i>
-                            <p class="font-medium text-gray-900">주소</p>
-                            <p class="text-gray-600 text-sm">서울특별시 영등포구 국회대로 70길 15-1</p>
+                    </div>
+
+                    <!-- 영수증 신청 안내 -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mt-8 max-w-4xl mx-auto">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-info-circle text-blue-600 text-xl mt-1"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-gray-900 mb-2">영수증 신청 안내</h5>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 영수증 신청은 구글 문서를 통해 진행됩니다</li>
+                                    <li>• 후원자 정보 확인 후 이메일로 영수증이 발송됩니다</li>
+                                    <li>• 소득공제 한도는 연간 10만원입니다</li>
+                                    <li>• 영수증 발급까지 영업일 기준 3-5일 소요됩니다</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -277,7 +320,7 @@
                         <i class="fas fa-copy mr-2"></i>계좌번호 복사
                     </button>
                     <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" target="_blank" class="border-2 border-white text-white px-8 py-3 text-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
-                        당원 가입하기
+                        당원가입
                     </a>
                 </div>
             </div>
@@ -288,6 +331,11 @@
     <script>
         loadNavigation();
         
+        // 영수증 신청 준비중 알림
+        function showReceiptNotReady(receiptType) {
+            alert(`${receiptType} 영수증 신청 서비스가 준비중입니다.\n\n구글 문서 링크 준비가 완료되는 대로 서비스를 시작하겠습니다.\n\n궁금한 사항이 있으시면 당사 사무실(02-2634-2022)로 연락주세요.`);
+        }
+
         // 계좌번호 복사 기능
         function copyAccountNumber() {
             const accountNumber = '301-0372-2432-31';

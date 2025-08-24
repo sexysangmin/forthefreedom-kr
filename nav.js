@@ -246,10 +246,19 @@ function loadNavigation() {
                 <a href="https://www.ihappynanum.com/Nanum/api/screen/F7FCRIO2E3" 
                    target="_blank"
                    class="floating-btn bg-red-600 hover:bg-red-700 text-white shadow-lg"
-                   title="당원가입하기">
+                   title="당원가입">
                     <i class="fas fa-user-plus mr-2"></i>
                     <span class="hidden sm:inline">당원가입</span>
                     <span class="sm:hidden">가입</span>
+                </a>
+                
+                <!-- 후원영수증 신청 버튼 -->
+                <a href="${pathPrefix}support.html#receipt-section" 
+                   class="floating-btn bg-green-600 hover:bg-green-700 text-white shadow-lg"
+                   title="후원영수증 신청">
+                    <i class="fas fa-receipt mr-2"></i>
+                    <span class="hidden sm:inline">영수증신청</span>
+                    <span class="sm:hidden">영수증</span>
                 </a>
                 
                 <!-- 후원하기 버튼 -->

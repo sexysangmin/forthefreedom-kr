@@ -9,7 +9,11 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; object-src 'none';"> -->
     
     <!-- 파비콘 설정 -->
-    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
     
     <!-- API 설정 로드 -->
     <script src="/config.js"></script>
@@ -728,7 +732,7 @@
                     </select>
                 </div>
                 <div class="form-group-modal">
-                    <label for="content">내용 *</label>
+                    <label for="content" id="contentLabel">내용 *</label>
                     <textarea id="content" name="content" placeholder="마크다운 형식으로 내용을 입력하세요..."></textarea>
                 </div>
                 <div class="form-group-modal">
@@ -1886,7 +1890,8 @@
                 return;
             }
             
-            if (!content.trim()) {
+            // 언론보도의 경우 내용을 선택사항으로 처리 (원본 링크로 바로 연결되므로)
+            if (currentContentType !== 'media-coverage' && !content.trim()) {
                 alert('내용을 입력해주세요.');
                 if (easyMDE) {
                     easyMDE.codemirror.focus();
@@ -1964,6 +1969,11 @@
                 }
                 
                 console.log('✅ 주요일정 validation 통과');
+            }
+            
+            // 언론보도의 경우 내용이 비어있으면 기본값 설정
+            if (currentContentType === 'media-coverage' && !content.trim()) {
+                content = '원본 링크를 확인해주세요.';
             }
             
             // 데이터 준비
@@ -2285,6 +2295,16 @@
         // 활동 필드 토글
         // 콘텐츠 타입별 전용 필드 토글
         function toggleSpecificFields() {
+            // 기본 내용 라벨 및 플레이스홀더 설정
+            const contentLabel = document.getElementById('contentLabel');
+            const contentTextarea = document.getElementById('content');
+            if (contentLabel) {
+                contentLabel.textContent = '내용 *';
+            }
+            if (contentTextarea) {
+                contentTextarea.placeholder = '마크다운 형식으로 내용을 입력하세요...';
+            }
+            
             // 모든 전용 필드 그룹 숨기기
             const fieldGroups = [
                 'spokesperson-fields',
@@ -2322,6 +2342,15 @@
                     break;
                 case 'media-coverage':
                     targetFields = ['media-coverage-fields'];
+                    // 언론보도의 경우 내용을 선택사항으로 표시
+                    if (contentLabel) {
+                        contentLabel.textContent = '내용 (선택사항)';
+                    }
+                    // 플레이스홀더 텍스트도 업데이트
+                    const contentTextarea = document.getElementById('content');
+                    if (contentTextarea) {
+                        contentTextarea.placeholder = '언론보도 내용을 입력하세요. (선택사항 - 비워두면 사용자가 원본 링크로 이동합니다)';
+                    }
                     break;
                 case 'events':
                     targetFields = ['events-fields'];

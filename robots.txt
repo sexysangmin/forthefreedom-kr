@@ -2,50 +2,82 @@
 User-agent: *
 Allow: /
 
+# 구글 검색봇 명시적 허용 (최우선)
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
 # 네이버 검색봇 명시적 허용 (Yeti)
 User-agent: Yeti
 Allow: /
+Crawl-delay: 1
 
-# 구글 검색봇 명시적 허용
-User-agent: Googlebot
+# 빙 검색봇 허용
+User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
-# 중요 페이지들 우선순위 지정
+# 다음 검색봇 허용
+User-agent: Daumoa
+Allow: /
+Crawl-delay: 1
+
+# 중요 페이지들 명시적 허용
+Allow: /index.html
 Allow: /about.html
 Allow: /news.html
 Allow: /members.html
 Allow: /support.html
 Allow: /resources.html
-Allow: /about/policy.html
 
-# 하위 페이지들
+# 주요 하위 페이지들
 Allow: /about/
 Allow: /news/
 Allow: /members/
 Allow: /resources/
 
-# 관리자 페이지 제외 (보안)
+# 특별히 중요한 페이지들
+Allow: /about/policy.html
+Allow: /about/founding.html
+Allow: /about/people-central.html
+Allow: /news/media.html
+Allow: /news/notices.html
+Allow: /news/press-releases.html
+Allow: /members/join.html
+
+# 관리자 페이지 차단 (보안)
 Disallow: /admin/
 Disallow: /server/
 Disallow: /logs/
 Disallow: /archive/
 Disallow: /scripts/
 Disallow: /*.log$
+Disallow: /config.js
+Disallow: /debug*
+Disallow: /test*
 
-# 임시 파일 제외
+# 임시 파일 및 백업 파일 차단
 Disallow: /tmp/
 Disallow: /*.tmp$
+Disallow: /*.bak$
+Disallow: /*~$
 
-# 파비콘 허용 (네이버 권장)
+# 중요 리소스 허용
 Allow: /favicon.ico
-Allow: /images/favicon.png
-
-# CSS, JS 파일 허용 (네이버 권장)
+Allow: /images/
 Allow: /*.css$
 Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.svg$
 
-# 사이트맵 위치
+# 사이트맵 위치 (구글 인덱싱 중요)
 Sitemap: https://forthefreedom.kr/sitemap.xml
 
-# 크롤링 지연 시간 (초) - 서버 부하 방지
-Crawl-delay: 1 
+# 크롤링 지연 시간 설정
+Crawl-delay: 1
+
+# Host 지정 (중요)
+Host: forthefreedom.kr 

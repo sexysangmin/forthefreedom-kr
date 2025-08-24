@@ -184,9 +184,9 @@ function handleTokenExpiry() {
     }
 }
 
-// ⏰ 자동 로그아웃 시스템 (10분 비활성)
+// ⏰ 자동 로그아웃 시스템 (30분 비활성)
 let activityTimer;
-const INACTIVITY_TIME = 10 * 60 * 1000; // 10분
+const INACTIVITY_TIME = 30 * 60 * 1000; // 30분
 
 function resetActivityTimer() {
     clearTimeout(activityTimer);
@@ -194,8 +194,8 @@ function resetActivityTimer() {
     // 관리자 페이지에서만 활성화
     if (window.location.pathname.includes('admin') && !window.location.pathname.includes('index.html')) {
         activityTimer = setTimeout(() => {
-            console.log('⏰ 10분 비활성으로 자동 로그아웃');
-            alert('10분간 활동이 없어 자동 로그아웃됩니다.');
+            console.log('⏰ 30분 비활성으로 자동 로그아웃');
+            alert('30분간 활동이 없어 자동 로그아웃됩니다.');
             handleTokenExpiry();
         }, INACTIVITY_TIME);
     }
@@ -212,7 +212,7 @@ function initActivityDetection() {
     // 초기 타이머 시작
     resetActivityTimer();
     
-    console.log('👀 사용자 활동 감지 시스템 시작 (10분 자동 로그아웃)');
+    console.log('👀 사용자 활동 감지 시스템 시작 (30분 자동 로그아웃)');
 }
 
 // 🔐 관리자 페이지 보안 초기화 (단순화 버전)
@@ -230,7 +230,7 @@ function initAdminSecurity() {
         
         console.log('✅ 토큰 확인됨 - 관리자 페이지 로드');
         
-        // 활동 감지 시작 (10분 자동 로그아웃)
+        // 활동 감지 시작 (30분 자동 로그아웃)
         initActivityDetection();
         
         // 정기적으로 토큰 상태 확인 (1분마다)
