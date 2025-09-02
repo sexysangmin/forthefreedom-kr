@@ -181,7 +181,7 @@
                 showLoading();
                 
                 currentPage = page;
-                let url = `${API_BASE}/policy-committee?page=${page}&limit=20&sort=-createdAt&status=published`;
+                let url = `${API_BASE}/policy-committee?page=${page}&limit=10&sort=-createdAt&status=published`;
                 
                 // 필터 적용
                 if (currentFilter !== 'all') {
@@ -230,7 +230,7 @@
             container.innerHTML = '';
             
             posts.forEach((post, index) => {
-                const row = createBoardRow(post, totalCount - ((currentPage - 1) * 20) - index);
+                const row = createBoardRow(post, totalCount - ((currentPage - 1) * 10) - index);
                 container.appendChild(row);
             });
         }

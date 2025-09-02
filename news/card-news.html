@@ -298,7 +298,7 @@
             if (!loadMore) showLoading();
             
             try {
-                let url = `${API_BASE}/card-news?page=${page}&limit=12&_t=${Date.now()}`;
+                let url = `${API_BASE}/card-news?page=${page}&limit=10&_t=${Date.now()}`;
                 
                 if (currentFilters.category) {
                     url += `&category=${encodeURIComponent(currentFilters.category)}`;

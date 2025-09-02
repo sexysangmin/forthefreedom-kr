@@ -343,7 +343,7 @@
             showLoading();
             
             try {
-                let url = `${API_BASE}/notices?page=${page}&limit=20`;
+                let url = `${API_BASE}/notices?page=${page}&limit=10`;
                 
                 if (currentFilters.category) {
                     url += `&category=${encodeURIComponent(currentFilters.category)}`;
@@ -390,7 +390,7 @@
 
             // 테이블 내용 생성 (순서 번호 올바르게 계산)
             noticesTableBody.innerHTML = notices.map((notice, index) => {
-                const displayNumber = totalItems - ((currentPage - 1) * 20) - index;
+                const displayNumber = totalItems - ((currentPage - 1) * 10) - index;
                 const categoryClass = getCategoryClass(notice.category);
                 
                 return `

@@ -357,7 +357,7 @@
             showLoading();
             
             try {
-                let url = `${API_BASE}/media-coverage?page=${page}&limit=20&sortBy=broadcastDate&order=desc`;
+                let url = `${API_BASE}/media-coverage?page=${page}&limit=10&sortBy=broadcastDate&order=desc`;
                 
                 if (currentFilters.media) {
                     url += `&media=${encodeURIComponent(currentFilters.media)}`;
@@ -411,7 +411,7 @@
             mediaTableBody.innerHTML = mediaList.map((media, index) => {
                 console.log('📋 개별 미디어 데이터:', media);
                 
-                const displayNumber = totalItems - ((currentPage - 1) * 20) - index;
+                const displayNumber = totalItems - ((currentPage - 1) * 10) - index;
                 const mediaOutlet = media?.mediaOutlet || media?.mediaCompany || '알 수 없음';
                 const mediaClass = getMediaClass(mediaOutlet);
                 const originalUrl = media?.originalUrl || '';
