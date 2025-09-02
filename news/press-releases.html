@@ -187,7 +187,12 @@
                 currentPage = page;
                 
                 // 기본 URL 구성 (limit을 10으로 변경)
+                // 페이지 번호가 0부터 시작하는 API인지 확인하기 위해 두 가지 방법 시도
                 let spokespersonUrl = `${API_BASE}/spokesperson?page=${page}&limit=10&sort=-createdAt&status=published`;
+                
+                // 혹시 offset 기반 API라면 이것도 추가
+                const offset = (page - 1) * 10;
+                spokespersonUrl += `&offset=${offset}`;
                 
                 // 필터 적용
                 if (currentFilter !== 'all') {
@@ -214,10 +219,19 @@
                 }
                 
                 // 대변인 API 호출
+                console.log('🌐 API 호출 URL:', spokespersonUrl);
+                console.log('🌐 요청 페이지:', page, '현재 페이지:', currentPage);
+                
                 const spokespersonResponse = await fetch(spokespersonUrl);
                 const spokespersonData = await spokespersonResponse.json();
 
                 console.log('📦 대변인 API 응답:', spokespersonData);
+                console.log('📦 응답 구조:', {
+                    success: spokespersonData.success,
+                    dataLength: spokespersonData.data?.length,
+                    pagination: spokespersonData.pagination,
+                    fullResponse: spokespersonData
+                });
 
                 if (!spokespersonData.success) {
                     throw new Error(spokespersonData.message || '데이터를 불러오는데 실패했습니다.');
@@ -226,10 +240,18 @@
                 const data = spokespersonData.data || [];
                 const pagination = spokespersonData.pagination || {};
                 
-                totalPages = pagination.totalPages || 1;
-                totalCount = pagination.total || 0;
+                // 페이지네이션 정보를 더 정확하게 계산
+                totalCount = pagination.total || pagination.totalItems || data.length;
+                totalPages = pagination.totalPages || pagination.pages || Math.ceil(totalCount / 10);
                 
-                console.log('📊 페이지네이션 정보:', { totalPages, totalCount, currentPage, dataLength: data.length });
+                console.log('📊 상세 페이지네이션 정보:', { 
+                    totalPages, 
+                    totalCount, 
+                    currentPage, 
+                    dataLength: data.length,
+                    calculatedPages: Math.ceil(totalCount / 10),
+                    paginationObject: pagination
+                });
                 
                 updateTotalCount();
                 
@@ -373,14 +395,26 @@
         function renderPagination() {
             const paginationContainer = document.getElementById('pagination');
             
-            console.log('🔧 렌더링 페이지네이션:', { totalPages, totalCount });
+            console.log('🔧 렌더링 페이지네이션:', { 
+                totalPages, 
+                totalCount, 
+                currentPage,
+                shouldShow: totalCount > 10,
+                calculatedTotalPages: Math.ceil(totalCount / 10)
+            });
             
-            // 데이터가 10개보다 많으면 페이지네이션 표시
-            if (totalCount <= 10) {
+            // 총 데이터가 10개보다 많고 totalPages가 1보다 크면 페이지네이션 표시
+            const calculatedTotalPages = Math.ceil(totalCount / 10);
+            const actualTotalPages = Math.max(totalPages, calculatedTotalPages);
+            
+            if (totalCount <= 10 || actualTotalPages <= 1) {
+                console.log('🚫 페이지네이션 숨김:', { totalCount, actualTotalPages });
                 paginationContainer.classList.add('hidden');
                 return;
             }
             
+            console.log('✅ 페이지네이션 표시:', { actualTotalPages });
+            totalPages = actualTotalPages; // 올바른 totalPages 값 설정
             paginationContainer.classList.remove('hidden');
             const nav = paginationContainer.querySelector('nav');
             nav.innerHTML = '';
@@ -391,7 +425,10 @@
             prevBtn.className = `px-3 py-2 rounded-lg border ${currentPage === 1 ? 'text-gray-400 border-gray-200 cursor-not-allowed' : 'text-gray-700 border-gray-300 hover:bg-gray-50'}`;
             prevBtn.disabled = currentPage === 1;
             if (currentPage > 1) {
-                prevBtn.onclick = () => loadPressReleases(currentPage - 1);
+                prevBtn.onclick = () => {
+                    console.log('⬅️ 이전 페이지 클릭:', currentPage - 1);
+                    loadPressReleases(currentPage - 1);
+                };
             }
             nav.appendChild(prevBtn);
             
@@ -404,7 +441,10 @@
                 pageBtn.textContent = i;
                 pageBtn.className = `px-3 py-2 rounded-lg border ${i === currentPage ? 'bg-red-600 text-white border-red-600' : 'text-gray-700 border-gray-300 hover:bg-gray-50'}`;
                 if (i !== currentPage) {
-                    pageBtn.onclick = () => loadPressReleases(i);
+                    pageBtn.onclick = () => {
+                        console.log('📄 페이지 번호 클릭:', i);
+                        loadPressReleases(i);
+                    };
                 }
                 nav.appendChild(pageBtn);
             }
@@ -415,7 +455,10 @@
             nextBtn.className = `px-3 py-2 rounded-lg border ${currentPage === totalPages ? 'text-gray-400 border-gray-200 cursor-not-allowed' : 'text-gray-700 border-gray-300 hover:bg-gray-50'}`;
             nextBtn.disabled = currentPage === totalPages;
             if (currentPage < totalPages) {
-                nextBtn.onclick = () => loadPressReleases(currentPage + 1);
+                nextBtn.onclick = () => {
+                    console.log('➡️ 다음 페이지 클릭:', currentPage + 1);
+                    loadPressReleases(currentPage + 1);
+                };
             }
             nav.appendChild(nextBtn);
         }
