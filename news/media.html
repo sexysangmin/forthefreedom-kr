@@ -357,6 +357,9 @@
             showLoading();
             
             try {
+                currentPage = page; // currentPage 업데이트
+                console.log('🌐 API 호출 - 페이지:', page, '현재 페이지:', currentPage);
+                
                 let url = `${API_BASE}/media-coverage?page=${page}&limit=10&sortBy=broadcastDate&order=desc`;
                 
                 if (currentFilters.media) {
@@ -473,10 +476,11 @@
             
             const currentPage = paginationData.current || 1;
             const totalPages = paginationData.pages || 1;
+            const totalItems = paginationData.total || 0;
             
             pagination.innerHTML = '';
             
-            console.log('🔧 언론보도 렌더링 페이지네이션:', { totalPages, totalItems });
+            console.log('🔧 언론보도 렌더링 페이지네이션:', { totalPages, totalItems, currentPage });
             
             // 데이터가 10개보다 많으면 페이지네이션 표시
             if (totalItems <= 10) return;
@@ -487,7 +491,10 @@
             prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
             prevBtn.disabled = currentPage <= 1;
             if (currentPage > 1) {
-                prevBtn.onclick = () => loadMediaCoverage(currentPage - 1);
+                prevBtn.onclick = () => {
+                    console.log('⬅️ 이전 페이지 클릭:', currentPage - 1);
+                    changePage(currentPage - 1);
+                };
             }
             pagination.appendChild(prevBtn);
             
@@ -500,7 +507,10 @@
                 pageBtn.className = `px-3 py-2 text-sm font-medium ${i === currentPage ? 'bg-red-600 text-white' : 'text-gray-700 hover:bg-gray-50'}`;
                 pageBtn.textContent = i;
                 if (i !== currentPage) {
-                    pageBtn.onclick = () => loadMediaCoverage(i);
+                    pageBtn.onclick = () => {
+                        console.log('📄 페이지 번호 클릭:', i);
+                        changePage(i);
+                    };
                 }
                 pagination.appendChild(pageBtn);
             }
@@ -511,13 +521,17 @@
             nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
             nextBtn.disabled = currentPage >= totalPages;
             if (currentPage < totalPages) {
-                nextBtn.onclick = () => loadMediaCoverage(currentPage + 1);
+                nextBtn.onclick = () => {
+                    console.log('➡️ 다음 페이지 클릭:', currentPage + 1);
+                    changePage(currentPage + 1);
+                };
             }
             pagination.appendChild(nextBtn);
         }
 
         // 페이지 변경
         function changePage(page) {
+            console.log('🔄 페이지 변경:', currentPage, '->', page);
             currentPage = page;
             window.scrollTo(0, 0);
             loadMediaCoverage(page);
