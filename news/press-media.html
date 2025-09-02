@@ -202,6 +202,8 @@
                     totalPages = data.pagination?.totalPages || 1;
                     totalCount = data.pagination?.total || 0;
                     
+                    console.log('📊 뉴미디어 페이지네이션 정보:', { totalPages, totalCount, currentPage, dataLength: data.data?.length });
+                    
                     updateTotalCount();
                     
                     if (data.data.length === 0 && page === 1) {
@@ -360,7 +362,10 @@
             const nav = container.querySelector('nav');
             nav.innerHTML = '';
             
-            if (totalPages <= 1) {
+            console.log('🔧 뉴미디어 렌더링 페이지네이션:', { totalPages, totalCount });
+            
+            // 데이터가 10개보다 많으면 페이지네이션 표시
+            if (totalCount <= 10) {
                 container.classList.add('hidden');
                 return;
             }

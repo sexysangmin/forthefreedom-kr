@@ -476,7 +476,10 @@
             
             pagination.innerHTML = '';
             
-            if (totalPages <= 1) return;
+            console.log('🔧 언론보도 렌더링 페이지네이션:', { totalPages, totalItems });
+            
+            // 데이터가 10개보다 많으면 페이지네이션 표시
+            if (totalItems <= 10) return;
             
             // 이전 페이지 버튼
             const prevBtn = document.createElement('button');

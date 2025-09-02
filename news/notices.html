@@ -383,6 +383,8 @@
             const currentPage = paginationData?.current || 1;
             const totalPages = paginationData?.pages || 1;
             
+            console.log('📊 공지사항 페이지네이션 정보:', { totalPages, totalItems, currentPage, dataLength: notices.length });
+            
             totalCount.textContent = totalItems;
             
             // 페이지 정보

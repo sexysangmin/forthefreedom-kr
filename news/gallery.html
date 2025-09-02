@@ -471,7 +471,9 @@
             }
 
             // 더보기 버튼 표시/숨김
-            if (paginationData && paginationData.hasNext) {
+            console.log('🔧 갤러리 페이지네이션:', { paginationData, hasNext: paginationData?.hasNext, totalPhotos: photos.length });
+            
+            if (paginationData && (paginationData.hasNext || paginationData.current < paginationData.pages)) {
                 loadMoreBtn.classList.remove('hidden');
             } else {
                 loadMoreBtn.classList.add('hidden');

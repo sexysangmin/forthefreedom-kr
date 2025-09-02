@@ -369,7 +369,9 @@
             }
 
             // 더보기 버튼 표시/숨김
-            if (paginationData && paginationData.hasNext) {
+            console.log('🔧 카드뉴스 페이지네이션:', { paginationData, hasNext: paginationData?.hasNext, totalCards: cards.length });
+            
+            if (paginationData && (paginationData.hasNext || paginationData.current < paginationData.pages)) {
                 loadMoreBtn.classList.remove('hidden');
             } else {
                 loadMoreBtn.classList.add('hidden');
