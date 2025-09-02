@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO 메타 태그 -->
+    <title>후원영수증 신청 | 자유와혁신 소득공제 영수증 발급</title>
+    <meta name="description" content="자유와혁신 후원영수증 신청 서비스. 정당 후원 및 대선 후원에 대한 영수증을 신청하여 소득공제 혜택을 받으세요.">
+    <meta name="keywords" content="후원영수증, 소득공제, 정치후원영수증, 자유와혁신 영수증, 황교안 후원영수증">
+    <meta name="author" content="자유와혁신">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://forthefreedom.kr/support-receipt.html">
+    
+    <!-- 파비콘 설정 -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" href="images/favicon.png">
+    
+    <!-- Open Graph 메타 태그 -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="후원영수증 신청 | 자유와혁신 소득공제 영수증">
+    <meta property="og:description" content="자유와혁신 후원영수증 신청 서비스. 정당 후원 및 대선 후원에 대한 영수증을 신청하여 소득공제 혜택을 받으세요.">
+    <meta property="og:url" content="https://forthefreedom.kr/support-receipt.html">
+    <meta property="og:site_name" content="자유와혁신">
+    <meta property="og:image" content="https://forthefreedom.kr/images/flag2-pic.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-600': '#A50034',
+                        'red-700': '#8B002C',
+                        'red-800': '#700024',
+                        'red-900': '#56001C',
+                        'red-50': '#FDF2F4',
+                        'red-100': '#FCE7EA',
+                        'red-500': '#A50034'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div id="navigation-container"></div>
+    
+    <section class="hero-section hero-bg-flag2" style="position:relative; height:60vh; display:flex; align-items:center; justify-content:center;">
+        <div class="hero-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2)); z-index:1;"></div>
+        <div class="hero-content" style="position:relative; z-index:2; color:#fff; text-align:center;">
+            <h1 style="font-size:3.5rem; font-weight:bold; margin:0; text-shadow:2px 2px 4px rgba(0,0,0,0.5);">후원영수증 신청</h1>
+            <p style="font-size:1.2rem; margin-top:1rem; text-shadow:1px 1px 2px rgba(0,0,0,0.5);">소득공제를 위한 후원영수증 발급 서비스</p>
+        </div>
+    </section>
+    
+    <main style="position:relative; z-index:1; background:#fff;">
+        <!-- 후원 영수증 신청 Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 후원 영수증 신청 -->
+                <div class="mb-16" id="receipt-section">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">후원영수증 신청</h2>
+                    <p class="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+                        후원해 주신 분들을 위한 영수증 신청 서비스입니다. 소득공제를 위해 영수증이 필요하신 분은 신청해 주세요.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <!-- 자유와혁신 후원회 영수증 -->
+                        <div class="bg-white border-2 border-red-200 rounded-xl p-8 text-center hover:shadow-lg transition-shadow">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-receipt text-red-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">자유와혁신 후원회</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                자유와혁신 정당 활동 후원에 대한<br>
+                                영수증을 신청하실 수 있습니다.
+                            </p>
+                            <button onclick="showReceiptNotReady('자유와혁신 후원회')" 
+                                    class="w-full bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                영수증 신청하기
+                            </button>
+                            <p class="text-xs text-gray-500 mt-3">정당 활동 후원 영수증</p>
+                        </div>
+
+                        <!-- 대통령후보 황교안 후원회 영수증 -->
+                        <div class="bg-white border-2 border-blue-200 rounded-xl p-8 text-center hover:shadow-lg transition-shadow">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-vote-yea text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">대통령후보 황교안 후원회</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                6.3 대선 황교안 후보 후원에 대한<br>
+                                영수증을 신청하실 수 있습니다.
+                            </p>
+                            <button onclick="showReceiptNotReady('대통령후보 황교안 후원회')" 
+                                    class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                영수증 신청하기
+                            </button>
+                            <p class="text-xs text-gray-500 mt-3">6.3 대선 후원 영수증</p>
+                        </div>
+                    </div>
+
+                    <!-- 영수증 신청 안내 -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mt-8 max-w-4xl mx-auto">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-info-circle text-blue-600 text-xl mt-1"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">영수증 신청 안내</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 영수증 신청은 구글 문서를 통해 진행됩니다</li>
+                                    <li>• 후원자 정보 확인 후 이메일로 영수증이 발송됩니다</li>
+                                    <li>• 소득공제 한도는 연간 10만원입니다</li>
+                                    <li>• 영수증 발급까지 영업일 기준 3-5일 소요됩니다</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 소득공제 안내 -->
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-8 mb-16">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6 text-center">
+                        소득공제 안내
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">공제 대상</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• 정당 후원금: 연간 10만원 한도</li>
+                                <li>• 후보자 후원금: 연간 10만원 한도</li>
+                                <li>• 각각 별도로 공제 가능</li>
+                                <li>• 개인소득세 신고시 적용</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">신청 방법</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• 후원 후 영수증 신청</li>
+                                <li>• 구글 문서를 통한 온라인 신청</li>
+                                <li>• 신분증 사본 첨부 필요</li>
+                                <li>• 이메일로 영수증 발송</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 자주 묻는 질문 -->
+                <div class="mb-16">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">자주 묻는 질문</h3>
+                    <div class="space-y-4 max-w-4xl mx-auto">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-900 mb-2">Q. 영수증 신청은 언제까지 가능한가요?</h4>
+                            <p class="text-gray-700">A. 후원한 해의 다음 해 1월 31일까지 신청 가능합니다. 소득세 신고 기간에 맞춰 미리 신청하시기 바랍니다.</p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-900 mb-2">Q. 영수증을 분실했는데 재발급이 가능한가요?</h4>
+                            <p class="text-gray-700">A. 네, 재발급이 가능합니다. 동일한 신청 절차를 통해 재발급을 요청하시면 됩니다.</p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-900 mb-2">Q. 소득공제 한도는 얼마인가요?</h4>
+                            <p class="text-gray-700">A. 정당 후원금과 후보자 후원금 각각 연간 10만원까지 소득공제가 가능합니다.</p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-900 mb-2">Q. 영수증 발급까지 얼마나 걸리나요?</h4>
+                            <p class="text-gray-700">A. 신청서 접수 후 영업일 기준 3-5일 내에 이메일로 발송됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="py-16 bg-red-600 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold mb-6">후원영수증으로 소득공제 혜택을</h2>
+                <p class="text-xl leading-relaxed mb-8 max-w-3xl mx-auto">
+                    정치후원금에 대한 소득공제 혜택을 놓치지 마세요.<br>
+                    영수증 신청을 통해 세제 혜택을 받으실 수 있습니다.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToTop()" class="bg-white text-red-600 px-8 py-3 text-lg font-semibold hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-arrow-up mr-2"></i>영수증 신청하기
+                    </button>
+                    <a href="support.html" class="border-2 border-white text-white px-8 py-3 text-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
+                        후원하기
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="nav.js"></script>
+    <script>
+        loadNavigation();
+        
+        // 영수증 신청 준비중 알림
+        function showReceiptNotReady(receiptType) {
+            alert(`${receiptType} 영수증 신청 서비스가 준비중입니다.\n\n구글 문서 링크 준비가 완료되는 대로 서비스를 시작하겠습니다.\n\n궁금한 사항이 있으시면 당사 사무실(02-2634-2022)로 연락주세요.`);
+        }
+
+        // 페이지 상단으로 스크롤
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // WebP 지원 감지
+        (function() {
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = 1;
+                canvas.height = 1;
+                const dataURL = canvas.toDataURL('image/webp');
+                if (dataURL.indexOf('data:image/webp') === 0) {
+                    document.documentElement.classList.add('webp');
+                } else {
+                    document.documentElement.classList.add('no-webp');
+                }
+            } catch (e) {
+                document.documentElement.classList.add('no-webp');
+            }
+        })();
+    </script>
+</body>
+</html>

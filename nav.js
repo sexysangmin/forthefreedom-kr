@@ -127,9 +127,17 @@ function loadNavigation() {
                         </div>
                         
                         <!-- 4. 후원 -->
-                        <a href="${pathPrefix}support.html" class="text-gray-700 hover:text-red-600 font-bold py-2 px-1 transition-colors duration-200 text-xl">
-                            후원
-                        </a>
+                        <div class="relative group">
+                            <a href="${pathPrefix}support.html" class="text-gray-700 hover:text-red-600 font-bold py-2 px-1 transition-colors duration-200 text-xl">
+                                후원
+                            </a>
+                            <div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+                                <div class="py-2">
+                                    <a href="${pathPrefix}support-guide.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">후원 안내</a>
+                                    <a href="${pathPrefix}support-receipt.html" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">후원영수증 신청</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                     <!-- 가입 및 후원 버튼 -->
@@ -210,8 +218,17 @@ function loadNavigation() {
                             </div>
                         </div>
                         
-                        <!-- 후원 메뉴 (단일 링크) -->
-                        <a href="${pathPrefix}support.html" class="block px-3 py-2 text-lg font-bold text-gray-700 hover:bg-gray-50 hover:text-red-600">후원</a>
+                        <!-- 후원 메뉴 -->
+                        <div class="mobile-menu-item">
+                            <button onclick="toggleMobileSubmenu('support-submenu')" class="w-full flex items-center justify-between px-3 py-2 text-lg text-gray-700 hover:bg-gray-50 hover:text-red-600">
+                                <span class="font-bold">후원</span>
+                                <i class="fas fa-chevron-down transition-transform duration-200" id="support-submenu-icon"></i>
+                            </button>
+                            <div id="support-submenu" class="hidden bg-gray-50 border-l-4 border-red-600 ml-3">
+                                <a href="${pathPrefix}support-guide.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">후원 안내</a>
+                                <a href="${pathPrefix}support-receipt.html" class="block px-6 py-2 text-base text-gray-600 hover:bg-gray-100 hover:text-red-600">후원영수증 신청</a>
+                            </div>
+                        </div>
                         
                         <!-- 당원가입 버튼 -->
                         <div class="pt-4 px-3">
@@ -253,7 +270,7 @@ function loadNavigation() {
                 </a>
                 
                 <!-- 후원영수증 신청 버튼 -->
-                <a href="${pathPrefix}support.html#receipt-section" 
+                <a href="${pathPrefix}support-receipt.html" 
                    class="floating-btn bg-green-600 hover:bg-green-700 text-white shadow-lg"
                    title="후원영수증 신청">
                     <i class="fas fa-receipt mr-2"></i>
