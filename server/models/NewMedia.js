@@ -78,7 +78,7 @@ const newMediaSchema = new mongoose.Schema({
   author: {
     type: String,
     required: true,
-    default: '뉴미디어팀'
+    default: '뉴미디어'
   },
   designer: {
     type: String,

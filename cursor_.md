@@ -2066,13 +2066,13 @@ app.use(cors({
                             </div>
                         </div>
 
-                        <!-- 뉴미디어팀 -->
+                        <!-- 뉴미디어 -->
                         <div class="cyber-card p-6">
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center space-x-4">
                                     <i class="fas fa-mobile-alt content-type-icon"></i>
                                     <div>
-                                        <h4 class="text-xl font-bold text-white">뉴미디어팀</h4>
+                                        <h4 class="text-xl font-bold text-white">뉴미디어</h4>
                                         <p class="text-gray-300 text-sm">디지털 콘텐츠</p>
                                     </div>
                                 </div>
@@ -2884,13 +2884,13 @@ app.use(cors({
                             </div>
                         </div>
 
-                        <!-- 뉴미디어팀 -->
+                        <!-- 뉴미디어 -->
                         <div class="cyber-card p-6">
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center space-x-4">
                                     <i class="fas fa-mobile-alt content-type-icon"></i>
                                     <div>
-                                        <h4 class="text-xl font-bold text-white">뉴미디어팀</h4>
+                                        <h4 class="text-xl font-bold text-white">뉴미디어</h4>
                                         <p class="text-gray-300 text-sm">디지털 콘텐츠</p>
                                     </div>
                                 </div>
@@ -3580,13 +3580,13 @@ app.use(cors({
                             </div>
                         </div>
 
-                        <!-- 뉴미디어팀 -->
+                        <!-- 뉴미디어 -->
                         <div class="content-card p-6">
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center space-x-3">
                                     <i class="fas fa-mobile-alt text-2xl icon-blue"></i>
                                     <div>
-                                        <h4 class="text-lg font-semibold text-gray-900">뉴미디어팀</h4>
+                                        <h4 class="text-lg font-semibold text-gray-900">뉴미디어</h4>
                                         <p class="text-gray-600 text-sm">디지털 콘텐츠</p>
                                     </div>
                                 </div>
@@ -3948,7 +3948,7 @@ app.use(cors({
 ### 🎨 **색상 & 디자인**
 - ❌ 네온/사이버 색상 → ✅ 블루/그레이 모던 톤
 - ❌ 어두운 배경 → ✅ 밝은 화이트/라이트그레이 배경  
-- ❌ 글로우/네온 텍스트 → ✅ 깔끔한 다크 그레이 텍스트
+- ❌ 글로우/네온 텍스트 → ✅ 깔끔한 다크 네이비 텍스트
 
 ### 🎭 **효과 & 애니메이션**
 - ❌ 과도한 애니메이션 제거 (glow, float, pulse-glow)
@@ -9009,7 +9009,7 @@ http://127.0.0.1:5500/images/default-gallery.jpg
                             <span>바로가기</span>
                             <i class="fas fa-arrow-right ml-2"></i>
                         </a>
-                    여기를 뉴미디어팀 보토자료 로 텍스트를 바꾸고, 아래 최신 소식에도 그냥 바로 각자 상세페이지가 아닌 목록 링크로 연결해줘
+                    여기를 뉴미디어 보토자료 로 텍스트를 바꾸고, 아래 최신 소식에도 그냥 바로 각자 상세페이지가 아닌 목록 링크로 연결해줘
 
 ---
 
@@ -9017,7 +9017,7 @@ http://127.0.0.1:5500/images/default-gallery.jpg
 
 네, 두 가지 수정해드리겠습니다.
 
-먼저 상단 카테고리 개요 섹션의 "대변인 보도자료"를 "뉴미디어팀 보도자료"로 변경하겠습니다:
+먼저 상단 카테고리 개요 섹션의 "대변인 보도자료"를 "뉴미디어 보도자료"로 변경하겠습니다:
 
 ```html
                         <h3 class="text-2xl font-semibold text-gray-900 mb-4">대변인 보도자료</h3>
@@ -9027,13 +9027,13 @@ http://127.0.0.1:5500/images/default-gallery.jpg
 
 ->
 
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">뉴미디어팀 보도자료</h3>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">뉴미디어 보도자료</h3>
                         <p class="text-gray-600 mb-6 leading-relaxed">
-                            뉴미디어팀의 최신 보도자료와 미디어 소식을 확인하세요
+                            뉴미디어의 최신 보도자료와 미디어 소식을 확인하세요
                         </p>
 ```
 
-이제 최신 소식 섹션에서 상세 페이지 링크를 목록 페이지 링크로 변경하고, "대변인 보도자료"를 "뉴미디어팀 보도자료"로 변경하겠습니다:
+이제 최신 소식 섹션에서 상세 페이지 링크를 목록 페이지 링크로 변경하고, "대변인 보도자료"를 "뉴미디어 보도자료"로 변경하겠습니다:
 
 ```html
             // 공지사항 카드
@@ -9125,12 +9125,12 @@ http://127.0.0.1:5500/images/default-gallery.jpg
                 }));
             }
 
-            // 뉴미디어팀 보도자료 카드
+            // 뉴미디어 보도자료 카드
             if (spokespersonData.success && spokespersonData.data && spokespersonData.data.length > 0) {
                 const spokesperson = spokespersonData.data[0];
                 container.appendChild(createSimpleCard({
                     type: 'spokesperson',
-                    title: '뉴미디어팀 보도자료',
+                    title: '뉴미디어 보도자료',
                     icon: 'fas fa-microphone',
                     bgGradient: 'bg-gradient-to-r from-blue-500 to-blue-600',
                     badgeStyle: 'bg-blue-100 text-blue-800',
@@ -9144,13 +9144,13 @@ http://127.0.0.1:5500/images/default-gallery.jpg
             } else {
                 container.appendChild(createEmptyCard({
                     type: 'spokesperson',
-                    title: '뉴미디어팀 보도자료',
+                    title: '뉴미디어 보도자료',
                     icon: 'fas fa-microphone',
                     bgGradient: 'bg-gradient-to-r from-blue-500 to-blue-600',
                     badgeStyle: 'bg-blue-100 text-blue-800',
                     linkStyle: 'text-blue-600 hover:text-blue-700',
                     linkUrl: 'news/press-media.html',
-                    message: '등록된 뉴미디어팀 보도자료가 없습니다'
+                    message: '등록된 뉴미디어 보도자료가 없습니다'
                 }));
             }
 ```
@@ -9159,13 +9159,13 @@ http://127.0.0.1:5500/images/default-gallery.jpg
 
 ## 변경사항 요약
 
-### 1. "대변인 보도자료" → "뉴미디어팀 보도자료" 변경
+### 1. "대변인 보도자료" → "뉴미디어 보도자료" 변경
 - **상단 카테고리 섹션**: 제목과 설명 텍스트 변경
 - **최신 소식 섹션**: 카드 제목과 빈 상태 메시지 변경
 
 ### 2. 최신 소식 카드들이 목록 페이지로 직접 연결
 - **공지사항**: `notice-detail.html?id=...` → `notices.html`
-- **뉴미디어팀 보도자료**: `media-detail.html?id=...` → `press-media.html`  
+- **뉴미디어 보도자료**: `media-detail.html?id=...` → `press-media.html`  
 - **포토갤러리**: 이미 `gallery.html` 목록 페이지로 연결됨
 
 이제 사용자가 최신 소식 카드를 클릭하면 개별 상세 페이지가 아닌 각 카테고리의 목록 페이지로 바로 이동하게 됩니다. 이렇게 하면 사용자가 해당 카테고리의 모든 콘텐츠를 한눈에 볼 수 있어서 더 좋은 사용자 경험을 제공할 수 있습니다!

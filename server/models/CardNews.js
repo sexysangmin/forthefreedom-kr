@@ -22,7 +22,7 @@ const cardNewsSchema = new mongoose.Schema({
     },
     author: {
         type: String,
-        default: '뉴미디어팀'
+        default: '뉴미디어'
     },
     imageCount: {
         type: Number,

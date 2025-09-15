@@ -773,7 +773,7 @@
                     <input type="text" id="location" name="location" placeholder="회의 장소">
                 </div>
 
-                <!-- 뉴미디어팀 전용 필드 -->
+                <!-- 뉴미디어 전용 필드 -->
                 <div class="form-group-modal new-media-fields" style="display: none;">
                     <label for="mediaType">미디어 타입 *</label>
                     <select id="mediaType" name="mediaType">
@@ -843,7 +843,26 @@
                 <!-- 언론보도 전용 필드 -->
                 <div class="form-group-modal media-coverage-fields" style="display: none;">
                     <label for="mediaOutlet">언론사 *</label>
-                    <input type="text" id="mediaOutlet" name="mediaOutlet" placeholder="KBS, MBC, 조선일보 등">
+                    <select id="mediaOutlet" name="mediaOutlet">
+                        <option value="">언론사를 선택하세요</option>
+                        <option value="연합뉴스">연합뉴스</option>
+                        <option value="뉴시스">뉴시스</option>
+                        <option value="뉴스1">뉴스1</option>
+                        <option value="조선일보">조선일보</option>
+                        <option value="조선비즈">조선비즈</option>
+                        <option value="중앙일보">중앙일보</option>
+                        <option value="동아일보">동아일보</option>
+                        <option value="한국경제">한국경제</option>
+                        <option value="매일경제">매일경제</option>
+                        <option value="아시아투데이">아시아투데이</option>
+                        <option value="파이낸스투데이">파이낸스투데이</option>
+                        <option value="한미일보">한미일보</option>
+                        <option value="천지일보">천지일보</option>
+                        <option value="트루스데일리">트루스데일리</option>
+                        <option value="매일신문">매일신문</option>
+                        <option value="기타">기타 (직접 입력)</option>
+                    </select>
+                    <input type="text" id="mediaOutletCustom" name="mediaOutletCustom" placeholder="기타 언론사명을 입력하세요" style="display: none; margin-top: 8px;">
                 </div>
                 <div class="form-group-modal media-coverage-fields" style="display: none;">
                     <label for="mediaType">매체 유형 *</label>
@@ -1101,11 +1120,11 @@
                 defaultAuthor: '정책위원회'
             },
             'new-media': { 
-                title: '뉴미디어팀', 
+                title: '뉴미디어', 
                 icon: '📱',
                 endpoint: '/new-media',
                 categories: ['카드뉴스', '영상', '홍보물', 'SNS콘텐츠', '인포그래픽', '웹툰'],
-                defaultAuthor: '뉴미디어팀'
+                defaultAuthor: '뉴미디어'
             },
             'media-coverage': { 
                 title: '언론보도', 
@@ -1126,7 +1145,7 @@
                 icon: '🃏',
                 endpoint: '/card-news',
                 categories: ['정책', '활동', '소식', '정보'],
-                defaultAuthor: '뉴미디어팀'
+                defaultAuthor: '뉴미디어'
             },
             'gallery': { 
                 title: '포토갤러리', 
@@ -1143,11 +1162,11 @@
                 defaultAuthor: '정책위원회'
             },
             'new-media': { 
-                title: '뉴미디어팀', 
+                title: '뉴미디어', 
                 icon: '🎬',
                 endpoint: '/new-media',
                 categories: ['카드뉴스', '영상', '홍보물', 'SNS콘텐츠', '인포그래픽', '웹툰'],
-                defaultAuthor: '뉴미디어팀'
+                defaultAuthor: '뉴미디어'
             },
             'activities': { 
                 title: '활동자료', 
@@ -1216,6 +1235,19 @@
 
             // 파일 선택 이벤트
             document.getElementById('attachments').addEventListener('change', handleFileSelection);
+            
+            // 언론사 드롭다운 이벤트
+            document.getElementById('mediaOutlet').addEventListener('change', function() {
+                const customInput = document.getElementById('mediaOutletCustom');
+                if (this.value === '기타') {
+                    customInput.style.display = 'block';
+                    customInput.required = true;
+                } else {
+                    customInput.style.display = 'none';
+                    customInput.required = false;
+                    customInput.value = '';
+                }
+            });
         });
 
         // 인증 확인
@@ -1522,7 +1554,22 @@
                             break;
                             
                         case 'media-coverage':
-                            setFieldValue('mediaOutlet', item.mediaOutlet);
+                            // 언론사명 설정 - 드롭다운에 있는지 확인
+                            const knownMediaOutlets = [
+                                '연합뉴스', '뉴시스', '뉴스1', '조선일보', '조선비즈', '중앙일보', 
+                                '동아일보', '한국경제', '매일경제', '아시아투데이', '파이낸스투데이', 
+                                '한미일보', '천지일보', '트루스데일리', '매일신문'
+                            ];
+                            
+                            if (knownMediaOutlets.includes(item.mediaOutlet)) {
+                                setFieldValue('mediaOutlet', item.mediaOutlet);
+                            } else {
+                                setFieldValue('mediaOutlet', '기타');
+                                setFieldValue('mediaOutletCustom', item.mediaOutlet);
+                                document.getElementById('mediaOutletCustom').style.display = 'block';
+                                document.getElementById('mediaOutletCustom').required = true;
+                            }
+                            
                             setFieldValue('mediaType', item.mediaType);
                             setFieldValue('journalist', item.journalist);
                             setFieldValue('program', item.program);
@@ -2006,6 +2053,10 @@
             if (tagsElement && tagsElement.value) {
                 const tagsValue = tagsElement.value;
                 requestData.tags = tagsValue.split(',').map(tag => tag.trim()).filter(tag => tag);
+                console.log('📋 태그 처리:', { 
+                    원본값: tagsValue, 
+                    처리된배열: requestData.tags 
+                });
             }
             
             // 콘텐츠 타입별 전용 필드 처리
@@ -2033,8 +2084,12 @@
                     break;
                     
                 case 'media-coverage':
+                    // 언론사명 처리 - 기타 선택시 커스텀 입력값 사용
+                    const mediaOutletSelect = document.getElementById('mediaOutlet').value.trim();
+                    const mediaOutletCustom = document.getElementById('mediaOutletCustom').value.trim();
+                    requestData.mediaOutlet = mediaOutletSelect === '기타' ? mediaOutletCustom : mediaOutletSelect;
+                    
                     // 필수 필드들 - 빈 값인 경우 기본값 사용
-                    requestData.mediaOutlet = document.getElementById('mediaOutlet').value.trim() || '';
                     requestData.mediaType = document.getElementById('mediaType').value || 'TV';
                     requestData.broadcastDate = document.getElementById('broadcastDate').value || new Date().toISOString();
                     
@@ -2136,7 +2191,10 @@
                 // 모든 필드를 FormData에 추가
                 Object.keys(requestData).forEach(key => {
                     if (Array.isArray(requestData[key])) {
-                        requestData[key].forEach(item => formData.append(key, item));
+                        // 배열은 JSON 문자열로 변환하여 전송
+                        const jsonValue = JSON.stringify(requestData[key]);
+                        formData.append(key, jsonValue);
+                        console.log(`📤 FormData 배열 추가: ${key} =`, jsonValue);
                     } else {
                         formData.append(key, requestData[key]);
                     }

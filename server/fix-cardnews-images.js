@@ -22,7 +22,7 @@ async function fixCardNewsImages() {
                 excerpt: "새해를 맞아 발표하는 경제 혁신 정책의 주요 내용을 카드뉴스로 소개합니다.",
                 category: "정책",
                 content: "## 경제 혁신 정책 주요 내용\n\n1. 중소기업 지원 확대\n2. 창업 생태계 활성화\n3. 디지털 경제 전환 지원\n4. 고용 창출 정책\n5. 지역 경제 균형 발전",
-                author: "뉴미디어팀",
+                author: "뉴미디어",
                 imageCount: 3,
                 tags: ["경제정책", "신년정책", "혁신"],
                 attachments: [
@@ -56,7 +56,7 @@ async function fixCardNewsImages() {
                 excerpt: "21세기 교육 혁신을 위한 미래형 교육 시스템 구축 방안을 소개합니다.",
                 category: "활동",
                 content: "## 교육 혁신 정책\n\n1. 개별 맞춤형 교육 시스템\n2. 디지털 교육 인프라 확충\n3. 교사 역량 강화 프로그램\n4. 창의적 사고력 개발 과정",
-                author: "뉴미디어팀",
+                author: "뉴미디어",
                 imageCount: 2,
                 tags: ["교육정책", "혁신교육", "미래교육"],
                 attachments: [
@@ -83,7 +83,7 @@ async function fixCardNewsImages() {
                 excerpt: "청년들을 위한 체계적인 일자리 창출 프로젝트의 주요 내용입니다.",
                 category: "소식",
                 content: "## 청년 일자리 창출 프로젝트\n\n1. 스타트업 인큐베이팅 지원\n2. 직업 교육 훈련 프로그램\n3. 멘토링 시스템 구축\n4. 취업 연계 서비스",
-                author: "뉴미디어팀",
+                author: "뉴미디어",
                 imageCount: 3,
                 tags: ["청년정책", "일자리", "창업지원"],
                 attachments: [

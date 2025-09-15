@@ -18,7 +18,7 @@ async function createSampleCardNews() {
                 excerpt: '미래 경제 성장을 위한 혁신적인 정책을 카드뉴스로 소개합니다.',
                 category: '정책',
                 content: '# 경제정책 주요 내용\n\n## 1. 혁신 기업 지원\n- 창업 생태계 활성화\n- R&D 투자 확대\n\n## 2. 일자리 창출\n- 새로운 산업 분야 개척\n- 청년 고용 확대',
-                author: '뉴미디어팀',
+                author: '뉴미디어',
                 imageCount: 5,
                 tags: ['경제정책', '혁신', '일자리', '창업'],
                 attachments: [
@@ -64,7 +64,7 @@ async function createSampleCardNews() {
                 excerpt: '청년들과 함께하는 정책 토론회 현장을 카드뉴스로 전합니다.',
                 category: '활동',
                 content: '# 청년 정책 토론회\n\n젊은 세대와의 소통을 위한 토론회가 성황리에 개최되었습니다.',
-                author: '뉴미디어팀',
+                author: '뉴미디어',
                 imageCount: 3,
                 tags: ['청년정책', '토론회', '소통'],
                 attachments: [
@@ -96,7 +96,7 @@ async function createSampleCardNews() {
                 excerpt: '2025년 새해를 맞아 당 대표가 전하는 신년 인사입니다.',
                 category: '소식',
                 content: '# 신년 메시지\n\n새해 복 많이 받으시고, 함께 더 나은 대한민국을 만들어 갑시다.',
-                author: '뉴미디어팀',
+                author: '뉴미디어',
                 imageCount: 4,
                 tags: ['신년인사', '당대표', '메시지'],
                 attachments: [
@@ -135,7 +135,7 @@ async function createSampleCardNews() {
                 excerpt: '국정감사에서 제기된 주요 쟁점들을 쉽게 정리했습니다.',
                 category: '정보',
                 content: '# 국정감사 주요 쟁점\n\n시민들이 알아야 할 핵심 내용들을 정리했습니다.',
-                author: '뉴미디어팀',
+                author: '뉴미디어',
                 imageCount: 6,
                 tags: ['국정감사', '쟁점', '정리'],
                 attachments: [

@@ -116,14 +116,21 @@
             margin-right: 8px;
         }
         
-        .badge-kbs { background-color: #1e3a8a; color: white; }
-        .badge-mbc { background-color: #059669; color: white; }
-        .badge-sbs { background-color: #dc2626; color: white; }
-        .badge-ytn { background-color: #7c3aed; color: white; }
+        .badge-yonhap { background-color: #0066cc; color: white; }
+        .badge-newsis { background-color: #ff6600; color: white; }
+        .badge-news1 { background-color: #e60012; color: white; }
         .badge-chosun { background-color: #1f2937; color: white; }
+        .badge-chosunbiz { background-color: #2563eb; color: white; }
         .badge-joongang { background-color: #0369a1; color: white; }
         .badge-donga { background-color: #b91c1c; color: white; }
-        .badge-hankook { background-color: #374151; color: white; }
+        .badge-hankyung { background-color: #059669; color: white; }
+        .badge-mk { background-color: #dc2626; color: white; }
+        .badge-asiatoday { background-color: #7c3aed; color: white; }
+        .badge-ftoday { background-color: #ea580c; color: white; }
+        .badge-hanmi { background-color: #0891b2; color: white; }
+        .badge-cheonji { background-color: #9333ea; color: white; }
+        .badge-truth { background-color: #16a34a; color: white; }
+        .badge-imaeil { background-color: #ca8a04; color: white; }
         .badge-default { background-color: #6b7280; color: white; }
         
         .number-cell, .date-cell, .media-cell {
@@ -210,14 +217,22 @@
                             <label class="block text-sm font-medium text-gray-700 mb-2">언론사</label>
                             <select id="mediaFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500">
                                 <option value="">전체</option>
-                                <option value="kbs">KBS</option>
-                                <option value="mbc">MBC</option>
-                                <option value="sbs">SBS</option>
-                                <option value="ytn">YTN</option>
-                                <option value="chosun">조선일보</option>
-                                <option value="joongang">중앙일보</option>
-                                <option value="donga">동아일보</option>
-                                <option value="hankook">한국일보</option>
+                                <option value="연합뉴스">연합뉴스</option>
+                                <option value="뉴시스">뉴시스</option>
+                                <option value="뉴스1">뉴스1</option>
+                                <option value="조선일보">조선일보</option>
+                                <option value="조선비즈">조선비즈</option>
+                                <option value="중앙일보">중앙일보</option>
+                                <option value="동아일보">동아일보</option>
+                                <option value="한국경제">한국경제</option>
+                                <option value="매일경제">매일경제</option>
+                                <option value="아시아투데이">아시아투데이</option>
+                                <option value="파이낸스투데이">파이낸스투데이</option>
+                                <option value="한미일보">한미일보</option>
+                                <option value="천지일보">천지일보</option>
+                                <option value="트루스데일리">트루스데일리</option>
+                                <option value="매일신문">매일신문</option>
+                                <option value="기타">기타</option>
                             </select>
                         </div>
                         <div>
@@ -442,18 +457,27 @@
 
         // 언론사별 클래스 반환
         function getMediaClass(mediaCompany) {
-            const mediaKey = mediaCompany ? mediaCompany.toLowerCase() : '';
+            if (!mediaCompany) return 'badge-default';
+            
             const mediaClasses = {
-                'kbs': 'badge-kbs',
-                'mbc': 'badge-mbc', 
-                'sbs': 'badge-sbs',
-                'ytn': 'badge-ytn',
+                '연합뉴스': 'badge-yonhap',
+                '뉴시스': 'badge-newsis',
+                '뉴스1': 'badge-news1',
                 '조선일보': 'badge-chosun',
+                '조선비즈': 'badge-chosunbiz',
                 '중앙일보': 'badge-joongang',
                 '동아일보': 'badge-donga',
-                '한국일보': 'badge-hankook'
+                '한국경제': 'badge-hankyung',
+                '매일경제': 'badge-mk',
+                '아시아투데이': 'badge-asiatoday',
+                '파이낸스투데이': 'badge-ftoday',
+                '한미일보': 'badge-hanmi',
+                '천지일보': 'badge-cheonji',
+                '트루스데일리': 'badge-truth',
+                '매일신문': 'badge-imaeil'
             };
-            return mediaClasses[mediaKey] || 'badge-default';
+            
+            return mediaClasses[mediaCompany] || 'badge-default';
         }
 
         // 언론보도 상세 페이지로 이동

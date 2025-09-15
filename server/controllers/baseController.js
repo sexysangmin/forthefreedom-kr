@@ -10,7 +10,9 @@ const getAll = (Model, modelName) => async (req, res) => {
       category = '',
       status = 'published',
       sortBy = 'createdAt',
-      sortOrder = 'desc'
+      sortOrder = 'desc',
+      media = '',
+      dateFilter = ''
     } = req.query;
 
     // 검색 조건 구성
@@ -28,6 +30,48 @@ const getAll = (Model, modelName) => async (req, res) => {
 
     if (category) {
       searchConditions.category = category;
+    }
+
+    // 언론사 필터링 (MediaCoverage 모델용)
+    if (media && Model.modelName === 'MediaCoverage') {
+      const knownMediaOutlets = [
+        '연합뉴스', '뉴시스', '뉴스1', '조선일보', '조선비즈', '중앙일보', 
+        '동아일보', '한국경제', '매일경제', '아시아투데이', '파이낸스투데이', 
+        '한미일보', '천지일보', '트루스데일리', '매일신문'
+      ];
+      
+      if (media === '기타') {
+        // "기타"를 선택한 경우 - 알려진 언론사가 아닌 모든 것
+        searchConditions.mediaOutlet = { $nin: knownMediaOutlets };
+      } else {
+        // 특정 언론사를 선택한 경우
+        searchConditions.mediaOutlet = media;
+      }
+    }
+
+    // 날짜 필터링 (MediaCoverage 모델용)
+    if (dateFilter && Model.modelName === 'MediaCoverage') {
+      const now = new Date();
+      let startDate;
+      
+      switch (dateFilter) {
+        case 'today':
+          startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+          break;
+        case 'week':
+          startDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+          break;
+        case 'month':
+          startDate = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
+          break;
+        case '3months':
+          startDate = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
+          break;
+      }
+      
+      if (startDate) {
+        searchConditions.broadcastDate = { $gte: startDate };
+      }
     }
 
     // 정렬 설정

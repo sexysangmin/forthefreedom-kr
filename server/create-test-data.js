@@ -45,7 +45,7 @@ const testData = {
     excerpt: "청년들을 위한 정책을 카드뉴스로 제작했습니다.",
     category: "카드뉴스",
     content: "# 청년정책 카드뉴스\n\n청년 일자리 창출 정책을 알기 쉽게 설명합니다.",
-    author: "뉴미디어팀",
+    author: "뉴미디어",
     mediaType: "image",
     platform: "인스타그램",
     targetAudience: "청년",
@@ -87,7 +87,7 @@ const testData = {
     excerpt: "국정감사에서 제기된 주요 이슈들을 카드뉴스로 정리했습니다.",
     category: "정책",
     content: "# 국정감사 주요 이슈\n\n이번 국정감사의 핵심 쟁점들을 알아보세요.",
-    author: "뉴미디어팀",
+    author: "뉴미디어",
     imageCount: 8,
     status: "published"
   },

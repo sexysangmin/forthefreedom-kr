@@ -112,7 +112,7 @@ router.post('/', upload.array('attachments'), async (req, res) => {
             publishSchedule: req.body.publishSchedule ? new Date(req.body.publishSchedule) : null,
             engagement: req.body.engagement ? JSON.parse(req.body.engagement) : {},
             priority: parseInt(req.body.priority) || 0,
-            author: req.body.author || '뉴미디어팀',
+            author: req.body.author || '뉴미디어',
             designer: req.body.designer || '',
             status: req.body.status || 'published',
             isPromoted: req.body.isPromoted === 'true',
