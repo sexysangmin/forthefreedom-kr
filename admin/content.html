@@ -1703,7 +1703,14 @@
                     toolbar: [
                         'bold', 'italic', 'heading', '|',
                         'quote', 'unordered-list', 'ordered-list', '|',
-                        'link', 'image', '|',
+                        'link', {
+                            name: 'image',
+                            action: function customImageFunction(editor) {
+                                openImageUploadDialog(editor);
+                            },
+                            className: 'fa fa-picture-o',
+                            title: '이미지 업로드'
+                        }, '|',
                         'preview', 'side-by-side', 'fullscreen', '|',
                         'guide'
                     ],
@@ -1711,16 +1718,132 @@
                         toggleBold: 'Ctrl-B',
                         toggleItalic: 'Ctrl-I',
                         togglePreview: 'Ctrl-P'
-                    }
+                    },
+                    // 드래그 앤 드롭 이미지 업로드 설정
+                    uploadImage: true,
+                    imageUploadFunction: function(file, onSuccess, onError) {
+                        uploadImageFile(file, onSuccess, onError);
+                    },
+                    imageMaxSize: 10485760, // 10MB
+                    imageAccept: 'image/png, image/jpg, image/jpeg, image/gif, image/webp',
+                    imageUploadEndpoint: '/api/upload-image',
+                    imagePathAbsolute: true
                 });
                 console.log('✅ EasyMDE 생성 성공!');
+                
+                // 드래그 앤 드롭 기능 초기화 (에디터 생성 후)
+                setTimeout(() => {
+                    initDragAndDrop();
+                }, 100);
+                
             } catch (error) {
                 console.error('❌ EasyMDE 초기화 실패:', error);
                 showError('에디터 초기화에 실패했습니다: ' + error.message);
             }
         }
 
-        // 파일 선택 처리
+        // 이미지 업로드 다이얼로그 열기
+        function openImageUploadDialog(editor) {
+            console.log('🖼️ 이미지 업로드 다이얼로그 열기');
+            
+            // 파일 입력 요소 생성
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/png, image/jpg, image/jpeg, image/gif, image/webp';
+            input.multiple = false;
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    console.log('📁 선택된 이미지 파일:', file.name, file.size, 'bytes');
+                    uploadImageFile(file, 
+                        function(url) {
+                            // 성공 시 에디터에 이미지 마크다운 삽입
+                            const cm = editor.codemirror;
+                            const cursor = cm.getCursor();
+                            const imageMarkdown = `![${file.name}](${url})`;
+                            cm.replaceRange(imageMarkdown, cursor);
+                            console.log('✅ 이미지 마크다운 삽입됨:', imageMarkdown);
+                        },
+                        function(error) {
+                            console.error('❌ 이미지 업로드 실패:', error);
+                            showError('이미지 업로드에 실패했습니다: ' + error);
+                        }
+                    );
+                }
+            };
+            
+            // 파일 선택 다이얼로그 열기
+            input.click();
+        }
+
+        // 이미지 파일 업로드 함수
+        async function uploadImageFile(file, onSuccess, onError) {
+            console.log('📤 이미지 파일 업로드 시작:', file.name);
+            
+            // 파일 크기 체크 (10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                const error = '파일 크기가 10MB를 초과합니다.';
+                console.error('❌', error);
+                onError(error);
+                return;
+            }
+            
+            // 이미지 파일 타입 체크
+            if (!file.type.startsWith('image/')) {
+                const error = '이미지 파일만 업로드 가능합니다.';
+                console.error('❌', error);
+                onError(error);
+                return;
+            }
+            
+            try {
+                const formData = new FormData();
+                
+                // 한국어 파일명 UTF-8 인코딩 처리
+                const encodedFileName = encodeURIComponent(file.name);
+                console.log('📝 원본 파일명:', file.name);
+                console.log('📝 인코딩된 파일명:', encodedFileName);
+                
+                // 파일명을 안전한 형태로 변환 (영문, 숫자, 하이픈, 언더스코어만 허용)
+                const safeFileName = file.name.replace(/[^a-zA-Z0-9가-힣._-]/g, '_');
+                const timestamp = Date.now();
+                const finalFileName = `${timestamp}_${safeFileName}`;
+                
+                console.log('📝 최종 파일명:', finalFileName);
+                
+                // 새로운 File 객체 생성 (안전한 파일명으로)
+                const renamedFile = new File([file], finalFileName, { type: file.type });
+                formData.append('image', renamedFile);
+                
+                console.log('📤 업로드 요청 시작...');
+                const response = await fetch(`${API_BASE}/upload-image`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                console.log('📥 업로드 응답 상태:', response.status);
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('✅ 업로드 성공:', result);
+                    
+                    // 이미지 URL 반환
+                    const imageUrl = result.url || result.path || `/uploads/${finalFileName}`;
+                    console.log('🔗 이미지 URL:', imageUrl);
+                    onSuccess(imageUrl);
+                } else {
+                    const errorText = await response.text();
+                    console.error('❌ 업로드 실패:', response.status, errorText);
+                    onError(`업로드 실패: ${response.status} - ${errorText}`);
+                }
+            } catch (error) {
+                console.error('❌ 업로드 오류:', error);
+                onError('네트워크 오류: ' + error.message);
+            }
+        }
+
+        // 파일 선택 처리 (UTF-8 인코딩 개선)
         function handleFileSelection(event) {
             console.log('📁 파일 선택 이벤트 발생!', event);
             const files = Array.from(event.target.files);
@@ -1735,20 +1858,38 @@
             files.forEach((file, index) => {
                 console.log(`📄 파일 ${index + 1}: ${file.name} (${file.size} bytes, ${file.type})`);
                 
+                // 한국어 파일명 UTF-8 처리
+                const originalName = file.name;
+                console.log('📝 원본 파일명 (UTF-8):', originalName);
+                console.log('📝 파일명 바이트 길이:', new Blob([originalName]).size);
+                
                 // 파일 크기 체크 (10MB)
                 if (file.size > 10 * 1024 * 1024) {
-                    console.error(`❌ 파일 크기 초과: ${file.name}`);
-                    showError(`파일 "${file.name}"이 너무 큽니다. 10MB 이하의 파일만 업로드 가능합니다.`);
+                    console.error(`❌ 파일 크기 초과: ${originalName}`);
+                    showError(`파일 "${originalName}"이 너무 큽니다. 10MB 이하의 파일만 업로드 가능합니다.`);
                     return;
                 }
                 
-                // 중복 체크
-                const exists = selectedFiles.some(f => f.name === file.name && f.size === file.size);
+                // 파일명 안전성 검사 및 변환
+                const safeFileName = sanitizeFileName(originalName);
+                console.log('📝 안전한 파일명:', safeFileName);
+                
+                // 새로운 File 객체 생성 (안전한 파일명으로)
+                const renamedFile = new File([file], safeFileName, { 
+                    type: file.type,
+                    lastModified: file.lastModified 
+                });
+                
+                // 원본 파일명을 속성으로 저장
+                renamedFile.originalName = originalName;
+                
+                // 중복 체크 (원본 파일명 기준)
+                const exists = selectedFiles.some(f => f.originalName === originalName && f.size === file.size);
                 if (!exists) {
-                    selectedFiles.push(file);
-                    console.log(`✅ 파일 추가됨: ${file.name}`);
+                    selectedFiles.push(renamedFile);
+                    console.log(`✅ 파일 추가됨: ${originalName} -> ${safeFileName}`);
                 } else {
-                    console.log(`⚠️ 중복 파일 무시: ${file.name}`);
+                    console.log(`⚠️ 중복 파일 무시: ${originalName}`);
                 }
             });
             
@@ -1765,7 +1906,97 @@
             // event.target.value = '';
         }
 
-        // 선택된 파일 목록 업데이트
+        // 파일명 안전화 함수 (한국어 지원)
+        function sanitizeFileName(fileName) {
+            // 파일 확장자 분리
+            const lastDotIndex = fileName.lastIndexOf('.');
+            const name = lastDotIndex !== -1 ? fileName.substring(0, lastDotIndex) : fileName;
+            const extension = lastDotIndex !== -1 ? fileName.substring(lastDotIndex) : '';
+            
+            // 타임스탬프 추가로 중복 방지
+            const timestamp = Date.now();
+            
+            // 한국어와 영문, 숫자, 일부 특수문자만 허용
+            const safeName = name.replace(/[^\w가-힣\-_.]/g, '_');
+            
+            // 최종 파일명 생성
+            const finalName = `${timestamp}_${safeName}${extension}`;
+            
+            console.log('📝 파일명 변환:', fileName, '->', finalName);
+            return finalName;
+        }
+
+        // 드래그 앤 드롭 기능 초기화
+        function initDragAndDrop() {
+            const dropZone = document.querySelector('.EasyMDEContainer');
+            if (!dropZone) return;
+            
+            console.log('🎯 드래그 앤 드롭 초기화');
+            
+            // 드래그 오버 이벤트
+            dropZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.style.backgroundColor = '#f0f8ff';
+                dropZone.style.border = '2px dashed #667eea';
+            });
+            
+            // 드래그 리브 이벤트
+            dropZone.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.style.backgroundColor = '';
+                dropZone.style.border = '';
+            });
+            
+            // 드롭 이벤트
+            dropZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.style.backgroundColor = '';
+                dropZone.style.border = '';
+                
+                const files = Array.from(e.dataTransfer.files);
+                console.log('🎯 드롭된 파일들:', files.length);
+                
+                // 이미지 파일만 필터링
+                const imageFiles = files.filter(file => file.type.startsWith('image/'));
+                
+                if (imageFiles.length === 0) {
+                    showError('이미지 파일만 드래그 앤 드롭할 수 있습니다.');
+                    return;
+                }
+                
+                // 첫 번째 이미지 파일을 에디터에 업로드
+                if (imageFiles.length > 0 && easyMDE) {
+                    const file = imageFiles[0];
+                    console.log('🎯 드롭된 이미지 업로드:', file.name);
+                    
+                    uploadImageFile(file,
+                        function(url) {
+                            // 성공 시 에디터에 이미지 마크다운 삽입
+                            const cm = easyMDE.codemirror;
+                            const cursor = cm.getCursor();
+                            const imageMarkdown = `![${file.originalName || file.name}](${url})`;
+                            cm.replaceRange(imageMarkdown, cursor);
+                            console.log('✅ 드롭 이미지 마크다운 삽입됨:', imageMarkdown);
+                        },
+                        function(error) {
+                            console.error('❌ 드롭 이미지 업로드 실패:', error);
+                            showError('이미지 업로드에 실패했습니다: ' + error);
+                        }
+                    );
+                }
+                
+                // 나머지 파일들은 첨부파일로 처리
+                if (files.length > 1 || !imageFiles.length) {
+                    const fakeEvent = { target: { files: files } };
+                    handleFileSelection(fakeEvent);
+                }
+            });
+        }
+
+        // 선택된 파일 목록 업데이트 (한국어 파일명 지원)
         function updateFileDisplay() {
             console.log('🔄 파일 목록 업데이트 중...', selectedFiles.length);
             const container = document.getElementById('selectedFiles');
@@ -1783,18 +2014,28 @@
             }
             
             selectedFiles.forEach((file, index) => {
-                console.log(`📄 파일 UI 생성: ${index + 1}. ${file.name}`);
+                // 원본 파일명 또는 현재 파일명 사용
+                const displayName = file.originalName || file.name;
+                console.log(`📄 파일 UI 생성: ${index + 1}. ${displayName} (저장명: ${file.name})`);
+                
                 const fileItem = document.createElement('div');
                 fileItem.className = 'file-item';
                 
+                const isImage = file.type.startsWith('image/');
                 const fileIcon = getFileIcon(file.type);
                 
                 fileItem.innerHTML = `
                     <div class="file-info-item">
-                        <span class="file-icon">${fileIcon}</span>
+                        ${isImage ? 
+                            `<img src="${URL.createObjectURL(file)}" class="image-preview" alt="${displayName}" style="max-width: 50px; max-height: 50px; object-fit: cover; border-radius: 4px; margin-right: 8px;">` : 
+                            `<span class="file-icon">${fileIcon}</span>`
+                        }
                         <div class="file-details">
-                            <div class="file-name">${file.name}</div>
+                            <div class="file-name" title="${displayName}">${displayName}</div>
                             <div class="file-size">${formatFileSize(file.size)}</div>
+                            ${file.originalName && file.originalName !== file.name ? 
+                                `<div class="file-safe-name" style="font-size: 0.8em; color: #666; margin-top: 2px;">저장명: ${file.name}</div>` : ''
+                            }
                         </div>
                     </div>
                     <button type="button" class="remove-file" onclick="removeSelectedFile(${index})">삭제</button>

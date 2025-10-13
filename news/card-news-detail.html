@@ -533,9 +533,9 @@
         // 링크 복사
         function copyLink() {
             navigator.clipboard.writeText(window.location.href).then(() => {
-                alert('링크가 복사되었습니다.');
+                // 알림 제거 - 조용히 복사
             }).catch(() => {
-                alert('링크 복사에 실패했습니다.');
+                // 실패해도 알림 없음
             });
         }
 
