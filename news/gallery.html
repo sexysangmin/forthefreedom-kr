@@ -231,6 +231,9 @@
                 <div class="text-center mb-12">
                     <h1 class="text-4xl font-bold text-gray-900 mb-4">포토갤러리</h1>
                     <p class="text-xl text-gray-600">자유와혁신의 다양한 활동을 사진으로 만나보세요</p>
+                    <div id="galleryStats" class="mt-4 text-sm text-gray-500" style="display: none;">
+                        총 <span id="totalPhotos">0</span>장의 사진
+                    </div>
                 </div>
                 
                 <!-- 필터 버튼 -->
@@ -402,8 +405,18 @@
                     url += `&search=${encodeURIComponent(currentFilters.search)}`;
                 }
 
+                console.log('🔍 갤러리 API 요청 URL:', url);
+                console.log('🌐 API_BASE:', API_BASE);
+                
                 const response = await fetch(url);
+                console.log('📡 응답 상태:', response.status, response.statusText);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
                 const data = await response.json();
+                console.log('📦 갤러리 API 응답:', data);
 
                 if (data.success) {
                     if (loadMore) {
@@ -416,7 +429,13 @@
                     throw new Error(data.message || '데이터 불러오기 실패');
                 }
             } catch (err) {
-                console.error('포토갤러리 불러오기 실패:', err);
+                console.error('❌ 포토갤러리 불러오기 실패:', err);
+                console.error('🔧 디버그 정보:', {
+                    API_BASE,
+                    currentPage: page,
+                    currentFilters,
+                    loadMore
+                });
                 showError();
             }
         }
@@ -424,6 +443,16 @@
         // 갤러리 표시
         function displayGallery(photos, paginationData, loadMore = false) {
             if (!loadMore) hideAll();
+            
+            // 총 사진 개수 표시
+            if (paginationData && paginationData.total !== undefined) {
+                const totalPhotos = document.getElementById('totalPhotos');
+                const galleryStats = document.getElementById('galleryStats');
+                if (totalPhotos && galleryStats) {
+                    totalPhotos.textContent = paginationData.total;
+                    galleryStats.style.display = 'block';
+                }
+            }
             
             if (photos.length === 0) {
                 if (!loadMore) empty.classList.remove('hidden');
@@ -457,9 +486,16 @@
             }
 
             // 더보기 버튼 표시/숨김
-            console.log('🔧 갤러리 페이지네이션:', { paginationData, hasNext: paginationData?.hasNext, totalPhotos: photos.length });
+            console.log('🔧 갤러리 페이지네이션:', { 
+                paginationData, 
+                hasNext: paginationData?.hasNext, 
+                currentPage: paginationData?.current,
+                totalPages: paginationData?.pages,
+                totalPhotos: paginationData?.total,
+                currentPhotos: photos.length 
+            });
             
-            if (paginationData && (paginationData.hasNext || paginationData.current < paginationData.pages)) {
+            if (paginationData && paginationData.hasNext) {
                 loadMoreBtn.classList.remove('hidden');
             } else {
                 loadMoreBtn.classList.add('hidden');
@@ -527,6 +563,7 @@
             currentFilters.search = searchInput.value.trim();
             currentFilters.date = dateFilter.value;
             currentPage = 1;
+            galleryData = []; // 기존 데이터 초기화
             loadGallery(1);
         }
 
@@ -534,6 +571,7 @@
         function setFilter(category) {
             currentFilters.category = category;
             currentPage = 1;
+            galleryData = []; // 기존 데이터 초기화
             
             // 버튼 상태 업데이트
             filterBtns.forEach(btn => {
