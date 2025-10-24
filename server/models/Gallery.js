@@ -49,6 +49,11 @@ const gallerySchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    sortOrder: {
+        type: Number,
+        default: 0,
+        index: true
+    },
     publishDate: {
         type: Date,
         default: Date.now
@@ -61,5 +66,6 @@ const gallerySchema = new mongoose.Schema({
 gallerySchema.index({ title: 'text', content: 'text' });
 gallerySchema.index({ createdAt: -1 });
 gallerySchema.index({ status: 1 });
+gallerySchema.index({ sortOrder: 1, createdAt: -1 });
 
 module.exports = mongoose.model('Gallery', gallerySchema); 

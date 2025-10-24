@@ -126,6 +126,34 @@
             flex-wrap: wrap;
         }
 
+        .tab-navigation {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e1e5e9;
+            background: white;
+            color: #666;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .tab-btn.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+
         .btn {
             padding: 0.75rem 1rem;
             border: none;
@@ -396,6 +424,147 @@
             color: #333;
         }
 
+        /* 갤러리 관리 스타일 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: grab;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .gallery-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .gallery-item-info {
+            padding: 0.75rem;
+        }
+
+        .gallery-item-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .gallery-item-meta {
+            font-size: 0.8rem;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gallery-item-actions {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            display: flex;
+            gap: 0.25rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-item-actions {
+            opacity: 1;
+        }
+
+        .gallery-action-btn {
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .gallery-action-btn.edit {
+            background: rgba(102, 126, 234, 0.9);
+            color: white;
+        }
+
+        .gallery-action-btn.delete {
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+        }
+
+        .gallery-action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .sort-order-badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .gallery-empty {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .gallery-empty h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .drop-zone {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            transition: all 0.3s;
+        }
+
+        .drop-zone.dragover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         .form-group-modal {
             margin-bottom: 1.5rem;
         }
@@ -635,41 +804,47 @@
                 <span id="contentIcon">📄</span>
                 <h2 id="contentTitle">콘텐츠</h2>
             </div>
+            <div class="tab-navigation">
+                <button class="tab-btn active" onclick="switchTab('content')">일반 콘텐츠</button>
+                <button class="tab-btn" onclick="switchTab('gallery')">포토갤러리</button>
+            </div>
             <div class="actions">
-                <button class="btn btn-success" onclick="openCreateModal()">새 글 작성</button>
-                <button class="btn btn-secondary" onclick="loadContent()">새로고침</button>
+                <button class="btn btn-success" id="createBtn" onclick="openCreateModal()">새 글 작성</button>
+                <button class="btn btn-secondary" id="refreshBtn" onclick="loadContent()">새로고침</button>
             </div>
         </div>
 
-        <div class="search-filters">
-            <div class="filter-row">
-                <div class="form-group">
-                    <label for="searchQuery">검색</label>
-                    <input type="text" id="searchQuery" placeholder="제목, 내용으로 검색...">
-                </div>
-                <div class="form-group">
-                    <label for="statusFilter">상태</label>
-                    <select id="statusFilter">
-                        <option value="">전체</option>
-                        <option value="published">게시됨</option>
-                        <option value="draft">임시저장</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="sortBy">정렬</label>
-                    <select id="sortBy">
-                        <option value="-createdAt">최신순</option>
-                        <option value="createdAt">등록순</option>
-                        <option value="title">제목순</option>
-                        <option value="-title">제목역순</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>&nbsp;</label>
-                    <button class="btn btn-primary" onclick="searchContent()">검색</button>
+        <!-- 일반 콘텐츠 섹션 -->
+        <div id="contentSection" class="tab-content active">
+            <div class="search-filters">
+                <div class="filter-row">
+                    <div class="form-group">
+                        <label for="searchQuery">검색</label>
+                        <input type="text" id="searchQuery" placeholder="제목, 내용으로 검색...">
+                    </div>
+                    <div class="form-group">
+                        <label for="statusFilter">상태</label>
+                        <select id="statusFilter">
+                            <option value="">전체</option>
+                            <option value="published">게시됨</option>
+                            <option value="draft">임시저장</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sortBy">정렬</label>
+                        <select id="sortBy">
+                            <option value="-createdAt">최신순</option>
+                            <option value="createdAt">등록순</option>
+                            <option value="title">제목순</option>
+                            <option value="-title">제목역순</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-primary" onclick="searchContent()">검색</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
         <div id="loading" class="loading">
             <div class="spinner"></div>
@@ -702,6 +877,59 @@
             <h3>등록된 콘텐츠가 없습니다</h3>
             <p>새로운 콘텐츠를 작성해보세요.</p>
             <button class="btn btn-success" onclick="openCreateModal()">새 글 작성</button>
+        </div>
+        </div>
+
+        <!-- 갤러리 관리 섹션 -->
+        <div id="gallerySection" class="tab-content" style="display: none;">
+            <div class="search-filters">
+                <div class="filter-row">
+                    <div class="form-group">
+                        <label for="gallerySearchQuery">검색</label>
+                        <input type="text" id="gallerySearchQuery" placeholder="제목, 내용으로 검색...">
+                    </div>
+                    <div class="form-group">
+                        <label for="galleryStatusFilter">상태</label>
+                        <select id="galleryStatusFilter">
+                            <option value="">전체</option>
+                            <option value="published">게시됨</option>
+                            <option value="draft">임시저장</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="galleryCategoryFilter">카테고리</label>
+                        <select id="galleryCategoryFilter">
+                            <option value="">전체</option>
+                            <option value="당 행사">당 행사</option>
+                            <option value="지역활동">지역활동</option>
+                            <option value="회의">회의</option>
+                            <option value="세미나">세미나</option>
+                            <option value="기타">기타</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-primary" onclick="searchGallery()">검색</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="galleryLoading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                갤러리를 불러오는 중...
+            </div>
+
+            <div id="galleryGrid" class="gallery-grid">
+                <!-- 갤러리 항목들이 동적으로 추가됩니다 -->
+            </div>
+
+            <div id="galleryEmpty" class="gallery-empty" style="display: none;">
+                <h3>등록된 포토갤러리가 없습니다</h3>
+                <p>새로운 포토갤러리를 등록해보세요.</p>
+            </div>
+
+            <div id="galleryPagination" class="pagination">
+            </div>
         </div>
     </div>
 
@@ -2773,6 +3001,352 @@
             if (event.target === modal) {
                 closeModal();
             }
+        }
+
+        // ==================== 갤러리 관리 기능 ====================
+
+        let galleryData = [];
+        let currentGalleryPage = 1;
+        let galleryFilters = {
+            search: '',
+            status: '',
+            category: ''
+        };
+
+        // 탭 전환 함수
+        function switchTab(tab) {
+            // 모든 탭 버튼에서 active 클래스 제거
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 모든 탭 콘텐츠 숨기기
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+                content.style.display = 'none';
+            });
+            
+            // 선택된 탭 활성화
+            if (tab === 'content') {
+                document.querySelector('.tab-btn[onclick="switchTab(\'content\')"]').classList.add('active');
+                document.getElementById('contentSection').classList.add('active');
+                document.getElementById('contentSection').style.display = 'block';
+                
+                // 헤더 텍스트 변경
+                document.getElementById('contentIcon').textContent = '📄';
+                document.getElementById('contentTitle').textContent = '콘텐츠';
+                document.getElementById('createBtn').textContent = '새 글 작성';
+                document.getElementById('createBtn').onclick = openCreateModal;
+                document.getElementById('refreshBtn').onclick = loadContent;
+                
+                // 콘텐츠 로드
+                if (!document.getElementById('contentList').style.display || document.getElementById('contentList').style.display === 'none') {
+                    loadContent();
+                }
+            } else if (tab === 'gallery') {
+                document.querySelector('.tab-btn[onclick="switchTab(\'gallery\')"]').classList.add('active');
+                document.getElementById('gallerySection').classList.add('active');
+                document.getElementById('gallerySection').style.display = 'block';
+                
+                // 헤더 텍스트 변경
+                document.getElementById('contentIcon').textContent = '📸';
+                document.getElementById('contentTitle').textContent = '포토갤러리';
+                document.getElementById('createBtn').textContent = '새 갤러리 등록';
+                document.getElementById('createBtn').onclick = openGalleryCreateModal;
+                document.getElementById('refreshBtn').onclick = loadGallery;
+                
+                // 갤러리 로드
+                loadGallery();
+            }
+        }
+
+        // 갤러리 목록 로드
+        async function loadGallery(page = 1) {
+            try {
+                showGalleryLoading();
+                currentGalleryPage = page;
+                
+                let url = `${window.API_BASE}/gallery?page=${page}&limit=20&sortBy=sortOrder&sortOrder=asc`;
+                
+                if (galleryFilters.search) {
+                    url += `&search=${encodeURIComponent(galleryFilters.search)}`;
+                }
+                if (galleryFilters.status) {
+                    url += `&status=${galleryFilters.status}`;
+                }
+                if (galleryFilters.category) {
+                    url += `&category=${encodeURIComponent(galleryFilters.category)}`;
+                }
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.success) {
+                    galleryData = data.data;
+                    displayGallery(data.data, data.pagination);
+                } else {
+                    throw new Error(data.message || '갤러리 로드 실패');
+                }
+            } catch (error) {
+                console.error('갤러리 로드 오류:', error);
+                hideGalleryLoading();
+                showError('갤러리를 불러오는 중 오류가 발생했습니다.');
+            }
+        }
+
+        // 갤러리 표시
+        function displayGallery(items, pagination) {
+            hideGalleryLoading();
+            
+            const galleryGrid = document.getElementById('galleryGrid');
+            const galleryEmpty = document.getElementById('galleryEmpty');
+            
+            if (items.length === 0) {
+                galleryGrid.innerHTML = '';
+                galleryEmpty.style.display = 'block';
+                return;
+            }
+            
+            galleryEmpty.style.display = 'none';
+            
+            let html = '';
+            items.forEach((item, index) => {
+                const imageUrl = getGalleryImageUrl(item);
+                const date = new Date(item.createdAt).toLocaleDateString('ko-KR');
+                
+                html += `
+                    <div class="gallery-item" data-id="${item._id}" data-sort-order="${item.sortOrder || 0}" draggable="true">
+                        <div class="sort-order-badge">${item.sortOrder || 0}</div>
+                        <div class="gallery-item-actions">
+                            <button class="gallery-action-btn edit" onclick="editGallery('${item._id}')" title="수정">
+                                ✏️
+                            </button>
+                            <button class="gallery-action-btn delete" onclick="deleteGallery('${item._id}')" title="삭제">
+                                🗑️
+                            </button>
+                        </div>
+                        <img src="${imageUrl}" alt="${item.title}" loading="lazy" 
+                             onerror="this.src='${window.API_BASE.replace('/api', '')}/images/logo.png'">
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-title">${item.title}</div>
+                            <div class="gallery-item-meta">
+                                <span>${item.category}</span>
+                                <span>${date}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            galleryGrid.innerHTML = html;
+            
+            // 드래그 앤 드롭 이벤트 추가
+            initGalleryDragAndDrop();
+            
+            // 페이지네이션 표시
+            displayGalleryPagination(pagination);
+        }
+
+        // 갤러리 이미지 URL 생성
+        function getGalleryImageUrl(item) {
+            if (item.attachments && item.attachments.length > 0) {
+                const firstImage = item.attachments.find(att => att.mimetype && att.mimetype.startsWith('image/'));
+                if (firstImage) {
+                    return `${window.API_BASE.replace('/api', '')}/uploads/${firstImage.filename}?t=${Date.now()}`;
+                }
+            }
+            return `${window.API_BASE.replace('/api', '')}/images/logo.png`;
+        }
+
+        // 드래그 앤 드롭 초기화
+        function initGalleryDragAndDrop() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragover', handleDragOver);
+                item.addEventListener('drop', handleDrop);
+                item.addEventListener('dragend', handleDragEnd);
+            });
+        }
+
+        let draggedItem = null;
+
+        function handleDragStart(e) {
+            draggedItem = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = 'move';
+            return false;
+        }
+
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+
+            if (draggedItem !== this) {
+                // 드래그된 아이템과 드롭 타겟의 위치 변경
+                const draggedId = draggedItem.dataset.id;
+                const targetId = this.dataset.id;
+                
+                // DOM에서 위치 변경
+                const galleryGrid = document.getElementById('galleryGrid');
+                const allItems = Array.from(galleryGrid.children);
+                const draggedIndex = allItems.indexOf(draggedItem);
+                const targetIndex = allItems.indexOf(this);
+                
+                if (draggedIndex < targetIndex) {
+                    galleryGrid.insertBefore(draggedItem, this.nextSibling);
+                } else {
+                    galleryGrid.insertBefore(draggedItem, this);
+                }
+                
+                // 서버에 순서 업데이트 요청
+                updateGalleryOrder();
+            }
+
+            return false;
+        }
+
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+            draggedItem = null;
+        }
+
+        // 갤러리 순서 업데이트
+        async function updateGalleryOrder() {
+            try {
+                const galleryItems = document.querySelectorAll('.gallery-item');
+                const items = Array.from(galleryItems).map((item, index) => ({
+                    id: item.dataset.id,
+                    sortOrder: index
+                }));
+
+                const response = await fetch(`${window.API_BASE}/gallery/reorder`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ items })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    // 순서 번호 업데이트
+                    galleryItems.forEach((item, index) => {
+                        const badge = item.querySelector('.sort-order-badge');
+                        if (badge) {
+                            badge.textContent = index;
+                        }
+                        item.dataset.sortOrder = index;
+                    });
+                    
+                    console.log('갤러리 순서가 업데이트되었습니다.');
+                } else {
+                    throw new Error(data.message || '순서 업데이트 실패');
+                }
+            } catch (error) {
+                console.error('갤러리 순서 업데이트 오류:', error);
+                showError('갤러리 순서 업데이트 중 오류가 발생했습니다.');
+                // 실패 시 갤러리 다시 로드
+                loadGallery(currentGalleryPage);
+            }
+        }
+
+        // 갤러리 검색
+        function searchGallery() {
+            galleryFilters.search = document.getElementById('gallerySearchQuery').value.trim();
+            galleryFilters.status = document.getElementById('galleryStatusFilter').value;
+            galleryFilters.category = document.getElementById('galleryCategoryFilter').value;
+            
+            loadGallery(1);
+        }
+
+        // 갤러리 삭제
+        async function deleteGallery(id) {
+            if (!confirm('이 갤러리를 삭제하시겠습니까?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${window.API_BASE}/gallery/${id}`, {
+                    method: 'DELETE'
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    loadGallery(currentGalleryPage);
+                } else {
+                    throw new Error(data.message || '삭제 실패');
+                }
+            } catch (error) {
+                console.error('갤러리 삭제 오류:', error);
+                showError('갤러리 삭제 중 오류가 발생했습니다.');
+            }
+        }
+
+        // 갤러리 수정 (향후 구현)
+        function editGallery(id) {
+            alert('갤러리 수정 기능은 향후 구현될 예정입니다.');
+        }
+
+        // 갤러리 생성 모달 (향후 구현)
+        function openGalleryCreateModal() {
+            alert('갤러리 생성 기능은 향후 구현될 예정입니다.');
+        }
+
+        // 갤러리 페이지네이션 표시
+        function displayGalleryPagination(pagination) {
+            const paginationElement = document.getElementById('galleryPagination');
+            
+            if (!pagination || pagination.pages <= 1) {
+                paginationElement.innerHTML = '';
+                return;
+            }
+            
+            let html = '';
+            
+            // 이전 버튼
+            if (pagination.hasPrev) {
+                html += `<button onclick="loadGallery(${pagination.current - 1})" class="pagination-btn">이전</button>`;
+            }
+            
+            // 페이지 번호들
+            for (let i = 1; i <= pagination.pages; i++) {
+                if (i === pagination.current) {
+                    html += `<button class="pagination-btn active">${i}</button>`;
+                } else {
+                    html += `<button onclick="loadGallery(${i})" class="pagination-btn">${i}</button>`;
+                }
+            }
+            
+            // 다음 버튼
+            if (pagination.hasNext) {
+                html += `<button onclick="loadGallery(${pagination.current + 1})" class="pagination-btn">다음</button>`;
+            }
+            
+            paginationElement.innerHTML = html;
+        }
+
+        // 갤러리 로딩 상태 표시
+        function showGalleryLoading() {
+            document.getElementById('galleryLoading').style.display = 'block';
+            document.getElementById('galleryGrid').style.display = 'none';
+            document.getElementById('galleryEmpty').style.display = 'none';
+        }
+
+        function hideGalleryLoading() {
+            document.getElementById('galleryLoading').style.display = 'none';
+            document.getElementById('galleryGrid').style.display = 'grid';
         }
     </script>
 </body>

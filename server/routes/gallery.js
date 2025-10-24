@@ -113,9 +113,15 @@ router.get('/', async (req, res) => {
 
         console.log('🔍 최종 검색 조건:', JSON.stringify(searchConditions, null, 2));
 
-        // 정렬 설정
+        // 정렬 설정 - sortOrder 우선, 그 다음 createdAt
         const sortOptions = {};
-        sortOptions[sortBy] = sortOrder === 'desc' ? -1 : 1;
+        if (sortBy === 'sortOrder') {
+            sortOptions.sortOrder = sortOrder === 'desc' ? -1 : 1;
+            sortOptions.createdAt = -1; // sortOrder가 같을 때는 최신순
+        } else {
+            sortOptions.sortOrder = 1; // 기본적으로 sortOrder 오름차순
+            sortOptions[sortBy] = sortOrder === 'desc' ? -1 : 1;
+        }
 
         // 페이징 계산
         const skip = (parseInt(page) - 1) * parseInt(limit);
@@ -356,6 +362,83 @@ router.patch('/:id/view', async (req, res) => {
         res.status(400).json({
             success: false,
             message: error.message
+        });
+    }
+});
+
+// 갤러리 정렬 순서 업데이트
+router.patch('/reorder', async (req, res) => {
+    try {
+        const { items } = req.body;
+        
+        if (!items || !Array.isArray(items)) {
+            return res.status(400).json({
+                success: false,
+                message: '정렬할 항목 목록이 필요합니다.'
+            });
+        }
+
+        // 각 항목의 sortOrder 업데이트
+        const updatePromises = items.map((item, index) => {
+            return Gallery.findByIdAndUpdate(
+                item.id,
+                { sortOrder: index },
+                { new: true }
+            );
+        });
+
+        await Promise.all(updatePromises);
+
+        res.json({
+            success: true,
+            message: '갤러리 정렬 순서가 업데이트되었습니다.'
+        });
+    } catch (error) {
+        console.error('갤러리 정렬 순서 업데이트 오류:', error);
+        res.status(500).json({
+            success: false,
+            message: '갤러리 정렬 순서 업데이트 중 오류가 발생했습니다.',
+            error: error.message
+        });
+    }
+});
+
+// 단일 갤러리 정렬 순서 업데이트
+router.patch('/:id/sort-order', async (req, res) => {
+    try {
+        const { sortOrder } = req.body;
+        
+        if (typeof sortOrder !== 'number') {
+            return res.status(400).json({
+                success: false,
+                message: '정렬 순서는 숫자여야 합니다.'
+            });
+        }
+
+        const gallery = await Gallery.findByIdAndUpdate(
+            req.params.id,
+            { sortOrder },
+            { new: true }
+        );
+
+        if (!gallery) {
+            return res.status(404).json({
+                success: false,
+                message: '포토갤러리를 찾을 수 없습니다.'
+            });
+        }
+
+        res.json({
+            success: true,
+            data: gallery,
+            message: '갤러리 정렬 순서가 업데이트되었습니다.'
+        });
+    } catch (error) {
+        console.error('갤러리 정렬 순서 업데이트 오류:', error);
+        res.status(500).json({
+            success: false,
+            message: '갤러리 정렬 순서 업데이트 중 오류가 발생했습니다.',
+            error: error.message
         });
     }
 });

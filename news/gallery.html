@@ -301,7 +301,7 @@
                     
                 <!-- 갤러리 그리드 -->
                 <div id="galleryContainer" class="hidden">
-                    <div id="galleryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         <!-- 동적으로 생성됨 -->
                     </div>
                     
@@ -390,7 +390,7 @@
             if (!loadMore) showLoading();
             
             try {
-                let url = `${API_BASE}/gallery?page=${page}&limit=10`;
+                let url = `${API_BASE}/gallery?page=${page}&limit=12&sortBy=sortOrder&sortOrder=asc`;
                 
                 if (currentFilters.category) {
                     url += `&category=${encodeURIComponent(currentFilters.category)}`;
@@ -432,25 +432,11 @@
 
             let html = '';
             photos.forEach((photo, index) => {
-                // 이미지 URL 생성 - attachments에서 첫 번째 이미지 찾기
-                let imageUrl = '';
-                if (photo.attachments && photo.attachments.length > 0) {
-                    const firstImage = photo.attachments.find(att => att.mimetype && att.mimetype.startsWith('image/'));
-                    if (firstImage) {
-                        imageUrl = `${API_BASE.replace('/api', '')}/uploads/${firstImage.filename}`;
-                    }
-                }
-                
-                // 만약 attachments에 이미지가 없다면 기본 이미지나 다른 필드 확인
-                if (!imageUrl) {
-                    imageUrl = photo.thumbnailUrl || photo.imageUrl || photo.path || `${API_BASE.replace('/api', '')}/images/logo.png`;
-                }
-                
-                const cacheBustedUrl = imageUrl ? `${imageUrl}?t=${Date.now()}` : `${API_BASE.replace('/api', '')}/images/logo.png`;
+                const imageUrl = getGalleryImageUrl(photo);
                 
                 html += `
                     <div class="gallery-item" onclick="openModal(${index})">
-                        <img src="${cacheBustedUrl}" 
+                        <img src="${imageUrl}" 
                              alt="${photo.title}" 
                              class="gallery-image"
                              loading="lazy"
@@ -480,28 +466,35 @@
             }
         }
 
+        // 갤러리 이미지 URL 생성
+        function getGalleryImageUrl(photo) {
+            // attachments에서 첫 번째 이미지 찾기
+            if (photo.attachments && photo.attachments.length > 0) {
+                const firstImage = photo.attachments.find(att => att.mimetype && att.mimetype.startsWith('image/'));
+                if (firstImage) {
+                    // path가 이미 /uploads/로 시작하는 경우
+                    if (firstImage.path && firstImage.path.startsWith('/uploads/')) {
+                        return `${API_BASE.replace('/api', '')}${firstImage.path}`;
+                    }
+                    // filename만 있는 경우
+                    if (firstImage.filename) {
+                        return `${API_BASE.replace('/api', '')}/uploads/${firstImage.filename}`;
+                    }
+                }
+            }
+            
+            // 기본 이미지 반환
+            return `${API_BASE.replace('/api', '')}/images/logo.png`;
+        }
+
         // 모달 열기
         function openModal(index) {
             currentImageIndex = index;
             const photo = galleryData[index];
             
-            // 이미지 URL 생성 - attachments에서 첫 번째 이미지 찾기
-            let imageUrl = '';
-            if (photo.attachments && photo.attachments.length > 0) {
-                const firstImage = photo.attachments.find(att => att.mimetype && att.mimetype.startsWith('image/'));
-                if (firstImage) {
-                    imageUrl = `${API_BASE.replace('/api', '')}/uploads/${firstImage.filename}`;
-                }
-            }
+            const imageUrl = getGalleryImageUrl(photo);
             
-            // 만약 attachments에 이미지가 없다면 기본 이미지나 다른 필드 확인
-            if (!imageUrl) {
-                imageUrl = photo.imageUrl || photo.thumbnailUrl || photo.path || `${API_BASE.replace('/api', '')}/images/logo.png`;
-            }
-            
-            const cacheBustedUrl = imageUrl ? `${imageUrl}?t=${Date.now()}` : `${API_BASE.replace('/api', '')}/images/logo.png`;
-            
-            modalImage.src = cacheBustedUrl;
+            modalImage.src = imageUrl;
             modalTitle.textContent = photo.title;
             modalDate.textContent = formatDate(photo.createdAt);
             modalDescription.textContent = photo.description || photo.excerpt || '';
